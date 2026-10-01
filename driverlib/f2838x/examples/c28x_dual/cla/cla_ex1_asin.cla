@@ -6,7 +6,7 @@
 //
 //#############################################################################
 /// 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -39,12 +39,10 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "cla_ex1_asin_shared.h"
-
 //
 // function definitions
 //
@@ -82,7 +80,6 @@ __attribute__((interrupt))  void Cla1Task1 ( void )
     float A0,A1,A2; //Table coefficients
     float *entry;
     float result;
-
     //Preprocessing
     __mdebugstop();
     xTblIdx = fVal * TABLE_SIZE_M_1; //convert table index to u16-bits
@@ -92,53 +89,35 @@ __attribute__((interrupt))  void Cla1Task1 ( void )
     A0 = *entry++;
     A1 = *entry++;
     A2 = *entry;
-
     result = A0 + fVal*(A1 + A2*fVal);
-
     //Post processing
     if(fVal < 0)
     {
         result = - result;
     }
-
     fResult = result;
 }
-
 __attribute__((interrupt))  void Cla1Task2 ( void )
 {
-
 }
-
 __attribute__((interrupt))  void Cla1Task3 ( void )
 {
-
 }
-
 __attribute__((interrupt))  void Cla1Task4 ( void )
 {
-
 }
-
 __attribute__((interrupt))  void Cla1Task5 ( void )
 {
-
 }
-
 __attribute__((interrupt))  void Cla1Task6 ( void )
 {
-
 }
-
 __attribute__((interrupt))  void Cla1Task7 ( void )
 {
-
 }
-
 __attribute__((interrupt))  void Cla1Task8 ( void )
 {
-
 }
-
 //
 // End of file
 //

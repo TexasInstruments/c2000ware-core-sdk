@@ -1,5 +1,17 @@
 var NAVTREEINDEX20 =
 {
+"group__sci__api.html#ga6ec97594cfe13d807f0fc67b35154e77":[10,22,5],
+"group__sci__api.html#ga6f30ec3629d3cbb94c439985632ea959":[10,22,26],
+"group__sci__api.html#ga6fba1f1d41dff0562830f10f597b665f":[10,22,29],
+"group__sci__api.html#ga747ddcee7a0baeee2984f52696a21af9":[10,22,19],
+"group__sci__api.html#ga779ef3fcf95ab9d4d8dafd572adbf3a9":[10,22,72],
+"group__sci__api.html#ga85013f693224da42aec7fc76f7b16b2c":[10,22,36],
+"group__sci__api.html#ga8a1cb29f22a34246d30b43a62cae4bac":[10,22,63],
+"group__sci__api.html#ga8bb07d0fd9bbbff44821f6da893bb6ca":[10,22,45],
+"group__sci__api.html#ga8c18d6bc6033a63028787faa2001035c":[10,22,25],
+"group__sci__api.html#ga9be05e003f6cf09737349245e2f7ca90":[10,22,39],
+"group__sci__api.html#ga9f13d61c0e51cacf1e760e52b50d1b2b":[10,22,71],
+"group__sci__api.html#gaa26cf4400102fb416b75aff5d95c1fdf":[10,22,69],
 "group__sci__api.html#gaa4edf471267d7ea36b804c02275afc1a":[10,22,24],
 "group__sci__api.html#gaaa0ea4bd7501eaaddf5a094495f74ffa":[10,22,61],
 "group__sci__api.html#gaae2fbd7254ab6b55fe2d0544394eafbd":[10,22,42],
@@ -237,17 +249,5 @@ var NAVTREEINDEX20 =
 "group__sysctl__api.html#ga2ada17d202dfd0c827409fb7c5d4f195":[10,24,117],
 "group__sysctl__api.html#ga2fc267f38b1bc13f485fb129364f8f98":[10,24,109],
 "group__sysctl__api.html#ga31d67715f0625a756ee649adb7c9430d":[10,24,96],
-"group__sysctl__api.html#ga321b8bf7935a17687428e6533d5dc23f":[10,24,201],
-"group__sysctl__api.html#ga32d41f174f71ab0291370b78d2052bd2":[10,24,173],
-"group__sysctl__api.html#ga33452d19a7201bd4e2dceea2309eac6f":[10,24,223],
-"group__sysctl__api.html#ga34cb2c1d1e0127ddca8e21fd1e73f38e":[10,24,217],
-"group__sysctl__api.html#ga36342ba61f7f07b617ecf6bdd1dad2bc":[10,24,59],
-"group__sysctl__api.html#ga377db0cf015406d1e12b01a41b890ca3":[10,24,62],
-"group__sysctl__api.html#ga38dce5fab922204edcd75363a4201268":[10,24,28],
-"group__sysctl__api.html#ga3959487743d68cc65b384dd20fc6667c":[10,24,186],
-"group__sysctl__api.html#ga3a1aace3861b482cb2cbd6cf743183b4":[10,24,90],
-"group__sysctl__api.html#ga3a90e9fa4055810244b4444f86035ae3":[10,24,73],
-"group__sysctl__api.html#ga3cfeaf308f500fb844d3b9aaebfe8cb9":[10,24,219],
-"group__sysctl__api.html#ga3d50bdda1ae269c2ad0c684b0884dd95":[10,24,136],
-"group__sysctl__api.html#ga3e3d924aaf5398366979108ec11ea9f4":[10,24,4]
+"group__sysctl__api.html#ga321b8bf7935a17687428e6533d5dc23f":[10,24,201]
 };

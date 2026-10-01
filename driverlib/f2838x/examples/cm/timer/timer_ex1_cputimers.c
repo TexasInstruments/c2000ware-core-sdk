@@ -26,7 +26,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -59,20 +59,17 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib_cm.h"
 #include "cm.h"
-
 //
 // Globals
 //
 uint16_t cpuTimer0IntCount;
 uint16_t cpuTimer1IntCount;
 uint16_t cpuTimer2IntCount;
-
 //
 // Function Prototypes
 //
@@ -81,7 +78,6 @@ __interrupt void cpuTimer1ISR(void);
 __interrupt void cpuTimer2ISR(void);
 void initCPUTimers(void);
 void configCPUTimer(uint32_t, uint32_t);
-
 //
 // Main
 //
@@ -91,20 +87,17 @@ void main(void)
     // Initializes device clock and peripherals
     //
     CM_init();
-
     //
     // ISRs for each CPU Timer interrupt
     //
     Interrupt_registerHandler(INT_TIMER0, &cpuTimer0ISR);
     Interrupt_registerHandler(INT_TIMER1, &cpuTimer1ISR);
     Interrupt_registerHandler(INT_TIMER2, &cpuTimer2ISR);
-
     //
     // Initializes the Device Peripheral. For this example, only initialize the
     // Cpu Timers.
     //
     initCPUTimers();
-
     //
     // Configure CPU-Timer 0, 1, and 2 to interrupt every second:
     // 1 second Period (in uSeconds)
@@ -112,7 +105,6 @@ void main(void)
     configCPUTimer(CPUTIMER0_BASE, 1000000);
     configCPUTimer(CPUTIMER1_BASE, 1000000);
     configCPUTimer(CPUTIMER2_BASE, 1000000);
-
     //
     // To ensure precise timing, use write-only instructions to write to the
     // entire register. Therefore, if any of the configuration bits are changed
@@ -122,7 +114,6 @@ void main(void)
     CPUTimer_enableInterrupt(CPUTIMER0_BASE);
     CPUTimer_enableInterrupt(CPUTIMER1_BASE);
     CPUTimer_enableInterrupt(CPUTIMER2_BASE);
-
     //
     // Enables CPU int1, int13, and int14 which are connected to CPU-Timer 0,
     // CPU-Timer 1, and CPU-Timer 2 respectively.
@@ -131,14 +122,12 @@ void main(void)
     Interrupt_enable(INT_TIMER0);
     Interrupt_enable(INT_TIMER1);
     Interrupt_enable(INT_TIMER2);
-
     //
     // Starts CPU-Timer 0, CPU-Timer 1, and CPU-Timer 2.
     //
     CPUTimer_startTimer(CPUTIMER0_BASE);
     CPUTimer_startTimer(CPUTIMER1_BASE);
     CPUTimer_startTimer(CPUTIMER2_BASE);
-
     //
     // IDLE loop. Just sit and loop forever (optional)
     //
@@ -146,7 +135,6 @@ void main(void)
     {
     }
 }
-
 //
 // initCPUTimers - This function initializes all three CPU timers
 // to a known state.
@@ -160,28 +148,24 @@ initCPUTimers(void)
     CPUTimer_setPeriod(CPUTIMER0_BASE, 0xFFFFFFFF);
     CPUTimer_setPeriod(CPUTIMER1_BASE, 0xFFFFFFFF);
     CPUTimer_setPeriod(CPUTIMER2_BASE, 0xFFFFFFFF);
-
     //
     // Initialize pre-scale counter to divide by 1 (SYSCLKOUT)
     //
     CPUTimer_setPreScaler(CPUTIMER0_BASE, 0);
     CPUTimer_setPreScaler(CPUTIMER1_BASE, 0);
     CPUTimer_setPreScaler(CPUTIMER2_BASE, 0);
-
     //
     // Make sure timer is stopped
     //
     CPUTimer_stopTimer(CPUTIMER0_BASE);
     CPUTimer_stopTimer(CPUTIMER1_BASE);
     CPUTimer_stopTimer(CPUTIMER2_BASE);
-
     //
     // Reload all counter register with period value
     //
     CPUTimer_reloadTimerCounter(CPUTIMER0_BASE);
     CPUTimer_reloadTimerCounter(CPUTIMER1_BASE);
     CPUTimer_reloadTimerCounter(CPUTIMER2_BASE);
-
     //
     // Reset interrupt counter
     //
@@ -189,7 +173,6 @@ initCPUTimers(void)
     cpuTimer1IntCount = 0;
     cpuTimer2IntCount = 0;
 }
-
 //
 // configCPUTimer - This function initializes the selected timer to the
 // period specified by the "freq" and "period" variables. The "freq" is
@@ -200,18 +183,15 @@ void
 configCPUTimer(uint32_t cpuTimer, uint32_t period)
 {
     uint32_t temp, freq = CM_CLK_FREQ;
-
     //
     // Initialize timer period:
     //
     temp = ((freq / 1000000) * period);
     CPUTimer_setPeriod(cpuTimer, temp - 1);
-
     //
     // Set pre-scale counter to divide by 1 (SYSCLKOUT):
     //
     CPUTimer_setPreScaler(cpuTimer, 0);
-
     //
     // Initializes timer control register. The timer is stopped, reloaded,
     // free run disabled, and interrupt enabled.
@@ -222,7 +202,6 @@ configCPUTimer(uint32_t cpuTimer, uint32_t period)
     CPUTimer_setEmulationMode(cpuTimer,
                               CPUTIMER_EMULATIONMODE_STOPAFTERNEXTDECREMENT);
     CPUTimer_enableInterrupt(cpuTimer);
-
     //
     // Resets interrupt counters for the three cpuTimers
     //
@@ -239,7 +218,6 @@ configCPUTimer(uint32_t cpuTimer, uint32_t period)
         cpuTimer2IntCount = 0;
     }
 }
-
 //
 // cpuTimer0ISR - Counter for CpuTimer0
 //
@@ -248,7 +226,6 @@ cpuTimer0ISR(void)
 {
     cpuTimer0IntCount++;
 }
-
 //
 // cpuTimer1ISR - Counter for CpuTimer1
 //
@@ -257,7 +234,6 @@ cpuTimer1ISR(void)
 {
     cpuTimer1IntCount++;
 }
-
 //
 // cpuTimer2ISR - Counter for CpuTimer2
 //
@@ -266,7 +242,6 @@ cpuTimer2ISR(void)
 {
     cpuTimer2IntCount++;
 }
-
 //
 // End of File
 //

@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_SPI_EEPROM" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_SPI_EEPROM</compoundname>
+    <title>SPI EEPROM Interface</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_SPI_EEPROM_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_spi_eeprom"/></para>
+<sect1 id="EXAMPLES_DRIVERS_SPI_EEPROM_1autotoc_md453">
+<title>Introduction</title>
+<para>This example writes 8 bytes to an SPI EEPROM and reads them back. The device communicates with the EEPROM via SPI and specific opcodes. This example is written to work with the SPI Serial EEPROM AT25128/256.</para>
+<para><simplesect kind="note"><para>SPI character length is configured to 8 bits in SysConfig, and not changed throughout the execution of the program. Runtime updation of character length when CS pin is not controlled by the SPI module can lead to unpredictable behaviour</para>
+</simplesect>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_SPI_EEPROM_1autotoc_md454">
+<title>Watch  Variables</title>
+<para><itemizedlist>
+<listitem><para>writeBuffer : Data that is written to external EEPROM</para>
+</listitem><listitem><para>readBuffer : Data that is read back from EEPROM</para>
+</listitem><listitem><para>error : Error count</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_SPI_EEPROM_1autotoc_md455">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>Connect GPIO2 (PICO) to external EEPROM SI pin</para>
+</listitem><listitem><para>Connect GPIO5 (POCI) to external EEPROM SO pin</para>
+</listitem><listitem><para>Connect GPIO3 (CLK) to external EEPROM SCK pin</para>
+</listitem><listitem><para>Connect GPIO12 (CS) to external EEPROM CS pin</para>
+</listitem><listitem><para>Connect the external EEPROM VCC and GND pins</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_SPI_EEPROM_1autotoc_md456">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Check error count to ensure read/write has occurred successfully. Place breakpoints and inspect TX and RX buffers to monitor actual sent and received data.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_SPI_EEPROM_1autotoc_md457">
+<title>See Also</title>
+<para><ref refid="DRIVERS_SPI_PAGE" kindref="compound">SPI</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/spi_eeprom.md"/>
+  </compounddef>
+</doxygen>

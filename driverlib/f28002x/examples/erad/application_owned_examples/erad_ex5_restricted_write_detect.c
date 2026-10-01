@@ -21,7 +21,6 @@
 //!  - None
 //
 //#############################################################################
-
 //
 // Included Files
 //
@@ -29,37 +28,30 @@
 #include "device.h"
 #include <string.h>
 #include <stdlib.h>
-
 //
 // Variable to detect if the restricted region was accessed
 //
 uint32_t x = 0, y=0;
-
 //
 // Function Prototypes
 //
-
 //
 // This is the function stored in the memory region under
 // consideration
 //
 void try_func(void);
-
 //
 // Initialising SCI
 //
 void initSCI(void);
-
 //
 // Configuring the ERAD module
 //
 void configERAD(void);
-
 //
 // ISR to be executed on RTOS generation
 //
 interrupt void RTOSISR(void);
-
 //
 // Main
 //
@@ -69,47 +61,38 @@ void main(void)
     // Initializes device clock and peripherals
     //
     Device_init();
-
     //
     // Configures the GPIO pin as a push-pull output
     //
     Device_initGPIO();
-
     //
     // Initializes PIE and clears PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initializes the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // ISRs for each RTOS interrupt
     //
     Interrupt_register(INT_RTOS, &RTOSISR);
     Interrupt_enableInCPU(INTERRUPT_CPU_RTOSINT);
-
     //
     // Enable RTOS Interrupt
     //
     Interrupt_enable(INT_RTOS);
-
     //
     // Initialise SCI for interaction with user
     //
     initSCI();
-
     //
     // Configure the ERAD module as required
     //
     configERAD();
-
     EINT;
     ERTM;
-
     //
     // SCI COM port interface
     //
@@ -119,20 +102,15 @@ void main(void)
     msg   = "\r\nHi!\0";
     msg_x = "\r\nValue of x = \0";
     msg_g = "\r\nAccess given.\0";
-
     ltoa(x, &val, 10);
-
     SCI_writeCharArray(SCIA_BASE, (uint16_t*)msg, strlen(msg));
     SCI_writeCharArray(SCIA_BASE, (uint16_t*)msg_x, strlen(msg_x));
     SCI_writeCharArray(SCIA_BASE, (uint16_t*)(&val), 1);
-
     msg = "\r\nPress a to try to access the restricted region, g to get access or d to disable access:\0";
-
     while(x < 5)
     {
         SCI_writeCharArray(SCIA_BASE, (uint16_t*)msg, strlen(msg));
         receivedChar = SCI_readCharBlockingFIFO(SCIA_BASE);
-
         //
         // User enters 'a' to access the restricted region, i.e. try_func
         //
@@ -140,7 +118,6 @@ void main(void)
         {
             try_func();
         }
-
         //
         // User enters 'd' to enable the bus comparator. An interrupt is
         // generated when the restriction region is accessed.
@@ -149,7 +126,6 @@ void main(void)
         {
             ERAD_enableModules(ERAD_INST_BUSCOMP1);
         }
-
         //
        // User enters 'd' to enable the bus comparator. No interrupt is
         // generated when the restriction region is accessed.
@@ -159,7 +135,6 @@ void main(void)
             SCI_writeCharArray(SCIA_BASE, (uint16_t*)msg_g, strlen(msg_g));
             ERAD_disableModules(ERAD_INST_BUSCOMP1);
         }
-
         //
         // Value of x denotes how many times try_func was accessed
         //
@@ -172,11 +147,9 @@ void main(void)
     //
     msg = "\r\nGuess you've played enough.Bye!\0";
     SCI_writeCharArray(SCIA_BASE, (uint16_t*)msg, strlen(msg));
-
     ESTOP0;
     while(1);
 }
-
 void
 initSCI(void)
 {
@@ -187,7 +160,6 @@ initSCI(void)
     GPIO_setDirectionMode(DEVICE_GPIO_PIN_SCIRXDA, GPIO_DIR_MODE_IN);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_SCIRXDA, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_SCIRXDA, GPIO_QUAL_ASYNC);
-
     //
     // GPIO29 is the SCI Tx pin.
     //
@@ -195,9 +167,7 @@ initSCI(void)
     GPIO_setDirectionMode(DEVICE_GPIO_PIN_SCITXDA, GPIO_DIR_MODE_OUT);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_SCITXDA, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_SCITXDA, GPIO_QUAL_ASYNC);
-
     SCI_performSoftwareReset(SCIA_BASE);
-
     //
     // Configure SCIA for echoback.
     //
@@ -211,7 +181,6 @@ initSCI(void)
     SCI_enableFIFO(SCIA_BASE);
     SCI_enableModule(SCIA_BASE);
     SCI_performSoftwareReset(SCIA_BASE);
-
     #ifdef AUTOBAUD
     //
     // Perform an autobaud lock.
@@ -219,9 +188,7 @@ initSCI(void)
     //
     SCI_lockAutobaud(SCIA_BASE);
     #endif
-
 }
-
 void
 configERAD(void)
 {
@@ -229,7 +196,6 @@ configERAD(void)
     // Initialise the ERAD module with the APPLICATION as owner
     //
     ERAD_initModule(ERAD_OWNER_APPLICATION);
-
     //
     // Configuring the bus comparator to generate an RTOS interrupt
     // if the restricted region is accessed
@@ -242,13 +208,11 @@ configERAD(void)
     buscomp_config.enable_int  = 1;
     buscomp_config.enable_stop = 0;
     ERAD_configBusComp(ERAD_HWBP1_BASE, buscomp_config);
-
     //
     // Enabling the bus comparator
     //
     ERAD_enableModules(ERAD_INST_BUSCOMP1);
 }
-
 //
 // ISR to be executed if bus comparator generates RTOS interrupt
 //
@@ -260,7 +224,6 @@ RTOSISR(void)
     SCI_writeCharArray(SCIA_BASE, (uint16_t*)msg, strlen(msg));
     y += 1;
 }
-
 //
 // This is the code stored in the restricted region
 // The linker command file specifies where it is to be stored in memory
@@ -277,7 +240,6 @@ try_func(void)
     //
     x+=1;
 }
-
 //
 // End of File
 //

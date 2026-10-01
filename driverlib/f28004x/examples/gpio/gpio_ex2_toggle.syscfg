@@ -1,10 +1,9 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --device "F28004x" --package "F28004x_100PZ" --part "F28004x_100PZ" --context "system" --product "C2000WARE@5.02.00.00"
- * @versions {"tool":"1.0.0+dev"}
+ * @cliArgs --device "F28004x" --part "F28004x_100PZ" --package "F28004x_100PZ" --context "system"
+ * @v2CliArgs --device "TMS320F280049C" --package "100PZ" --context "system"
  */
-
 /**
  * Import the modules used in this configuration.
  */
@@ -15,13 +14,11 @@ const CMD1           = CMD.addInstance();
 const CMD2           = CMD.addInstance();
 const gpio           = scripting.addModule("/driverlib/gpio.js", {}, false);
 const gpio1          = gpio.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
 CMD1.$name                    = "generic_ram_lnk";
 CMD2.$name                    = "generic_flash_lnk";
-
 CMD1.sectionMemory_text       = ["RAMGS0","RAMLS4","RAMLS5","RAMLS6","RAMLS7"];
 CMD1.sectionMemory_ramfunc    = ["RAMM0"];
 CMD1.sectionMemory_cinit      = ["RAMM0"];
@@ -32,7 +29,6 @@ CMD1.sectionMemory_const      = ["RAMLS4"];
 CMD1.sectionMemory_data       = ["RAMLS4"];
 CMD1.sectionMemory_switch     = ["RAMM0"];
 CMD1.sectionMemory_sysmem     = ["RAMLS4"];
-
 CMD2.sectionAlignEnable_ramfunc    = true;
 CMD2.sectionAlignEnable_text       = true;
 CMD2.sectionAlignEnable_binit      = true;
@@ -57,7 +53,6 @@ CMD2.sectionBinit_ramfunc                = false;
 CMD2.sectionMemory_init_array      = ["FLASH_BANK0_SEC1"];
 CMD2.sectionMemory_const           = ["FLASH_BANK0_SEC4"];
 CMD2.sectionMemory_ovly            = ["FLASH_BANK0_SEC1"];
-
 gpio1.direction = "GPIO_DIR_MODE_OUT";
 gpio1.$name     = "myGPIOOutput0";
 gpio1.gpioPin.$assign = "GPIO28";

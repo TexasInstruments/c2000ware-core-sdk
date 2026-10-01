@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_SCI_ECHOBACK" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_SCI_ECHOBACK</compoundname>
+    <title>SCI Echoback</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_SCI_ECHOBACK_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_sci_echoback"/></para>
+<sect1 id="EXAMPLES_DRIVERS_SCI_ECHOBACK_1autotoc_md313">
+<title>Example Overview</title>
+<para>These examples demonstrate two different approaches to implement SCI Echoback functionality:<orderedlist>
+<listitem><para>Manual Driverlib (sci_ex3_echoback.c in driverlib)</para>
+</listitem><listitem><para>Direct Register/Bitfield (sci_ex1_echoback.c in device_support)</para>
+</listitem></orderedlist>
+</para>
+<sect2 id="EXAMPLES_DRIVERS_SCI_ECHOBACK_1autotoc_md314">
+<title>Introduction</title>
+<para>This test receives and echo-backs data through the SCI-A port.</para>
+<para>A terminal such as &apos;putty&apos; can be used to view the data from the SCI and to send information to the SCI. Characters received by the SCI port are sent back to the host.</para>
+<para><simplesect kind="note"><para>This example project has support for migration across our C2000 device families. If you are wanting to build this project from launchpad or controlCARD, please specify in the .syscfg file the board you&apos;re using. At any time you can select another device to migrate this example.</para>
+</simplesect>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_SCI_ECHOBACK_1autotoc_md315">
+<title>Watch  Variables</title>
+<para><itemizedlist>
+<listitem><para>loopCounter - the number of characters sent</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_SCI_ECHOBACK_1autotoc_md316">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>Connect the USB cable from Launchpad to PC</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_SCI_ECHOBACK_1autotoc_md317">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Open a COM port with the following settings using a terminal:<itemizedlist>
+<listitem><para>Find correct COM port</para>
+</listitem><listitem><para>Bits per second = 9600</para>
+</listitem><listitem><para>Data Bits = 8</para>
+</listitem><listitem><para>Parity = None</para>
+</listitem><listitem><para>Stop Bits = 1</para>
+</listitem><listitem><para>Hardware Control = None</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>The program will print out a greeting and then ask you to enter a character which it will echo back to the terminal.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_SCI_ECHOBACK_1autotoc_md318">
+<title>See Also</title>
+<para><ref refid="DRIVERS_SCI_PAGE" kindref="compound">SCI</ref> </para>
+</sect2>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/sci_echoback.md"/>
+  </compounddef>
+</doxygen>

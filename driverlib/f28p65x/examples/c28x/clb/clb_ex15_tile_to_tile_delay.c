@@ -24,7 +24,7 @@
 // $TI Release: $
 // 
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -57,48 +57,34 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
-
 #include "driverlib.h"
 #include "device.h"
 #include "clb_config.h"
 #include "clb.h"
 #include "board.h"
-
 uint32_t clb1delay = 0;
 uint32_t clb2delay = 0;
 uint32_t clb3delay = 0;
 uint32_t clb4delay = 0;
-
 __interrupt void clb1ISR(void);
 __interrupt void clb2ISR(void);
 __interrupt void clb3ISR(void);
 __interrupt void clb4ISR(void);
-
 void main(void)
 {
     Device_init();
     Device_initGPIO();
-
     GPIO_writePin(0, 0);
-
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
-
     Interrupt_register(INT_CLB1, &clb1ISR);
     Interrupt_enable(INT_CLB1);
-
     Interrupt_register(INT_CLB2, &clb2ISR);
     Interrupt_enable(INT_CLB2);
-    
     Interrupt_register(INT_CLB3, &clb3ISR);
     Interrupt_enable(INT_CLB3);
-
     Interrupt_register(INT_CLB4, &clb4ISR);
     Interrupt_enable(INT_CLB4);
-
 	//
     // Enabling EPWM1/2/3/4 to enable CLB1/2/3/4
     //
@@ -106,7 +92,6 @@ void main(void)
 	SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPWM2);
 	SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPWM3);
 	SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPWM4);
-
     //
     // Enabling CLB1/2/3/4
     //
@@ -114,14 +99,11 @@ void main(void)
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB2);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB3);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB4);
-
     Board_init();
-
     initTILE1(myTILE1_BASE);
     initTILE2(myTILE2_BASE);
     initTILE3(myTILE3_BASE);
     initTILE4(myTILE4_BASE);
-
     //
     // Uncomment to enable asynchronous GPIO inputs
     //
@@ -132,36 +114,28 @@ void main(void)
     //GPIO_setQualificationMode(15, GPIO_QUAL_ASYNC);
     //GPIO_setQualificationMode(1, GPIO_QUAL_ASYNC);
     //GPIO_setQualificationMode(5, GPIO_QUAL_ASYNC);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     CLB_clearInterruptTag(myTILE1_BASE);
     CLB_clearInterruptTag(myTILE2_BASE);
     CLB_clearInterruptTag(myTILE3_BASE);
     CLB_clearInterruptTag(myTILE4_BASE);
-
     SysCtl_delay(1000);
     GPIO_writePin(0, 1);
-
     SysCtl_delay(10000);
     ESTOP0;
-
     //
     // Read the clbxdelay values to see how many cycles of delay
     // was detected.
     //
-
     while(1)
     {
-
         asm(" NOP");
     }
 }
-
 __interrupt void clb1ISR(void)
 {
     uint16_t tag = CLB_getInterruptTag(myTILE1_BASE);
@@ -170,11 +144,9 @@ __interrupt void clb1ISR(void)
         clb1delay = CLB_getRegister(myTILE1_BASE, CLB_REG_CTR_C0);
         //ESTOP0;
     }
-
     CLB_clearInterruptTag(myTILE1_BASE);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP5);
 }
-
 __interrupt void clb2ISR(void)
 {
     uint16_t tag = CLB_getInterruptTag(myTILE2_BASE);
@@ -183,11 +155,9 @@ __interrupt void clb2ISR(void)
         clb2delay = CLB_getRegister(myTILE2_BASE, CLB_REG_CTR_C0);
         //ESTOP0;
     }
-
     CLB_clearInterruptTag(myTILE2_BASE);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP5);
 }
-
 __interrupt void clb3ISR(void)
 {
     uint16_t tag = CLB_getInterruptTag(myTILE3_BASE);
@@ -196,11 +166,9 @@ __interrupt void clb3ISR(void)
         clb3delay = CLB_getRegister(myTILE3_BASE, CLB_REG_CTR_C0);
         //ESTOP0;
     }
-
     CLB_clearInterruptTag(myTILE3_BASE);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP5);
 }
-
 __interrupt void clb4ISR(void)
 {
     uint16_t tag = CLB_getInterruptTag(myTILE4_BASE);
@@ -209,7 +177,6 @@ __interrupt void clb4ISR(void)
         clb4delay = CLB_getRegister(myTILE4_BASE, CLB_REG_CTR_C0);
         //ESTOP0;
     }
-
     CLB_clearInterruptTag(myTILE4_BASE);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP5);
 }

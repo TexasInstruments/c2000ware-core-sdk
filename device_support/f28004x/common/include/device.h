@@ -108,6 +108,9 @@ extern "C"
 //
 // FSI
 //
+#define DEVICE_GPIO_PIN_FSI_TXCLK    7U  // GPIO number for FSI TXCLK
+#define DEVICE_GPIO_PIN_FSI_TX0      6U  // GPIO number for FSI TX0
+#define DEVICE_GPIO_PIN_FSI_TX1     25U  // GPIO number for FSI TX1
 #define DEVICE_GPIO_PIN_FSI_RXCLK   33U  // GPIO number for FSI RXCLK
 #define DEVICE_GPIO_PIN_FSI_RX0     12U  // GPIO number for FSI RX0
 #define DEVICE_GPIO_PIN_FSI_RX1      2U  // GPIO number for FSI RX1
@@ -204,6 +207,9 @@ extern "C"
 //
 // FSI
 //
+#define DEVICE_GPIO_PIN_FSI_TXCLK   27U  // GPIO number for FSI TXCLK
+#define DEVICE_GPIO_PIN_FSI_TX0     26U  // GPIO number for FSI TX0
+#define DEVICE_GPIO_PIN_FSI_TX1     25U  // GPIO number for FSI TX1
 #define DEVICE_GPIO_PIN_FSI_RXCLK   13U  // GPIO number for FSI RXCLK
 #define DEVICE_GPIO_PIN_FSI_RX0     12U  // GPIO number for FSI RX0
 #define DEVICE_GPIO_PIN_FSI_RX1     11U  // GPIO number for FSI RX1

@@ -44,7 +44,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -77,23 +77,19 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
 #include "math.h"
-
 //
 // Defines
 //
 #define REFERENCE             REFERENCE_VDAC
-
 #define CPUFREQ_MHZ           200
 #define DAC_NUM               DACA
 #define PI                    3.14159265
 #define SINE_TBL_SIZE         360
-
 //
 // Globals
 //
@@ -104,17 +100,14 @@ Uint32 samplingFreq_hz = 360000;
 Uint16 tableStep = 1;
 float waveformGain = 0.8003F; // Range 0.0 -> 1.0
 float waveformOffset = 0;    // Range -1.0 -> 1.0
-
 volatile Uint16 *DMADest;
 volatile Uint16 *DMASource;
-
 //
 // Function Prototypes
 //
 void configureDAC(Uint16 dac_num);
 void configureDMA(Uint16 dac_num);
 void configureWaveform(void);
-
 //
 // Main
 //
@@ -125,74 +118,59 @@ void main(void)
 // PLL, WatchDog, enable Peripheral Clocks
 //
     InitSysCtrl();
-
 //
 // Disable CPU interrupts
 //
     DINT;
-
 //
 // Initialize the PIE control registers to their default state.
 // The default state is all PIE interrupts disabled and flags are cleared.
 //
     InitPieCtrl();
-
 //
 // Clear all interrupts and initialize PIE vector table:
 //
     IER = 0x0000;
     IFR = 0x0000;
     InitPieVectTable();
-
 //
 // Configure DAC
 //
     configureDAC(DAC_NUM);
-
 //
 // Configure Waveform
 //
     configureWaveform();
-
 //
 // Initialize Cpu Timers
 //
     InitCpuTimers();
-
 //
 // Configure Cpu Timer0 to interrupt at specified sampling frequency
 //
     ConfigCpuTimer(&CpuTimer0, CPUFREQ_MHZ, 1000000.0F/samplingFreq_hz);
-
 //
 // Configure DMA
 //
     configureDMA(DAC_NUM);
-
 //
 // Start Cpu Timer0
 //
     CpuTimer0Regs.TCR.all = 0x4000;
-
     while(1);
 }
-
 //
 // configureDAC - Enable and configure the requested DAC module
 //
 void configureDAC(Uint16 dac_num)
 {
     EALLOW;
-
     DAC_PTR[dac_num]->DACCTL.bit.DACREFSEL = REFERENCE;
     DAC_PTR[dac_num]->DACOUTEN.bit.DACOUTEN = 1;
     DAC_PTR[dac_num]->DACVALS.all = 0;
-
     DELAY_US(10); // Delay for buffered DAC to power up
-
     EDIS;
 }
-
 //
 // configureDMA - Configures the DMA to read from the SINE table and write to the DAC
 //
@@ -202,10 +180,8 @@ void configureDMA(Uint16 dac_num)
     // Initialize DMA
     //
     DMAInitialize();
-
     DMASource = (volatile Uint16 *)&SINE_TBL[0];
     DMADest = (volatile Uint16 *)&DAC_PTR[dac_num]->DACVALS;
-
     //
     // Configure DMA CH1
     //
@@ -216,14 +192,11 @@ void configureDMA(Uint16 dac_num)
     DMACH1ModeConfig(0,PERINT_ENABLE,ONESHOT_DISABLE,CONT_ENABLE,
                      SYNC_DISABLE,SYNC_SRC,OVRFLOW_DISABLE,SIXTEEN_BIT,
                      CHINT_END,CHINT_DISABLE);
-
     EALLOW;
     DmaClaSrcSelRegs.DMACHSRCSEL1.bit.CH1 = DMA_TINT0;    // Timer0 is DMA trigger
     EDIS;
-
     StartDMACH1(); // Start DMA channel
 }
-
 //
 // configureWaveform - Configure the SINE waveform
 //
@@ -232,7 +205,6 @@ void configureWaveform(void)
     Uint16 j;
     float offset;
     float waveformValue;
-
     //
     // Fill Sine Table
     //
@@ -240,19 +212,16 @@ void configureWaveform(void)
     {
         SINE_TBL[j] = (sin(j*PI/180.0F)+1.0F)*2047.5F;
     }
-
     //
     // Adjust for Gain and Offset
     //
     offset = (SINE_TBL[0] - (SINE_TBL[0]*waveformGain)) + (SINE_TBL[0]*waveformOffset);
-
     for(j=0;j<SINE_TBL_SIZE;j++)
     {
         waveformValue = (SINE_TBL[j]*waveformGain)+offset;
         SINE_TBL[j] = waveformValue < 0 ? 0 : waveformValue > 4095 ? 4095 : waveformValue;
     }
 }
-
 //
 // End of file
 //

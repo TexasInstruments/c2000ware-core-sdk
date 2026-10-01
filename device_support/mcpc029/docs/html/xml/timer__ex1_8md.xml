@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="timer__ex1_8md" kind="file" language="Markdown">
+    <compoundname>timer_ex1.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Timer<sp/>Counter<sp/>Example<sp/>{#EXAMPLES_TIMER_EX1}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>Timer<sp/>CPU<sp/>Counter<sp/>Example&quot;</highlight></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>Timer,<sp/>CPU<sp/>Counter&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Universal<sp/>CPU<sp/>Timers<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>demonstrates<sp/>the<sp/>configuration<sp/>and<sp/>usage<sp/>of<sp/>CPU<sp/>Timer0,<sp/>Timer1,<sp/>and<sp/>Timer2<sp/>on<sp/>a<sp/>C2000<sp/>device.<sp/>Each<sp/>timer<sp/>is<sp/>configured<sp/>to<sp/>generate<sp/>an<sp/>interrupt<sp/>at<sp/>specific<sp/>intervals,<sp/>and<sp/>a<sp/>counter<sp/>is<sp/>incremented<sp/>in<sp/>the<sp/>corresponding<sp/>ISR<sp/>(Interrupt<sp/>Service<sp/>Routine).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>**Timer**<sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>**Interrupt<sp/>Interval**<sp/>|<sp/>**Description**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|------------------|------------------------|---------------------------------------------------------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**CPU<sp/>Timer0**<sp/><sp/><sp/>|<sp/>1<sp/>second<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Configured<sp/>to<sp/>interrupt<sp/>every<sp/>1<sp/>second.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**CPU<sp/>Timer1**<sp/><sp/><sp/>|<sp/>2<sp/>seconds<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Configured<sp/>to<sp/>interrupt<sp/>every<sp/>2<sp/>seconds.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**CPU<sp/>Timer2**<sp/><sp/><sp/>|<sp/>4<sp/>seconds<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Configured<sp/>to<sp/>interrupt<sp/>every<sp/>4<sp/>seconds.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>example<sp/>initializes<sp/>the<sp/>device,<sp/>configures<sp/>the<sp/>timers,<sp/>and<sp/>enables<sp/>interrupts.<sp/>The<sp/>main<sp/>loop<sp/>remains<sp/>idle<sp/>while<sp/>the<sp/>timers<sp/>generate<sp/>interrupts<sp/>periodically.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\note<sp/>To<sp/>migrate<sp/>this<sp/>project<sp/>to<sp/>another<sp/>device<sp/>using<sp/>SysConfig,<sp/>click<sp/>the<sp/>switch<sp/>button<sp/>under<sp/>the<sp/>device<sp/>view,<sp/>select<sp/>the<sp/>corresponding<sp/>device,<sp/>and<sp/>save<sp/>the<sp/>project<sp/>to<sp/>auto-migrate<sp/>the<sp/>settings.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>None</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Watch<sp/>Variables</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>**Variable**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>**Description**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|-----------------------|----------------------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`cpuTimer0IntCount`<sp/><sp/><sp/>|<sp/>Counter<sp/>incremented<sp/>by<sp/>Timer0<sp/>ISR.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`cpuTimer1IntCount`<sp/><sp/><sp/>|<sp/>Counter<sp/>incremented<sp/>by<sp/>Timer1<sp/>ISR.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`cpuTimer2IntCount`<sp/><sp/><sp/>|<sp/>Counter<sp/>incremented<sp/>by<sp/>Timer2<sp/>ISR.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Functions</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>**Function**<sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>**Description**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|---------------------|---------------------------------------------------------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`main`<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Entry<sp/>point<sp/>of<sp/>the<sp/>program.<sp/>Initializes<sp/>the<sp/>device,<sp/>configures<sp/>timers,<sp/>and<sp/>enables<sp/>interrupts.<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`initCPUTimers`<sp/><sp/><sp/><sp/>|<sp/>Initializes<sp/>all<sp/>three<sp/>CPU<sp/>timers<sp/>to<sp/>a<sp/>known<sp/>state.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`configCPUTimer`<sp/><sp/><sp/>|<sp/>Configures<sp/>a<sp/>specific<sp/>CPU<sp/>timer<sp/>with<sp/>a<sp/>given<sp/>frequency<sp/>and<sp/>period.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>ISR<sp/>Table</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>**ISR<sp/>Function**<sp/><sp/><sp/>|<sp/>**Timer**<sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>**Description**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|---------------------|----------------|----------------------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`cpuTimer0ISR`<sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>CPU<sp/>Timer0<sp/><sp/><sp/><sp/><sp/>|<sp/>Increments<sp/>`cpuTimer0IntCount`.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`cpuTimer1ISR`<sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>CPU<sp/>Timer1<sp/><sp/><sp/><sp/><sp/>|<sp/>Increments<sp/>`cpuTimer1IntCount`.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`cpuTimer2ISR`<sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>CPU<sp/>Timer2<sp/><sp/><sp/><sp/><sp/>|<sp/>Increments<sp/>`cpuTimer2IntCount`.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">&lt;br&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">&lt;br&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```mermaid</highlight></codeline>
+<codeline><highlight class="normal">Code<sp/>Flow<sp/>:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>A[Initialize<sp/>Device<sp/>Clock<sp/>and<sp/>Peripherals]<sp/>--&gt;<sp/>B[Configure<sp/>Timers<sp/>using<sp/>`configCPUTimer`]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>B<sp/>--&gt;<sp/>C[Enable<sp/>Interrupts<sp/>and<sp/>Start<sp/>Timers]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>C<sp/>--&gt;<sp/>D[Monitor<sp/>Counters]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>D[Monitor<sp/>Counters]<sp/>--&gt;<sp/>E{Verify<sp/>Timer<sp/>Functionality}</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Run<sp/>the<sp/>program<sp/>and<sp/>observe<sp/>the<sp/>interrupt<sp/>counters<sp/>(cpuTimer0IntCount,<sp/>cpuTimer1IntCount,<sp/>cpuTimer2IntCount)<sp/>incrementing<sp/>in<sp/>the<sp/>debugger</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\note</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>When<sp/>running<sp/>in<sp/>flash<sp/>configuration,<sp/>it<sp/>is<sp/>recommended<sp/>to<sp/>reset<sp/>and<sp/>restart<sp/>after<sp/>loading<sp/>the<sp/>example<sp/>to<sp/>remove<sp/>any<sp/>stale<sp/>flags<sp/>or<sp/>states.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_TIMER_PAGE</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/timer_ex1.md"/>
+  </compounddef>
+</doxygen>

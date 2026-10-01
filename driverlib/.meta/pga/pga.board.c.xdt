@@ -169,6 +169,15 @@ void `instance.$name`_init(){
         % } else {
     PGA_disable(`instance.$name`_BASE);
         % }
+        %if (["F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName())){
+        % if (instance.pgaEnable) {
+    PGA_enableOutput(`instance.$name`_BASE);
+    PGA_enableInternalGainOutput(`instance.$name`_BASE);
+        % } else {
+    PGA_disableOutput(`instance.$name`_BASE);
+    PGA_disableInternalGainOutput(`instance.$name`_BASE);
+        % }
+        %}
     //
     // Delay for PGA to power up.
     //

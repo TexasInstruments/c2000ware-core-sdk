@@ -39,7 +39,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -79,7 +79,6 @@
 #include "device.h"
 #include "board.h"
 #include "sfo_v8.h"
-
 //
 // Defines
 //
@@ -91,7 +90,6 @@
 #define EPWM_TIMER_TBPRD            100UL // Time-Base Period
 #define EPWM_RED                    10UL  // Rising Edge Delay
 #define EPWM_FED                    10UL  // Falling Edge Delay
-
 //
 // In this example, we want to increment the CMPx values to update the HRPWM
 // duty cycle during run-time. While varying CMPx, TBPRD should remain
@@ -105,23 +103,18 @@
 //
 #define MIN_HRPWM_DUTY_PERCENT      ((float32_t)EPWM_FED/2)/((float32_t)EPWM_TIMER_TBPRD)*100.0
 #define MAX_HRPWM_DUTY_PERCENT      ((float32_t)EPWM_TIMER_TBPRD - EPWM_RED/2)/((float32_t)EPWM_TIMER_TBPRD)*100.0
-
 #define LAST_EPWM_INDEX_FOR_EXAMPLE    5
-
 //
 // Globals
 //
 float32_t dutyFine = 50.0; // Start the duty cycle at 50%
-
 uint16_t status;
 int MEP_ScaleFactor; // Global variable used by the SFO library
                      // Result can be used for all HRPWM channels
                      // This variable is also copied to HRMSTEP
                      // register by SFO() function.
-
 volatile uint32_t ePWM[] =
     {0, myEPWM1_BASE, myEPWM2_BASE, myEPWM3_BASE, myEPWM4_BASE};
-
 //
 // Function Prototypes
 //
@@ -130,35 +123,29 @@ void error(void);
 //__interrupt void epwm2ISR(void);
 //__interrupt void epwm3ISR(void);
 //__interrupt void epwm4ISR(void);
-
 //
 // Main
 //
 void main(void)
 {
     uint16_t i = 0;
-
     //
     // Initialize device clock and peripherals.
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Assign the interrupt service routines to ePWM interrupts.
     //
@@ -166,18 +153,14 @@ void main(void)
     //Interrupt_register(INT_EPWM2, &epwm2ISR);
     //Interrupt_register(INT_EPWM3, &epwm3ISR);
     //Interrupt_register(INT_EPWM4, &epwm4ISR);
-
     //
     // Disable sync (Freeze clock to PWM as well)
     //
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Initialize EPWM modules and change EXTSYNCIN XBAR Inputs from GPIO0.
     //
     Board_init();
-
-
     //
     // Calling SFO() updates the HRMSTEP register with calibrated MEP_ScaleFactor.
     // HRMSTEP must be populated with a scale factor value prior to enabling
@@ -191,27 +174,21 @@ void main(void)
             error();   // SFO function returns 2 if an error occurs & # of MEP
         }              // steps/coarse step exceeds maximum of 255.
     }
-
     //
     // Enable sync and clock to PWM
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
-
     // Enable ePWM interrupts
     //
     //Interrupt_enable(INT_EPWM1);
     //Interrupt_enable(INT_EPWM2);
     //Interrupt_enable(INT_EPWM3);
     //Interrupt_enable(INT_EPWM4);
-
     //
     // Enable Global Interrupt (INTM) and real-time interrupt (DBGM)
     //
     EINT;
     ERTM;
-
-
     for(;;)
     {
         //
@@ -249,7 +226,6 @@ void main(void)
             //
             status = SFO(); // In the background, the MEP calibration module
                             // continuously updates MEP_ScaleFactor.
-
             if (status == SFO_ERROR)
             {
                 error();   // SFO function returns 2 if an error occurs & #
@@ -258,8 +234,6 @@ void main(void)
         }
     }
 }
-
-
 //
 // epwm1ISR - ePWM 1 ISR
 //
@@ -268,7 +242,6 @@ void main(void)
 //    EPWM_clearEventTriggerInterruptFlag(EPWM1_BASE);
 //    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP3);
 //}
-
 //
 // epwm2ISR - ePWM 2 ISR
 //
@@ -277,7 +250,6 @@ void main(void)
 //    EPWM_clearEventTriggerInterruptFlag(EPWM2_BASE);
 //    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP3);
 //}
-
 //
 // epwm3ISR - ePWM 3 ISR
 //
@@ -286,7 +258,6 @@ void main(void)
 //    EPWM_clearEventTriggerInterruptFlag(EPWM3_BASE);
 //    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP3);
 //}
-
 //
 // epwm4ISR - ePWM 4 ISR
 //
@@ -295,9 +266,6 @@ void main(void)
 //    EPWM_clearEventTriggerInterruptFlag(EPWM4_BASE);
 //    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP3);
 //}
-
-
-
 //
 // Error - Halt debugger when called
 //

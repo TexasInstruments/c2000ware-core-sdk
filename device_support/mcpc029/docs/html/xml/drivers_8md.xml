@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="drivers_8md" kind="file" language="Markdown">
+    <compoundname>drivers.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>SOC<sp/>Peripheral<sp/>Drivers<sp/>{#DRIVERS_PAGE}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>module<sp/>contains<sp/>APIs<sp/>for<sp/>different<sp/>device<sp/>drivers<sp/>for<sp/>peripherals<sp/>on<sp/>the<sp/>SOC<sp/>that<sp/>are<sp/>supported<sp/>on<sp/>@VAR_SOC_NAME.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Rebuild<sp/>driverlib</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Navigate<sp/>to<sp/>&apos;\mcu_sdk_f29h85x\source\driverlib\ccs\&apos;<sp/>folder<sp/>and<sp/>launch<sp/>command<sp/>prompt</highlight></codeline>
+<codeline><highlight class="normal">Run<sp/>below<sp/>commands<sp/>to<sp/>rebuild<sp/>the<sp/>driverlib</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SET<sp/>CGT29X_ROOT=C:\ti\ccs2050\ccs\tools\compiler\ti-cgt-c29_2.2.0.LTS</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>call<sp/>build.bat</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">It<sp/>consists<sp/>of<sp/>below<sp/>sub-modules</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_ADC_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_CLB_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_CMPSS_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_CPU_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_DAC_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_DCC_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_DLT_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_ECAP_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_EMIF_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_EPG_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_EPWM_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_EQEP_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_ERAD_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_ESM_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_FLASH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_FSI_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_GPIO_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_I2C_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_INTERRUPT_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_IPC_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_LIN_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_MCAN_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_PMBUS_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_RTDMA_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_SDFM_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_SENT_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_SPI_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_SYSCTL_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_TIMER_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_UART_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_WADI_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_XBAR_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_DTHE_PAGE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>\subpage<sp/>DRIVERS_DTHE_SHA_PAGE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>\subpage<sp/>DRIVERS_DTHE_AES_PAGE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>\subpage<sp/>DRIVERS_DTHE_SM3_PAGE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>\subpage<sp/>DRIVERS_DTHE_SM4_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_HSMCLIENT_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_SIPC_NOTIFY_PAGE</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_ADC_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_ASYSCTL_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_CMPSSLITE_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_DCC_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_DCSM_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_DMA_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_ECAP_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_EQEP_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_FLASH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_GPIO_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_I2C_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_INTERRUPT_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_MCPWM_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_MEMCFG_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_PGA_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_SCI_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_SPI_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_SYSCTL_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_TIMER_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_UART_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_XBAR_PAGE</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28P55x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_ADC_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_AES_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_ASYSCTL_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_CLA_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_CLB_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_CMPSS_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_DAC_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_DCC_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_DCSM_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_DMA_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_ECAP_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_EPG_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_EPWM_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_EQEP_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_ERAD_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_FLASH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_FSI_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_GPIO_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_HRPWM_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_I2C_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_INTERRUPT_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_LIN_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_MCAN_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_MEMCFG_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_PGA_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_PMBUS_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_SCI_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_SPI_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_SYSCTL_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_TIMER_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_USB_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_XBAR_PAGE</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28P551x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_ADC_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_AES_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_ASYSCTL_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_CLA_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_CLB_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_CMPSS_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_DAC_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_DCC_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_DCSM_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_DMA_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_ECAP_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_EPG_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_EPWM_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_EQEP_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_ERAD_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_FLASH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_FSI_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_GPIO_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_HRPWM_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_I2C_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_INTERRUPT_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_LIN_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_MCAN_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_MEMCFG_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_PGA_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_PMBUS_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_SCI_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_SDFM_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_SPI_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_SYSCTL_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_TIMER_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_XBAR_PAGE</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>MCPC029</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_ADC_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_ASYSCTL_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_CMPSSLITE_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_DCC_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_DCSM_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_DMA_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_ECAP_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_EQEP_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_FLASH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_GPIO_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_I2C_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_INTERRUPT_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_MCPWM_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_MEMCFG_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_PGA_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_SCI_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_SPI_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_SYSCTL_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_TIMER_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_UART_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\subpage<sp/>DRIVERS_XBAR_PAGE</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/drivers.md"/>
+  </compounddef>
+</doxygen>

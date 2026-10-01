@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_DCC_EX4_CLOCK_FAIL_DETECT" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_DCC_EX4_CLOCK_FAIL_DETECT</compoundname>
+    <title>DCC Clock Failure Detection</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_DCC_EX4_CLOCK_FAIL_DETECT_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_dcc_ex4_clock_fail_detect"/></para>
+<sect1 id="EXAMPLES_DRIVERS_DCC_EX4_CLOCK_FAIL_DETECT_1autotoc_md196">
+<title>Introduction</title>
+<para>This example demonstrates the detection of clock failure using the Dual-Clock Comparator (DCC) module on a continuous monitoring basis. The PLL clock is monitored using the XTAL oscillator as the reference clock source. A clock failure is simulated by turning off the XTAL oscillator, which triggers a DCC error interrupt. The interrupt service routine (ISR) handles the failure by switching the oscillator source to WROSCDIV8 and turning off the PLL.</para>
+<para><table rows="3" cols="2"><row>
+<entry thead="yes"><para><bold>Clock Source</bold>   </para>
+</entry><entry thead="yes"><para><bold>Description</bold>    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Clocksource0</bold>   </para>
+</entry><entry thead="no"><para>Reference clock (XTAL, 20 MHz).    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Clocksource1</bold>   </para>
+</entry><entry thead="no"><para>Monitored clock (PLL, 160 MHz).   </para>
+</entry></row>
+</table>
+</para>
+<sect3 id="EXAMPLES_DRIVERS_DCC_EX4_CLOCK_FAIL_DETECT_1autotoc_md197">
+<title>ISR Table</title>
+<para><table rows="2" cols="2"><row>
+<entry thead="yes"><para><bold>ISR Name</bold>   </para>
+</entry><entry thead="yes"><para><bold>Description</bold>    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>__interrupt void DCC_ISR()</computeroutput>   </para>
+</entry><entry thead="no"><para>Handles the DCC error interrupt triggered by clock failure.   </para>
+</entry></row>
+</table>
+</para>
+<para><simplesect kind="note"><para><itemizedlist>
+<listitem><para>Ensure the XTAL is a resonator running in Crystal mode. If an SE Crystal is used, physically disconnect the clock on the board to simulate failure.</para>
+</listitem><listitem><para>When running in flash configuration, reset and restart the example after loading to clear any stale flags or states.</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+</sect3>
+<sect3 id="EXAMPLES_DRIVERS_DCC_EX4_CLOCK_FAIL_DETECT_1autotoc_md198">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>None.</para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+<sect3 id="EXAMPLES_DRIVERS_DCC_EX4_CLOCK_FAIL_DETECT_1autotoc_md199">
+<title>Watch Variables</title>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para><bold>Variable</bold>   </para>
+</entry><entry thead="yes"><para><bold>Description</bold>    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>result</computeroutput>   </para>
+</entry><entry thead="no"><para>Status of the clock failure detection (PASS or FAIL).    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>isr_enter</computeroutput>   </para>
+</entry><entry thead="no"><para>Indicates if the ISR was triggered.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>pass</computeroutput>   </para>
+</entry><entry thead="no"><para>Counter for successful ISR executions.   </para>
+</entry></row>
+</table>
+</para>
+</sect3>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_DCC_EX4_CLOCK_FAIL_DETECT_1autotoc_md200">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Using the watch variables, view the Clock monitoring status and the counter values when the error is generated.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para><itemizedlist>
+<listitem><para>When running in flash configuration, it is recommended to reset and restart after loading the example to remove any stale flags or states.</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_DCC_EX4_CLOCK_FAIL_DETECT_1autotoc_md201">
+<title>See Also</title>
+<para><ref refid="DRIVERS_DCC_PAGE" kindref="compound">DCC</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/dcc_ex4_clock_fail_detect.md"/>
+  </compounddef>
+</doxygen>

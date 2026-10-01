@@ -1,4 +1,9 @@
-
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F280013x" --part "F280013x_64PM" --package "64PM" --context "system"
+ * @v2CliArgs --device "TMS320F2800137" --package "64PM" --context "system"
+ */
 /**
  * Import the modules used in this configuration.
  */
@@ -6,7 +11,6 @@ const cmpss       = scripting.addModule("/driverlib/cmpss.js", {}, false);
 const cmpss1      = cmpss.addInstance();
 const outputxbar  = scripting.addModule("/driverlib/outputxbar.js", {}, false);
 const outputxbar1 = outputxbar.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -19,7 +23,6 @@ cmpss1.thresholdHigh      = 31;
 cmpss1.initFilterHigh     = true;
 cmpss1.highCTRIPOUT       = "CMPSS_TRIPOUT_FILTER";
 cmpss1.highCTRIP          = "CMPSS_TRIP_FILTER";
-
 outputxbar1.$name                            = "myOUTPUTXBAR0";
 outputxbar1.muxesUsed                        = ["XBAR_MUX00"];
 outputxbar1.outputxbar.$assign               = "OUTPUTXBAR3";

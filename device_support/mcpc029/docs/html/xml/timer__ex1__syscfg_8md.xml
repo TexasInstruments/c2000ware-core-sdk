@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="timer__ex1__syscfg_8md" kind="file" language="Markdown">
+    <compoundname>timer_ex1_syscfg.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Timer<sp/>Sysconfig<sp/>Counter<sp/>Example<sp/>{#EXAMPLES_TIMER_EX1_SYSCFG}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>file<sp/>demonstrates<sp/>the<sp/>configuration<sp/>and<sp/>usage<sp/>of<sp/>CPU<sp/>Timer0,<sp/>Timer1,<sp/>and<sp/>Timer2<sp/>on<sp/>a<sp/>C2000<sp/>device<sp/>using<sp/>SysConfig.<sp/>The<sp/>example<sp/>increments<sp/>a<sp/>counter<sp/>each<sp/>time<sp/>a<sp/>timer<sp/>asserts<sp/>an<sp/>interrupt.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Overview</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>example<sp/>initializes<sp/>the<sp/>device,<sp/>configures<sp/>the<sp/>CPU<sp/>timers,<sp/>and<sp/>sets<sp/>up<sp/>interrupt<sp/>service<sp/>routines<sp/>(ISRs)<sp/>to<sp/>handle<sp/>timer<sp/>interrupts.<sp/>The<sp/>counters<sp/>`cpuTimer0IntCount`,<sp/>`cpuTimer1IntCount`,<sp/>and<sp/>`cpuTimer2IntCount`<sp/>are<sp/>incremented<sp/>in<sp/>their<sp/>respective<sp/>ISRs.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Key<sp/>Features:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Configures<sp/>and<sp/>handles<sp/>CPU<sp/>Timer0,<sp/>Timer1,<sp/>and<sp/>Timer2.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Demonstrates<sp/>interrupt<sp/>handling<sp/>for<sp/>CPU<sp/>timers.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Provides<sp/>support<sp/>for<sp/>migration<sp/>across<sp/>C2000<sp/>device<sp/>families.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\note</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>If<sp/>building<sp/>this<sp/>project<sp/>for<sp/>a<sp/>specific<sp/>board<sp/>(e.g.,<sp/>launchpad<sp/>or<sp/>controlCARD),<sp/>specify<sp/>the<sp/>board<sp/>in<sp/>the<sp/>`.syscfg`<sp/>file.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>example<sp/>supports<sp/>device<sp/>migration<sp/>by<sp/>selecting<sp/>another<sp/>device<sp/>in<sp/>the<sp/>SysConfig<sp/>tool.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**None**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Watch<sp/>Variables</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Variable<sp/>Name<sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Description<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|---------------------|------------------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`cpuTimer0IntCount`<sp/>|<sp/>Counter<sp/>for<sp/>Timer0<sp/>interrupts.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`cpuTimer1IntCount`<sp/>|<sp/>Counter<sp/>for<sp/>Timer1<sp/>interrupts.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`cpuTimer2IntCount`<sp/>|<sp/>Counter<sp/>for<sp/>Timer2<sp/>interrupts.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>File<sp/>Structure</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Included<sp/>Files</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>File<sp/>Name<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Description<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|------------------------|-----------------------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`driverlib.h`<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Driver<sp/>library<sp/>for<sp/>device<sp/>peripherals.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`device.h`<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Device-specific<sp/>definitions.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`board.h`<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Board<sp/>initialization<sp/>functions.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`c2000ware_libraries.h`|<sp/>C2000Ware<sp/>library<sp/>initialization.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Global<sp/>Variables</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Variable<sp/>Name<sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Description<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|---------------------|------------------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`cpuTimer0IntCount`<sp/>|<sp/>Counter<sp/>for<sp/>Timer0<sp/>interrupts.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`cpuTimer1IntCount`<sp/>|<sp/>Counter<sp/>for<sp/>Timer1<sp/>interrupts.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`cpuTimer2IntCount`<sp/>|<sp/>Counter<sp/>for<sp/>Timer2<sp/>interrupts.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Interrupt<sp/>Service<sp/>Routines<sp/>(ISRs)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>ISR<sp/>Name<sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Description<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|----------------|-------------------------------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`cpuTimer0ISR`<sp/>|<sp/>Handles<sp/>Timer0<sp/>interrupts<sp/>and<sp/>increments<sp/>`cpuTimer0IntCount`.<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`cpuTimer1ISR`<sp/>|<sp/>Handles<sp/>Timer1<sp/>interrupts<sp/>and<sp/>increments<sp/>`cpuTimer1IntCount`.<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`cpuTimer2ISR`<sp/>|<sp/>Handles<sp/>Timer2<sp/>interrupts<sp/>and<sp/>increments<sp/>`cpuTimer2IntCount`.<sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Main<sp/>Function<sp/>Flowchart</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```mermaid</highlight></codeline>
+<codeline><highlight class="normal">flowchart<sp/>TD</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>A[Start]<sp/>--&gt;<sp/>B[Initialize<sp/>device,<sp/>peripherals,<sp/>and<sp/>interrupt<sp/>modules]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>B<sp/>--&gt;<sp/>C[Configure<sp/>PIE<sp/>vector<sp/>table]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>C<sp/>--&gt;<sp/>D[Initialize<sp/>board-specific<sp/>settings<sp/>and<sp/>C2000Ware<sp/>libraries]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>D<sp/>--&gt;<sp/>E[Enable<sp/>global<sp/>interrupts]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>E<sp/>--&gt;<sp/>F[Reset<sp/>interrupt<sp/>counters]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>F<sp/>--&gt;<sp/>G[Enter<sp/>idle<sp/>loop]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>G<sp/>--&gt;<sp/>H[End]</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Run<sp/>the<sp/>program<sp/>and<sp/>observe<sp/>the<sp/>interrupt<sp/>counters<sp/>(cpuTimer0IntCount,<sp/>cpuTimer1IntCount,<sp/>cpuTimer2IntCount)<sp/>incrementing<sp/>in<sp/>the<sp/>debugger</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\note</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>When<sp/>running<sp/>in<sp/>flash<sp/>configuration,<sp/>it<sp/>is<sp/>recommended<sp/>to<sp/>reset<sp/>and<sp/>restart<sp/>after<sp/>loading<sp/>the<sp/>example<sp/>to<sp/>remove<sp/>any<sp/>stale<sp/>flags<sp/>or<sp/>states.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_TIMER_PAGE</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/timer_ex1_syscfg.md"/>
+  </compounddef>
+</doxygen>

@@ -59,7 +59,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -67,27 +66,23 @@
 #include "device.h"
 #include "board.h"
 #include "c2000ware_libraries.h"
-
 //
 // Globals
 //
 uint16_t cpuTimer0IntCount;
 uint16_t cpuTimer1IntCount;
 uint16_t cpuTimer2IntCount;
-
 //
 // cpuTimer0ISR - Counter for CpuTimer0
 //
 __interrupt void cpuTimer0ISR(void)
 {
     cpuTimer0IntCount++;
-
     //
     // Acknowledge this interrupt to receive more interrupts from group 1
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP1);
 }
-
 //
 // cpuTimer1ISR - Counter for CpuTimer1
 //
@@ -98,7 +93,6 @@ __interrupt void cpuTimer1ISR(void)
     //
     cpuTimer1IntCount++;
 }
-
 //
 // cpuTimer2ISR - Counter for CpuTimer2
 //
@@ -109,7 +103,6 @@ __interrupt void cpuTimer2ISR(void)
     //
     cpuTimer2IntCount++;
 }
-
 //
 // Main
 //
@@ -119,41 +112,34 @@ void main(void)
     // Initializes device clock and peripherals
     //
     Device_init();
-
     //
     // Initializes PIE and clears PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initializes the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // PinMux and Peripheral Initialization
     //
     Board_init();
-
     //
     // C2000Ware Library initialization
     //
     C2000Ware_libraries_init();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Reset interrupt counter
     //
     cpuTimer0IntCount = 0;
     cpuTimer1IntCount = 0;
     cpuTimer2IntCount = 0;
-
     //
     // IDLE loop. Just sit and loop forever (optional)
     //
@@ -161,8 +147,6 @@ void main(void)
     {
     }
 }
-
 //
 // End of File
 //
-

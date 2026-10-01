@@ -54,14 +54,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Main
 //
@@ -71,29 +69,24 @@ void main(void)
     // Initializes system control, device clock, and peripherals
     //
     Device_init();
-
     //
     // Initializes PIE and clear PIE registers. Disables CPU interrupts.
     // and clear all CPU interrupt flags.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Board Initialization
     //
     Board_init();
-
     //
     // Enables CPU interrupts
     //
     Interrupt_enableGlobal();
-
     //
     // Loop.
     //
@@ -103,9 +96,6 @@ void main(void)
         DEVICE_DELAY_US(1000000);
     }
 }
-
-
 //
 // End of File
 //
-

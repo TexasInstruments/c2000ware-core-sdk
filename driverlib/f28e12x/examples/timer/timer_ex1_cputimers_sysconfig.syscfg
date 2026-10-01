@@ -1,11 +1,9 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --device "F28E12x" --package "48PT" --part "F28E12x_48PT" --context "system" --product "C2000WARE@5.04.00.00"
- * @v2CliArgs --device "F28E120SC" --package "48PT" --product "C2000WARE@6.00.00.00"
- * @versions {"tool":"1.21.0+dev"}
+ * @cliArgs --device "F28E12x" --part "F28E12x_48PT" --package "48PT" --context "system"
+ * @v2CliArgs ---device "F28E120SC" --package "48PT" --context "system"
  */
-
 /**
  * Import the modules used in this configuration.
  */
@@ -18,7 +16,6 @@ const cputimer       = scripting.addModule("/driverlib/cputimer.js", {}, false);
 const cputimer1      = cputimer.addInstance();
 const cputimer2      = cputimer.addInstance();
 const cputimer3      = cputimer.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -34,7 +31,6 @@ CMD1.sectionMemory_stack      = ["RAMM1"];
 CMD1.sectionMemory_init_array = ["RAMM0"];
 CMD1.sectionMemory_switch     = ["RAMM0"];
 CMD1.sectionMemory_sysmem     = ["RAMGS0"];
-
 CMD2.sectionAlignEnable_ramfunc    = true;
 CMD2.sectionAlignEnable_text       = true;
 CMD2.sectionAlignEnable_binit      = true;
@@ -59,7 +55,6 @@ CMD2.sectionMemory_ovly            = ["FLASH_BANK0_SEC_0_63"];
 CMD2.sectionRunFromDifferentAddr_ramfunc = true;
 CMD2.sectionRun_ramfunc                  = ["RAMGS0"];
 CMD2.sectionBinit_ramfunc                = false;
-
 cputimer1.registerInterrupts        = true;
 cputimer1.enableInterrupt           = true;
 cputimer1.$name                     = "CPUTIMER0_BASE";
@@ -67,7 +62,6 @@ cputimer1.startTimer                = true;
 cputimer1.timerInt.$name            = "INT_TIMER0";
 cputimer1.timerInt.interruptHandler = "cpuTimer0ISR";
 cputimer1.timerInt.enableInterrupt  = true;
-
 cputimer2.registerInterrupts        = true;
 cputimer2.enableInterrupt           = true;
 cputimer2.$name                     = "CPUTIMER1_BASE";
@@ -76,7 +70,6 @@ cputimer2.startTimer                = true;
 cputimer2.timerInt.$name            = "INT_TIMER1";
 cputimer2.timerInt.interruptHandler = "cpuTimer1ISR";
 cputimer2.timerInt.enableInterrupt  = true;
-
 cputimer3.cputimerBase              = "CPUTIMER2_BASE";
 cputimer3.registerInterrupts        = true;
 cputimer3.enableInterrupt           = true;
@@ -85,7 +78,6 @@ cputimer3.startTimer                = true;
 cputimer3.timerInt.$name            = "INT_TIMER2";
 cputimer3.timerInt.interruptHandler = "cpuTimer2ISR";
 cputimer3.timerInt.enableInterrupt  = true;
-
 cputimer1.timerPeriod               = 160000000;
 cputimer2.timerPeriod               = 320000000;
-cputimer3.timerPeriod               = 480000000;
+cputimer3.timerPeriod               = 640000000;

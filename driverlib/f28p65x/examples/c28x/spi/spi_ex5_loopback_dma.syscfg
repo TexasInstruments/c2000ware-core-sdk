@@ -1,14 +1,13 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --device "F28P65x" --package "256ZEJ" --part "F28P65x_256ZEJ" --context "CPU1" --product "C2000WARE@5.02.00.00"
- * @versions {"tool":"1.17.0+2988"}
+ * @cliArgs --device "F28P65x" --part "F28P65x_256ZEJ" --package "256ZEJ" --board "/boards/TMDSCNCD28P65X" --context "CPU1"
+ * @v2CliArgs --device "TMS320F28P650DK" --package "256ZEJ" --variant "TMS320F28P650DK9" --context "CPU1"
  */
-
 /**
  * Import the modules used in this configuration.
  */
-//const device_support = scripting.addModule("/driverlib/device_support.js");
+const device_support = scripting.addModule("/driverlib/device_support.js");
 const sysctl         = scripting.addModule("/driverlib/sysctl.js");
 const CMD            = scripting.addModule("/utilities/cmd_tool/cmd_syscfg/source/CMD");
 const CMD1           = CMD.addInstance();
@@ -16,7 +15,6 @@ const CMD2           = CMD.addInstance();
 const memcfg         = scripting.addModule("/driverlib/memcfg.js");
 const spi  = scripting.addModule("/driverlib/spi.js", {}, false);
 const spi1 = spi.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -57,10 +55,8 @@ spi1.spiTXDMA.srcAddressVariable     = "srcAddr";
 spi1.spiTXDMA.srcBurstStep           = 1;
 spi1.spiTXDMA.srcTransferStep        = 1;
 spi1.spiTXDMA.dmaInt.enableInterrupt = true;
-
 CMD1.$name                    = "generic_ram_lnk";
 CMD2.$name                    = "generic_flash_lnk";
-
 CMD1.sectionMemory_text       = ["RAMD0","RAMD1","RAMLS0","RAMLS1","RAMLS2","RAMLS3"];
 CMD1.sectionMemory_bss        = ["RAMLS5"];
 CMD1.sectionMemory_const      = ["RAMLS5","RAMLS6"];
@@ -71,7 +67,6 @@ CMD1.sectionMemory_stack      = ["RAMM1"];
 CMD1.sectionMemory_init_array = ["RAMM0"];
 CMD1.sectionMemory_switch     = ["RAMM0"];
 CMD1.sectionMemory_sysmem     = ["RAMLS4"];
-
 CMD1.userSection.create(2);
 CMD1.userSection[0].$name         = "userSection0";
 CMD1.userSection[0].sectionName   = "DMA_TX_SECTION";
@@ -79,7 +74,6 @@ CMD1.userSection[0].sectionMemory = ["RAMGS0"];
 CMD1.userSection[1].$name         = "userSection1";
 CMD1.userSection[1].sectionName   = "DMA_RX_SECTION";
 CMD1.userSection[1].sectionMemory = ["RAMGS1"];
-
 CMD2.sectionAlignEnable_ramfunc    = true;
 CMD2.sectionAlignEnable_text       = true;
 CMD2.sectionAlignEnable_binit      = true;
@@ -104,7 +98,6 @@ CMD2.sectionMemory_ovly            = ["FLASH_BANK0"];
 CMD2.sectionRunFromDifferentAddr_ramfunc = true;
 CMD2.sectionRun_ramfunc                  = ["RAMLS0"];
 CMD2.sectionBinit_ramfunc                = false;
-
 CMD2.userSection.create(2);
 CMD2.userSection[0].$name                = "userSection2";
 CMD2.userSection[0].sectionName          = "DMA_TX_SECTION";

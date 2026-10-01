@@ -5,14 +5,11 @@
 // This file contains addresses and offsets for all ERAD registers
 //
 //#############################################################################
-
 console.log("Including erad.js \n");
-
 //
 // ERAD Global Registers Base Address
 //
 var ERAD_GLOBAL_BASE  =  0x5E800;
-
 //
 // ERAD Global Register Offsets
 //
@@ -23,7 +20,6 @@ let ERAD_Global_Regs_Offset = {
     "GLBL_CTM_RESET"   : 0x6,    //  Global Counter Reset
     "GLBL_OWNER"       : 0xA,    //  Global Ownership
 };
-
 //
 // ERAD Hardware Breakpoint Register Base Addresses
 //
@@ -37,7 +33,6 @@ let ERAD_HWBP_BASE = [
     0x5E930,
     0x5E938,
 ];
-
 //
 // ERAD Hardware Breakpoint Register Offsets
 //
@@ -48,7 +43,6 @@ let ERAD_HWBP_Regs_Offset = {
     "HWBP_CNTL"     : 0x6,     //  HWBP Control Register
     "HWBP_STATUS"   : 0x7,     //  HWBP Status Register
 };
-
 //
 // ERAD Counter Register Base Addresses
 //
@@ -58,7 +52,6 @@ let ERAD_COUNTER_BASE = [
     0x5E9A0,
     0x5E9B0,
 ];
-
 //
 // ERAD Counter Register Offsets
 //
@@ -72,7 +65,6 @@ let ERAD_CTM_Regs_Offset = {
     "CTM_CLEAR"          : 0x9,     //  Counter Clear Register
     "CTM_INPUT_SEL_2"    : 0xA,     //  Counter Input Select Extension Register
 };
-
 //
 // ERAD Owner
 //
@@ -81,7 +73,6 @@ let ERAD_Owner = {
     "ERAD_OWNER_APPLICATION" : 1,     //! Application owned
     "ERAD_OWNER_DEBUGGER"    : 2,     //! Debugger owned
 }
-
 module.exports = {
     ERAD_GLOBAL_BASE,
     ERAD_Global_Regs_Offset,
@@ -91,7 +82,6 @@ module.exports = {
     ERAD_CTM_Regs_Offset,
     ERAD_Owner
 };
-
 //
 // End of File
 //

@@ -69,14 +69,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Globals
 //
@@ -84,46 +82,38 @@ uint16_t sData[2];                  // Send data buffer
 uint16_t rData[2];                  // Receive data buffer
 uint16_t rDataPoint = 0;            // To keep track of where we are in the
                                     // data stream to check received data
-
 //
 // Function Prototypes
 //
 __interrupt void spiTxFIFOISR(void);
 __interrupt void spiRxFIFOISR(void);
-
 //
 // Main
 //
 void main(void)
 {
     uint16_t i;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Board initialization
     //
     Board_init();
-
     //
     // Initialize the data buffers
     //
@@ -132,13 +122,11 @@ void main(void)
         sData[i] = i;
         rData[i]= 0;
     }
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Loop forever. Suspend or place breakpoints to observe the buffers.
     //
@@ -147,14 +135,12 @@ void main(void)
         ;
     }
 }
-
 //
 // SPI A Transmit FIFO ISR
 //
 __interrupt void spiTxFIFOISR(void)
 {
     uint16_t i;
-
     //
     // Send data
     //
@@ -162,7 +148,6 @@ __interrupt void spiTxFIFOISR(void)
     {
        SPI_writeDataNonBlocking(mySPI0_BASE, sData[i]);
     }
-
     //
     // Increment data for next cycle
     //
@@ -170,21 +155,18 @@ __interrupt void spiTxFIFOISR(void)
     {
        sData[i] = sData[i] + 1;
     }
-
     //
     // Clear interrupt flag and issue ACK
     //
     SPI_clearInterruptStatus(mySPI0_BASE, SPI_INT_TXFF);
     Interrupt_clearACKGroup(INT_mySPI0_TX_INTERRUPT_ACK_GROUP);
 }
-
 //
 // SPI A Receive FIFO ISR
 //
  __interrupt void spiRxFIFOISR(void)
 {
     uint16_t i;
-
     //
     // Read data
     //
@@ -192,7 +174,6 @@ __interrupt void spiTxFIFOISR(void)
     {
         rData[i] = SPI_readDataNonBlocking(mySPI0_BASE);
     }
-
     //
     // Check received data
     //
@@ -204,9 +185,7 @@ __interrupt void spiTxFIFOISR(void)
             ESTOP0;
         }
     }
-
     rDataPoint++;
-
     //
     // Clear interrupt flag and issue ACK
     //

@@ -19,7 +19,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -52,13 +52,11 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib_cm.h"
 #include "cm.h"
-
 //
 // Main
 //
@@ -68,12 +66,10 @@ void main(void)
     // Initialize device clock and peripherals
     //
     CM_init();
-
     //
     // Initialize GPIO and configure the GPIO pin as a push-pull output
     //
     // This is configured by CPU1
-
     //
     // Loop Forever
     //
@@ -83,24 +79,20 @@ void main(void)
         // Turn on LED
         //
         GPIO_writePin(DEVICE_GPIO_PIN_LED2, 0);
-
         //
         // Delay for 500000uS.
         //
         DEVICE_DELAY_US(500000);
-
         //
         // Turn off LED
         //
         GPIO_writePin(DEVICE_GPIO_PIN_LED2, 1);
-
         //
         // Delay for 500000uS.
         //
         DEVICE_DELAY_US(500000);
     }
 }
-
 //
 // End of File
 //

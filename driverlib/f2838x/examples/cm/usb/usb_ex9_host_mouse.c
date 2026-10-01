@@ -6,7 +6,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -39,7 +39,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 //
 // Included Files
 //
@@ -54,7 +53,6 @@
 #include "host/usbhhidmouse.h"
 #include "uartstdio.h"
 #include "usb_ex9_host_hub_cm.h"
-
 //******************************************************************************
 //
 // The global values used to store the mouse state.
@@ -63,28 +61,24 @@
 static uint32_t g_ui32Buttons;
 static int32_t g_i32CursorX;
 static int32_t g_i32CursorY;
-
 //******************************************************************************
 //
 // The global value used to store the mouse instance value.
 //
 //******************************************************************************
 static tUSBHMouse *g_psMouseInstance;
-
 //******************************************************************************
 //
 // The size of the mouse device interface's memory pool in bytes.
 //
 //******************************************************************************
 #define MOUSE_MEMORY_SIZE       128
-
 //******************************************************************************
 //
 // The memory pool to provide to the mouse device.
 //
 //******************************************************************************
 uint8_t g_pui8BufferMouse[MOUSE_MEMORY_SIZE];
-
 //******************************************************************************
 //
 // This enumerated type is used to hold the states of the mouse.
@@ -96,30 +90,25 @@ enum
     // No device is present.
     //
     STATE_NO_DEVICE,
-
     //
     // Mouse has been detected and needs to be initialized in the main
     // loop.
     //
     STATE_MOUSE_INIT,
-
     //
     // Mouse is connected and waiting for events.
     //
     STATE_MOUSE_CONNECTED,
-
     //
     // An unsupported device has been attached.
     //
     STATE_UNKNOWN_DEVICE,
-
     //
     // A power fault has occurred.
     //
     STATE_POWER_FAULT
 }
 g_eUSBState;
-
 //******************************************************************************
 //
 // This is the callback from the USB HID mouse handler.
@@ -143,12 +132,10 @@ MouseCallback(tUSBHMouse *psMsInstance, uint32_t ui32Event,
 {
     int32_t i32DoUpdate;
     volatile char pcBuffer[20];
-
     //
     // Do an update unless there is no reason to.
     //
     i32DoUpdate = 0;
-
     switch(ui32Event)
     {
         //
@@ -161,10 +148,8 @@ MouseCallback(tUSBHMouse *psMsInstance, uint32_t ui32Event,
             //
             g_ui32Buttons |= ui32MsgParam;
             i32DoUpdate = 1;
-
             break;
         }
-
         //
         // Mouse button release detected.
         //
@@ -175,10 +160,8 @@ MouseCallback(tUSBHMouse *psMsInstance, uint32_t ui32Event,
             //
             g_ui32Buttons &= ~ui32MsgParam;
             i32DoUpdate = 1;
-
             break;
         }
-
         //
         // Mouse X movement detected.
         //
@@ -194,7 +177,6 @@ MouseCallback(tUSBHMouse *psMsInstance, uint32_t ui32Event,
             // Update the cursor X position.
             //
             g_i32CursorX += (int16_t)ui32MsgParam ;
-
             //
             // Cap the value to not cause an overflow.
             //
@@ -202,16 +184,13 @@ MouseCallback(tUSBHMouse *psMsInstance, uint32_t ui32Event,
             {
                 g_i32CursorX = 9999;
             }
-
             if(g_i32CursorX < -9999)
             {
                 g_i32CursorX = -9999;
             }
             i32DoUpdate = 1;
-
             break;
         }
-
         //
         // Mouse Y movement detected.
         //
@@ -223,12 +202,10 @@ MouseCallback(tUSBHMouse *psMsInstance, uint32_t ui32Event,
             //
             if(ui32MsgParam & 0x80)
                 ui32MsgParam |= 0xFF00;
-
             //
             // Update the cursor Y position.
             //
             g_i32CursorY += (int16_t)ui32MsgParam;
-
             //
             // Cap the value to not cause an overflow.
             //
@@ -236,27 +213,22 @@ MouseCallback(tUSBHMouse *psMsInstance, uint32_t ui32Event,
             {
                 g_i32CursorY = 9999;
             }
-
             if(g_i32CursorY < -9999)
             {
                 g_i32CursorY = -9999;
             }
             i32DoUpdate = 1;
-
             break;
         }
-
         default:
         {
             //
             // No reason to update.
             //
             i32DoUpdate = 0;
-
             break;
         }
     }
-
     //
     // Display the current mouse position and button state if there was an
     // update.
@@ -269,11 +241,8 @@ MouseCallback(tUSBHMouse *psMsInstance, uint32_t ui32Event,
         UARTprintf("\rPos: %l, %l  Buttons: %l%l%l    ", g_i32CursorX,
                   g_i32CursorY, g_ui32Buttons & 1, (g_ui32Buttons & 2) >> 1,
                   (g_ui32Buttons & 4) >> 2);
-
-
     }
 }
-
 //*****************************************************************************
 //
 // The main routine for handling the USB Mouse.
@@ -293,15 +262,12 @@ MouseMain(void)
             // Initialize the newly connected mouse.
             //
             USBHMouseInit(g_psMouseInstance);
-
             //
             // Proceed to the mouse connected state.
             //
             g_eUSBState = STATE_MOUSE_CONNECTED;
-
             break;
         }
-
         case STATE_MOUSE_CONNECTED:
         {
             //
@@ -312,7 +278,6 @@ MouseMain(void)
             MouseOpen();
             break;
         }
-
         case STATE_NO_DEVICE:
         {
             //
@@ -320,14 +285,12 @@ MouseMain(void)
             //
             break;
         }
-
         default:
         {
             break;
         }
     }
 }
-
 //*****************************************************************************
 //
 // Open the instance of the mouse driver.
@@ -343,7 +306,6 @@ MouseOpen(void)
     //
     g_psMouseInstance = USBHMouseOpen(MouseCallback, g_pui8BufferMouse,
                                       MOUSE_MEMORY_SIZE);
-
     //
     // Initialized the cursor.
     //

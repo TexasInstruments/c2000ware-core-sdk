@@ -79,13 +79,11 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
 #include "SFO_V8.h"
-
 //
 // Defines
 //
@@ -94,7 +92,6 @@
 #define STATUS_FAIL       0
 #define AUTOCONVERT       0       // 1 = Turn auto-conversion ON
                                   // 0 = Turn auto-conversion OFF
-
 //
 // Globals
 //
@@ -109,17 +106,14 @@ int MEP_ScaleFactor; // Global variable used by the SFO library
                      // Result can be used for all HRPWM channels
                      // This variable is also copied to HRMSTEP
                      // register by SFO() function.
-
 // Used by SFO library (ePWM[0] is a dummy value that isn't used)
 volatile struct EPWM_REGS *ePWM[PWM_CH] = {&EPwm1Regs, &EPwm1Regs};
-
 //
 // Function Prototypes
 //
 void initHRPWM1GPIO(void);
 void configHRPWM(uint16_t period);
 void error(void);
-
 //
 // Main
 //
@@ -127,18 +121,15 @@ void main(void)
 {
     uint16_t i;
     uint32_t temp, temp1;
-
     //
     // Initialize device clock and peripherals
     //
     InitSysCtrl();
-
     //
     // Initialize GPIO
     //
     InitGpio();
     initHRPWM1GPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
@@ -146,26 +137,22 @@ void main(void)
     InitPieCtrl();
     IER = 0x0000;
     IFR = 0x0000;
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     InitPieVectTable();
-
     //
     // Setup example variables
     //
     UpdateFine = 1;
     DutyFine = 0;
     status = SFO_INCOMPLETE;
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // ePWM and HRPWM register initialization
     //
@@ -176,7 +163,6 @@ void main(void)
         (*ePWM[i]).TBCTL.bit.HSPCLKDIV = 0;
     }
     configHRPWM(10);  
-    
     //
     // Calling SFO() updates the HRMSTEP register with calibrated
     // MEP_ScaleFactor. HRMSTEP must be populated with a scale factor value
@@ -190,9 +176,7 @@ void main(void)
             error();   // SFO function returns 2 if an error occurs & # of MEP
         }              // steps/coarse step exceeds maximum of 255.
     }
-
     EALLOW;
-
     for(;;)
     {
         //
@@ -200,7 +184,6 @@ void main(void)
         //
         for(DutyFine = 0x199A; DutyFine < 0x7FDF; DutyFine++)
         {
-
             if(UpdateFine)
             {
                 /*
@@ -209,16 +192,13 @@ void main(void)
                 // Since DutyFine is a Q15 number, and the period is Q0
                 // the product is Q15. So to store as a Q0, we shift right
                 // 15 bits.
-
                 CMPA_reg_val = ((long)DutyFine * (EPwm1Regs.TBPRD + 1)) >> 15;
-
                 // This next step is to obtain the remainder which was
                 // truncated during our 15 bit shift above.
                 // compute the whole value, and then subtract CMPA_reg_val
                 // shifted LEFT 15 bits:
                 temp = ((long)DutyFine * (EPwm1Regs.TBPRD + 1)) ;
                 temp = temp - ((long)CMPA_reg_val<<15);
-
                 // If auto-conversion is disabled, the following step can be
                 // skipped. If autoconversion is enabled, the SFO function will
                 // write the MEP_ScaleFactor to the HRMSTEP register and the
@@ -228,7 +208,6 @@ void main(void)
                 // format, it must be shifted left by 1 to convert to Q16
                 // format for the hardware to properly convert.
                 CMPAHR_reg_val = temp<<1;
-
                 // If auto-conversion is enabled, the following step is
                 // performed automatically in hardware and can be skipped
                 // This obtains the MEP count in digits, from
@@ -241,25 +220,21 @@ void main(void)
                 //Once again since this is Q15
                 // convert to Q0 by shifting:
                 CMPAHR_reg_val = (temp*MEP_ScaleFactor+(0x0080<<7))>>15;
-
                 // If auto-conversion is enabled, the following step is
                 // performed automatically in hardware and can be skipped
                 // Now the lower 8 bits contain the MEP count.
                 // Since the MEP count needs to be in the upper 8 bits of
                 // the 16 bit CMPAHR register, shift left by 8.
                 CMPAHR_reg_val = CMPAHR_reg_val << 8;
-
                 // If auto-conversion is enabled, the following step is
                 // performed automatically in hardware and can be skipped
                 // Add the offset and rounding
                 CMPAHR_reg_val += 0x0080;
-
                 // Write the values to the registers as one 32-bit
                 // or two 16-bits
                 EPwm1Regs.CMPA.bit.CMPA = CMPA_reg_val;
                 EPwm1Regs.CMPA.bit.CMPAHR = CMPAHR_reg_val;
                 */
-
                 //
                 // All the above operations may be condensed into
                 // the following form:
@@ -273,7 +248,6 @@ void main(void)
                     temp1 = ((long)DutyFine * ((*ePWM[i]).TBPRD + 1)) ;
                     temp = temp - ((long)CMPA_reg_val << 15);
                     temp1 = temp1 - ((long)CMPB_reg_val << 15);
-
                    #if(AUTOCONVERT)
                     CMPAHR_reg_val = temp << 1; // convert to Q16
                     CMPBHR_reg_val = temp << 1; // convert to Q16
@@ -285,7 +259,6 @@ void main(void)
                                       (0x0080 << 7)) >> 15;
                     CMPBHR_reg_val = CMPBHR_reg_val << 8;
                    #endif
-
                    //
                    // Example for a 32 bit write to CMPA:CMPAHR
                    //
@@ -314,7 +287,6 @@ void main(void)
                                                 ((*ePWM[i]).TBPRD + 1)) >> 15);
                 }
             }
-
             //
             // Call the scale factor optimizer lib function SFO()
             // periodically to track for any change due to temp/voltage.
@@ -326,7 +298,6 @@ void main(void)
             //
             status = SFO(); // in background, MEP calibration module
                             // continuously updates MEP_ScaleFactor
-
             if (status == SFO_ERROR)
             {
                 error();   // SFO function returns 2 if an error occurs & #
@@ -335,7 +306,6 @@ void main(void)
         } // end DutyFine for loop
     } // end infinite for loop
 }
-
 //
 // configHRPWM - Configures all ePWM channels and sets up HRPWM
 //                on ePWMxA / ePWMxB  channels
@@ -343,7 +313,6 @@ void main(void)
 void configHRPWM(uint16_t period)
 {
     uint16_t j;
-
     for (j=1;j<PWM_CH;j++)
     {
         (*ePWM[j]).TBCTL.bit.PRDLD = TB_SHADOW;  // set Immediate load
@@ -354,24 +323,20 @@ void configHRPWM(uint16_t period)
         (*ePWM[j]).CMPB.all |= (1 << 8);         // initialize HRPWM extension
         (*ePWM[j]).TBPHS.all = 0;
         (*ePWM[j]).TBCTR = 0;
-
         (*ePWM[j]).TBCTL.bit.CTRMODE = TB_COUNT_UP;
         (*ePWM[j]).TBCTL.bit.PHSEN = TB_DISABLE;
         (*ePWM[j]).TBCTL.bit.SYNCOSEL = TB_SYNC_DISABLE;
         (*ePWM[j]).TBCTL.bit.HSPCLKDIV = TB_DIV1;
         (*ePWM[j]).TBCTL.bit.CLKDIV = TB_DIV1;
         (*ePWM[j]).TBCTL.bit.FREE_SOFT = 11;
-
         (*ePWM[j]).CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;
         (*ePWM[j]).CMPCTL.bit.LOADBMODE = CC_CTR_ZERO;
         (*ePWM[j]).CMPCTL.bit.SHDWAMODE = CC_SHADOW;
         (*ePWM[j]).CMPCTL.bit.SHDWBMODE = CC_SHADOW;
-
         (*ePWM[j]).AQCTLA.bit.ZRO = AQ_SET;      // PWM toggle high/low
         (*ePWM[j]).AQCTLA.bit.CAU = AQ_CLEAR;
         (*ePWM[j]).AQCTLB.bit.ZRO = AQ_SET;
         (*ePWM[j]).AQCTLB.bit.CBU = AQ_CLEAR;
-
         EALLOW;
         (*ePWM[j]).HRCNFG.all = 0x0;
         (*ePWM[j]).HRCNFG.bit.EDGMODE = HR_FEP;  // MEP control on falling edge
@@ -389,14 +354,12 @@ void configHRPWM(uint16_t period)
         EDIS;
     }
 }
-
 //
 // initHRPWM1GPIO - Initialize HRPWM1 GPIOs
 //
 void initHRPWM1GPIO(void)
 {
     EALLOW;
-
     //
     // Disable internal pull-up for the selected output pins
     // for reduced power consumption
@@ -404,7 +367,6 @@ void initHRPWM1GPIO(void)
     //
     GpioCtrlRegs.GPAPUD.bit.GPIO0 = 1;    // Disable pull-up on GPIO0 (EPWM1A)
     GpioCtrlRegs.GPAPUD.bit.GPIO1 = 1;    // Disable pull-up on GPIO1 (EPWM1B)
-
     //
     // Configure EPWM-1 pins using GPIO regs
     // This specifies which of the possible GPIO pins will be EPWM1 functional
@@ -412,10 +374,8 @@ void initHRPWM1GPIO(void)
     //
     GpioCtrlRegs.GPAMUX1.bit.GPIO0 = 1;   // Configure GPIO0 as EPWM1A
     GpioCtrlRegs.GPAMUX1.bit.GPIO1 = 1;   // Configure GPIO1 as EPWM1B
-
     EDIS;
 }
-
 //
 // error - Halt debugger when called
 //
@@ -423,8 +383,6 @@ void error(void)
 {
     ESTOP0;         // Stop here and handle error
 }
-
 //
 // End of file
 //
-

@@ -2,7 +2,7 @@
   <project
         name="i2c_ex3_external_loopback"
         device="TMS320F28075"
-        cgtVersion="22.6.3.LTS"
+        cgtVersion="25.11.1.LTS"
         products="C2000WARE"
         outputFormat="ELF"
         launchWizard="False"
@@ -19,7 +19,7 @@
     <file action="copy" path="../../../../../../device_support/f2807x/common/source/device.c" targetDirectory="device" />
     <file action="copy" path="../../../../../../device_support/f2807x/common/targetConfigs/TMS320F28075.ccxml" targetDirectory="targetConfigs" />
     <file action="copy" path="../../../../../../device_support/f2807x/common/cmd/2807x_Generic_RAM_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_RAM" />
-    <file action="copy" path="../../../../../../device_support/f2807x/common/cmd/2807x_Generic_FLASH_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_FLASH" />
+    <file action="copy" path="../../../../../../device_support/f2807x/common/cmd/2807x_Generic_FLASH_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_FLASH," />
     <file action="copy" path="../../../../../../device_support/f2807x/common/source/F2807x_CodeStartBranch.asm" targetDirectory="device" />
     <file action="link" path="../../../../driverlib/ccs/Debug/driverlib.lib" targetDirectory="" />
     <file action="copy" path="../../../../driverlib/" targetDirectory="device" excludeFromBuild="True" />

@@ -8,7 +8,6 @@
 //! \date   Dec 25, 2012
 //
 //  Group:          C2000
-
 //
 //#############################################################################
 //
@@ -16,16 +15,13 @@
 // $Copyright: Copyright (C) 2022 Texas Instruments Incorporated -
 //             http://www.ti.com/ ALL RIGHTS RESERVED $
 //#############################################################################
-
 //*****************************************************************************
 // includes
 //*****************************************************************************
 #include <stdint.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 //*****************************************************************************
 // typedefs
 //*****************************************************************************
@@ -33,7 +29,6 @@ typedef union{
     float    f32;
     int32_t  i32;
 }R32;
-
 typedef union{
 #ifdef __TI_EABI__
     double      f64;
@@ -49,7 +44,6 @@ typedef union{
 //*****************************************************************************
 // defines
 //*****************************************************************************
-
 // masks for the status flag bits
 #define MASK_LVF         (1 << 0 )
 #define MASK_LUF         (1 << 1 )
@@ -61,7 +55,6 @@ typedef union{
 #define MASK_RNDF32      (1 << 9 )
 #define MASK_RNDF64      (1 << 10)
 #define MASK_SHDWS       (1 << 31)
-
 //! \brief RB  register
 //
 struct RB_BITS {     // bits description
@@ -71,12 +64,10 @@ struct RB_BITS {     // bits description
     uint16_t    _RA:1;      //!< 30    Repeat Block Active
     uint16_t    _RAS:1;     //!< 31    Repeat Block Active Shadow
 };
-
 union RB_REG {
     uint32_t            all;
     struct RB_BITS      bit;
 };
-
 //! \brief FPU status register
 //
 struct STF_BITS {     // bits description
@@ -94,12 +85,10 @@ struct STF_BITS {     // bits description
     uint16_t    rsvd3:15;   //!< 30:16 reserved
     uint16_t    SHDWS:1;    //!< 31    Shadow mode status bit
 };
-
 union STF_REG {
     uint32_t            all;
     struct STF_BITS     bit;
 };
-
 //! \brief FPU register space
 //! \note
 //! - The registers are mapped to data space only (like peripherals on C28x devices). Program
@@ -137,10 +126,7 @@ struct FPU_REG{
 //    uint32_t            _R7H;
     uint32_t            rsvd2[104];
 };
-
 extern volatile struct FPU_REG FpuRegs;
-
-
 #ifdef __cplusplus
 }
 #endif // extern "C"

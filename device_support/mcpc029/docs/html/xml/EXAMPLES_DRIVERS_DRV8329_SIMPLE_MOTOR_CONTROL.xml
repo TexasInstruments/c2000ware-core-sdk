@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_DRV8329_SIMPLE_MOTOR_CONTROL" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_DRV8329_SIMPLE_MOTOR_CONTROL</compoundname>
+    <title>DRV8329 Simple 3-Phase Motor Control</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_DRV8329_SIMPLE_MOTOR_CONTROL_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_drv8329_simple_motor_control"/></para>
+<sect1 id="EXAMPLES_DRIVERS_DRV8329_SIMPLE_MOTOR_CONTROL_1autotoc_md210">
+<title>Introduction</title>
+<para>This example shows a simple implementation of 3-phase motor control. SysConfig is used to configure the DRV8329 gate driver and the MCPWM module. The MCPWM module is set up to generate 3-phase PWM signals that are open-loop sine-modulated to drive the DRV8329.</para>
+<para>myDRV0(DRV8329) is configured over SPI to:<itemizedlist>
+<listitem><para>Clear any existing faults (CLRFLT)</para>
+</listitem><listitem><para>Set the VDS level selection to 2.00V</para>
+</listitem></itemizedlist>
+</para>
+<para>myMCPWM0(MCPWM1) is configured to:<itemizedlist>
+<listitem><para>Generate 3-phase PWM (PWM1A/B, PWM2A/B, PWM3A/B) in Up-Down Count mode</para>
+</listitem><listitem><para>Apply deadband on the rising and falling edges of all outputs</para>
+</listitem><listitem><para>Trigger an interrupt (ET1) on every &quot;Counter = Period&quot; event</para>
+</listitem></itemizedlist>
+</para>
+<para>In the MCPWM ISR, the phase angle (theta) is incremented and the three sinusoidal duty cycles (120 degrees apart) are computed and written to the CMPA shadow registers of PWM1A, PWM2A, and PWM3A, producing a rotating 3-phase voltage waveform for open-loop motor control.</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_DRV8329_SIMPLE_MOTOR_CONTROL_1autotoc_md211">
+<title>External Connections</title>
+<para>Monitor GLA, GLB, GLC on the DRV8329 to see the 3-phase PWM signals. These gate driver outputs are driven by the following MCPWM/GPIO pins:</para>
+<para><table rows="7" cols="3"><row>
+<entry thead="yes"><para>DRV8329 Pin   </para>
+</entry><entry thead="yes"><para>MCPWM Output   </para>
+</entry><entry thead="yes"><para>Phase Output    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>INHA   </para>
+</entry><entry thead="no"><para>PWM3A   </para>
+</entry><entry thead="no"><para>GLA    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>INLA   </para>
+</entry><entry thead="no"><para>PWM3B   </para>
+</entry><entry thead="no"><para>GLA    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>INHB   </para>
+</entry><entry thead="no"><para>PWM1A   </para>
+</entry><entry thead="no"><para>GLB    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>INLB   </para>
+</entry><entry thead="no"><para>PWM1B   </para>
+</entry><entry thead="no"><para>GLB    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>INHC   </para>
+</entry><entry thead="no"><para>PWM2A   </para>
+</entry><entry thead="no"><para>GLC    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>INLC   </para>
+</entry><entry thead="no"><para>PWM2B   </para>
+</entry><entry thead="no"><para>GLC   </para>
+</entry></row>
+</table>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_DRV8329_SIMPLE_MOTOR_CONTROL_1autotoc_md212">
+<title>Watch Variables</title>
+<para><itemizedlist>
+<listitem><para>interruptcounter - Counts the number of MCPWM interrupts</para>
+</listitem><listitem><para>theta - Current phase angle in degrees</para>
+</listitem><listitem><para>valA, valB, valC - Computed CMPA values for the three PWM phases</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_DRV8329_SIMPLE_MOTOR_CONTROL_1autotoc_md213">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in the External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Using the watch variables, observe the 3-phase PWM waveforms.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_DRV8329_SIMPLE_MOTOR_CONTROL_1autotoc_md214">
+<title>See Also</title>
+<para><itemizedlist>
+<listitem><para><ref refid="DRIVERS_MCPWM_PAGE" kindref="compound">MCPWM</ref> </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/drv8329_simple_motor_control.md"/>
+  </compounddef>
+</doxygen>

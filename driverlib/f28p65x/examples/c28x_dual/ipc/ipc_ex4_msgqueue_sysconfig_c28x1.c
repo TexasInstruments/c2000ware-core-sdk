@@ -31,7 +31,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -64,29 +64,22 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Defines
 //
 #define IPC_CMD_READ_MEM   0x1001
 #define IPC_CMD_RESP       0x2001
-
 #define TEST_PASS          0x5555
 #define TEST_FAIL          0xAAAA
-
-
 #pragma DATA_SECTION(readData, "MSGRAM_CPU1_TO_CPU2")
 uint32_t readData[10];
-
 uint32_t pass;
-
 //
 // Main
 //
@@ -95,54 +88,44 @@ void main(void)
     int i;
     IPC_MessageQueue_t messageQueue;
     IPC_Message_t      TxMsg, RxMsg;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Initialize settings from SysConfig
     //
     Board_init();
-
     //
     // Boot CPU2 core
     //
     Device_bootCPU2(BOOT_MODE_CPU2);
-
     //
     // Clear any IPC flags if set already
     //
     IPC_clearFlagLtoR(IPC_CPU1_L_CPU2_R, IPC_FLAG_ALL);
-
     //
     // Initialize message queue
     //
     IPC_initMessageQueue(IPC_CPU1_L_CPU2_R, &messageQueue, IPC_INT1, IPC_INT1);
-
     //
     // Synchronize both the cores
     //
     IPC_sync(IPC_CPU1_L_CPU2_R, SYNC_FLAG);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Fill in the data to be sent
     //
@@ -150,7 +133,6 @@ void main(void)
     {
         readData[i] = i;
     }
-
     //
     // Update the message
     //
@@ -158,32 +140,25 @@ void main(void)
     TxMsg.address = (uint32_t)readData;
     TxMsg.dataw1  = 10;  // Using dataw1 as data length
     TxMsg.dataw2  = 1;   // Message identifier
-
     //
     // Send message to the queue
     //
     IPC_sendMessageToQueue(IPC_CPU1_L_CPU2_R, &messageQueue, IPC_ADDR_CORRECTION_ENABLE,
                            &TxMsg, IPC_BLOCKING_CALL);
-
     //
     // Read message from the queue
     //
     IPC_readMessageFromQueue(IPC_CPU1_L_CPU2_R, &messageQueue, IPC_ADDR_CORRECTION_DISABLE,
                              &RxMsg, IPC_BLOCKING_CALL);
-
     if((RxMsg.command == IPC_CMD_RESP) && (RxMsg.dataw1 == TEST_PASS) && (RxMsg.dataw2 == 1))
         pass = 1;
     else
         pass = 0;
-
-
     //
     // End of example. Loop forever
     //
     while(1);
 }
-
-
 //
 // End of File
 //

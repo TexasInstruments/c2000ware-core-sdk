@@ -60,7 +60,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -93,48 +93,38 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "device.h"
 #include "driverlib.h"
-
 //
 // Define to select wait delay.
 //
 #define MCBSP_CYCLE_NOP0(n)  __asm(" RPT #(" #n ") || NOP")
 #define MCBSP_CYCLE_NOP(n)   MCBSP_CYCLE_NOP0(n)
-
 //
 // Define to select the word-size for McBSP operation to 8, 16 or 32 bit.
 //
 //#define WORD_SIZE     8U
 //#define WORD_SIZE     16U
 #define WORD_SIZE     32U
-
 //
 // Globals
 //
 uint32_t errCountGlobal   = 0;
-
 //
 // Variables for transmitting, receiving and testing the data.
 //
 uint16_t txData1A = 0x0000;
 uint16_t txData2A = 0x0000;
-
 uint16_t rxData1A = 0x0000;
 uint16_t rxData2A = 0x0000;
-
 uint16_t txData1B = 0x0000;
 uint16_t txData2B = 0x0000;
-
 uint16_t rxData1B = 0x0000;
 uint16_t rxData2B = 0x0000;
-
 uint16_t dataSize;
-
 //
 // Function Prototypes
 //
@@ -145,7 +135,6 @@ void initTransmitter(uint32_t base);
 void initReceiver(uint32_t base);
 void enableModule(uint32_t base);
 void resetModule(uint32_t base);
-
 //
 // Main
 //
@@ -153,47 +142,38 @@ void main(void)
 {
     uint32_t tempData;
     errCountGlobal = 0x0;
-
     //
     // Initialize device clock and peripherals.
     //
     Device_init();
-
     //
     // Disable all the interrupts.
     //
     DINT;
-
     //
     // Setup GPIO by disabling pin locks and enabling pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize GPIOs for McBSPA and McBSPB.
     //
     setupMcBSPAPinmux();
     setupMcBSPBPinmux();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     dataSize = WORD_SIZE;
-
     //
     // Reset McBSPA & McBSPB modules.
     //
     resetModule(MCBSPA_BASE);
     resetModule(MCBSPB_BASE);
-
     //
     // Initialize the transmitter & receiver modules in McBSPA & McBSPB.
     //
@@ -201,13 +181,11 @@ void main(void)
     initReceiver(MCBSPA_BASE);
     initTransmitter(MCBSPB_BASE);
     initReceiver(MCBSPB_BASE);
-
     //
     // Enable McBSPA & McBSP modules.
     //
     enableModule(MCBSPA_BASE);
     enableModule(MCBSPB_BASE);
-
     //
     // Run a loopback test in 8-bit mode.
     //
@@ -221,27 +199,22 @@ void main(void)
             //
             while(!McBSP_isTxReady(MCBSPA_BASE));
             McBSP_write16bitData(MCBSPA_BASE, txData1A);
-
             //
             // Checks if data is received at McBSPB Rx.
             //
             while(!McBSP_isRxReady(MCBSPB_BASE));
             rxData1B = McBSP_read16bitData(MCBSPB_BASE);
-
             txData1B = rxData1B;
-            
             //
             // Retransmit the received data from McBSPB Tx to McBSPA Rx.
             //
             while(!McBSP_isTxReady(MCBSPB_BASE));
             McBSP_write16bitData(MCBSPB_BASE, txData1B);
-
             //
             // Receive data at McBSPA Rx.
             //
             while(!McBSP_isRxReady(MCBSPA_BASE));
             rxData1A = McBSP_read16bitData(MCBSPA_BASE);
-            
             //
             // Check if correct data is received.
             //
@@ -265,27 +238,22 @@ void main(void)
             //
             while(!McBSP_isTxReady(MCBSPA_BASE));
             McBSP_write16bitData(MCBSPA_BASE, txData1A);
-
             //
             // Checks if data is received at McBSPB Rx.
             //
             while(!McBSP_isRxReady(MCBSPB_BASE));
             rxData1B = McBSP_read16bitData(MCBSPB_BASE);
-
             txData1B = rxData1B;
-
             //
             // Retransmit the received data from McBSPB Tx to McBSPA Rx.
             //
             while(!McBSP_isTxReady(MCBSPB_BASE));
             McBSP_write16bitData(MCBSPB_BASE, txData1B);
-
             //
             // Receive data at McBSPA Rx.
             //
             while(!McBSP_isRxReady(MCBSPA_BASE));
             rxData1A = McBSP_read16bitData(MCBSPA_BASE);
-
             //
             // Check if correct data is received.
             //
@@ -310,7 +278,6 @@ void main(void)
             tempData = (txData1A|(((uint32_t)txData2A) << 16U));
             while(!McBSP_isTxReady(MCBSPA_BASE));
             McBSP_write32bitData(MCBSPA_BASE, tempData);
-
             //
             // Check if data is received at McBSPB Rx.
             //
@@ -318,7 +285,6 @@ void main(void)
             tempData = McBSP_read32bitData(MCBSPB_BASE);
             rxData1B = tempData & 0xFFFF;
             rxData2B = tempData >> 16U;
-
             //
             // Retransmit the received data from McBSPB Tx to McBSPA Rx.
             //
@@ -327,7 +293,6 @@ void main(void)
             tempData = (txData1B|(((uint32_t)txData2B) << 16U));
             while(!McBSP_isTxReady(MCBSPB_BASE));
             McBSP_write32bitData(MCBSPB_BASE, tempData);
-
             //
             // Receive data at McBSPA Rx.
             //
@@ -335,7 +300,6 @@ void main(void)
             tempData = McBSP_read32bitData(MCBSPA_BASE);
             rxData1A = tempData & 0xFFFF;
             rxData2A = tempData >> 16U;
-
             //
             // Check if correct data is received.
             //
@@ -350,7 +314,6 @@ void main(void)
         }
     }
 }
-
 //
 // Enable Module - This function enables the modules in McBSP.
 //
@@ -362,21 +325,18 @@ void enableModule(uint32_t base)
     //
     McBSP_enableSampleRateGenerator(base);
     McBSP_enableFrameSyncLogic(base);
-
     //
     // Wait for CPU cycles equivalent to 2 CLKG cycles-init delay.
     // Total cycles required = 2*(SYSCLK/(LSPCLK/(1+CLKGDV_VAL))). In this
     // example LSPCLK = SYSCLK/4 and CLKGDV_VAL = 1.
     //
     MCBSP_CYCLE_NOP(16);
-
     //
     // Release Tx from reset.
     //
     McBSP_enableTransmitter(base);
     McBSP_enableReceiver(base);
 }
-
 //
 // Reset Module - This function disables the modules in McBSP.
 //
@@ -390,7 +350,6 @@ void resetModule(uint32_t base)
     McBSP_resetTransmitter(base);
     McBSP_resetReceiver(base);
 }
-
 //
 // Init Transmitter - This function initialises McBSP transmitter module.
 //
@@ -400,13 +359,10 @@ void initTransmitter(uint32_t base)
     // Right justify word.
     //
     McBSP_setRxSignExtension(base, MCBSP_RIGHT_JUSTIFY_FILL_ZERO);
-
     //
     // Set Rx & Tx delay to 1 cycle.
     //
     McBSP_setTxDataDelayBits(base, MCBSP_DATA_DELAY_BIT_1);
-
-
     //
     // Configure McBSP data behaviour: phase = 1; frame length = 1 word and
     // word length = dataSize.
@@ -426,60 +382,48 @@ void initTransmitter(uint32_t base)
         McBSP_setTxDataSize(base, MCBSP_PHASE_ONE_FRAME, MCBSP_BITS_PER_WORD_32,
                              0);
     }
-
     //
     // Configure Frame synchronization behaviour.
     //
-
     //
     // Enable transmit frame-sync ignore function.
     //
     McBSP_disableTxFrameSyncErrorDetection(base);
-
     //
     // Set Tx frame-sync source as internal.
     //
     McBSP_setTxFrameSyncSource(base, MCBSP_TX_INTERNAL_FRAME_SYNC_SOURCE);
-
     //
     // Set the trigger source for internally generated frame-sync pulse.
     //
     McBSP_setTxInternalFrameSyncSource(base, MCBSP_TX_INTERNAL_FRAME_SYNC_DATA);
-
     //
     // Set no external clock sync for CLKG.
     //
     McBSP_disableSRGSyncFSR(base);
-
     //
     // Set frame-sync pulse period.
     //
     McBSP_setFrameSyncPulsePeriod(base, 320);
-
     //
     // Set frame-sync pulse width.
     //
     McBSP_setFrameSyncPulseWidthDivider(base, 1);
-
     //
     // Configure Tx Clock behaviour.
     //
-
     //
     // Set LSPCLK as input source for sample rate generator.
     //
     McBSP_setTxSRGClockSource(base, MCBSP_SRG_TX_CLOCK_SOURCE_LSPCLK);
-
     //
     // Set CLKX source as sample rate generator.
     //
     McBSP_setTxClockSource(base, MCBSP_INTERNAL_TX_CLOCK_SOURCE);
-
     //
     // Set Divide down value for CLKG.
     //
     McBSP_setSRGDataClockDivider(base, 1);
-
     //
     // Wait for CPU cycles equivalent to 2 SRG cycles-init delay.
     // Total cycles required = 2*(SYSCLK/LSPCLK). In this example
@@ -487,7 +431,6 @@ void initTransmitter(uint32_t base)
     //
     MCBSP_CYCLE_NOP(8);
 }
-
 //
 // Init Receiver - This function initialises the McBSP Receiver module.
 //
@@ -511,55 +454,44 @@ void initReceiver(uint32_t base)
         McBSP_setRxDataSize(base, MCBSP_PHASE_ONE_FRAME, MCBSP_BITS_PER_WORD_32,
                             0);
     }
-
     //
     // Set Rx data delay to 1 cycle.
     //
     McBSP_setRxDataDelayBits(base, MCBSP_DATA_DELAY_BIT_1);
-
     //
     // Set receive sign-extension and justification mode.
     //
     McBSP_setRxSignExtension(base, MCBSP_RIGHT_JUSTIFY_FILL_ZERO);
-
     //
     // Configure Rx frame-sync behaviour.
     //
-
     //
     // Set Rx frame sync source as external.
     //
     McBSP_setRxFrameSyncSource(base, MCBSP_RX_EXTERNAL_FRAME_SYNC_SOURCE);
-
     //
     // Disable DLB mode.
     //
     McBSP_disableLoopback(base);
-
     //
     // Set no external clock sync for CLKG i.e. GSYNC = 0.
     //
     McBSP_disableSRGSyncFSR(base);
-
     //
     // Configure Rx clock behaviour.
     //
-
     //
     // Set MCLKR pin as source for CLKR.
     //
     McBSP_setRxClockSource(base, MCBSP_EXTERNAL_RX_CLOCK_SOURCE);
-
     //
     // Set LSPCLK as input source for sample rate generator.
     //
     McBSP_setRxSRGClockSource(base, MCBSP_SRG_RX_CLOCK_SOURCE_LSPCLK);
-
     //
     // Set Divide down value for CLKG.
     //
     McBSP_setSRGDataClockDivider(base, 1);
-
     //
     // Wait for CPU cycles equivalent to 2 SRG cycles-init delay.
     // Total cycles required = 2*(SYSCLK/LSPCLK). In this example
@@ -567,7 +499,6 @@ void initReceiver(uint32_t base)
     //
     MCBSP_CYCLE_NOP(8);
 }
-
 //
 // End of File
 //

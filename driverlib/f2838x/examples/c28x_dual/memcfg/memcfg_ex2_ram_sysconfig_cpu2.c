@@ -37,7 +37,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -70,14 +70,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Globals
 //
@@ -85,12 +83,10 @@ uint16_t cpu2RWArray[256];      // Mapped to GS1 of shared RAM owned by CPU02
 uint16_t cpu2RArray[256];       // Mapped to GS0 of shared RAM owned by CPU01
 #pragma DATA_SECTION(cpu2RArray,"SHARERAMGS1");
 #pragma DATA_SECTION(cpu2RWArray,"SHARERAMGS0");
-
 uint16_t isrfuncLoadStart;
 extern uint16_t isrfuncLoadEnd;
 uint16_t isrfuncRunStart;
 uint16_t isrfuncLoadSize;
-
 //
 // Function Prototypes
 //
@@ -98,9 +94,7 @@ void initCPUTimer(uint32_t);
 void configCPUTimer(uint32_t, float, float);
 __interrupt void cpuTimer0ISR(void);
 #pragma CODE_SECTION(cpuTimer0ISR, "isrfunc")
-
 void writeDataCPU2(void);
-
 //
 // Main
 //
@@ -110,18 +104,15 @@ void main(void)
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Initialize SysConfig Settings
     //
     Board_init();
-
     //
     // Wait until shared RAM is available.
     //
@@ -129,39 +120,32 @@ void main(void)
            (MEMCFG_GSXMSEL_MSEL_GS14 | MEMCFG_GSXMSEL_MSEL_GS15)) == 0U)
     {
     }
-
     //
     // Copy the ISR to a specified RAM location
     //
     memcpy(&isrfuncRunStart, &isrfuncLoadStart, (uint32_t)&isrfuncLoadSize);
-
     //
     // Interrupts that are used in this example are re-mapped to ISR functions
     // found within this file.
     //
     Interrupt_register(INT_TIMER0, &cpuTimer0ISR);
-
     //
     // Configure CPU Timer 0 to a 1 second period
     //
     configCPUTimer(CPUTIMER0_BASE, DEVICE_SYSCLK_FREQ, 1000000);
-
     //
     // Start CPU Timer 0
     //
     CPUTimer_startTimer(CPUTIMER0_BASE);
-
     //
     // Enable CPU Timer 0 interrupt
     //
     Interrupt_enable(INT_TIMER0);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Loop indefinitely
     //
@@ -177,7 +161,6 @@ void main(void)
         }
     }
 }
-
 //
 // configCPUTimer - This function initializes the selected timer to the
 // period specified by the "freq" and "period" parameters. The "freq" is
@@ -187,18 +170,15 @@ void main(void)
 void configCPUTimer(uint32_t cpuTimer, float freq, float period)
 {
     uint32_t temp;
-
     //
     // Initialize timer period:
     //
     temp = (uint32_t)(freq / 1000000 * period);
     CPUTimer_setPeriod(cpuTimer, temp - 1);
-
     //
     // Set pre-scale counter to divide by 1 (SYSCLKOUT):
     //
     CPUTimer_setPreScaler(cpuTimer, 0);
-
     //
     // Initializes timer control register. The timer is stopped, reloaded,
     // free run disabled, and interrupt enabled.
@@ -209,17 +189,14 @@ void configCPUTimer(uint32_t cpuTimer, float freq, float period)
                               CPUTIMER_EMULATIONMODE_STOPAFTERNEXTDECREMENT);
     CPUTimer_enableInterrupt(cpuTimer);
 }
-
 //
 // cpuTimer0ISR - CPU Timer0 ISR
 //
 __interrupt void cpuTimer0ISR(void)
 {
    GPIO_togglePin(DEVICE_GPIO_PIN_LED1);
-
    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP1);
 }
-
 //
 // writeDataCPU2 - Read data from cpu2RArray written by CPU01 and modify and
 //                 write into cpu2RWArray. cpu2RArray[0] is used to hold the
@@ -229,16 +206,13 @@ void writeDataCPU2(void)
 {
     uint16_t index;
     uint16_t multiplier;
-
     multiplier = cpu2RArray[0];
     cpu2RWArray[0] = multiplier;
-
     for(index = 1; index < 256; index ++)
     {
         cpu2RWArray[index] = multiplier * cpu2RArray[index];
     }
 }
-
 //
 // End of File
 //

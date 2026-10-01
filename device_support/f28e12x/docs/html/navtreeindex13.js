@@ -1,5 +1,12 @@
 var NAVTREEINDEX13 =
 {
+"group__xbar__api.html#gga769cc8f2c565dd948bffac186dafedd7a361d9cc01679c2d435508c4dd8c871e7":[10,19,37,9],
+"group__xbar__api.html#gga769cc8f2c565dd948bffac186dafedd7a3e4b9a69bd3b710f2b1b2d2ae6e6cac0":[10,19,37,34],
+"group__xbar__api.html#gga769cc8f2c565dd948bffac186dafedd7a40e185538778538f30d8f82e14997adc":[10,19,37,20],
+"group__xbar__api.html#gga769cc8f2c565dd948bffac186dafedd7a4155048f93837233b337204884e97f28":[10,19,37,28],
+"group__xbar__api.html#gga769cc8f2c565dd948bffac186dafedd7a4e7bca25d2e7839fcc3d8285bb4544e5":[10,19,37,24],
+"group__xbar__api.html#gga769cc8f2c565dd948bffac186dafedd7a502276098908ef728a67d851ed29d5af":[10,19,37,17],
+"group__xbar__api.html#gga769cc8f2c565dd948bffac186dafedd7a54dae3238f14d56d55500d30ab10d1f8":[10,19,37,27],
 "group__xbar__api.html#gga769cc8f2c565dd948bffac186dafedd7a579374194b2211ba20deeda6b317d500":[10,19,37,2],
 "group__xbar__api.html#gga769cc8f2c565dd948bffac186dafedd7a59a99704e4cf561d22a9ae1ea7125a06":[10,19,37,15],
 "group__xbar__api.html#gga769cc8f2c565dd948bffac186dafedd7a614795f4e39573c0f6fc79101348f32f":[10,19,37,19],

@@ -97,31 +97,24 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 #define FSI_DMA_ENABLE              0
 #define TX_DMA_TRIGGER_ENABLE       0
-
 #define PRESCALER_VAL               FSI_PRESCALE_60MHZ
 #define HANDSHAKE_PRESCALER_VAL     FSI_PRESCALE_6MHZ
-
 #define FSI_RX_TDM_ENABLE  0
 #define FSI_DELAY_LINE_CALIBRATION_ENABLE   0
-
 #if FSI_DELAY_LINE_CALIBRATION_ENABLE
 #include "fsi_optimal_delay.h"
 #include "fsi_daisy_optimal_delay.h"
 #endif
-
 #define DMA_TRANSFER_SIZE_IN_BURSTS 1U
 #define DMA_WRAP_SIZE_IN_BURSTS     1U
 #define TOTAL_WORDS_IN_TRANSFER (DMA_TRANSFER_SIZE_IN_BURSTS * nWords)
-
 // GS0 RAM to store Tx frame data which DMA will read
 #define GS0_START_ADDR  0xC000
 // GS1 RAM to store Tx frame tag and Userdata
@@ -130,52 +123,41 @@
 #define GS2_START_ADDR  0xE000
 // GS3 RAM to save received Rx frame tag and Userdata
 #define GS3_START_ADDR  0xF000
-
 //
 // FSI Tx/Rx Frame tag User Data register address, used by DMA channel to
 // write(and trigger transfer) read userdata respectively
 //
 #define FSI_TX_FRAME_TAG_UDATA_REGADDR (FSITXA_BASE + FSI_O_TX_FRAME_TAG_UDATA)
 #define FSI_RX_FRAME_TAG_UDATA_REGADDR (FSIRXA_BASE + FSI_O_RX_FRAME_TAG_UDATA)
-
 #define DATA_FRAME_TEST_IO           16
 #define DATA_FRAME_TEST_IO_CONF      GPIO_16_GPIO16
-
 //
 // Globals, User can modify these parameters as per usecase
 //
 // Number of words per transfer may be from 1 -16
 //
 uint16_t nWords = 8;
-
 // Transfer can be happen over single or double lane
 FSI_DataWidth nLanes = FSI_DATA_WIDTH_1_LANE;
-
 // Frame tag used with Data/Ping transfers
 FSI_FrameTag txDataFrameTag = FSI_FRAME_TAG10, txPingFrameTag = FSI_FRAME_TAG15;
-
 // User data to be sent with Data frame(for CPU control)
 uint16_t txUserData = 0x47;
-
 // Tx Ping timer and Rx Watchdog reference counter values
 uint32_t txPingTimeRefCntr = 0x1000000, rxWdTimeoutRefCntr = 0x1400000;
-
 // Boolean flag to enable/disable Rx Frame Watchdog
 bool isRxFrameWdEnable = true;
-
 //
 // This value can be anything suitable to generate a single interrupt event,
 // lower values may lead WD to trigger another event even before handler of 1st
 // one is not completed
 //
 uint32_t rxFrameWdRefCntr = 0x1000000;
-
 //
 // Globals, these are not config parameters, user are not required to edit them
 //
 uint16_t txEventSts = 0, rxEventSts = 0;
 uint16_t *txBufAddr = 0, *rxBufAddr = 0;
-
 uint16_t txBufData[16] = {0};
 uint16_t rxBufData[16] = {0};
 volatile uint32_t fsiTxInt1Received = 0,fsiTxInt2Received = 0;
@@ -183,14 +165,11 @@ volatile uint32_t fsiRxInt1Received = 0,fsiRxInt2Received = 0;
 uint32_t txTimeOutCntr = 0x100000, rxTimeOutCntr = 0x100000;
 uint32_t dataFrameCntr = 0, dataFrameCntr_ui32 = 0;
 uint32_t pingFrameCntr = 0, pingFrameCntr_ui32 = 0;
-
 uint32_t dmaIntr1 = 0, dmaIntr2 = 0;
 volatile uint16_t i = 0, *txTempData16 = 0, *rxTempData16 = 0;
 uint32_t dmaTxIntCnt = 0, dmaRxIntCnt = 0;
 uint32_t error = 0;
 uint32_t rxclk_delay, rxd0_delay, rxd1_delay;
-
-
 //
 // Function Prototypes
 //
@@ -212,7 +191,6 @@ void fsirx_dma_config();
 void InitFrameTagAndData();
 void UpdateTxframeData();
 void handshake_lead(void);
-
 //
 // Main
 //
@@ -222,29 +200,24 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
     testGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Initialize basic settings for FSI
     //
     initFSI();
-
     //
     // Interrupts that are used in this example are re-mapped to ISR functions
     // found within this file. Total 4; FSI Tx/Rx :: INT1/INT2
@@ -253,7 +226,6 @@ void main(void)
     Interrupt_register(INT_FSITXA2, &fsiTxInt2ISR);
     Interrupt_register(INT_FSIRXA1, &fsiRxInt1ISR);
     Interrupt_register(INT_FSIRXA2, &fsiRxInt2ISR);
-
     //
     // Enable FSI Tx/Rx interrupts
     //
@@ -261,52 +233,40 @@ void main(void)
     Interrupt_enable(INT_FSITXA2);
     Interrupt_enable(INT_FSIRXA1);
     Interrupt_enable(INT_FSIRXA2);
-
 #if FSI_DMA_ENABLE==1
-
     //
     // DMA Interrupts that are used in this example are re-mapped to ISR functions
     // found within this file.
     //
     Interrupt_register(INT_DMA_CH2, &fsitxdma_isr);
     Interrupt_register(INT_DMA_CH4, &fsirxdma_isr);
-
     //
     // Enable DMA interrupts
     //
     Interrupt_enable(INT_DMA_CH2);
     Interrupt_enable(INT_DMA_CH4);
-
 #endif
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Enable normal data receive events to be sent over INT1 line
     //
     FSI_enableRxInterrupt(FSIRXA_BASE, FSI_INT1, FSI_RX_EVT_PING_FRAME);
-
     //
     // Begin handshake -
     // Wait till interrupt is received on FSIRX INT1 line, verify it's for FRAME
     // DONE event for PING Frame reception
     //
     handshake_lead();
-
 #if FSI_DELAY_LINE_CALIBRATION_ENABLE == 1
-
 #if FSI_RX_TDM_ENABLE == 1
     // Disable FSI interrupts before starting calibration
      disableAllFSIInterrupts();
-
      // Variable for storing calculated FSI delay execution point
      volatile FSIExecutionPoint exePoint_leadrx;
-
-
      //
      // NextCalibrateTag used to signal next device to be calibrated -
      //
@@ -315,56 +275,36 @@ void main(void)
      //
      FSI_FrameTag Node1_frame_tag = FSI_FRAME_TAG0;
      FSI_FrameTag Node2_frame_tag = FSI_FRAME_TAG1;
-
-
      DEVICE_DELAY_US(10); // Wait some time for devices to get ready
-
      // Signal first device in chain to be calibrated
      FSI_signalNextCalibrate(FSIRXA_BASE, FSITXA_BASE, HANDSHAKE_PRESCALER_VAL, Node1_frame_tag);
-
      //LEAD transmits pings for NODE1
      FSI_transmitToCalibrate(FSIRXA_BASE, FSITXA_BASE, PRESCALER_VAL);
-
      DEVICE_DELAY_US(100); // Wait some time for devices to get ready
-
        // Signal second device in chain to be calibrated
        FSI_signalNextCalibrate(FSIRXA_BASE, FSITXA_BASE, HANDSHAKE_PRESCALER_VAL, Node2_frame_tag);
-
        //LEAD transmits pings for NODE2
        FSI_transmitToCalibrate(FSIRXA_BASE, FSITXA_BASE, PRESCALER_VAL);
-
        DEVICE_DELAY_US(100); // Wait some time for devices to get ready
-
        //End of node Rx Delay line calibration
        FSI_signalNextCalibrate(FSIRXA_BASE, FSITXA_BASE, HANDSHAKE_PRESCALER_VAL, FSI_FRAME_TAG15);
-
        DEVICE_DELAY_US(10); // Wait some time for devices to get ready
-
        FSI_configPrescalar(FSITXA_BASE, PRESCALER_VAL);
        DEVICE_DELAY_US(0.1);
        FSI_enableTxClock(FSITXA_BASE);
-
          // Calibration starts for lead
          exePoint_leadrx = FSI_LpbkCalibrateExePoint(FSIRXA_BASE, FSITXA_BASE, nLanes);
-
          //execute flush sequence to reset all devices in the chain
          FSI_performRxInitialization(FSIRXA_BASE);
          FSI_executeTxFlushSequence(FSITXA_BASE, HANDSHAKE_PRESCALER_VAL);
-
          //END OF lead Rx delay line calibration
          FSI_signalNextCalibrate(FSIRXA_BASE, FSITXA_BASE, HANDSHAKE_PRESCALER_VAL, FSI_FRAME_TAG15);
-
          DEVICE_DELAY_US(1000); // Wait some time for devices to get ready
-
-
 #else
-
          // Disable FSI interrupts before starting calibration
          disableAllFSIInterrupts();
-
          // Variable for storing calculated FSI delay execution point
          volatile FSIExecutionPoint exePoint;
-
          //
          // CalibrateTag used in delay line calibration sequence -
          //
@@ -376,7 +316,6 @@ void main(void)
          //      Lead device should have the highest Tag number.
          //
          FSI_FrameTag CalibrateTag = FSI_FRAME_TAG2;
-
          //
          // NextCalibrateTag used to signal next device to be calibrated -
          //
@@ -384,62 +323,46 @@ void main(void)
          //      If Lead device NextCalibrateTag "n" will be 0
          //
          FSI_FrameTag NextCalibrateTag = FSI_FRAME_TAG0;
-
          DEVICE_DELAY_US(1000); // Wait some time for devices to get ready
-
          //
          // Signal first device in chain to be calibrated
          //
          FSI_signalNextCalibrate(FSIRXA_BASE, FSITXA_BASE, HANDSHAKE_PRESCALER_VAL, NextCalibrateTag);
-
          //
          // Current device transmits to calibrate next device in chain
          //
          FSI_transmitToCalibrate(FSIRXA_BASE, FSITXA_BASE, PRESCALER_VAL);
-
          //
          // Go into pass-through mode, forwarding frames received until
          //  CalibrateTag data frame is received
          //
          FSI_daisy_calibratePassThrough(FSIRXA_BASE, FSITXA_BASE,
                                     HANDSHAKE_PRESCALER_VAL, CalibrateTag);
-
          //
          // Wait to receive ping frames signaling start of calibration process
          //
          while(!(FSI_getRxEventStatus(FSIRXA_BASE) & FSI_RX_EVT_PING_FRAME));
-
          //
          // Calibrate current device in chain
          //
          exePoint = FSI_calibrateExecutionPoint(FSIRXA_BASE, FSITXA_BASE,
                                             nLanes, HANDSHAKE_PRESCALER_VAL);
-
          DEVICE_DELAY_US(10); // Wait some time for devices to get ready
-
          //
          // Send data frame with Tag15 to signal end of calibration
          //
          FSI_signalNextCalibrate(FSIRXA_BASE, FSITXA_BASE, HANDSHAKE_PRESCALER_VAL, FSI_FRAME_TAG15);
-
          DEVICE_DELAY_US(1000); // Wait some time for devices to get ready
-
 #endif
-
 #endif
-
 //    ESTOP0; //Added for debug
     FSI_configPrescalar(FSITXA_BASE, PRESCALER_VAL);
     DEVICE_DELAY_US(0.1);
     FSI_enableTxClock(FSITXA_BASE);
-
     // Set FSI TX buffer pointer to beginning
     FSI_setTxBufferPtr(FSITXA_BASE, 0U);
-
     // Set FSI RX buffer pointer to beginning
     FSI_setRxBufferPtr(FSIRXA_BASE, 0U);
-
-
     // Setting for requested nWords and nLanes with transfers
     FSI_setTxFrameType(FSITXA_BASE, FSI_FRAME_TYPE_NWORD_DATA);
     FSI_setTxSoftwareFrameSize(FSITXA_BASE, nWords);
@@ -447,8 +370,6 @@ void main(void)
     // RX setting part
     FSI_setRxSoftwareFrameSize(FSIRXA_BASE, nWords);
     FSI_setRxDataWidth(FSIRXA_BASE, nLanes);
-
-
     //
     // Enable transmit/receive error events to be sent over INT2 line
     // Overrun and Underrun conditions in Rx are not enabled as buffer pointers
@@ -457,118 +378,86 @@ void main(void)
     FSI_enableRxInterrupt(FSIRXA_BASE, FSI_INT2, FSI_RX_EVT_CRC_ERR  |
                                                  FSI_RX_EVT_EOF_ERR  |
                                                  FSI_RX_EVT_TYPE_ERR);
-
     FSI_disableRxInterrupt(FSIRXA_BASE, FSI_INT1, FSI_RX_EVT_PING_FRAME);
     DEVICE_DELAY_US(10);
     FSI_enableTxInterrupt(FSITXA_BASE, FSI_INT1, FSI_TX_EVT_FRAME_DONE);
-
     DEVICE_DELAY_US(1000); // Delay needed for Node setup time
-
     #if FSI_DMA_ENABLE==0
-
     FSI_setTxUserDefinedData(FSITXA_BASE, txUserData);
     FSI_setTxFrameTag(FSITXA_BASE, txDataFrameTag);
-
     FSI_enableRxInterrupt(FSIRXA_BASE, FSI_INT1, FSI_RX_EVT_DATA_FRAME);
-
     #else
-
     //
     // Initialize the dma channels for both tx and rx buffers
     //
     DMA_initController();
-
     fsirx_dma_config();
     fsitx_dma_config();
-
     FSI_setTxStartMode(FSITXA_BASE, FSI_TX_START_FRAME_CTRL_OR_UDATA_TAG);
-
     #if TX_DMA_TRIGGER_ENABLE == 1
     // Enable DMA event on FSI Tx
     FSI_enableTxDMAEvent(FSITXA_BASE);
     #endif
-
     // Enable DMA event on FSI Rx
     FSI_enableRxDMAEvent(FSIRXA_BASE);
-
     InitFrameTagAndData();
-
     // Start TX /RX channels
-
     DMA_startChannel(DMA_CH1_BASE);
     DMA_startChannel(DMA_CH2_BASE);
-
     DMA_startChannel(DMA_CH3_BASE);
     DMA_startChannel(DMA_CH4_BASE);
-
     // use software to trigger the first transfer
     DMA_forceTrigger(DMA_CH1_BASE);
     DMA_forceTrigger(DMA_CH2_BASE);
     #endif
-
     while(1)
     {
-
     #if FSI_DMA_ENABLE==0
-
         // Now, start transmitting data frames
-
         // Fill TX array with new data
         prepareTxBufData();
-
         // Write data into Tx buffer
         // Start the first transfer
         FSI_writeTxBuffer(FSITXA_BASE, txBufData, nWords, 0U);
         FSI_startTxTransmit(FSITXA_BASE);
         //DEBUG MARKER: Lead Tx transmit trigger
          GPIO_writePin(DATA_FRAME_TEST_IO,0);
-
         //
         // Wait for TX frame done event
         //
         while(fsiTxInt1Received != 1U);
-
         //
         // Wait for RX data frame received event
         //
         while(fsiRxInt1Received != 1U);
-
         if(error == 0)
         {
             fsiTxInt1Received = 0U;
             fsiRxInt1Received = 0U;
         }
-
         else
         {
             // Error occurred during communications
             ESTOP0;
         }
-
     #else
         //
         // Wait for both TX and RX channels to complete a transfer
         //
         while(dmaIntr1 == 0U); // TX Int flag
         dmaIntr1 = 0;
-
         while(dmaIntr2 == 0U); // RX Int flag
         dmaIntr2 = 0;
-
         if(error != 0)
         {
             DMA_disableInterrupt(DMA_CH2_BASE);
             DMA_disableInterrupt(DMA_CH4_BASE);
-
             // Error occurred during communications
             ESTOP0;
         }
-
     #endif
     }
 }
-
-
 void handshake_lead(void)
 {
     while(1)
@@ -577,20 +466,17 @@ void handshake_lead(void)
         // Send the flush sequence
         //
         FSI_executeTxFlushSequence(FSITXA_BASE, PRESCALER_VAL);
-
         //
         // Send a ping frame with frame tag 0000b
         //
         FSI_setTxFrameTag(FSITXA_BASE, FSI_FRAME_TAG0);
         FSI_setTxFrameType(FSITXA_BASE, FSI_FRAME_TYPE_PING);
         FSI_startTxTransmit(FSITXA_BASE);
-
         while(fsiRxInt1Received != 1U && rxTimeOutCntr != 0U)
         {
             DEVICE_DELAY_US(1);
             rxTimeOutCntr--;
         }
-
         if(rxTimeOutCntr == 0)
         {
             rxTimeOutCntr = 0x100000;
@@ -600,7 +486,6 @@ void handshake_lead(void)
         {
             compare16(rxEventSts, (FSI_RX_EVT_PING_FRAME | FSI_RX_EVT_FRAME_DONE));
             checkReceivedFrameTypeTag(FSI_FRAME_TYPE_PING, FSI_FRAME_TAG0);
-
             //
             // If received frame type and tag matches, exit this loop and proceed
             // to next step by sending flush sequence, otherwise clear error and
@@ -611,12 +496,10 @@ void handshake_lead(void)
                 fsiRxInt1Received = 0;
                 break;
             }
-
             fsiRxInt1Received = 0;
             error = 0;
         }
     }
-
     while(1)
     {
         //
@@ -625,13 +508,11 @@ void handshake_lead(void)
         FSI_setTxFrameTag(FSITXA_BASE, FSI_FRAME_TAG1);
         FSI_setTxFrameType(FSITXA_BASE, FSI_FRAME_TYPE_PING);
         FSI_startTxTransmit(FSITXA_BASE);
-
         while(fsiRxInt1Received != 1U && rxTimeOutCntr != 0U)
              {
                  DEVICE_DELAY_US(1);
                  rxTimeOutCntr--;
              }
-
              if(rxTimeOutCntr == 0)
              {
                  rxTimeOutCntr = 0x100000;
@@ -641,7 +522,6 @@ void handshake_lead(void)
              {
                  compare16(rxEventSts, (FSI_RX_EVT_PING_FRAME | FSI_RX_EVT_FRAME_DONE));
                  checkReceivedFrameTypeTag(FSI_FRAME_TYPE_PING, FSI_FRAME_TAG1);
-
                  //
                  // If received frame type and tag matches, exit this loop and proceed
                  // to next step by sending flush sequence, otherwise clear error and
@@ -652,35 +532,29 @@ void handshake_lead(void)
                      fsiRxInt1Received = 0;
                      break;
                  }
-
                  fsiRxInt1Received = 0;
                  error = 0;
              }
     }
 }
-
 //
 // initFSI - Initializes FSI Tx/Rx and also sends FLUSH sequence.
 //
 void initFSI(void)
 {
     FSI_disableRxInternalLoopback(FSIRXA_BASE);
-
     //
     // NOTE: External loopback, Modify GPIO settings as per setup
     //
     GPIO_setPinConfig(DEVICE_GPIO_CFG_FSI_TXCLK);
     GPIO_setPinConfig(DEVICE_GPIO_CFG_FSI_TX0);
-
     GPIO_setPinConfig(DEVICE_GPIO_CFG_FSI_RXCLK);
     GPIO_setPinConfig(DEVICE_GPIO_CFG_FSI_RX0);
-
     if(nLanes == FSI_DATA_WIDTH_2_LANE)
     {
         GPIO_setPinConfig(DEVICE_GPIO_CFG_FSI_TX1);
         GPIO_setPinConfig(DEVICE_GPIO_CFG_FSI_RX1);
     }
-
     //
     // Set RX GPIO to be asynchronous
     // (pass through without delay)
@@ -692,14 +566,12 @@ void initFSI(void)
     }
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_FSI_RX0, GPIO_QUAL_ASYNC);
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_FSI_RXCLK, GPIO_QUAL_ASYNC);
-
     // Could add logic to calculate PRESCALER_VAL based on user input FSI CLK
     FSI_performTxInitialization(FSITXA_BASE, PRESCALER_VAL);
     FSI_performRxInitialization(FSIRXA_BASE);
     txBufAddr = (uint16_t *)FSI_getTxBufferAddress(FSITXA_BASE);
     rxBufAddr = (uint16_t *)FSI_getRxBufferAddress(FSIRXA_BASE);
 }
-
 //
 // prepareTxBufData - Update array which is used as source to Tx data buffer
 //
@@ -707,57 +579,46 @@ void prepareTxBufData(void)
 {
     uint16_t i;
     uint16_t value = txBufData[nWords-1];
-
     for(i = 0; i < nWords; i++)
     {
         txBufData[i] = value + i + 1;
     }
 }
-
 //
 // fsiTxInt1ISR - FSI Tx Interrupt on INsT1 line
 //
 __interrupt void fsiTxInt1ISR(void)
 {
     fsiTxInt1Received = 1U;
-
     //uncomment this line for debug
     //txEventSts = FSI_getTxEventStatus(FSITXA_BASE);
-
     // Set FSI TX circular buffer pointer back to beginning
     FSI_setTxBufferPtr(FSITXA_BASE, 0U);
-
     //
     // Clear the interrupt flag and issue ACK
     //
     FSI_clearTxEvents(FSITXA_BASE, FSI_TX_EVTMASK);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
 }
-
 //
 // fsiTxInt2ISR - FSI Tx Interrupt on INT2 line
 //
 __interrupt void fsiTxInt2ISR(void)
 {
     fsiTxInt2Received = 1U;
-
     txEventSts = FSI_getTxEventStatus(FSITXA_BASE);
-
     //
     // Clear the interrupt flag and issue ACK
     //
     FSI_clearTxEvents(FSITXA_BASE, FSI_TX_EVTMASK);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
-
     disableAllFSIInterrupts();
-
     //
     // INT2 line is set to fire for error events, stop immediately. Actual Error
     // is captured in txEventSts for debug
     //
     ESTOP0;
 }
-
 //
 // fsiRxInt1ISR - FSI Rx Interrupt on INT1 line
 //
@@ -765,9 +626,7 @@ __interrupt void fsiRxInt1ISR(void)
 {
     //DEBUG MARKER: Lead Rx frame reception.
     GPIO_writePin(DATA_FRAME_TEST_IO,1);
-
     rxEventSts = FSI_getRxEventStatus(FSIRXA_BASE);
-
     if((rxEventSts & FSI_RX_EVT_DATA_FRAME) != 0)
     {
         //
@@ -776,9 +635,7 @@ __interrupt void fsiRxInt1ISR(void)
         checkReceivedFrameTypeTag(FSI_FRAME_TYPE_NWORD_DATA, txDataFrameTag);
         compare16(FSI_getRxUserDefinedData(FSIRXA_BASE), txUserData);
         compareBufData(0, 0, nWords);
-
         dataFrameCntr++;
-
         if(dataFrameCntr >= 0xFFFFFFFF)
         {
             dataFrameCntr_ui32++;
@@ -788,50 +645,40 @@ __interrupt void fsiRxInt1ISR(void)
     if((rxEventSts & FSI_RX_EVT_PING_FRAME) != 0)
     {
         pingFrameCntr++;
-
         if(pingFrameCntr >= 0xFFFFFFFF)
         {
             pingFrameCntr_ui32++;
             pingFrameCntr = 0;
         }
     }
-
     fsiRxInt1Received = 1U;
-
     // Set FSI RX circular buffer pointer back to beginning
     FSI_setRxBufferPtr(FSIRXA_BASE, 0U);
-
     //
     // Clear the interrupt flag and issue ACK
     //
     FSI_clearRxEvents(FSIRXA_BASE,rxEventSts);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
 }
-
 //
 // fsiRxInt2ISR - FSI Rx Interrupt on INT2 line
 //
 __interrupt void fsiRxInt2ISR(void)
 {
     rxEventSts = FSI_getRxEventStatus(FSIRXA_BASE);
-
     fsiRxInt2Received = fsiRxInt2Received + 1U;
-
     //
     // Clear the interrupt flag and issue ACK
     //
     FSI_clearRxEvents(FSIRXA_BASE,rxEventSts);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
-
     disableAllFSIInterrupts();
-
     //
     // INT2 line is set to fire for error events, stop immediately. Error
     // is captured in rxEventSts for debug
     //11.24
     ESTOP0;
 }
-
 //
 // disableAllFSIInterrupts - Disables all event interrupts in both FSI Tx/Rx,
 //                           also clear them
@@ -842,11 +689,9 @@ void disableAllFSIInterrupts(void)
     FSI_disableTxInterrupt(FSITXA_BASE, FSI_INT2, FSI_TX_EVTMASK);
     FSI_disableRxInterrupt(FSIRXA_BASE, FSI_INT1, FSI_RX_EVTMASK);
     FSI_disableRxInterrupt(FSIRXA_BASE, FSI_INT2, FSI_RX_EVTMASK);
-
     FSI_clearTxEvents(FSITXA_BASE, FSI_TX_EVTMASK);
     FSI_clearRxEvents(FSIRXA_BASE, FSI_RX_EVTMASK);
 }
-
 //
 // compare16 - Compares two 16 bit values and increments global error flag by 1
 //             for mismatch
@@ -858,7 +703,6 @@ static inline void compare16(uint16_t val1, uint16_t val2)
         error++;
     }
 }
-
 //
 // compareBufData - Compares if received data is same as transmitted ones
 //                  It doesn't consider wrap-up cases, but, can be enhanced
@@ -867,9 +711,7 @@ void compareBufData(uint16_t txBufIndex, uint16_t rxBufIndex, uint16_t nWords)
 {
     uint16_t i;
     uint16_t rxDataArray[16];
-
     FSI_readRxBuffer(FSIRXA_BASE, rxDataArray, nWords, rxBufIndex);
-
     for(i = 0; i < nWords; i++)
     {
         if(rxDataArray[i] != txBufAddr[txBufIndex])
@@ -877,11 +719,9 @@ void compareBufData(uint16_t txBufIndex, uint16_t rxBufIndex, uint16_t nWords)
             error++;
             return;
         }
-
         txBufIndex++;
     }
 }
-
 //
 // checkReceivedFrameTypeTag - Checks received frame type/tag and updates global
 //                             error flag
@@ -889,7 +729,6 @@ void compareBufData(uint16_t txBufIndex, uint16_t rxBufIndex, uint16_t nWords)
 void checkReceivedFrameTypeTag(FSI_FrameType type, FSI_FrameTag tag)
 {
     compare16((uint16_t)FSI_getRxFrameType(FSIRXA_BASE), (uint16_t)type);
-
     if(type == FSI_FRAME_TYPE_PING)
     {
         compare16(FSI_getRxPingTag(FSIRXA_BASE), (uint16_t)tag);
@@ -899,16 +738,13 @@ void checkReceivedFrameTypeTag(FSI_FrameType type, FSI_FrameTag tag)
         compare16(FSI_getRxFrameTag(FSIRXA_BASE), (uint16_t)tag);
     }
 }
-
 void testGPIO(void)
 {
     GPIO_setDirectionMode(DATA_FRAME_TEST_IO,GPIO_DIR_MODE_OUT);
     GPIO_setQualificationMode(DATA_FRAME_TEST_IO,GPIO_QUAL_ASYNC);
     GPIO_setPinConfig(DATA_FRAME_TEST_IO_CONF);
-
     GPIO_writePin(DATA_FRAME_TEST_IO,1);
 }
-
 //
 // fsitx_dma_config - Sets up DMA channels(Ch1 and Ch2) for FSI Tx operation
 //
@@ -923,7 +759,6 @@ void fsitx_dma_config()
     DMA_configTransfer(DMA_CH1_BASE, DMA_TRANSFER_SIZE_IN_BURSTS, 0, 0);
     DMA_configWrap(DMA_CH1_BASE, DMA_WRAP_SIZE_IN_BURSTS, 0,
                    DMA_WRAP_SIZE_IN_BURSTS, 0);
-
     #if TX_DMA_TRIGGER_ENABLE == 1
     DMA_configMode(DMA_CH1_BASE, DMA_TRIGGER_FSITXA, DMA_CFG_ONESHOT_DISABLE|
                    DMA_CFG_CONTINUOUS_ENABLE | DMA_CFG_SIZE_16BIT);
@@ -931,10 +766,8 @@ void fsitx_dma_config()
     DMA_configMode(DMA_CH1_BASE, DMA_TRIGGER_SOFTWARE, DMA_CFG_ONESHOT_DISABLE|
                    DMA_CFG_CONTINUOUS_ENABLE | DMA_CFG_SIZE_16BIT);
     #endif
-
     DMA_disableInterrupt(DMA_CH1_BASE);
     DMA_enableTrigger(DMA_CH1_BASE);
-
     //
     // For the tag and userdata fields
     //
@@ -944,7 +777,6 @@ void fsitx_dma_config()
     DMA_configTransfer(DMA_CH2_BASE, DMA_TRANSFER_SIZE_IN_BURSTS, 0, 0);
     DMA_configWrap(DMA_CH2_BASE, DMA_WRAP_SIZE_IN_BURSTS, 0,
                    DMA_WRAP_SIZE_IN_BURSTS, 0);
-
     #if TX_DMA_TRIGGER_ENABLE == 1
     DMA_configMode(DMA_CH2_BASE, DMA_TRIGGER_FSITXA, DMA_CFG_ONESHOT_DISABLE|
                    DMA_CFG_CONTINUOUS_ENABLE | DMA_CFG_SIZE_16BIT);
@@ -952,13 +784,10 @@ void fsitx_dma_config()
     DMA_configMode(DMA_CH2_BASE, DMA_TRIGGER_SOFTWARE, DMA_CFG_ONESHOT_DISABLE|
                    DMA_CFG_CONTINUOUS_ENABLE | DMA_CFG_SIZE_16BIT);
     #endif
-
     DMA_setInterruptMode(DMA_CH2_BASE, DMA_INT_AT_END);
     DMA_enableInterrupt(DMA_CH2_BASE);
-
     DMA_enableTrigger(DMA_CH2_BASE);
 }
-
 //
 // fsirx_dma_config - Sets up DMA channels(Ch3 and Ch4) for FSI Rx operation
 //
@@ -974,10 +803,8 @@ void fsirx_dma_config()
                    DMA_WRAP_SIZE_IN_BURSTS, 0);
     DMA_configMode(DMA_CH3_BASE, DMA_TRIGGER_FSIRXA, DMA_CFG_ONESHOT_DISABLE|
                    DMA_CFG_CONTINUOUS_ENABLE |DMA_CFG_SIZE_16BIT);
-
     DMA_disableInterrupt(DMA_CH3_BASE);
     DMA_enableTrigger(DMA_CH3_BASE);
-
     //
     // For the tag and userdata fields
     //
@@ -989,12 +816,10 @@ void fsirx_dma_config()
                    DMA_WRAP_SIZE_IN_BURSTS, 0);
     DMA_configMode(DMA_CH4_BASE, DMA_TRIGGER_FSIRXA, DMA_CFG_ONESHOT_DISABLE |
                    DMA_CFG_CONTINUOUS_ENABLE | DMA_CFG_SIZE_16BIT);
-
     DMA_setInterruptMode(DMA_CH4_BASE, DMA_INT_AT_END);
     DMA_enableInterrupt(DMA_CH4_BASE);
     DMA_enableTrigger(DMA_CH4_BASE);
 }
-
 //
 // InitFrameTagAndData - Initializes GS0/GS1 memories to populate tag and data
 //                       for frame transfers
@@ -1003,14 +828,12 @@ void InitFrameTagAndData(void)
 {
     unsigned int i;
     uint16_t *temp;
-
     temp = (uint16_t *)GS0_START_ADDR;
     for(i = 0; i < TOTAL_WORDS_IN_TRANSFER; i++)
     {
         *temp = i;
         temp++;
     }
-
     temp = (uint16_t *)GS1_START_ADDR;
     for(i = FSI_FRAME_TAG0; i < FSI_FRAME_TAG15; i++)
     {
@@ -1021,7 +844,6 @@ void InitFrameTagAndData(void)
         temp++;
     }
 }
-
 //
 // UpdateTxframeData - Updates GS0 memory with new data for frame transfer
 //
@@ -1029,78 +851,58 @@ void UpdateTxframeData(void)
 {
     unsigned int i;
     uint16_t *temp;
-
     temp = (uint16_t *)GS0_START_ADDR;
     for(i = 0; i < TOTAL_WORDS_IN_TRANSFER; i++)
     {
         *temp = *temp + 1;
         temp++;
     }
-
 }
-
 //
 // fsitxdma_isr - FSI TX DMA ISR
 //
 interrupt void fsitxdma_isr(void)
 {
     GPIO_writePin(DATA_FRAME_TEST_IO,0);
-
     dmaTxIntCnt++; // Increment DMA TX interrupt counter
-
     dmaIntr1 = 1;
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
 }
-
-
 //
 // fsirxdma_isr - FSI RX DMA ISR
 //
 interrupt void fsirxdma_isr(void)
 {
     GPIO_writePin(DATA_FRAME_TEST_IO,1);
-
     // Set FSI RX circular buffer pointer back to beginning
     FSI_setRxBufferPtr(FSIRXA_BASE, 0U);
-
     dmaRxIntCnt++; // Increment DMA RX interrupt counter
-
     #if TX_DMA_TRIGGER_ENABLE == 0
-
     //
     // Verify TX data is same as RX data
     //
     txTempData16 = (uint16_t *)(GS0_START_ADDR);
     rxTempData16 = (uint16_t *)(GS2_START_ADDR);
-
     for(i = 0; i < TOTAL_WORDS_IN_TRANSFER; i++)
     {
         compare16(*txTempData16,*rxTempData16);
         txTempData16++;
         rxTempData16++;
     }
-
     dataFrameCntr++;
-
     if(dataFrameCntr >= 0xFFFFFFFF)
     {
         dataFrameCntr_ui32++;
         dataFrameCntr = 0;
     }
-
     UpdateTxframeData(); // Update TX Frame data (GS0 memory)
-
     // Trigger TX DMA channels 1 & 2
     DMA_forceTrigger(DMA_CH1_BASE);
     DMA_forceTrigger(DMA_CH2_BASE);
-
     #endif
-
     dmaIntr2 = 1;
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
 }
-
-
 //
 // End of File
 //

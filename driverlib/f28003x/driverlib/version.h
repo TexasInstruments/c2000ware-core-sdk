@@ -62,7 +62,7 @@ extern "C"
 
 //! Version number to be returned by Version_getLibVersion()
 //!
-#define VERSION_NUMBER      26010000U
+#define VERSION_NUMBER      26020000U
 
 //*****************************************************************************
 //
@@ -71,8 +71,8 @@ extern "C"
 //! This function can be used to check the version number of the driverlib.lib
 //! that is in use. The version number will take the format yy.mm.pp.bb, so for
 //! yy-Year, mm-Major Release version, pp-Patch Release Version, bb- Build Number.
-//! example, if the function returns 26000000, the driverlib version being used
-//! is 26.00.00.00.
+//! example, if the function returns 26020000, the driverlib version being used
+//! is 26.02.00.00.
 //!
 //! \return Returns an integer value indicating the driverlib version.
 //

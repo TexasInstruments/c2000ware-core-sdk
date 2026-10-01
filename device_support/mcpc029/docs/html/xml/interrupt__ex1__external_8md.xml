@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="interrupt__ex1__external_8md" kind="file" language="Markdown">
+    <compoundname>interrupt_ex1_external.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>External<sp/>Interrupt<sp/>example<sp/>{#EXAMPLES_DRIVERS_INTERRUPT_EX1_EXTERNAL}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>External<sp/>interrupt<sp/>example&quot;</highlight></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>Interrupt&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>program<sp/>sets<sp/>up<sp/>GPIO0<sp/>as<sp/>XINT1<sp/>and<sp/>GPIO1<sp/>as<sp/>XINT2.<sp/><sp/>Two<sp/>other<sp/>GPIO<sp/>signals</highlight></codeline>
+<codeline><highlight class="normal">are<sp/>used<sp/>to<sp/>trigger<sp/>the<sp/>interrupt<sp/>(GPIO4<sp/>triggers<sp/>XINT1<sp/>and<sp/>GPIO5<sp/>triggers<sp/>XINT2).<sp/></highlight></codeline>
+<codeline><highlight class="normal">The<sp/>user<sp/>is<sp/>required<sp/>to<sp/>externally<sp/>connect<sp/>these<sp/>signals<sp/>for<sp/>the<sp/>program<sp/>to<sp/>work</highlight></codeline>
+<codeline><highlight class="normal">properly.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">XINT1<sp/>input<sp/>is<sp/>synced<sp/>to<sp/>SYSCLKOUT.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">XINT2<sp/>has<sp/>a<sp/>long<sp/>qualification<sp/>-<sp/>6<sp/>samples<sp/>at<sp/>510*SYSCLKOUT<sp/>each.</highlight></codeline>
+<codeline><highlight class="normal">GPIO16<sp/>will<sp/>go<sp/>high<sp/>outside<sp/>of<sp/>the<sp/>interrupts<sp/>and<sp/>low<sp/>within<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">interrupts.<sp/>This<sp/>signal<sp/>can<sp/>be<sp/>monitored<sp/>on<sp/>a<sp/>scope.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Each<sp/>interrupt<sp/>is<sp/>fired<sp/>in<sp/>sequence<sp/>-<sp/>XINT1<sp/>first<sp/>and<sp/>then<sp/>XINT2</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>Connect<sp/>GPIO4<sp/>to<sp/>GPIO0.<sp/><sp/>GPIO0<sp/>will<sp/>be<sp/>assigned<sp/>to<sp/>XINT1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>Connect<sp/>GPIO5<sp/>to<sp/>GPIO1.<sp/><sp/>GPIO1<sp/>will<sp/>be<sp/>assigned<sp/>to<sp/>XINT2</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>Monitor<sp/>GPIO16<sp/>with<sp/>an<sp/>oscilloscope.<sp/>GPIO16<sp/>will<sp/>be<sp/>high<sp/>outside<sp/>of<sp/>the</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ISRs<sp/>and<sp/>low<sp/>within<sp/>each<sp/>ISR.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Watch<sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>xint1Count<sp/>for<sp/>the<sp/>number<sp/>of<sp/>times<sp/>through<sp/>XINT1<sp/>interrupt</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>xint2Count<sp/>for<sp/>the<sp/>number<sp/>of<sp/>times<sp/>through<sp/>XINT2<sp/>interrupt</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>loopCount<sp/>for<sp/>the<sp/>number<sp/>of<sp/>times<sp/>through<sp/>the<sp/>idle<sp/>loop</highlight></codeline>
+<codeline></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/interrupt_ex1_external.md"/>
+  </compounddef>
+</doxygen>

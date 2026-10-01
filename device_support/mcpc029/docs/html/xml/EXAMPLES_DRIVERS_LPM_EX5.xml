@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_LPM_EX5" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_LPM_EX5</compoundname>
+    <title>Device HALT Mode and Wakeup using GPIO</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_LPM_EX5_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_lpm_ex5"/></para>
+<sect1 id="EXAMPLES_DRIVERS_LPM_EX5_1autotoc_md425">
+<title>Introduction</title>
+<para>This example puts the device into HALT mode. If the lowest possible current consumption in HALT mode is desired, the JTAG connector must be removed from the device board while the device is in HALT mode.</para>
+<para>For applications that require minimal power consumption during HALT mode, application software should power off the XTAL prior to entering HALT by setting the XTALCR.OSCOFF bit or by using the driverlib function SysCtl_turnOffOsc(SYSCTL_OSCSRC_XTAL);. If the OSCCLK source is configured to be XTAL, the application should first switch the OSSCLK source to WROSCDIV8 or SYSOSCDIV4 prior to setting XTALCR.OSCOFF.</para>
+<para>This example puts the device into HALT mode and then wakes up the device from HALT using an LPM wakeup pin.</para>
+<para>The pin GPIO0 is configured as the LPM wakeup pin to trigger a WAKEINT interrupt upon detection of a low pulse.The GPIO0 pin must be pulled from high to low by an external agent for wakeup.</para>
+<para>GPIO1 is pulled high before entering the STANDBY mode and is pulled low when in the wakeup ISR.</para>
+<para><itemizedlist>
+<listitem><para>External Connections<itemizedlist>
+<listitem><para>GPIO0 needs to be pulled low to wake up the device.</para>
+</listitem><listitem><para>On device wakeup, the GPIO1 will be low and LED1 will start blinking </para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/lpm_ex5.md"/>
+  </compounddef>
+</doxygen>

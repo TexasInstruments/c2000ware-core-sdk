@@ -56,7 +56,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -89,7 +89,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -97,20 +96,16 @@
 #include "device.h"
 #include "board.h"
 #include "c2000ware_libraries.h"
-
 //
 // Defines
 //
 #define XTBPRD 1999U        //Period register common for all PWM's
-
 #define EPWM_MIN_XCMP1 0U
 #define EPWM_MAX_XCMP1 450U
 #define EPWM_MIN_XCMP4 1500U
 #define EPWM_MAX_XCMP4 1950U
-
 #define EPWM_CMP_UP 1U
 #define EPWM_CMP_DOWN 0U
-
 //
 // Globals
 //
@@ -127,213 +122,165 @@ typedef struct
     uint16_t xcmp1Val;
     uint16_t xcmp4Val;
 } epwmInfo;
-
 epwmInfo epwm6_Info;
 epwmInfo epwm8_Info;
-
 //
 // Function Prototypes
 //
 void init_epwm6_Info(void);
 void init_epwm8_Info(void);
-
 void updateShadow1_forEpwm6(void);
 void updateShadow2_forEpwm6(void);
 void updateShadow3_forEpwm6(void);
 void updateShadow3_forEpwm8(void);
-
 __interrupt void epwm6_ISR(void);
 __interrupt void epwm8_ISR(void);
-
 //
 // Main
 //
 void main(void)
 {
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull-ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Disable sync(Freeze clock to PWM as well)
     //
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Set EPWM Clock Divider to 1 to feed 200 MHz SysClock.
     // Note: Default value is 2.
     //
     SysCtl_setEPWMClockDivider(SYSCTL_EPWMCLK_DIV_1);
-
     //
     // PinMux and Peripheral Initialization
     //
     Board_init();
-
     init_epwm6_Info();
     init_epwm8_Info();
-
     //
     // Enable sync and clock to PWM
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // C2000Ware Library initialization
     //
     C2000Ware_libraries_init();
-
     //
     // Enable Global Interrupt (INTM) and real time interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Initial Shadow to Active load strobe
     //
     EPWM_enableXLoad(myEPWM6_BASE);
     EPWM_enableXLoad(myEPWM8_BASE);
-
     while(1)
     {
-
     }
 }
-
 void init_epwm6_Info(void)
 {
     epwm6_Info.epwmBase = myEPWM6_BASE;
-
     epwm6_Info.epwmXCMP1Direction = EPWM_CMP_UP;
     epwm6_Info.epwmXCMP4Direction = EPWM_CMP_DOWN;
-
     epwm6_Info.epwmIntCount = 0U;
-
     epwm6_Info.epwmMaxXCMP1 = EPWM_MAX_XCMP1;
     epwm6_Info.epwmMinXCMP1 = EPWM_MIN_XCMP1;
     epwm6_Info.epwmMaxXCMP4 = EPWM_MAX_XCMP4;
     epwm6_Info.epwmMinXCMP4 = EPWM_MIN_XCMP4;
-
     epwm6_Info.xcmp1Val = 0U;
     epwm6_Info.xcmp4Val = 1500U;
 }
-
 void init_epwm8_Info(void)
 {
     epwm8_Info.epwmBase = myEPWM8_BASE;
-
     epwm8_Info.epwmXCMP1Direction = EPWM_CMP_UP;
     epwm8_Info.epwmXCMP4Direction = EPWM_CMP_DOWN;
-
     epwm8_Info.epwmIntCount  =  0U;
-
     epwm8_Info.epwmMaxXCMP1 = EPWM_MAX_XCMP1;
     epwm8_Info.epwmMinXCMP1 = EPWM_MIN_XCMP1;
     epwm8_Info.epwmMaxXCMP4 = EPWM_MAX_XCMP4;
     epwm8_Info.epwmMinXCMP4 = EPWM_MIN_XCMP4;
-
     epwm8_Info.xcmp1Val = 0U;
     epwm8_Info.xcmp4Val = 1500U;
 }
-
-
 __interrupt void epwm6_ISR(void)
 {
     epwm6_Info.epwmIntCount++;
-
     if(epwm6_Info.epwmIntCount == 4U)
     {
         updateShadow3_forEpwm6();
     }
-
     else if(epwm6_Info.epwmIntCount == 6U)
     {
         updateShadow2_forEpwm6();
     }
-
     else if(epwm6_Info.epwmIntCount == 8U)
     {
         updateShadow1_forEpwm6();
-
     }
     if(epwm6_Info.epwmIntCount == 9U)
     {
         epwm6_Info.epwmIntCount = 0U;
-
         //
         // Toggling GPIO to indicate new shadow to active loading
         // 
         GPIO_togglePin(myGPIO1);
-
         //
         // Next load initiation, done after every 9 cycles.
         //
         EPWM_enableXLoad(myEPWM6_BASE);
     }
-
     //
     // Clear INT flag for this timer
     //
     EPWM_clearEventTriggerInterruptFlag(myEPWM6_BASE);
-
     //
     // Acknowledge this interrupt to receive more interrupts from group 3
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP3);
-
 }
-
 __interrupt void epwm8_ISR(void)
 {
     epwm8_Info.epwmIntCount++;
-
     if(epwm8_Info.epwmIntCount == 5U)
     {
         epwm8_Info.epwmIntCount = 0U;
         updateShadow3_forEpwm8();
-
         //
         // Toggling GPIO to indicate new shadow to active loading
         // 
         GPIO_togglePin(myGPIO2);
-
         //
         //Next load initiation, done after every 5 cycles.
         //
         EPWM_enableXLoad(myEPWM8_BASE);
     }
-
     //
     // Clear INT flag for this timer
     //
     EPWM_clearEventTriggerInterruptFlag(myEPWM8_BASE);
-
     //
     // Acknowledge this interrupt to receive more interrupts from group 3
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP3);
-
 }
-
 //
 // Function to update XCMP1,4,5,8 based on their directions.
 //
@@ -396,7 +343,6 @@ void updateShadow3_forEpwm6(void)
         }
     }
 }
-
 //
 // Function to update XCMP1,4,5,8 based on their directions.
 //
@@ -459,13 +405,11 @@ void updateShadow2_forEpwm6()
         }
     }
 }
-
 //
 // Function to update XCMP1,4,5,8 based on their directions.
 //
 void updateShadow1_forEpwm6()
 {
-
     if(epwm6_Info.epwmXCMP1Direction == EPWM_CMP_UP)
     {
         if(epwm6_Info.xcmp1Val < EPWM_MAX_XCMP1)
@@ -531,7 +475,6 @@ void updateShadow1_forEpwm6()
         }
     }
 }
-
 //
 // Function to update XCMP1,4,5,8 based on their directions.
 //
@@ -602,7 +545,6 @@ void updateShadow3_forEpwm8()
         }
     }
 }
-
 //
 // End of File
 //

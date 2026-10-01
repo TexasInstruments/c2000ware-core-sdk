@@ -26,7 +26,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -59,12 +59,10 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "device.h"
-
 //
 // Defines
 // Select the example to compile in.  Only one example should be set as 1
@@ -72,13 +70,11 @@
 //
 #define EXAMPLE1 1  // Basic pinout configuration example
 #define EXAMPLE2 0  // Communication pinout example
-
 //
 // Function Prototypes
 //
 void setup1GPIO(void);
 void setup2GPIO(void);
-
 //
 // Main
 //
@@ -88,39 +84,29 @@ void main(void)
     // Initializes system control, device clock, and peripherals
     //
     Device_init();
-
     //
     // Initializes PIE and clear PIE registers. Disables CPU interrupts.
     // and clear all CPU interrupt flags.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
 #if EXAMPLE1
-
     //
     // This example is a basic pinout
     //
     setup1GPIO();
-
 #endif  // - EXAMPLE1
-
 #if EXAMPLE2
-
     //
     // This example is a communications pinout
     //
     setup2GPIO();
-
 #endif
-
 }
-
 //
 // setup1GPIO - Is an example that demonstrates the basic pinout
 //
@@ -135,7 +121,6 @@ setup1GPIO(void)
     // These can be combined into single statements for improved
     // code efficiency.
     //
-
     //
     // Enable PWM1-3 on GPIO0-GPIO5
     //
@@ -151,7 +136,6 @@ setup1GPIO(void)
     GPIO_setPinConfig(GPIO_3_EPWM2_B);              // GPIO3 = PWM2B
     GPIO_setPinConfig(GPIO_4_EPWM3_A);              // GPIO4 = PWM3A
     GPIO_setPinConfig(GPIO_5_EPWM3_B);              // GPIO5 = PWM3B
-
     //
     // Enable a GPIO output on GPIO6, set it high
     //
@@ -159,14 +143,12 @@ setup1GPIO(void)
     GPIO_writePin(6, 1);                            // Load output latch
     GPIO_setPinConfig(GPIO_6_GPIO6);                // GPIO6 = GPIO6
     GPIO_setDirectionMode(6, GPIO_DIR_MODE_OUT);    // GPIO6 = output
-
     //
     // Enable eCAP1 on GPIO7
     //
     GPIO_setPadConfig(7, GPIO_PIN_TYPE_PULLUP);         // Enable pullup on GPIO7
     GPIO_setQualificationMode(7, GPIO_QUAL_SYNC);       // Synch to SYSCLKOUT
     XBAR_setInputPin(INPUTXBAR_BASE, XBAR_INPUT7, 7);   // GPIO7 = ECAP1
-
     //
     // Enable GPIO outputs on GPIO8 - GPIO11, set it high
     //
@@ -174,22 +156,18 @@ setup1GPIO(void)
     GPIO_writePin(8, 1);                            // Load output latch
     GPIO_setPinConfig(GPIO_8_GPIO8);                // GPIO8 = GPIO8
     GPIO_setDirectionMode(8, GPIO_DIR_MODE_OUT);    // GPIO8 = output
-
     GPIO_setPadConfig(9, GPIO_PIN_TYPE_PULLUP);     // Enable pullup on GPIO9
     GPIO_writePin(9, 1);                            // Load output latch
     GPIO_setPinConfig(GPIO_9_GPIO9);                // GPIO9 = GPIO9
     GPIO_setDirectionMode(9, GPIO_DIR_MODE_OUT);    // GPIO9 = output
-
     GPIO_setPadConfig(10, GPIO_PIN_TYPE_PULLUP);    // Enable pullup on GPIO10
     GPIO_writePin(10, 1);                           // Load output latch
     GPIO_setPinConfig(GPIO_10_GPIO10);              // GPIO10 = GPIO10
     GPIO_setDirectionMode(10, GPIO_DIR_MODE_OUT);   // GPIO10 = output
-
     GPIO_setPadConfig(11, GPIO_PIN_TYPE_PULLUP);    // Enable pullup on GPIO11
     GPIO_writePin(11, 1);                           // Load output latch
     GPIO_setPinConfig(GPIO_11_GPIO11);              // GPIO11 = GPIO11
     GPIO_setDirectionMode(11, GPIO_DIR_MODE_OUT);   // GPIO11 = output
-
     //
     // Enable Trip Zone inputs on GPIO12 - GPIO14
     //
@@ -202,7 +180,6 @@ setup1GPIO(void)
     XBAR_setInputPin(INPUTXBAR_BASE, XBAR_INPUT1, 12); // GPIO12 = TZ1
     XBAR_setInputPin(INPUTXBAR_BASE, XBAR_INPUT2, 13); // GPIO13 = TZ2
     XBAR_setInputPin(INPUTXBAR_BASE, XBAR_INPUT3, 14); // GPIO14 = TZ3
-
     //
     // Enable SPI-A on GPIO16 - GPIO19
     //
@@ -218,7 +195,6 @@ setup1GPIO(void)
     GPIO_setPinConfig(GPIO_17_SPIA_POCI);            // GPIO17 = SPIPOCIA
     GPIO_setPinConfig(GPIO_18_SPIA_CLK);             // GPIO18 = SPICLKA
     GPIO_setPinConfig(GPIO_19_SPIA_PTE);             // GPIO19 = SPIPTEA
-
     //
     // Enable EQEP1 on GPIO's 20,21,22,23
     //
@@ -234,35 +210,30 @@ setup1GPIO(void)
     GPIO_setPinConfig(GPIO_21_EQEP1_B);             // GPIO21 = EQEP1B
     GPIO_setPinConfig(GPIO_22_EQEP1_STROBE);        // GPIO22 = EQEP1S
     GPIO_setPinConfig(GPIO_23_EQEP1_INDEX);         // GPIO23 = EQEP1I
-
     //
     // Enable eCAP1 on GPIO24
     //
     GPIO_setPadConfig(24, GPIO_PIN_TYPE_PULLUP);        // Pullup on GPIO24 (ECAP1)
     GPIO_setQualificationMode(24, GPIO_QUAL_SYNC);      // Synch to SYSCLKOUT
     XBAR_setInputPin(INPUTXBAR_BASE, XBAR_INPUT7, 24);  // GPIO24 = ECAP1
-
     //
     // Set input qualification period for GPIO25 & GPIO26
     //
     GPIO_setQualificationPeriod(24, 2);              // Qual period=SYSCLKOUT/2
     GPIO_setQualificationMode(25, GPIO_QUAL_6SAMPLE);// 6 samples
     GPIO_setQualificationMode(26, GPIO_QUAL_6SAMPLE);// 6 samples
-
     //
     // Make GPIO25 the input source for XINT1
     //
     GPIO_setPinConfig(GPIO_25_GPIO25);            // GPIO25 = GPIO25
     GPIO_setDirectionMode(25, GPIO_DIR_MODE_IN);  // GPIO25 = input
     GPIO_setInterruptPin(25,GPIO_INT_XINT1);      // XINT1 connected to GPIO25
-
     //
     // Make GPIO26 the input source for XINT2
     //
     GPIO_setPinConfig(GPIO_26_GPIO26);             // GPIO26 = GPIO26
     GPIO_setDirectionMode(26, GPIO_DIR_MODE_IN);   // GPIO26 = input
     GPIO_setInterruptPin(26, GPIO_INT_XINT2);      // XINT2 connected to GPIO26
-
     //
     // Make GPIO27 wakeup from STANDBY Low Power Modes
     //
@@ -272,7 +243,6 @@ setup1GPIO(void)
     SysCtl_setStandbyQualificationPeriod(2);     // Qualify GPIO27 by 2 OSCCLK
                                                  // cycles before waking
                                                  // the device from STANDBY
-
     //
     // Enable SCI-A on GPIO28 - GPIO29
     //
@@ -281,7 +251,6 @@ setup1GPIO(void)
     GPIO_setPinConfig(GPIO_28_SCIA_RX);              // GPIO28 = SCIRXDA
     GPIO_setPadConfig(29, GPIO_PIN_TYPE_PULLUP);     // Enable pullup on GPIO29
     GPIO_setPinConfig(GPIO_29_SCIA_TX);              // GPIO29 = SCITXDA
-
     //
     // Enable CAN-A on GPIO30 - GPIO31
     //
@@ -290,7 +259,6 @@ setup1GPIO(void)
     GPIO_setPadConfig(31, GPIO_PIN_TYPE_PULLUP);     // Enable pullup on GPIO31
     GPIO_setQualificationMode(31, GPIO_QUAL_ASYNC);  // asynch input
     GPIO_setPinConfig(GPIO_31_CANA_TX);               // GPIO31 = CANTXA
-
     //
     // Enable I2C-A on GPIO32 - GPIO33
     //
@@ -300,7 +268,6 @@ setup1GPIO(void)
     GPIO_setPadConfig(33, GPIO_PIN_TYPE_PULLUP);     // Enable pullup on GPIO33
     GPIO_setQualificationMode(33, GPIO_QUAL_ASYNC);  // asynch input
     GPIO_setPinConfig(GPIO_33_I2CA_SCL);                 // GPIO33 = SCLA
-
     //
     // Make GPIO34 an input on GPIO34
     //
@@ -308,7 +275,6 @@ setup1GPIO(void)
     GPIO_setPinConfig(GPIO_34_GPIO34);               // GPIO34 = GPIO34
     GPIO_setDirectionMode(34, GPIO_DIR_MODE_IN);     // GPIO34 = input
 }
-
 //
 // setup2GPIO - Is an example that demonstrates the communications pinout
 //
@@ -322,7 +288,6 @@ setup2GPIO(void)
     // PWM1-3, CAP1, SPI-B, CAN-A, SCI-A and I2C
     // and a number of I/O pins
     //
-
     //
     // Enable PWM1-3 on GPIO0-GPIO5
     //
@@ -338,7 +303,6 @@ setup2GPIO(void)
     GPIO_setPinConfig(GPIO_3_EPWM2_B);             // GPIO3 = PWM2B
     GPIO_setPinConfig(GPIO_4_EPWM3_A);             // GPIO4 = PWM3A
     GPIO_setPinConfig(GPIO_5_EPWM3_B);             // GPIO5 = PWM3B
-
     //
     // Enable an GPIO output on GPIO6
     //
@@ -346,14 +310,12 @@ setup2GPIO(void)
     GPIO_writePin(6, 1);                          // Load output latch
     GPIO_setPinConfig(GPIO_6_GPIO6);              // GPIO6 = GPIO6
     GPIO_setDirectionMode(6, GPIO_DIR_MODE_OUT);  // GPIO6 = output
-
     //
     // Enable eCAP1 on GPIO7
     //
     GPIO_setPadConfig(7, GPIO_PIN_TYPE_PULLUP);         // Enable pullup on GPIO7
     GPIO_setQualificationMode(7, GPIO_QUAL_SYNC);       // Synch to SYSCLKOUT
     XBAR_setInputPin(INPUTXBAR_BASE, XBAR_INPUT7, 7);   // GPIO7 = ECAP1
-
     //
     // Enable GPIO outputs on GPIO8 - GPIO11
     //
@@ -361,22 +323,18 @@ setup2GPIO(void)
     GPIO_writePin(8, 1);                           // Load output latch
     GPIO_setPinConfig(GPIO_8_GPIO8);               // GPIO8 = GPIO8
     GPIO_setDirectionMode(8, GPIO_DIR_MODE_OUT);   // GPIO8 = output
-
     GPIO_setPadConfig(9, GPIO_PIN_TYPE_PULLUP);    // Enable pullup on GPIO9
     GPIO_writePin(9, 1);                           // Load output latch
     GPIO_setPinConfig(GPIO_9_GPIO9);               // GPIO9 = GPIO9
     GPIO_setDirectionMode(9, GPIO_DIR_MODE_OUT);   // GPIO9 = output
-
     GPIO_setPadConfig(10, GPIO_PIN_TYPE_PULLUP);   // Enable pullup on GPIO10
     GPIO_writePin(10, 1);                          // Load output latch
     GPIO_setPinConfig(GPIO_10_GPIO10);             // GPIO10 = GPIO10
     GPIO_setDirectionMode(10, GPIO_DIR_MODE_OUT);  // GPIO10 = output
-
     GPIO_setPadConfig(11, GPIO_PIN_TYPE_PULLUP);   // Enable pullup on GPIO11
     GPIO_writePin(11, 1);                          // Load output latch
     GPIO_setPinConfig(GPIO_11_GPIO11);             // GPIO11 = GPIO11
     GPIO_setDirectionMode(11, GPIO_DIR_MODE_OUT);  // GPIO11 = output
-
     //
     // Enable SPI-B on GPIO22 - GPIO25
     //
@@ -396,7 +354,6 @@ setup2GPIO(void)
     GPIO_setPinConfig(GPIO_23_SPIB_PTE);             // GPIO23 = SPIPTEB
     GPIO_setPinConfig(GPIO_24_SPIB_PICO);            // GPIO24 = SPIPICOB
     GPIO_setPinConfig(GPIO_25_SPIB_POCI);            // GPIO25 = SPIPOC1B
-
     //
     // Enable SPI-A on GPIO16 - GPIO19
     //
@@ -412,35 +369,30 @@ setup2GPIO(void)
     GPIO_setPinConfig(GPIO_17_SPIA_POCI);            // GPIO17 = SPIPOCIA
     GPIO_setPinConfig(GPIO_18_SPIA_CLK);             // GPIO18 = SPICLKA
     GPIO_setPinConfig(GPIO_19_SPIA_PTE);             // GPIO19 = SPIPTEA
-
     //
     // Enable eCAP1 on GPIO24
     //
     GPIO_setPadConfig(24, GPIO_PIN_TYPE_PULLUP);        // Pullup on GPIO24 (ECAP1)
     GPIO_setQualificationMode(24, GPIO_QUAL_SYNC);      // Synch to SYSCLKOUT
     XBAR_setInputPin(INPUTXBAR_BASE, XBAR_INPUT7, 24); // GPIO24 = ECAP1
-
     //
     // Set input qualifcation period for GPIO25 & GPIO26 inputs
     //
     GPIO_setQualificationPeriod(24, 2);                 // Qual period = SYSCLKOUT/2
     GPIO_setQualificationMode(25, GPIO_QUAL_6SAMPLE);   // 6 samples
     GPIO_setQualificationMode(26, GPIO_QUAL_3SAMPLE);   // 3 samples
-
     //
     // Make GPIO25 the input source for XINT1
     //
     GPIO_setPinConfig(GPIO_25_GPIO25);            // GPIO25 = GPIO25
     GPIO_setDirectionMode(25, GPIO_DIR_MODE_IN);  // GPIO25 = input
     GPIO_setInterruptPin(25,GPIO_INT_XINT1);      // XINT1 connected to GPIO25
-
     //
     // Make GPIO26 the input source for XINT2
     //
     GPIO_setPinConfig(GPIO_26_GPIO26);             // GPIO26 = GPIO26
     GPIO_setDirectionMode(26, GPIO_DIR_MODE_IN);   // GPIO26 = input
     GPIO_setInterruptPin(26,GPIO_INT_XINT2);       // XINT2 connected to GPIO26
-
     //
     // Make GPIO27 wakeup from STANDBY Low Power Modes
     //
@@ -450,7 +402,6 @@ setup2GPIO(void)
     SysCtl_setStandbyQualificationPeriod(2);     // Qualify GPIO27 by 2 OSCCLK
                                                  // cycles before waking
                                                  // the device from STANDBY
-
     //
     // Enable SCI-A on GPIO28 - GPIO29
     //
@@ -459,7 +410,6 @@ setup2GPIO(void)
     GPIO_setPinConfig(GPIO_28_SCIA_RX);              // GPIO28 = SCIRXDA
     GPIO_setPadConfig(29, GPIO_PIN_TYPE_PULLUP);     // Enable pullup on GPIO29
     GPIO_setPinConfig(GPIO_29_SCIA_TX);              // GPIO29 = SCITXDA
-
     //
     // Enable CAN-A on GPIO30 - GPIO31
     //
@@ -468,7 +418,6 @@ setup2GPIO(void)
     GPIO_setPadConfig(31, GPIO_PIN_TYPE_PULLUP);     // Enable pullup on GPIO31
     GPIO_setQualificationMode(31, GPIO_QUAL_ASYNC);  // asynch input
     GPIO_setPinConfig(GPIO_31_CANA_TX);               // GPIO31 = CANTXA
-
     //
     // Enable I2C-A on GPIO32 - GPIO33
     //
@@ -478,7 +427,6 @@ setup2GPIO(void)
     GPIO_setQualificationMode(33,GPIO_QUAL_ASYNC);   // asynch input
     GPIO_setPinConfig(GPIO_32_I2CA_SDA);                 // GPIO32 = SDAA
     GPIO_setPinConfig(GPIO_33_I2CA_SCL);                 // GPIO33 = SCLA
-
     //
     // Make GPIO34 an input
     //
@@ -486,8 +434,6 @@ setup2GPIO(void)
     GPIO_setPinConfig(GPIO_34_GPIO34);              // GPIO34 = GPIO34
     GPIO_setDirectionMode(34, GPIO_DIR_MODE_IN);    // GPIO34 = input
 }
-
 //
 // End of File
 //
-

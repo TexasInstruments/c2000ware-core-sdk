@@ -20,7 +20,7 @@
 // $TI Release: $
 // 
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -53,8 +53,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
 //
 // Included Files
 //
@@ -62,7 +60,6 @@
 #include "device.h"
 #include "board.h"
 #include "clb_config.h"
-
 //
 // Main
 //
@@ -70,31 +67,24 @@ void main(void)
 {
     Device_init();
     Device_initGPIO();
-
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
     //
     // Initialize pinmux, and sysconfig peripherals
     //
     Board_init();
-
     //
     //
     //
     initTILE1(myCLBForTILE1_BASE);
     initTILE2(myCLBForTILE2_BASE);
-
     CLB_enableCLB(myCLBForTILE1_BASE);
     CLB_enableCLB(myCLBForTILE2_BASE);
-
-
     while(1)
     {
         asm(" NOP");
     }
 }
-
 //
 // End of File
 //

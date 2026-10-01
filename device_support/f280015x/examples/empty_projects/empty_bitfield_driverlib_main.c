@@ -44,22 +44,18 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Main
 //
 void main(void)
 {
-
 }
-
 //
 // End of File
 //

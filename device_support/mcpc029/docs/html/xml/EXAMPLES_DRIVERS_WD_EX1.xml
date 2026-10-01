@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_WD_EX1" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_WD_EX1</compoundname>
+    <title>Watchdog Service Example</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_WD_EX1_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_watchdog_ex1"/></para>
+<sect1 id="EXAMPLES_DRIVERS_WD_EX1_1autotoc_md505">
+<title>Watchdog Example: Servicing Watchdog</title>
+<para>This example demonstrates how to service the watchdog or generate a wakeup interrupt using the watchdog on the F28E12x device. By default, the example generates a wakeup interrupt. To service the watchdog and avoid generating the interrupt, uncomment the <computeroutput><ref refid="group__sysctl__api_1ga9748f435e7f7427a097bada323c112df" kindref="member">SysCtl_serviceWatchdog()</ref></computeroutput> line in the main loop.</para>
+<sect2 id="EXAMPLES_DRIVERS_WD_EX1_1autotoc_md506">
+<title>Features</title>
+<para><itemizedlist>
+<listitem><para>Demonstrates the use of the watchdog timer in interrupt mode.</para>
+</listitem><listitem><para>Configurable to either service the watchdog or allow it to timeout and trigger an interrupt.</para>
+</listitem><listitem><para>Tracks the number of wakeup interrupts and main loop iterations.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_WD_EX1_1autotoc_md507">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>None.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_WD_EX1_1autotoc_md508">
+<title>Variables</title>
+<para><table rows="3" cols="2"><row>
+<entry thead="yes"><para><bold>Watch Variable</bold>   </para>
+</entry><entry thead="yes"><para><bold>Description</bold>    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>wakeCount</computeroutput>   </para>
+</entry><entry thead="no"><para>Tracks the number of times the watchdog ISR is entered.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>loopCount</computeroutput>   </para>
+</entry><entry thead="no"><para>Tracks the number of loops performed while not in the ISR.   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_WD_EX1_1autotoc_md509">
+<title>Code Overview</title>
+<sect3 id="EXAMPLES_DRIVERS_WD_EX1_1autotoc_md510">
+<title>Included Files</title>
+<para><table rows="3" cols="2"><row>
+<entry thead="yes"><para><bold>Header File</bold>   </para>
+</entry><entry thead="yes"><para><bold>Description</bold>    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>driverlib.h</computeroutput>   </para>
+</entry><entry thead="no"><para>Provides access to device driver library functions.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>device.h</computeroutput>   </para>
+</entry><entry thead="no"><para>Contains device-specific definitions.   </para>
+</entry></row>
+</table>
+</para>
+</sect3>
+<sect3 id="EXAMPLES_DRIVERS_WD_EX1_1autotoc_md511">
+<title>Globals</title>
+<para><itemizedlist>
+<listitem><para><computeroutput>uint32_t wakeCount</computeroutput>: Counter for the number of wakeup interrupts.</para>
+</listitem><listitem><para><computeroutput>uint32_t loopCount</computeroutput>: Counter for the number of main loop iterations.</para>
+</listitem></itemizedlist>
+</para>
+<para><table rows="2" cols="2"><row>
+<entry thead="yes"><para><bold>ISR</bold>   </para>
+</entry><entry thead="yes"><para><bold>Description</bold>    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>__interrupt void wakeupISR(void)</computeroutput>   </para>
+</entry><entry thead="no"><para>Interrupt Service Routine (ISR) for the watchdog wakeup interrupt.   </para>
+</entry></row>
+</table>
+</para>
+</sect3>
+<sect3 id="EXAMPLES_DRIVERS_WD_EX1_1autotoc_md512">
+<title>Code Flow</title>
+<para><programlisting filename=".mermaid"><codeline><highlight class="normal">flowchart<sp/>TD</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>A[Start]<sp/>--&gt;<sp/>B[Initialization]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>B<sp/>--&gt;<sp/>C[Watchdog<sp/>Configuration]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>C<sp/>--&gt;<sp/>D[Interrupts]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>D<sp/>--&gt;<sp/>E[Watchdog<sp/>Service]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>E<sp/>--&gt;<sp/>F[Main<sp/>Loop]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>F<sp/>--&gt;<sp/>G[Increment<sp/>loopCount]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>G<sp/>--&gt;<sp/>H{Service<sp/>Watchdog?}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>H<sp/>--<sp/>Yes<sp/>--&gt;<sp/>I[Reset<sp/>watchdog<sp/>counter]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>H<sp/>--<sp/>No<sp/>--&gt;<sp/>J[Allow<sp/>timeout]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>I<sp/>--&gt;<sp/>G</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>J<sp/>--&gt;<sp/>G</highlight></codeline>
+</programlisting></para>
+</sect3>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_WD_EX1_1autotoc_md513">
+<title>Notes</title>
+<para><itemizedlist>
+<listitem><para>Ensure that the device is properly configured and connected before running the example.</para>
+</listitem><listitem><para>Check the interrupt Channels corresponding to your base </para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/watchdog_ex1.md"/>
+  </compounddef>
+</doxygen>

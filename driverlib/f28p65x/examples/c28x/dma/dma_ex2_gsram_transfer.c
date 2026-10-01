@@ -22,7 +22,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -55,74 +55,61 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // DMA data sections
 //
 #pragma DATA_SECTION(sData, "ramgs0");  // map the TX data to memory
 #pragma DATA_SECTION(rData, "ramgs1");  // map the RX data to memory
-
 //
 // Defines
 //
 #define BURST       8       // write 8 to the register for a burst size of 8
 #define TRANSFER    16      // [(MEM_BUFFER_SIZE/(BURST)]
-
 //
 // Globals
 //
 uint16_t sData[128];   // Send data buffer
 uint16_t rData[128];   // Receive data buffer
 volatile uint16_t done;
-
 //
 // Function Prototypes
 //
 __interrupt void INT_myDMA6_ISR(void);
 void initDMA(void);
 void error();
-
 //
 // Main
 //
 void main(void)
 {
     uint16_t i;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
-
     //
     //Initialize PIE and clear PIE registers. Disables CPU interrupts
     //
     Interrupt_initModule();
-
     //
     //Initialize the PIE vector table with pointers to the shell Interrupt
     //Service Routines (ISR)
     //
     Interrupt_initVectorTable();
-
     //
     // Interrupts that are used in this example are re-mapped to
     // ISR functions found within this file.
     //
     Interrupt_register(INT_DMA_CH6, &INT_myDMA6_ISR);
-
     //
     // Initialize the Device Peripherals:
     //
     initDMA();  // set up the dma
-
     //
     // User specific code, enable interrupts:
     // Initialize the data buffers
@@ -132,7 +119,6 @@ void main(void)
         sData[i] = i;
         rData[i] = 0;
     }
-
     //
     // Enable interrupts required for this example
     //
@@ -140,22 +126,17 @@ void main(void)
     EINT;                                // Enable Global Interrupts
     // Start DMA channel
     DMA_startChannel(DMA_CH6_BASE);
-
     done = 0;           // Test is not done yet
-
     while(!done)        // wait until the DMA transfer is complete
     {
        DMA_forceTrigger(DMA_CH6_BASE);
-
        asm(" RPT #255 || NOP");
     }
-
     //
     // When the DMA transfer is complete the program will stop here
     //
     ESTOP0;
 }
-
 //
 // error - Error Function which will halt the debugger
 //
@@ -164,7 +145,6 @@ void error(void)
     ESTOP0;  //Test failed!! Stop!
     for (;;);
 }
-
 //
 // dma_init - DMA setup for both TX and RX channels.
 //
@@ -173,18 +153,15 @@ void initDMA()
     //
     // Refer to dma.c for the descriptions of the following functions.
     //
-
     //
     // Initialize DMA
     //
     DMA_initController();
-
     DMA_ConfigParams  transfParams;
     const void *destAddr;
     const void *srcAddr;
     srcAddr = (const void *)sData;
     destAddr = (const void *)rData;
-
     //
     // configure DMA CHANNEL
     //
@@ -206,23 +183,19 @@ void initDMA()
     transfParams.destTransferStep = 1;
     transfParams.srcWrapStep      = 0;
     transfParams.destWrapStep     = 0;
-
     DMA_configChannel(DMA_CH6_BASE, &transfParams);
 }
-
 //
 // local_D_INTCH6_ISR - DMA Channel6 ISR
 //
 __interrupt void INT_myDMA6_ISR(void)
 {
     uint16_t i;
-
     DMA_stopChannel(DMA_CH6_BASE);
     // ACK to receive more interrupts from this PIE group
     EALLOW;
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
     EDIS;
-
     for( i = 0; i < 128; i++ )
     {
         //
@@ -233,11 +206,9 @@ __interrupt void INT_myDMA6_ISR(void)
             error();
         }
     }
-
     done = 1; // Test done.
     return;
 }
-
 //
 // End of file
 //

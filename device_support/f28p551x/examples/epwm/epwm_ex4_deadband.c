@@ -70,12 +70,10 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Defines
 //
@@ -87,7 +85,6 @@
 #define EPWM3_MIN_DB   0
 #define DB_UP          1
 #define DB_DOWN        0
-
 //
 // Globals
 //
@@ -97,7 +94,6 @@ Uint32 EPwm3TimerIntCount;
 Uint16 EPwm1_DB_Direction;
 Uint16 EPwm2_DB_Direction;
 Uint16 EPwm3_DB_Direction;
-
 //
 // Function Prototypes
 //
@@ -107,7 +103,6 @@ void InitEPwm3Example(void);
 __interrupt void epwm1_isr(void);
 __interrupt void epwm2_isr(void);
 __interrupt void epwm3_isr(void);
-
 //
 // Main
 //
@@ -119,21 +114,18 @@ void main(void)
 // This example function is found in the f2838x_sysctrl.c file.
 //
     InitSysCtrl();
-
 //
 // Step 2. Initialize GPIO:
 // This example function is found in the f2838x_gpio.c file and
 // illustrates how to set the GPIO to its default state.
 //
 //    InitGpio();
-
 //
 // enable PWM1, PWM2 and PWM3
 //
     CpuSysRegs.PCLKCR2.bit.EPWM1=1;
     CpuSysRegs.PCLKCR2.bit.EPWM2=1;
     CpuSysRegs.PCLKCR2.bit.EPWM3=1;
-
 //
 // For this case just init GPIO pins for ePWM1, ePWM2, ePWM3
 // These functions are in the f2838x_epwm.c file
@@ -141,13 +133,11 @@ void main(void)
     InitEPwm1Gpio();
     InitEPwm2Gpio();
     InitEPwm3Gpio();
-
 //
 // Step 3. Clear all interrupts and initialize PIE vector table:
 // Disable CPU interrupts
 //
     DINT;
-
 //
 // Initialize the PIE control registers to their default state.
 // The default state is all PIE interrupts disabled and flags
@@ -155,13 +145,11 @@ void main(void)
 // This function is found in the f2838x_piectrl.c file.
 //
     InitPieCtrl();
-
 //
 // Disable CPU interrupts and clear all CPU interrupt flags:
 //
     IER = 0x0000;
     IFR = 0x0000;
-
 //
 // Initialize the PIE vector table with pointers to the shell Interrupt
 // Service Routines (ISR).
@@ -171,7 +159,6 @@ void main(void)
 // This function is found in f2838x_pievect.c.
 //
     InitPieVectTable();
-
 //
 // Interrupts that are used in this example are re-mapped to
 // ISR functions found within this file.
@@ -181,22 +168,18 @@ void main(void)
     PieVectTable.EPWM2_INT = &epwm2_isr;
     PieVectTable.EPWM3_INT = &epwm3_isr;
     EDIS;   // This is needed to disable write to EALLOW protected registers
-
 //
 // Step 4. Initialize the Device Peripherals:
 //
     EALLOW;
     CpuSysRegs.PCLKCR0.bit.TBCLKSYNC =0;
     EDIS;
-
     InitEPwm1Example();
     InitEPwm2Example();
     InitEPwm3Example();
-
     EALLOW;
     CpuSysRegs.PCLKCR0.bit.TBCLKSYNC =1;
     EDIS;
-
 //
 // Step 5. User specific code, enable interrupts:
 // Initialize counters:
@@ -204,25 +187,21 @@ void main(void)
     EPwm1TimerIntCount = 0;
     EPwm2TimerIntCount = 0;
     EPwm3TimerIntCount = 0;
-
 //
 // Enable CPU INT3 which is connected to EPWM1-3 INT:
 //
     IER |= M_INT3;
-
 //
 // Enable EPWM INTn in the PIE: Group 3 interrupt 1-3
 //
     PieCtrlRegs.PIEIER3.bit.INTx1 = 1;
     PieCtrlRegs.PIEIER3.bit.INTx2 = 1;
     PieCtrlRegs.PIEIER3.bit.INTx3 = 1;
-
 //
 // Enable global Interrupts and higher priority real-time debug events:
 //
     EINT;  // Enable Global interrupt INTM
     ERTM;  // Enable Global realtime interrupt DBGM
-
 //
 // Step 6. IDLE loop. Just sit and loop forever (optional):
 //
@@ -231,7 +210,6 @@ void main(void)
         asm ("          NOP");
     }
 }
-
 //
 // epwm1_isr - EPWM1 ISR
 //
@@ -266,18 +244,15 @@ __interrupt void epwm1_isr(void)
         }
     }
     EPwm1TimerIntCount++;
-
     //
     // Clear INT flag for this timer
     //
     EPwm1Regs.ETCLR.bit.INT = 1;
-
     //
     // Acknowledge this interrupt to receive more interrupts from group 3
     //
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP3;
 }
-
 //
 // epwm2_isr - EPWM2 ISR
 //
@@ -311,20 +286,16 @@ __interrupt void epwm2_isr(void)
             EPwm2Regs.DBRED.bit.DBRED--;
         }
     }
-
     EPwm2TimerIntCount++;
-
     //
     // Clear INT flag for this timer
     //
     EPwm2Regs.ETCLR.bit.INT = 1;
-
     //
     // Acknowledge this interrupt to receive more interrupts from group 3
     //
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP3;
 }
-
 //
 // epwm3_isr - EPWM3 ISR
 //
@@ -358,20 +329,16 @@ __interrupt void epwm3_isr(void)
             EPwm3Regs.DBRED.bit.DBRED--;
         }
     }
-
     EPwm3TimerIntCount++;
-
     //
     // Clear INT flag for this timer
     //
     EPwm3Regs.ETCLR.bit.INT = 1;
-
     //
     // Acknowledge this interrupt to receive more interrupts from group 3
     //
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP3;
 }
-
 //
 // InitEPwm1Example - Initialize EPWM1 configuration
 //
@@ -380,7 +347,6 @@ void InitEPwm1Example()
     EPwm1Regs.TBPRD = 6000;                       // Set timer period
     EPwm1Regs.TBPHS.bit.TBPHS = 0x0000;           // Phase is 0
     EPwm1Regs.TBCTR = 0x0000;                     // Clear counter
-
     //
     // Setup TBCLK
     //
@@ -388,26 +354,21 @@ void InitEPwm1Example()
     EPwm1Regs.TBCTL.bit.PHSEN = TB_DISABLE;        // Disable phase loading
     EPwm1Regs.TBCTL.bit.HSPCLKDIV = TB_DIV4;       // Clock ratio to SYSCLKOUT
     EPwm1Regs.TBCTL.bit.CLKDIV = TB_DIV4;
-
     EPwm1Regs.CMPCTL.bit.SHDWAMODE = CC_SHADOW;    // Load registers every ZERO
     EPwm1Regs.CMPCTL.bit.SHDWBMODE = CC_SHADOW;
     EPwm1Regs.CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;
     EPwm1Regs.CMPCTL.bit.LOADBMODE = CC_CTR_ZERO;
-
     //
     // Setup compare
     //
     EPwm1Regs.CMPA.bit.CMPA = 3000;
-
     //
     // Set actions
     //
     EPwm1Regs.AQCTLA.bit.CAU = AQ_SET;            // Set PWM1A on Zero
     EPwm1Regs.AQCTLA.bit.CAD = AQ_CLEAR;
-
     EPwm1Regs.AQCTLB.bit.CAU = AQ_CLEAR;          // Set PWM1A on Zero
     EPwm1Regs.AQCTLB.bit.CAD = AQ_SET;
-
     //
     // Active Low PWMs - Setup Deadband
     //
@@ -417,7 +378,6 @@ void InitEPwm1Example()
     EPwm1Regs.DBRED.bit.DBRED = EPWM1_MIN_DB;
     EPwm1Regs.DBFED.bit.DBFED = EPWM1_MIN_DB;
     EPwm1_DB_Direction = DB_UP;
-
     //
     // Interrupt where we will change the Deadband
     //
@@ -425,7 +385,6 @@ void InitEPwm1Example()
     EPwm1Regs.ETSEL.bit.INTEN = 1;               // Enable INT
     EPwm1Regs.ETPS.bit.INTPRD = ET_3RD;          // Generate INT on 3rd event
 }
-
 //
 // InitEPwm2Example - Initialize EPWM2 configuration
 //
@@ -434,7 +393,6 @@ void InitEPwm2Example()
     EPwm2Regs.TBPRD = 6000;                       // Set timer period
     EPwm2Regs.TBPHS.bit.TBPHS = 0x0000;           // Phase is 0
     EPwm2Regs.TBCTR = 0x0000;                     // Clear counter
-
     //
     // Setup TBCLK
     //
@@ -443,21 +401,17 @@ void InitEPwm2Example()
     EPwm2Regs.TBCTL.bit.HSPCLKDIV = TB_DIV4;       // Clock ratio to SYSCLKOUT
     EPwm2Regs.TBCTL.bit.CLKDIV = TB_DIV4;          // Slow just to observe on
                                                    // the scope
-
     //
     // Setup compare
     //
     EPwm2Regs.CMPA.bit.CMPA = 3000;
-
     //
     // Set actions
     //
     EPwm2Regs.AQCTLA.bit.CAU = AQ_SET;            // Set PWM2A on Zero
     EPwm2Regs.AQCTLA.bit.CAD = AQ_CLEAR;
-
     EPwm2Regs.AQCTLB.bit.CAU = AQ_CLEAR;          // Set PWM2A on Zero
     EPwm2Regs.AQCTLB.bit.CAD = AQ_SET;
-
     //
     // Active Low complementary PWMs - setup the deadband
     //
@@ -467,7 +421,6 @@ void InitEPwm2Example()
     EPwm2Regs.DBRED.bit.DBRED = EPWM2_MIN_DB;
     EPwm2Regs.DBFED.bit.DBFED = EPWM2_MIN_DB;
     EPwm2_DB_Direction = DB_UP;
-
     //
     // Interrupt where we will modify the deadband
     //
@@ -475,7 +428,6 @@ void InitEPwm2Example()
     EPwm2Regs.ETSEL.bit.INTEN = 1;                // Enable INT
     EPwm2Regs.ETPS.bit.INTPRD = ET_3RD;           // Generate INT on 3rd event
 }
-
 //
 // InitEPwm3Example - Initialize EPWM3 configuration
 //
@@ -484,7 +436,6 @@ void InitEPwm3Example()
     EPwm3Regs.TBPRD = 6000;                        // Set timer period
     EPwm3Regs.TBPHS.bit.TBPHS = 0x0000;            // Phase is 0
     EPwm3Regs.TBCTR = 0x0000;                      // Clear counter
-
     //
     // Setup TBCLK
     //
@@ -493,21 +444,17 @@ void InitEPwm3Example()
     EPwm3Regs.TBCTL.bit.HSPCLKDIV = TB_DIV4;       // Clock ratio to SYSCLKOUT
     EPwm3Regs.TBCTL.bit.CLKDIV = TB_DIV4;          // Slow so we can observe on
                                                    // the scope
-
     //
     // Setup compare
     //
     EPwm3Regs.CMPA.bit.CMPA = 3000;
-
     //
     // Set actions
     //
     EPwm3Regs.AQCTLA.bit.CAU = AQ_SET;             // Set PWM3A on Zero
     EPwm3Regs.AQCTLA.bit.CAD = AQ_CLEAR;
-
     EPwm3Regs.AQCTLB.bit.CAU = AQ_CLEAR;           // Set PWM3A on Zero
     EPwm3Regs.AQCTLB.bit.CAD = AQ_SET;
-
     //
     // Active high complementary PWMs - Setup the deadband
     //
@@ -517,7 +464,6 @@ void InitEPwm3Example()
     EPwm3Regs.DBRED.bit.DBRED = EPWM3_MIN_DB;
     EPwm3Regs.DBFED.bit.DBFED = EPWM3_MIN_DB;
     EPwm3_DB_Direction = DB_UP;
-
     //
     // Interrupt where we will change the deadband
     //
@@ -525,7 +471,6 @@ void InitEPwm3Example()
     EPwm3Regs.ETSEL.bit.INTEN = 1;                 // Enable INT
     EPwm3Regs.ETPS.bit.INTPRD = ET_3RD;            // Generate INT on 3rd event
 }
-
 //
 // End of file
 //

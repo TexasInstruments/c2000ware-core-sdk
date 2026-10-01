@@ -1,0 +1,1306 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="group__dcsm__api" kind="group">
+    <compoundname>dcsm_api</compoundname>
+    <title>DCSM</title>
+    <innerclass refid="structDCSM__CSMPasswordKey" prot="public">DCSM_CSMPasswordKey</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="group__dcsm__api_1ga69a15eff42fedeb917311db83ff7ea9f" prot="public" static="no" strong="no">
+        <type></type>
+        <name>DCSM_MemoryStatus</name>
+        <enumvalue id="group__dcsm__api_1gga69a15eff42fedeb917311db83ff7ea9fadbc0ace9a8305f6d6ec92a7f3c9db7f4" prot="public">
+          <name>DCSM_MEMORY_INACCESSIBLE</name>
+          <briefdescription>
+<para>Inaccessible. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcsm__api_1gga69a15eff42fedeb917311db83ff7ea9fa6cfca1b8b399755198c81672f8278b10" prot="public">
+          <name>DCSM_MEMORY_ZONE1</name>
+          <briefdescription>
+<para>Zone 1. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcsm__api_1gga69a15eff42fedeb917311db83ff7ea9fa589701f5880ee42a51dc48e8ef5e9f4c" prot="public">
+          <name>DCSM_MEMORY_ZONE2</name>
+          <briefdescription>
+<para>Zone 2. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcsm__api_1gga69a15eff42fedeb917311db83ff7ea9fa2e5c50b3d8fd42f91969b9d9034fe522" prot="public">
+          <name>DCSM_MEMORY_FULL_ACCESS</name>
+          <briefdescription>
+<para>Full access. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values to distinguish the status of RAM or FLASH sectors. These values describe which zone the memory location belongs too. These values can be returned from DCSM_getRAMZone(), <ref refid="group__dcsm__api_1gaf357acb23d8b96308120088b860702d0" kindref="member">DCSM_getFlashSectorZone()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="117" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="118" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__dcsm__api_1gae9689cbafcb2d7c66d866b9658abc54f" prot="public" static="no" strong="no">
+        <type></type>
+        <name>DCSM_SemaphoreZone</name>
+        <enumvalue id="group__dcsm__api_1ggae9689cbafcb2d7c66d866b9658abc54fa2ee70f90513222423fe24dca9ffa6abe" prot="public">
+          <name>DCSM_FLSEM_ZONE1</name>
+          <initializer>= 0x01U</initializer>
+          <briefdescription>
+<para>Flash semaphore Zone 1. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcsm__api_1ggae9689cbafcb2d7c66d866b9658abc54fa65ecee832ca184038b046ffb5b87aa30" prot="public">
+          <name>DCSM_FLSEM_ZONE2</name>
+          <initializer>= 0x02U</initializer>
+          <briefdescription>
+<para>Flash semaphore Zone 2. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values to pass to <ref refid="group__dcsm__api_1gaaa9949a3c204f3a1036f2fe6725b4ffe" kindref="member">DCSM_claimZoneSemaphore()</ref>. These values are used to describe the zone that can write to Flash Wrapper registers. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="131" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="132" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__dcsm__api_1ga083d5a130186c33e20216df1e9d05151" prot="public" static="no" strong="no">
+        <type></type>
+        <name>DCSM_SecurityStatus</name>
+        <enumvalue id="group__dcsm__api_1gga083d5a130186c33e20216df1e9d05151a9163577eb7d10b9fe5e8ada3bf0f4748" prot="public">
+          <name>DCSM_STATUS_SECURE</name>
+          <briefdescription>
+<para>Secure. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcsm__api_1gga083d5a130186c33e20216df1e9d05151a6ffa6884c2380eea40a756e0def8c568" prot="public">
+          <name>DCSM_STATUS_UNSECURE</name>
+          <briefdescription>
+<para>Unsecure. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcsm__api_1gga083d5a130186c33e20216df1e9d05151a41ce754d0bbf18d0ae71bf940859a82d" prot="public">
+          <name>DCSM_STATUS_LOCKED</name>
+          <briefdescription>
+<para>Locked. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcsm__api_1gga083d5a130186c33e20216df1e9d05151a6380c642721c74bb5387bce4edc14777" prot="public">
+          <name>DCSM_STATUS_BLOCKED</name>
+          <briefdescription>
+<para>Blocked. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values to distinguish the security status of the zones. These values can be returned from <ref refid="group__dcsm__api_1ga9549036f1839776c81cd78ba1a25a75e" kindref="member">DCSM_getZone1CSMSecurityStatus()</ref>, <ref refid="group__dcsm__api_1gaa71aba583947d603f650e7b0995ff347" kindref="member">DCSM_getZone2CSMSecurityStatus()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="144" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="145" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__dcsm__api_1ga9783b5852cc118416fb51a736be8bfe4" prot="public" static="no" strong="no">
+        <type></type>
+        <name>DCSM_EXEOnlyStatus</name>
+        <enumvalue id="group__dcsm__api_1gga9783b5852cc118416fb51a736be8bfe4a6acb2468e18b3e33eda25c3c705dfcad" prot="public">
+          <name>DCSM_PROTECTED</name>
+          <briefdescription>
+<para>Protected. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcsm__api_1gga9783b5852cc118416fb51a736be8bfe4a0512e8a7a093f60d810653001e90cca7" prot="public">
+          <name>DCSM_UNPROTECTED</name>
+          <briefdescription>
+<para>Unprotected. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcsm__api_1gga9783b5852cc118416fb51a736be8bfe4a27f0da0fde4f70beb21667d157dfada2" prot="public">
+          <name>DCSM_INCORRECT_ZONE</name>
+          <briefdescription>
+<para>Incorrect Zone. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values to decribe the EXEONLY Status. These values are returned from to DCSM_getZone1RAMEXEStatus(), DCSM_getZone2RAMEXEStatus(), <ref refid="group__dcsm__api_1ga0d62b5d37df7c88e687a1222c85e1705" kindref="member">DCSM_getZone1FlashEXEStatus()</ref>, <ref refid="group__dcsm__api_1ga60bfa11ac91a3dd2646f785dac734376" kindref="member">DCSM_getZone2FlashEXEStatus()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="172" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="173" bodyend="177"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__dcsm__api_1gacbb37e96f23403edc203ceb97460c05f" prot="public" static="no" strong="no">
+        <type></type>
+        <name>DCSM_Sector</name>
+        <enumvalue id="group__dcsm__api_1ggacbb37e96f23403edc203ceb97460c05fa2d7fa0a2eb2d5270f0e1b87645412a44" prot="public">
+          <name>DCSM_BANK0_SECTOR_0</name>
+          <briefdescription>
+<para>Bank 0 - Sector 0. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcsm__api_1ggacbb37e96f23403edc203ceb97460c05fa45b3e35bb0f9dd0dafc9fea284a99cf2" prot="public">
+          <name>DCSM_BANK0_SECTOR_1</name>
+          <briefdescription>
+<para>Bank 0 - Sector 1. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcsm__api_1ggacbb37e96f23403edc203ceb97460c05fac2e6f5ce1c6c400097a9d6b7d66e2580" prot="public">
+          <name>DCSM_BANK0_SECTOR_2</name>
+          <briefdescription>
+<para>Bank 0 - Sector 2. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcsm__api_1ggacbb37e96f23403edc203ceb97460c05fa6df8481464eb23b0dee42832c2b9af9b" prot="public">
+          <name>DCSM_BANK0_SECTOR_3</name>
+          <briefdescription>
+<para>Bank 0 - Sector 3. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcsm__api_1ggacbb37e96f23403edc203ceb97460c05fac9a4732384a3d5b751383be537396744" prot="public">
+          <name>DCSM_BANK0_SECTOR_31_4</name>
+          <briefdescription>
+<para>Bank 0 - Sector 31-4. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcsm__api_1ggacbb37e96f23403edc203ceb97460c05fa9b2f21fbe96fe53b9757a81b54d47771" prot="public">
+          <name>DCSM_BANK0_SECTOR_63_32</name>
+          <briefdescription>
+<para>Bank 0 - Sector 63-32. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values to distinguish Flash Sector. These values can be passed to <ref refid="group__dcsm__api_1ga0d62b5d37df7c88e687a1222c85e1705" kindref="member">DCSM_getZone1FlashEXEStatus()</ref> <ref refid="group__dcsm__api_1ga60bfa11ac91a3dd2646f785dac734376" kindref="member">DCSM_getZone2FlashEXEStatus()</ref>, <ref refid="group__dcsm__api_1gaf357acb23d8b96308120088b860702d0" kindref="member">DCSM_getFlashSectorZone()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="189" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="190" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__dcsm__api_1ga3f2440ed91b5c8293c135841c15edd7e" prot="public" static="no" strong="no">
+        <type></type>
+        <name>DCSM_OTPLock</name>
+        <enumvalue id="group__dcsm__api_1gga3f2440ed91b5c8293c135841c15edd7ea10df47db23df17f3d44bad43c2448d3f" prot="public">
+          <name>DCSM_OTPSECLOCK_JTAG</name>
+          <initializer>= 0x0U</initializer>
+          <briefdescription>
+<para>JTAG Lock Status. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcsm__api_1gga3f2440ed91b5c8293c135841c15edd7ea070a6b0e77aecb96fa7e9ecd951f7887" prot="public">
+          <name>DCSM_OTPSECLOCK_PSWDLOCK</name>
+          <initializer>= 0x1U</initializer>
+          <briefdescription>
+<para>Zone Password Lock. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The following are values that can be passed to <ref refid="group__dcsm__api_1ga6bd0af6533ac14cb2ec52c9b99337ee9" kindref="member">DCSM_getZone1OTPSecureLockStatus()</ref> &amp; <ref refid="group__dcsm__api_1ga9b35709565ffbdb50bb3b1a6154d730b" kindref="member">DCSM_getZone2OTPSecureLockStatus()</ref> as <emphasis>lockType</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="206" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="207" bodyend="213"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__dcsm__api_1gae8e40487050ecbd6a5aac1eaf7e7a5a2" prot="public" static="no" strong="no">
+        <type></type>
+        <name>DCSM_PERSem</name>
+        <enumvalue id="group__dcsm__api_1ggae8e40487050ecbd6a5aac1eaf7e7a5a2af33ebe794983c91e82de9b4d1e1c48d8" prot="public">
+          <name>DCSM_GRABWD</name>
+          <initializer>= 0U</initializer>
+          <briefdescription>
+<para>Grab Watchdog configuration. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcsm__api_1ggae8e40487050ecbd6a5aac1eaf7e7a5a2af953d6a9437a9c6edde00906f764e960" prot="public">
+          <name>DCSM_GRABNMIWD</name>
+          <initializer>= 2U</initializer>
+          <briefdescription>
+<para>Grab NMIWD configuration. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcsm__api_1ggae8e40487050ecbd6a5aac1eaf7e7a5a2ae29dc976ddb87ead8296184802e17434" prot="public">
+          <name>DCSM_GRABTIMER1</name>
+          <initializer>= 4U</initializer>
+          <briefdescription>
+<para>Grab TIMER1 configuration. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcsm__api_1ggae8e40487050ecbd6a5aac1eaf7e7a5a2aa51cd50a679b96ddf1a0306314919251" prot="public">
+          <name>DCSM_GRABCLKCTL</name>
+          <initializer>= 6U</initializer>
+          <briefdescription>
+<para>Grab Clock configuration. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcsm__api_1ggae8e40487050ecbd6a5aac1eaf7e7a5a2a9d921d9c18edda98026f22d8af12116e" prot="public">
+          <name>DCSM_GRABRSTCTL</name>
+          <initializer>= 8U</initializer>
+          <briefdescription>
+<para>Grab Reset configuration. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The following are values that can be passed to <ref refid="group__dcsm__api_1gaabf6eb7fcfc177f410d2bbb1c370b0f8" kindref="member">DCSM_forcePerSemStatus()</ref> &amp; <ref refid="group__dcsm__api_1gac15da77806b28ad56eb6220d1ae0d38d" kindref="member">DCSM_getPerSemStatus()</ref> as <emphasis>grabType</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="221" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="222" bodyend="234"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__dcsm__api_1ga8565db102b03817def7bce7cfdda2c73" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DCSM_secureZone1</definition>
+        <argsstring>(void)</argsstring>
+        <name>DCSM_secureZone1</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Secures zone 1 by setting the FORCESEC bit of Z1_CR register</para>
+<para>This function resets the state of the zone. If the zone is unlocked, it will lock(secure) the zone and also reset all the bits in the Control Register.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="287" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="287" bodyend="293"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1ga08ca5a9a812a391d26fd64095fe4a60d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DCSM_secureZone2</definition>
+        <argsstring>(void)</argsstring>
+        <name>DCSM_secureZone2</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Secures zone 2 by setting the FORCESEC bit of Z2_CR register</para>
+<para>This function resets the state of the zone. If the zone is unlocked, it will lock(secure) the zone and also reset all the bits in the Control Register.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="307" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="307" bodyend="313"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1ga9549036f1839776c81cd78ba1a25a75e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="group__dcsm__api_1ga083d5a130186c33e20216df1e9d05151" kindref="member">DCSM_SecurityStatus</ref></type>
+        <definition>static DCSM_SecurityStatus DCSM_getZone1CSMSecurityStatus</definition>
+        <argsstring>(void)</argsstring>
+        <name>DCSM_getZone1CSMSecurityStatus</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the CSM security status of zone 1</para>
+<para>This function returns the security status of zone 1 CSM</para>
+<para><simplesect kind="return"><para>Returns security status as an enumerated type DCSM_SecurityStatus. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="325" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="325" bodyend="354"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1gaa71aba583947d603f650e7b0995ff347" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="group__dcsm__api_1ga083d5a130186c33e20216df1e9d05151" kindref="member">DCSM_SecurityStatus</ref></type>
+        <definition>static DCSM_SecurityStatus DCSM_getZone2CSMSecurityStatus</definition>
+        <argsstring>(void)</argsstring>
+        <name>DCSM_getZone2CSMSecurityStatus</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the CSM security status of zone 2</para>
+<para>This function returns the security status of zone 2 CSM</para>
+<para><simplesect kind="return"><para>Returns security status as an enumerated type DCSM_SecurityStatus. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="366" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="366" bodyend="395"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1gaa5aa91b72a84d167949f6c1dd7cb8ff7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>static uint16_t DCSM_getZone1ControlStatus</definition>
+        <argsstring>(void)</argsstring>
+        <name>DCSM_getZone1ControlStatus</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the Control Status of zone 1</para>
+<para>This function returns the Control Status of zone 1 CSM</para>
+<para><simplesect kind="return"><para>Returns the contents of the Control Register which can be used with provided defines. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="408" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="408" bodyend="419"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1gae6d165737bff19f0828d39c9932e0907" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>static uint16_t DCSM_getZone2ControlStatus</definition>
+        <argsstring>(void)</argsstring>
+        <name>DCSM_getZone2ControlStatus</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the Control Status of zone 2</para>
+<para>This function returns the Control Status of zone 2 CSM</para>
+<para><simplesect kind="return"><para>Returns the contents of the Control Register which can be used with the provided defines. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="432" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="432" bodyend="441"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1gaf357acb23d8b96308120088b860702d0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="group__dcsm__api_1ga69a15eff42fedeb917311db83ff7ea9f" kindref="member">DCSM_MemoryStatus</ref></type>
+        <definition>static DCSM_MemoryStatus DCSM_getFlashSectorZone</definition>
+        <argsstring>(DCSM_Sector sector)</argsstring>
+        <name>DCSM_getFlashSectorZone</name>
+        <param>
+          <type><ref refid="group__dcsm__api_1gacbb37e96f23403edc203ceb97460c05f" kindref="member">DCSM_Sector</ref></type>
+          <declname>sector</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the security zone a flash sector belongs to</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sector</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the flash sector value. Use DCSM_Sector type.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns the security zone a flash sector belongs to.</para>
+<para><simplesect kind="return"><para>Returns DCSM_MEMORY_INACCESSIBLE if the section is inaccessible , DCSM_MEMORY_ZONE1 if the section belongs to zone 1, DCSM_MEMORY_ZONE2 if the section belongs to zone 2 and DCSM_MEMORY_FULL_ACCESS if the section doesn&apos;t belong to any zone (or if the section is unsecure).. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="459" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="459" bodyend="477"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1ga988abf59f71ff7b22c367fc1ac80078c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t DCSM_getZone1LinkPointerError</definition>
+        <argsstring>(void)</argsstring>
+        <name>DCSM_getZone1LinkPointerError</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Read Zone 1 Link Pointer Error</para>
+<para>A non-zero value indicates an error on the bit position that is set to 1.</para>
+<para><simplesect kind="return"><para>Returns the value of the Zone 1 Link Pointer error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="489" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="489" bodyend="495"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1ga0b21540ec17ed55021f69232082249f2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t DCSM_getZone2LinkPointerError</definition>
+        <argsstring>(void)</argsstring>
+        <name>DCSM_getZone2LinkPointerError</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Read Zone 2 Link Pointer Error</para>
+<para>A non-zero value indicates an error on the bit position that is set to 1.</para>
+<para><simplesect kind="return"><para>Returns the value of the Zone 2 Link Pointer error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="507" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="507" bodyend="513"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1ga7d8dc2511deff94cc442c39555c5d36e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool DCSM_getFlashErrorStatus</definition>
+        <argsstring>(void)</argsstring>
+        <name>DCSM_getFlashErrorStatus</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the status of the security configuration load from USER-OTP or sector error status</para>
+<para><simplesect kind="return"><para>Returns 0 if no error in loading security information from USER-OTP, 1 if an error has occurred in the load from USER-OTP. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="525" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="525" bodyend="529"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1ga25cf6f8f6108cecc899cfc42b8543cda" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DCSM_clearFlashErrorStatus</definition>
+        <argsstring>(void)</argsstring>
+        <name>DCSM_clearFlashErrorStatus</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clear the Flash Error Status bit</para>
+<para>Write a &apos;1&apos; to the clear bit to clear the sector error status bit.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="541" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="541" bodyend="544"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1gafd843681e64867f5adcf7af11e603bcd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DCSM_forceFlashErrorStatus</definition>
+        <argsstring>(void)</argsstring>
+        <name>DCSM_forceFlashErrorStatus</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the force Flash Error Status bit</para>
+<para>Write a &apos;1&apos; to force bit to set the sector error status bit.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="556" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="556" bodyend="562"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1ga6bd0af6533ac14cb2ec52c9b99337ee9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t DCSM_getZone1OTPSecureLockStatus</definition>
+        <argsstring>(DCSM_OTPLock lockType)</argsstring>
+        <name>DCSM_getZone1OTPSecureLockStatus</name>
+        <param>
+          <type><ref refid="group__dcsm__api_1ga3f2440ed91b5c8293c135841c15edd7e" kindref="member">DCSM_OTPLock</ref></type>
+          <declname>lockType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the OTP secure Lock status of zone 1</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lockType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the OTP secure Lock feature type .</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+The <emphasis>lockType</emphasis> parameter can have one of the following values of the DCSM_CPUSel type:<itemizedlist>
+<listitem><para><bold>DCSM_OTPSECLOCK_JTAG</bold> - JTAG Lock Status</para>
+</listitem><listitem><para><bold>DCSM_OTPSECLOCK_PSWDLOCK</bold> - Zone Password Lock</para>
+</listitem></itemizedlist>
+</para>
+<para>This function takes in a valid OTP secure Lock feature type and returns the status of zone 1 lock feature</para>
+<para><simplesect kind="return"><para>Returns security lock status can be: For JTAG lock : 0 - JTAG is not locked , 1 - JTAG is locked</para>
+</simplesect>
+For Zone Password Lock : 1111 - CSM Pwd locations in the OTP are not protected and can be read from the debugger as well as code running from anywhere. Other Value : CSM Pwd locations in the OTP are protected and can&apos;t be read without unlocking CSM of that zone.</para>
+<para>For Zone CRC Lock : 1111 : VCU has ability to calculate CRC on secure memories. Other Value : VCU doesn&apos;t have the ability to calculate CRC on secure memories. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="594" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="594" bodyend="618"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1ga9b35709565ffbdb50bb3b1a6154d730b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t DCSM_getZone2OTPSecureLockStatus</definition>
+        <argsstring>(DCSM_OTPLock lockType)</argsstring>
+        <name>DCSM_getZone2OTPSecureLockStatus</name>
+        <param>
+          <type><ref refid="group__dcsm__api_1ga3f2440ed91b5c8293c135841c15edd7e" kindref="member">DCSM_OTPLock</ref></type>
+          <declname>lockType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the OTP secure Lock status of zone 2</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lockType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the OTP secure Lock feature type .</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+The <emphasis>lockType</emphasis> parameter can have one of the following values of the DCSM_CPUSel type:<itemizedlist>
+<listitem><para><bold>DCSM_OTPSECLOCK_PSWDLOCK</bold> - Zone Password Lock</para>
+</listitem></itemizedlist>
+</para>
+<para>This function takes in a valid OTP secure Lock feature type and returns the status of zone 2 lock feature</para>
+<para><simplesect kind="return"><para>Returns security lock status can be:</para>
+</simplesect>
+For Zone Password Lock : 1111 - CSM Pwd locations in the OTP are not protected and can be read from the debugger as well as code running from anywhere. Other Value : CSM Pwd locations in the OTP are protected and can&apos;t be read without unlocking CSM of that zone.</para>
+<para>For Zone CRC Lock : 1111 : VCU has ability to calculate CRC on secure memories. Other Value : VCU doesn&apos;t have the ability to calculate CRC on secure memories. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="648" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="648" bodyend="667"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1ga25bc9432a5f18885d3ac3b4c92040330" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>static uint16_t DCSM_getFlashDenyCodeStatus</definition>
+        <argsstring>(void)</argsstring>
+        <name>DCSM_getFlashDenyCodeStatus</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the status of Deny Code register</para>
+<para>This function returns the status of Deny Code register</para>
+<para><simplesect kind="return"><para>Returns the Status of Deny Code register which can be used with the provided defines. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="680" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="680" bodyend="683"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1ga7579e1a92c5ae8489f8737a81fe658bc" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t DCSM_getDeviceUIDLow</definition>
+        <argsstring>(void)</argsstring>
+        <name>DCSM_getDeviceUIDLow</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the device UID_UNIQUE value bits 31 to 0</para>
+<para>This function returns the device UID_UNIQUE value bits 31 to 0.</para>
+<para><simplesect kind="return"><para>Returns the device UID_UNIQUE value low. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="695" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="695" bodyend="701"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1gafb7f0d47ce78a3c1f741cd44bcf2d1e1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t DCSM_getDeviceUIDHigh</definition>
+        <argsstring>(void)</argsstring>
+        <name>DCSM_getDeviceUIDHigh</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the device UID_UNIQUE value bits 63 to 32</para>
+<para>This function returns the device UID_UNIQUE value bits 63 to 32.</para>
+<para><simplesect kind="return"><para>Returns the device UID_UNIQUE value high. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="713" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="713" bodyend="719"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1ga4703b132d19774443e77dfbe12f31664" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t DCSM_getDevicePartID</definition>
+        <argsstring>(void)</argsstring>
+        <name>DCSM_getDevicePartID</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the device PARTIDH value</para>
+<para>This function returns the device PARTIDH value</para>
+<para><simplesect kind="return"><para>Returns the device PARTIDH value </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="731" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="731" bodyend="737"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1gac15da77806b28ad56eb6220d1ae0d38d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t DCSM_getPerSemStatus</definition>
+        <argsstring>(DCSM_PERSem grabType)</argsstring>
+        <name>DCSM_getPerSemStatus</name>
+        <param>
+          <type><ref refid="group__dcsm__api_1gae8e40487050ecbd6a5aac1eaf7e7a5a2" kindref="member">DCSM_PERSem</ref></type>
+          <declname>grabType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the Flash wrapper semaphore register value</para>
+<para>This function returns the Flash wrapper register value</para>
+<para><simplesect kind="return"><para>Returns the Flash wrapper semaphore register value </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="749" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="749" bodyend="757"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1gaabf6eb7fcfc177f410d2bbb1c370b0f8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DCSM_forcePerSemStatus</definition>
+        <argsstring>(DCSM_PERSem grabType, uint16_t value)</argsstring>
+        <name>DCSM_forcePerSemStatus</name>
+        <param>
+          <type><ref refid="group__dcsm__api_1gae8e40487050ecbd6a5aac1eaf7e7a5a2" kindref="member">DCSM_PERSem</ref></type>
+          <declname>grabType</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Force the Flash wrapper semaphore register value</para>
+<para>This function writes into the Flash wrapper register field</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="769" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="769" bodyend="781"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1gaf005f731a5d5761badfcaedde46b2d15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DCSM_unlockZone1CSM</definition>
+        <argsstring>(const DCSM_CSMPasswordKey *const psCMDKey)</argsstring>
+        <name>DCSM_unlockZone1CSM</name>
+        <param>
+          <type>const <ref refid="structDCSM__CSMPasswordKey" kindref="compound">DCSM_CSMPasswordKey</ref> *const</type>
+          <declname>psCMDKey</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Unlocks Zone 1 CSM.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>psCMDKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a pointer to the <ref refid="structDCSM__CSMPasswordKey" kindref="compound">DCSM_CSMPasswordKey</ref> struct that has the CSM password for zone 1.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function unlocks the CSM password. It first reads the four password locations in the User OTP. If any of the password values is different from 0xFFFFFFFF, it unlocks the device by writing the provided passwords into CSM Key registers</para>
+<para><simplesect kind="return"><para>None.</para>
+</simplesect>
+<simplesect kind="note"><para>This function should not be called in an actual application, should only be used for once to program the OTP memory. Ensure flash data cache is disabled before calling this function(Flash_disableCache). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="802" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" declline="802" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1gae4ac162d28ac2f33b70f1a1deb4c550e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DCSM_unlockZone2CSM</definition>
+        <argsstring>(const DCSM_CSMPasswordKey *const psCMDKey)</argsstring>
+        <name>DCSM_unlockZone2CSM</name>
+        <param>
+          <type>const <ref refid="structDCSM__CSMPasswordKey" kindref="compound">DCSM_CSMPasswordKey</ref> *const</type>
+          <declname>psCMDKey</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Unlocks Zone 2 CSM.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>psCMDKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a pointer to the CSMPSWDKEY that has the CSM password for zone 2.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function unlocks the CSM password. It first reads the four password locations in the User OTP. If any of the password values is different from 0xFFFFFFFF, it unlocks the device by writing the provided passwords into CSM Key registers</para>
+<para><simplesect kind="return"><para>None.</para>
+</simplesect>
+<simplesect kind="note"><para>This function should not be called in an actual application, should only be used for once to program the OTP memory. Ensure flash data cache is disabled before calling this function(Flash_disableCache). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="824" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" declline="824" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1gadc47f99dcdcbe78ac7f444523ebc523d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DCSM_writeZone1CSM</definition>
+        <argsstring>(const DCSM_CSMPasswordKey *const psCMDKey)</argsstring>
+        <name>DCSM_writeZone1CSM</name>
+        <param>
+          <type>const <ref refid="structDCSM__CSMPasswordKey" kindref="compound">DCSM_CSMPasswordKey</ref> *const</type>
+          <declname>psCMDKey</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Write Zone 1 CSM.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>psCMDKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a pointer to the CSMPSWDKEY that has the CSM password for zone 1.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Password match flow is essentially a sequence of dummy reads from password locations (PWL) followed by writes to CSMKEY registers. This function helps writing the provided passwords into the CSM Key registers. The <ref refid="group__dcsm__api_1gae953f3b222b172a05916dd81687c9e35" kindref="member">DCSM_readZone1CSMPwd()</ref> should be called by CPU1 before calling this API.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="842" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" declline="842" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1ga4ba553c2c2ee170ac54e0a1f8c06d8bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DCSM_writeZone2CSM</definition>
+        <argsstring>(const DCSM_CSMPasswordKey *const psCMDKey)</argsstring>
+        <name>DCSM_writeZone2CSM</name>
+        <param>
+          <type>const <ref refid="structDCSM__CSMPasswordKey" kindref="compound">DCSM_CSMPasswordKey</ref> *const</type>
+          <declname>psCMDKey</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Write Zone 2 CSM.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>psCMDKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a pointer to the CSMPSWDKEY that has the CSM password for zone 2.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Password match flow is essentially a sequence of dummy reads from password locations (PWL) followed by writes to CSMKEY registers. This function helps writing the provided passwords into the CSM Key registers. The <ref refid="group__dcsm__api_1gacd01b31ee3298c05ff801fe2487e136c" kindref="member">DCSM_readZone2CSMPwd()</ref> should be called by CPU1 before calling this API.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="861" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" declline="861" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1ga0d62b5d37df7c88e687a1222c85e1705" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__dcsm__api_1ga9783b5852cc118416fb51a736be8bfe4" kindref="member">DCSM_EXEOnlyStatus</ref></type>
+        <definition>DCSM_EXEOnlyStatus DCSM_getZone1FlashEXEStatus</definition>
+        <argsstring>(DCSM_Sector sector)</argsstring>
+        <name>DCSM_getZone1FlashEXEStatus</name>
+        <param>
+          <type><ref refid="group__dcsm__api_1gacbb37e96f23403edc203ceb97460c05f" kindref="member">DCSM_Sector</ref></type>
+          <declname>sector</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the EXE-ONLY status of zone 1 for a flash sector</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sector</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the flash sector value. Use DCSM_Sector type.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function takes in a valid sector value and returns the status of EXE ONLY security protection for the sector.</para>
+<para><simplesect kind="return"><para>Returns DCSM_PROTECTED if the sector is EXE-ONLY protected, DCSM_UNPROTECTED if the sector is not EXE-ONLY protected, DCSM_INCORRECT_ZONE if sector does not belong to this zone. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="877" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" declline="877" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1ga60bfa11ac91a3dd2646f785dac734376" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__dcsm__api_1ga9783b5852cc118416fb51a736be8bfe4" kindref="member">DCSM_EXEOnlyStatus</ref></type>
+        <definition>DCSM_EXEOnlyStatus DCSM_getZone2FlashEXEStatus</definition>
+        <argsstring>(DCSM_Sector sector)</argsstring>
+        <name>DCSM_getZone2FlashEXEStatus</name>
+        <param>
+          <type><ref refid="group__dcsm__api_1gacbb37e96f23403edc203ceb97460c05f" kindref="member">DCSM_Sector</ref></type>
+          <declname>sector</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the EXE-ONLY status of zone 2 for a flash sector</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sector</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the flash sector value. Use DCSM_Sector type.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function takes in a valid sector value and returns the status of EXE ONLY security protection for the sector.</para>
+<para><simplesect kind="return"><para>Returns DCSM_PROTECTED if the sector is EXE-ONLY protected, DCSM_UNPROTECTED if the sector is not EXE-ONLY protected, DCSM_INCORRECT_ZONE if sector does not belong to this zone. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="895" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" declline="895" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1gaaa9949a3c204f3a1036f2fe6725b4ffe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool DCSM_claimZoneSemaphore</definition>
+        <argsstring>(DCSM_SemaphoreZone zone)</argsstring>
+        <name>DCSM_claimZoneSemaphore</name>
+        <param>
+          <type><ref refid="group__dcsm__api_1gae9689cbafcb2d7c66d866b9658abc54f" kindref="member">DCSM_SemaphoreZone</ref></type>
+          <declname>zone</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Claims the zone semaphore which allows access to the Flash Wrapper register for that zone.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>zone</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the zone which is trying to claim the semaphore which allows access to the Flash Wrapper registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns true for a successful semaphore capture, false if it was unable to capture the semaphore. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="911" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" declline="911" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1gadc6ab62a2b0dac4fc184ebd60bbd4d35" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool DCSM_releaseZoneSemaphore</definition>
+        <argsstring>(void)</argsstring>
+        <name>DCSM_releaseZoneSemaphore</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Releases the zone semaphore.</para>
+<para><simplesect kind="return"><para>Returns true if it was successful in releasing the zone semaphore and false if it was unsuccessful in releasing the zone semaphore.</para>
+</simplesect>
+<simplesect kind="note"><para>If the calling function is not in the right zone to be able to access this register, it will return a false. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="925" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" declline="925" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1gae953f3b222b172a05916dd81687c9e35" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DCSM_readZone1CSMPwd</definition>
+        <argsstring>(void)</argsstring>
+        <name>DCSM_readZone1CSMPwd</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Perform dummy reads on the 128-bit Zone 1 CSM password.</para>
+<para>This function reads the four password locations in the User OTP needed to be done as part of the Password Match Flow before writes to the CSMKEY registers. This would need to be done before a <ref refid="group__dcsm__api_1gadc47f99dcdcbe78ac7f444523ebc523d" kindref="member">DCSM_writeZone1CSM()</ref>.</para>
+<para><simplesect kind="return"><para>None.</para>
+</simplesect>
+<simplesect kind="note"><para>This API to be called from CPU1. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="942" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" declline="942" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcsm__api_1gacd01b31ee3298c05ff801fe2487e136c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DCSM_readZone2CSMPwd</definition>
+        <argsstring>(void)</argsstring>
+        <name>DCSM_readZone2CSMPwd</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Perform dummy reads on the 128-bit Zone 2 CSM password.</para>
+<para>This function reads the four password locations in the User OTP needed to be done as part of the Password Match Flow before writes to the CSMKEY registers. This would need to be done before a <ref refid="group__dcsm__api_1ga4ba553c2c2ee170ac54e0a1f8c06d8bd" kindref="member">DCSM_writeZone2CSM()</ref>.</para>
+<para><simplesect kind="return"><para>None.</para>
+</simplesect>
+<simplesect kind="note"><para>This API to be called from CPU1. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="959" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" declline="959" declcolumn="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__dcsm__api_1ga191314fc9806cb851e111a27c87ee1c8" prot="public" static="no">
+        <name>DCSM_O_Z1_CSMPSWD0</name>
+        <initializer>0x00U</initializer>
+        <briefdescription>
+<para>Z1 CSMPSWD0 offset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="79" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcsm__api_1ga56b03c7d09910a1b481df9032ae544d6" prot="public" static="no">
+        <name>DCSM_O_Z1_CSMPSWD1</name>
+        <initializer>0x02U</initializer>
+        <briefdescription>
+<para>Z1 CSMPSWD1 offset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="80" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcsm__api_1gaa5434f85632d25fb7544f23678104f6f" prot="public" static="no">
+        <name>DCSM_O_Z1_CSMPSWD2</name>
+        <initializer>0x04U</initializer>
+        <briefdescription>
+<para>Z1 CSMPSWD2 offset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="81" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcsm__api_1gac3043e49478b8079311c35941c86bf7c" prot="public" static="no">
+        <name>DCSM_O_Z1_CSMPSWD3</name>
+        <initializer>0x06U</initializer>
+        <briefdescription>
+<para>Z1 CSMPSWD3 offset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="82" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcsm__api_1gaafa41b3cb96c4f0575d374f4cf5ff616" prot="public" static="no">
+        <name>DCSM_O_Z2_CSMPSWD0</name>
+        <initializer>0x00U</initializer>
+        <briefdescription>
+<para>Z2 CSMPSWD0 offset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="83" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcsm__api_1gabe199d1d034d727ac6e74ff0606586f6" prot="public" static="no">
+        <name>DCSM_O_Z2_CSMPSWD1</name>
+        <initializer>0x02U</initializer>
+        <briefdescription>
+<para>Z2 CSMPSWD1 offset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="84" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcsm__api_1ga89e46144a96ce8bf3e9322de0e6c43e8" prot="public" static="no">
+        <name>DCSM_O_Z2_CSMPSWD2</name>
+        <initializer>0x04U</initializer>
+        <briefdescription>
+<para>Z2 CSMPSWD2 offset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="85" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcsm__api_1ga0feb9e3fb99a37778b04ff970a28169a" prot="public" static="no">
+        <name>DCSM_O_Z2_CSMPSWD3</name>
+        <initializer>0x06U</initializer>
+        <briefdescription>
+<para>Z2 CSMPSWD3 offset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="86" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcsm__api_1ga6294245c881569b5ce1355cb4d193bcc" prot="public" static="no">
+        <name>FLSEM_KEY</name>
+        <initializer>0xA5U</initializer>
+        <briefdescription>
+<para>Zone semaphore key. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="93" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcsm__api_1ga76e573302bcf1bce95138ea9f5d5e759" prot="public" static="no">
+        <name>DCSM_FORCE_SECERR_KEY</name>
+        <initializer>0x5A5AU</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="94" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcsm__api_1ga92fdf56ee57660e54b3fa06d72f1f09e" prot="public" static="no">
+        <name>DCSM_ALLZERO</name>
+        <initializer>0x08U</initializer>
+        <briefdescription>
+<para>CSM Passwords all zeros. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="159" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcsm__api_1gad926e6718a322661690023090ba277e1" prot="public" static="no">
+        <name>DCSM_ALLONE</name>
+        <initializer>0x10U</initializer>
+        <briefdescription>
+<para>CSM Passwords all ones. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="160" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcsm__api_1gadfc7c7abf773970d3a7a908b6d489535" prot="public" static="no">
+        <name>DCSM_UNSECURE</name>
+        <initializer>0x20U</initializer>
+        <briefdescription>
+<para>Zone is secure/unsecure. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="161" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcsm__api_1ga2fe98384a3374e50de809feeb95fb1fe" prot="public" static="no">
+        <name>DCSM_ARMED</name>
+        <initializer>0x40U</initializer>
+        <briefdescription>
+<para>CSM is armed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="162" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcsm__api_1ga046d14a03842455b6a37828acbd72c8d" prot="public" static="no">
+        <name>DCSM_EXEONLYSECTR_M</name>
+        <initializer>0x0000FFFFU</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="244" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="244" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcsm__api_1ga3fc4c0873d9e1c3cd3bd9e80e6637758" prot="public" static="no">
+        <name>DCSM_EXEONLYSECTR_S</name>
+        <initializer>16U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="245" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="245" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcsm__api_1ga420421f21efe8dce72546c5d95b6bc5e" prot="public" static="no">
+        <name>DCSM_ZX_CR_S</name>
+        <initializer>16U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="255" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="255" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcsm__api_1ga6ab58507cfc01e454de9d55f42678c83" prot="public" static="no">
+        <name>DCSM_Z1_OTPSECLOCK_JTAGLOCK_M</name>
+        <initializer>0x1U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="265" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="265" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcsm__api_1ga1b032d26b90049e11287181f08af61b0" prot="public" static="no">
+        <name>DCSM_Z1_OTPSECLOCK_JTAGLOCK_S</name>
+        <initializer>0U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="266" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="266" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcsm__api_1ga8d51d09f0e93b0632d93c8c7ec3abfbb" prot="public" static="no">
+        <name>DCSM_OTPSECLOCK_INVALID</name>
+        <initializer>0xFFFFU</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" line="267" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcsm.h" bodystart="267" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

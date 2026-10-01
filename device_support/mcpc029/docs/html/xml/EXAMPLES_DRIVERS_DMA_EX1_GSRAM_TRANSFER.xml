@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_DMA_EX1_GSRAM_TRANSFER" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_DMA_EX1_GSRAM_TRANSFER</compoundname>
+    <title>DMA GSRAM Transfer SysConfig Example</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_DMA_EX1_GSRAM_TRANSFER_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_dma_ex1_gsram_transfer"/></para>
+<sect1 id="EXAMPLES_DRIVERS_DMA_EX1_GSRAM_TRANSFER_1autotoc_md202">
+<title>Introduction</title>
+<para>This example uses DMA channel to transfer data from a buffer to another buffer in RAM.</para>
+<para>The example does the below<itemizedlist>
+<listitem><para>Configures DMA channel to transfer data from the source address to destination address specified.</para>
+</listitem><listitem><para>The example triggers the DMA channel repeatedly until the transfer of 16 bursts (where each burst is 8 16-bit words) has been completed.</para>
+</listitem><listitem><para>When the whole transfer is complete it triggers the DMA interrupt.</para>
+</listitem><listitem><para>All the DMA configuratins are done in SysConfig</para>
+</listitem></itemizedlist>
+</para>
+<para>Watch Variables<itemizedlist>
+<listitem><para>sData - Data to send</para>
+</listitem><listitem><para>rData - Received data</para>
+</listitem><listitem><para>done - Transfer successful</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_DMA_EX1_GSRAM_TRANSFER_1autotoc_md203">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>None</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_DMA_EX1_GSRAM_TRANSFER_1autotoc_md204">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable.</para>
+</listitem><listitem><para>Using the watch variables, view the Clock verification status.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_DMA_EX1_GSRAM_TRANSFER_1autotoc_md205">
+<title>See Also</title>
+<para><ref refid="DRIVERS_DMA_PAGE" kindref="compound">DMA</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/dma_ex1_gsram_transfer.md"/>
+  </compounddef>
+</doxygen>

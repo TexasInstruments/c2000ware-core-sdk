@@ -30,7 +30,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -63,25 +63,21 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "ipc.h"
-
 //
 // Globals
 //
 uint16_t pass=0;
 uint16_t fail=0;
-
 //
 // Function Prototypes
 //
 void initCpuXCla1(void);
-
 //
 // Main
 //
@@ -91,7 +87,6 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Boot CPU2 core
     //
@@ -100,43 +95,34 @@ void main(void)
 #else
     Device_bootCPU2(BOOTMODE_BOOT_TO_M0RAM);
 #endif
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Disable global interrupts.
     //
     DINT;
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Sync with CPU2 using IPC flag 31
     //
     IPC_sync(IPC_CPU1_L_CPU2_R, IPC_FLAG31);
-
     //
     // Enable global Interrupts and higher priority real-time debug events:
     //
     EINT;  // Enable Global interrupt INTM
     ERTM;  // Enable Global real-time interrupt DBGM
-
     while(1);
 }
-
-
 //
 // End of file
 //

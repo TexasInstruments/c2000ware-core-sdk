@@ -41,18 +41,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 #include "i2cLib_FIFO_polling.h"
-
-
-
 uint16_t I2CBusScan(uint32_t base, uint16_t *pAvailableI2C_targets)
 {
     uint16_t probeTargetAddress, i;
-
     //Disable interrupts on Stop condition, NACK and arbitration lost condition
     I2C_disableInterrupt(base, (I2C_INT_ADDR_TARGET|I2C_INT_STOP_CONDITION | I2C_INT_ARB_LOST | I2C_INT_NO_ACK));
-
     i = 0;
     for(probeTargetAddress=1;probeTargetAddress<=MAX_10_BIT_ADDRESS;probeTargetAddress++)
     {
@@ -63,36 +57,25 @@ uint16_t I2CBusScan(uint32_t base, uint16_t *pAvailableI2C_targets)
            ESTOP0;
            return status;
         }
-
         I2C_setConfig(base, (I2C_CONTROLLER_SEND_MODE | I2C_REPEAT_MODE));
-
         //Enable 10-bit addressing if probeTargetAddress is greater than 127U
         if(probeTargetAddress > MAX_7_BIT_ADDRESS)
         {
             //10-bit addressing
             I2C_setAddressMode(base, I2C_ADDR_MODE_10BITS);
         }
-
         // Setup target address
         I2C_setTargetAddress(base, probeTargetAddress);
-
-
         I2C_sendStartCondition(base);
-
         //Wait for the target address to be transmitted
         while(!(I2C_getStatus(base) & I2C_STS_REG_ACCESS_RDY));
-
         //Generate STOP condition
         I2C_sendStopCondition(base);
-
         //Wait for the I2CMDR.STP to be cleared
         while(I2C_getStopConditionStatus(base));
-
         //Wait for the Bus busy bit to be cleared
         while(I2C_isBusBusy(base));
-
         uint16_t I2CStatus = I2C_getStatus(base);
-
         //If target address is acknowledged, store target address
         //in pAvailableI2C_targets
         if(!(I2CStatus & I2C_STS_NO_ACK))
@@ -102,57 +85,42 @@ uint16_t I2CBusScan(uint32_t base, uint16_t *pAvailableI2C_targets)
         //Clear NACK bit in I2CSTR
         I2C_clearStatus(base,I2C_STS_NO_ACK|I2C_STS_ARB_LOST|I2C_STS_REG_ACCESS_RDY|I2C_STS_STOP_CONDITION);
     }
-
     I2C_setConfig(base, (I2C_CONTROLLER_SEND_MODE));
     I2C_setAddressMode(base, I2C_ADDR_MODE_7BITS); //7-bit addressing
     I2C_enableInterrupt(base, (I2C_INT_ADDR_TARGET|I2C_INT_STOP_CONDITION | I2C_INT_ARB_LOST | I2C_INT_NO_ACK));
     return SUCCESS;
 }
-
 uint16_t I2C_TransmittargetAddress_ControlBytes(struct I2CHandle *I2C_Params)
 {
     uint16_t status, attemptCount=1;
-
     uint32_t base = I2C_Params->base;
-
     status = 1;
-
     while(status & (attemptCount <= I2C_Params->NumOfAttempts))
     {
         status = checkBusStatus(base);
         attemptCount++;
         DEVICE_DELAY_US(I2C_Params->Delay_us);
     }
-
     if(status)
     {
         return status;
     }
-
     I2C_setConfig(base, (I2C_CONTROLLER_SEND_MODE|I2C_REPEAT_MODE));
-
     if((I2C_Params->TargetAddr) > MAX_7_BIT_ADDRESS)
     {
         //10-bit addressing
         I2C_setAddressMode(base, I2C_ADDR_MODE_10BITS);
     }
-
     // Setup target address
     I2C_setTargetAddress(base, I2C_Params->TargetAddr);
-
-
     int16_t  i;
     uint32_t temp = *(I2C_Params->pControlAddr);
-
     for(i=I2C_Params->NumOfAddrBytes-1;i>=0;i--)
     {
         I2C_putData(base, (temp >> (i*8U)) & 0xFF);
     }
-
     I2C_sendStartCondition(base);
-
     DEVICE_DELAY_US(150U);
-
     status = handleNACK(base);
     if(status)
     {
@@ -168,9 +136,7 @@ uint16_t I2C_TransmittargetAddress_ControlBytes(struct I2CHandle *I2C_Params)
           return status;
       }
 	}
-
     attemptCount = 1;
-
     while(I2C_getTxFIFOStatus(base) && attemptCount <= 9 * (I2C_Params->NumOfAddrBytes + 2U))
     {
        status = handleNACK(base);
@@ -181,44 +147,31 @@ uint16_t I2C_TransmittargetAddress_ControlBytes(struct I2CHandle *I2C_Params)
        attemptCount++;
        DEVICE_DELAY_US(I2C_Params->Delay_us);
     }
-
     return SUCCESS;
 }
-
 uint16_t I2C_ControllerTransmitter(struct I2CHandle *I2C_Params)
 {
     uint16_t status, attemptCount;
-
     uint32_t base = I2C_Params->base;
-
     I2C_disableFIFO(base);
     I2C_enableFIFO(base);
-
     status = I2C_TransmittargetAddress_ControlBytes(I2C_Params);
-
     if(status)
     {
         return status;
     }
-
     I2C_setDataCount(base, (I2C_Params->NumOfAddrBytes + I2C_Params->NumOfDataBytes));
-
     I2C_setFIFOInterruptLevel(base, I2C_FIFO_TXEMPTY, I2C_FIFO_RXFULL);
-
     I2C_enableInterrupt(base, I2C_INT_TXFF);
-
     uint16_t numofSixteenByte  = (I2C_Params->NumOfDataBytes) / I2C_FIFO_LEVEL;
     uint16_t remainingBytes    = (I2C_Params->NumOfDataBytes) % I2C_FIFO_LEVEL;
-
     uint16_t i,count = 0,buff_pos=0;
-
     while(count < numofSixteenByte)
     {
         for(i=1;i<=I2C_FIFO_LEVEL;i++)
         {
             I2C_putData(base, I2C_Params->pTX_MsgBuffer[buff_pos++]);
         }
-
         attemptCount = 1;
         while(I2C_getTxFIFOStatus(base) && attemptCount <= 9 * (I2C_FIFO_LEVEL + 2U))
         {
@@ -230,15 +183,12 @@ uint16_t I2C_ControllerTransmitter(struct I2CHandle *I2C_Params)
             attemptCount++;
             DEVICE_DELAY_US(I2C_Params->Delay_us);
         }
-
         count++;
     }
-
     for (i=0; i < remainingBytes; i++)
     {
         I2C_putData(base, I2C_Params->pTX_MsgBuffer[buff_pos++]);
     }
-
     attemptCount = 1;
     while(I2C_getTxFIFOStatus(base) && attemptCount <= 9 * (remainingBytes + 2U))
     {
@@ -250,43 +200,31 @@ uint16_t I2C_ControllerTransmitter(struct I2CHandle *I2C_Params)
         attemptCount++;
         DEVICE_DELAY_US(I2C_Params->Delay_us);
     }
-
     I2C_sendStopCondition(base);
-
     attemptCount = 1;
     while(I2C_getStopConditionStatus(base) && attemptCount <= 3U)
     {
         DEVICE_DELAY_US(I2C_Params->Delay_us);
         attemptCount++;
     }
-
     return SUCCESS;
 }
-
 uint16_t I2C_ControllerReceiver(struct I2CHandle *I2C_Params)
 {
     uint16_t status;
     uint16_t attemptCount;
-
     uint32_t base = I2C_Params->base;
-
     I2C_disableFIFO(base);
     I2C_enableFIFO(base);
-
     status = I2C_TransmittargetAddress_ControlBytes(I2C_Params);
-
     if(status)
     {
         return status;
     }
-
     uint16_t numofSixteenByte  = (I2C_Params->NumOfDataBytes) / I2C_FIFO_LEVEL;
     uint16_t remainingBytes    = (I2C_Params->NumOfDataBytes) % I2C_FIFO_LEVEL;
-
     I2C_setConfig(base, (I2C_CONTROLLER_RECEIVE_MODE|I2C_REPEAT_MODE));
-
     I2C_sendStartCondition(base);
-
     uint16_t i,count = 0,buff_pos=0;
     while(count < numofSixteenByte)
     {
@@ -295,82 +233,62 @@ uint16_t I2C_ControllerReceiver(struct I2CHandle *I2C_Params)
         {
           return status;
         }
-
         count++;
-
         attemptCount = 1;
         while(!(I2C_getRxFIFOStatus(base) == I2C_FIFO_RXFULL) && attemptCount <= 9 * (I2C_FIFO_RXFULL + 2U))
         {
             DEVICE_DELAY_US(I2C_Params->Delay_us);
             attemptCount++;
         }
-
         for(i=0; i<I2C_FIFO_LEVEL; i++)
         {
             I2C_Params->pRX_MsgBuffer[buff_pos++] = I2C_getData(base);
         }
     }
-
     attemptCount = 1;
     while(!(I2C_getRxFIFOStatus(base) == remainingBytes) && attemptCount <= 9 * (remainingBytes + 2U))
     {
        DEVICE_DELAY_US(I2C_Params->Delay_us);
        attemptCount++;
     }
-
     I2C_sendStopCondition(base);
-
     for(i=0; i<remainingBytes; i++)
     {
         I2C_Params->pRX_MsgBuffer[buff_pos++] = I2C_getData(base);
     }
-
     status = handleNACK(base);
     if(status)
     {
       return status;
     }
-
     I2C_disableFIFO(base);
-
     attemptCount = 1;
     while(I2C_getStopConditionStatus(base) && attemptCount <= 3U);
     {
         DEVICE_DELAY_US(I2C_Params->Delay_us);
         attemptCount++;
     }
-
     return SUCCESS;
-
 }
-
-
 uint16_t checkBusStatus(uint32_t base)
 {
-
     if(I2C_isBusBusy(base))
     {
         return ERROR_BUS_BUSY;
     }
-
     if(I2C_getStopConditionStatus(base))
     {
         return ERROR_STOP_NOT_READY;
     }
-
     return SUCCESS;
 }
-
 uint16_t handleNACK(uint32_t base)
 {
     if(I2C_getStatus(base) & I2C_STS_NO_ACK)
     {
         I2C_clearStatus(base, I2C_STS_NO_ACK);
         I2C_sendStopCondition(base);
-
         return ERROR_NACK_RECEIVED;
     }
-
     return SUCCESS;
 }
-

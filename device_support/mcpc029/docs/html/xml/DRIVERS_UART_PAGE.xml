@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="DRIVERS_UART_PAGE" kind="page">
+    <compoundname>DRIVERS_UART_PAGE</compoundname>
+    <title>UART</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="DRIVERS_UART_PAGE_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_components_drivers_uart"/></para>
+<para>The UART driver provides API to configure the UART module. Below are the high level features supported by the UART driver.</para>
+<sect1 id="DRIVERS_UART_PAGE_1autotoc_md110">
+<title>Features Supported</title>
+<para><itemizedlist>
+<listitem><para>Programmable baud-rate generation</para>
+</listitem><listitem><para>Standard asynchronous communication bits for start, stop, and parity</para>
+</listitem><listitem><para>16-level, 8-wide Transmit and Receive FIFOs with fine-grained FIFO configuration (trigger configurable at any level 0-16)</para>
+</listitem><listitem><para>Support for line-break generation and detection, IrDA serial-IR (SIR) encoder and decoder</para>
+</listitem><listitem><para>Support for DMA, 9-bit mode</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_UART_PAGE_1autotoc_md111">
+<title>SysConfig Features</title>
+<para><simplesect kind="note"><para>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</para>
+</simplesect>
+<itemizedlist>
+<listitem><para>Baud rate calculator with error estimation</para>
+</listitem><listitem><para>Configurable data width, loopback settings</para>
+</listitem><listitem><para>Fully programmable serial interface characteristics (start, stop, and parity bits)</para>
+</listitem><listitem><para>Separately configurable TX &amp; RX FIFO settings</para>
+</listitem><listitem><para>Integrated support for interrupt &amp; RTDMA modules</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_UART_PAGE_1autotoc_md112">
+<title>Features NOT Supported</title>
+<para>NA</para>
+</sect1>
+<sect1 id="DRIVERS_UART_PAGE_1autotoc_md113">
+<title>Important Usage Guidelines</title>
+<para><itemizedlist>
+<listitem><para>Avoid keeping the memory browser open while the execution is in progress, as this can lead to erroneous reads from the UART data register</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_UART_PAGE_1autotoc_md114">
+<title>Example Usage</title>
+<para>Include the below file to access the APIs #include &lt;<ref refid="uart_8h" kindref="compound">uart.h</ref>&gt;</para>
+</sect1>
+<sect1 id="DRIVERS_UART_PAGE_1autotoc_md115">
+<title>API</title>
+<para><ref refid="group__uart__api" kindref="compound">UART</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/uart.md"/>
+  </compounddef>
+</doxygen>

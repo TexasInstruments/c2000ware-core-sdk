@@ -13,7 +13,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -46,13 +46,11 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include <stdint.h>
 #include "cla_ex5_adc_just_in_time_shared.h"
-
 //
 // Globals
 //
@@ -61,8 +59,6 @@ float duty ;  // duty of PWM output
 // Variables used to read ADC result and implement 3-point filter
 //
 uint16_t data_read, data_read_prev, data_read_prev2, data_read_total;
-
-
 //-----------------------------------------------------------------------------
 //
 // Task 1
@@ -78,12 +74,10 @@ __attribute__((interrupt)) void Cla1Task1 ( void )
     // Setting Profiling GPIO2 : Takes 3 cycles
     //
     HWREG(GPIODATA_BASE  + GPIO_O_GPASET) = 4;
-
     //
     // Uncomment this to debug the CLA while connected to the debugger
     //
     //__mdebugstop();
-
     //
     // Pre-processing for implementing moving average filter, takes 13 cycles
     // This is just to illustrate how cycles can be utilized to do some pre-
@@ -93,37 +87,31 @@ __attribute__((interrupt)) void Cla1Task1 ( void )
     data_read_total = data_read + data_read_prev;
     data_read_prev2 = data_read_prev;
     data_read_prev = data_read;
-
     //
     // Reading ADC just-in-time
     //
     data_read = HWREGH(ADCARESULT_BASE + ADC_RESULTx_OFFSET_BASE + ADC_SOC_NUMBER0);
-
     //
     // "data_read_total" stores the cumulative sum of current and last 2 data elements
     //
     data_read_total += data_read;
-
     //
     // Taking average of 3 elements, normalizing for 12-bit and mapping to output duty
     // linearly in the range  0.1-0.9
     // duty = 0.1 + (0.9-0.1) * ((data_read_total / 3) / 2^12 )
     //
     duty = 0.1f + (data_read_total / (15360.0f));
-
     //
     // Writing to the COMPA register for realizing computed duty value
     //
     __meallow();
     HWREGH(EPWM1_BASE + EPWM_O_CMPA + 0x1U) = (uint16_t)(duty * EPWM1_PERIOD + 0.5f);
     __medis();
-
     //
     // Resetting Profiling GPIO2
     //
     HWREG(GPIODATA_BASE  + GPIO_O_GPACLEAR) = 4;
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 2 - Title Here
@@ -133,9 +121,7 @@ __attribute__((interrupt)) void Cla1Task1 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task2 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 3 - Title Here
@@ -145,9 +131,7 @@ __attribute__((interrupt))  void Cla1Task2 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task3 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 4 - Title Here
@@ -157,9 +141,7 @@ __attribute__((interrupt))  void Cla1Task3 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task4 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 5 - Title Here
@@ -169,9 +151,7 @@ __attribute__((interrupt))  void Cla1Task4 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task5 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 6 - Title Here
@@ -181,9 +161,7 @@ __attribute__((interrupt))  void Cla1Task5 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task6 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 7 - Title Here
@@ -193,9 +171,7 @@ __attribute__((interrupt))  void Cla1Task6 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task7 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 8 - One Time Initialization Task
@@ -205,12 +181,10 @@ __attribute__((interrupt))  void Cla1Task7 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task8 ( void )
 {
-
     //
     // Uncomment this to debug the CLA while connected to the debugger
     //
     //__mdebugstop();
-
     //
     // Initializing CLA global variables
     //
@@ -220,7 +194,6 @@ __attribute__((interrupt))  void Cla1Task8 ( void )
     data_read_prev2 = 0;
     duty = 0.1f;
 }
-
 //
 // End of File
 //

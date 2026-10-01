@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">f28p551x Driverib and Example User Guide
-   &#160;<span id="projectnumber">26.01.00.00</span>
+   &#160;<span id="projectnumber">26.02.00.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -3073,73 +3073,75 @@ $(document).ready(function(){initNavTree('sysctl_8h_source.html',''); initResiza
 <div class="line"><a name="l04255"></a><span class="lineno"> 4255</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span></div>
 <div class="line"><a name="l04256"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#gadf52cc177b0c4fb322e03b421c2513a0"> 4256</a></span>&#160;<a class="code" href="group__sysctl__api.html#gadf52cc177b0c4fb322e03b421c2513a0">SysCtl_selectOscSource</a>(uint32_t oscSource);</div>
 <div class="line"><a name="l04257"></a><span class="lineno"> 4257</span>&#160; </div>
-<div class="line"><a name="l04258"></a><span class="lineno"> 4258</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l04259"></a><span class="lineno"> 4259</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l04269"></a><span class="lineno"> 4269</span>&#160;<span class="comment"></span><span class="comment">//</span></div>
-<div class="line"><a name="l04270"></a><span class="lineno"> 4270</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l04271"></a><span class="lineno"> 4271</span>&#160;<span class="keyword">extern</span> uint32_t</div>
-<div class="line"><a name="l04272"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ga70606ae075b1e015e3a63f8e83320321"> 4272</a></span>&#160;<a class="code" href="group__sysctl__api.html#ga70606ae075b1e015e3a63f8e83320321">SysCtl_getLowSpeedClock</a>(uint32_t clockInHz);</div>
-<div class="line"><a name="l04273"></a><span class="lineno"> 4273</span>&#160; </div>
-<div class="line"><a name="l04274"></a><span class="lineno"> 4274</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l04275"></a><span class="lineno"> 4275</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l04294"></a><span class="lineno"> 4294</span>&#160;<span class="comment"></span><span class="comment">//</span></div>
-<div class="line"><a name="l04295"></a><span class="lineno"> 4295</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l04296"></a><span class="lineno"> 4296</span>&#160;<span class="keyword">extern</span> uint16_t</div>
-<div class="line"><a name="l04297"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ga4415f1691a5b93e442c6ee5eee5885e7"> 4297</a></span>&#160;<a class="code" href="group__sysctl__api.html#ga4415f1691a5b93e442c6ee5eee5885e7">SysCtl_getDeviceParametric</a>(<a class="code" href="group__sysctl__api.html#ga8091af9c8eec7464d7169cc869b1aff9">SysCtl_DeviceParametric</a> parametric);</div>
-<div class="line"><a name="l04298"></a><span class="lineno"> 4298</span>&#160; </div>
-<div class="line"><a name="l04299"></a><span class="lineno"> 4299</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l04300"></a><span class="lineno"> 4300</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l04326"></a><span class="lineno"> 4326</span>&#160;<span class="comment"></span><span class="comment">//</span></div>
-<div class="line"><a name="l04327"></a><span class="lineno"> 4327</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l04328"></a><span class="lineno"> 4328</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span></div>
-<div class="line"><a name="l04329"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#gaab22b1b49f1fc1c0fd315eaf461a3cfd"> 4329</a></span>&#160;<a class="code" href="group__sysctl__api.html#gaab22b1b49f1fc1c0fd315eaf461a3cfd">SysCtl_configureType</a>(<a class="code" href="group__sysctl__api.html#ga26739158b5ca8b7415263d3f563246e8">SysCtl_SelType</a> type , uint16_t config, uint16_t lock);</div>
-<div class="line"><a name="l04330"></a><span class="lineno"> 4330</span>&#160; </div>
-<div class="line"><a name="l04331"></a><span class="lineno"> 4331</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l04332"></a><span class="lineno"> 4332</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l04342"></a><span class="lineno"> 4342</span>&#160;<span class="comment"></span><span class="comment">//</span></div>
-<div class="line"><a name="l04343"></a><span class="lineno"> 4343</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l04344"></a><span class="lineno"> 4344</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">bool</span></div>
-<div class="line"><a name="l04345"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#gae722bb8922e76bf9e29529bad291c32f"> 4345</a></span>&#160;<a class="code" href="group__sysctl__api.html#gae722bb8922e76bf9e29529bad291c32f">SysCtl_isConfigTypeLocked</a>(<a class="code" href="group__sysctl__api.html#ga26739158b5ca8b7415263d3f563246e8">SysCtl_SelType</a> type);</div>
-<div class="line"><a name="l04346"></a><span class="lineno"> 4346</span>&#160; </div>
-<div class="line"><a name="l04347"></a><span class="lineno"> 4347</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l04348"></a><span class="lineno"> 4348</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l04360"></a><span class="lineno"> 4360</span>&#160;<span class="comment"></span><span class="comment">//</span></div>
-<div class="line"><a name="l04361"></a><span class="lineno"> 4361</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l04362"></a><span class="lineno"> 4362</span>&#160; </div>
-<div class="line"><a name="l04363"></a><span class="lineno"> 4363</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span></div>
-<div class="line"><a name="l04364"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ga23decfa4a195cbc1ffa10ff52447bcbc"> 4364</a></span>&#160;<a class="code" href="group__sysctl__api.html#ga23decfa4a195cbc1ffa10ff52447bcbc">SysCtl_lockClkConfig</a>(<a class="code" href="group__sysctl__api.html#ga45e2c59387a65f005d050e25b29def89">SysCtl_ClkRegSel</a> registerName);</div>
-<div class="line"><a name="l04365"></a><span class="lineno"> 4365</span>&#160; </div>
-<div class="line"><a name="l04366"></a><span class="lineno"> 4366</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l04367"></a><span class="lineno"> 4367</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l04379"></a><span class="lineno"> 4379</span>&#160;<span class="comment"></span><span class="comment">//</span></div>
-<div class="line"><a name="l04380"></a><span class="lineno"> 4380</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l04381"></a><span class="lineno"> 4381</span>&#160; </div>
-<div class="line"><a name="l04382"></a><span class="lineno"> 4382</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span></div>
-<div class="line"><a name="l04383"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ga9dd729d44f590fc77a24d1ef728abc4c"> 4383</a></span>&#160;<a class="code" href="group__sysctl__api.html#ga9dd729d44f590fc77a24d1ef728abc4c">SysCtl_lockSysConfig</a> (<a class="code" href="group__sysctl__api.html#gafb42a258e99bcfb4a183fe70e5def269">SysCtl_CpuRegSel</a> registerName);</div>
-<div class="line"><a name="l04384"></a><span class="lineno"> 4384</span>&#160; </div>
-<div class="line"><a name="l04385"></a><span class="lineno"> 4385</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l04386"></a><span class="lineno"> 4386</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l04396"></a><span class="lineno"> 4396</span>&#160;<span class="comment"></span><span class="comment">//</span></div>
-<div class="line"><a name="l04397"></a><span class="lineno"> 4397</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l04398"></a><span class="lineno"> 4398</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span></div>
-<div class="line"><a name="l04399"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ga1324c2ebd980238337e0e9505b56bbbb"> 4399</a></span>&#160;<a class="code" href="group__sysctl__api.html#ga1324c2ebd980238337e0e9505b56bbbb">SysCtl_emulateDevice</a> (<a class="code" href="group__sysctl__api.html#gad39b03eb8e373bafd1f5bb9e85f4e128">SysCtl_DevicePartNumber</a> partNumber);</div>
-<div class="line"><a name="l04400"></a><span class="lineno"> 4400</span>&#160; </div>
-<div class="line"><a name="l04401"></a><span class="lineno"> 4401</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l04402"></a><span class="lineno"> 4402</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l04403"></a><span class="lineno"> 4403</span>&#160;<span class="comment">// Close the Doxygen group.</span></div>
-<div class="line"><a name="l04405"></a><span class="lineno"> 4405</span>&#160;<span class="comment"></span><span class="comment">//</span></div>
-<div class="line"><a name="l04406"></a><span class="lineno"> 4406</span>&#160;<span class="comment">//****************************************************************************</span></div>
-<div class="line"><a name="l04407"></a><span class="lineno"> 4407</span>&#160; </div>
-<div class="line"><a name="l04408"></a><span class="lineno"> 4408</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l04409"></a><span class="lineno"> 4409</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l04410"></a><span class="lineno"> 4410</span>&#160;<span class="comment">// Mark the end of the C bindings section for C++ compilers.</span></div>
+<div class="line"><a name="l04258"></a><span class="lineno"> 4258</span>&#160; </div>
+<div class="line"><a name="l04259"></a><span class="lineno"> 4259</span>&#160; </div>
+<div class="line"><a name="l04260"></a><span class="lineno"> 4260</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l04261"></a><span class="lineno"> 4261</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l04271"></a><span class="lineno"> 4271</span>&#160;<span class="comment"></span><span class="comment">//</span></div>
+<div class="line"><a name="l04272"></a><span class="lineno"> 4272</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l04273"></a><span class="lineno"> 4273</span>&#160;<span class="keyword">extern</span> uint32_t</div>
+<div class="line"><a name="l04274"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ga70606ae075b1e015e3a63f8e83320321"> 4274</a></span>&#160;<a class="code" href="group__sysctl__api.html#ga70606ae075b1e015e3a63f8e83320321">SysCtl_getLowSpeedClock</a>(uint32_t clockInHz);</div>
+<div class="line"><a name="l04275"></a><span class="lineno"> 4275</span>&#160; </div>
+<div class="line"><a name="l04276"></a><span class="lineno"> 4276</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l04277"></a><span class="lineno"> 4277</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l04296"></a><span class="lineno"> 4296</span>&#160;<span class="comment"></span><span class="comment">//</span></div>
+<div class="line"><a name="l04297"></a><span class="lineno"> 4297</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l04298"></a><span class="lineno"> 4298</span>&#160;<span class="keyword">extern</span> uint16_t</div>
+<div class="line"><a name="l04299"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ga4415f1691a5b93e442c6ee5eee5885e7"> 4299</a></span>&#160;<a class="code" href="group__sysctl__api.html#ga4415f1691a5b93e442c6ee5eee5885e7">SysCtl_getDeviceParametric</a>(<a class="code" href="group__sysctl__api.html#ga8091af9c8eec7464d7169cc869b1aff9">SysCtl_DeviceParametric</a> parametric);</div>
+<div class="line"><a name="l04300"></a><span class="lineno"> 4300</span>&#160; </div>
+<div class="line"><a name="l04301"></a><span class="lineno"> 4301</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l04302"></a><span class="lineno"> 4302</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l04328"></a><span class="lineno"> 4328</span>&#160;<span class="comment"></span><span class="comment">//</span></div>
+<div class="line"><a name="l04329"></a><span class="lineno"> 4329</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l04330"></a><span class="lineno"> 4330</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span></div>
+<div class="line"><a name="l04331"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#gaab22b1b49f1fc1c0fd315eaf461a3cfd"> 4331</a></span>&#160;<a class="code" href="group__sysctl__api.html#gaab22b1b49f1fc1c0fd315eaf461a3cfd">SysCtl_configureType</a>(<a class="code" href="group__sysctl__api.html#ga26739158b5ca8b7415263d3f563246e8">SysCtl_SelType</a> type , uint16_t config, uint16_t lock);</div>
+<div class="line"><a name="l04332"></a><span class="lineno"> 4332</span>&#160; </div>
+<div class="line"><a name="l04333"></a><span class="lineno"> 4333</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l04334"></a><span class="lineno"> 4334</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l04344"></a><span class="lineno"> 4344</span>&#160;<span class="comment"></span><span class="comment">//</span></div>
+<div class="line"><a name="l04345"></a><span class="lineno"> 4345</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l04346"></a><span class="lineno"> 4346</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">bool</span></div>
+<div class="line"><a name="l04347"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#gae722bb8922e76bf9e29529bad291c32f"> 4347</a></span>&#160;<a class="code" href="group__sysctl__api.html#gae722bb8922e76bf9e29529bad291c32f">SysCtl_isConfigTypeLocked</a>(<a class="code" href="group__sysctl__api.html#ga26739158b5ca8b7415263d3f563246e8">SysCtl_SelType</a> type);</div>
+<div class="line"><a name="l04348"></a><span class="lineno"> 4348</span>&#160; </div>
+<div class="line"><a name="l04349"></a><span class="lineno"> 4349</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l04350"></a><span class="lineno"> 4350</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l04362"></a><span class="lineno"> 4362</span>&#160;<span class="comment"></span><span class="comment">//</span></div>
+<div class="line"><a name="l04363"></a><span class="lineno"> 4363</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l04364"></a><span class="lineno"> 4364</span>&#160; </div>
+<div class="line"><a name="l04365"></a><span class="lineno"> 4365</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span></div>
+<div class="line"><a name="l04366"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ga23decfa4a195cbc1ffa10ff52447bcbc"> 4366</a></span>&#160;<a class="code" href="group__sysctl__api.html#ga23decfa4a195cbc1ffa10ff52447bcbc">SysCtl_lockClkConfig</a>(<a class="code" href="group__sysctl__api.html#ga45e2c59387a65f005d050e25b29def89">SysCtl_ClkRegSel</a> registerName);</div>
+<div class="line"><a name="l04367"></a><span class="lineno"> 4367</span>&#160; </div>
+<div class="line"><a name="l04368"></a><span class="lineno"> 4368</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l04369"></a><span class="lineno"> 4369</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l04381"></a><span class="lineno"> 4381</span>&#160;<span class="comment"></span><span class="comment">//</span></div>
+<div class="line"><a name="l04382"></a><span class="lineno"> 4382</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l04383"></a><span class="lineno"> 4383</span>&#160; </div>
+<div class="line"><a name="l04384"></a><span class="lineno"> 4384</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span></div>
+<div class="line"><a name="l04385"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ga9dd729d44f590fc77a24d1ef728abc4c"> 4385</a></span>&#160;<a class="code" href="group__sysctl__api.html#ga9dd729d44f590fc77a24d1ef728abc4c">SysCtl_lockSysConfig</a> (<a class="code" href="group__sysctl__api.html#gafb42a258e99bcfb4a183fe70e5def269">SysCtl_CpuRegSel</a> registerName);</div>
+<div class="line"><a name="l04386"></a><span class="lineno"> 4386</span>&#160; </div>
+<div class="line"><a name="l04387"></a><span class="lineno"> 4387</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l04388"></a><span class="lineno"> 4388</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l04398"></a><span class="lineno"> 4398</span>&#160;<span class="comment"></span><span class="comment">//</span></div>
+<div class="line"><a name="l04399"></a><span class="lineno"> 4399</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l04400"></a><span class="lineno"> 4400</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span></div>
+<div class="line"><a name="l04401"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ga1324c2ebd980238337e0e9505b56bbbb"> 4401</a></span>&#160;<a class="code" href="group__sysctl__api.html#ga1324c2ebd980238337e0e9505b56bbbb">SysCtl_emulateDevice</a> (<a class="code" href="group__sysctl__api.html#gad39b03eb8e373bafd1f5bb9e85f4e128">SysCtl_DevicePartNumber</a> partNumber);</div>
+<div class="line"><a name="l04402"></a><span class="lineno"> 4402</span>&#160; </div>
+<div class="line"><a name="l04403"></a><span class="lineno"> 4403</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l04404"></a><span class="lineno"> 4404</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l04405"></a><span class="lineno"> 4405</span>&#160;<span class="comment">// Close the Doxygen group.</span></div>
+<div class="line"><a name="l04407"></a><span class="lineno"> 4407</span>&#160;<span class="comment"></span><span class="comment">//</span></div>
+<div class="line"><a name="l04408"></a><span class="lineno"> 4408</span>&#160;<span class="comment">//****************************************************************************</span></div>
+<div class="line"><a name="l04409"></a><span class="lineno"> 4409</span>&#160; </div>
+<div class="line"><a name="l04410"></a><span class="lineno"> 4410</span>&#160;<span class="comment">//*****************************************************************************</span></div>
 <div class="line"><a name="l04411"></a><span class="lineno"> 4411</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l04412"></a><span class="lineno"> 4412</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l04413"></a><span class="lineno"> 4413</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l04414"></a><span class="lineno"> 4414</span>&#160;}</div>
-<div class="line"><a name="l04415"></a><span class="lineno"> 4415</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l04416"></a><span class="lineno"> 4416</span>&#160; </div>
-<div class="line"><a name="l04417"></a><span class="lineno"> 4417</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// SYSCTL_H</span></div>
+<div class="line"><a name="l04412"></a><span class="lineno"> 4412</span>&#160;<span class="comment">// Mark the end of the C bindings section for C++ compilers.</span></div>
+<div class="line"><a name="l04413"></a><span class="lineno"> 4413</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l04414"></a><span class="lineno"> 4414</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l04415"></a><span class="lineno"> 4415</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l04416"></a><span class="lineno"> 4416</span>&#160;}</div>
+<div class="line"><a name="l04417"></a><span class="lineno"> 4417</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l04418"></a><span class="lineno"> 4418</span>&#160; </div>
+<div class="line"><a name="l04419"></a><span class="lineno"> 4419</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// SYSCTL_H</span></div>
 <div class="ttc" id="agroup__sysctl__api_html_ga00887ac36367d22ffa569d4eed215146"><div class="ttname"><a href="group__sysctl__api.html#ga00887ac36367d22ffa569d4eed215146">SysCtl_disableExtADCSOCSource</a></div><div class="ttdeci">static void SysCtl_disableExtADCSOCSource(uint32_t adcsocSrc)</div><div class="ttdef"><b>Definition:</b> sysctl.h:2969</div></div>
 <div class="ttc" id="agroup__sysctl__api_html_ga04a6d079c24e384537ad6b336c3ac31a"><div class="ttname"><a href="group__sysctl__api.html#ga04a6d079c24e384537ad6b336c3ac31a">SysCtl_setLowSpeedClock</a></div><div class="ttdeci">static void SysCtl_setLowSpeedClock(SysCtl_LSPCLKPrescaler prescaler)</div><div class="ttdef"><b>Definition:</b> sysctl.h:1319</div></div>
 <div class="ttc" id="agroup__sysctl__api_html_ga0563f0c5404aa0c381e2f376e01d56c5"><div class="ttname"><a href="group__sysctl__api.html#ga0563f0c5404aa0c381e2f376e01d56c5">SysCtl_isLS01Swap</a></div><div class="ttdeci">static bool SysCtl_isLS01Swap(void)</div><div class="ttdef"><b>Definition:</b> sysctl.h:3913</div></div>

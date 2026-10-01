@@ -5,7 +5,7 @@
 // TITLE:  Prototype definitions for CCSI socket.
 //
 //#############################################################################
-// $TI Release: F28004x Support Library v26.01.00.00 $
+// $TI Release: F28004x Support Library v26.02.00.00 $
 // 
 // $Copyright:
 // Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
@@ -39,15 +39,11 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 #ifndef CLB_EX32_CCSI_SOCKET_H_
 #define CLB_EX32_CCSI_SOCKET_H_
-
 #include "driverlib.h"
-
 void CCSI_write(uint16_t headBytes, uint16_t *dataBytes, uint16_t length, unsigned int checkResponse);
 void CCSI_read(uint16_t headBytes);
 void CCSI_write_sync(uint16_t headBytes, uint16_t *dataBytes, uint16_t length);
 void processReadData(uint16_t headBytes, uint16_t length, unsigned int compareCheckBit);
-
 #endif /* CLB_EX32_CCSI_SOCKET_H_ */

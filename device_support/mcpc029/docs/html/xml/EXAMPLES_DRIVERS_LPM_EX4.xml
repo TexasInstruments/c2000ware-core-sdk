@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_LPM_EX4" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_LPM_EX4</compoundname>
+    <title>Device Standby Mode and Wakeup using Watchdog</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_LPM_EX4_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_lpm_ex4"/></para>
+<sect1 id="EXAMPLES_DRIVERS_LPM_EX4_1autotoc_md423">
+<title>Introduction</title>
+<para>This example puts the device into STANDBY mode. If the lowest possible current consumption in STANDBY mode is desired, the JTAG connector must be removed from the device board while the device is in STANDBY mode.</para>
+<para>This example puts the device into STANDBY mode then wakes up the device from STANDBY using watchdog timer.</para>
+<para>The device wakes up from the STANDBY mode when the watchdog timer flows triggering an interrupt. In the ISR, the GPIO1 is pulled low. the GPIO1 is toggled to indicate the device is out of STANDBY mode. A pre scalar is set for the watchdog timer to change the counter flow time.</para>
+<para>GPIO1 is pulled high before entering the STANDBY mode and is pulled low when in the wakeup ISR.</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_LPM_EX4_1autotoc_md424">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>On device wakeup, the GPIO1 will be low and LED1 will start blinking </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/lpm_ex4.md"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dcc__ex1__single__shot__verification_8md" kind="file" language="Markdown">
+    <compoundname>dcc_ex1_single_shot_verification.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>DCC<sp/>Single<sp/>shot<sp/>Clock<sp/>verification{#EXAMPLES_DRIVERS_DCC_EX1_SINGLE_SHOT_VERIFICATION}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>Verification<sp/>of<sp/>PLL<sp/>Frequency<sp/>using<sp/>DCC<sp/>Single<sp/>shot<sp/>mode&quot;</highlight></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>DCC,<sp/>PLL<sp/>Frequency,<sp/>Clock<sp/>verification&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>demonstrates<sp/>the<sp/>use<sp/>of<sp/>the<sp/>Dual-Clock<sp/>Comparator<sp/>(DCC)<sp/>module<sp/>to<sp/>verify<sp/>the<sp/>frequency<sp/>of<sp/>the<sp/>PLLRAW<sp/>clock<sp/>using<sp/>the<sp/>XTAL<sp/>clock<sp/>as<sp/>a<sp/>reference.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Details</highlight></codeline>
+<codeline><highlight class="normal">The<sp/>DCC<sp/>module<sp/>is<sp/>configured<sp/>to<sp/>compare<sp/>two<sp/>clock<sp/>sources:</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Clock<sp/>Source<sp/>|<sp/>Description<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Frequency<sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|--------------|--------------------------------------------------|------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Fclk0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Reference<sp/>clock<sp/>(XTAL<sp/>clock)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>20<sp/>MHz<sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Fclk1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Clock<sp/>to<sp/>be<sp/>verified<sp/>(PLLRAW<sp/>clock)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>160<sp/>MHz<sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>program<sp/>uses<sp/>the<sp/>`DCC_verifyClockFrequency()`<sp/>function<sp/>to<sp/>perform<sp/>the<sp/>clock<sp/>verification<sp/>with<sp/>a<sp/>specified<sp/>tolerance<sp/>of<sp/>1%.<sp/>The<sp/>result<sp/>of<sp/>the<sp/>verification<sp/>is<sp/>stored<sp/>in<sp/>the<sp/>`result`<sp/>variable,<sp/>which<sp/>indicates<sp/>whether<sp/>the<sp/>PLLRAW<sp/>clock<sp/>frequency<sp/>is<sp/>within<sp/>the<sp/>expected<sp/>range.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\note</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Update<sp/>the<sp/>parameters<sp/>in<sp/>the<sp/>`DCC_verifyClockFrequency()`<sp/>function<sp/>if<sp/>using<sp/>different<sp/>PLL<sp/>or<sp/>XTAL<sp/>frequencies.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Refer<sp/>to<sp/>the<sp/>device<sp/>Technical<sp/>Reference<sp/>Manual<sp/>(TRM)<sp/>for<sp/>details<sp/>on<sp/>counter<sp/>seed<sp/>values<sp/>and<sp/>DCC<sp/>module<sp/>configuration.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>None</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Watch<sp/>Variables</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Variable<sp/>Name<sp/>|<sp/>Description<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|---------------|--------------------------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`result`<sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Status<sp/>of<sp/>the<sp/>PLLRAW<sp/>clock<sp/>verification<sp/>(PASS<sp/>or<sp/>FAIL).<sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Example<sp/>Configuration</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Parameter<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Value<sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|-------------------------------|-------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**FClk1<sp/>(PLL<sp/>frequency)**<sp/><sp/><sp/><sp/><sp/>|<sp/>160<sp/>MHz<sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**FClk0<sp/>(XTAL<sp/>frequency)**<sp/><sp/><sp/><sp/>|<sp/>20<sp/>MHz<sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**Tolerance**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>1%<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**Allowable<sp/>Frequency<sp/>Tolerance**<sp/>|<sp/>0%<sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**System<sp/>Clock<sp/>Frequency**<sp/><sp/><sp/><sp/>|<sp/>160<sp/>MHz<sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Using<sp/>the<sp/>watch<sp/>variables,<sp/>view<sp/>the<sp/>Clock<sp/>monitoring<sp/>status<sp/>and<sp/>the<sp/>counter<sp/>values<sp/>when<sp/>the<sp/>error<sp/>is<sp/>generated.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\note</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>When<sp/>running<sp/>in<sp/>flash<sp/>configuration,<sp/>it<sp/>is<sp/>recommended<sp/>to<sp/>reset<sp/>and<sp/>restart<sp/>after<sp/>loading<sp/>the<sp/>example<sp/>to<sp/>remove<sp/>any<sp/>stale<sp/>flags<sp/>or<sp/>states.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_DCC_PAGE</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/dcc_ex1_single_shot_verification.md"/>
+  </compounddef>
+</doxygen>

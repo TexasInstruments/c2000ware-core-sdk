@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="troubleshooting" kind="page">
+    <compoundname>troubleshooting</compoundname>
+    <title>Troubleshooting</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>There are a number of things that can cause the user trouble while bringing up a debug session the first time. This section will try to provide solutions to the most common problems encountered with the Delfino devices.</para>
+<para><itemizedlist>
+<listitem><para>&quot;I get a managed make error when I import the example projects&quot;<linebreak/>
+This occurs when one imports a project for which he or she doesn&apos;t have the code generation tools for. Please ensure that you have at least C2000 Code Generation Tools version 22.6.1.LTS or later.</para>
+</listitem><listitem><para>&quot;I cannot build the example projects&quot;<linebreak/>
+This is caused by linked resources not being where the project expects them to be. For instance, if you imported the projects and selected &quot;Copy projects to workspace&quot;, the projects would no longer build because the files they reference aren&apos;t a part of your workspace. Always build and run the examples directly in the C2000Ware directory tree.</para>
+</listitem><listitem><para>&quot;My MCPC029 device isn&apos;t in the target configuration selection list&quot;<linebreak/>
+The list of available device for debug is determined based on a number of factors, including drivers and tools chains available on the host system. If you system has previously been used only for development on previous C2000 devices, you may not have the required CCS device files. In CCS click on &quot;Help, Check for updates&quot; and follow the dialog boxes to update your CCS installation.</para>
+</listitem><listitem><para>&quot;I cannot connect to the target&quot;<linebreak/>
+This is most often times caused by either a bad target configuration, or simply the emulator being physically disconnected. If you are unable to connect to a target check the following things:<orderedlist>
+<listitem><para>Ensure the target configuration is correct for the device you have.</para>
+</listitem><listitem><para>Ensure the emulator is plugged in to both the computer and the device to be debugged.</para>
+</listitem><listitem><para>Ensure that the target device is powered.</para>
+</listitem></orderedlist>
+</para>
+</listitem><listitem><para>&quot;I cannot load code&quot;<linebreak/>
+This is typically caused by an error in the GEL script or improperly linked code. If you are having trouble loading code, check the linker command files and maps to ensure that they match the device\92s memory map. If these appear correct, there is a chance there is something wrong in one of your GEL scripts. </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <location file="example_intro.md"/>
+  </compounddef>
+</doxygen>

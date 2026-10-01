@@ -32,7 +32,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -65,18 +65,15 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib_cm.h"
 #include "cm.h"
-
 //
 // Defines
 //
 #define PACKET_LENGTH 132
-
 #define ETHERNET_NO_OF_RX_PACKETS   1U
 //
 //Change this define for changing Packet buffer length
@@ -84,15 +81,12 @@
 #define ETHERNET_MAX_PACKET_LENGTH 128U
 uint8_t Ethernet_rxBuffer[ETHERNET_NO_OF_RX_PACKETS *
                           ETHERNET_MAX_PACKET_LENGTH];
-
 #define REVMII_REMOTE_PHY_ADDRESS 0U
 #define REVMII_LOCAL_PHY_ADDRESS 0xAU
-
 //
 // Globals
 //
 uint8_t pData[PACKET_LENGTH];
-
 //
 // Main
 //
@@ -105,19 +99,16 @@ void main(void)
     Ethernet_Statistics stats;
     Ethernet_Handle emac_handle;
     uint16_t revmiiIntStatus;
-
     //
     // Initialize device clock and peripherals
     //
     CM_init();
-
     //
     //Select the MII interface of the module
     //
     initInterfaceConfig.ssbase = EMAC_SS_BASE;
     initInterfaceConfig.enet_base = EMAC_BASE;
     initInterfaceConfig.phyMode = ETHERNET_SS_PHY_INTF_SEL_MII;
-
     //
     //Assign SoC specific functions for Enabling,Disabling interrupts
     //and for enabling the Peripheral at system level
@@ -126,6 +117,8 @@ void main(void)
     initInterfaceConfig.ptrPlatformInterruptEnable = &Platform_enableInterrupt;
     initInterfaceConfig.ptrPlatformPeripheralEnable = &Platform_enablePeripheral;
     initInterfaceConfig.ptrPlatformPeripheralReset = &Platform_resetPeripheral;
+    initInterfaceConfig.ptrCoreInterruptDisable = &Interrupt_disableInProcessor;
+    initInterfaceConfig.ptrCoreInterruptEnable = &Interrupt_enableInProcessor;
     //
     //Assign the peripheral number at the SoC
     //
@@ -138,9 +131,7 @@ void main(void)
     initInterfaceConfig.interruptNum[2] = INT_EMAC_TX1;
     initInterfaceConfig.interruptNum[3] = INT_EMAC_RX0;
     initInterfaceConfig.interruptNum[4] = INT_EMAC_RX1;
-
     pInitCfg = Ethernet_initInterface(initInterfaceConfig);
-
     //
     // Get an initial configuration of known good parameters
     //
@@ -163,8 +154,6 @@ void main(void)
     //Hence using a dummy value of 1
     //
     Ethernet_getHandle((Ethernet_Handle)1,pInitCfg , &emac_handle);
-
-
     //
     //Do global Interrupt Enable
     //
@@ -179,7 +168,6 @@ void main(void)
     //
     Interrupt_enable(INT_EMAC_TX0);
     Interrupt_enable(INT_EMAC_RX0);
-
     //
     //Form the Packet in Memory
     //
@@ -195,8 +183,6 @@ void main(void)
     //
     //Configure the PHY address for Remote PHY in the MDIO module
     //
-
-
     Ethernet_configurePHYAddress(EMAC_BASE,REVMII_REMOTE_PHY_ADDRESS);
     //
     //Rev MII PHY control register
@@ -207,7 +193,6 @@ void main(void)
     Ethernet_readPHYRegister(EMAC_BASE,
                                                                   0x0);
     Ethernet_writePHYRegister(EMAC_BASE,0x0,0x2100);
-
     //Check for RevMII link status change interrupt
     //Read RevMII Interrupt Status Mask Register
     revmiiIntStatus =  Ethernet_readPHYRegister(EMAC_BASE,
@@ -223,7 +208,6 @@ void main(void)
                                     0x10,
                                     revmiiIntStatus);
     }
-
     pktDesc.bufferLength = PACKET_LENGTH;
     pktDesc.dataOffset = 0;
     pktDesc.dataBuffer = pData;
@@ -233,19 +217,14 @@ void main(void)
     pktDesc.pktLength = PACKET_LENGTH;
     pktDesc.validLength = PACKET_LENGTH;
     pktDesc.numPktFrags = 1;
-
-
     Ethernet_sendPacket(emac_handle,&pktDesc);
-
     //
     //We expect a packet to come from Remote side
     //Query Statistics to check if a packet has come
     //
-
     Ethernet_getStatistics(emac_handle, &stats);
     if(stats.rxUnicastPacketsGood)
         __asm("   bkpt #0");
     else
         __asm("   bkpt #0");
-
 }

@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="DRIVERLIB_USAGE" kind="page">
+    <compoundname>DRIVERLIB_USAGE</compoundname>
+    <title>Driverlib Usage</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="DRIVERLIB_USAGE_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_device_common_c28x_driverlib_usage"/> To develop with the peripheral driver library more efficiently, Code Composer Studio (CCS) offers several project and workspace features that can help maximize development time and device application execution. As previously discussed in the programming model chapter, there are advantages and disadvantages to each programming model. This chapter will explain optimization tips that should be used in conjuction with the APIs provided by the peripheral driver library to overcome and minimize those disadvantages.</para>
+<sect1 id="DRIVERLIB_USAGE_1autotoc_md5">
+<title>Code Composer Studio Tips</title>
+<para>This section will detail some Code Composer Studio (CCS) tips that can be used to help effectively use the driver library during development.</para>
+<para>In CCS, the Content Assist feature can be used to offer suggestions for completing function and parameter names. This feature may be auto-activated while typing or it can be activated by hitting Ctrl+Space. To get the desired preferences, adjust the settings under C/C++ -&gt; Editor -&gt; Content Assist. The figure below shows the Content Assist in use.</para>
+<para><htmlonly> &lt;style&gt;div.image img[src=&quot;ccs_content_assist.jpg&quot;]{=100x20}&lt;/style&gt;</htmlonly> <image type="html" name="ccs_content_assist.jpg">CCS Content Assist feature</image>
+</para>
+<para>If you can\&apos;t tell what an appropriate parameter is just from looking at the function prototype and the Content Assist list, hover over the function to view its description.</para>
+</sect1>
+<sect1 id="DRIVERLIB_USAGE_1autotoc_md6">
+<title>CCS Outline View</title>
+<para>With a driver header file open, it is useful to take advantage of the CCS Outline view to get a complete list of functions, enumerations, and macros. The Outline view can be opened by selecting Window -&gt; Show view -&gt; Outline. The figure below shows the outline view in use.</para>
+<para><htmlonly> &lt;style&gt;div.image img[src=&quot;ccs_outline_view.jpg&quot;]{=100x20}&lt;/style&gt;</htmlonly> <image type="html" name="ccs_outline_view.jpg">CCS Outline View feature</image>
+</para>
+<para>Similarly, you can split screen between application code and the API Reference Guide in the Resource Explorer.</para>
+<para>Additionally, the function prototype in a driver header file can be viewed by holding Ctrl and clicking on the function name in the application code.</para>
+<para>For more information on any of the tips provided, refer to the CCS Online Help section for details (CCS menu Help -&gt; Help Contents and search for Content Assist).</para>
+</sect1>
+<sect1 id="DRIVERLIB_USAGE_1autotoc_md7">
+<title>ASSERT Macro</title>
+<para>An ASSERT macro is defined in the <computeroutput>driverlib/debug.h</computeroutput> file as a method of checking the validity of function arguments and other error conditions. When the symbol DEBUG is defined, ASSERT(<emphasis>expr</emphasis>) will call a user-defined error function <bold>error</bold>() when Boolean expression <emphasis>expr</emphasis> is evaluated to false. To use the macro, an application must provide an <bold>error</bold>() function with the following prototype:</para>
+<para>void <bold>error</bold>(char *filename, uint32_t line);</para>
+<para>The <emphasis>filename</emphasis> and <emphasis>line</emphasis> parameters indicate which ASSERT resulted in the error condition. It is up to the application to decide what action the <bold>error</bold>() function should take to report the error.</para>
+<para>The default Debug build configuration for the driverlib.lib project and the Driverlib example projects have turned on ASSERT by putting DEBUG in the projects\&apos; predefined symbols. Removing the DEBUG symbol from the projects will cause the ASSERT macro to compile to nothing, meaning it will add no code size or cycles to the application when it is turned off.</para>
+</sect1>
+<sect1 id="DRIVERLIB_USAGE_1autotoc_md8">
+<title>Driver Library Optimization</title>
+<para>When using the software driver programming model it is important to note that there is a price to abstraction and making functions generic. Some of the drawbacks include the overhead time of the function call and the calculation time required to access a specific register offset or bit field within the register.</para>
+<para>To help overcome these shortcomings, it is important to consider the use of inline functions. Using inline functions eliminates the need for function calls since the function is essentially treated like a macro. If constants are being passed into the function&apos;s parameters, much of its code may be evaluated at compile time. In order to utilize inline functions you must turn on optimization for it to take effect. If optimization is desired without the use of inline functions, use the <ndash/>no_inling (-pi) option. This option can be set in the CCS project properties under Build -&gt; C2000 Compiler -&gt; Advanced Options -&gt; Language Options.</para>
+<para>There are two types of APIs available in a typical peripheral driver file namely static inline APIs (defined in *.h files) and non-static non-inline APIs (defined in *.c files). For best performance, static inline APIs available in driverlib are expected to be inlined in the application.</para>
+<para>Static inline APIs defined in the driverlib are compiled with the application code and would be part of application binary while non-static non-inline APIs would be part of driverlib.lib provided under C2000Ware. C2000Ware provides debug and release libraries for device specific peripheral drivers.</para>
+<para>The debug library is to be used while debugging the application code as it is compiled with DEBUG symbol to verify input parameters through ASSERT macro. The debug library is built with option opt = Ooff to enable efficient debugging while keeping the code size small. The release library is compiled with option opt = O2 and hence expand calls to APIs declared inline along with other optimizations resulting in improved code performance. The DEBUG symbol is not used while compiling the release library thereby removing ASSERT macro resulting in smaller code size.</para>
+<para>Most of the APIs are declared as static inline in the driverlib and therefore are compiled with application code in case the API is being used by the application. Hence the performance of static inline APIs would depend on the application project optimization level. With optimization level Ooff, the static inline driverlib APIs would be part of application code memory section and a function call would be made for each call. This option should only be used while debugging the project. Use optimization level equal to or above O0 in application project to expand the static inline driverlib APIs. Refer to respective compiler guide for more details on different optimization levels available to achieve required performance. Refer to compiler guide for more details on different optimization levels available to achieve required performance. <ulink url="http://www.ti.com/lit/ug/spru514r/spru514r.pdf">http://www.ti.com/lit/ug/spru514r/spru514r.pdf</ulink></para>
+<para>In addition to inline functions, using the &quot;generating function subsection&quot; compiler option(<ndash/>gen_func_subsections=on, -mo) is important. By default, the library project provided with the peripheral driver library project has this option turned on. When this option is selected, the compiler places each driver library function into its own subsection. This allows only the functions that are referenced in the application to be linked into the final executable. This can result in an overall code size reduction. This compiler option can be set by accessing the CCS project properties under Build -&gt; C2000 Compiler -&gt; Advanced Options -&gt; Runtime Model Options.</para>
+<para>The optimization options can be found in the CCS project properties which is accessed by right-clicking on the project in the project explorer and selecting properties. In the resulting window, the optimization settings are found in Build -&gt; C2000 Compiler -&gt; Optimization. </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/device/common_c28x/driverlib_usage.md"/>
+  </compounddef>
+</doxygen>

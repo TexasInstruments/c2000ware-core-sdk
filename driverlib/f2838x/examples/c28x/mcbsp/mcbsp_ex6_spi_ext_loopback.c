@@ -30,7 +30,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -63,28 +63,23 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "device.h"
 #include "driverlib.h"
-
 //
 // Defines
 //
-
 //
 // Define to select delay in clock cycles.
 //
 #define MCBSP_CYCLE_NOP0(n)  __asm(" RPT #(" #n ") || NOP")
 #define MCBSP_CYCLE_NOP(n)   MCBSP_CYCLE_NOP0(n)
-
 //
 // Globals
 //
 uint32_t errCountGlobal   = 0;
-
 //
 // Variables for transmitting, receiving and testing the data.
 //
@@ -92,7 +87,6 @@ uint16_t txData1 = 0x0000;
 uint16_t txData2 = 0x0000;
 uint16_t rxData1 = 0x0000;
 uint16_t rxData2 = 0x0000;
-
 //
 // Function Prototypes
 //
@@ -100,7 +94,6 @@ extern void setupMcBSPAPinmux(void);
 extern void setupMcBSPBPinmux(void);
 void initSPIMasterMode(uint32_t masterBase);
 void initSPISlaveMode(uint32_t slaveBase);
-
 //
 // Main
 //
@@ -108,39 +101,32 @@ void main(void)
 {
     uint32_t tempData;
     errCountGlobal = 0x0;
-
     //
     // Initialize device clock and peripherals.
     //
     Device_init();
-
     //
     // Disable all the interrupts.
     //
     DINT;
-
     //
     // Setup GPIO by disabling pin locks and enabling pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize GPIO.
     //
     setupMcBSPAPinmux();
     setupMcBSPBPinmux();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Initialize and release McBSPA and McBSPB from reset.
     //
@@ -148,7 +134,6 @@ void main(void)
     initSPISlaveMode(MCBSPB_BASE);
     txData1 = 0x55aa;
     txData2 = 0xaa55;
-
     //
     // Main loop to transfer 32-bit words through McBSP in SPI mode
     // periodically.
@@ -161,7 +146,6 @@ void main(void)
         tempData = (txData1|(((uint32_t)txData2) << 16U));
         while(!McBSP_isTxReady(MCBSPA_BASE));
         McBSP_write32bitData(MCBSPA_BASE, tempData);
-
         //
         // Check if data is received as SPI slave
         //
@@ -179,7 +163,6 @@ void main(void)
         NOP;
     }
 }
-
 //
 // Init SPI Master Mode - This function initializes McBSP in SPI master mode.
 //
@@ -192,23 +175,19 @@ void initSPIMasterMode(uint32_t masterBase)
     McBSP_resetSampleRateGenerator(masterBase);
     McBSP_resetTransmitter(masterBase);
     McBSP_resetReceiver(masterBase);
-
     //
     // Set Rx sign-extension and justification mode.
     //
     McBSP_setRxSignExtension(masterBase, MCBSP_RIGHT_JUSTIFY_FILL_ZERO);
-
     //
     // Enable clock stop mode.
     //
     McBSP_setClockStopMode(masterBase, MCBSP_CLOCK_SPI_MODE_NO_DELAY);
-
     //
     // Set Rx & Tx delay to 1 cycle.
     //
     McBSP_setRxDataDelayBits(masterBase, MCBSP_DATA_DELAY_BIT_1);
     McBSP_setTxDataDelayBits(masterBase, MCBSP_DATA_DELAY_BIT_1);
-
     //
     // Set CLKX & FSX source as sample rate generator.
     //
@@ -216,14 +195,12 @@ void initSPIMasterMode(uint32_t masterBase)
     McBSP_setRxClockSource(masterBase, MCBSP_INTERNAL_RX_CLOCK_SOURCE);
     McBSP_setTxFrameSyncSource(masterBase, MCBSP_TX_INTERNAL_FRAME_SYNC_SOURCE);
     McBSP_setRxFrameSyncSource(masterBase, MCBSP_RX_INTERNAL_FRAME_SYNC_SOURCE);
-
     //
     // Set Tx and Rx clock and frame-sync polarity.
     //
     McBSP_setTxFrameSyncPolarity(masterBase, MCBSP_TX_FRAME_SYNC_POLARITY_LOW);
     McBSP_setTxClockPolarity(masterBase, MCBSP_TX_POLARITY_RISING_EDGE);
     McBSP_setRxClockPolarity(masterBase, MCBSP_RX_POLARITY_FALLING_EDGE);
-
     //
     // Initialize McBSP data length.
     //
@@ -231,64 +208,53 @@ void initSPIMasterMode(uint32_t masterBase)
                         MCBSP_BITS_PER_WORD_32, 0);
     McBSP_setTxDataSize(masterBase, MCBSP_PHASE_ONE_FRAME,
                         MCBSP_BITS_PER_WORD_32, 0);
-
     //
     // Set frame synchronization pulse period to 1 CLKG cycle.
     //
     McBSP_setFrameSyncPulsePeriod(masterBase, 0);
-
     //
     // Set frame-sync pulse width to 1 CLKG cycle.
     //
     McBSP_setFrameSyncPulseWidthDivider(masterBase, 0);
-
     //
     // Set the trigger source for internally generated frame-sync pulse.
     //
     McBSP_setTxInternalFrameSyncSource(masterBase,
                                        MCBSP_TX_INTERNAL_FRAME_SYNC_DATA);
-
     //
     // Set LSPCLK as input source for sample rate generator.
     //
     McBSP_setTxSRGClockSource(masterBase, MCBSP_SRG_TX_CLOCK_SOURCE_LSPCLK);
-
     //
     // Set Divide down value for CLKG.
     //
     McBSP_setSRGDataClockDivider(masterBase, 16);
-
     //
     // Set no external clock sync for CLKG.
     //
     McBSP_disableSRGSyncFSR(masterBase);
-
     //
     // Wait for CPU cycles equivalent to 2 SRG cycles-init delay.
     // Total cycles required = 2*(SYSCLK/LSPCLK). In this example
     // LSPCLK = SYSCLK/4.
     //
     MCBSP_CYCLE_NOP(8);
-
     //
     // Enable Sample rate generator and wait for at least 2 CLKG clock cycles.
     //
     McBSP_enableSampleRateGenerator(masterBase);
     McBSP_enableFrameSyncLogic(masterBase);
-
     //
     // Wait for CPU cycles equivalent to 2 CLKG cycles-init delay.
     // Total cycles required = 2*(SYSCLK/(LSPCLK/(1+CLKGDV_VAL))). In this
     // example LSPCLK = SYSCLK/4 and CLKGDV_VAL = 1.
     //
     MCBSP_CYCLE_NOP(16);
-
     //
     // Release Rx, Tx and frame-sync generator from reset.
     //
     McBSP_enableTransmitter(masterBase);
     McBSP_enableReceiver(masterBase);
-
     //
     // Wait for CPU cycles equivalent to 2 SRG cycles-init delay.
     // Total cycles required = 2*(SYSCLK/LSPCLK). In this example
@@ -296,8 +262,6 @@ void initSPIMasterMode(uint32_t masterBase)
     //
     MCBSP_CYCLE_NOP(8);
 }
-
-
 //
 // Init SPI Slave Mode - This function initializes McBSP in SPI slave mode.
 //
@@ -310,36 +274,30 @@ void initSPISlaveMode(uint32_t slaveBase)
     McBSP_resetSampleRateGenerator(slaveBase);
     McBSP_resetTransmitter(slaveBase);
     McBSP_resetReceiver(slaveBase);
-
     //
     // Set Rx sign-extension and justification mode.
     //
     McBSP_setRxSignExtension(slaveBase, MCBSP_RIGHT_JUSTIFY_FILL_ZERO);
-
     //
     // Enable clock stop mode.
     //
     McBSP_setClockStopMode(slaveBase, MCBSP_CLOCK_SPI_MODE_NO_DELAY);
-
     //
     // Set Rx & Tx delay to 0.
     //
     McBSP_setRxDataDelayBits(slaveBase, MCBSP_DATA_DELAY_BIT_0);
     McBSP_setTxDataDelayBits(slaveBase, MCBSP_DATA_DELAY_BIT_0);
-
     //
     // Set CLKX & FSX as inputs
     //
     McBSP_setTxClockSource(slaveBase, MCBSP_EXTERNAL_TX_CLOCK_SOURCE);
     McBSP_setTxFrameSyncSource(slaveBase, MCBSP_TX_EXTERNAL_FRAME_SYNC_SOURCE);
-
     //
     // Set Tx and Rx clock and frame-sync polarity.
     //
     McBSP_setTxFrameSyncPolarity(slaveBase, MCBSP_TX_FRAME_SYNC_POLARITY_LOW);
     McBSP_setTxClockPolarity(slaveBase, MCBSP_TX_POLARITY_RISING_EDGE);
     McBSP_setRxClockPolarity(slaveBase, MCBSP_RX_POLARITY_FALLING_EDGE);
-
     //
     // Initialize McBSP data length.
     //
@@ -347,48 +305,40 @@ void initSPISlaveMode(uint32_t slaveBase)
                         MCBSP_BITS_PER_WORD_32, 0);
     McBSP_setTxDataSize(slaveBase, MCBSP_PHASE_ONE_FRAME,
                         MCBSP_BITS_PER_WORD_32, 0);
-
     //
     // Set LSPCLK as input source for sample rate generator.
     //
     McBSP_setTxSRGClockSource(slaveBase, MCBSP_SRG_TX_CLOCK_SOURCE_LSPCLK);
-
     //
     // Set Divide down value for CLKG.
     //
     McBSP_setSRGDataClockDivider(slaveBase, 1);
-
     //
     // Set no external clock sync for CLKG.
     //
     McBSP_disableSRGSyncFSR(slaveBase);
-
     //
     // Wait for CPU cycles equivalent to 2 SRG cycles-init delay.
     // Total cycles required = 2*(SYSCLK/LSPCLK). In this example
     // LSPCLK = SYSCLK/4.
     //
     MCBSP_CYCLE_NOP(8);
-
     //
     // Enable Sample rate generator and wait for at least 2 CLKG clock cycles.
     //
     McBSP_enableSampleRateGenerator(slaveBase);
     McBSP_enableFrameSyncLogic(slaveBase);
-
     //
     // Wait for CPU cycles equivalent to 2 CLKG cycles-init delay.
     // Total cycles required = 2*(SYSCLK/(LSPCLK/(1+CLKGDV_VAL))). In this
     // example LSPCLK = SYSCLK/4 and CLKGDV_VAL = 1.
     //
     MCBSP_CYCLE_NOP(16);
-
     //
     // Release Rx, Tx and frame-sync generator from reset.
     //
     McBSP_enableTransmitter(slaveBase);
     McBSP_enableReceiver(slaveBase);
-
     //
     // Wait for CPU cycles equivalent to 2 SRG cycles-init delay.
     // Total cycles required = 2*(SYSCLK/LSPCLK). In this example

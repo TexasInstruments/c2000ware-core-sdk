@@ -47,29 +47,24 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Defines
 //
 #define PWM_CLK   5UL                      // PWM frequency as 5Hz
 #define PRD_VAL   (DEVICE_SYSCLK_FREQ / PWM_CLK)  // Calculate period value
-
 #define DECREASE_FREQUENCY  0
 #define INCREASE_FREQUENCY  1
-
 //
 // Globals
 //
 uint16_t direction;
 volatile uint32_t cap1Count;
-
 //
 // Main
 //
@@ -79,30 +74,25 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Board initialization
     // Select eCAP1OUT on MUX 0. Make GPIO5 eCAP1OUT for PWM output
     // Configure eCAP in APWM mode
     //
     Board_init();
-
     for(;;)
     {
         //
@@ -110,9 +100,7 @@ void main(void)
         //
         ECAP_setAPWMShadowCompare(myECAP0_BASE,
                       (ECAP_getEventTimeStamp(myECAP0_BASE, ECAP_EVENT_1) >> 1U));
-
         cap1Count = ECAP_getEventTimeStamp(myECAP0_BASE, ECAP_EVENT_1);
-
         //
         // Vary frequency
         //
@@ -124,7 +112,6 @@ void main(void)
         {
            direction = DECREASE_FREQUENCY;
         }
-
         if(direction == INCREASE_FREQUENCY)
         {
            ECAP_setAPWMShadowPeriod(myECAP0_BASE, (cap1Count - 500000U));
@@ -135,4 +122,3 @@ void main(void)
         }
     }
 }
-

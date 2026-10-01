@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -41,14 +41,11 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 #ifndef USB_EX8_DUAL_DETECT_H
 #define USB_EX8_DUAL_DETECT_H
-
 //
 // Defines
 //
-
 //
 // Debug-related definitions and declarations.
 //
@@ -59,15 +56,12 @@
 // Map all debug print calls to SCIprintf in debug builds.
 //
 #define DEBUG_PRINT SCIprintf
-
 #else
-
 //
 // Compile out all debug print calls in release builds.
 //
 #define DEBUG_PRINT while(0) ((int (*)(char *, ...))0)
 #endif
-
 //
 // Function Prototypes
 //
@@ -77,9 +71,7 @@ void DeviceStackInit(void);
 void DeviceMain(void);
 void UpdateStatus(char *pcString, uint32_t ui32Buttons, bool bClrGBg);
 void ClearMainWindow(void);
-
 #endif // USB_EX8_DUAL_DETECT_H
-
 //
 // End of file
 //

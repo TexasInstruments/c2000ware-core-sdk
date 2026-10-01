@@ -72,18 +72,15 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Defines
 //
-
 //
 // Globals
 //
@@ -91,47 +88,39 @@ uint16_t sData[2];                  // Send data buffer
 uint16_t rData[2];                  // Receive data buffer
 uint16_t rDataPoint = 0;            // To keep track of where we are in the
                                     // data stream to check received data
-
 //
 // Function Prototypes
 //
 __interrupt void i2cFIFOISR(void);
-
 //
 // Main
 //
 void main(void)
 {
     uint16_t i;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Board initialization
     //
     Board_init();
     I2C_setConfig(myI2C0_BASE, I2C_CONTROLLER_SEND_MODE);
     I2C_sendStartCondition(myI2C0_BASE);
-
     //
     // Initialize the data buffers
     //
@@ -140,13 +129,11 @@ void main(void)
         sData[i] = i;
         rData[i]= 0;
     }
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Loop forever. Suspend or place breakpoints to observe the buffers.
     //
@@ -157,16 +144,13 @@ void main(void)
      // The ISR will handle pushing/pulling data to/from the TX and
      // RX FIFOs resp.
     }
-
 }
-
 //
 // I2C A Transmit & Receive FIFO ISR.
 //
  __interrupt void i2cFIFOISR(void)
 {
     uint16_t i;
-
     //
     // If receive FIFO interrupt flag is set, read data
     //
@@ -176,7 +160,6 @@ void main(void)
         {
             rData[i] = I2C_getData(myI2C0_BASE);
         }
-
         //
         // Check received data
         //
@@ -190,14 +173,11 @@ void main(void)
                 ESTOP0;
             }
         }
-
         rDataPoint = (rDataPoint + 1) & 0xFF;
-
         //
         // Clear interrupt flag
         //
         I2C_clearInterruptStatus(myI2C0_BASE, I2C_INT_RXFF);
-
     }
     //
     // If transmit FIFO interrupt flag is set, put data in the buffer
@@ -208,12 +188,10 @@ void main(void)
         {
             I2C_putData(myI2C0_BASE, sData[i]);
         }
-
         //
         // Send the start condition
         //
         I2C_sendStartCondition(myI2C0_BASE);
-
         //
         // Increment data for next cycle
         //
@@ -221,19 +199,16 @@ void main(void)
         {
            sData[i] = (sData[i] + 1) & 0xFF;
         }
-
         //
         // Clear interrupt flag
         //
         I2C_clearInterruptStatus(myI2C0_BASE, I2C_INT_TXFF);
     }
-
     //
     // Issue ACK
     //
     Interrupt_clearACKGroup(INT_myI2C0_FIFO_INTERRUPT_ACK_GROUP);
 }
-
  //
  // Enabled only for SysConfig functionality
  //
@@ -244,7 +219,6 @@ __interrupt void INT_myI2C0_ISR(void)
     //
     Interrupt_clearACKGroup(INT_myI2C0_INTERRUPT_ACK_GROUP);
 }
-
 //
 // End of File
 //

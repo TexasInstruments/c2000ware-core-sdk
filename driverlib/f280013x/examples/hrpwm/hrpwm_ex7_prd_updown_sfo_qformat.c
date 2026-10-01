@@ -77,7 +77,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -85,21 +84,17 @@
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Defines
 //
-
 // # of PWM channels
 #define PWM_CH            1
 #define STATUS_SUCCESS    1
 #define STATUS_FAIL       0
-
 //
 // Globals
 //
 uint16_t updateFine, periodFine, status;
-
 //
 // Global variable used by the SFO library
 // Result can be used for all HRPWM channels
@@ -107,17 +102,14 @@ uint16_t updateFine, periodFine, status;
 // register by SFO(0) function.
 //
 int MEP_ScaleFactor = 0;
-
 //
 // Used by SFO library (ePWM[0] is a dummy value that isn't used)
 //
 volatile uint32_t ePWM[PWM_CH + 1] = {0, EPWM1_BASE};
-
 //
 // Function Prototypes
 //
 void error(void);
-
 //
 // Main
 //
@@ -125,36 +117,29 @@ void main(void)
 {
     uint16_t i;
     uint32_t base;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull-ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Setup example variables
     //
     updateFine = 1;
     periodFine = 0;
     status = SFO_INCOMPLETE;
-
-
     //
     // Calling SFO() updates the HRMSTEP register with calibrated
     // MEP_ScaleFactor. HRMSTEP must be populated with a scale factor
@@ -172,12 +157,10 @@ void main(void)
             error();
         }
     }
-
     //
     // Configure ePWM1 and ePWM2 GPIOs
     //
     Board_init();
-
     //
     // Enable TBCLK within EPWM.
     //
@@ -187,7 +170,6 @@ void main(void)
     //
     EINT;
     ERTM;
-
     for(;;)
     {
         //
@@ -217,7 +199,6 @@ void main(void)
                 for(i = 0; i < PWM_CH; i++)
                 {
                     base = EPWM1_BASE + (i * 0x100U);
-
                     //
                     // Write fractional period value in Q16 format
                     //
@@ -234,7 +215,6 @@ void main(void)
                     HWREGH(base + HRPWM_O_TBPRDHR) = 0U;
                 }
             }
-
             //
             // Call the scale factor optimizer lib function SFO(0)
             // periodically to track for any change due to temp/voltage.
@@ -246,7 +226,6 @@ void main(void)
             // MEP_ScaleFactor
             //
             status = SFO();
-
             if(status == SFO_ERROR)
             {
                 //
@@ -258,7 +237,6 @@ void main(void)
         }
     }
 }
-
 // error - Halt debugger when error occurs
 //
 void error (void)
@@ -268,7 +246,6 @@ void error (void)
     //
     ESTOP0;
 }
-
 //
 // End of file
 //

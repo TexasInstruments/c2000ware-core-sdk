@@ -22,7 +22,7 @@
 // $TI Release: $
 // 
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -55,34 +55,27 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Define to select wait delay.
 //
 #define MCBSP_CYCLE_NOP0(n)  __asm(" RPT #(" #n ") || NOP")
 #define MCBSP_CYCLE_NOP(n)   MCBSP_CYCLE_NOP0(n)
-
 //
 // Globals
 //
 uint32_t errCountGlobal   = 0;
-
 //
 // Variables for transmitting, receiving and testing the data.
 //
 uint16_t txData;
 uint16_t rxData;
 uint16_t testData;
-
-
-
 __interrupt void localMcBSPTxINTAISR(void);
 __interrupt void localMcBSPRxINTAISR(void);
 //
@@ -92,45 +85,36 @@ void main(void)
 {
     //
     Device_init();
-
         //
         //Initialize PIE and clear PIE registers. Disables CPU interrupts
         //
         Interrupt_initModule();
-
         //
         //Initialize the PIE vector table with pointers to the shell Interrupt
         //Service Routines (ISR)
         //
         Interrupt_initVectorTable();
-
         //
         // Setup GPIO by disabling pin locks and enabling pullups.
         //
         Device_initGPIO();
-
-
         McBSP_resetFrameSyncLogic(MCBSPA_BASE);
         McBSP_resetSampleRateGenerator(MCBSPA_BASE);
         McBSP_resetTransmitter(MCBSPA_BASE);
         McBSP_resetReceiver(MCBSPA_BASE);
-
         //
         //Call Board_init() to invoke the Sysconfig controlled settings
         //
         Board_init();
-
             //
             // Enable group 7 CPU interrupt.
             //
             IER = 0x20;
-
             //
             // Enable global interrupts.
             //
             EINT;
             ERTM;
-
 	    //
         // Wait for CPU cycles equivalent to 2 SRG cycles-init delay.
         // Total cycles required = 2*(SYSCLK/LSPCLK). In this example
@@ -141,25 +125,20 @@ void main(void)
         // Enable Sample rate generator and wait for at least 2 CLKG clock cycles.
         //
         McBSP_enableSampleRateGenerator(MCBSPA_BASE);
-
         //
         // Wait for CPU cycles equivalent to 2 CLKG cycles-init delay.
         // Total cycles required = 2*(SYSCLK/(LSPCLK/(1+CLKGDV_VAL))). In this
         // example LSPCLK = SYSCLK/4 and CLKGDV_VAL = 1.
         //
         MCBSP_CYCLE_NOP(16);
-
         //
         // Release Rx, Tx from reset.
         //
         McBSP_enableReceiver(MCBSPA_BASE);
         McBSP_enableTransmitter(MCBSPA_BASE);
         McBSP_enableFrameSyncLogic(MCBSPA_BASE);
-
         while(1);
-
 }
-
 //
 // local McBSP Tx INTA ISR - ISR for McBSPA Tx interrupt.
 //
@@ -167,13 +146,11 @@ __interrupt void localMcBSPTxINTAISR(void)
 {
     McBSP_write16bitData(MCBSPA_BASE, txData);
     txData = (txData + 1) & 0x00FF;
-
     //
     // Acknowledge the interrupt to receive more interrupts.
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP6);
 }
-
 //
 // local McBSP Rx INTA ISR - ISR for McBSPA Rx interrupt.
 //
@@ -186,16 +163,11 @@ __interrupt void localMcBSPRxINTAISR(void)
         ESTOP0;
     }
     testData = (testData + 1) & 0x00FF;
-
     //
     // Acknowledge the interrupt to receive more interrupts.
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP6);
-
-   
 }
-
-
 //
 // End of File
 //

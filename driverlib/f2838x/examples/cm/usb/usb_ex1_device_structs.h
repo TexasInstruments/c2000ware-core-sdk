@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -41,10 +41,8 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 #ifndef USB_EX1_DEVICE_STRUCTS_H
 #define USB_EX1_DEVICE_STRUCTS_H
-
 //
 // Included Files
 //
@@ -57,21 +55,17 @@
 #include "usb_ids.h"
 #include "device/usbdevice.h"
 #include "device/usbdcdc.h"
-
 //
 // Defines
 //
 #define UART_BUFFER_SIZE        256
-
 extern tUSBBuffer g_sTxBuffer;
 extern tUSBBuffer g_sRxBuffer;
 extern tUSBDCDCDevice g_sCDCDevice;
-
 uint8_t g_pi8USBRxBuffer[UART_BUFFER_SIZE];
 uint8_t g_pui8RxBufferWorkspace[USB_BUFFER_WORKSPACE_SIZE];
 uint8_t g_pi8USBTxBuffer[UART_BUFFER_SIZE];
 uint8_t g_pui8TxBufferWorkspace[USB_BUFFER_WORKSPACE_SIZE];
-
 //******************************************************************************
 //
 // CDC device callback function prototypes.
@@ -83,5 +77,4 @@ uint32_t TxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
                    void *pvMsgData);
 uint32_t ControlHandler(void *pvCBData, uint32_t ui32Event,
                         uint32_t ui32MsgValue, void *pvMsgData);
-
 #endif // USB_EX1_DEVICE_STRUCTS_H

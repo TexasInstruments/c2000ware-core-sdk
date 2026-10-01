@@ -1,19 +1,22 @@
 /**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28E12x" --part "F28E12x_48PT" --package "48PT" --context "system"
+ * @v2CliArgs ---device "F28E120SC" --package "48PT" --context "system"
+ */
+/**
  * Import the modules used in this configuration.
  */
 const gpio  = scripting.addModule("/driverlib/gpio.js", {}, false);
 const gpio1 = gpio.addInstance();
 const spi   = scripting.addModule("/driverlib/spi.js", {}, false);
 const spi1  = spi.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
 gpio1.$name           = "SPI_CS_GPIO";
 gpio1.direction       = "GPIO_DIR_MODE_OUT";
 gpio1.gpioPin.$assign = "GPIO12";
-
-
 spi1.$name                   = "mySPI0";
 spi1.useCase                 = "CUSTOM";
 spi1.useInterfacePins        = ["SPI@_CLK","SPI@_PICO","SPI@_POCI"];

@@ -43,7 +43,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -76,14 +76,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Globals
 //
@@ -93,13 +91,11 @@ volatile uint16_t cap3Count;
 volatile uint16_t cap4Count;
 volatile uint16_t ecapMonitorMin;
 volatile uint16_t ecapMonitorMax;
-
 //
 // Function Prototypes
 //
 void error(void);
 void initECAP(void);
-
 //
 // Main
 //
@@ -109,40 +105,32 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Configure the signal monitoring min and max value
     //
     ECAP_configureMinValue(myECAP0_SIGNAL_MUNIT_BASE, ECAP_MONITORING_UNIT_1, ecapMonitorMin);
     ECAP_configureMaxValue(myECAP0_SIGNAL_MUNIT_BASE, ECAP_MONITORING_UNIT_1, ecapMonitorMax);
-
     //
     // Board initialization
     // Configure GPIO 16 as eCAP input
     // Enable interrupts required for this example
     //
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     Board_init();
-
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Initialize counters:
     //
@@ -150,13 +138,11 @@ void main(void)
     cap2Count = 0U;
     cap3Count = 0U;
     cap4Count = 0U;
-
     //
     // Enable Global Interrupt (INTM) and Real time interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Loop forever. Suspend or place breakpoints to observe the buffers.
     //
@@ -165,7 +151,6 @@ void main(void)
        NOP;
     }
 }
-
 //
 // myECAP0 ISR
 //
@@ -178,24 +163,20 @@ __interrupt void INT_myECAP0_ISR(void)
     cap2Count = ECAP_getEventTimeStamp(myECAP0_BASE, ECAP_EVENT_2);
     cap3Count = ECAP_getEventTimeStamp(myECAP0_BASE, ECAP_EVENT_3);
     cap4Count = ECAP_getEventTimeStamp(myECAP0_BASE, ECAP_EVENT_4);
-
     //
     // Clear interrupt flags for more interrupts.
     //
     ECAP_clearInterrupt(myECAP0_BASE,ECAP_ISR_SOURCE_CAPTURE_EVENT_4 | ECAP_ISR_SOURCE_MUNIT_1_ERROR_EVT1);
     ECAP_clearGlobalInterrupt(myECAP0_BASE);
-
     //
     // Start eCAP
     //
     ECAP_reArm(myECAP0_BASE);
-
     //
     // Acknowledge the group interrupt for more interrupts.
     //
     Interrupt_clearACKGroup(INT_myECAP0_INTERRUPT_ACK_GROUP);
 }
-
 //
 // error - Error function
 //

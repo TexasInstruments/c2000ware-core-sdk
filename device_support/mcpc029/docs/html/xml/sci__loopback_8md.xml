@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="sci__loopback_8md" kind="file" language="Markdown">
+    <compoundname>sci_loopback.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>SCI<sp/>Internal<sp/>Loopback<sp/>{#EXAMPLES_DRIVERS_SCI_INTERNAL_LOOPBACK}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>SCI&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>uses<sp/>the<sp/>internal<sp/>loopback<sp/>test<sp/>mode<sp/>of<sp/>the<sp/>SPI<sp/>module.<sp/>This</highlight></codeline>
+<codeline><highlight class="normal">is<sp/>a<sp/>very<sp/>basic<sp/>loopback<sp/>that<sp/>does<sp/>not<sp/>use<sp/>the<sp/>FIFOs<sp/>or<sp/>interrupts.<sp/>A</highlight></codeline>
+<codeline><highlight class="normal">stream<sp/>of<sp/>data<sp/>is<sp/>sent<sp/>and<sp/>then<sp/>compared<sp/>to<sp/>the<sp/>received<sp/>stream.</highlight></codeline>
+<codeline><highlight class="normal">The<sp/>pinmux<sp/>and<sp/>SPI<sp/>modules<sp/>are<sp/>configured<sp/>through<sp/>the<sp/>sysconfig<sp/>file.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>sent<sp/>data<sp/>looks<sp/>like<sp/>this:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\code</highlight></codeline>
+<codeline><highlight class="normal"><sp/>0000<sp/>0001<sp/>0002<sp/>0003<sp/>0004<sp/>0005<sp/>0006<sp/>0007<sp/>....<sp/>FFFE<sp/>FFFF<sp/>0000</highlight></codeline>
+<codeline><highlight class="normal">\endcode</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>pattern<sp/>is<sp/>repeated<sp/>forever.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Watch<sp/><sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>sData<sp/>:<sp/>Data<sp/>to<sp/>send</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>rData<sp/>:<sp/>Received<sp/>data</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>None</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Using<sp/>the<sp/>watch<sp/>variables,<sp/>monitor<sp/>data<sp/>transmission</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_SCI_PAGE</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/sci_loopback.md"/>
+  </compounddef>
+</doxygen>

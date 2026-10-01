@@ -61,7 +61,6 @@
 #include "board.h"
 #include "c2000ware_libraries.h"
 #include "export/export_log.h"
-
 uint32_t  u32Arr [3] = {15689, 99, 98623156};
 int32_t   i32Arr [3] = {-25555, 98952, -45632};
 float     f32Arr [3] = {60233.36, 0.99, -3156.005};
@@ -70,54 +69,44 @@ float     f32Arr [3] = {60233.36, 0.99, -3156.005};
 //
 void main(void)
 {
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull-ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // PinMux and Peripheral Initialization
     //
     Board_init();
-
     //
     // C2000Ware Library initialization
     //
     C2000Ware_libraries_init();
-
     //
     // Logging Inits
     //
     EXPORT_init();
     EXPORTLOG_init();
-
     //
     // Enable Global Interrupt (INTM) and real time interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     while(1)
     {
         DEVICE_DELAY_US(1000000);
-
         EXPORTLOG_log("Logging UInt32 array");
         EXPORTLOG_logUint32Array(u32Arr, 3);
         EXPORTLOG_log("Logging Int32 array");
@@ -126,9 +115,6 @@ void main(void)
         EXPORTLOG_logFloat32Array(f32Arr, 3, 4);
     }
 }
-
-
 //
 // End of File
 //
-

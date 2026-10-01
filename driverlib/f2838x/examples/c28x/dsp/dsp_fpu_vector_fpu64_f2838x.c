@@ -4,9 +4,7 @@
 #include "device.h"
 #include "board.h"
 #include "c2000ware_libraries.h"
-
 #define TEST_SIZE_VEC   (64U)
-
 float64_t test_input[130] = {
      1.125541798361L, -2.052159867208L, -0.656497261735L, -0.685257998008L,
     -0.832920102136L,  2.082120331303L,  3.066081352433L,  1.906094688038L,
@@ -75,7 +73,6 @@ const float64_t test_golden[128] = {
      7.787575717825L, -4.701040778204L, 10.256379287386L, -4.458292792787L,
      5.595236088618L, -2.405888929166L,  5.907517892643L, -4.616376192386L,
 };
-
 float64_t test_input_sub[130] = {
     -2.028793199495L, -1.294505486107L,  1.022953222804L,  1.547632909909L,
     -1.062932771739L, -3.076645765089L,  2.503762246355L, -2.837189043422L,
@@ -144,14 +141,12 @@ const float64_t test_golden_sub[128] = {
      0.873986650642L,  4.033431874174L, -1.793965292763L,  3.044079957469L,
      2.708908648132L,  0.954073572371L, -0.355470814917L,  4.913023443680L,
 };
-
 float64_t *test_scalar = &test_input[2U*TEST_SIZE_VEC];
 float64_t test_output[2U*TEST_SIZE_VEC];
 float64_t *test_scalar_sub = &test_input_sub[2U*TEST_SIZE_VEC];
 float64_t test_output_sub[2U*TEST_SIZE_VEC];
 uint16_t pass = 0U, fail = 0U, pass_sub = 0U, fail_sub = 0U;
 float64_t tolerance = 1.0e-6;
-
 void main(void)
 {
     //
@@ -163,18 +158,15 @@ void main(void)
     Interrupt_initVectorTable();
     Board_init();
     C2000Ware_libraries_init();
-
     //
     // Variable initialization
     //
     uint16_t i, i_v;
     float64u_t out, gold, err, out_sub, gold_sub, err_sub;
-
     //
     // Run vector subtraction function
     //
     sub_DP_CSxCV((complexf64_t *)test_output_sub, (const complexf64_t *)test_input_sub, (const complexf64_t *)test_scalar_sub, TEST_SIZE_VEC);
-
     //
     // Verify results
     //
@@ -192,12 +184,10 @@ void main(void)
             fail_sub++;
         }
     }
-
     //
     // Run vector addition function
     //
     add_DP_CSxCV((complexf64_t *)test_output, (const complexf64_t *)test_input, (const complexf64_t *)test_scalar, TEST_SIZE_VEC);
-
     //
     // Verify results
     //
@@ -205,7 +195,6 @@ void main(void)
     {
         out.f64  = test_output[i];
         gold.f64 = test_golden[i];
-
         err.f64 = fabsf(out.f64 - gold.f64);
         if(err.f64 < tolerance)
         {

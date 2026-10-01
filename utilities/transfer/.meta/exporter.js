@@ -229,21 +229,16 @@ let config = [
                 onChange: (inst, ui) => {
                     if (inst.txChecksumEnable) {
                         if (tx_frame_structure != "END") {
-                            let splitStr = tx_frame_structure.split('|');
-                            // splice() mutates the array in place; join the array after mutation
-                            splitStr.splice(splitStr.length - 1, 0, "CHECKSUM");
-                            tx_frame_structure = splitStr.join('|');
+                            let splitStr = tx_frame_structure.split('|')
+                            tx_frame_structure = splitStr.splice(splitStr.length - 1, 0, "CHECKSUM").join('|')
                         }
                         else {
                             tx_frame_structure = "CHECKSUM|END"
                         }
                     }
                     else {
-                        let splitStr = tx_frame_structure.split('|');
-                        // Remove CHECKSUM token by index, not last element
-                        const checksumIdx = splitStr.indexOf("CHECKSUM");
-                        if (checksumIdx !== -1) { splitStr.splice(checksumIdx, 1); }
-                        tx_frame_structure = splitStr.join('|');
+                        let splitStr = tx_frame_structure.split('|')
+                        tx_frame_structure = splitStr.splice(splitStr.length - 1, 1).join('|')
                     }
                 }
             },
@@ -371,16 +366,9 @@ let config = [
                 default: false,
                 hidden: true,
                 onChange: (inst, ui) => {
-                    let splitStr = rx_frame_structure.split('|');
-                    if (inst.rxChecksumEnable) {
-                        // Insert CHECKSUM before the last token (END)
-                        splitStr.splice(splitStr.length - 1, 0, "CHECKSUM");
-                    } else {
-                        // Remove CHECKSUM token
-                        const checksumIdx = splitStr.indexOf("CHECKSUM");
-                        if (checksumIdx !== -1) { splitStr.splice(checksumIdx, 1); }
-                    }
-                    rx_frame_structure = splitStr.join('|');
+                    let splitStr = rx_frame_structure.split('|')
+                    let attributes = splitStr.length
+                    rx_frame_structure = splitStr.splice(1, 0, "CHECKSUM").join('|')
                 }
             },
             {
@@ -454,7 +442,7 @@ let config = [
                     }
                     let key = 1;  //add calculation later?
                     let end = 1; //always atleast 1
-                    return inst.maxRXFrameLength - start - checksum - key - end - inst.rxLengthBytes;
+                    return inst.maxRXFrameLength - start - checksum - key - end - inst.txLengthBytes;
                 }
             },
         ]
@@ -601,7 +589,6 @@ function moduleInstances(inst) {
         }
     }
     if (inst.comsLink == "spi") {
-        // SPI is only supported on C2000; do not push undefined on non-C2000 devices
         if (transferCommon.isC2000()) {
             var spiModInst = {
                 name: "comsLinkModule",
@@ -625,8 +612,8 @@ function moduleInstances(inst) {
                     }
                 }
             }
-            ownedInstances = ownedInstances.concat([spiModInst]);
         }
+        ownedInstances = ownedInstances.concat([spiModInst]);
     }
     if (inst.comsLink == "sci") {
         var sciModInst = {
@@ -734,6 +721,7 @@ function moduleInstances(inst) {
                 startOfTransmissionMode: "FSI_TX_START_FRAME_CTRL",
                 frameType: "FSI_FRAME_TYPE_NWORD_DATA",
                 softwareFrameSize: inst.exportRXLength.toString(),
+                enableInterrupt: false,
                 userCRC: false,
                 eccComputeWidth: "FSI_32BIT_ECC_COMPUTE",
                 pingTimeout: false,
@@ -862,13 +850,13 @@ function modules(inst) {
         }]);
     }
 
-    if (inst.packageMode == "JSON" || inst.packageMode == "START/END" || inst.packageMode == "SIGNAL SIGHT")
-    {
-        staticOwnedInstances = staticOwnedInstances.concat([{
-            name: "exportJson",
-            moduleName: transferCommon.getTransferPath() + "export/export_json.js",
-        }]);
-    }
+    // if (inst.packageMode == "JSON")
+    // {
+    //     staticOwnedInstances = staticOwnedInstances.concat([{
+    //         name: "exportJson",
+    //         moduleName: transferCommon.getTransferPath() + "export/export_json.js",
+    //     }]);
+    // }
 
     if (inst.packageMode == "JSON" || inst.packageMode == "START/END" || inst.packageMode == "SIGNAL SIGHT") {
         staticOwnedInstances = staticOwnedInstances.concat([{

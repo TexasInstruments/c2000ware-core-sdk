@@ -4,9 +4,7 @@
 #include "device.h"
 #include "board.h"
 #include "c2000ware_libraries.h"
-
 #define TEST_SIZE_VEC   (64U)
-
 float test_input[130] = {
     1.125541798361F, -2.052159867208F, -0.656497261735F, -0.685257998008F,
     -0.832920102136F,  2.082120331303F,  3.066081352433F,  1.906094688038F,
@@ -76,7 +74,6 @@ const float test_golden[128] = {
     7.787575717825F, -4.701040778204F, 10.256379287386F, -4.458292792787F,
     5.595236088618F, -2.405888929166F,  5.907517892643F, -4.616376192386F,
 };
-
 float test_input_sub[130] = {
                             -2.028793199495F, -1.294505486107F,  1.022953222804F,  1.547632909909F,
                             -1.062932771739F, -3.076645765089F,  2.503762246355F, -2.837189043422F,
@@ -151,7 +148,6 @@ float32_t *test_scalar_sub = &test_input_sub[2U*TEST_SIZE_VEC];
 float32_t test_output_sub[2U*TEST_SIZE_VEC];
 uint16_t pass = 0U, fail = 0U, pass_sub = 0U, fail_sub = 0U;
 float tolerance = 1.0e-6;
-
 void main(void)
 {
     //
@@ -163,7 +159,6 @@ void main(void)
     Interrupt_initVectorTable();
     Board_init();
     C2000Ware_libraries_init();
-
     //
     // Variable initialization
     //
@@ -171,14 +166,12 @@ void main(void)
     complex_float c, c_sub;
     float32u_t out, gold, err;
     float32u_t out_sub, gold_sub, err_sub;
-
     //
     // Run vector subtraction function
     //
     c_sub.dat[0] = test_scalar_sub[0];
     c_sub.dat[1] = test_scalar_sub[1];
     sub_SP_CSxCV((complex_float *)test_output_sub, (const complex_float *)test_input_sub, c_sub, TEST_SIZE_VEC);
-
     //
     // Verify results
     //
@@ -196,14 +189,12 @@ void main(void)
             fail_sub++;
         }
     }
-
     //
     // Run vector addition function
     //
     c.dat[0] = test_scalar[0];
     c.dat[1] = test_scalar[1];
     add_SP_CSxCV((complex_float *)test_output, (const complex_float *)test_input, c, TEST_SIZE_VEC);
-
     //
     // Verify results
     //
@@ -221,6 +212,5 @@ void main(void)
             fail++;
         }
     }
-
     while(1);
 }

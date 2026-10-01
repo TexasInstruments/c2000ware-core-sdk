@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="programming__models_8md" kind="file" language="Markdown">
+    <compoundname>programming_models.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Programming<sp/>Models<sp/>{#PROGRAMMING_MODELS}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>peripheral<sp/>driver<sp/>library<sp/>provides<sp/>support<sp/>for<sp/>two<sp/>programming<sp/>models:<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">direct<sp/>register<sp/>access<sp/>model<sp/>and<sp/>the<sp/>software<sp/>driver<sp/>model.<sp/><sp/>Each<sp/>model<sp/>can<sp/>be</highlight></codeline>
+<codeline><highlight class="normal">used<sp/>independently<sp/>or<sp/>combined,<sp/>based<sp/>on<sp/>the<sp/>needs<sp/>of<sp/>the<sp/>application<sp/>or<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">programming<sp/>environment<sp/>desired<sp/>by<sp/>the<sp/>developer.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Each<sp/>programming<sp/>model<sp/>has<sp/>advantages<sp/>and<sp/>disadvantages.<sp/><sp/>Use<sp/>of<sp/>the<sp/>direct</highlight></codeline>
+<codeline><highlight class="normal">register<sp/>access<sp/>model<sp/>generally<sp/>results<sp/>in<sp/>smaller<sp/>and<sp/>more<sp/>efficient<sp/>code<sp/>than</highlight></codeline>
+<codeline><highlight class="normal">using<sp/>the<sp/>software<sp/>driver<sp/>model.<sp/><sp/>However,<sp/>the<sp/>direct<sp/>register<sp/>access<sp/>model</highlight></codeline>
+<codeline><highlight class="normal">requires<sp/>detailed<sp/>knowledge<sp/>of<sp/>the<sp/>operation<sp/>of<sp/>each<sp/>register<sp/>and<sp/>bit<sp/>field,</highlight></codeline>
+<codeline><highlight class="normal">as<sp/>well<sp/>as<sp/>their<sp/>interactions<sp/>and<sp/>any<sp/>sequencing<sp/>required<sp/>for<sp/>proper<sp/>operation</highlight></codeline>
+<codeline><highlight class="normal">of<sp/>the<sp/>peripheral;<sp/>the<sp/>developer<sp/>is<sp/>somewhat<sp/>more<sp/>insulated<sp/>from<sp/>these<sp/>details</highlight></codeline>
+<codeline><highlight class="normal">by<sp/>the<sp/>software<sp/>driver<sp/>model,<sp/>generally<sp/>requiring<sp/>less<sp/>time<sp/>to<sp/>develop</highlight></codeline>
+<codeline><highlight class="normal">applications.<sp/>The<sp/>software<sp/>driver<sp/>model<sp/>also<sp/>results<sp/>in<sp/>more<sp/>readable<sp/>code.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Direct<sp/>Register<sp/>Access<sp/>Model</highlight></codeline>
+<codeline><highlight class="normal">------------------------------</highlight></codeline>
+<codeline><highlight class="normal">In<sp/>the<sp/>direct<sp/>register<sp/>access<sp/>model,<sp/>the<sp/>peripherals<sp/>are<sp/>programmed<sp/>by<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">application<sp/>by<sp/>writing<sp/>values<sp/>directly<sp/>into<sp/>the<sp/>peripheral&apos;s<sp/>registers.<sp/><sp/>A<sp/>set</highlight></codeline>
+<codeline><highlight class="normal">of<sp/>macros<sp/>is<sp/>provided<sp/>that<sp/>simplifies<sp/>this<sp/>process.<sp/><sp/>These<sp/>macros<sp/>are<sp/>stored<sp/>in</highlight></codeline>
+<codeline><highlight class="normal">several<sp/>header<sp/>files<sp/>contained<sp/>in<sp/>the<sp/>inc<sp/>directory.<sp/><sp/>By</highlight></codeline>
+<codeline><highlight class="normal">including<sp/>the<sp/>header<sp/>files<sp/>inc/hw_types.h<sp/>and<sp/>inc/hw_memmap.h,</highlight></codeline>
+<codeline><highlight class="normal">macros<sp/>are<sp/>available<sp/>for<sp/>accessing<sp/>all<sp/>registers.<sp/><sp/>Individual<sp/>bitfield<sp/>accesses</highlight></codeline>
+<codeline><highlight class="normal">can<sp/>easily<sp/>be<sp/>added<sp/>by<sp/>simply<sp/>including<sp/>the<sp/>inc/hw_peripheral.h<sp/>header</highlight></codeline>
+<codeline><highlight class="normal">file<sp/>for<sp/>the<sp/>desired<sp/>peripheral.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>defines<sp/>used<sp/>by<sp/>the<sp/>direct<sp/>register<sp/>access<sp/>model<sp/>follow<sp/>a<sp/>naming<sp/>convention</highlight></codeline>
+<codeline><highlight class="normal">that<sp/>makes<sp/>it<sp/>easier<sp/>to<sp/>know<sp/>how<sp/>to<sp/>use<sp/>a<sp/>particular<sp/>macro.<sp/><sp/>The<sp/>rules<sp/>are<sp/>as</highlight></codeline>
+<codeline><highlight class="normal">follows:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>Values<sp/>that<sp/>end<sp/>in<sp/>_BASE<sp/>and<sp/>are<sp/>found<sp/>in<sp/>inc/hw_memmap.h</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>are<sp/>module<sp/>instance<sp/>base<sp/>addresses.<sp/>For<sp/>example,<sp/>SPIA_BASE<sp/>and</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>SPIB_BASE<sp/>are<sp/>the<sp/>base<sp/>addresses<sp/>of<sp/>instances<sp/>A<sp/>and<sp/>B<sp/>of<sp/>the<sp/>SPI</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>module<sp/>respectively.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>Values<sp/>that<sp/>contain<sp/>an<sp/>_O_<sp/>are<sp/>register<sp/>address<sp/>offsets<sp/>used<sp/>to</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>access<sp/>the<sp/>value<sp/>of<sp/>a<sp/>register.<sp/>For<sp/>example,<sp/>SPI_O_CCR<sp/>is<sp/>used<sp/>to</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>access<sp/>the<sp/>CCR<sp/>register<sp/>in<sp/>a<sp/>SPI<sp/>module.<sp/>These<sp/>can<sp/>be<sp/>added<sp/>to<sp/>the</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>base<sp/>address<sp/>values<sp/>to<sp/>get<sp/>the<sp/>register<sp/>address.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>Values<sp/>that<sp/>end<sp/>in<sp/>_M<sp/>represent<sp/>the<sp/>mask<sp/>for<sp/>a<sp/>multi-bit<sp/>field<sp/>in</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>a<sp/>register.<sp/><sp/>For<sp/>example,<sp/>SPI_CCR_SPICHAR_M<sp/>is<sp/>a<sp/>mask<sp/>for<sp/>the</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>SPICHAR<sp/>field<sp/>in<sp/>the<sp/>CCR<sp/>register.<sp/>Note<sp/>that<sp/>fields<sp/>that</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>are<sp/>the<sp/>whole<sp/>width<sp/>of<sp/>the<sp/>register<sp/>are<sp/>not<sp/>given<sp/>masks.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>Values<sp/>that<sp/>end<sp/>in<sp/>_S<sp/>represent<sp/>the<sp/>number<sp/>of<sp/>bits<sp/>to<sp/>shift<sp/>a<sp/>value</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>in<sp/>order<sp/>to<sp/>align<sp/>it<sp/>with<sp/>a<sp/>multi-bit<sp/>field.<sp/><sp/>These<sp/>values<sp/>match<sp/>the<sp/>macro</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>with<sp/>the<sp/>same<sp/>base<sp/>name<sp/>but<sp/>ending<sp/>with<sp/>_M.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>All<sp/>others<sp/>are<sp/>single-bit<sp/>field<sp/>masks.<sp/>For<sp/>example,<sp/>SPI_CCR_SPILBK</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>corresponds<sp/>to<sp/>the<sp/>SPILBK<sp/>bit<sp/>in<sp/>the<sp/>CCR<sp/>register.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>inc\hw_types.h<sp/>file<sp/>contains<sp/>macros<sp/>to<sp/>access<sp/>a<sp/>register.<sp/>They<sp/>are</highlight></codeline>
+<codeline><highlight class="normal">as<sp/>follows<sp/>where<sp/>x<sp/>is<sp/>the<sp/>address<sp/>to<sp/>be<sp/>accessed:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>HWREG(x)<sp/>is<sp/>used<sp/>for<sp/>32-bit<sp/>accesses,<sp/>such<sp/>as<sp/>reading<sp/>a<sp/>value<sp/>from<sp/>a</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>32-bit<sp/>counter<sp/>register.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>HWREGH(x)<sp/>is<sp/>used<sp/>for<sp/>16-bit<sp/>accesses.<sp/>This<sp/>can<sp/>be<sp/>used<sp/>to<sp/>access</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>a<sp/>16-bit<sp/>register<sp/>or<sp/>the<sp/>upper<sp/>or<sp/>lower<sp/>words<sp/>of<sp/>a<sp/>32-bit<sp/>register.<sp/>This<sp/>is</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>usually<sp/>the<sp/>most<sp/>efficient.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>HWREGB(x)<sp/>is<sp/>used<sp/>for<sp/>8-bit<sp/>accesses<sp/>using<sp/>the<sp/>__byte()<sp/>intrinsic</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>(see<sp/>the<sp/>TMS320C28x<sp/>Optimizing<sp/>C/C++<sp/>Compiler<sp/>User&apos;s<sp/>Guide).<sp/>It<sp/>typically</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>should<sp/>only<sp/>be<sp/>used<sp/>when<sp/>an<sp/>8-bit<sp/>access<sp/>is<sp/>required<sp/>by<sp/>the<sp/>hardware.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Otherwise,<sp/>use<sp/>HWREGH()<sp/>and<sp/>mask<sp/>and<sp/>shift<sp/>out<sp/>the<sp/>unwanted<sp/>bits.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>HWREG_BP(x)<sp/>is<sp/>another<sp/>macro<sp/>used<sp/>for<sp/>32-bit<sp/>accesses,<sp/>but<sp/>it<sp/>uses</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>the<sp/>__byte_peripheral_32()<sp/>compiler<sp/>intrinsic.<sp/>This<sp/>is<sp/>intended<sp/>for<sp/>use<sp/>with</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>peripherals<sp/>that<sp/>use<sp/>a<sp/>special<sp/>addressing<sp/>scheme<sp/>to<sp/>support<sp/>byte<sp/>accesses</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>such<sp/>as<sp/>CAN<sp/>or<sp/>USB.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Given<sp/>these<sp/>definitions,<sp/>the<sp/>CCR<sp/>register<sp/>can<sp/>be<sp/>programmed<sp/>as</highlight></codeline>
+<codeline><highlight class="normal">follows:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Enable<sp/>loopback<sp/>mode<sp/>on<sp/>SPI<sp/>A</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(SPIA_BASE<sp/>+<sp/>SPI_O_CCR)<sp/>|=<sp/>SPI_CCR_SPILBK;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Change<sp/>the<sp/>number<sp/>of<sp/>bits<sp/>that<sp/>make<sp/>up<sp/>a<sp/>character<sp/>to<sp/>8</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>*<sp/>First<sp/>clear<sp/>the<sp/>field</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>*<sp/>Then<sp/>shift<sp/>the<sp/>new<sp/>value<sp/>into<sp/>place<sp/>and<sp/>write<sp/>it<sp/>into<sp/>the<sp/>register</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(SPIA_BASE<sp/>+<sp/>SPI_O_CCR)<sp/>&amp;=<sp/>~SPI_CCR_SPICHAR_M;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(SPIA_BASE<sp/>+<sp/>SPI_O_CCR)<sp/>|=<sp/>8<sp/>&lt;&lt;<sp/>SPI_CCR_SPICHAR_S;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Extracting<sp/>the<sp/>value<sp/>of<sp/>the<sp/>SPICHAR<sp/>field<sp/>in<sp/>the<sp/>CCR<sp/>register</highlight></codeline>
+<codeline><highlight class="normal">is<sp/>as<sp/>follows:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>x<sp/>=<sp/>(HWREGH(SPIA_BASE<sp/>+<sp/>SPI_O_CCR)<sp/>&amp;<sp/>SPI_CCR_SPICHAR_M)<sp/>&gt;&gt;<sp/>SPI_CCR_SPICHAR_S;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Software<sp/>Driver<sp/>Model</highlight></codeline>
+<codeline><highlight class="normal">------------------------------</highlight></codeline>
+<codeline><highlight class="normal">In<sp/>the<sp/>software<sp/>driver<sp/>model,<sp/>the<sp/>API<sp/>provided<sp/>by<sp/>the<sp/>peripheral<sp/>driver<sp/>library</highlight></codeline>
+<codeline><highlight class="normal">is<sp/>used<sp/>by<sp/>applications<sp/>to<sp/>control<sp/>the<sp/>peripherals.<sp/><sp/>Because<sp/>these<sp/>drivers</highlight></codeline>
+<codeline><highlight class="normal">provide<sp/>complete<sp/>control<sp/>of<sp/>the<sp/>peripherals<sp/>in<sp/>their<sp/>normal<sp/>mode<sp/>of<sp/>operation,</highlight></codeline>
+<codeline><highlight class="normal">it<sp/>is<sp/>possible<sp/>to<sp/>write<sp/>an<sp/>entire<sp/>application<sp/>without<sp/>direct<sp/>access<sp/>to<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">hardware.<sp/><sp/>This<sp/>method<sp/>provides<sp/>for<sp/>rapid<sp/>development<sp/>of<sp/>the<sp/>application</highlight></codeline>
+<codeline><highlight class="normal">without<sp/>requiring<sp/>detailed<sp/>knowledge<sp/>of<sp/>the<sp/>registers.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>following<sp/>function<sp/>call<sp/>programs<sp/>the<sp/>SPICHAR<sp/>field<sp/>of<sp/>CCR</highlight></codeline>
+<codeline><highlight class="normal">register<sp/>mentioned<sp/>in<sp/>the<sp/>direct<sp/>register<sp/>access<sp/>model<sp/>as<sp/>well<sp/>as<sp/>a<sp/>few<sp/>other</highlight></codeline>
+<codeline><highlight class="normal">fields<sp/>and<sp/>registers.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>SPI_setConfig(SPIA_BASE,<sp/>100000000,<sp/>SPI_PROT_POL0PHA0,SPI_MODE_MASTER,<sp/>500000,<sp/>16);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>drivers<sp/>in<sp/>the<sp/>peripheral<sp/>driver<sp/>library<sp/>are<sp/>described<sp/>in<sp/>the<sp/>remaining</highlight></codeline>
+<codeline><highlight class="normal">chapters<sp/>in<sp/>this<sp/>document.<sp/><sp/>They<sp/>combine<sp/>to<sp/>form<sp/>the<sp/>software<sp/>driver<sp/>model.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Combining<sp/>The<sp/>Models</highlight></codeline>
+<codeline><highlight class="normal">------------------------------</highlight></codeline>
+<codeline><highlight class="normal">The<sp/>direct<sp/>register<sp/>access<sp/>model<sp/>and<sp/>software<sp/>driver<sp/>model<sp/>can<sp/>be<sp/>used<sp/>together</highlight></codeline>
+<codeline><highlight class="normal">in<sp/>a<sp/>single<sp/>application,<sp/>allowing<sp/>the<sp/>most<sp/>appropriate<sp/>model<sp/>to<sp/>be<sp/>applied<sp/>as</highlight></codeline>
+<codeline><highlight class="normal">needed<sp/>to<sp/>any<sp/>particular<sp/>situation<sp/>within<sp/>the<sp/>application.<sp/><sp/>For<sp/>example,<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">software<sp/>driver<sp/>model<sp/>can<sp/>be<sp/>used<sp/>to<sp/>configure<sp/>the<sp/>peripherals<sp/>(because<sp/>this<sp/>is</highlight></codeline>
+<codeline><highlight class="normal">not<sp/>performance<sp/>critical)<sp/>and<sp/>the<sp/>direct<sp/>register<sp/>access<sp/>model<sp/>can<sp/>be<sp/>used<sp/>for</highlight></codeline>
+<codeline><highlight class="normal">operation<sp/>of<sp/>the<sp/>peripheral<sp/>(which<sp/>may<sp/>be<sp/>more<sp/>performance<sp/>critical).<sp/><sp/>Or,<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">software<sp/>driver<sp/>model<sp/>can<sp/>be<sp/>used<sp/>for<sp/>peripherals<sp/>that<sp/>are<sp/>not<sp/>performance</highlight></codeline>
+<codeline><highlight class="normal">critical<sp/>(such<sp/>as<sp/>SCI<sp/>used<sp/>for<sp/>data<sp/>logging)<sp/>and<sp/>the<sp/>direct<sp/>register<sp/>access</highlight></codeline>
+<codeline><highlight class="normal">model<sp/>for<sp/>performance<sp/>critical<sp/>peripherals.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Additionally,<sp/>the<sp/>direct<sp/>register<sp/>access<sp/>model<sp/>can<sp/>be<sp/>used<sp/>when<sp/>there<sp/>is<sp/>no<sp/></highlight></codeline>
+<codeline><highlight class="normal">suitable<sp/>driver<sp/>library<sp/>API<sp/>for<sp/>the<sp/>desired<sp/>task.<sp/>Although<sp/>an<sp/>API<sp/>may<sp/>be<sp/>available</highlight></codeline>
+<codeline><highlight class="normal">that<sp/>performs<sp/>a<sp/>specific<sp/>function<sp/>on<sp/>an<sp/>individual<sp/>bit<sp/>or<sp/>register,<sp/>it<sp/>could<sp/>be<sp/></highlight></codeline>
+<codeline><highlight class="normal">more<sp/>beneficial<sp/>to<sp/>use<sp/>the<sp/>direct<sp/>register<sp/>access<sp/>programming<sp/>model<sp/>when<sp/></highlight></codeline>
+<codeline><highlight class="normal">performing<sp/>tasks<sp/>on<sp/>entire<sp/>registers<sp/>or<sp/>multiple<sp/>bits<sp/>at<sp/>a<sp/>given<sp/>time.</highlight></codeline>
+<codeline><highlight class="normal">However,<sp/>if<sp/>there<sp/>is<sp/>an<sp/>API<sp/>available<sp/>for<sp/>the<sp/>intended<sp/>task<sp/>it<sp/>should<sp/>be<sp/>used<sp/></highlight></codeline>
+<codeline><highlight class="normal">as<sp/>it<sp/>will<sp/>provide<sp/>for<sp/>more<sp/>rapid<sp/>development<sp/>of<sp/>the<sp/>application<sp/>without<sp/>going</highlight></codeline>
+<codeline><highlight class="normal">into<sp/>depth<sp/>on<sp/>programming<sp/>the<sp/>peripherals.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Documentation<sp/>Credits</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>user<sp/>guide<sp/>is<sp/>generated<sp/>using<sp/>doxygen,<sp/>v1.8.20.<sp/>See<sp/>https://www.doxygen.nl/index.html</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/device/common_c28x/programming_models.md"/>
+  </compounddef>
+</doxygen>

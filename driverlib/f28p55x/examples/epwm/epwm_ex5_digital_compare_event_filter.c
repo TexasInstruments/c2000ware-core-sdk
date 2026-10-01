@@ -37,7 +37,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -70,58 +70,48 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Globals
 //
 uint32_t  epwm1TZIntCount;
-
 //
 // Function Prototypes
 //
 __interrupt void epwm1TZISR(void);
-
 void main(void)
 {
     //
     // Initialize global variables
     //
     epwm1TZIntCount = 0U;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull-ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Interrupts that are used in this example are re-mapped to ISR functions
     // found within this file.
     //
     Interrupt_register(INT_EPWM1_TZ, &epwm1TZISR);
-
     //
     // Disable sync(Freeze clock to PWM as well). GTBCLKSYNC is applicable
     // only for multiple core devices. Uncomment the below statement if
@@ -129,28 +119,23 @@ void main(void)
     //
     // SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_GTBCLKSYNC);
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Configure ePWM1, and TZ GPIOs
     //
     Board_init();
-
     //
     // Enable sync and clock to PWM
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Enable interrupts required for this example
     //
     Interrupt_enable(INT_EPWM1_TZ);
-
     //
     // Enable Global Interrupt (INTM) and real time interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // IDLE loop. Just sit and loop forever (optional):
     //
@@ -159,23 +144,19 @@ void main(void)
         NOP;
     }
 }
-
 //
 // epwm1TZISR - ePWM1 TZ ISR
 //
 __interrupt void epwm1TZISR(void)
 {
     epwm1TZIntCount++;
-
     //
     // To re-enable the Interrupts
     //
     EPWM_clearTripZoneFlag(EPWM1_BASE,
                            EPWM_TZ_FLAG_DCAEVT1 | EPWM_TZ_FLAG_DCBEVT1 | EPWM_TZ_INTERRUPT);
-
     //
     // Acknowledge this interrupt to receive more interrupts from group 2
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP2);
 }
-

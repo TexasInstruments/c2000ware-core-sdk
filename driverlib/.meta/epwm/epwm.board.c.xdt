@@ -9,6 +9,10 @@
 % {
 %    if (name == "epwmActionQualifier_EPWM_AQ_OUTPUT_A_shadowEvent" && !inst.epwmActionQualifier_EPWM_AQ_OUTPUT_A_shadowMode) return;
 %    if (name == "epwmActionQualifier_EPWM_AQ_OUTPUT_B_shadowEvent" && !inst.epwmActionQualifier_EPWM_AQ_OUTPUT_B_shadowMode) return;
+%    if (name == "epwmCounterCompare_shadowLoadModeCMPA" && !inst.epwmCounterCompare_enableShadowLoadModeCMPA) return;
+%    if (name == "epwmCounterCompare_shadowLoadModeCMPB" && !inst.epwmCounterCompare_enableShadowLoadModeCMPB) return;
+%    if (name == "epwmCounterCompare_shadowLoadModeCMPC" && !inst.epwmCounterCompare_enableShadowLoadModeCMPC) return;
+%    if (name == "epwmCounterCompare_shadowLoadModeCMPD" && !inst.epwmCounterCompare_enableShadowLoadModeCMPD) return;
 %    if (!template)
 %      {
 %	      var code = epwm_json_resolver.getCode(inst, inst, name, commentStatus, indicies); 

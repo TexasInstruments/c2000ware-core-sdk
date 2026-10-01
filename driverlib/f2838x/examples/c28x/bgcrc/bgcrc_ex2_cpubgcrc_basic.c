@@ -30,7 +30,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -63,7 +63,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
@@ -71,18 +70,15 @@
 #include "device.h"
 #include <stdlib.h>
 #include <time.h>
-
 //
 // Defines and globals
 //
 #define DATA_SIZE 256 // Total size  = 256 * 4 = 1kB
 #define CRC_FAIL  0   // Set this as 1 to make the CRC check fail
-
 uint32_t POLYNOMIAL = (uint32_t)0x04C11DB7;
 uint32_t crc32;
 uint32_t seed;
 uint32_t byteSwappedData;
-
 volatile bool bgcrcDone = false;
 volatile bool bgcrcError = false;
 volatile uint32_t BgcrcNmiStatus = 0;
@@ -93,13 +89,10 @@ volatile bool Bgcrc_corr_err = false;
 volatile bool Bgcrc_Wd_underflow = false;
 volatile bool Bgcrc_Wd_overflow = false;
 volatile bool error_status_pin_diagnostic_failed = false;
-
 bool pass = false;
-
 #pragma DATA_SECTION(data,"ramgs0")
 #pragma DATA_ALIGN(data, 0x80)
 volatile uint32_t data[DATA_SIZE] = {0};
-
 //
 // Function Prototypes
 //
@@ -108,7 +101,6 @@ void bgcrcInit(void);
 void delay(uint32_t i);
 __interrupt void CPUbgcrcIsr(void);
 __interrupt void NMIbgcrcIsr(void);
-
 //
 // Main
 //
@@ -118,22 +110,18 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure the GPIO pin as a push-pull output
     //
     Device_initGPIO();
-
     //
     // Disable global interrupts.
     //
     DINT;
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
@@ -141,44 +129,36 @@ void main(void)
     Interrupt_initVectorTable();
     IER = 0x0000;
     IFR = 0x0000;
-
     //
     // Map the ISRs of the BGCRC interrupt and NMI.
     //
     Interrupt_register(INT_CPUCRC, CPUbgcrcIsr);
     Interrupt_register(INT_NMI, NMIbgcrcIsr);
-
     //
     // Enable the BGCRC interrupt
     //
     Interrupt_enable(INT_CPUCRC);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP12);
-
     //
     // Enable NMI
     //
     Interrupt_enable(INT_NMI);
     SysCtl_enableNMIGlobalInterrupt();
     SysCtl_setNMIWatchdogPeriod(0xFFFFU);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Initialize the data with random numbers
     //
     dataInit();
-
     //
     // Initialize the BGCRC module
     //
     bgcrcInit();
-
     delay(2000); // Expecting the BGCRC completion in this time
-
     if(error_status_pin_diagnostic_failed == true )
     {
         //
@@ -186,7 +166,6 @@ void main(void)
         // Need to reset the system
         //
     }
-
     if((bgcrcDone == true) && (bgcrcError == false))
     {
         if((intStatus == BGCRC_TEST_DONE))
@@ -194,10 +173,8 @@ void main(void)
             pass = true;
         }
     }
-
     while(1);
 }
-
 //
 // Fill the buffer with random data and compute CRC using SW method
 //
@@ -205,18 +182,15 @@ void dataInit()
 {
     uint32_t tseed;
     uint32_t i,j;
-
     //
     // Initialize the random number generator
     //
     tseed = time(NULL);
     srand(tseed);
     srand(rand());
-
     seed  =  rand();
     seed = (uint32_t)(seed <<16) | rand();       // Initialize with seed
     crc32 = seed;
-
     //
     // Initialize the Data_Buffer with 32 bit random data
     //
@@ -225,7 +199,6 @@ void dataInit()
         data[i] = rand();
         data[i] = (data[i] << 16) | rand();
     }
-
     //
     // Compute the Software CRC for validation
     //
@@ -236,9 +209,7 @@ void dataInit()
                            ((data[i] & (uint32_t)0x00FF0000U) >>  8) |
                            ((data[i] & (uint32_t)0xFF000000U) >> 24)
                           );
-
         crc32 = byteSwappedData ^ crc32;
-
         for(j = 0; j < 32; j++)
         {
             if(crc32 & (uint32_t)0x80000000U)
@@ -252,12 +223,10 @@ void dataInit()
             crc32 = crc32 & (uint32_t)0xFFFFFFFFU;
         }
     }
-
 #if CRC_FAIL == 1 // To make the BGCRC to fail
     crc32 = 0xdeadbeef; //This is to test the error NMIs and Pins
 #endif
 }
-
 //
 // Init routine for BGCRC module
 //
@@ -270,7 +239,6 @@ void bgcrcInit()
                                          BGCRC_REG_WD_CFG |
                                          BGCRC_REG_INTEN  |
                                          BGCRC_REG_SEED);
-
     //
     // Unlock the BGCRC configuration in case it is locked CFG-2
     //
@@ -285,30 +253,25 @@ void bgcrcInit()
     // The CRC module and the watchdog stops immediately on debug suspend
     //
     BGCRC_setConfig(BGCRC_CPU_BASE, BGCRC_NMI_ENABLE, BGCRC_EMUCTRL_SOFT);
-
     //
     // Configure the CRC Watchdog
     // Watchdog window - Min : DATA_SIZE, Max : DATA_SIZE + 1
     //
     BGCRC_enableWatchdog(BGCRC_CPU_BASE);
     BGCRC_setWatchdogWindow(BGCRC_CPU_BASE, DATA_SIZE, DATA_SIZE + 1);
-
     //
     // Configure the region
     //
     BGCRC_setRegion(BGCRC_CPU_BASE, (uint32_t)data,
                     BGCRC_SIZE_KBYTES(1), BGCRC_CRC_MODE);
-
     //
     // Set the seed value same as used in SW computation
     //
     BGCRC_setSeedValue(BGCRC_CPU_BASE, seed);
-
     //
     // Initialize the golden value with previously computed CRC using software
     //
     BGCRC_setGoldenCRCValue(BGCRC_CPU_BASE, crc32);
-
     //
     // Enable interrupts
     // No need to enable the NMIs as all the NMIs are enabled by default
@@ -319,7 +282,6 @@ void bgcrcInit()
                                           BGCRC_CORR_ERR     |
                                           BGCRC_WD_UNDERFLOW |
                                           BGCRC_WD_OVERFLOW);
-
     //
     // Lock Register configuration for CFG1
     //
@@ -327,8 +289,6 @@ void bgcrcInit()
                                        BGCRC_REG_WD_CFG |
                                        BGCRC_REG_INTEN  |
                                        BGCRC_REG_SEED);
-
-
     //
     // Commit Register Lock for CFG1
     //
@@ -336,9 +296,7 @@ void bgcrcInit()
                                              BGCRC_REG_WD_CFG |
                                              BGCRC_REG_INTEN |
                                              BGCRC_REG_SEED);
-
     BGCRC_start(BGCRC_CPU_BASE);
-
     //
     // Lock Register configuration for CFG2
     //
@@ -349,30 +307,25 @@ void bgcrcInit()
                                        BGCRC_REG_WD_MIN     |
                                        BGCRC_REG_WD_MAX);
 }
-
 //
 // CPUbgcrcIsr - DONE interrupt from BGCRC.
 //
 __interrupt void CPUbgcrcIsr(void)
 {
     bgcrcDone = true;
-
     //
     // Read the interrupt status
     //
     intStatus= BGCRC_getInterruptStatus(BGCRC_CPU_BASE);
     intStatus &= ~BGCRC_GLOBAL_INT;
-
     //
     // Clear interrupt status
     //
     BGCRC_clearInterruptStatus(BGCRC_CPU_BASE, BGCRC_GLOBAL_INT |
                                                BGCRC_TEST_DONE  |
                                                BGCRC_ALL_ERROR_FLAGS);
-
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP12);
 }
-
 //
 // NMIbgcrcIsr - NMI ISR
 //
@@ -380,7 +333,6 @@ __interrupt void NMIbgcrcIsr(void)
 {
     uint32_t timeout = 20;
     BgcrcNmiStatus = BGCRC_getNMIStatus(BGCRC_CPU_BASE);
-
     //
     // Safety diagnostic check
     //
@@ -395,7 +347,6 @@ __interrupt void NMIbgcrcIsr(void)
             SysCtl_forceError();
             timeout--;
         }
-
         if (timeout == 0)
         {
             //
@@ -404,7 +355,6 @@ __interrupt void NMIbgcrcIsr(void)
             error_status_pin_diagnostic_failed = true;
         }
     }
-
     if((BgcrcNmiStatus & BGCRC_CRC_FAIL) == BGCRC_CRC_FAIL)
     {
         //
@@ -413,7 +363,6 @@ __interrupt void NMIbgcrcIsr(void)
         Bgcrc_fail = true;
         BGCRC_clearNMIStatus(BGCRC_CPU_BASE, BGCRC_CRC_FAIL);
     }
-
     if( (BgcrcNmiStatus&BGCRC_UNCORR_ERR) == BGCRC_UNCORR_ERR )
     {
          //
@@ -422,7 +371,6 @@ __interrupt void NMIbgcrcIsr(void)
          Bgcrc_uncorr_err = true;
          BGCRC_clearNMIStatus(BGCRC_CPU_BASE, BGCRC_UNCORR_ERR);
     }
-
     if(BgcrcNmiStatus&BGCRC_CORR_ERR == BGCRC_CORR_ERR)
     {
           //
@@ -431,7 +379,6 @@ __interrupt void NMIbgcrcIsr(void)
           Bgcrc_corr_err = true;
           BGCRC_clearNMIStatus(BGCRC_CPU_BASE, BGCRC_CORR_ERR);
     }
-
     if(BgcrcNmiStatus&BGCRC_WD_UNDERFLOW == BGCRC_WD_UNDERFLOW)
     {
           //
@@ -440,7 +387,6 @@ __interrupt void NMIbgcrcIsr(void)
           Bgcrc_Wd_underflow = true;
           BGCRC_clearNMIStatus(BGCRC_CPU_BASE, BGCRC_WD_UNDERFLOW);
     }
-
     if(BgcrcNmiStatus&BGCRC_WD_OVERFLOW == BGCRC_WD_OVERFLOW)
     {
           //
@@ -449,11 +395,9 @@ __interrupt void NMIbgcrcIsr(void)
           Bgcrc_Wd_overflow = true;
           BGCRC_clearNMIStatus(BGCRC_CPU_BASE, BGCRC_WD_OVERFLOW);
     }
-
     SysCtl_clearAllNMIFlags();
     bgcrcError = true;
 }
-
 //
 // Delay function
 //
@@ -465,7 +409,6 @@ void delay(uint32_t i)
         j--;
     }
 }
-
 //
 // End of File
 //

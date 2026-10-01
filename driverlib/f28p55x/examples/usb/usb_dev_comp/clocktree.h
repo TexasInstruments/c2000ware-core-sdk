@@ -37,10 +37,8 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 #ifndef CLOCKTREE_H
 #define CLOCKTREE_H
-
 //*****************************************************************************
 //
 // Summary of SYSPLL related clock configuration
@@ -56,7 +54,6 @@
 // CPUCLK                   = 150 MHz
 // SYSCLK                   = 150 MHz
 // LSPCLK                   = 37.5 MHz
-
 //*****************************************************************************
 //
 // Macro definitions used in device.c (SYSPLL / LSPCLK)
@@ -76,16 +73,12 @@
                                      SYSCTL_REFDIV(2) | SYSCTL_ODIV(1)| \
                                      SYSCTL_SYSDIV(2) | SYSCTL_PLL_ENABLE | \
                                      SYSCTL_DCC_BASE_0)
-
-
 //
 // Define to pass to SysCtl_setLowSpeedClock().
 // Low Speed Clock (LSPCLK) = 150 MHz / 4 = 37.5 MHz
 //
 #define DEVICE_LSPCLK_CFG           SYSCTL_LSPCLK_PRESCALE_4
-
 #define DEVICE_LSPCLK_FREQ          (DEVICE_SYSCLK_FREQ / 4)
-
 //*****************************************************************************
 //
 // CPUCLK Domain (150 MHz)
@@ -117,7 +110,6 @@
 // ETPWM
 // MessageRAMs
 //
-
 /////////////////////
 // Gated CPU1 SYSCLK
 /////////////////////
@@ -135,7 +127,6 @@
 // AES
 // FSITX/FSIRX
 //
-
 //*****************************************************************************
 //
 // Gated Peripheral SYSCLK Domain (150 MHz) 
@@ -155,7 +146,6 @@
 // AES
 // FSITX/FSIRX
 //
-
 //*****************************************************************************
 //
 // Gated LSPCLK Domain (37.5 MHz) 
@@ -163,6 +153,4 @@
 //*****************************************************************************
 // SCI
 // SPI
-
 #endif // CLOCKTREE_H
-

@@ -1,16 +1,14 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --board "/boards/TMDSCNCD28388D" --context "CPU1" --product "C2000WARE"
- * 
+ * @cliArgs --device "F2838x" --part "F2838x_337bga" --package "337bga" --context "CPU1" 
+ * @v2CliArgs --device "TMS320F28388D" --package "337bga" --context "CPU1"
  */
-
 /**
  * Import the modules used in this configuration.
  */
 const FFT  = scripting.addModule("/libraries/dsp/FPU/FFT/FFT.js", {}, false);
 const FFT1 = FFT.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -21,7 +19,6 @@ FFT1.CFFT[0].$name     = "myCFFT0";
 FFT1.CFFT[0].inPtr     = "inPtr";
 FFT1.CFFT[0].outPtr    = "outPtr";
 FFT1.CFFT[0].numStages = 9;
-
 const FPU   = scripting.addModule("/libraries/math/FPU/FPU.js", {}, false);
 FPU.fpuType = "FPU64";
 FPU.tmuType = "NONE";

@@ -55,7 +55,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -88,7 +88,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 //
 // Included Files
@@ -99,7 +98,6 @@
 #include "device.h"
 #include "sgen.h"
 #include "board.h"
-
 //
 // Defines
 //
@@ -107,14 +105,12 @@
 #define LOW_THD_SINE          0
 #define HIGH_PRECISION_SINE   1
 #define SINEWAVE_TYPE         LOW_THD_SINE
-
 //
 // Globals
 //
 uint16_t cpuTimer0IntCount;
 uint16_t cpuTimer1IntCount;
 uint16_t cpuTimer2IntCount;
-
 //
 // Globals
 //
@@ -127,13 +123,11 @@ float waveformGain = 0.8003F; // Range 0.0 -> 1.0
 float waveformOffset = 0;    // Range -1.0 -> 1.0
 uint16_t lowLimit = 410;
 uint16_t highLimit = 3686;
-
 #if SINEWAVE_TYPE==LOW_THD_SINE //initialize sine wave type
 SGENTI_1 sgen = SGENTI_1_DEFAULTS;
 #elif SINEWAVE_TYPE==HIGH_PRECISION_SINE
 SGENHP_1 sgen = SGENHP_1_DEFAULTS;
 #endif
-
 uint16_t sgen_out = 0;
 uint16_t ndx = 0;
 float freqResolution_hz = 0;
@@ -144,7 +138,6 @@ float samplingPeriod_us = 0;
 uint16_t maxOutput_lsb = 0;
 uint16_t minOutput_lsb = 0;
 uint16_t pk_to_pk_lsb = 0;
-
 //
 // Function Prototypes
 //
@@ -158,7 +151,6 @@ void configureWaveform(void);
 interrupt void cpu_timer0_isr(void);
 void initCPUTimers(void);
 void configCPUTimer(uint32_t, uint32_t);
-
 //
 // Main
 //
@@ -168,29 +160,24 @@ void main(void)
     // Initializes device clock and peripherals
     //
     Device_init();
-
     //
     // Initializes PIE and clears PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initializes the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Map Cpu Timer0 interrupt function to the PIE vector table
     //
     Interrupt_register(INT_TIMER0, &cpu_timer0_isr);
-
     //
     // Initialize variables
     //
     cpuPeriod_us = (1000000.0F/DEVICE_SYSCLK_FREQ);
     samplingPeriod_us = (1000000.0F/samplingFreq_hz);
-
     //
     // Initialize datalog
     //
@@ -199,45 +186,37 @@ void main(void)
         DataLog[ndx] = 0;
     }
     ndx = 0;
-
     //
     // Board initialization
     // Configure DAC
     //
     Board_init();
-
     //
     // Configure Waveform
     //
     configureWaveform();
-
     //
     // Initialize Cpu Timers
     //
     initCPUTimers();
-
     //
     // Configure Cpu Timer0 to interrupt at specified sampling frequency
     //
     configCPUTimer(CPUTIMER0_BASE, samplingPeriod_us);
-
     //
     // Enable interrupt
     //
     Interrupt_enable(INT_TIMER0);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
-
     //
     // Start Cpu Timer0
     //
     CPUTimer_startTimer(CPUTIMER0_BASE);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     while(1)
     {
         setFreq();   // Set Output Frequency and Max Output Frequency
@@ -248,7 +227,6 @@ void main(void)
         pk_to_pk_lsb = maxOutput_lsb - minOutput_lsb;
     }
 }
-
 //
 // dlog - Circular DataLog. DataLog[0] contains the next index to
 //        be overwritten
@@ -262,7 +240,6 @@ static inline void dlog(uint16_t value)
     }
     DataLog[0] = ndx;
 }
-
 //
 // setFreq - Set the SINE frequency in SGEN
 //
@@ -274,7 +251,6 @@ static inline void setFreq(void)
     // (Max_Freq_hz*0x10000)/Sampling_Freq_hz
     //
     sgen.step_max = (maxOutputFreq_hz*0x10000)/samplingFreq_hz;
-
     //
     // Range(Q15) = 0x0000 -> 0x7FFF, freq(Q15) =
     // (Required_Freq_hz/Max_Freq_hz)*0x8000
@@ -286,17 +262,14 @@ static inline void setFreq(void)
     // (Max_Freq_hz*0x100000000)/Sampling_Freq_hz
     //
     sgen.step_max = (maxOutputFreq_hz*0x100000000)/samplingFreq_hz;
-
     //
     // Range(Q31) = 0x00000000 -> 0x7FFFFFFF, freq(Q31) =
     // (Required_Freq_hz/Max_Freq_hz)*0x80000000
     //
     sgen.freq = ((float)outputFreq_hz/maxOutputFreq_hz)*0x80000000;
 #endif
-
     freqResolution_hz = (float)maxOutputFreq_hz/sgen.step_max;
 }
-
 //
 // setGain - Set the gain in SGEN
 //
@@ -304,7 +277,6 @@ static inline void setGain(void)
 {
     sgen.gain = waveformGain * 0x7FFF;   // Range(Q15) = 0x0000 -> 0x7FFF
 }
-
 //
 // setOffset - Set the offset in SGEN
 //
@@ -312,7 +284,6 @@ static inline void setOffset(void)
 {
     sgen.offset = waveformOffset * 0x7FFF; // Range(Q15) = 0x8000 -> 0x7FFF
 }
-
 //
 // getMax - Get the max value in the data log
 //
@@ -320,7 +291,6 @@ static inline uint16_t getMax(void)
 {
     uint16_t index = 0;
     uint16_t tempMax = 0;
-
     for(index=1; index<DLOG_SIZE; index++)
     {
         if(tempMax<DataLog[index])
@@ -328,10 +298,8 @@ static inline uint16_t getMax(void)
             tempMax = DataLog[index];
         }
     }
-
     return tempMax;
 }
-
 //
 // getMin - Get the min value in the data log
 //
@@ -339,7 +307,6 @@ static inline uint16_t getMin(void)
 {
     uint16_t index = 0;
     uint16_t tempMin = 0xFFFF;
-
     for(index=1; index<DLOG_SIZE; index++)
     {
         if(tempMin>DataLog[index])
@@ -347,10 +314,8 @@ static inline uint16_t getMin(void)
             tempMin = DataLog[index];
         }
     }
-
     return tempMin;
 }
-
 //
 // configureWaveform - Configure the SINE waveform
 //
@@ -361,7 +326,6 @@ void configureWaveform(void)
     setGain();
     setOffset();
 }
-
 //
 // cpu_timer0_isr - Timer ISR that writes the sine value to DAC, log the sine
 //                  value, compute the next sine value, and calculate interrupt
@@ -373,55 +337,43 @@ interrupt void cpu_timer0_isr(void)
     // Start Cpu Timer1 to indicate begin of interrupt
     //
     CPUTimer_startTimer(CPUTIMER1_BASE);
-
     //
     // Write current sine value to buffered DAC
     //
     DAC_setShadowValue(myDAC0_BASE, sgen_out);
-
     //
     // Log current sine value
     //
     dlog(sgen_out);
-
     //
     // Compute next sine value
     //
     sgen.calc(&sgen);
-
     //
     // Scale next sine value
     //
     sgen_out = (sgen.out + 32768) >> 4;
-
     //
     // Acknowledge this interrupt to receive more interrupts from group 1
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP1);
-
     //
     // Stop Cpu Timer1 to indicate end of interrupt
     //
     CPUTimer_stopTimer(CPUTIMER1_BASE);
-
     //
     // Calculate interrupt duration in cycles
     //
     interruptCycles = 0xFFFFFFFFUL - CPUTimer_getTimerCount(CPUTIMER1_BASE);
-
     //
     // Calculate interrupt duration in micro seconds
     //
     interruptDuration_us = cpuPeriod_us * interruptCycles;
-
     //
     // Reload Cpu Timer1
     //
     CPUTimer_reloadTimerCounter(CPUTIMER1_BASE);
-
 }
-
-
 //
 // initCPUTimers - This function initializes all three CPU timers
 // to a known state.
@@ -435,28 +387,24 @@ initCPUTimers(void)
     CPUTimer_setPeriod(CPUTIMER0_BASE, 0xFFFFFFFF);
     CPUTimer_setPeriod(CPUTIMER1_BASE, 0xFFFFFFFF);
     CPUTimer_setPeriod(CPUTIMER2_BASE, 0xFFFFFFFF);
-
     //
     // Initialize pre-scale counter to divide by 1 (SYSCLKOUT)
     //
     CPUTimer_setPreScaler(CPUTIMER0_BASE, 0);
     CPUTimer_setPreScaler(CPUTIMER1_BASE, 0);
     CPUTimer_setPreScaler(CPUTIMER2_BASE, 0);
-
     //
     // Make sure timer is stopped
     //
     CPUTimer_stopTimer(CPUTIMER0_BASE);
     CPUTimer_stopTimer(CPUTIMER1_BASE);
     CPUTimer_stopTimer(CPUTIMER2_BASE);
-
     //
     // Reload all counter register with period value
     //
     CPUTimer_reloadTimerCounter(CPUTIMER0_BASE);
     CPUTimer_reloadTimerCounter(CPUTIMER1_BASE);
     CPUTimer_reloadTimerCounter(CPUTIMER2_BASE);
-
     //
     // Reset interrupt counter
     //
@@ -464,7 +412,6 @@ initCPUTimers(void)
     cpuTimer1IntCount = 0;
     cpuTimer2IntCount = 0;
 }
-
 //
 // configCPUTimer - This function initializes the selected timer to the
 // period specified by the "freq" and "period" variables. The "freq" is
@@ -475,18 +422,15 @@ void
 configCPUTimer(uint32_t cpuTimer, uint32_t period)
 {
     uint32_t temp, freq = DEVICE_SYSCLK_FREQ;
-
     //
     // Initialize timer period:
     //
     temp = ((freq / 1000000) * period);
     CPUTimer_setPeriod(cpuTimer, temp - 1);
-
     //
     // Set pre-scale counter to divide by 1 (SYSCLKOUT):
     //
     CPUTimer_setPreScaler(cpuTimer, 0);
-
     //
     // Initializes timer control register. The timer is stopped, reloaded,
     // free run disabled, and interrupt enabled.
@@ -497,7 +441,6 @@ configCPUTimer(uint32_t cpuTimer, uint32_t period)
     CPUTimer_setEmulationMode(cpuTimer,
                               CPUTIMER_EMULATIONMODE_STOPAFTERNEXTDECREMENT);
     CPUTimer_enableInterrupt(cpuTimer);
-
     //
     // Resets interrupt counters for the three cpuTimers
     //

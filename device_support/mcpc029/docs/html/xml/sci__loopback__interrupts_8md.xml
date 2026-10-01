@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="sci__loopback__interrupts_8md" kind="file" language="Markdown">
+    <compoundname>sci_loopback_interrupts.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>SCI<sp/>Internal<sp/>Loopback<sp/>with<sp/>Interrupts<sp/>{#EXAMPLES_DRIVERS_SCI_INTERNAL_LOOPBACK_INTERRUPTS}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>SCI&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>test<sp/>uses<sp/>the<sp/>internal<sp/>loop<sp/>back<sp/>test<sp/>mode<sp/>of<sp/>the<sp/>SCI<sp/>peripheral.</highlight></codeline>
+<codeline><highlight class="normal">Other<sp/>then<sp/>boot<sp/>mode<sp/>pin<sp/>configuration,<sp/>no<sp/>other<sp/>hardware<sp/>configuration</highlight></codeline>
+<codeline><highlight class="normal">is<sp/>required.<sp/>Both<sp/>Transmit<sp/>and<sp/>Receive<sp/>interrupts<sp/>and<sp/>FIFOs<sp/>are<sp/>used.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">A<sp/>stream<sp/>of<sp/>data<sp/>is<sp/>sent<sp/>and<sp/>then<sp/>compared<sp/>to<sp/>the<sp/>received<sp/>stream.</highlight></codeline>
+<codeline><highlight class="normal">The<sp/>SCI-A<sp/>sent<sp/>data<sp/>looks<sp/>like<sp/>this:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\code</highlight></codeline>
+<codeline><highlight class="normal">00<sp/>01<sp/>\n</highlight></codeline>
+<codeline><highlight class="normal">01<sp/>02<sp/>\n</highlight></codeline>
+<codeline><highlight class="normal">02<sp/>03<sp/>\n</highlight></codeline>
+<codeline><highlight class="normal">....<sp/>\n</highlight></codeline>
+<codeline><highlight class="normal">FE<sp/>FF<sp/>\n</highlight></codeline>
+<codeline><highlight class="normal">FF<sp/>00<sp/>\n</highlight></codeline>
+<codeline><highlight class="normal">....<sp/>\n</highlight></codeline>
+<codeline><highlight class="normal">\endcode</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>pattern<sp/>is<sp/>repeated<sp/>forever.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Watch<sp/><sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>sDataA<sp/>:<sp/>Data<sp/>being<sp/>sent</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>rDataA<sp/>:<sp/>Data<sp/>received</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>rDataPointA<sp/>:<sp/>Keep<sp/>track<sp/>of<sp/>where<sp/>we<sp/>are<sp/>in<sp/>the<sp/>data<sp/>stream.<sp/>This<sp/>is<sp/>used<sp/>to<sp/>check<sp/>the<sp/>incoming<sp/>data</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>None</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Using<sp/>the<sp/>watch<sp/>variables,<sp/>monitor<sp/>data<sp/>transmission</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_SCI_PAGE</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/sci_loopback_interrupts.md"/>
+  </compounddef>
+</doxygen>

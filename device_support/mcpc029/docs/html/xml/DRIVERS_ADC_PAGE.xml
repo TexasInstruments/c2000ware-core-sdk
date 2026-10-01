@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="DRIVERS_ADC_PAGE" kind="page">
+    <compoundname>DRIVERS_ADC_PAGE</compoundname>
+    <title>ADC</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="DRIVERS_ADC_PAGE_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_components_drivers_adc"/></para>
+<para>The ADC driver provides API to configure the ADC module. Below are the high level features supported by the ADC driver.</para>
+<sect1 id="DRIVERS_ADC_PAGE_1autotoc_md16">
+<title>Features Supported</title>
+<para><itemizedlist>
+<listitem><para>Each ADC has 25 selectable single ended inputs.</para>
+</listitem><listitem><para>12-bit resolution with 8 MSPS sampling rate max.</para>
+</listitem><listitem><para>16 configurable SOCs and 16 individually addressable result registers for each SOC.</para>
+</listitem><listitem><para>Multiple trigger sources - software, all MCPWMs ADCSOC A or B, ADCINT1/2, etc.</para>
+</listitem><listitem><para>Three post processing blocks each with saturating offset calibration, error from setpoint calculation, high, low or zero crossing compare, trigger to sample delay capture.</para>
+</listitem><listitem><para>One PPB Aggregater to aggregate succesive samples using sum, calculate average etc.</para>
+</listitem><listitem><para>Trigger Repeater for oversampling.</para>
+</listitem><listitem><para>Three flexible PIE and two DMA interrupts.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_ADC_PAGE_1autotoc_md17">
+<title>SysConfig Features</title>
+<para><simplesect kind="note"><para>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</para>
+</simplesect>
+<itemizedlist>
+<listitem><para>Selecting ADC Clock Prescaler.</para>
+</listitem><listitem><para>Specifying channels, triggers and sample window size for each ADC SOC.</para>
+</listitem><listitem><para>Selecting ADC Signal Mode - Single ended.</para>
+</listitem><listitem><para>Enabling and configuring ADC interrupts, DMA interrupts.</para>
+</listitem><listitem><para>Configuring Post Processing Blocks.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_ADC_PAGE_1autotoc_md18">
+<title>Features NOT Supported</title>
+<para>NA</para>
+</sect1>
+<sect1 id="DRIVERS_ADC_PAGE_1autotoc_md19">
+<title>Important Usage Guidelines</title>
+<para><itemizedlist>
+<listitem><para>ADC has a power up time of 500us. Therefore this delay must be allowed between powering up the ADC and starting the sampling of the signal. Sysconfig already handles this, but if ADC is powered up manually by using the API, then this power up delay must be added.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_ADC_PAGE_1autotoc_md20">
+<title>Example Usage</title>
+<para>Include the below file to access the APIs #include &lt;<ref refid="adc_8h" kindref="compound">adc.h</ref>&gt;</para>
+</sect1>
+<sect1 id="DRIVERS_ADC_PAGE_1autotoc_md21">
+<title>API</title>
+<para><ref refid="group__adc__api" kindref="compound">ADC</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/adc.md"/>
+  </compounddef>
+</doxygen>

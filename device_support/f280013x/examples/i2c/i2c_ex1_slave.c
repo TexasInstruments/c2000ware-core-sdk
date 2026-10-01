@@ -60,39 +60,33 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Defines
 //
 #define I2C_SLAVE_ADDR 0x6AU
 #define MAX_BUFFER_SIZE 0x10
 #define I2C_NUMBYTES    0x2U
-
 //
 // I2C GPIO pins
 //
 #define GPIO_PIN_SDAA        21U  // GPIO number for I2C SDAA
 #define GPIO_PIN_SCLA        20U  // GPIO number for I2C SCLA
 //
-
 //
 // Globals
 //
 uint16_t I2C_TXdata[MAX_BUFFER_SIZE];
 uint16_t I2C_RXdata[MAX_BUFFER_SIZE];
 uint16_t PassCount=0x0, FailCount =0x0;
-
 //
 // Function Prototypes
 //
 void I2CSlave_Init(uint16_t I2CSlave_OwnAddress);
 __interrupt void I2CISR(void);
-
 //
 // Main
 //
@@ -102,63 +96,51 @@ void main(void)
     // Locals
     //
     uint16_t index = 0U;
-
     //
     // Initialize System Control:
     // PLL, WatchDog, enable Peripheral Clocks
     //
     InitSysCtrl();
-
      //
      // Initialize GPIO
      //
      InitGpio();
-
      //
      //Configure I2C pins
      //
-
      GPIO_SetupPinMux(GPIO_PIN_SDAA, GPIO_MUX_CPU1, 11);
      GPIO_SetupPinOptions(GPIO_PIN_SDAA, GPIO_OUTPUT, GPIO_PULLUP);
      GPIO_SetupPinMux(GPIO_PIN_SCLA, GPIO_MUX_CPU1, 11);
      GPIO_SetupPinOptions(GPIO_PIN_SCLA, GPIO_OUTPUT, GPIO_PULLUP);
-
-
     //
     // .Initialize the PIE control registers to their default state.
     // The default state is all PIE interrupts disabled and flags
     // are cleared.
     //
     InitPieCtrl();
-
     //
     // Disable CPU interrupts and clear all CPU interrupt flags
     //
     IER = 0x0000;
     IFR = 0x0000;
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR)
     //
     InitPieVectTable();
-
     //
     // Register the interrupt ISR
     //
     EALLOW;  // This is needed to write to EALLOW protected registers
     PieVectTable.I2CA_INT = &I2CISR;
     EDIS;    // This is needed to disable write to EALLOW protected registers
-
     //
     // Enable Interrupts
     //
     PieCtrlRegs.PIEIER8.all = 0x1;          // Enable PIE Group 8 INT8
     IER |= M_INT8;                          // Enable CPU INT8
     EINT;                                   // Enable Global Interrupts
-
     EnableInterrupts();
-
     //
     // Set the buffer to some default non-zero value
     //
@@ -167,75 +149,58 @@ void main(void)
         I2C_RXdata[index] = 0xBAADU;
         I2C_TXdata[index] = 0x11 * (index+1);
     }
-
-
     // Initialize I2C Module
     I2CSlave_Init(I2C_SLAVE_ADDR);
-
     // Application loop
     while(1)
     {
            //respond to master commands
     }
-
 }
-
 //
 // Function to configure I2CA as Slave Receiver.
 //
 void I2CSlave_Init(uint16_t I2CSlave_OwnAddress)
 {
-
     //
     // I2C configured as slave receiver mode
     //
-
     EALLOW;
     //
     // Reset the I2C Module
     //
     I2caRegs.I2CMDR.all &= ~(0x20U);
-
     //
     // Configure I2C as slave in Receive mode
     //
     I2caRegs.I2CMDR.bit.MST = 0x0U;
     I2caRegs.I2CMDR.bit.TRX = 0x0U;
-
     //
     // Set the bit count to 8 bits per data byte
     //
     I2caRegs.I2CMDR.bit.BC = 0x0U;
-
     //
     // Set emulation mode to FREE
     //
     I2caRegs.I2CMDR.bit.FREE = 0x1;
-
     //
     // Configure I2C own address
     //
     I2caRegs.I2COAR.all = I2CSlave_OwnAddress;      // Own address
-
     //
     //Clear all status
     //
     I2caRegs.I2CSTR.all = 0xFFFF;
-
     //
     // Enable I2C Interrupts- AAS, STOP, XRDY and RRDY
     //
     I2caRegs.I2CIER.all = 0x78;
-
     //
     // Take I2C out of reset
     //
     I2caRegs.I2CMDR.all |= 0x0020;
-
     EDIS;
 }
-
-
 __interrupt void I2CISR(void)
 {
     //
@@ -244,12 +209,10 @@ __interrupt void I2CISR(void)
      uint16_t IntSource, index=0U;
      static bool bDataReceived = false;
      static volatile uint16_t count = 0U;
-
      //
      // Read Interrupt source
      //
      IntSource = I2caRegs.I2CISRC.all;
-
      //
      // Interrupt source
      //
@@ -259,13 +222,11 @@ __interrupt void I2CISR(void)
          {
              // Configure slave as transmitter
              I2caRegs.I2CMDR.bit.TRX = 0x1U;
-
          }
          else
          {
              //Configure slave as receiver
              I2caRegs.I2CMDR.bit.TRX = 0x0U;
-
         }
      }
      else if(IntSource == 0x6U) // STOP interrupt
@@ -314,16 +275,13 @@ __interrupt void I2CISR(void)
              //
              bDataReceived = true;
          }
-
      }
      else if (IntSource == 0x5U) // XRDY interrupt
      {
-
          //
          //configure slave as transmitter
          //
          I2caRegs.I2CMDR.bit.TRX = 1;
-
          //
          // Disable the interrupt till all the bytes are sent
          //
@@ -343,7 +301,6 @@ __interrupt void I2CISR(void)
              //
              I2caRegs.I2CSTR.bit.BYTESENT = 0x1;
          }
-
          //
          // Enable the interrupt after all the bytes are sent
          //
@@ -354,7 +311,6 @@ __interrupt void I2CISR(void)
      //
      PieCtrlRegs.PIEACK.all = PIEACK_GROUP8;
  }
-
 //
 // End of file
 //

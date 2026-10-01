@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="sci__echoback_8md" kind="file" language="Markdown">
+    <compoundname>sci_echoback.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>SCI<sp/>Echoback<sp/>{#EXAMPLES_DRIVERS_SCI_ECHOBACK}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>SCI&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Example<sp/>Overview</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">These<sp/>examples<sp/>demonstrate<sp/>two<sp/>different<sp/>approaches<sp/>to<sp/>implement<sp/>SCI<sp/>Echoback<sp/>functionality:</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>Manual<sp/>Driverlib<sp/>(sci_ex3_echoback.c<sp/>in<sp/>driverlib)</highlight></codeline>
+<codeline><highlight class="normal">2.<sp/>Direct<sp/>Register/Bitfield<sp/>(sci_ex1_echoback.c<sp/>in<sp/>device_support)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>test<sp/>receives<sp/>and<sp/>echo-backs<sp/>data<sp/>through<sp/>the<sp/>SCI-A<sp/>port.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">A<sp/>terminal<sp/>such<sp/>as<sp/>&apos;putty&apos;<sp/>can<sp/>be<sp/>used<sp/>to<sp/>view<sp/>the<sp/>data<sp/>from</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>SCI<sp/>and<sp/>to<sp/>send<sp/>information<sp/>to<sp/>the<sp/>SCI.<sp/>Characters<sp/>received</highlight></codeline>
+<codeline><highlight class="normal">by<sp/>the<sp/>SCI<sp/>port<sp/>are<sp/>sent<sp/>back<sp/>to<sp/>the<sp/>host.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\note<sp/>This<sp/>example<sp/>project<sp/>has<sp/>support<sp/>for<sp/>migration<sp/>across<sp/>our<sp/>C2000<sp/></highlight></codeline>
+<codeline><highlight class="normal">device<sp/>families.<sp/>If<sp/>you<sp/>are<sp/>wanting<sp/>to<sp/>build<sp/>this<sp/>project<sp/>from<sp/>launchpad</highlight></codeline>
+<codeline><highlight class="normal">or<sp/>controlCARD,<sp/>please<sp/>specify<sp/>in<sp/>the<sp/>.syscfg<sp/>file<sp/>the<sp/>board<sp/>you&apos;re<sp/>using.</highlight></codeline>
+<codeline><highlight class="normal">At<sp/>any<sp/>time<sp/>you<sp/>can<sp/>select<sp/>another<sp/>device<sp/>to<sp/>migrate<sp/>this<sp/>example.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Watch<sp/><sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>loopCounter<sp/>-<sp/>the<sp/>number<sp/>of<sp/>characters<sp/>sent</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>the<sp/>USB<sp/>cable<sp/>from<sp/>Launchpad<sp/>to<sp/>PC</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Open<sp/>a<sp/>COM<sp/>port<sp/>with<sp/>the<sp/>following<sp/>settings<sp/>using<sp/>a<sp/>terminal:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/><sp/>Find<sp/>correct<sp/>COM<sp/>port</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/><sp/>Bits<sp/>per<sp/>second<sp/>=<sp/>9600</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/><sp/>Data<sp/>Bits<sp/>=<sp/>8</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/><sp/>Parity<sp/>=<sp/>None</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/><sp/>Stop<sp/>Bits<sp/>=<sp/>1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/><sp/>Hardware<sp/>Control<sp/>=<sp/>None</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>program<sp/>will<sp/>print<sp/>out<sp/>a<sp/>greeting<sp/>and<sp/>then<sp/>ask<sp/>you<sp/>to<sp/>enter<sp/>a<sp/>character<sp/>which<sp/>it<sp/>will<sp/>echo<sp/>back<sp/>to<sp/>the<sp/>terminal.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_SCI_PAGE</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/sci_echoback.md"/>
+  </compounddef>
+</doxygen>

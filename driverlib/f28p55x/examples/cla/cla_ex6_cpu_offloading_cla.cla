@@ -10,7 +10,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -43,7 +43,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -51,7 +50,6 @@
 #include <cla_ex6_cpu_offloading_shared.h>
 #endif
 #include <stdint.h>
-
 //
 // Globals
 //
@@ -60,8 +58,6 @@
 // initialized value here. To do so, one-time initialization task is used that
 // is triggered by software at the beginning
 //
-
-
 //-----------------------------------------------------------------------------
 //
 // Task 1 - PWM control loop
@@ -75,25 +71,21 @@ __attribute__((interrupt)) void Cla1Task1 ( void )
     // Uncomment this to debug the CLA while connected to the debugger
     //
     //__mdebugstop();
-
 #if run_loop1_cla == 1
     //
     // Turn ON Loop1 Profiling GPIO
     //
     GPIO_writePin(2,1);
-
     //
     // Run the core loop1 logic
     //
     loop1_task();
-
     //
     // Turn OFF Loop1 Profiling GPIO
     //
     GPIO_writePin(2,0);
 #endif
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 2 - Title Here
@@ -103,9 +95,7 @@ __attribute__((interrupt)) void Cla1Task1 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task2 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 3 - Title Here
@@ -115,9 +105,7 @@ __attribute__((interrupt))  void Cla1Task2 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task3 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 4 - Title Here
@@ -127,9 +115,7 @@ __attribute__((interrupt))  void Cla1Task3 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task4 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 5 - Title Here
@@ -139,9 +125,7 @@ __attribute__((interrupt))  void Cla1Task4 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task5 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 6 - Title Here
@@ -151,9 +135,7 @@ __attribute__((interrupt))  void Cla1Task5 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task6 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 7 - Title Here
@@ -163,9 +145,7 @@ __attribute__((interrupt))  void Cla1Task6 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task7 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 8 - One Time Initialization Task
@@ -175,9 +155,7 @@ __attribute__((interrupt))  void Cla1Task7 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task8 ( void )
 {
-
 }
-
 //
 // End of File
 //

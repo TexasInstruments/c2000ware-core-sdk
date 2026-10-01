@@ -58,7 +58,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -91,7 +91,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -101,13 +100,11 @@
 // Defines
 //
 #define phase_shift_ON 1U
-
 //
 // Global variables
 //
 volatile uint16_t cpu_flag = 0; // Flag used in ISR to implement toggle of
                                 // EPWM1B output
-
 //
 // Function Prototypes
 //
@@ -117,13 +114,9 @@ void setuploop1ProfileGpio(void);
 void setuploop2ProfileGpio(void);
 void initCLA(void);
 __interrupt void cpuISR(void);
-
-
 #if defined(_FLASH)
 #pragma CODE_SECTION(cpuISR,".TI.ramfunc");
 #endif
-
-
 //
 // Main
 //
@@ -133,12 +126,10 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // GPIO0 is set to EPWM1A and GPIO1 is set to EPWM1B
     //
@@ -148,66 +139,53 @@ void main(void)
     GPIO_setControllerCore(1, GPIO_CORE_CPU1);
     GPIO_setPadConfig(1,GPIO_PIN_TYPE_STD);
     GPIO_setPinConfig(GPIO_1_EPWM1B);
-
     //
     // Setup Profiling GPIOs for loop1 and loop2
     //
     setuploop1ProfileGpio();
     setuploop2ProfileGpio();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Disable sync(Freeze clock to PWM as well)
     //
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Initialize EPWM1, EPWM4 and EPWM5 modules
     //
     initEPWM();
-
     //
     // Initialize resources
     //
     Board_init();
     initCLA();
-
     //
     // Register the EPWM4 interrupt
     //
     Interrupt_register(INT_EPWM4, &cpuISR);
-
     //
     // Enable EPWM4 CPU interrupt
     //
     Interrupt_enable(INT_EPWM4);
-
     //
     // Enable global interrupts.
     //
     EINT;
-
     //
     // Enable sync and clock to PWM
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     for(;;)
     {
-
     }
 }
-
 //
 // EPWM Initialization
 // EPWM1 : generates software controlled outputs at A & B
@@ -229,13 +207,10 @@ void initEPWM(void)
     EPWM_setTimeBaseCounterMode(EPWM1_BASE, EPWM_COUNTER_MODE_UP_DOWN);
     EPWM_setTimeBaseCounter(EPWM1_BASE, 0U);
     EPWM_setActionQualifierContSWForceShadowMode(EPWM1_BASE, EPWM_AQ_SW_IMMEDIATE_LOAD);
-
     //
     // Run freely in emulation mode
     //
     EPWM_setEmulationMode(EPWM1_BASE, EPWM_EMULATION_FREE_RUN);
-
-
     //
     // Set up EPWM4 to
     // - run on a base clock of SYSCLK
@@ -249,13 +224,11 @@ void initEPWM(void)
     EPWM_setTimeBaseCounterMode(EPWM4_BASE, EPWM_COUNTER_MODE_UP);
     EPWM_setTimeBaseCounter(EPWM4_BASE, 0U);
 #if phase_shift_ON == 1U
-
     EPWM_enableSyncOutPulseSource(EPWM4_BASE, EPWM_SYNC_OUT_PULSE_ON_CNTR_ZERO);
 #endif
     EPWM_setInterruptSource(EPWM4_BASE, EPWM_INT_TBCTR_ZERO);
     EPWM_enableInterrupt(EPWM4_BASE);
     EPWM_setInterruptEventCount(EPWM4_BASE, 1U);
-
     //
     // Set up EPWM5 to
     // - run on a base clock of SYSCLK
@@ -271,7 +244,6 @@ void initEPWM(void)
     EPWM_setTimeBaseCounter(EPWM5_BASE, 0U);
 #if phase_shift_ON == 1U
     EPWM_enablePhaseShiftLoad(EPWM5_BASE);
-
     EPWM_setSyncInPulseSource(EPWM5_BASE, EPWM_SYNC_IN_PULSE_SRC_SYNCOUT_EPWM4);
     EPWM_setPhaseShift(EPWM5_BASE, 20U);
     EPWM_enableOneShotSync(EPWM5_BASE);
@@ -280,7 +252,6 @@ void initEPWM(void)
     EPWM_enableInterrupt(EPWM5_BASE);
     EPWM_setInterruptEventCount(EPWM5_BASE, 1U);
 }
-
 //
 // CLA Initialization
 //
@@ -291,7 +262,6 @@ void initCLA(void)
     //
     CLA_forceTasks(CLA1_BASE, CLA_TASKFLAG_8);
 }
-
 //
 // Setting up GPIO2 for profiling cla Task
 //
@@ -303,7 +273,6 @@ void setuploop1ProfileGpio(void)
         GPIO_writePin(2,0);
         GPIO_setControllerCore(2, GPIO_CORE_CPU1_CLA1);
 }
-
 //
 // Setting up GPIO3 for profiling cpuISR
 //
@@ -314,7 +283,6 @@ void setuploop2ProfileGpio(void)
         GPIO_setPinConfig(GPIO_3_GPIO3);
         GPIO_writePin(3,0);
 }
-
 //
 // CPU ISR
 //
@@ -324,7 +292,6 @@ __interrupt void cpuISR(void)
     // Turn ON Profiling GPIO3
     //
     GPIO_writePin(3,1);
-
     //
     // Toggle the EPWM1B output using SW Force Action
     //
@@ -333,23 +300,19 @@ __interrupt void cpuISR(void)
         EPWM_setActionQualifierContSWForceAction(EPWM1_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_SW_OUTPUT_HIGH);
         cpu_flag = 0;
     }
-
     else
     {
         EPWM_setActionQualifierContSWForceAction(EPWM1_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_SW_OUTPUT_LOW);
         cpu_flag = 1;
     }
-
     //
     // Turn OFF Profiling GPIO3
     //
     GPIO_writePin(3,0);
-
     //
     // Clear EPWM4 interrupt flag so that next interrupt can come in
     //
     EPWM_clearEventTriggerInterruptFlag(EPWM4_BASE);
-
     //
     // Acknowledge the interrupt
     //

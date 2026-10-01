@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="DRIVERS_EQEP_PAGE" kind="page">
+    <compoundname>DRIVERS_EQEP_PAGE</compoundname>
+    <title>EQEP</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="DRIVERS_EQEP_PAGE_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_components_drivers_eqep"/></para>
+<para>The EQEP driver provides API to configure the EQEP module. Below are the high level features supported by the EQEP driver.</para>
+<sect1 id="DRIVERS_EQEP_PAGE_1autotoc_md56">
+<title>Features Supported</title>
+<para><itemizedlist>
+<listitem><para>We can monitor 3 Signals(EQEPA, EQEPB and Index).</para>
+</listitem><listitem><para>Can be used to determine direction of motor rotation, angular position and velocity of rotor.</para>
+</listitem><listitem><para>Support for Input signal polarity, position counter source, resolution, index pulse gating configurations.</para>
+</listitem><listitem><para>Supports QCAP module for low speed measurements.</para>
+</listitem><listitem><para>Unit Timer(UTIME) Base module for issuing period interrupts to the CPU for velocity calculations.</para>
+</listitem><listitem><para>Watchdog Timer to detect potential stalls and issue fault flags.</para>
+</listitem><listitem><para>QMA module for changing QEPA and QEPB signals to clock and direction signals. Also used for error detection.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_EQEP_PAGE_1autotoc_md57">
+<title>SysConfig Features</title>
+<para><simplesect kind="note"><para>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</para>
+</simplesect>
+<itemizedlist>
+<listitem><para>Support of Quadrature Decoder Unit(QDU) for input polarity, position counter source and resolution.</para>
+</listitem><listitem><para>Support of position counter mode, maximum position and value.</para>
+</listitem><listitem><para>Support of QMA, QCAP and UTIME modules for accurate velocity and position calculations.</para>
+</listitem><listitem><para>Configure Watchdog Timer by specifying its period and value.</para>
+</listitem><listitem><para>Input cross bar configuration for EQEP module.</para>
+</listitem><listitem><para>Seperate DMA trigger.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_EQEP_PAGE_1autotoc_md58">
+<title>Features NOT Supported</title>
+<para>NA</para>
+</sect1>
+<sect1 id="DRIVERS_EQEP_PAGE_1autotoc_md59">
+<title>Important Usage Guidelines</title>
+<para>NA</para>
+</sect1>
+<sect1 id="DRIVERS_EQEP_PAGE_1autotoc_md60">
+<title>Example Usage</title>
+<para>Include the below file to access the APIs #include &lt;<ref refid="eqep_8h" kindref="compound">eqep.h</ref>&gt;</para>
+</sect1>
+<sect1 id="DRIVERS_EQEP_PAGE_1autotoc_md61">
+<title>API</title>
+<para><ref refid="group__eqep__api" kindref="compound">eQEP</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/eqep.md"/>
+  </compounddef>
+</doxygen>

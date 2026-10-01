@@ -5,17 +5,13 @@
 #include "device/usbdhid.h"
 #include "device/usbdhidkeyb.h"
 #include "usb_key.h"
-
-
 key_state_t g_eKeyboardState = STATE_UNCONFIGURED;
-
 volatile bool g_bKeyConnected = false; // This global indicates whether or not we
                                     // are connected to a USB host.
 volatile bool g_bSuspended = false; // This global indicates whether or not the
                                     //USB bus is currently in the suspend state
 volatile bool g_bDisplayUpdateRequired; // This global is set to true if the
                                         // host sends a request to set or clear
-
 uint32_t
 KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
                 void *pvMsgData)
@@ -31,7 +27,6 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_bSuspended = false;
             break;
         }
-
         //
         // The host has disconnected from us.
         //
@@ -40,7 +35,6 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_bKeyConnected = false;
             break;
         }
-
         //
         // We receive this event every time the host acknowledges transmission
         // of a report. It is used here purely as a way of determining whether
@@ -54,7 +48,6 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_eKeyboardState = STATE_IDLE;
             break;
         }
-
         //
         // This event indicates that the host has suspended the USB bus.
         //
@@ -63,7 +56,6 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_bSuspended = true;
             break;
         }
-
         //
         // This event signals that the host has resumed signalling on the bus.
         //
@@ -72,7 +64,6 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_bSuspended = false;
             break;
         }
-
         //
         // This event indicates that the host has sent us an Output or
         // Feature report and that the report is now in the buffer we provided
@@ -84,10 +75,8 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             // Set the LED to match the current state of the caps lock LED.
             //
             //GPIO_writePin(31,((ui32MsgData & HID_KEYB_CAPS_LOCK) ? 1 : 0));
-
             break;
         }
-
         //
         // We ignore all other events.
         //
@@ -96,6 +85,5 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             break;
         }
     }
-
     return(0);
 }

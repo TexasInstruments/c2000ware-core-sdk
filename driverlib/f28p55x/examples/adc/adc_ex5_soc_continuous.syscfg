@@ -1,11 +1,15 @@
-
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P55x" --part "F28P55x_128PDT" --package "128PDT" --context "system" 
+ * @v2CliArgs  --device "TMS320F28P550SJ" --package "128PDT" --variant "TMS320F28P550SJ9" --context "system"
+ */
 /**
  * Import the modules used in this configuration.
  */
 const adc     = scripting.addModule("/driverlib/adc.js", {}, false);
 const adc1    = adc.addInstance();
 const asysctl = scripting.addModule("/driverlib/asysctl.js");
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -54,6 +58,5 @@ adc1.interrupt1SOCSource            = "ADC_INT_TRIGGER_EOC6";
 adc1.interrupt2SOCSource            = "ADC_INT_TRIGGER_EOC14";
 adc1.interrupt3SOCSource            = "ADC_INT_TRIGGER_EOC7";
 adc1.interrupt4SOCSource            = "ADC_INT_TRIGGER_EOC15";
-
 asysctl.analogReference         = "INTERNAL";
 asysctl.analogReferenceVoltage  = "1P65";

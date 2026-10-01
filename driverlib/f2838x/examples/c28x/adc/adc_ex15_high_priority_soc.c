@@ -103,7 +103,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -136,25 +136,20 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
-
 // Uncomment to enable profiling
 //#define ENABLE_PROFILING
-
 //
 // Macro for defining ADC resolution
 //
 #define EX_ADC_RESOLUTION       12U
-
 //
 // Macro to define acquisition window duration based on resolution.
 // This can vary as per application hardware. In this example, a
@@ -164,32 +159,27 @@
 //
 #define EX_ACQ_WIN_12_BIT       15U
 #define EX_ACQ_WIN_16_BIT       65U
-
 //
 // Macro to define ADC result buffer size
 //
 #define RESULTS_BUFFER_SIZE     50U
-
 //
 // Macro to define ADC Low Priority SOC trigger
 // if EX_ADC_LP_SOC_TRIGGER == 0U, low priority SOC trigger = ADCINT1
 // if EX_ADC_LP_SOC_TRIGGER == 1U, low priority SOC trigger = EPWM2
 //
 #define EX_ADC_LP_SOC_TRIGGER    0U
-
 //
 // Globals
 //
 volatile uint16_t indexA = 0, indexB = 0;   // Index into result buffer
 volatile uint16_t bufferFull;               // Flag to indicate buffer is full
-
 //
 // Globals for capturing SOC delay
 //
 volatile uint16_t delaySocA0 = 0, delaySocA3 = 0, delaySocA4 = 0, delaySocA5 = 0;
 volatile uint16_t delaySocB0 = 0, delaySocB1 = 0, delaySocB4 = 0, delaySocB5 = 0;
 volatile uint16_t delaySocD0 = 0, delaySocD1 = 0, delaySocD4 = 0, delaySocD5 = 0;
-
 //
 // Globals for capturing ADC results
 //
@@ -207,7 +197,6 @@ uint16_t adcD4Results[RESULTS_BUFFER_SIZE]  = {0}; // ADC result buffer for Ch D
 uint16_t adcA13Results[RESULTS_BUFFER_SIZE] = {0}; // ADC result buffer for Ch A13
 uint16_t adcB5Results[RESULTS_BUFFER_SIZE]  = {0}; // ADC result buffer for Ch B5
 uint16_t adcD5Results[RESULTS_BUFFER_SIZE]  = {0}; // ADC result buffer for Ch D5
-
 //
 // Characteristics of PWM triggers
 // EPWM1 - frequency -> 400kHz, dutyA -> 50%, dutyB -> 50%, ePWM1B - inverted
@@ -216,7 +205,6 @@ EPWM_SignalParams pwmSignal1 =
             {400000, 0.5f, 0.5f, true, DEVICE_SYSCLK_FREQ, SYSCTL_EPWMCLK_DIV_2,
             EPWM_COUNTER_MODE_UP, EPWM_CLOCK_DIVIDER_1,
             EPWM_HSCLOCK_DIVIDER_1};
-
 #if(EX_ADC_LP_SOC_TRIGGER == 1)
 //
 // EPWM2 - frequency -> 100kHz, dutyA -> 50%, dutyB -> 50%, ePWM2B - inverted
@@ -226,118 +214,98 @@ EPWM_SignalParams pwmSignal2 =
             EPWM_COUNTER_MODE_UP, EPWM_CLOCK_DIVIDER_1,
             EPWM_HSCLOCK_DIVIDER_1};
 #endif
-
 //
 // Functional Prototypes
 //
-
 //
 // ADC configuration related APIs
 //
 void configureADC(uint32_t adcBase);
 void initADCSOC(uint32_t adcBase);
 void initADCPPB(void);
-
 //
 // EPWM configuration related APIs
 //
 void initEPWMGPIO(void);
-
 #ifdef ENABLE_PROFILING
 void setupProfileGpio(void);
 #endif
-
 //
 // ADC ISR defined as high priority interrupt
 //
 __interrupt void adcA1ISR(void);
 #pragma CODE_SECTION(adcA1ISR, ".TI.ramfunc")
 #pragma INTERRUPT (adcA1ISR, HPI)
-
 void main(void)
 {
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Interrupts that are used in this example are re-mapped to ISR functions
     // found within this file.
     //
     Interrupt_register(INT_ADCA1, &adcA1ISR);
-
 #ifdef ENABLE_PROFILING
     //
     // Setup profiling GPIO
     //
     setupProfileGpio();
 #endif
-
     //
     // For this case just init GPIO pins for ePWM1, ePWM2, ePWM3
     //
     initEPWMGPIO();
-
     //
     // Configure the ADC and power it up
     //
     configureADC(ADCA_BASE);
     configureADC(ADCB_BASE);
     configureADC(ADCD_BASE);
-
     //
     // Disable sync(Freeze clock to PWM as well)
     //
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Configuring ePWM modules for desired frequency and duty
     //
     EPWM_configureSignal(EPWM1_BASE, &pwmSignal1);
     EPWM_setTimeBaseCounterMode(EPWM1_BASE, EPWM_COUNTER_MODE_STOP_FREEZE);
     EPWM_disableADCTrigger(EPWM1_BASE, EPWM_SOC_A);
-
 #if(EX_ADC_LP_SOC_TRIGGER == 1)
     EPWM_configureSignal(EPWM2_BASE, &pwmSignal2);
     EPWM_setTimeBaseCounterMode(EPWM2_BASE, EPWM_COUNTER_MODE_STOP_FREEZE);
     EPWM_disableADCTrigger(EPWM2_BASE, EPWM_SOC_A);
 #endif
-
     //
     // Setup the ADC SOCs
     //
     initADCSOC(ADCA_BASE);
     initADCSOC(ADCB_BASE);
     initADCSOC(ADCD_BASE);
-
     //
     // Configure ADC PPB for delay capture
     //
     initADCPPB();
-
     //
     // Enable the temperature sensor and give it 500 us to power up
     //
     ASysCtl_enableTemperatureSensor();
     DEVICE_DELAY_US(500);
-
     //
     // Configure the SOC to occur on the first up-count event
     //
@@ -345,7 +313,6 @@ void main(void)
     EPWM_setADCTriggerEventPrescale(EPWM1_BASE, EPWM_SOC_A, 1);
     EPWM_enableADCTrigger(EPWM1_BASE, EPWM_SOC_A);
     EPWM_setTimeBaseCounterMode(EPWM1_BASE, EPWM_COUNTER_MODE_UP);
-
 #if(EX_ADC_LP_SOC_TRIGGER == 1)
     //
     // Configure the SOC to occur on the first up-count event
@@ -355,24 +322,20 @@ void main(void)
     EPWM_enableADCTrigger(EPWM2_BASE, EPWM_SOC_A);
     EPWM_setTimeBaseCounterMode(EPWM2_BASE, EPWM_COUNTER_MODE_UP);
 #endif
-
     //
     // Enable ADC interrupt
     //
     Interrupt_enable(INT_ADCA1);
-
     //
     // Enable global Interrupts and higher priority real-time debug events:
     //
     EINT;  // Enable Global interrupt INTM
     ERTM;  // Enable Global realtime interrupt DBGM
-
     //
     // Start ePWM:
     // Enable sync and clock to PWM
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Loop indefinitely:
     //
@@ -385,34 +348,27 @@ void main(void)
         while(ADC_getInterruptStatus(ADCA_BASE, ADC_INT_NUMBER2) == false)
         {
         }
-
         ADC_clearInterruptStatus(ADCA_BASE, ADC_INT_NUMBER2);
         ADC_clearInterruptStatus(ADCB_BASE, ADC_INT_NUMBER2);
         ADC_clearInterruptStatus(ADCD_BASE, ADC_INT_NUMBER2);
-
         //
         // Capture delays for low priority SOCs
         //
         delaySocA4 = ADC_getPPBDelayTimeStamp(ADCA_BASE, ADC_PPB_NUMBER3);
         delaySocA5 = ADC_getPPBDelayTimeStamp(ADCA_BASE, ADC_PPB_NUMBER4);
-
         delaySocB4 = ADC_getPPBDelayTimeStamp(ADCB_BASE, ADC_PPB_NUMBER3);
         delaySocB5 = ADC_getPPBDelayTimeStamp(ADCB_BASE, ADC_PPB_NUMBER4);
-
         delaySocD4 = ADC_getPPBDelayTimeStamp(ADCD_BASE, ADC_PPB_NUMBER3);
         delaySocD5 = ADC_getPPBDelayTimeStamp(ADCD_BASE, ADC_PPB_NUMBER4);
-
         //
         // Read low priority ADC signals in background loop
         //
         adcA4Results[indexB]   = ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER4);
         adcB4Results[indexB]   = ADC_readResult(ADCBRESULT_BASE, ADC_SOC_NUMBER4);
         adcD4Results[indexB]   = ADC_readResult(ADCDRESULT_BASE, ADC_SOC_NUMBER4);
-
         adcA13Results[indexB]  = ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER5);
         adcB5Results[indexB]   = ADC_readResult(ADCBRESULT_BASE, ADC_SOC_NUMBER5);
         adcD5Results[indexB++] = ADC_readResult(ADCDRESULT_BASE, ADC_SOC_NUMBER5);
-
         if(indexB == RESULTS_BUFFER_SIZE)
         {
             //
@@ -423,7 +379,6 @@ void main(void)
         }
     }
 }
-
 //
 // configureADC - Write ADC configurations and power up the desired ADC instance
 //
@@ -433,7 +388,6 @@ void configureADC(uint32_t adcBase)
     // Set ADCCLK divider to /4
     //
     ADC_setPrescaler(adcBase, ADC_CLK_DIV_4_0);
-
     //
     // Set resolution and signal mode (see #defines above) and load
     // corresponding trims.
@@ -443,36 +397,30 @@ void configureADC(uint32_t adcBase)
 #elif(EX_ADC_RESOLUTION == 16)
     ADC_setMode(adcBase, ADC_RESOLUTION_16BIT, ADC_MODE_DIFFERENTIAL);
 #endif
-
     //
     // Set pulse positions to late
     //
     ADC_setInterruptPulseMode(adcBase, ADC_PULSE_END_OF_CONV);
-
     //
     // Power up the ADCs and then delay for 1 ms
     //
     ADC_enableConverter(adcBase);
-
     //
     // Delay for 1ms to allow ADC time to power up
     //
     DEVICE_DELAY_US(1000);
 }
-
 //
 // initADCSOC - Function to configure ADC SOCs as per application requirement
 //
 void initADCSOC(uint32_t adcBase)
 {
     uint16_t i;
-
     //
     // Set SOC priority- SOC0-SOC3 are high priority SOCs and SOC4-SOC15
     // would have round-robin priority
     //
     ADC_setSOCPriority(adcBase, ADC_PRI_THRU_SOC3_HIPRI);
-
     //
     // Configure EPWM1 as SOC0-SOC1 trigger
     //
@@ -484,7 +432,6 @@ void initADCSOC(uint32_t adcBase)
                     ((EX_ADC_RESOLUTION == ADC_RESOLUTION_16BIT) ?
                      EX_ACQ_WIN_16_BIT : EX_ACQ_WIN_12_BIT));
     }
-
     if(adcBase == ADCA_BASE)
     {
         //
@@ -499,12 +446,10 @@ void initADCSOC(uint32_t adcBase)
                          EX_ACQ_WIN_16_BIT : EX_ACQ_WIN_12_BIT));
         }
     }
-
 #if(EX_ADC_LP_SOC_TRIGGER == 1)
     //
     // Configuration for EPWM trigger for low priority SOCs
     //
-
     //
     // Configure EPWM2 as SOC4-SOC5 trigger. Configure SOC5 to sample
     // channel 13. For ADCA it is temperature sensor output
@@ -512,7 +457,6 @@ void initADCSOC(uint32_t adcBase)
     ADC_setupSOC(adcBase, ADC_SOC_NUMBER4, ADC_TRIGGER_EPWM2_SOCA,
                  ADC_CH_ADCIN4, ((EX_ADC_RESOLUTION == ADC_RESOLUTION_16BIT) ?
                                  EX_ACQ_WIN_16_BIT : EX_ACQ_WIN_12_BIT));
-
     if(adcBase == ADCA_BASE)
     {
         ADC_setupSOC(adcBase, ADC_SOC_NUMBER5, ADC_TRIGGER_EPWM2_SOCA,
@@ -522,19 +466,15 @@ void initADCSOC(uint32_t adcBase)
     {
         ADC_setupSOC(adcBase, ADC_SOC_NUMBER5, ADC_TRIGGER_EPWM2_SOCA,
                      ADC_CH_ADCIN5, 140);
-
     }
-
     //
     // Set ADCA SOC3 to set the interrupt 1 flag.
     //
     ADC_setInterruptSource(adcBase, ADC_INT_NUMBER1, ADC_SOC_NUMBER3);
-
 #elif(EX_ADC_LP_SOC_TRIGGER == 0)
     //
     // Configuration for ADCINT1 Trigger for low priority SOCs
     //
-
     //
     // Configure SOC4-SOC5. Configure SOC5 to sample channel 13. For ADCA it
     // is temperature sensor output
@@ -542,7 +482,6 @@ void initADCSOC(uint32_t adcBase)
     ADC_setupSOC(adcBase, ADC_SOC_NUMBER4, ADC_TRIGGER_SW_ONLY,
                  ADC_CH_ADCIN4, ((EX_ADC_RESOLUTION == ADC_RESOLUTION_16BIT) ?
                                  EX_ACQ_WIN_16_BIT : EX_ACQ_WIN_12_BIT));
-
     if(adcBase == ADCA_BASE)
     {
         ADC_setupSOC(adcBase, ADC_SOC_NUMBER5, ADC_TRIGGER_SW_ONLY,
@@ -553,7 +492,6 @@ void initADCSOC(uint32_t adcBase)
         ADC_setupSOC(adcBase, ADC_SOC_NUMBER5, ADC_TRIGGER_SW_ONLY,
                      ADC_CH_ADCIN5, 140);
     }
-
     //
     // Configure ADCINT1 as SOC4-SOC5 trigger
     //
@@ -565,8 +503,6 @@ void initADCSOC(uint32_t adcBase)
         ADC_setInterruptSOCTrigger(adcBase, (ADC_SOCNumber)i,
                                    ADC_INT_SOC_TRIGGER_ADCINT1);
     }
-
-
     if(adcBase == ADCA_BASE)
     {
         //
@@ -577,15 +513,12 @@ void initADCSOC(uint32_t adcBase)
         ADC_enableInterrupt(adcBase, ADC_INT_NUMBER3);
         ADC_clearInterruptStatus(adcBase, ADC_INT_NUMBER3);
     }
-
     //
     // Set ADCA SOC1 to set the interrupt 1 flag. Enable the interrupt,
     // continuous interrupt mode and make sure its flag is cleared.
     //
     ADC_setInterruptSource(adcBase, ADC_INT_NUMBER1, ADC_SOC_NUMBER1);
-
 #endif
-
     //
     // Enable the ADCINT1 interrupt, continuous interrupt mode
     // and make sure its flag is cleared.
@@ -593,7 +526,6 @@ void initADCSOC(uint32_t adcBase)
     ADC_enableContinuousMode(adcBase, ADC_INT_NUMBER1);
     ADC_enableInterrupt(adcBase, ADC_INT_NUMBER1);
     ADC_clearInterruptStatus(adcBase, ADC_INT_NUMBER1);
-
     //
     // Set ADC SOC5 to set the interrupt 2 flag. Enable the interrupt
     // and make sure its flag is cleared.
@@ -602,7 +534,6 @@ void initADCSOC(uint32_t adcBase)
     ADC_enableInterrupt(adcBase, ADC_INT_NUMBER2);
     ADC_clearInterruptStatus(adcBase, ADC_INT_NUMBER2);
 }
-
 //
 // initADCPPB - Function to configure ADC PPBs as per application requirement
 //
@@ -615,7 +546,6 @@ void initADCPPB(void)
     ADC_setupPPB(ADCA_BASE, ADC_PPB_NUMBER2, ADC_SOC_NUMBER3);
     ADC_setupPPB(ADCA_BASE, ADC_PPB_NUMBER3, ADC_SOC_NUMBER4);
     ADC_setupPPB(ADCA_BASE, ADC_PPB_NUMBER4, ADC_SOC_NUMBER5);
-
     //
     // PPB configuration for ADCB
     //
@@ -623,7 +553,6 @@ void initADCPPB(void)
     ADC_setupPPB(ADCB_BASE, ADC_PPB_NUMBER2, ADC_SOC_NUMBER1);
     ADC_setupPPB(ADCB_BASE, ADC_PPB_NUMBER3, ADC_SOC_NUMBER4);
     ADC_setupPPB(ADCB_BASE, ADC_PPB_NUMBER4, ADC_SOC_NUMBER5);
-
     //
     // PPB configuration for ADCD
     //
@@ -632,7 +561,6 @@ void initADCPPB(void)
     ADC_setupPPB(ADCD_BASE, ADC_PPB_NUMBER3, ADC_SOC_NUMBER4);
     ADC_setupPPB(ADCD_BASE, ADC_PPB_NUMBER4, ADC_SOC_NUMBER5);
 }
-
 //
 // adcA1ISR - ADC A Interrupt 1 ISR
 //
@@ -644,7 +572,6 @@ __interrupt void adcA1ISR(void)
     //
     HWREG(GPIODATA_BASE  + GPIO_O_GPASET) = 0x1000;
 #endif
-
     //
     // Read SOC delays
     //
@@ -653,7 +580,6 @@ __interrupt void adcA1ISR(void)
     delaySocB1  = ADC_getPPBDelayTimeStamp(ADCB_BASE, ADC_PPB_NUMBER2);
     delaySocD0  = ADC_getPPBDelayTimeStamp(ADCD_BASE, ADC_PPB_NUMBER1);
     delaySocD1  = ADC_getPPBDelayTimeStamp(ADCD_BASE, ADC_PPB_NUMBER2);
-
     //
     // Add the latest ADC result of high priority signals to the buffer
     //
@@ -663,7 +589,6 @@ __interrupt void adcA1ISR(void)
     adcA1Results[indexA]   = ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER1);
     adcB1Results[indexA]   = ADC_readResult(ADCBRESULT_BASE, ADC_SOC_NUMBER1);
     adcD1Results[indexA]   = ADC_readResult(ADCDRESULT_BASE, ADC_SOC_NUMBER1);
-
 #if(EX_ADC_LP_SOC_TRIGGER == 0)
     //
     // Wait for ADCA to complete conversion of SOC2-SOC3, then acknowledge
@@ -672,21 +597,17 @@ __interrupt void adcA1ISR(void)
     while(ADC_getInterruptStatus(ADCA_BASE, ADC_INT_NUMBER3) == false)
     {
     }
-
     ADC_clearInterruptStatus(ADCA_BASE, ADC_INT_NUMBER3);
 #endif
-
     //
     // Read ADCA SOC2-SOC3 results post checking the ADCINT3 flag
     //
     adcA2Results[indexA]   = ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER2);
     adcA3Results[indexA++] = ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER3);
-
     //
     // Read delay for ADCA SOC3
     //
     delaySocA3  = ADC_getPPBDelayTimeStamp(ADCA_BASE, ADC_PPB_NUMBER2);
-
     if(RESULTS_BUFFER_SIZE <= indexA)
     {
         //
@@ -694,12 +615,10 @@ __interrupt void adcA1ISR(void)
         //
         indexA = 0;
     }
-
     //
     // Acknowledge the interrupt
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP1);
-
 #ifdef ENABLE_PROFILING
     //
     // Resetting Profiling GPIO12
@@ -707,7 +626,6 @@ __interrupt void adcA1ISR(void)
     HWREG(GPIODATA_BASE  + GPIO_O_GPACLEAR) = 0x1000;
 #endif
 }
-
 //
 // initEPWMGPIO - Configure ePWM1-ePWM2 GPIO
 //
@@ -718,22 +636,18 @@ void initEPWMGPIO(void)
     //
     GPIO_setPadConfig(0, GPIO_PIN_TYPE_STD);
     GPIO_setPinConfig(GPIO_0_EPWM1A);
-
     GPIO_setPadConfig(1, GPIO_PIN_TYPE_STD);
     GPIO_setPinConfig(GPIO_1_EPWM1B);
-
 #if(EX_ADC_LP_SOC_TRIGGER == 1)
     //
     // Disable pull up on GPIO2-3 and configure them as PWMs
     //
     GPIO_setPadConfig(2, GPIO_PIN_TYPE_STD);
     GPIO_setPinConfig(GPIO_2_EPWM2A);
-
     GPIO_setPadConfig(3, GPIO_PIN_TYPE_STD);
     GPIO_setPinConfig(GPIO_3_EPWM2B);
 #endif
 }
-
 #ifdef ENABLE_PROFILING
 //
 // setupProfileGpio - Configure profiling GPIO
@@ -746,7 +660,6 @@ void setupProfileGpio(void)
     GPIO_writePin(12,0);
 }
 #endif
-
 //
 // End of file
 //

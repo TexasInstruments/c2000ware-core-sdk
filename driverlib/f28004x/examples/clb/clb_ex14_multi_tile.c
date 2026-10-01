@@ -17,7 +17,7 @@
 //
 //
 //#############################################################################
-// $TI Release: F28004x Support Library v26.01.00.00 $
+// $TI Release: F28004x Support Library v26.02.00.00 $
 // 
 // $Copyright:
 // Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
@@ -51,47 +51,32 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
-
-
 #include "driverlib.h"
 #include "device.h"
 #include "clb_config.h"
 #include "clb.h"
 #include "board.h"
-
-
-
 void main(void)
 {
     Device_init();
     Device_initGPIO();
-
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
     //
     // Enabling CLB1/2
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB1);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB2);
-
     Board_init();
-
     initTILE1(myTILE1_BASE);
     initTILE2(myTILE2_BASE);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
-
     while(1)
     {
         asm(" NOP");
     }
 }
-

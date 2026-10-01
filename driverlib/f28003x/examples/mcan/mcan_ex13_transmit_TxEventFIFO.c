@@ -71,7 +71,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Include Files
 //
@@ -80,7 +79,6 @@
 #include "inc/stw_types.h"
 #include "inc/stw_dataTypes.h"
 #include "inc/hw_types_mcan.h"
-
 //
 // Defines.
 //
@@ -96,7 +94,6 @@
 #define MCAN_TX_BUFF_SIZE               (NUM_OF_MSG)
 #define MCAN_TX_BUFF_ELEM_SIZE          (MCAN_ELEM_SIZE_64BYTES)
 #define MCAN_TX_EVENT_SIZE              (5U)
-
 //
 //  Defining Starting Addresses for Message RAM Sections,
 //  (Calculated from Macros based on User defined configuration above)
@@ -108,8 +105,6 @@
 #define MCAN_RX_BUFF_START_ADDR         (MCAN_FIFO_1_START_ADDR + (MCAN_getMsgObjSize(MCAN_FIFO_1_ELEM_SIZE) * 4U * MCAN_FIFO_1_NUM))
 #define MCAN_TX_BUFF_START_ADDR         (MCAN_RX_BUFF_START_ADDR + (MCAN_getMsgObjSize(MCAN_RX_BUFF_ELEM_SIZE) * 4U * MCAN_RX_BUFF_NUM))
 #define MCAN_TX_EVENT_START_ADDR        (MCAN_TX_BUFF_START_ADDR + (MCAN_getMsgObjSize(MCAN_TX_BUFF_ELEM_SIZE) * 4U * MCAN_TX_BUFF_SIZE))
-
-
 //
 // Global Variables.
 //
@@ -119,46 +114,38 @@ int32_t loopCnt = 0U, j = 0U;
 MCAN_TxEventFIFOStatus TxEFS;
 MCAN_TxEventFIFOElement TxEvent, TxEventArray[NUM_OF_MSG];
 uint32_t a_MM[NUM_OF_MSG] = { 0xAA, 0xBB, 0xCC};
-
 //
 // Function Prototype.
 //
 static void MCANConfig(void);
 static void MCANIntrConfig(void);
 __interrupt void MCANIntr1ISR(void);
-
 void main()
 {
     int i = 0;
     volatile uint32_t mode = 0U;
     uint32_t dataBytes = 64;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and unlock the GPIO configuration registers
     //
     Device_initGPIO();
-
     //
     // Configure the divisor for the MCAN bit-clock
     //
     SysCtl_setMCANClk(SYSCTL_MCANCLK_DIV_3);
-
     //
     // ISR Configuration.
     //
     MCANIntrConfig();
-
     //
     // Configure GPIO pins for MCANTX/MCANRX operation
     //
     GPIO_setPinConfig(DEVICE_GPIO_CFG_MCANRXA);
     GPIO_setPinConfig(DEVICE_GPIO_CFG_MCANTXA);
-
     //
     // Initialize message to transmit.
     //
@@ -177,27 +164,22 @@ void main()
         txMsg[loopCnt].data[i]  = txMsg[loopCnt].data[i-1] + 1;
     }
     i = 0;
-
     //
     // Configure the MCAN Module.
     //
     MCANConfig();
-    
     //
     // Enable Interrupts.
     //
     MCAN_enableIntr(MCANA_DRIVER_BASE, MCAN_INTR_MASK_ALL, 1U);
-
     //
     // Select Interrupt Line.
     //
     MCAN_selectIntrLine(MCANA_DRIVER_BASE, MCAN_INTR_MASK_ALL, MCAN_INTR_LINE_NUM_1);
-
     //
     // Enable Interrupt Line.
     //
     MCAN_enableIntrLine(MCANA_DRIVER_BASE, MCAN_INTR_LINE_NUM_1, 1U);
-
     for(i=0;i<NUM_OF_MSG;i++)
     {
         //
@@ -205,18 +187,15 @@ void main()
         //  with Corresponding Tx Event FIFO Element
         //
         txMsg[loopCnt].mm = a_MM[i];
-
         //
         // Write message to Message RAM.
         //
         MCAN_writeMsgRam(MCANA_DRIVER_BASE, MCAN_MEM_TYPE_BUF, loopCnt,
                         &txMsg[loopCnt]);
-
         //
         // Add transmission request for Tx buffer 0
         //
         MCAN_txBufAddReq(MCANA_DRIVER_BASE, 0U);
-
         //
         // Wait till the frame is successfully transmitted (and ACKnowledged)
         // "Tx Buffer Transmission Occurred" register is polled.
@@ -224,26 +203,22 @@ void main()
         while(MCAN_getTxBufReqPend(MCANA_DRIVER_BASE))
         {
         }
-
         //
         // Add delay between consecutive transmit operations
         //
         DEVICE_DELAY_US(50000);
     }
-
     //
     // Stop Application.
     //
     asm("   ESTOP0");
 }
-
 static void MCANConfig(void)
 {
     MCAN_InitParams initParams;
     MCAN_ConfigParams configParams;
     MCAN_MsgRAMConfigParams    msgRAMConfigParams;
     MCAN_BitTimingParams       bitTimes;
-
     //
     //  Initializing all structs to zero to prevent stray values
     //
@@ -251,36 +226,29 @@ static void MCANConfig(void)
     memset(&configParams, 0, sizeof(configParams));
     memset(&msgRAMConfigParams, 0, sizeof(msgRAMConfigParams));
     memset(&bitTimes, 0, sizeof(bitTimes));
-
     //
     // Initialize MCAN Init parameters.
     //
     initParams.fdMode            = 0x1U; // FD operation enabled.
     initParams.brsEnable         = 0x1U; // Bit rate switching for
                                          // transmissions enabled.
-
     //
     // Transmitter Delay Compensation parameters.
     //
     initParams.tdcConfig.tdcf    = 0xAU;
     initParams.tdcConfig.tdco    = 0x6U;
-
     //
     // Initialize MCAN Config parameters.
     //
     configParams.tsSelect          = 0x2U;  // External Timestamp counter value used. (necessary for CAN-FD operation)
-
     //
     // Initialize Message RAM Sections Configuration Parameters
     //
     msgRAMConfigParams.txStartAddr          = MCAN_TX_BUFF_START_ADDR;
     // Tx Buffers Start Address.
-
     msgRAMConfigParams.txBufNum             = MCAN_TX_BUFF_SIZE;
     // Number of Dedicated Transmit Buffers.
-
     msgRAMConfigParams.txBufMode            = 0U;
-
     msgRAMConfigParams.txBufElemSize        = MCAN_TX_BUFF_ELEM_SIZE;
     // Tx Buffer Element Size.
     msgRAMConfigParams.txEventFIFOStartAddr = MCAN_TX_EVENT_START_ADDR;
@@ -288,7 +256,6 @@ static void MCANConfig(void)
     msgRAMConfigParams.txEventFIFOSize      = MCAN_TX_EVENT_SIZE;
     // Event FIFO Size.
     msgRAMConfigParams.txEventFIFOWaterMark = 3U;
-
     //
     // Initialize bit timings.
     //
@@ -306,71 +273,55 @@ static void MCANConfig(void)
     while(FALSE == MCAN_isMemInitDone(MCANA_DRIVER_BASE))
     {
     }
-
     //
     // Put MCAN in SW initialization mode.
     //
     MCAN_setOpMode(MCANA_DRIVER_BASE, MCAN_OPERATION_MODE_SW_INIT);
-
     //
     // Wait till MCAN is not initialized.
     //
     while (MCAN_OPERATION_MODE_SW_INIT != MCAN_getOpMode(MCANA_DRIVER_BASE))
     {}
-
     //
     // Initialize MCAN module.
     //
     MCAN_init(MCANA_DRIVER_BASE, &initParams);
-
     //
     // Configure Bit timings.
     //
     MCAN_setBitTime(MCANA_DRIVER_BASE, &bitTimes);
-
     //
     // Configure MCAN module.
     //
     MCAN_config(MCANA_DRIVER_BASE, &configParams);
-
     //
     // Configure Message RAM Sections
     //
     MCAN_msgRAMConfig(MCANA_DRIVER_BASE, &msgRAMConfigParams);
-
     //
     // Set Prescalar and Enable External Timestamp Counter
     //
     MCAN_extTSCounterConfig(MCANA_DRIVER_BASE, 0xFFF);
     MCAN_extTSCounterEnable(MCANA_DRIVER_BASE, 1U);
-
     //
     // Take MCAN out of the SW initialization mode
     //
     MCAN_setOpMode(MCANA_DRIVER_BASE, MCAN_OPERATION_MODE_NORMAL);
-
     while (MCAN_OPERATION_MODE_NORMAL != MCAN_getOpMode(MCANA_DRIVER_BASE))
     {
-
     }
 }
-
 //
 // This function will configure X-BAR for MCAN interrupts.
 //
 static void MCANIntrConfig(void)
 {
-
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
     Interrupt_register(INT_MCANA_1,&MCANIntr1ISR);
     Interrupt_enable(INT_MCANA_1);
-
     Interrupt_enableGlobal();
-
 }
-
 //
 // This is Interrupt Service Routine for MCAN interrupt 1.
 //
@@ -378,19 +329,15 @@ __interrupt void MCANIntr1ISR(void)
 {
     uint32_t intrStatus;
     MCAN_RxNewDataStatus newData;
-
     intrStatus = MCAN_getIntrStatus(MCANA_DRIVER_BASE);
-
     //
     // Clear the interrupt Status.
     //
     MCAN_clearIntrStatus(MCANA_DRIVER_BASE, intrStatus);
-
     //
     //  Clearing the interrupt lineNum
     //
     MCAN_clearInterrupt(MCANA_DRIVER_BASE, 0x2);
-
     //
     //  Check to see if the interrupt is caused by a message being
     //  received in dedicated RX Buffers
@@ -401,7 +348,6 @@ __interrupt void MCANIntr1ISR(void)
         // Read Tx Event FIFO Status
         //
         MCAN_getTxEventFIFOStatus(MCANA_DRIVER_BASE, &TxEFS);
-
         //
         // Read all Tx Event FIFO Elements once the
         // watermark is hit, so that the FIFO is empty again
@@ -412,19 +358,16 @@ __interrupt void MCANIntr1ISR(void)
             // Read Tx Event FIFO Element Data from Message RAM
             //
             MCAN_readTxEventFIFO(MCANA_DRIVER_BASE, &TxEvent);
-
             //
             // Store Tx FIFO Element information into predefined array
             //
             TxEventArray[j] = TxEvent;
             j++;
-
             //
             // Write Acknowledge to increment Get Index
             // which will point to the next element in the FIFO
             //
             MCAN_writeTxEventFIFOAck(MCANA_DRIVER_BASE, TxEFS.getIdx);
-
             //
             // Read FIFO Status to check Fill Level
             //
@@ -442,13 +385,10 @@ __interrupt void MCANIntr1ISR(void)
     else
     {
         error++;
-
         //
         //  Interrupt handling for other interrupt sources goes here
         //
-
     }
-
     //
     // Acknowledge this interrupt located in group 9
     //

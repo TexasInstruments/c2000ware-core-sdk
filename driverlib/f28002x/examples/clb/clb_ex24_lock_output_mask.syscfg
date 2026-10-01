@@ -1,4 +1,9 @@
-
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28002x" --part "F28002x_80QFP" --package "80QFP" --context "system" 
+ * @v2CliArgs --device "TMS320F280025C" --package "80QFP" --context "system"
+ */
 /**
  * Import the modules used in this configuration.
  */
@@ -6,7 +11,6 @@ const clb   = scripting.addModule("/driverlib/clb.js", {}, false);
 const clb1  = clb.addInstance();
 const TILE  = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/TILE", {}, false);
 const TILE1 = TILE.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -14,7 +18,6 @@ clb1.$name                           = "myCLBForTILE1";
 clb1.outputsToOverridePeripheral     = ["CLB_OUT4"];
 clb1.inputsUsed                      = ["CLB_IN0"];
 clb1.lockOutputsToOverridePeripheral = true;
-
 TILE1.$name              = "TILE1";
 TILE1.BOUNDARY.$name     = "BOUNDARY0";
 TILE1.LUT_0.$name        = "LUT_0";

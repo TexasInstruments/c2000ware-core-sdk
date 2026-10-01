@@ -1,0 +1,30 @@
+<projectSpec>
+  <project
+        name="mcpc029_gateDriverLib"
+        device="Generic C28xx Device"
+        cgtVersion="25.11.1.LTS"
+        products="C2000WARE"
+        launchWizard="False"
+        outputType="staticLibrary"
+        outputFormat="ELF"
+        location="."
+  >
+    <configuration name="Debug" compilerBuildOptions="--opt_level=off -I${DLIB_ROOT} -I${DRV8329_ROOT} -I${DRV_COMMON_ROOT} -I../ -v28 -ml -mt --float_support=fpu32  --abi=eabi  --define=DEBUG --define=MCPC029_GATE_DRIVER --gen_func_subsections=on --gen_data_subsections=on -g --diag_warning=225 --diag_wrap=off  --display_error_number" archiverBuildOptions="gateDriverLib.lib" />
+    <configuration name="Release" compilerBuildOptions="-O2 -I${DLIB_ROOT} -I${DRV8329_ROOT} -I${DRV_COMMON_ROOT} -I../ -v28 -ml -mt  --float_support=fpu32  --abi=eabi --define=MCPC029_GATE_DRIVER --diag_warning=225 --gen_func_subsections=on --gen_data_subsections=on -g --diag_wrap=off --display_error_number" archiverBuildOptions="gateDriverLib.lib" />
+
+    <pathVariable name="DLIB_ROOT"        path="../../driverlib"      scope="project" />
+    <pathVariable name="DRV8329_ROOT"     path="../DRV8329/include"   scope="project" />
+    <pathVariable name="DRV_COMMON_ROOT"  path="../include"           scope="project" />
+
+    <file action="link"  path="../source/gateDriver.c"    targetDirectory="source" />
+    <file action="link"  path="../include/gateDriver.h"   targetDirectory="include" />
+    <file action="link"  path="../include/hw_defines.h"   targetDirectory="include" />
+
+    <file action="link"  path="../DRV8329/source/drv8329_spi_hal.c"   targetDirectory="DRV8329/source" />
+    <file action="link"  path="../DRV8329/source/drv8329.c"           targetDirectory="DRV8329/source" />
+    <file action="link"  path="../DRV8329/include/drv8329_spi_hal.h"  targetDirectory="DRV8329/include" />
+    <file action="link"  path="../DRV8329/include/drv8329.h"          targetDirectory="DRV8329/include" />
+    <file action="link"  path="../DRV8329/include/hw_drv8329.h"       targetDirectory="DRV8329/include" />
+
+  </project>
+</projectSpec>

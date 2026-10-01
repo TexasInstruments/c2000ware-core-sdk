@@ -124,17 +124,14 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include <cla_ex6_cpu_offloading_shared.h>
 #include "DCLF32.h"
 #include "board.h"
-
 bool system_OFF = false; // Input used to shut down the system
 bool shut_down_flag = false; // Shut down status flag
-
 //
 // Allocate all the below shared variables across C28x and CLA to a
 // "cla_shared" section. This section is allocated to RAMLS1 in linker
@@ -152,7 +149,6 @@ volatile DCL_PI pi_loop1 = PI_DEFAULTS;
 volatile DCL_PI pi_loop2 = PI_DEFAULTS;
 volatile float32_t duty = 0.0f, duty_loop1 = 0.0f, duty_loop2 = 0.0f;     // Denotes duty of EPWM1 output
 #pragma SET_DATA_SECTION()   // Reset section to default
-
 //
 // Function Prototypes
 //
@@ -163,8 +159,6 @@ void initADCSOC(void);
 void controller_initialize(void);
 void setuploop1ProfileGpio(void);
 void setuploop2ProfileGpio(void);
-
-
 #if run_loop1_cla == 0
 #if defined(_FLASH)
 #pragma CODE_SECTION(loop1ISR,".TI.ramfunc");
@@ -175,8 +169,6 @@ __interrupt void loop1ISR(void);
 #pragma CODE_SECTION(loop2ISR,".TI.ramfunc");
 #endif
 __interrupt void loop2ISR(void);
-
-
 //
 // Main
 //
@@ -186,42 +178,34 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // GPIO0 is set to EPWM1A
     //
     GPIO_setControllerCore(0, GPIO_CORE_CPU1);
     GPIO_setPadConfig(0,GPIO_PIN_TYPE_STD);
-
     GPIO_setPinConfig(GPIO_0_EPWM1_A);
-
     //
     // Setup Profiling GPIOs for loop1 and loop2
     //
     setuploop1ProfileGpio();
     setuploop2ProfileGpio();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Disable sync(Freeze clock to PWM as well)
     //
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Set up ADCA and ADCB, initialize the SOsC and configure EPWM4 and EPWM5
     // as trigger sources
@@ -229,25 +213,21 @@ void main(void)
     initADC();
     initADCSOC();
     setupADCSOC_trigger();
-
     //
     // Initialize EPWM1 module to generate the PWM waveform
     //
     initEPWM();
-
     //
     // Initialize the PI controllers with the desired constants for
     // both the loops
     //
     controller_initialize();
-
 #if run_loop1_cla == 1
     //
     // Setup the CLA if loop1 is offloaded to CLA
     //
     Board_init();
 #endif
-
     //
     // Register the ADC interrupts for the control loops
     //
@@ -255,7 +235,6 @@ void main(void)
     Interrupt_register(INT_ADCA1, &loop1ISR);
 #endif
     Interrupt_register(INT_ADCB1, &loop2ISR);
-
     //
     // Enable ADCA and ADCB interrupts
     //
@@ -263,17 +242,14 @@ void main(void)
     Interrupt_enable(INT_ADCA1);
 #endif
     Interrupt_enable(INT_ADCB1);
-
     //
     // Enable global interrupts.
     //
     EINT;
-
     //
     // Enable sync and clock to PWM
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     for(;;)
     {
         if(system_OFF == true)
@@ -294,7 +270,6 @@ void main(void)
                 shut_down_flag = true;
             }
         }
-
         else
         {
             //
@@ -312,11 +287,9 @@ void main(void)
 #endif
                 shut_down_flag = false;
             }
-
         }
     }
 }
-
 //
 // ADCA and ADCB initialization
 // Function to configure and power up ADCs
@@ -328,28 +301,23 @@ void initADC(void)
     //
     ADC_setVREF(ADCA_BASE, ADC_REFERENCE_INTERNAL, ADC_REFERENCE_3_3V);
     ADC_setVREF(ADCB_BASE, ADC_REFERENCE_INTERNAL, ADC_REFERENCE_3_3V);
-
     //
     // Set ADCCLK divider to /4
     //
     ADC_setPrescaler(ADCA_BASE, ADC_CLK_DIV_4_0);
     ADC_setPrescaler(ADCB_BASE, ADC_CLK_DIV_4_0);
-
     //
     // Set pulse positions to late
     //
     ADC_setInterruptPulseMode(ADCA_BASE, ADC_PULSE_END_OF_CONV);
     ADC_setInterruptPulseMode(ADCB_BASE, ADC_PULSE_END_OF_CONV);
-
     //
     // Power up the ADCs and then delay for 1 ms
     //
     ADC_enableConverter(ADCA_BASE);
     ADC_enableConverter(ADCB_BASE);
-
     DEVICE_DELAY_US(1000);
 }
-
 //
 // ADCA and ADCB SOC Initialization
 //
@@ -374,7 +342,6 @@ void initADCSOC(void)
                  ADC_CH_ADCIN0, 10);
     ADC_setupSOC(ADCA_BASE, ADC_SOC_NUMBER3, ADC_TRIGGER_EPWM4_SOCA,
                  ADC_CH_ADCIN0, 10);
-
     //
     // Second input parameter oversampling configuration using ADCB
     // - SOC0 will convert pin B2 with a sample window of 10 SYSCLK cycles.
@@ -390,13 +357,11 @@ void initADCSOC(void)
                  ADC_CH_ADCIN2, 10);
     ADC_setupSOC(ADCB_BASE, ADC_SOC_NUMBER3, ADC_TRIGGER_EPWM5_SOCA,
                  ADC_CH_ADCIN2, 10);
-
     //
     // - SOCs will sample on each trigger regardless of the interrupt flag
     //
     ADC_enableContinuousMode(ADCA_BASE, ADC_INT_NUMBER1);
     ADC_enableContinuousMode(ADCB_BASE, ADC_INT_NUMBER1);
-
     //
     // - EOC3 will be generated at the end of conversion of SOC3
     // - EOC3 will generate the ADCA interrupt 1
@@ -404,7 +369,6 @@ void initADCSOC(void)
     ADC_setInterruptSource(ADCA_BASE, ADC_INT_NUMBER1, ADC_SOC_NUMBER3);
     ADC_enableInterrupt(ADCA_BASE, ADC_INT_NUMBER1);
     ADC_clearInterruptStatus(ADCA_BASE, ADC_INT_NUMBER1);
-
     //
     // - EOC3 will be generated at the end of conversion of SOC3
     // - EOC3 will generate the ADCB interrupt 1
@@ -413,7 +377,6 @@ void initADCSOC(void)
     ADC_enableInterrupt(ADCB_BASE, ADC_INT_NUMBER1);
     ADC_clearInterruptStatus(ADCB_BASE, ADC_INT_NUMBER1);
 }
-
 //
 // Configuring EPWM4 and EPWM5 as trigger sources for ADCA and ADCB
 // Providing phase shift between the modules
@@ -431,7 +394,6 @@ void setupADCSOC_trigger(void)
     EPWM_setTimeBasePeriod(EPWM4_BASE, EPWM4_PERIOD - 1U);
     EPWM_setTimeBaseCounterMode(EPWM4_BASE, EPWM_COUNTER_MODE_UP);
     EPWM_setTimeBaseCounter(EPWM4_BASE, 0U);
-
     //
     // Enable SOC-A and set it to assert when the counter hits
     // zero. It asserts on every event
@@ -439,7 +401,6 @@ void setupADCSOC_trigger(void)
     EPWM_enableADCTrigger(EPWM4_BASE, EPWM_SOC_A);
     EPWM_setADCTriggerSource(EPWM4_BASE, EPWM_SOC_A, EPWM_SOC_TBCTR_ZERO);
     EPWM_setADCTriggerEventPrescale(EPWM4_BASE, EPWM_SOC_A, 1U);
-
     //
     // Set up EPWM5 to
     // - run on a base clock of SYSCLK
@@ -451,7 +412,6 @@ void setupADCSOC_trigger(void)
     EPWM_setTimeBasePeriod(EPWM5_BASE, EPWM5_PERIOD - 1U);
     EPWM_setTimeBaseCounterMode(EPWM5_BASE, EPWM_COUNTER_MODE_UP);
     EPWM_setTimeBaseCounter(EPWM5_BASE, 0U);
-
     //
     // Enable SOC-A and set it to assert when the counter hits
     // zero. It asserts on every event
@@ -459,14 +419,12 @@ void setupADCSOC_trigger(void)
     EPWM_enableADCTrigger(EPWM5_BASE, EPWM_SOC_A);
     EPWM_setADCTriggerSource(EPWM5_BASE, EPWM_SOC_A, EPWM_SOC_TBCTR_ZERO);
     EPWM_setADCTriggerEventPrescale(EPWM5_BASE, EPWM_SOC_A, 1U);
-
     //
     // EPWM 4 and 5 should run freely in emulation mode
     //
     EPWM_setEmulationMode(EPWM4_BASE, EPWM_EMULATION_FREE_RUN);
     EPWM_setEmulationMode(EPWM5_BASE, EPWM_EMULATION_FREE_RUN);
 }
-
 //
 // EPWM1 Initialization
 // EPWM1 : generates output of frequency EPWM1_FREQ (1 MHz)
@@ -485,7 +443,6 @@ void initEPWM(void)
     EPWM_setCounterCompareValue(EPWM1_BASE, EPWM_COUNTER_COMPARE_A, EPWM1_PERIOD/10U);
     EPWM_setTimeBaseCounterMode(EPWM1_BASE, EPWM_COUNTER_MODE_UP_DOWN);
     EPWM_setTimeBaseCounter(EPWM1_BASE, 0U);
-
     //
     // Configuring action-qualifiers for EPWM1 to generate symmetric
     // waveform on channel A
@@ -498,17 +455,14 @@ void initEPWM(void)
                                   EPWM_AQ_OUTPUT_HIGH, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);
     EPWM_setActionQualifierAction(EPWM1_BASE, EPWM_AQ_OUTPUT_B,
                                   EPWM_AQ_OUTPUT_LOW, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);
-
     //
     // Enabling Counter Compare shadow mode
     //
     EPWM_setCounterCompareShadowLoadMode(EPWM1_BASE, EPWM_COUNTER_COMPARE_A, EPWM_COMP_LOAD_ON_SYNC_CNTR_ZERO);
-
     //
     // Enable TZ1 as one shot trip sources
     //
     EPWM_enableTripZoneSignals(EPWM1_BASE, EPWM_TZ_SIGNAL_OSHT1);
-
     //
     // Action on TZ1
     //
@@ -520,7 +474,6 @@ void initEPWM(void)
     //
     EPWM_setEmulationMode(EPWM1_BASE, EPWM_EMULATION_FREE_RUN);
 }
-
 //
 // Configuring the loop1 and loop2 controllers with desired values
 //
@@ -530,13 +483,11 @@ void controller_initialize(void)
     pi_loop1.Ki = 0.01;
     pi_loop1.Umax = 1.0;
     pi_loop1.Umin = 0.0;
-
     pi_loop2.Kp = 0.7;
     pi_loop2.Ki = 0.01;
     pi_loop2.Umax = 1.0;
     pi_loop2.Umin = 0.0;
 }
-
 //
 // Setting up GPIO2 for profiling loop1
 // Also set it's controller to CLA if loop1 is running on CLA
@@ -551,7 +502,6 @@ void setuploop1ProfileGpio(void)
         GPIO_setControllerCore(2, GPIO_CORE_CPU1_CLA1);
 #endif
 }
-
 //
 // Setting up GPIO3 for profiling loop2
 //
@@ -562,7 +512,6 @@ void setuploop2ProfileGpio(void)
         GPIO_setPinConfig(GPIO_3_GPIO3);
         GPIO_writePin(3,0);
 }
-
 #if run_loop1_cla == 0
 //
 // Loop1 control ISR
@@ -573,26 +522,20 @@ __interrupt void loop1ISR(void)
     // Turn ON Loop1 Profiling GPIO
     //
     GPIO_writePin(2,1);
-
     //
     // Run the core loop1 logic
     //
     loop1_task();
-
     //
     // Turn OFF Loop1 Profiling GPIO
     //
     GPIO_writePin(2,0);
-
     //
     // Acknowledge the interrupt
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP1);
-
-
 }
 #endif
-
 //
 // Loop2 control ISR
 //
@@ -602,7 +545,6 @@ __interrupt void loop2ISR(void)
     // Turn ON Loop2 Profiling GPIO
     //
     GPIO_writePin(3,1);
-
 #if  run_loop1_cla == 0
     //
     // Code to enable nesting of high priority loop1 interrupt
@@ -615,7 +557,6 @@ __interrupt void loop2ISR(void)
     NOP;
     EINT;
 #endif
-
     //
     // Read the oversampled input captured by 4 SOCs and calculate
     // the average
@@ -624,23 +565,19 @@ __interrupt void loop2ISR(void)
                         ADC_readResult(ADCBRESULT_BASE,ADC_SOC_NUMBER1) +
                          ADC_readResult(ADCBRESULT_BASE,ADC_SOC_NUMBER2) +
                           ADC_readResult(ADCBRESULT_BASE,ADC_SOC_NUMBER3)) >> 2;
-
     //
     // Run the parallel form PI controller
     //
     control_out_data.loop2 = DCL_runPI_C3(&pi_loop2, __divf32(ref_data.loop2, 4096.0f),
                                           __divf32(sense_data.loop2, 4096.0f));
-
     //
     // Calculate the duty contribution based on the controller output with 20% weightage
     //
     duty_loop2 = 0.2f * control_out_data.loop2;
-
     //
     // Turn OFF Loop2 Profiling GPIO
     //
     GPIO_writePin(3,0);
-
 #if  run_loop1_cla == 0
     //
     // Disabling global interrupt and restoring PIEIER1 register
@@ -648,7 +585,6 @@ __interrupt void loop2ISR(void)
     DINT;
     HWREGH(PIECTRL_BASE + PIE_O_IER1) = temp_Pieier;
 #endif
-
     //
     // Acknowledge the interrupt
     //

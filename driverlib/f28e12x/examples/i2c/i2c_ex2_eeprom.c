@@ -21,7 +21,6 @@
 //!  - Connect external I2C EEPROM at address 0x50
 //!  - Connect GPIO35/SDAA on Launchpad to external EEPROM SDA (serial data) pin
 //!  - Connect GPIO37/SCLA on Launchpad to external EEPROM SCL (serial clock) pin
-
 //! \b Watch \b Variables \n
 //!  - \b i2cMsgOut - Message containing data to write to EEPROM
 //!  - \b i2cMsgIn - Message containing data read from EEPROM
@@ -62,13 +61,11 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
@@ -79,7 +76,6 @@
 #define MAX_BUFFER_SIZE             14      // Max is currently 14 because of
                                             // 2 address bytes and the 16-byte 
                                             // FIFO
-
 //
 // I2C message states for I2CMsg struct
 //
@@ -90,14 +86,12 @@
 #define MSG_STATUS_SEND_NOSTOP_BUSY 0x0021 // Message sent, wait for ARDY
 #define MSG_STATUS_RESTART          0x0022 // Ready to become controller-receiver
 #define MSG_STATUS_READ_BUSY        0x0023 // Wait for stop before reading data
-
 //
 // Error messages for read and write functions
 //
 #define ERROR_BUS_BUSY              0x1000
 #define ERROR_STOP_NOT_READY        0x5555
 #define SUCCESS                     0x0000
-
 //
 // Typedefs
 //
@@ -112,7 +106,6 @@ struct I2CMsg {
                                          // with message (low byte).
     uint16_t msgBuffer[MAX_BUFFER_SIZE]; // Array holding message data.
 };
-
 //
 // Globals
 //
@@ -134,24 +127,18 @@ struct I2CMsg i2cMsgIn  = {MSG_STATUS_SEND_NOSTOP,
                            NUM_BYTES,
                            EEPROM_HIGH_ADDR,
                            EEPROM_LOW_ADDR};
-
 struct I2CMsg *currentMsgPtr;                   // Used in interrupt
-
 uint16_t passCount = 0;
 uint16_t failCount = 0;
-
 //
 // Function Prototypes
 //
 void initI2C(void);
 uint16_t readData(struct I2CMsg *msg);
 uint16_t writeData(struct I2CMsg *msg);
-
 void fail(void);
 void pass(void);
-
 __interrupt void i2cAISR(void);
-
 //
 // Main
 //
@@ -159,17 +146,14 @@ void main(void)
 {
     uint16_t error;
     uint16_t i;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize GPIOs 32 and 33 (35 and 37 on LaunchPad) 
     // for use as SDA A and SCL A respectively
@@ -177,33 +161,27 @@ void main(void)
     GPIO_setPinConfig(DEVICE_GPIO_CFG_SDAA);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_SDAA, GPIO_PIN_TYPE_PULLUP);
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_SDAA, GPIO_QUAL_ASYNC);
-
     GPIO_setPinConfig(DEVICE_GPIO_CFG_SCLA);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_SCLA, GPIO_PIN_TYPE_PULLUP);
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_SCLA, GPIO_QUAL_ASYNC);
-
     //
     // Initialize PIE and clear PIE registers. Disable CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Interrupts that are used in this example are re-mapped to ISR functions
     // found within this file.
     //
     Interrupt_register(INT_I2CA, &i2cAISR);
-
     //
     // Set I2C use, initializing it for FIFO mode
     //
     initI2C();
-
     //
     // Clear incoming message buffer
     //
@@ -211,23 +189,19 @@ void main(void)
     {
         i2cMsgIn.msgBuffer[i] = 0x0000;
     }
-
     //
     // Set message pointer used in interrupt to point to outgoing message
     //
     currentMsgPtr = &i2cMsgOut;
-
     //
     // Enable interrupts required for this example
     //
     Interrupt_enable(INT_I2CA);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Loop indefinitely
     //
@@ -245,7 +219,6 @@ void main(void)
             // Send the data to the EEPROM
             //
             error = writeData(&i2cMsgOut);
-
             //
             // If communication is correctly initiated, set msg status to busy
             // and update currentMsgPtr for the interrupt service routine.
@@ -259,7 +232,6 @@ void main(void)
                 i2cMsgOut.msgStatus = MSG_STATUS_WRITE_BUSY;
             }
         }
-
         //
         // **** Read data from EEPROM section ****
         //
@@ -287,14 +259,12 @@ void main(void)
                     // attempts are necessary.
                     //
                 }
-
               //
               // Update current message pointer and message status
               //
               currentMsgPtr = &i2cMsgIn;
               i2cMsgIn.msgStatus = MSG_STATUS_SEND_NOSTOP_BUSY;
            }
-
             //
             // Once message has progressed past setting up the internal address
             // of the EEPROM, send a restart to read the data bytes from the
@@ -313,7 +283,6 @@ void main(void)
                     // while loop.
                     //
                 }
-
                 //
                 // Update current message pointer and message status
                 //
@@ -323,7 +292,6 @@ void main(void)
         }
     }
 }
-
 //
 // Function to configure I2C A in FIFO mode.
 //
@@ -333,7 +301,6 @@ void initI2C()
     // Must put I2C into reset before configuring it
     //
     I2C_disableModule(I2CA_BASE);
-
     //
     // I2C configuration. Use a 400kHz I2CCLK with a 33% duty cycle.
     //
@@ -341,32 +308,27 @@ void initI2C()
     I2C_setBitCount(I2CA_BASE, I2C_BITCOUNT_8);
     I2C_setTargetAddress(I2CA_BASE, TARGET_ADDRESS);
     I2C_setEmulationMode(I2CA_BASE, I2C_EMULATION_FREE_RUN);
-
     //
     // Enable stop condition and register-access-ready interrupts
     //
     I2C_enableInterrupt(I2CA_BASE, I2C_INT_STOP_CONDITION |
                                    I2C_INT_REG_ACCESS_RDY);
-
     //
     // FIFO configuration
     //
     I2C_enableFIFO(I2CA_BASE);
     I2C_clearInterruptStatus(I2CA_BASE, I2C_INT_RXFF | I2C_INT_TXFF);
-
     //
     // Configuration complete. Enable the module.
     //
     I2C_enableModule(I2CA_BASE);
 }
-
 //
 // Function to send the data that is to be written to the EEPROM
 //
 uint16_t writeData(struct I2CMsg *msg)
 {
     uint16_t i;
-
     //
     // Wait until the STP bit is cleared from any previous controller
     // communication. Clearing of this bit by the module is delayed until after
@@ -377,12 +339,10 @@ uint16_t writeData(struct I2CMsg *msg)
     {
         return(ERROR_STOP_NOT_READY);
     }
-
     //
     // Setup target address
     //
     I2C_setTargetAddress(I2CA_BASE, TARGET_ADDRESS);
-
     //
     // Check if bus busy
     //
@@ -390,33 +350,27 @@ uint16_t writeData(struct I2CMsg *msg)
     {
         return(ERROR_BUS_BUSY);
     }
-
     //
     // Setup number of bytes to send msgBuffer and address
     //
     I2C_setDataCount(I2CA_BASE, (msg->numBytes + 2));
-
     //
     // Setup data to send
     //
     I2C_putData(I2CA_BASE, msg->memoryHighAddr);
     I2C_putData(I2CA_BASE, msg->memoryLowAddr);
-
     for (i = 0; i < msg->numBytes; i++)
     {
         I2C_putData(I2CA_BASE, msg->msgBuffer[i]);
     }
-
     //
     // Send start as controller transmitter
     //
     I2C_setConfig(I2CA_BASE, I2C_CONTROLLER_SEND_MODE);
     I2C_sendStartCondition(I2CA_BASE);
     I2C_sendStopCondition(I2CA_BASE);
-
     return(SUCCESS);
 }
-
 //
 // Function to prepare for the data that is to be read from the EEPROM
 //
@@ -432,12 +386,10 @@ uint16_t readData(struct I2CMsg *msg)
     {
         return(ERROR_STOP_NOT_READY);
     }
-
     //
     // Setup target address
     //
     I2C_setTargetAddress(I2CA_BASE, TARGET_ADDRESS);
-
     //
     // If we are in the the address setup phase, send the address without a
     // stop condition.
@@ -451,7 +403,6 @@ uint16_t readData(struct I2CMsg *msg)
         {
             return(ERROR_BUS_BUSY);
         }
-
         //
         // Send data to setup EEPROM address
         //
@@ -472,10 +423,8 @@ uint16_t readData(struct I2CMsg *msg)
         I2C_sendStartCondition(I2CA_BASE);
         I2C_sendStopCondition(I2CA_BASE);
     }
-
     return(SUCCESS);
 }
-
 //
 // I2C A ISR (non-FIFO)
 //
@@ -483,12 +432,10 @@ __interrupt void i2cAISR(void)
 {
     I2C_InterruptSource intSource;
     uint16_t i;
-
     //
     // Read interrupt source
     //
     intSource = I2C_getInterruptSource(I2CA_BASE);
-
     //
     // Interrupt source = stop condition detected
     //
@@ -526,7 +473,6 @@ __interrupt void i2cAISR(void)
                 {
                     currentMsgPtr->msgBuffer[i] = I2C_getData(I2CA_BASE);
                 }
-
                 //
                 // Check received data
                 //
@@ -541,7 +487,6 @@ __interrupt void i2cAISR(void)
                         failCount++;
                     }
                 }
-
                 if(passCount == NUM_BYTES)
                 {
                     pass();
@@ -584,13 +529,11 @@ __interrupt void i2cAISR(void)
         //
         asm("   ESTOP0");
     }
-
     //
     // Issue ACK to enable future group 8 interrupts
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP8);
 }
-
 //
 // Function to be called if data written matches data read
 //
@@ -599,7 +542,6 @@ void pass(void)
     asm("   ESTOP0");
     for(;;);
 }
-
 //
 // Function to be called if data written does NOT match data read
 //

@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_PGA_EX1_DAC_ADC_EXT_LOOPBACK" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_PGA_EX1_DAC_ADC_EXT_LOOPBACK</compoundname>
+    <title>PGA DAC-ADC External Loopback</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_PGA_EX1_DAC_ADC_EXT_LOOPBACK_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_pga_ex1_dac_adc_ext_loopback"/></para>
+<sect1 id="EXAMPLES_DRIVERS_PGA_EX1_DAC_ADC_EXT_LOOPBACK_1autotoc_md431">
+<title>Introduction</title>
+<para>This example generates 800 mV using the CMPSSDAC output. CMPSSLITE is used route the low DAC output to an external pin to be used as an external DAC. The output of the CMPSSLITE DACL is externally connected to PGA for 2x gain amplification. It uses two ADC channels to sample the CMPSSDAC output and the amplified voltage output from PGA. The ADC is connected internally to these signals.</para>
+<para>Watch Variables<itemizedlist>
+<listitem><para>dacResult - The DAC output voltage.</para>
+</listitem><listitem><para>pgaResult - The amplified DAC voltage.</para>
+</listitem><listitem><para>pgaGain - The ratio of the amplified DAC voltage to the original DAC output. This should always read a value of ~2.0.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_PGA_EX1_DAC_ADC_EXT_LOOPBACK_1autotoc_md432">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>Connect CMPSSLITE_DACL_OUT (Analog Pin A0) to PGA1_INP1 (Analog Pin A11)</para>
+</listitem><listitem><para>Connect PGA1_INM1 (Analog Pin A4) to GND</para>
+</listitem></itemizedlist>
+</para>
+<sect2 id="EXAMPLES_DRIVERS_PGA_EX1_DAC_ADC_EXT_LOOPBACK_1autotoc_md433">
+<title>Implementation Comparison</title>
+<para><table rows="5" cols="3"><row>
+<entry thead="yes"><para>Aspect   </para>
+</entry><entry thead="yes"><para>Driverlib Implementation   </para>
+</entry><entry thead="yes"><para>Bitfield Implementation    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Source File   </para>
+</entry><entry thead="no"><para>pga_ex1_dac_adc_ext_loopback.c (driverlib)   </para>
+</entry><entry thead="no"><para>pga_ex1_dac_adc_ext_loopback.c (examples_bitfield)    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Configuration Method   </para>
+</entry><entry thead="no"><para>Driverlib API calls   </para>
+</entry><entry thead="no"><para>Direct register access    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Hardware Abstraction   </para>
+</entry><entry thead="no"><para>Medium (driverlib)   </para>
+</entry><entry thead="no"><para>None (direct hardware)    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Gain Control   </para>
+</entry><entry thead="no"><para>API-based configuration   </para>
+</entry><entry thead="no"><para>Direct register configuration   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_PGA_EX1_DAC_ADC_EXT_LOOPBACK_1autotoc_md434">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Using the watch variables, view the position and speed calculated for the motor.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_PGA_EX1_DAC_ADC_EXT_LOOPBACK_1autotoc_md435">
+<title>See Also</title>
+<para><ref refid="DRIVERS_EQEP_PAGE" kindref="compound">EQEP</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/pga_ex1_dac_adc_ext_loopback.md"/>
+  </compounddef>
+</doxygen>

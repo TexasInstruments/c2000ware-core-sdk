@@ -50,7 +50,7 @@ ds.forEach(element => {
 
 function onChangeZone(inst, ui)
 {
-    if (["F28002x", "F28004x", "F2838x", "F28003x", "F280013x", "F280015x","F28P65x", "F28P55x", "F28P551x", "F28E12x"].includes(Common.getDeviceName()))
+    if (["F28002x", "F28004x", "F2838x", "F28003x", "F280013x", "F280015x","F28P65x", "F28P55x", "F28P551x", "F28E12x", "MCPC029"].includes(Common.getDeviceName()))
     {
         var zone = inst["zone"]
         if (zone == 1)
@@ -63,7 +63,7 @@ function onChangeZone(inst, ui)
             inst["PASSWORD1"] = "0x" + Common.getZone2Password1Mask(
                                         Common.getNextLinkPointerIndex(inst)).mask.toString(16).padStart(8, '0').toUpperCase();
             
-            if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x", "F28P55x", "F28P551x", "F28E12x"].includes(Common.getDeviceName()))
+            if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x", "F28P55x", "F28P551x", "F28E12x", "MCPC029"].includes(Common.getDeviceName()))
             {
                 ui["JTAGPSWDL0"].hidden = true;
                 ui["JTAGPSWDL1"].hidden = true;
@@ -197,7 +197,8 @@ if (["F28P65x", "F28P55x", "F28P551x"].includes(Common.getDeviceName()))
         }
     ])
 }
-if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x"].includes(Common.getDeviceName()))
+
+if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x", "MCPC029"].includes(Common.getDeviceName()))
 {
     config = config.concat([   
         {
@@ -217,7 +218,8 @@ if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551
     ])
 }
 
-if (!(["F28004x", "F28002x", "F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x"].includes(Common.getDeviceName())))
+
+if (!(["F28004x", "F28002x", "F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x", "MCPC029"].includes(Common.getDeviceName())))
 {
     config = config.concat(claconfig)
 }
@@ -402,7 +404,8 @@ function validate(inst, vo)
 {
     var format8Hex = new RegExp(/^0x[A-F0-9]{8}$/i);
     var sequenceOf1then0 = new RegExp(/^0x1F{0,7}[EC8]{0,1}0{0,7}$/i);
-    if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x","F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName()))
+
+    if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x","F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName()))
     {
         sequenceOf1then0 = new RegExp(/^((0x00003F{0,3}[EC8]{0,1}0{0,3})|(0x00002000))$/i);
     }
@@ -418,7 +421,7 @@ function validate(inst, vo)
             Common.logError(vo, inst, passwords[password_i], 'Invalid 8 digit hex value');
         }
 
-        if (["F28002x", "F28004x", "F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x"].includes(Common.getDeviceName()))
+        if (["F28002x", "F28004x", "F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x", "MCPC029"].includes(Common.getDeviceName()))
         {
             if (passwords[password_i] == "PASSWORD1")
             {
@@ -448,7 +451,7 @@ function validate(inst, vo)
             }
         }
     }
-    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x"].includes(Common.getDeviceName()))
+    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x", "MCPC029"].includes(Common.getDeviceName()))
     {
         var jtagpassword = ["JTAGPSWDL0", "JTAGPSWDL1"]
         for (var jtagpassword_i in jtagpassword)
@@ -494,7 +497,7 @@ function validate(inst, vo)
     }
 
     
-    if (!(["F28002x", "F28004x", "F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x"].includes(Common.getDeviceName())))
+    if (!(["F28002x", "F28004x", "F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x", "MCPC029"].includes(Common.getDeviceName())))
     {
         var cla_index = 0;
         for (cla_index in claconfig)
@@ -511,7 +514,7 @@ function validate(inst, vo)
         }
     }
 
-    if (["F2807x", "F2837xD", "F2837xS", "F28002x", "F28004x", "F2838x", "F280013x", "F280015x", "F28E12x"].includes(Common.getDeviceName()))
+    if (["F2807x", "F2837xD", "F2837xS", "F28002x", "F28004x", "F2838x", "F280013x", "F280015x", "F28E12x", "MCPC029"].includes(Common.getDeviceName()))
     {
         for (var bank_i = 0; bank_i < 2; bank_i++)
         {

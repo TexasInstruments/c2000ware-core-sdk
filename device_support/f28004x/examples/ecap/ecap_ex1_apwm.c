@@ -46,22 +46,18 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Function Prototypes
 //
 void InitAPwm1Gpio(void);
-
 //
 // Globals
 //
 uint16_t direction = 0;
-
 void main(void)
 {
     //
@@ -70,26 +66,22 @@ void main(void)
     // This example function is found in the f28004x_SysCtrl.c file.
     //
     InitSysCtrl();
-
     //
     // Step 2. Initialize GPIO:
     // This example function is found in the f28004x_Gpio.c file and
     // illustrates how to set the GPIO to its default state.
     //
     // InitGpio();  // Skipped for this example
-
     //
     // Select eCAP1OUT on OUTPUTXBAR3's MUX 0.
     // Make GPIO5 eCAP1OUT for PWM output.
     //
     InitAPwm1Gpio();
-
     //
     // Step 3. Clear all __interrupts and initialize PIE vector table:
     // Disable CPU __interrupts
     //
     DINT;
-
     //
     // Initialize the PIE control registers to their default state.
     // The default state is all PIE __interrupts disabled and flags
@@ -97,13 +89,11 @@ void main(void)
     // This function is found in the f28004x_PieCtrl.c file.
     //
     InitPieCtrl();
-
     //
     // Disable CPU __interrupts and clear all CPU __interrupt flags:
     //
     IER = 0x0000;
     IFR = 0x0000;
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
@@ -113,13 +103,11 @@ void main(void)
     // This function is found in f28004x_PieVect.c.
     //
     InitPieVectTable();
-
     //
     // Interrupts that are used in this example are re-mapped to
     // ISR functions found within this file.
     // No __interrupts used for this example.
     //
-
     //
     // Step 4. User specific code
     //
@@ -132,12 +120,10 @@ void main(void)
     ECap1Regs.CAP2 = 10000000;            // Set Compare value
     ECap1Regs.ECCLR.all = 0x0FF;          // Clear pending __interrupts
     ECap1Regs.ECEINT.bit.CTR_EQ_CMP = 1;  // enable Compare Equal Int
-
     //
     // Start counters
     //
     ECap1Regs.ECCTL2.bit.TSCTRSTOP = 1;
-
     EDIS;
     for(;;)
     {
@@ -156,7 +142,6 @@ void main(void)
         {
             direction = 1;
         }
-
         if(direction == 0)
         {
             ECap1Regs.CAP3 = ECap1Regs.CAP1 - 500000;
@@ -167,7 +152,6 @@ void main(void)
         }
     }
 }
-
 //
 // InitAPwm1Gpio
 // Select eCAP1OUT on OUTPUTXBAR3's MUX 0. Make GPIO5 eCAP1OUT for PWM output

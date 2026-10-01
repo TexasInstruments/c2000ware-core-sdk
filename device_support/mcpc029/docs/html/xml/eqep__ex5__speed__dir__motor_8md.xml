@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="eqep__ex5__speed__dir__motor_8md" kind="file" language="Markdown">
+    <compoundname>eqep_ex5_speed_dir_motor.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>EQEP<sp/>Motor<sp/>Speed<sp/>and<sp/>direction<sp/>Calculation{#EXAMPLES_DRIVERS_EQEP_EX5_SPEED_DIR_MOTOR}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>can<sp/>be<sp/>used<sp/>to<sp/>sense<sp/>the<sp/>speed<sp/>and<sp/>direction<sp/>of<sp/>motor<sp/>using<sp/>eQEP<sp/>in<sp/>quadrature<sp/>encoder<sp/>mode.<sp/>ePWM1A<sp/>(MCPWM1A<sp/>in<sp/>case<sp/>of<sp/>F28E12x<sp/>and<sp/>MCPC029)<sp/>is<sp/>configured<sp/>to<sp/>simulate<sp/>motor<sp/>encoder<sp/>signals<sp/>with<sp/>frequency<sp/>of<sp/>5<sp/>kHz<sp/>on<sp/>both<sp/>A<sp/>and<sp/>B<sp/>pins<sp/>with<sp/>90<sp/>degree<sp/>phase<sp/>shift<sp/>(so<sp/>as<sp/>to<sp/>run<sp/>this<sp/>example<sp/>without<sp/>motor).EQEP<sp/>unit<sp/>timeout<sp/>is<sp/>set<sp/>which<sp/>will<sp/>generate<sp/>an<sp/>interrupt<sp/>every<sp/>UNIT_PERIOD<sp/>microseconds<sp/>and<sp/>speed<sp/>calculation<sp/>occurs<sp/>continuously<sp/>based<sp/>on<sp/>the<sp/>direction<sp/>of<sp/>motor.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>example<sp/>does<sp/>the<sp/>below</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>PWM<sp/>frequency<sp/>is<sp/>specified<sp/>as<sp/>5000Hz.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>UNIT_PERIOD<sp/>is<sp/>specified<sp/>as<sp/>10000<sp/>us.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Simulated<sp/>quadrature<sp/>signal<sp/>frequency<sp/>is<sp/>20000Hz<sp/>(4<sp/>*<sp/>5000).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Encoder<sp/>holes<sp/>assumed<sp/>as<sp/>1000.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Thus<sp/>Simulated<sp/>motor<sp/>speed<sp/>is<sp/>300rpm<sp/>(5000<sp/>*<sp/>(60<sp/>/<sp/>1000)).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Watch<sp/><sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>freq<sp/>:<sp/>Simulated<sp/>motor<sp/>frequency<sp/>measurement<sp/>is<sp/>obtained<sp/>by<sp/>counting</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>external<sp/>input<sp/>pulses<sp/>for<sp/>UNIT_PERIOD<sp/>(unit<sp/>timer<sp/>set<sp/>to<sp/>10<sp/>ms).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>speed<sp/>:<sp/>Measure<sp/>motor<sp/>speed<sp/>in<sp/>rpm</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>dir<sp/>:<sp/>Indicates<sp/>clockwise<sp/>(1)<sp/>or<sp/>anticlockwise<sp/>(-1)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>pass<sp/>-<sp/>If<sp/>measured<sp/>qudrature<sp/>frequency<sp/>matches<sp/>with<sp/>i.e.<sp/>input</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>quadrature<sp/>frequency<sp/>(4<sp/>*<sp/>PWM<sp/>frequency)<sp/>then<sp/>pass<sp/>=<sp/>1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else<sp/>fail<sp/>=<sp/>1<sp/>(**<sp/>only<sp/>when<sp/>&quot;MOTOR&quot;<sp/>is<sp/>commented<sp/>out)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/>||<sp/>F28P55x<sp/>||<sp/>F28P551x</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>motor<sp/>encoder<sp/>signals<sp/>are<sp/>simulated<sp/>by<sp/>ePWM<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>GPIO20/eQEP1A<sp/>to<sp/>GPIO0/ePWM1A</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>GPIO21/eQEP1B<sp/>to<sp/>GPIO1/ePWM1B</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">If<sp/>actual<sp/>motor<sp/>is<sp/>being<sp/>used<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Comment<sp/>in<sp/>&quot;MOTOR&quot;<sp/>in<sp/>includes</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>GPIO20/eQEP1A<sp/>to<sp/>encoder<sp/>A<sp/>output</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>GPIO21/eQEP1B<sp/>to<sp/>encoder<sp/>B<sp/>output</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>motor<sp/>encoder<sp/>signals<sp/>are<sp/>simulated<sp/>by<sp/>MCPWM<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>GPIO6/eQEP1A<sp/>to<sp/>GPIO0/MCPWM1A</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>GPIO7/eQEP1B<sp/>to<sp/>GPIO1/MCPWM1B</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">If<sp/>actual<sp/>motor<sp/>is<sp/>being<sp/>used<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Comment<sp/>in<sp/>&quot;MOTOR&quot;<sp/>in<sp/>includes</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>GPIO6/eQEP1A<sp/>to<sp/>encoder<sp/>A<sp/>output</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>GPIO7/eQEP1B<sp/>to<sp/>encoder<sp/>B<sp/>output</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Using<sp/>the<sp/>watch<sp/>variables,<sp/>view<sp/>the<sp/>frequency,<sp/>speed<sp/>and<sp/>direction<sp/>calculated<sp/>for<sp/>the<sp/>motor.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_EQEP_PAGE</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/eqep_ex5_speed_dir_motor.md"/>
+  </compounddef>
+</doxygen>

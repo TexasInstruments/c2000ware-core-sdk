@@ -41,66 +41,52 @@
 //#############################################################################
 #ifndef CLA_EX2_ADC_FIR32_SHARED_H_
 #define CLA_EX2_ADC_FIR32_SHARED_H_
-
 //
 // Included Files
 //
 #include "f28x_project.h"
 #include "f28004x_cla_defines.h"
 #include <stdint.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 //
 // Defines
 //
 #define FILTER_LEN    5
-
 //
 // Globals
 //
-
 //
 //Task 1 (ASM) Variables
 //
 extern uint16_t voltFilt;
 extern float  X[FILTER_LEN];
 extern float  A[FILTER_LEN];
-
 //
 //Task 2 (ASM) Variables
 //
-
 //
 //Task 3 (ASM) Variables
 //
-
 //
 //Task 4 (ASM) Variables
 //
-
 //
 //Task 5 (ASM) Variables
 //
-
 //
 //Task 6 (ASM) Variables
 //
-
 //
 //Task 7 (ASM) Variables
 //
-
 //
 //Task 8 (ASM) Variables
 //
-
 //
 //Common (ASM) Variables
 //
-
 //
 // Function Prototypes
 //
@@ -116,10 +102,7 @@ __interrupt void Cla1Task5();
 __interrupt void Cla1Task6();
 __interrupt void Cla1Task7();
 __interrupt void Cla1Task8();
-
 #ifdef __cplusplus
 }
 #endif // extern "C"
-
-
 #endif /* CLA_EX2_ADC_FIR32_SHARED_H_ */

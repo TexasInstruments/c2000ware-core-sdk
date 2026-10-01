@@ -30,7 +30,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -93,41 +93,34 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include <string.h>
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
 #define TEST_PASS 0xABCDABCD
 #define TEST_FAIL 0xDEADDEAD
-
 //
 // Global Variables
 //
-
 //
 // Global error counter & status
 //
 uint16_t errCountGlobal = 0;
 uint32_t testStatusGlobal;
-
 //
 // Output tag-out array
 //
 #pragma DATA_SECTION(TagOutArray,"ramgs0");
 uint32_t TagOutArray[4];
-
 //
 // Global interrupt status
 //
 static volatile uint32_t intStatus = 0;
-
 //
 // The AES interrupt handler and interrupt flags.
 //
@@ -135,7 +128,6 @@ static volatile bool contextInIntFlag;
 static volatile bool dataInIntFlag;
 static volatile bool contextOutIntFlag;
 static volatile bool dataOutIntFlag;
-
 //
 // Structure for NIST AES CBCMAC tests
 //
@@ -148,8 +140,6 @@ typedef struct
     uint32_t plainTextArray[16];
     uint32_t ExpectedTagOutArray[16];
 } testVectorCBCMAC;
-
-
 //
 // Test Cases from NIST ECB Revised Spec.
 //
@@ -170,7 +160,6 @@ testVectorCBCMAC testVectorCBCMACArray[] =
                        0x45249ff6, 0x179b4fdf, 0x7b412bad, 0x10376ce6 },
   .ExpectedTagOutArray = { 0xbfbef051, 0x929d3b7e, 0x177449fc, 0xfe3c3679 },
  },
-
  //
  // Test Case #2 with 256 bit key
  //
@@ -186,7 +175,6 @@ testVectorCBCMAC testVectorCBCMACArray[] =
   .ExpectedTagOutArray = { 0x902199e1, 0xd56e9f54, 0x052c6a69, 0x1054316c}
  }
 };
-
 //
 // Function Prototypes
 //
@@ -197,12 +185,9 @@ void performECBEncryption(AES_KeySize keySize, uint32_t *srcArray,
                           uint32_t *dstArray,   uint32_t *keyArray,
                           uint32_t dataLength);
 void generateSubKey(AES_KeySize keySize, uint32_t *cmackey, uint32_t *iv, uint32_t* subKey1, uint32_t* subKey2);
-
 void array_shift_and_generate(const uint32_t input[], uint32_t output[]);
-
 void array_xor_inplace_generic(uint32_t* data, const uint32_t* xor, uint32_t size);
 void initilizeAES(void);
-
 void initilizeAES(void)
 {
     Interrupt_disableGlobal();
@@ -220,45 +205,36 @@ void main(void)
     uint32_t vectorCnt;
     uint32_t *iv;
     AES_KeySize keySize;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure the GPIO pin as a push-pull output
     //
     Device_initGPIO();
-
     //
     // Disable global interrupts.
     //
     DINT;
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Initialize local variables.
     //
     errCountLocal = 0;
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
-
     //
     // Loop through all the given vectors.
     //
@@ -275,7 +251,6 @@ void main(void)
         plainTextArray     = testVectorCBCMACArray[vectorCnt].plainTextArray;
         ExpectedTagOutArray = testVectorCBCMACArray[vectorCnt].ExpectedTagOutArray;
         iv                 = testVectorCBCMACArray[vectorCnt].iv;
-
         //
         // Clear the array containing the Tag.
         //
@@ -283,13 +258,10 @@ void main(void)
         {
             TagOutArray[cnt] = 0;
         }
-
         //
         // Perform Encryption
         //
-
         performCMACAuthentication(keySize, plainTextArray, TagOutArray, cmackey, iv, dataLength);
-
         //
         // Check the results
         //
@@ -300,7 +272,6 @@ void main(void)
                 errCountLocal++;
             }
         }
-
         //
         // Update the global error counter.
         //
@@ -308,18 +279,15 @@ void main(void)
         {
             errCountGlobal++;
         }
-
         //
         // Clear the local error counter.
         //
         errCountLocal = 0;
     }
-
     //
     // Clean up AES Data registers
     //
     AES_performSoftReset(AESA_BASE);
-
     //
     // Update test status variable
     //
@@ -331,7 +299,6 @@ void main(void)
     {
         testStatusGlobal = TEST_FAIL;
     }
-
     //
     // Infinite Loop to keep the core running
     //
@@ -340,7 +307,6 @@ void main(void)
         asm(" ESTOP0");
     }
 }
-
 //
 // Perform an AES-CBCMAC encryption operation.
 //
@@ -351,12 +317,9 @@ void performCMACAuthentication(AES_KeySize keySize, uint32_t *srcArray,
     uint32_t subKey1[4] = {0};
     uint32_t subKey2[4] = {0};
     bool dataSizeAligned = true;// Set this to false if data is not 16 byte aligned. Padding with 0x80 is required.
-
     generateSubKey(keySize, cmackey, iv, subKey1, subKey2);
-
     if(dataSizeAligned)
     {
-
         array_xor_inplace_generic(srcArray + ((dataLength/4U) - 4U), subKey1, 4U );
     }
     else 
@@ -370,12 +333,10 @@ void performCMACAuthentication(AES_KeySize keySize, uint32_t *srcArray,
     dataInIntFlag = false;
     contextOutIntFlag = false;
     dataOutIntFlag = false;
-
     //
     // Perform a soft reset.
     //
     initilizeAES();
-
     //
     // Configure the AES module.
     //
@@ -387,33 +348,25 @@ void performCMACAuthentication(AES_KeySize keySize, uint32_t *srcArray,
     aesConfig.ctrWidth = AES_CTR_WIDTH_32BIT;
     aesConfig.ccmLenWidth = AES_CCM_L_1;
     aesConfig.ccmAuthLenWidth = AES_CCM_M_16;
-
-
     AES_configureModule(AESA_BASE, &aesConfig);
-
     //
     // Write the initialization value
     //
     AES_setInitializationVector(AESA_BASE, iv);
-
     //
     // Write the keys.
     //
     AES_setKey1(AESA_BASE,cmackey,keySize);
-
     //
     // Enable all interrupts.
     //
     AES_enableInterrupt(AESA_BASE, (AES_INT_CONTEXT_IN |
                         AES_INT_CONTEXT_OUT | AES_INT_DATA_IN    |
                         AES_INT_DATA_OUT));
-
     //
     // Perform the authentication.
     //
     AES_authenticateData(AESA_BASE, srcArray, dataLength, dstTagArray);
-
-
 }
 void performECBEncryption(AES_KeySize keySize, uint32_t *srcArray,
                           uint32_t *dstArray,   uint32_t *keyArray,
@@ -426,12 +379,10 @@ void performECBEncryption(AES_KeySize keySize, uint32_t *srcArray,
     dataInIntFlag = false;
     contextOutIntFlag = false;
     dataOutIntFlag = false;
-
     //
     // Perform a soft reset.
     //
     initilizeAES();
-
     //
     // Configure the AES module.
     //
@@ -443,15 +394,11 @@ void performECBEncryption(AES_KeySize keySize, uint32_t *srcArray,
     aesConfig.ctrWidth = AES_CTR_WIDTH_32BIT;
     aesConfig.ccmLenWidth = AES_CCM_L_1;
     aesConfig.ccmAuthLenWidth = AES_CCM_M_0;
-
-
     AES_configureModule(AESA_BASE, &aesConfig);
-
     //
     // Write the key.
     //
     AES_setKey1(AESA_BASE, keyArray, keySize);
-
     //
     //
     // Enable all interrupts.
@@ -459,7 +406,6 @@ void performECBEncryption(AES_KeySize keySize, uint32_t *srcArray,
     AES_enableInterrupt(AESA_BASE, (AES_INT_CONTEXT_IN |
                         AES_INT_CONTEXT_OUT | AES_INT_DATA_IN    |
                         AES_INT_DATA_OUT));
-
     //
     // Perform the encryption.
     //
@@ -468,11 +414,8 @@ void performECBEncryption(AES_KeySize keySize, uint32_t *srcArray,
 void generateSubKey(AES_KeySize keySize, uint32_t *cmackey, uint32_t *iv, uint32_t* subKey1, uint32_t* subKey2){
     uint32_t L[4];
     performECBEncryption(keySize, iv, L, cmackey, 16U);
-
     array_shift_and_generate(L, subKey1);
-
     array_shift_and_generate(subKey1, subKey2);
-
 }
 void array_shift_and_generate(const uint32_t input[], uint32_t output[]) {
     uint32_t temp[4];
@@ -480,7 +423,6 @@ void array_shift_and_generate(const uint32_t input[], uint32_t output[]) {
     int i;
     uint32_t msbCheck = 0x80;
     uint32_t Rb = 0x87;
-    
     // Copy and convert endianness
     for (i = 0; i < 4; i++) {
         temp[i] = ((input[i] & 0xFF000000) >> 24) |
@@ -488,18 +430,15 @@ void array_shift_and_generate(const uint32_t input[], uint32_t output[]) {
                   ((input[i] & 0x0000FF00) << 8)  |
                   ((input[i] & 0x000000FF) << 24);
     }
-    
     // Left shift the entire 128-bit value by 1
     for (i = 3; i >= 0; i--) {
         uint32_t next_carry = (temp[i] & 0x80000000U) ? 1U : 0U;
         temp[i] = (temp[i] << 1) | carry;
         carry = next_carry;
     }
-
     if((input[0] & msbCheck) == msbCheck){
         temp[3] = temp[3] ^ Rb;
     }
-    
     // Convert back to original endianness
     for (i = 0; i < 4; i++) {
         output[i] = ((temp[i] & 0xFF000000) >> 24) |

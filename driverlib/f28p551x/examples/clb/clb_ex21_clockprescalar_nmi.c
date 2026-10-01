@@ -17,7 +17,7 @@
 //!
 //
 //#############################################################################
-// $TI Release: F28P551x Support Library v26.01.00.00 $
+// $TI Release: F28P551x Support Library v26.02.00.00 $
 // 
 // $Copyright:
 // Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
@@ -51,8 +51,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
 //
 // Included Files
 //
@@ -60,11 +58,8 @@
 #include "device.h"
 #include "board.h"
 #include "clb_config.h"
-
-
 __interrupt void clb1ISR(void);
 __interrupt void clb1NMIISR(void);
-
 //
 // Main
 //
@@ -72,61 +67,45 @@ void main(void)
 {
     Device_init();
     Device_initGPIO();
-
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
     Interrupt_register(INT_CLB1, &clb1ISR);
     Interrupt_register(INT_NMI, &clb1NMIISR);
     Interrupt_enable(INT_CLB1);
     Interrupt_enable(INT_NMI);
-
     SysCtl_enableNMIGlobalInterrupt();
-
-
     Board_init();
-
     //
     // Clock prescalar as IN0
     // HLC will generate interrupt on IN0 rising edge
     //
     initTILE1(myCLBForTILE1_BASE);
-
     CLB_enableCLB(myCLBForTILE1_BASE);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     while(1)
     {
-
     }
 }
-
-
 __interrupt void clb1ISR(void)
 {
     CLB_clearInterruptTag(CLB1_BASE);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP5);
 }
-
 __interrupt void clb1NMIISR(void)
 {
-
     if (SYSCTL_NMI_CLBNMI & SysCtl_getNMIFlagStatus())
     {
         //
         // CLB NMI
         //
         GPIO_togglePin(myGPIOOutput0);
-
     }
     SysCtl_clearAllNMIFlags();
 }
-
 //
 // End of File
 //

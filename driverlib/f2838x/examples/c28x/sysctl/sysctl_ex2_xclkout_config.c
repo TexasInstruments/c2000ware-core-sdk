@@ -18,7 +18,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -51,13 +51,11 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Main
 //
@@ -67,34 +65,28 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Select the clock source for XCLKOUT. Refer to the enum SysCtl_ClockOut
     // for other clock sources.
     //
     SysCtl_selectClockOutSource(SYSCTL_CLOCKOUT_INTOSC1);
-
     //
     // Configure the XCLOUT clock divider. The divider can be /1, /2, /4 or /8.
     //
     SysCtl_setXClk(SYSCTL_XCLKOUT_DIV_8);
-
     //
     // Configure GPIO73 as XCLKOUT pin.
     //
     GPIO_setPinConfig(GPIO_73_XCLKOUT);
-
     //
     // Loop Forever. The Clock can be viewed on the configured GPIO pin.
     //
     while(1);
 }
-
 //
 // End of File
 //

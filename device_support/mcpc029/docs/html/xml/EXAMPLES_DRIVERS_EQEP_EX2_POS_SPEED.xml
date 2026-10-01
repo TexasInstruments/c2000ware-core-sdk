@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_EQEP_EX2_POS_SPEED" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_EQEP_EX2_POS_SPEED</compoundname>
+    <title>EQEP Motor Speed and Direction Measurement</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_EQEP_EX2_POS_SPEED_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_eqep_ex2_pos_speed"/></para>
+<sect1 id="EXAMPLES_DRIVERS_EQEP_EX2_POS_SPEED_1autotoc_md234">
+<title>Introduction</title>
+<para>This example provides position and speed measurement using the capture unit and speed measurement using unit time out of the eQEP module. EPWM1A (MCPWM1A in case of F28E12x and MCPC029) and a GPIO are configured to generate simulated eQEP signals. The MCPWM module will interrupt once every period and call the position/speed calculation function. This example uses the IQMath library to simplify high-precision calculations.</para>
+<para>In addition to the main example file, the following files must be included in this project:<itemizedlist>
+<listitem><para>eqep_ex2_calculation.c - contains position/speed calculation function</para>
+</listitem><listitem><para>eqep_ex2_calculation.h - includes initialization values for position/speed structure</para>
+</listitem></itemizedlist>
+</para>
+<para>The example does the below<itemizedlist>
+<listitem><para>Maximum speed is configured to 6000rpm (baseRPM)</para>
+</listitem><listitem><para>Minimum speed is assumed at 10rpm for capture pre-scalar selection</para>
+</listitem><listitem><para>Pole pair is configured to 2 (polePairs)</para>
+</listitem><listitem><para>Encoder resolution is configured to 4000 counts/revolution (mechScaler)</para>
+</listitem><listitem><para>Which means: 4000 / 4 = 1000 line/revolution quadrature encoder (simulated by MCPWM1)</para>
+</listitem><listitem><para>MCPWM1 (simulating QEP encoder signals) is configured for a 5kHz frequency or 300 rpm (= 4 * 5000 cnts/sec * 60 sec/min) / (4000 cnts/rev)</para>
+</listitem></itemizedlist>
+</para>
+<para>SPEEDRPM_FR: High Speed Measurement is obtained by counting the QEP input pulses for 10ms (unit timer set to 100Hz).</para>
+<para>SPEEDRPM_FR = (Position Delta / 10ms) * 60 rpm</para>
+<para>SPEEDRPM_PR: Low Speed Measurement is obtained by measuring time period of QEP edges. Time measurement is averaged over 64 edges for better results and the capture unit performs the time measurement using pre-scaled SYSCLK.</para>
+<para>Note that the pre-scaler for capture unit clock is selected such that the capture timer does not overflow at the required minimum frequency. This example runs indefinitely until the user stops it. For more information about the position/speed calculation see the comments at the beginning of eqep_ex2_calculation.c and the XLS file provided with the project, eqep_ex2_calculation.xls.</para>
+<para>Watch Variables<itemizedlist>
+<listitem><para>posSpeed.speedRPMFR - Speed meas. in rpm using QEP position counter</para>
+</listitem><listitem><para>posSpeed.speedRPMPR - Speed meas. in rpm using capture unit</para>
+</listitem><listitem><para>posSpeed.thetaMech - Motor mechanical angle (Q15)</para>
+</listitem><listitem><para>posSpeed.thetaElec - Motor electrical angle (Q15)</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_EQEP_EX2_POS_SPEED_1autotoc_md235">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>Connect GPIO6/eQEP1A to GPIO0/MCPWM1A (simulates eQEP Phase A signal)</para>
+</listitem><listitem><para>Connect GPIO7/eQEP1B to GPIO1/MCPWM1B (simulates eQEP Phase B signal)</para>
+</listitem><listitem><para>Connect GPIO43/eQEP1I to GPIO2 (simulates eQEP Index Signal)</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_EQEP_EX2_POS_SPEED_1autotoc_md236">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Using the watch variables, view the position and speed calculated for the motor.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_EQEP_EX2_POS_SPEED_1autotoc_md237">
+<title>See Also</title>
+<para><ref refid="DRIVERS_EQEP_PAGE" kindref="compound">EQEP</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/eqep_ex2_pos_speed.md"/>
+  </compounddef>
+</doxygen>

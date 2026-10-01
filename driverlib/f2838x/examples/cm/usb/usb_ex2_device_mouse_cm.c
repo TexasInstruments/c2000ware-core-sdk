@@ -21,7 +21,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -54,7 +54,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 #include "cm.h"
 #include "usblib.h"
 #include "usbhid.h"
@@ -65,7 +64,6 @@
 #include "uartstdio.h"
 #include "usb_ex2_device_mouse_structs.h"
 #include <string.h>
-
 #ifdef DEBUG // Debug output is available via UART0 if DEBUG is defined.
     //
     // Map all debug print calls to UARTprintf in debug builds.
@@ -77,7 +75,6 @@
     //
     #define DEBUG_PRINT while(0) ((int32_t (*)(char *, ...))0)
 #endif
-
 //******************************************************************************
 //
 // The incremental update for the mouse.
@@ -85,7 +82,6 @@
 //******************************************************************************
 #define MOUSE_MOVE_INC          1
 #define MOUSE_MOVE_DEC          -1
-
 //******************************************************************************
 //
 // Default line coding settings for the redirected UART.
@@ -95,7 +91,6 @@
 #define DEFAULT_UART_CONFIG     (UART_CONFIG_WLEN_8 | UART_CONFIG_PAR_NONE |   \
                                  UART_CONFIG_STOP_ONE)
 #define UART_CLK_FREQ_CM        30000000
-
 //******************************************************************************
 //
 // The system tick timer rate.
@@ -103,7 +98,6 @@
 //******************************************************************************
 #define SYSTICKS_PER_SECOND     100
 #define MS_PER_SYSTICK          (1000 / SYSTICKS_PER_SECOND)
-
 //******************************************************************************
 //
 // Holds command bits used to signal the main loop to perform various tasks.
@@ -111,7 +105,6 @@
 //******************************************************************************
 volatile uint32_t g_ui32Commands;
 #define TICK_EVENT              0
-
 //******************************************************************************
 //
 // A flag used to indicate whether or not we are currently connected to the USB
@@ -119,7 +112,6 @@ volatile uint32_t g_ui32Commands;
 //
 //******************************************************************************
 volatile bool g_bConnected;
-
 //******************************************************************************
 //
 // Global system tick counter holds elapsed time since the application started
@@ -127,7 +119,6 @@ volatile bool g_bConnected;
 //
 //******************************************************************************
 volatile uint32_t g_ui32SysTickCount;
-
 //******************************************************************************
 //
 // The number of system ticks to wait for each USB packet to be sent before
@@ -135,7 +126,6 @@ volatile uint32_t g_ui32SysTickCount;
 //
 //******************************************************************************
 #define MAX_SEND_DELAY         50
-
 //******************************************************************************
 //
 // This enumeration holds the various states that the mouse can be in during
@@ -148,19 +138,16 @@ volatile enum
     // Unconfigured.
     //
     MOUSE_STATE_UNCONFIGURED,
-
     //
     // No keys to send and not waiting on data.
     //
     MOUSE_STATE_IDLE,
-
     //
     // Waiting on data to be sent out.
     //
     MOUSE_STATE_SENDING
 }
 g_eMouseState = MOUSE_STATE_UNCONFIGURED;
-
 //******************************************************************************
 //
 // This function handles notification messages from the mouse device driver.
@@ -172,7 +159,6 @@ MouseHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
 {
     switch(ui32Event)
     {
-
         //
         // The USB host has connected to and configured the device.
         //
@@ -182,7 +168,6 @@ MouseHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_bConnected = true;
             break;
         }
-
         //
         // The USB host has disconnected from the device.
         //
@@ -192,7 +177,6 @@ MouseHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_eMouseState = MOUSE_STATE_UNCONFIGURED;
             break;
         }
-
         //
         // A report was sent to the host.  We are not free to send another.
         //
@@ -201,17 +185,14 @@ MouseHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_eMouseState = MOUSE_STATE_IDLE;
             break;
         }
-
         //
         // Ignore the other events.
         //
         default:
             break;
     }
-
     return(0);
 }
-
 //******************************************************************************
 //
 // Wait for a period of time for the state to become idle.
@@ -232,10 +213,8 @@ WaitForSendIdle(uint32_t ui32TimeoutTicks)
     uint32_t ui32Start;
     uint32_t ui32Now;
     uint32_t ui32Elapsed;
-
     ui32Start = g_ui32SysTickCount;
     ui32Elapsed = 0;
-
     while(ui32Elapsed < ui32TimeoutTicks)
     {
         //
@@ -245,7 +224,6 @@ WaitForSendIdle(uint32_t ui32TimeoutTicks)
         {
             return(true);
         }
-
         //
         // Determine how much time has elapsed since we started waiting.  This
         // should be safe across a wrap of g_ui32SysTickCount.
@@ -254,14 +232,12 @@ WaitForSendIdle(uint32_t ui32TimeoutTicks)
         ui32Elapsed = ((ui32Start < ui32Now) ? (ui32Now - ui32Start) :
                        (((uint32_t)0xFFFFFFFF - ui32Start) + ui32Now + 1));
     }
-
     //
     // If we get here, we timed out so return a bad return code to let the
     // caller know.
     //
     return(false);
 }
-
 //******************************************************************************
 //
 // This function provides simulated movements of the mouse.
@@ -272,12 +248,10 @@ MoveHandler(void)
 {
     uint32_t ui32Retcode;
     char cDeltaX, cDeltaY;
-
     //
     // Determine the direction to move the mouse.
     //
     ui32Retcode = g_ui32SysTickCount % (4 * SYSTICKS_PER_SECOND);
-
     if(ui32Retcode < SYSTICKS_PER_SECOND)
     {
         cDeltaX = MOUSE_MOVE_INC;
@@ -298,15 +272,12 @@ MoveHandler(void)
         cDeltaX = 0;
         cDeltaY = (char)MOUSE_MOVE_DEC;
     }
-
     //
     // Tell the HID driver to send this new report.
     //
     g_eMouseState = MOUSE_STATE_SENDING;
-
     ui32Retcode = USBDHIDMouseStateChange((void *)&g_sMouseDevice, cDeltaX,
                                         cDeltaY, 0);
-
     //
     // Did we schedule the report for transmission?
     //
@@ -325,7 +296,6 @@ MoveHandler(void)
         }
     }
 }
-
 //******************************************************************************
 //
 // This is the interrupt handler for the SysTick interrupt.  It is called
@@ -339,8 +309,6 @@ SysTickHandler(void)
     g_ui32SysTickCount++;
     HWREGBITW(&g_ui32Commands, TICK_EVENT) = 1;
 }
-
-
 //******************************************************************************
 //
 // This is the main loop that runs the application.
@@ -350,22 +318,18 @@ int
 main(void)
 {
     g_bConnected = false;
-
     //
     // Initialize device clock and peripherals
     //
     CM_init();
-
     //
     // Initialize the UART for console I/O.
     //
     UARTStdioConfig(UART0_BASE, 115200, UART_CLK_FREQ_USB);
-
     //
     // Register the interrupt handler, for USB.
     //
     Interrupt_registerHandler(INT_USB0, &CM_USB0DeviceIntHandler);
-
     //
     // Set the system tick to fire 100 times per second.
     //
@@ -374,34 +338,28 @@ main(void)
     SYSTICK_setPeriod(120000000 / SYSTICKS_PER_SECOND);
     SYSTICK_enableInterrupt();
     SYSTICK_enableCounter();
-
     //
     // Register interrupt handlers in the RAM vector table
     //
     Interrupt_registerHandler(FAULT_SYSTICK, SysTickHandler);
-
     //
     // Set the USB stack mode to Device mode with VBUS monitoring.
     //
     USBStackModeSet(0, eUSBModeForceDevice, 0);
-
     //
     // Show the application name on the display and UART output.
     //
     DEBUG_PRINT("\nC2000 F2838x Series USB HID Mouse device example\n");
     DEBUG_PRINT("---------------------------------\n\n");
-
     //
     // Pass the USB library our device information, initialize the USB
     // controller and connect the device to the bus.
     //
     USBDHIDMouseInit(0, (tUSBDHIDMouseDevice *)&g_sMouseDevice);
-
     //
     // Enable interrupts now that the application is ready to start.
     //
     Interrupt_enableInProcessor();
-
     //
     // Drop into the main loop.
     //
@@ -411,19 +369,16 @@ main(void)
         // Tell the user what we are doing.
         //
         UARTprintf("Waiting for host...\n");
-
         //
         // Wait for USB configuration to complete.
         //
         while(!g_bConnected)
         {
         }
-
         //
         // Update the status.
         //
         UARTprintf("Host connected...\n");
-
         //
         // Now keep processing the mouse as long as the host is connected.
         //

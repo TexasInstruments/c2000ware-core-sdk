@@ -1,12 +1,15 @@
-
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P551x" --part "F28P551x_100PZ" --package "100PZ" --context "system"
+ * @v2CliArgs --device "TMS320F28P551SG" --package "100PZ" --variant "TMS320F28P551SG5" --context "system"
+ */
 /**
  * Import the modules used in this configuration.
  */
 const epwm             = scripting.addModule("/driverlib/epwm.js", {}, false);
 const epwm1            = epwm.addInstance();
 const epwm2            = epwm.addInstance();
-
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -33,8 +36,6 @@ epwm1.epwmCounterCompare_cmpB                                    = 50;
 epwm1.epwm.$assign                                               = "EPWM1";
 epwm1.epwm.epwm_aPin.$assign                                      = "GPIO0";
 epwm1.epwm.epwm_bPin.$assign                                      = "GPIO1";
-
-
 epwm2.$name                                                      = "myEPWM2";
 epwm2.epwmTimebase_emulationMode                                 = "EPWM_EMULATION_FREE_RUN";
 epwm2.epwmTimebase_period                                        = 100;
@@ -61,4 +62,3 @@ epwm2.epwmTimebase_phaseEnable                                   = true;
 epwm2.epwm.$assign                                               = "EPWM2";
 epwm2.epwm.epwm_aPin.$assign                                      = "GPIO2";
 epwm2.epwm.epwm_bPin.$assign                                      = "GPIO3";
-

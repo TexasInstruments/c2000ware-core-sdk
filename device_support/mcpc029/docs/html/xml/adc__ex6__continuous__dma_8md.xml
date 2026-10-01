@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="adc__ex6__continuous__dma_8md" kind="file" language="Markdown">
+    <compoundname>adc_ex6_continuous_dma.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>ADC<sp/>DMA<sp/>example<sp/>{#EXAMPLES_DRIVERS_ADC_EX6_CONTINUOUS_DMA}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>Converts<sp/>voltage<sp/>on<sp/>an<sp/>PWM<sp/>trigger<sp/>and<sp/>use<sp/>DMA<sp/>to<sp/>transfer<sp/>the<sp/>results<sp/>in<sp/>the<sp/>buffer&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>ADC&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x</highlight></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>sets<sp/>up<sp/>two<sp/>ADC<sp/>channels<sp/>to<sp/>convert<sp/>simultaneoulsy.<sp/>The<sp/>conversion<sp/>results<sp/>will<sp/>be<sp/>transferred<sp/>by<sp/>the<sp/>DMA<sp/>into<sp/>buffer.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Watch<sp/><sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>myADC0DataBuffer<sp/>-<sp/>Digital<sp/>representation<sp/>of<sp/>the<sp/>voltage<sp/>on<sp/>pin<sp/>A3</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>myADC1DataBuffer<sp/>-<sp/>Digital<sp/>representation<sp/>of<sp/>the<sp/>voltage<sp/>on<sp/>pin<sp/>C3</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28P55x<sp/>||F28P551x</highlight></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>sets<sp/>up<sp/>two<sp/>ADC<sp/>channels<sp/>to<sp/>convert<sp/>simultaneoulsy.<sp/>The<sp/>conversion<sp/>results<sp/>will<sp/>be<sp/>transferred<sp/>by<sp/>the<sp/>DMA<sp/>into<sp/>buffer.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Watch<sp/><sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>myADC0DataBuffer<sp/>-<sp/>Digital<sp/>representation<sp/>of<sp/>the<sp/>voltage<sp/>on<sp/>pin<sp/>A3</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>myADC1DataBuffer<sp/>-<sp/>Digital<sp/>representation<sp/>of<sp/>the<sp/>voltage<sp/>on<sp/>pin<sp/>C3</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x<sp/>||<sp/>MCPC029</highlight></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>sets<sp/>up<sp/>ADC<sp/>channel<sp/>to<sp/>convert<sp/>simultaneoulsy.<sp/>The<sp/>conversion<sp/>results<sp/>will<sp/>be<sp/>transferred<sp/>by<sp/>the<sp/>DMA<sp/>into<sp/>buffer.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Watch<sp/><sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>myADC0DataBuffer<sp/>-<sp/>Digital<sp/>representation<sp/>of<sp/>the<sp/>voltage<sp/>on<sp/>pin<sp/>A0</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/>||<sp/>F28P55x<sp/>||<sp/>F28P551x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>A3<sp/>&amp;<sp/>C3<sp/>pins<sp/>should<sp/>be<sp/>connected<sp/>to<sp/>signals<sp/>to<sp/>convert</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>A0<sp/>pins<sp/>should<sp/>be<sp/>connected<sp/>to<sp/>signals<sp/>to<sp/>convert</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Using<sp/>the<sp/>watch<sp/>variables,<sp/>view<sp/>the<sp/>ADC<sp/>conversion<sp/>results.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_ADC_PAGE</highlight></codeline>
+<codeline></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/adc_ex6_continuous_dma.md"/>
+  </compounddef>
+</doxygen>

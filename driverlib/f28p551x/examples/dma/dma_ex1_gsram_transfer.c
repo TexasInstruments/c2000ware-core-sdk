@@ -58,62 +58,50 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // DMA data sections
 //
 #pragma DATA_SECTION(sData, "ramgs0");  // map the TX data to memory
 #pragma DATA_SECTION(rData, "ramgs1");  // map the RX data to memory
-
 //
 // Globals
 //
 uint16_t sData[128];   // Send data buffer
 uint16_t rData[128];   // Receive data buffer
 volatile uint16_t done;
-
 const void *destAddr = (const void *)rData;
 const void *srcAddr = (const void *)sData;
-
 //
 // Function Prototypes
 //
 void error();
 __interrupt void INT_myDMA0_ISR(void);
-
 //
 // Main
 //
 void main(void)
 {
     uint16_t i;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     //Initialize PIE and clear PIE registers. Disables CPU interrupts
     //
     Interrupt_initModule();
-
     //
     //Initialize the PIE vector table with pointers to the shell Interrupt
     //Service Routines (ISR)
     //
     Interrupt_initVectorTable();
-    
     Board_init();
-
-
     //
     // User specific code, enable interrupts:
     // Initialize the data buffers
@@ -123,7 +111,6 @@ void main(void)
         sData[i] = i;
         rData[i] = 0;
     }
-
     //
     // Enable interrupts required for this example
     //
@@ -131,22 +118,17 @@ void main(void)
     EINT;                                // Enable Global Interrupts
     // Start DMA channel
     DMA_startChannel(myDMA0_BASE);
-
     done = 0;           // Test is not done yet
-
     while(!done)        // wait until the DMA transfer is complete
     {
        DMA_forceTrigger(myDMA0_BASE);
-
        asm(" RPT #255 || NOP");
     }
-
     //
     // When the DMA transfer is complete the program will stop here
     //
     ESTOP0;
 }
-
 //
 // error - Error Function which will halt the debugger
 //
@@ -155,20 +137,17 @@ void error(void)
     ESTOP0;  //Test failed!! Stop!
     for (;;);
 }
-
 //
 // local_D_INTCH6_ISR - DMA Channel6 ISR
 //
 __interrupt void INT_myDMA0_ISR(void)
 {
     uint16_t i;
-
     DMA_stopChannel(myDMA0_BASE);
     // ACK to receive more interrupts from this PIE group
     EALLOW;
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
     EDIS;
-
     for( i = 0; i < 128; i++ )
     {
         //
@@ -179,11 +158,9 @@ __interrupt void INT_myDMA0_ISR(void)
             error();
         }
     }
-
     done = 1; // Test done.
     return;
 }
-
 //
 // End of file
 //

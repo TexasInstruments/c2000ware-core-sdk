@@ -18,7 +18,7 @@
 //
 //
 //#############################################################################
-// $TI Release: F28003x Support Library v26.01.00.00 $
+// $TI Release: F28003x Support Library v26.02.00.00 $
 // 
 // $Copyright:
 // Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
@@ -52,36 +52,22 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
-
 #include "driverlib.h"
 #include "device.h"
 #include "clb_config.h"
 #include "clb.h"
 #include "board.h"
-
-
 void main(void)
 {
     Device_init();
     Device_initGPIO();
-
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
-
 	Board_init();
-
     initTILE1(myCLBTILE1_BASE);
     CLB_enableCLB(myCLBTILE1_BASE);
-
-
     while(1)
     {
-
         asm(" NOP");
     }
 }
-
-

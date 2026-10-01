@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLE_INTRO" kind="page">
+    <compoundname>EXAMPLE_INTRO</compoundname>
+    <title>Example Introduction</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLE_INTRO_1md_example_intro"/></para>
+<para>The MCPC029 Firmware development library is a group of example applications and helper libraries that demonstrate the basics of getting started with a MCPC029 device.</para>
+<para>The following section provides a step by step guide project creation for each core as well as debug. It is highly recommended that users new to the MCPC029 family of devices start by reading this section first.</para>
+<para>The MCPC029 devices have a set of example applications that users can load and run on their device.<itemizedlist>
+<listitem><para>The driver library example applications can be found in the driverlib\mcpc029\examples directory.</para>
+</listitem><listitem><para>The bit-field example applications can be found in the device_support\mcpc029\examples directory.</para>
+</listitem></itemizedlist>
+</para>
+<para>As users move past evaluation, and get started developing their own application, TI recommends they maintain a similar project directory structure to that used in the example projects. <linebreak/>
+ Example projects have a heirarchy as follows:<itemizedlist>
+<listitem><para>Main project directory<itemizedlist>
+<listitem><para>Project folder<itemizedlist>
+<listitem><para>Project sources (*.c, *.h)</para>
+</listitem><listitem><para>CCS folder (ccs)<itemizedlist>
+<listitem><para>CCS projectspec file</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+<sect1 id="EXAMPLE_INTRO_1autotoc_md125">
+<title>Getting started and Troubleshooting</title>
+<para>This section aims to give you, the user, a step by step guide for how to create and debug projects from scratch. This guide will focus on the user of a MCPC029 LaunchPad, but these same ideas should apply to other boards with minimal translation.</para>
+<para><itemizedlist>
+<listitem><para>Project Creation</para>
+</listitem></itemizedlist>
+</para>
+<para>A typical MCPC029 application consists of setting up a CCS project, which involves configuring the build settings, file linking, and adding in any source code.</para>
+<para><itemizedlist>
+<listitem><para>From the main CCS window select File -$&gt;$ Import Project(s). Browse to the empty project. <htmlonly> &lt;style&gt;div.image img[src=&quot;BrowseEmptyProject.jpg&quot;]{width:30%}&lt;/style&gt;</htmlonly> <image type="html" name="BrowseEmptyProject.jpg">Browse Empty Driverlib project</image>
+</para>
+</listitem><listitem><para>Before we can successfully build a project we need to setup some build specific settings. Right click on your project and select Properties. Look at the Processor Options and ensure they match the below image: <htmlonly> &lt;style&gt;div.image img[src=&quot;project_processor_options.jpg&quot;]{width:30%}&lt;/style&gt;</htmlonly> <image type="html" name="project_processor_options.jpg">project processor options</image>
+</para>
+</listitem><listitem><para>In the C2000 Compiler entry look for and select the Include Options. Click on the add directory icon to add a directory to the search path. Click the File System button to browse to the {driverlib\mcpc029\driverlib} folder of your C2000Ware installation (typically {C:\ti\c2000\C2000Ware_&lt;version&gt;\driverlib\mcpc029\driverlib}). Click ok to add this path, and repeat this same process to add the { device_support\mcpc029\common directory.</para>
+</listitem></itemizedlist>
+</para>
+<para><htmlonly> &lt;style&gt;div.image img[src=&quot;project_include_paths.jpg&quot;]{width:30%}&lt;/style&gt;</htmlonly> <image type="html" name="project_include_paths.jpg">project include paths</image>
+</para>
+<para>At this point your project workspace should look like the following: <htmlonly> &lt;style&gt;div.image img[src=&quot;project_linking_files.jpg&quot;]{width:20%}&lt;/style&gt;</htmlonly> <image type="html" name="project_linking_files.jpg">project linker files</image>
+</para>
+<para><itemizedlist>
+<listitem><para>You can edit the file &quot;empty_driverlib_main.c&quot; and copy the following code into it: <programlisting><codeline><highlight class="normal">#include<sp/>&quot;driverlib.h&quot;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;device.h&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">void<sp/>main(void)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Initialize<sp/>device<sp/>clock<sp/>and<sp/>peripherals</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Device_init();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Initialize<sp/>GPIO<sp/>and<sp/>configure<sp/>the<sp/>GPIO<sp/>pin<sp/>as<sp/>a<sp/>push-pull<sp/>output</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Device_initGPIO();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>GPIO_setPadConfig(DEVICE_GPIO_PIN_LED1,<sp/>GPIO_PIN_TYPE_STD);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>GPIO_setDirectionMode(DEVICE_GPIO_PIN_LED1,<sp/>GPIO_DIR_MODE_OUT);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Initialize<sp/>PIE<sp/>and<sp/>clear<sp/>PIE<sp/>registers.<sp/>Disables<sp/>CPU<sp/>interrupts.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Interrupt_initModule();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Initialize<sp/>the<sp/>PIE<sp/>vector<sp/>table<sp/>with<sp/>pointers<sp/>to<sp/>the<sp/>shell<sp/>Interrupt</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Service<sp/>Routines<sp/>(ISR).</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Interrupt_initVectorTable();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Enable<sp/>Global<sp/>Interrupt<sp/>(INTM)<sp/>and<sp/>realtime<sp/>interrupt<sp/>(DBGM)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EINT;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ERTM;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Loop<sp/>Forever</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(;;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Turn<sp/>on<sp/>LED</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GPIO_writePin(DEVICE_GPIO_PIN_LED1,<sp/>0);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Delay<sp/>for<sp/>a<sp/>bit.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DEVICE_DELAY_US(500000);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Turn<sp/>off<sp/>LED</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GPIO_writePin(DEVICE_GPIO_PIN_LED1,<sp/>1);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Delay<sp/>for<sp/>a<sp/>bit.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DEVICE_DELAY_US(500000);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para>Save thi file and then attempt to build the project by right clicking on it and selecting Build Project. Assuming the project builds, setup a target configuration file for your device (View -&gt; Target Configurations), and try debugging this project on a mcpc029 device. When the code runs, you should see the LED blink. </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="example_intro.md"/>
+  </compounddef>
+</doxygen>

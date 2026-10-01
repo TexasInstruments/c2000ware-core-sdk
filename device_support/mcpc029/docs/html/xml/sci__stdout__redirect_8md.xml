@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="sci__stdout__redirect_8md" kind="file" language="Markdown">
+    <compoundname>sci_stdout_redirect.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>STDOUT<sp/>Redirect<sp/>with<sp/>SCI<sp/>{#EXAMPLES_DRIVERS_SCI_STDOUT_REDIRECT}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>SCI,<sp/>STDOUT&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>test<sp/>transmits<sp/>data<sp/>through<sp/>the<sp/>SCI-A<sp/>port<sp/>to<sp/>a<sp/>terminal</highlight></codeline>
+<codeline><highlight class="normal">A<sp/>terminal<sp/>such<sp/>as<sp/>&apos;putty&apos;<sp/>can<sp/>be<sp/>used<sp/>to<sp/>view<sp/>the<sp/>data<sp/>from</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>SCI.<sp/>Characters<sp/>received<sp/>by<sp/>the<sp/>SCI<sp/>port<sp/>are<sp/>sent<sp/>back<sp/>to<sp/>the<sp/>host.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Watch<sp/><sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>None</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">Connect<sp/>the<sp/>SCI-A<sp/>port<sp/>to<sp/>a<sp/>PC<sp/>via<sp/>a<sp/>transceiver<sp/>and<sp/>cable.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>DEVICE_GPIO_PIN_SCIRXDA<sp/>is<sp/>SCI_A-RXD<sp/>(Connect<sp/>to<sp/>Pin3,<sp/>PC-TX,<sp/>of<sp/>serial<sp/>DB9<sp/>cable)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>DEVICE_GPIO_PIN_SCITXDA<sp/>is<sp/>SCI_A-TXD<sp/>(Connect<sp/>to<sp/>Pin2,<sp/>PC-RX,<sp/>of<sp/>serial<sp/>DB9<sp/>cable)</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Open<sp/>a<sp/>COM<sp/>port<sp/>with<sp/>the<sp/>following<sp/>settings<sp/>using<sp/>a<sp/>terminal:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/><sp/>Find<sp/>correct<sp/>COM<sp/>port</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/><sp/>Bits<sp/>per<sp/>second<sp/>=<sp/>9600</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/><sp/>Data<sp/>Bits<sp/>=<sp/>8</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/><sp/>Parity<sp/>=<sp/>None</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/><sp/>Stop<sp/>Bits<sp/>=<sp/>1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/><sp/>Hardware<sp/>Control<sp/>=<sp/>None</highlight></codeline>
+<codeline><highlight class="normal">-<sp/><sp/>The<sp/>program<sp/>will<sp/>print<sp/>out<sp/>three<sp/>sentences:<sp/>one<sp/>to<sp/>the<sp/>SCIA,<sp/>one<sp/>to<sp/>CCS,<sp/>and<sp/>a<sp/>final<sp/>one<sp/>to<sp/>SCIA.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_SCI_PAGE</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/sci_stdout_redirect.md"/>
+  </compounddef>
+</doxygen>

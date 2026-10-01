@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -45,6 +45,9 @@
 #ifndef F28P65X_CLA_TYPEDEFS_H_
 #define F28P65X_CLA_TYPEDEFS_H_
 
+#include "stdint.h"
+
+
 //
 // Macros to manipulate pre-processor to generate a header file name
 // at compile time that is based on the test name and can be used as
@@ -58,6 +61,7 @@
 //
 // Suppress warnings casting CLA pointers
 //
+#pragma diag_push
 #pragma diag_suppress 70,770,232
 
 #ifdef __TMS320C28XX_CLA__
@@ -118,6 +122,7 @@ struct MSTF_SHADOW_BITS {   // bits description
 extern __cregister volatile unsigned int MSTF;
 
 #endif //__TMS320C28XX_CLA__
+#pragma diag_pop
 
 #ifndef __TMS320C28XX__
 #define __cregister

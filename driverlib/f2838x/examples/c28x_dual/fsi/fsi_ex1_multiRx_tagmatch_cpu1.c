@@ -52,7 +52,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -85,66 +85,51 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 #define PRESCALER_VAL    2U
 //
 // Globals, User can modify these parameters as per usecase
 //
 // Number of words per transfer may be from 1 -16
 uint16_t nWords = 6;
-
 // Transfer can be happen over single or double lane
 FSI_DataWidth nLanes = FSI_DATA_WIDTH_1_LANE;
-
 // FSI Clock used for transfer
 uint32_t fsiClock = 50000000;
-
 // User data to be sent with Data frame
 uint16_t txUserData = 0x47;
-
 // Global variable to hold tag value to be sent with Data frame.
 FSI_FrameTag txDataFrameTag;
-
 // Boolean flag to enable/disable Rx Frame Watchdog
 bool isRxFrameWdEnable = true;
-
 //
 // This value can be anything suitable to generate a single interrupt event,
 // lower values may lead WD to trigger another event even before handler of 1st
 // one is not completed
 //
 uint32_t rxFrameWdRefCntr = 0x1000000;
-
 //
 // Globals, these are not config parameters, user are not required to edit them
 //
 // Globals to capture Tx/Rx Event status.
 uint16_t txEventSts = 0, rxEventSts = 0;
-
 // Global to capture Tx buffer adress.
 uint16_t *txBufAddr = 0;
-
 // Tx Data Buffer
 uint16_t txBufData[16] = {0};
 #pragma DATA_SECTION(txBufData,"SHARERAMGS1");
-
 volatile uint32_t fsiTxAInt1Received = 0,fsiTxAInt2Received = 0;
 volatile uint32_t fsiRxAInt1Received = 0,fsiRxAInt2Received = 0;
-
 // Timeout counters for Tx/Rx interrupts & ipc flag
 uint32_t txTimeOutCntr = 0x100000, rxTimeOutCntr = 0x100000,
          ipcFlagTimeOutCntr = 0x100000;
-
 // data frame & error counter
 uint32_t dataFrameCntrA = 0, error = 0;
 uint32_t tagIndex = 0;
-
 //
 // Function Prototypes
 //
@@ -156,13 +141,11 @@ void compareBufData(uint32_t base, uint16_t txBufIndex, uint16_t rxBufIndex,
                     uint16_t nWords);
 void checkReceivedFrameTypeTag(uint32_t base, FSI_FrameType type,
                                FSI_FrameTag tag);
-
 // ISRs
 __interrupt void fsiTxAInt1ISR(void);
 __interrupt void fsiTxAInt2ISR(void);
 __interrupt void fsiRxAInt1ISR(void);
 __interrupt void fsiRxAInt2ISR(void);
-
 //
 // Main
 //
@@ -172,7 +155,6 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Boot CPU2 core
     //
@@ -181,23 +163,19 @@ void main(void)
 #else
     Device_bootCPU2(BOOTMODE_BOOT_TO_M0RAM);
 #endif
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Interrupts that are used in this example are re-mapped to ISR functions
     // found within this file. Total 4; FSITxA/RxA :: INT1/INT2
@@ -206,54 +184,42 @@ void main(void)
     Interrupt_register(INT_FSITXA2, &fsiTxAInt2ISR);
     Interrupt_register(INT_FSIRXA1, &fsiRxAInt1ISR);
     Interrupt_register(INT_FSIRXA2, &fsiRxAInt2ISR);
-
     //
     // Initialize basic settings for FSI.
     //
     initFSI();
-
     //
     // Enable FSI Tx/Rx interrupts.
     //
     Interrupt_enable(INT_FSITXA1);
     Interrupt_enable(INT_FSITXA2);
-
     Interrupt_enable(INT_FSIRXA1);
     Interrupt_enable(INT_FSIRXA2);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM).
     //
     EINT;
     ERTM;
-
-
     //
     // Configure for data transfers.
     //
-
     //
     // Setting for requested nWords and nLanes with transfers
     //
     FSI_setTxSoftwareFrameSize(FSITXA_BASE, nWords);
-
     FSI_setRxSoftwareFrameSize(FSIRXA_BASE, nWords);
     FSI_setRxSoftwareFrameSize(FSIRXB_BASE, nWords);
     FSI_setRxSoftwareFrameSize(FSIRXC_BASE, nWords);
     FSI_setRxSoftwareFrameSize(FSIRXD_BASE, nWords);
-
     FSI_setTxDataWidth(FSITXA_BASE, nLanes);
-
     FSI_setRxDataWidth(FSIRXA_BASE, nLanes);
     FSI_setRxDataWidth(FSIRXB_BASE, nLanes);
     FSI_setRxDataWidth(FSIRXC_BASE, nLanes);
     FSI_setRxDataWidth(FSIRXD_BASE, nLanes);
-
     //
     // Enable normal data transfer events to be sent over INT1 line for FSITxA
     //
     FSI_enableTxInterrupt(FSITXA_BASE, FSI_INT1, FSI_TX_EVT_FRAME_DONE);
-
     //
     // Enable normal data frame tag match events to be sent over INT1 line
     // for FSIRxA, FSIRxB, FSIRxC & FSIRxD.
@@ -266,7 +232,6 @@ void main(void)
                           FSI_RX_EVT_DATA_FRAME_TAG_MATCH);
     FSI_enableRxInterrupt(FSIRXD_BASE, FSI_INT1,
                           FSI_RX_EVT_DATA_FRAME_TAG_MATCH);
-
     //
     // Enable transmit/receive error events to be sent over INT2 line
     // Overrun and Underrun conditions in Rx are not enabled as buffer pointers
@@ -276,87 +241,69 @@ void main(void)
                                                  FSI_RX_EVT_EOF_ERR  |
                                                  FSI_RX_EVT_TYPE_ERR |
                                                  FSI_RX_EVT_DATA_FRAME);
-
     FSI_enableRxInterrupt(FSIRXB_BASE, FSI_INT2, FSI_RX_EVT_CRC_ERR  |
                                                  FSI_RX_EVT_EOF_ERR  |
                                                  FSI_RX_EVT_TYPE_ERR |
                                                  FSI_RX_EVT_DATA_FRAME);
-
     FSI_enableRxInterrupt(FSIRXC_BASE, FSI_INT2, FSI_RX_EVT_CRC_ERR  |
                                                  FSI_RX_EVT_EOF_ERR  |
                                                  FSI_RX_EVT_TYPE_ERR |
                                                  FSI_RX_EVT_DATA_FRAME);
-
     FSI_enableRxInterrupt(FSIRXD_BASE, FSI_INT2, FSI_RX_EVT_CRC_ERR  |
                                                  FSI_RX_EVT_EOF_ERR  |
                                                  FSI_RX_EVT_TYPE_ERR |
                                                  FSI_RX_EVT_DATA_FRAME);
-
     FSI_setTxUserDefinedData(FSITXA_BASE, txUserData);
     FSI_setTxFrameType(FSITXA_BASE, FSI_FRAME_TYPE_NWORD_DATA);
-
     if(isRxFrameWdEnable)
     {
         //
         // Performing a reset on frame WD before its usage is recommended
         //
-
         // For FSIRxA
         FSI_resetRxModule(FSIRXA_BASE, FSI_RX_FRAME_WD_CNT_RESET);
         DEVICE_DELAY_US(1);
         FSI_clearRxModuleReset(FSIRXA_BASE, FSI_RX_FRAME_WD_CNT_RESET);
-
         FSI_enableRxInterrupt(FSIRXA_BASE, FSI_INT2,
                               FSI_RX_EVT_FRAME_WD_TIMEOUT);
         FSI_enableRxFrameWatchdog(FSIRXA_BASE, rxFrameWdRefCntr);
-
         // For FSIRxB
         FSI_resetRxModule(FSIRXB_BASE, FSI_RX_FRAME_WD_CNT_RESET);
         DEVICE_DELAY_US(1);
         FSI_clearRxModuleReset(FSIRXB_BASE, FSI_RX_FRAME_WD_CNT_RESET);
-
         FSI_enableRxInterrupt(FSIRXB_BASE, FSI_INT2,
                               FSI_RX_EVT_FRAME_WD_TIMEOUT);
         FSI_enableRxFrameWatchdog(FSIRXB_BASE, rxFrameWdRefCntr);
-
         // For FSIRxC
         FSI_resetRxModule(FSIRXC_BASE, FSI_RX_FRAME_WD_CNT_RESET);
         DEVICE_DELAY_US(1);
         FSI_clearRxModuleReset(FSIRXC_BASE, FSI_RX_FRAME_WD_CNT_RESET);
-
         FSI_enableRxInterrupt(FSIRXC_BASE, FSI_INT2,
                               FSI_RX_EVT_FRAME_WD_TIMEOUT);
         FSI_enableRxFrameWatchdog(FSIRXC_BASE, rxFrameWdRefCntr);
-
         // For FSIRxD
         FSI_resetRxModule(FSIRXD_BASE, FSI_RX_FRAME_WD_CNT_RESET);
         DEVICE_DELAY_US(1);
         FSI_clearRxModuleReset(FSIRXD_BASE, FSI_RX_FRAME_WD_CNT_RESET);
-
         FSI_enableRxInterrupt(FSIRXD_BASE, FSI_INT2,
                               FSI_RX_EVT_FRAME_WD_TIMEOUT);
         FSI_enableRxFrameWatchdog(FSIRXD_BASE, rxFrameWdRefCntr);
     }
-
     //
     // Configure Tag Match feature for Receivers
     //
     FSI_setRxFrameTagRef(FSIRXA_BASE, FSI_FRAME_TAG4);
     FSI_setRxFrameTagMask(FSIRXA_BASE, 0x0U);
     FSI_enableRxFrameTagCompare(FSIRXA_BASE);
-
     FSI_setRxFrameTagRef(FSIRXB_BASE, FSI_FRAME_TAG5);
     FSI_setRxFrameTagMask(FSIRXB_BASE, 0x0U);
     FSI_enableRxFrameTagCompare(FSIRXB_BASE);
-
     FSI_setRxFrameTagRef(FSIRXC_BASE, FSI_FRAME_TAG6);
     FSI_setRxFrameTagMask(FSIRXB_BASE, 0x0U);
     FSI_enableRxFrameTagCompare(FSIRXC_BASE);
-
     FSI_setRxFrameTagRef(FSIRXD_BASE, FSI_FRAME_TAG7);
     FSI_setRxFrameTagMask(FSIRXB_BASE, 0x0U);
     FSI_enableRxFrameTagCompare(FSIRXD_BASE);
-
     //
     // Assign ownership of FSIRxB, FSIRxC, FSIRxD modules to CPU2.
     // FSIRxB - instance 18; FSIRxC - instance 19; FSIRxD - instance 20
@@ -364,23 +311,18 @@ void main(void)
     SysCtl_selectCPUForPeripheral(SYSCTL_CPUSEL16_FSI, 18, SYSCTL_CPUSEL_CPU2);
     SysCtl_selectCPUForPeripheral(SYSCTL_CPUSEL16_FSI, 19, SYSCTL_CPUSEL_CPU2);
     SysCtl_selectCPUForPeripheral(SYSCTL_CPUSEL16_FSI, 20, SYSCTL_CPUSEL_CPU2);
-
     IPC_sync(IPC_CPU1_L_CPU2_R, IPC_FLAG11);
-
     prepareTxBufData();
     tagIndex = 0;
     txDataFrameTag = FSI_FRAME_TAG4;
     FSI_setTxFrameTag(FSITXA_BASE, txDataFrameTag);
     tagIndex++;
-
     FSI_writeTxBuffer(FSITXA_BASE, txBufData, nWords, 0U);
     IPC_setFlagLtoR(IPC_CPU1_L_CPU2_R, IPC_FLAG10);
-
     //
     // Start Transfer
     //
     FSI_startTxTransmit(FSITXA_BASE);
-
     //
     // Now, start transmitting data frames
     //
@@ -393,17 +335,14 @@ void main(void)
         {
             txTimeOutCntr--;
         }
-
         while((fsiRxAInt2Received != 1U) && (rxTimeOutCntr != 0U))
         {
             rxTimeOutCntr--;
         }
-
         while(IPC_isFlagBusyLtoR(IPC_CPU1_L_CPU2_R, IPC_FLAG10) != 0)
         {
             ipcFlagTimeOutCntr--;
         }
-
         if((txTimeOutCntr == 0) || (rxTimeOutCntr == 0))
         {
             //
@@ -411,7 +350,6 @@ void main(void)
             //
             break;
         }
-
         else
         {
             //
@@ -426,7 +364,6 @@ void main(void)
             FSI_setTxBufferPtr(FSITXA_BASE, 0U);
             FSI_setRxBufferPtr(FSIRXA_BASE, 0U);
      }
-
         //
         // Write data into Tx buffer and set other Frame specific fields
         //
@@ -447,51 +384,42 @@ void main(void)
         {
             txDataFrameTag = FSI_FRAME_TAG7;
         }
-
         FSI_setTxFrameTag(FSITXA_BASE, txDataFrameTag);
         tagIndex++;
         FSI_writeTxBuffer(FSITXA_BASE, txBufData, nWords, 0U);
         IPC_setFlagLtoR(IPC_CPU1_L_CPU2_R, IPC_FLAG10);
-
         //
         // Start Transfer
         //
         FSI_startTxTransmit(FSITXA_BASE);
-
     }
-
     //
     // Coming out of infinite while loop means timeout occurred for one of Tx
     // or Rx transmit/receive events. Debug further to root-cause
     //
     ESTOP0;
 }
-
 void initFSI(void)
 {
     //
     // Initialize Tx/Rx, reset sequence, clear events.
     //
-
     // TODO- Add logic to calculate PRESCALER_VAL based on user input FSI CLK.
     FSI_performTxInitialization(FSITXA_BASE, PRESCALER_VAL);
     FSI_performRxInitialization(FSIRXA_BASE);
     FSI_performRxInitialization(FSIRXB_BASE);
     FSI_performRxInitialization(FSIRXC_BASE);
     FSI_performRxInitialization(FSIRXD_BASE);
-
     //
     // Set internalLoopback mode for FSIRxA
     //
     FSI_enableRxInternalLoopback(FSIRXA_BASE);
-
     //
     // Enable Internal loopback for FSIRxB, FSIRxC, FSIRxD.
     //
     FSI_enableRxInternalLoopback(FSIRXB_BASE);
     FSI_enableRxInternalLoopback(FSIRXC_BASE);
     FSI_enableRxInternalLoopback(FSIRXD_BASE);
-
     //
     // Flush Sequence before and after releasing Rx core reset, ensures
     // flushing of Rx data/clock lines and prepares it for reception.
@@ -507,76 +435,62 @@ void initFSI(void)
     FSI_clearRxModuleReset(FSIRXC_BASE, FSI_RX_MASTER_CORE_RESET);
     FSI_clearRxModuleReset(FSIRXD_BASE, FSI_RX_MASTER_CORE_RESET);
     FSI_executeTxFlushSequence(FSITXA_BASE, PRESCALER_VAL);
-
     //
     // Assigning base addresses of Tx/Rx data buffer to globals.
     //
     txBufAddr = (uint16_t *)FSI_getTxBufferAddress(FSITXA_BASE);
 }
-
 //
 // prepareTxBufData - Update array which is used as source to Tx data buffer
 //
 void prepareTxBufData(void)
 {
     uint16_t i;
-
     for(i = 0; i < nWords; i++)
     {
         txBufData[i] = txBufData[i] + 1;
     }
 }
-
 //
 // fsiTxAInt1ISR - FSI Tx Interrupt on INsT1 line
 //
 __interrupt void fsiTxAInt1ISR(void)
 {
     fsiTxAInt1Received = 1U;
-
     txEventSts = FSI_getTxEventStatus(FSITXA_BASE);
-
     //
     // Clear the interrupt flag and issue ACK
     //
     FSI_clearTxEvents(FSITXA_BASE, FSI_TX_EVTMASK);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP4);
 }
-
 //
 // fsiTxAInt2ISR - FSI Tx Interrupt on INT2 line
 //
 __interrupt void fsiTxAInt2ISR(void)
 {
     fsiTxAInt2Received = 1U;
-
     txEventSts = FSI_getTxEventStatus(FSITXA_BASE);
-
     //
     // Clear the interrupt flag and issue ACK
     //
     FSI_clearTxEvents(FSITXA_BASE, FSI_TX_EVTMASK);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP4);
-
     disableAllFSIInterrupts();
-
     //
     // INT2 line is set to fire for error events, stop immediately. Actual
     // Error is captured in txEventSts for debug.
     //
     ESTOP0;
 }
-
 //
 // fsiRxAInt1ISR - FSI Rx Interrupt on INT1 line
 //
 __interrupt void fsiRxAInt1ISR(void)
 {
     rxEventSts = FSI_getRxEventStatus(FSIRXA_BASE);
-
 //    fsiRxAInt1Received = 1U;
     dataFrameCntrA++;
-
     //
     // Verify Frame attributes and data
     //
@@ -584,20 +498,17 @@ __interrupt void fsiRxAInt1ISR(void)
                               FSI_FRAME_TAG4);
     compare16(FSI_getRxUserDefinedData(FSIRXA_BASE), txUserData);
     compareBufData(FSIRXA_BASE, 0, 0, nWords);
-
     //
     // Clear the interrupt flag and issue ACK
     //
     FSI_clearRxEvents(FSIRXA_BASE,rxEventSts);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP4);
-
     //
     // Stop execution if errors encountered in frame verification
     //
     if(error != 0)
     {
         disableAllFSIInterrupts();
-
         //
         // INT2 line is set to fire for error events, stop immediately. Error
         // is captured in rxEventSts for debug
@@ -605,26 +516,21 @@ __interrupt void fsiRxAInt1ISR(void)
         ESTOP0;
     }
 }
-
 //
 // fsiRxAInt2ISR - FSI Rx Interrupt on INT2 line
 //
 __interrupt void fsiRxAInt2ISR(void)
 {
     rxEventSts = FSI_getRxEventStatus(FSIRXA_BASE);
-
     fsiRxAInt2Received = 1U;
-
     //
     // Clear the interrupt flag and issue ACK
     //
     FSI_clearRxEvents(FSIRXA_BASE,rxEventSts);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP4);
-
     if(rxEventSts & FSI_RX_EVT_DATA_FRAME == 0x0U)
     {
         disableAllFSIInterrupts();
-
         //
         // INT2 line is set to fire for error events, stop immediately. Error
         // is captured in rxEventSts for debug
@@ -642,11 +548,9 @@ void disableAllFSIInterrupts(void)
     FSI_disableTxInterrupt(FSITXA_BASE, FSI_INT2, FSI_TX_EVTMASK);
     FSI_disableRxInterrupt(FSIRXA_BASE, FSI_INT1, FSI_RX_EVTMASK);
     FSI_disableRxInterrupt(FSIRXA_BASE, FSI_INT2, FSI_RX_EVTMASK);
-
     FSI_clearTxEvents(FSITXA_BASE, FSI_TX_EVTMASK);
     FSI_clearRxEvents(FSIRXA_BASE, FSI_RX_EVTMASK);
 }
-
 //
 // compare16 - Compares two 16 bit values and increments global error flag by 1
 //             for mismatch
@@ -658,7 +562,6 @@ static inline void compare16(uint16_t val1, uint16_t val2)
         error++;
     }
 }
-
 //
 // compareBufData - Compares if received data is same as transmitted ones
 //                  It doesn't consider wrap-up cases, but, can be enhanced
@@ -668,9 +571,7 @@ void compareBufData(uint32_t base, uint16_t txBufIndex, uint16_t rxBufIndex,
 {
     uint16_t i;
     uint16_t rxDataArray[16];
-
     FSI_readRxBuffer(base, rxDataArray, nWords, rxBufIndex);
-
     for(i = 0; i < nWords; i++)
     {
         if(rxDataArray[i] != txBufAddr[txBufIndex])
@@ -678,11 +579,9 @@ void compareBufData(uint32_t base, uint16_t txBufIndex, uint16_t rxBufIndex,
             error++;
             return;
         }
-
         txBufIndex++;
     }
 }
-
 //
 // checkReceivedFrameTypeTag - Checks received frame type/tag and updates global
 //                             error flag
@@ -691,7 +590,6 @@ void checkReceivedFrameTypeTag(uint32_t base, FSI_FrameType type,
                                FSI_FrameTag tag)
 {
     compare16((uint16_t)FSI_getRxFrameType(base), (uint16_t)type);
-
     if(type == FSI_FRAME_TYPE_PING)
     {
         compare16(FSI_getRxPingTag(base), (uint16_t)tag);
@@ -701,7 +599,6 @@ void checkReceivedFrameTypeTag(uint32_t base, FSI_FrameType type,
         compare16(FSI_getRxFrameTag(base), (uint16_t)tag);
     }
 }
-
 //
 // End of File
 //

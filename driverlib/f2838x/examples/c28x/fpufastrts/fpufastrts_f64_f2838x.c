@@ -43,8 +43,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
 //
 // Included Files
 //
@@ -52,7 +50,6 @@
 #include "device.h"
 #include "board.h"
 #include "c2000ware_libraries.h"
-
 void main(void)
 {
     //
@@ -64,7 +61,6 @@ void main(void)
     Interrupt_initVectorTable();
     Board_init();
     C2000Ware_libraries_init();
-
     //
     // Parameter declaration
     //
@@ -74,7 +70,6 @@ void main(void)
     float64u_t cordicResultCos;
     float64u_t cordicResultSin;
     float64u_t cordic_input;
-
     //
     // Parameter initialization
     //
@@ -82,7 +77,6 @@ void main(void)
     param1 = 2.0;
     param2 = 9.0;
     cordic_input.f64 = param0;
-
     //
     // Result declarations
     //
@@ -93,52 +87,42 @@ void main(void)
     float64_t isqrtResult;
     float64_t sinResult;
     float64_t sqrtResult;
-
     //
     // Arc Tangent
     //
     atanResult = atan(param0);
-
     //
     // Arc Tangent 2
     //
     atan2Result = atan2(param0, param1);
-
     //
     // Cosine
     //
     cosResult = cos(param0);
-
     //
     // Division (uses '/' operator)
     //
     divResult = param2/param1;
-
     //
     // Inverse Square Root
     //
     isqrtResult = isqrt(param1);
-
     //
     // Sine
     //
     sinResult = sin(param0);
-
     //
     // Square Root
     //
     sqrtResult = sqrt(param2);
-
     //
     // CORDIC Sine
     //
     cordicResultSin = CORDIC_F64_sin(myCOR0_handle, cordic_input);
-
     //
     // CORDIC Cosine
     //
     cordicResultCos = CORDIC_F64_cos(myCOR0_handle, cordic_input);
-
     //
     // FID (Fast Integer Division) parameter/pointer initializations
     //
@@ -148,23 +132,18 @@ void main(void)
     double *p_num = &num;
     double *p_den = &den;
     double *p_quo = &quo;
-
     uint16_t var0 = 26;
     uint16_t var1 = 5;
     uint32_t var2 = 26;
     uint32_t var3 = 5;
     uint64_t var4, var5 = 26;
     uint64_t var6, var7 = 5;
-
     int16_t var8, var9, var10 = 26;
     int16_t var11, var12, var13 = 5;
-
     int32_t var14, var15, var16, var17, var18, var19, var20 = 26;
     int32_t var21, var22, var23, var24, var25, var26, var27 = 5;
-
     int64_t var28, var29, var30 = 26, var31, var32, var33, var34, var35 = 26;
     int64_t var36, var37, var38, var39, var40, var41, var42, var43 = 5;
-
     uint16_t *p_num_rem_u16 = &var0;
     uint16_t *p_den_quo_u16 = &var1;
     uint32_t *p_num_rem_u32 = &var2;
@@ -173,14 +152,12 @@ void main(void)
     uint64_t *p_num_rem_64x32_u = &var5;
     uint64_t *p_den_quo_u64 = &var6;
     uint64_t *p_den_quo_64x32_u = &var7;
-
     int16_t *p_num_rem_e16 = &var8;
     int16_t *p_num_rem_m16 = &var9;
     int16_t *p_num_rem_t16 = &var10;
     int16_t *p_den_quo_e16 = &var11;
     int16_t *p_den_quo_m16 = &var12;
     int16_t *p_den_quo_t16 = &var13;
-
     int32_t *p_num_rem_e32 = &var14;
     int32_t *p_num_rem_m32 = &var15;
     int32_t *p_num_rem_t32 = &var16;
@@ -195,7 +172,6 @@ void main(void)
     int32_t *p_den_quo_32x16_e = &var25;
     int32_t *p_den_quo_32x16_m = &var26;
     int32_t *p_den_quo_32x16_t = &var27;
-
     int64_t *p_num_rem_e64 = &var28;
     int64_t *p_num_rem_m64 = &var29;
     int64_t *p_num_rem_t64 = &var30;
@@ -212,12 +188,10 @@ void main(void)
     int64_t *p_den_quo_64x32_m = &var41;
     int64_t *p_den_quo_64x32_t = &var42;
     int64_t *p_den_quo_64x32_iui = &var43;
-
     //
     // Floating Point FID
     //
     FID_f64byf64(p_num, p_den, p_quo);
-
     //
     // 16-bit by 16-bit FID
     //
@@ -225,7 +199,6 @@ void main(void)
     FID_i16byi16_m(p_num_rem_m16, p_den_quo_m16);
     FID_i16byi16_t(p_num_rem_t16, p_den_quo_t16);
     FID_ui16byui16(p_num_rem_u16, p_den_quo_u16);
-
     //
     // 32-bit by 32-bit FID
     //
@@ -234,7 +207,6 @@ void main(void)
     FID_i32byi32_t(p_num_rem_t32, p_den_quo_t32);
     FID_i32byui32(p_num_rem_iui32, p_den_quo_iui32);
     FID_ui32byui32(p_num_rem_u32, p_den_quo_u32);
-
     //
     // 32-bit by 16-bit FID
     //
@@ -242,7 +214,6 @@ void main(void)
     FID_i32byi16_m(p_num_rem_32x16_m, p_den_quo_32x16_m);
     FID_i32byi16_t(p_num_rem_32x16_t, p_den_quo_32x16_t);
     FID_ui32byui16(p_num_rem_u32, p_den_quo_u32);
-
     //
     // 64-bit by 64-bit FID
     //
@@ -251,7 +222,6 @@ void main(void)
     FID_i64byi64_t(p_num_rem_t64, p_den_quo_t64);
     FID_i64byui64(p_num_rem_iui64, p_den_quo_iui64);
     FID_ui64byui64(p_num_rem_u64, p_den_quo_u64);
-
     //
     // 64-bit by 32-bit FID
     //
@@ -260,6 +230,5 @@ void main(void)
     FID_i64byi32_t(p_num_rem_64x32_t, p_den_quo_64x32_t);
     FID_i64byui32(p_num_rem_64x32_iui, p_den_quo_64x32_iui);
     FID_ui64byui32(p_num_rem_64x32_u, p_den_quo_64x32_u);
-
     while(1);
 }

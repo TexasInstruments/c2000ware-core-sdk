@@ -10,7 +10,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -43,8 +43,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
 //*****************************************************************************
 // includes
 //*****************************************************************************
@@ -53,19 +51,13 @@
 #include "board.h"
 #include "c2000ware_libraries.h"
 #include "stdio.h"
-
 #include "pi_test.h"
-
 //!
 //! \addtogroup DCL_EXAMPLES PI controller example
-
 // @{
-
-
 uint16_t currIdx = 0;
 uint16_t completed = 0;
 int16_t errors = -1;
-
 void Init_DCL_Logger(void)
 {
     //
@@ -75,51 +67,40 @@ void Init_DCL_Logger(void)
     DCL_initLog(&ykLog, (float32_t*)ykLogArr, DATA_LENGTH);
     DCL_initLog(&ctlLog, (float32_t*)ctlLogArr, DATA_LENGTH);
     DCL_initLog(&outLog, (float32_t*)outLogArr, DATA_LENGTH);
-
     // Reset PI controller as well
     DCL_resetPI(&myController0);
 }
-
 int Run_PI_Logger()
 {
-
-
     //
     // rk = Target referenced value
     // yk = Current feedback value
     // uk = Output control effort
     //
     float32_t rk,yk,uk;
-
     //
     // Read the input data buffers
     //
     rk = DCL_freadLog(&rkLog);
     yk = DCL_freadLog(&ykLog);
-
     //
     // Run the controller
     // Equivalent to uk = DCL_runPI_series(ctrl_handle, rk, yk);
     //
     uk = DCL_runPI_C1(&myController0, rk, yk);
-
     //
     // Write the results to the output buffer
     //
     DCL_fwriteLog(&outLog, uk);
-
     return 1;
 }
-
 int Compare_Results()
 {
     int i;
-
     //
     // Reset the log pointer so it starts from the beginning
     //
     DCL_resetLog(&outLog);
-
     //
     // Check output against expected output with tolerance (1e-06)
     //
@@ -135,10 +116,8 @@ int Compare_Results()
             printf("FAIL at sample %d, outputs %f, should be %f\n", i, output, expected);
         }
     }
-
     return errors;
 }
-
 //
 // Main
 //
@@ -148,44 +127,36 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull-ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // PinMux and Peripheral Initialization
     //
     Board_init();
-
     //
     // C2000Ware Library initialization
     //
     C2000Ware_libraries_init();
-
     //
     // DCL Logger Initialization
     //
     Init_DCL_Logger();
-
     //
     // Enable Global Interrupt (INTM) and real time interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     while(1)
     {
         if (completed)
@@ -196,7 +167,6 @@ void main(void)
         }
     }
 }
-
 // initialize CPU timer0 in sysconfig
 interrupt void control_Isr(void)
 {
@@ -210,12 +180,8 @@ interrupt void control_Isr(void)
         completed = 1;
         Interrupt_disable(INT_myCPUTIMER0);
     }
-
     Interrupt_clearACKGroup(INT_myCPUTIMER0_INTERRUPT_ACK_GROUP);
 }
-
 // End of main
-
 // @} //addtogroup
-
 // End of file

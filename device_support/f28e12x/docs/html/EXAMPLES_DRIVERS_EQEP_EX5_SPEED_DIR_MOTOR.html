@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">F28E12x Driverib and Example User Guide
-   &#160;<span id="projectnumber">26.01.00.00</span>
+   &#160;<span id="projectnumber">26.02.00.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -101,7 +101,7 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_EQEP_EX5_SPEED_DIR_MO
 <div class="textblock"><p><a class="anchor" id="md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_eqep_ex5_speed_dir_motor"></a></p>
 <h1><a class="anchor" id="autotoc_md233"></a>
 Introduction</h1>
-<p>This example can be used to sense the speed and direction of motor using eQEP in quadrature encoder mode. ePWM1A (MCPWM1A in case of F28E12x) is configured to simulate motor encoder signals with frequency of 5 kHz on both A and B pins with 90 degree phase shift (so as to run this example without motor).EQEP unit timeout is set which will generate an interrupt every UNIT_PERIOD microseconds and speed calculation occurs continuously based on the direction of motor.</p>
+<p>This example can be used to sense the speed and direction of motor using eQEP in quadrature encoder mode. ePWM1A (MCPWM1A in case of F28E12x and MCPC029) is configured to simulate motor encoder signals with frequency of 5 kHz on both A and B pins with 90 degree phase shift (so as to run this example without motor).EQEP unit timeout is set which will generate an interrupt every UNIT_PERIOD microseconds and speed calculation occurs continuously based on the direction of motor.</p>
 <p>The example does the below</p><ul>
 <li>PWM frequency is specified as 5000Hz.</li>
 <li>UNIT_PERIOD is specified as 10000 us.</li>

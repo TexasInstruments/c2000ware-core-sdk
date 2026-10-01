@@ -3,14 +3,12 @@
  *
  */
 #include "usb_structs.h"
-
 //******************************************************************************
 //
 // The HID mouse device initialization and customization structures.
 //
 //******************************************************************************
 tHIDMouseInstance g_sMouseInstance;
-
 tUSBDHIDMouseDevice g_sMouseDevice =
 {
     USB_VID_TI_1CBE,

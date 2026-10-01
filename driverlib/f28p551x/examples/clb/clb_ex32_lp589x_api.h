@@ -5,7 +5,7 @@
 // TITLE:  Simple APIs for configuring the LP5891 LED driver.
 //
 //#############################################################################
-// $TI Release: F28P551x Support Library v26.01.00.00 $
+// $TI Release: F28P551x Support Library v26.02.00.00 $
 // 
 // $Copyright:
 // Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
@@ -39,24 +39,19 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include <clb_ex32_system_info.h>
-
 //
 // Globals
 //
 extern uint16_t vsyncDone;
-
 //
 // Function Prototypes
 //
 void setData(uint16_t *data, uint16_t high, uint16_t mid, uint16_t low, uint16_t bias);
-
 void LED_Set_Chip_Index(unsigned int checkResponse);
-
 void LED_Write_RGB_Custom_ALL(uint16_t r_value, uint16_t g_value, uint16_t b_value);
 void LED_Write_Black_ALL(void);
 void LED_Write_White_ALL(void);
@@ -66,12 +61,9 @@ void LED_Write_Blue_ALL(void);
 void LED_Write_Red_Custom_ALL(uint16_t brt_value);
 void LED_Write_Green_Custom_ALL(uint16_t brt_value);
 void LED_Write_Blue_Custom_ALL(uint16_t brt_value);
-
 void LED_Write_Reg_Broadcast(uint16_t fc_reg, uint16_t data2, uint16_t data1, uint16_t data0, unsigned int checkResponse);
-
 void sendSYNC();
 void sendSYNCnoWait();
-
 //
 // End of File
 //

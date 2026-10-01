@@ -13,7 +13,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -46,7 +46,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -55,26 +54,21 @@
 #include "f2838x_piectrl.h"
 #include "f2838x_sdfm_drivers.h"
 #include "f2838x_struct.h"
-
 //
 // Whether MDEBUGSTOP needs to be compiled or not
 //
 #define CLA_DEBUG       1
 #define PIEACK_GROUP5   0x0010
-
 #pragma DATA_SECTION(Filter1_Result,"Filter1_RegsFile");
 #pragma DATA_SECTION(Filter2_Result,"Filter2_RegsFile");
 #pragma DATA_SECTION(Filter3_Result,"Filter3_RegsFile");
 #pragma DATA_SECTION(Filter4_Result,"Filter4_RegsFile");
-
 short  Filter1_Result[MAX_SAMPLES];
 short  Filter2_Result[MAX_SAMPLES];
 short  Filter3_Result[MAX_SAMPLES];
 short  Filter4_Result[MAX_SAMPLES];
-
 int16 loopCounter1;
 int16 loopCounter2;
-
 //
 // Task 1
 //
@@ -84,12 +78,10 @@ __interrupt void Cla1Task1 ( void )
 __mdebugstop();
 #endif
         Uint32 sdfmReadFlagRegister;
-
         //
         // Read SDIFLG of SDFM1
         //
         sdfmReadFlagRegister = Sdfm1Regs.SDIFLG.all;
-
         //
         // Reset the loop counter
         //
@@ -97,18 +89,15 @@ __mdebugstop();
         {
             loopCounter1 = 0;
         }
-
         Filter1_Result[loopCounter1] = *(Uint16 *)((Uint16)0x5E17);
         Filter2_Result[loopCounter1] = *(Uint16 *)((Uint16)0x5E27);
         Filter3_Result[loopCounter1] = *(Uint16 *)((Uint16)0x5E37);
         Filter4_Result[loopCounter1++] = *(Uint16 *)((Uint16)0x5E47);
-
         //
         // Clear SDFM1.SDIFLG register
         //
         Sdfm1Regs.SDIFLGCLR.all = sdfmReadFlagRegister;
 }
-
 //
 // Task 2
 //
@@ -118,12 +107,10 @@ __interrupt void Cla1Task2 ( void )
 __mdebugstop();
 #endif
         Uint32 sdfmReadFlagRegister;
-
         //
         // Read SDIFLG of SDFM2
         //
         sdfmReadFlagRegister = Sdfm2Regs.SDIFLG.all;
-
         //
         // Reset the loop counter
         //
@@ -131,18 +118,15 @@ __mdebugstop();
         {
             loopCounter2 = 0;
         }
-
         Filter1_Result[loopCounter2] = *(Uint16 *)((Uint16)0x5E97);
         Filter2_Result[loopCounter2] = *(Uint16 *)((Uint16)0x5EA7);
         Filter3_Result[loopCounter2] = *(Uint16 *)((Uint16)0x5EB7);
         Filter4_Result[loopCounter2++] = *(Uint16 *)((Uint16)0x5EC7);
-
         //
         // Clear SDFM2.SDIFLG register
         //
         Sdfm2Regs.SDIFLGCLR.all = sdfmReadFlagRegister;
 }
-
 //
 // Task 3
 //
@@ -152,7 +136,6 @@ __interrupt void Cla1Task3 ( void )
     __mdebugstop();
     #endif
 }
-
 //
 // Task 4
 //
@@ -162,7 +145,6 @@ __interrupt void Cla1Task4 ( void )
     __mdebugstop();
     #endif
 }
-
 //
 // Task 5
 //
@@ -171,9 +153,7 @@ __interrupt void Cla1Task5 ( void )
     #if (CLA_DEBUG==1)
     __mdebugstop();
     #endif
-
 }
-
 //
 // Task 6
 //
@@ -183,7 +163,6 @@ __interrupt void Cla1Task6 ( void )
     __mdebugstop();
     #endif
 }
-
 //
 // Task 7
 //
@@ -193,7 +172,6 @@ __interrupt void Cla1Task7 ( void )
     __mdebugstop();
     #endif
 }
-
 //
 // Task 8
 //
@@ -202,7 +180,6 @@ __interrupt void Cla1Task8 ( void )
     loopCounter1 = 0;
     loopCounter2 = 0;
 }
-
 //
 // End of file
 //

@@ -8,7 +8,7 @@
 // $TI Release: $
 // 
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -41,19 +41,15 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 #include <clb_ex32_lp5891.h>
 #include <clb_ex32_system_info.h>
 #include "driverlib.h"
 #include "board.h"
-
 #ifndef CCSI_HAL_H_
 #define CCSI_HAL_H_
-
 extern uint32_t clbXmtBuffer[MAX_DATA_LENGTH]; //Stores the data bytes to be sent
 extern uint16_t clbRcvBuffer[MAX_DATA_LENGTH]; //Stores the bytes received
 extern volatile uint16_t clbXmtDone;
-
 void CCSI_HAL_initClbLogic(void);
 void CCSI_HAL_setupInterrupts(void);
 void CCSI_HAL_startLedClocks(void);
@@ -64,5 +60,4 @@ void CCSI_HAL_clbSyncTransferStart(void);
 void CCSI_HAL_ringBufferReset(void);
 void CCSI_HAL_enableClbReceiver(void);
 void CCSI_HAL_disableClbReceiver(void);
-
 #endif /* CCSI_HAL_H_ */

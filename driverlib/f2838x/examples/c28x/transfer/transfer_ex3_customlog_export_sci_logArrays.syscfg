@@ -1,8 +1,8 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --device "F2838x" --package "337bga" --part "F2838x_337bga" --context "CPU1" --product "C2000WARE@5.02.00.00"
- * @versions {"tool":"1.0.0+dev"}
+ * @cliArgs --device "F2838x" --part "F2838x_337bga" --package "337bga" --context "CPU1" 
+ * @v2CliArgs --device "TMS320F28388D" --package "337bga" --context "CPU1"
  */
 /**
  * Import the modules used in this configuration.
@@ -13,7 +13,6 @@ const CMD            = scripting.addModule("/utilities/cmd_tool/cmd_syscfg/sourc
 const CMD1           = CMD.addInstance();
 const CMD2           = CMD.addInstance();
 const gui            = scripting.addModule("/utilities/transfer/gui.js");
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -28,13 +27,11 @@ gui.exporter.comsLinkModule.registerInterrupts = scripting.forceWrite(false);
 gui.exporter.comsLinkModule.useFifo            = scripting.forceWrite(true);
 gui.exporter.comsLinkModule.loopback           = scripting.forceWrite(false);
 gui.exporter.comsLinkModule.useCase            = scripting.forceWrite("ALL");
-
 /**
  * Write custom configuration values to the imported modules.
  */
 CMD1.$name                    = "generic_ram_lnk";
 CMD2.$name                    = "generic_flash_lnk";
-
 CMD1.sectionMemory_text       = ["RAMLS0","RAMLS1","RAMLS2","RAMLS3","RAMLS4"];
 CMD1.sectionMemory_ramfunc    = ["RAMM0"];
 CMD1.sectionMemory_cinit      = ["RAMM0"];
@@ -45,7 +42,6 @@ CMD1.sectionMemory_const      = ["RAMLS5"];
 CMD1.sectionMemory_data       = ["RAMGS0", "RAMGS1"];
 CMD1.sectionMemory_switch     = ["RAMM0"];
 CMD1.sectionMemory_sysmem     = ["RAMLS5"];
-
 CMD2.sectionAlignEnable_ramfunc    = true;
 CMD2.sectionAlignEnable_text       = true;
 CMD2.sectionAlignEnable_binit      = true;
@@ -70,5 +66,3 @@ CMD2.sectionMemory_ovly            = ["FLASH6"];
 CMD2.sectionRunFromDifferentAddr_ramfunc = true;
 CMD2.sectionRun_ramfunc                  = ["RAMLS0"];
 CMD2.sectionBinit_ramfunc                = false;
-
-

@@ -6,7 +6,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -39,12 +39,10 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "cla_ex2_iir2p2z_shared.h"
-
 //
 // Globals
 //
@@ -55,11 +53,9 @@
 //
 float W2[2]; //w2(n) and w2(n-1)
 float W1[2]; //w1(n) and w1(n-1)
-
 //
 // function definitions
 //
-
 //Task 1 : 2p2z IIR Transposed Direct Form II Filter
 // ALGORITHM:
 //
@@ -110,7 +106,6 @@ float W1[2]; //w1(n) and w1(n-1)
 interrupt void Cla1Task1 ( void )
 {
     //Local Variables
-
     //Code
     __mdebugstop();
     yn    = xn*S1_B[0] + W2[1];
@@ -122,44 +117,30 @@ interrupt void Cla1Task1 ( void )
 //    __mnop();
 //    __mnop();
 }
-
 interrupt void Cla1Task2 ( void )
 {
-
 }
-
 interrupt void Cla1Task3 ( void )
 {
-
 }
-
 interrupt void Cla1Task4 ( void )
 {
-
 }
-
 interrupt void Cla1Task5 ( void )
 {
-
 }
-
 interrupt void Cla1Task6 ( void )
 {
-
 }
-
 interrupt void Cla1Task7 ( void )
 {
-
 }
-
 //Task 8 will initialize the variables used in Task 1
 interrupt void Cla1Task8 ( void )
 {
     W2[0] = 0; W2[1] = 0;
     W1[0] = 0; W1[1] = 0;
 }
-
 //
 // End of file
 //

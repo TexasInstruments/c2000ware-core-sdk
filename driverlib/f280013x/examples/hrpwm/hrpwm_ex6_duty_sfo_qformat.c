@@ -79,30 +79,25 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "sfo_v8.h"
 #include "board.h"
-
 //
 // Defines
 //
-
 //
 // # of PWM channels
 //
 #define PWM_CH            1
 #define STATUS_SUCCESS    1
 #define STATUS_FAIL       0
-
 //
 // 1 = Turn auto-conversion ON
 // 0 = Turn auto-conversion OFF
 //
 #define AUTOCONVERT       1
-
 //
 // Globals
 //
@@ -113,7 +108,6 @@ uint16_t regValCMPA;
 uint16_t regValCMPAHR;
 uint16_t regValCMPB;
 uint16_t regValCMPBHR;
-
 //
 // Global variable used by the SFO library
 // Result can be used for all HRPWM channels
@@ -121,17 +115,14 @@ uint16_t regValCMPBHR;
 // register by SFO() function.
 //
 int MEP_ScaleFactor;
-
 //
 // Used by SFO library (ePWM[0] is a dummy value that isn't used)
 //
 volatile uint32_t ePWM[PWM_CH + 1] = {0, EPWM1_BASE};
-
 //
 // Function Prototypes
 //
 void error(void);
-
 //
 // Main
 //
@@ -140,36 +131,29 @@ void main(void)
     uint16_t i;
     uint32_t temp, temp1, base;
     uint16_t periodVal;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull-ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Setup example variables
     //
     updateFine = 1;
     dutyFine = 0;
     status = SFO_INCOMPLETE;
-
-
     //
     // Calling SFO() updates the HRMSTEP register with calibrated
     // MEP_ScaleFactor. HRMSTEP must be populated with a scale factor value
@@ -183,19 +167,15 @@ void main(void)
             error();   // SFO function returns 2 if an error occurs & # of MEP
         }              // steps/coarse step exceeds maximum of 255.
     }
-
-
     //
     // Configure ePWM1 and ePWM2
     //
     Board_init();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     while(1)
     {
         //
@@ -212,14 +192,12 @@ void main(void)
                 // the product is Q15. So to store as a Q0, we shift right
                 // 15 bits.
                 regValCMPA = ((long)dutyFine * periodVal) >> 15U;
-
                 // This next step is to obtain the remainder which was
                 // truncated during our 15 bit shift above.
                 // Compute the whole value, and then subtract regValCMPA
                 // shifted LEFT 15 bits:
                 temp = ((long)dutyFine * periodVal) ;
                 temp = temp - ((long)regValCMPA << 15);
-
                 // If auto-conversion is disabled, the following step can be
                 // skipped. If autoconversion is enabled, the SFO function will
                 // write the MEP_ScaleFactor to the HRMSTEP register and the
@@ -229,7 +207,6 @@ void main(void)
                 // format, it must be shifted left by 1 to convert to Q16
                 // format for the hardware to properly convert.
                 regValCMPAHR = temp << 1;
-
                 // If auto-conversion is enabled, the following step is
                 // performed automatically in hardware and can be skipped
                 // This obtains the MEP count in digits, from
@@ -242,12 +219,10 @@ void main(void)
                 // Once again since this is Q15
                 // convert to Q0 by shifting:
                 regValCMPAHR = (temp * MEP_ScaleFactor + (0x0080 << 7)) >> 15;
-
                 // If auto-conversion is enabled, the following step is
                 // performed automatically in hardware and can be skipped
                 // Add the offset and rounding
                 regValCMPAHR += 0x0080;
-
                 // Write the values to the registers as one 32-bit
                 // or two 16-bits
                 HWREG(base + HRPWM_O_CMPA) = ((long)regValCMPA) << 16U |
@@ -255,7 +230,6 @@ void main(void)
                 HWREG(base + HRPWM_O_CMPB) = ((long)regValCMPA) << 16U |
                                                regValCMPBHR;
                 */
-
                 //
                 // All the above operations may be condensed into
                 // the following form:
@@ -271,12 +245,10 @@ void main(void)
                     temp1 = ((long)dutyFine * periodVal) ;
                     temp = temp - ((long)regValCMPA << 15U);
                     temp1 = temp1 - ((long)regValCMPB << 15U);
-
                    #if(AUTOCONVERT)
                     regValCMPAHR = temp << 1U; // convert to Q16
                     regValCMPBHR = temp << 1U; // convert to Q16
                    #else
-
                     regValCMPAHR = ((temp * MEP_ScaleFactor) +
                                     (0x0080U << 7U)) >> 15U;
                     regValCMPAHR = regValCMPAHR << 8;
@@ -284,13 +256,11 @@ void main(void)
                                     (0x0080U << 7U)) >> 15U;
                     regValCMPBHR = regValCMPBHR << 8U;
                    #endif
-
                    //
                    // Example for a 32 bit write to CMPA:CMPAHR
                    //
                    HWREG(base + HRPWM_O_CMPA) = (((long)regValCMPA) << 16U) |
                                                 regValCMPAHR;
-
                    //
                    // Example for a 32 bit write to CMPB:CMPBHR
                    //
@@ -318,7 +288,6 @@ void main(void)
                                                 regValCMPB);
                 }
             }
-
             //
             // Call the scale factor optimizer lib function SFO()
             // periodically to track for any change due to temp/voltage.
@@ -330,7 +299,6 @@ void main(void)
             //
             status = SFO(); // in background, MEP calibration module
                             // continuously updates MEP_ScaleFactor
-
             if(status == SFO_ERROR)
             {
                 error();   // SFO function returns 2 if an error occurs & #
@@ -346,7 +314,6 @@ void error(void)
 {
     ESTOP0;         // Stop here and handle error
 }
-
 //
 // End of file
 //

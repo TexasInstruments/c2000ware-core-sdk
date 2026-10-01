@@ -26,7 +26,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -59,19 +59,16 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "device.h"
 #include "driverlib.h"
-
 //
 // Defines
 //
 #define TEST_PASS 0xABCDABCDU
 #define TEST_FAIL 0xDEADDEADU
-
 //
 // Defines for external memory addresses to be be accessed. The ASRAM memory
 // size used for this example is 256K x 16. CPU1 accesses upper 128K x 16
@@ -79,12 +76,10 @@
 //
 #define ASRAM_CS2_START_ADDR_CPU1 0x120000U
 #define ASRAM_CS2_SIZE 0x20000U
-
 //
 // Define for memory R/W iterations
 //
 #define MEM_RW_ITER    0x2U
-
 //
 // Globals
 //
@@ -96,7 +91,6 @@ uint32_t i, iter;
 //
 void setupEMIF1Pinmux256KAsync16Bit(void);
 uint16_t readWriteMemCPU1(uint32_t startAddr, uint32_t memSize);
-
 //
 // Main
 //
@@ -104,43 +98,35 @@ void main(void)
 {
     uint16_t errCountLocal;
     testStatusGlobalCPU1 = TEST_FAIL;
-
     //
     // Initialize device clock and peripherals.
     //
     Device_init();
-
     //
     // Disable all the interrupts.
     //
     DINT;
-
     //
     // Setup GPIO by disabling pin locks and enabling pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Configure EMIF1 Pins.
     //
     setupEMIF1Pinmux256KAsync16Bit();
-
     //
     // Sync CPU1 and CPU2.
     //
     IPC_sync(IPC_CPU1_L_CPU2_R, IPC_FLAG11);
-
     for(iter = 0; iter < MEM_RW_ITER; iter++)
     {
         //
@@ -151,20 +137,17 @@ void main(void)
         {
             EMIF_selectMaster(EMIF1CONFIG_BASE, EMIF_MASTER_CPU1_G);
         }
-
         //
         // Check basic RD/WR access to CS2 space.
         //
         errCountLocal = readWriteMemCPU1(ASRAM_CS2_START_ADDR_CPU1,
                                          ASRAM_CS2_SIZE);
         errCountGlobalCPU1 = errCountGlobalCPU1 + errCountLocal;
-
         //
         // Release EMI1
         //
         EMIF_selectMaster(EMIF1CONFIG_BASE, EMIF_MASTER_CPU1_NG);
     }
-
     if(errCountGlobalCPU1 == 0x0U)
     {
         testStatusGlobalCPU1 = TEST_PASS;
@@ -173,10 +156,8 @@ void main(void)
     {
         testStatusGlobalCPU1 = TEST_FAIL;
     }
-
     while(1);
 }
-
 //
 // Setup EMIF1 Pinmux 256K Async 16Bit - This function configures pins
 // for 16-bit 256x16 size Asynchronous EMIF1.
@@ -184,7 +165,6 @@ void main(void)
 void setupEMIF1Pinmux256KAsync16Bit(void)
 {
     uint16_t i;
-
     //
     // Selecting control pins.
     //
@@ -193,7 +173,6 @@ void setupEMIF1Pinmux256KAsync16Bit(void)
     GPIO_setPinConfig(GPIO_37_EMIF1_OEN);
     GPIO_setPinConfig(GPIO_36_EMIF1_WAIT);
     GPIO_setPinConfig(GPIO_33_EMIF1_RNW);
-
     //
     // Selecting 18 address lines.
     //
@@ -215,7 +194,6 @@ void setupEMIF1Pinmux256KAsync16Bit(void)
     GPIO_setPinConfig(GPIO_87_EMIF1_A14);
     GPIO_setPinConfig(GPIO_88_EMIF1_A15);
     GPIO_setPinConfig(GPIO_89_EMIF1_A16);
-
     //
     // Selecting 16 data lines.
     //
@@ -235,7 +213,6 @@ void setupEMIF1Pinmux256KAsync16Bit(void)
     GPIO_setPinConfig(GPIO_82_EMIF1_D2);
     GPIO_setPinConfig(GPIO_83_EMIF1_D1);
     GPIO_setPinConfig(GPIO_85_EMIF1_D0);
-
     //
     // Setup async mode and enable pull-ups for Data pins.
     //
@@ -248,7 +225,6 @@ void setupEMIF1Pinmux256KAsync16Bit(void)
         }
     }
  }
-
 //
 // Read Write Memory - This function performs simple read/write word accesses
 // to memory.
@@ -260,10 +236,8 @@ uint16_t readWriteMemCPU1(uint32_t startAddr, uint32_t memSize)
     uint16_t memWriteData;
     uint16_t *memPtr;
     uint32_t i;
-
     iterCnt++;
     memPtr = (uint16_t *)startAddr;
-
     //
     // Write data to memory.
     //
@@ -273,7 +247,6 @@ uint16_t readWriteMemCPU1(uint32_t startAddr, uint32_t memSize)
         *memPtr++ = memWriteData;
         memWriteData += (0x0001U + iterCnt);
     }
-
     //
     // Verify data written to memory.
     //
@@ -291,7 +264,6 @@ uint16_t readWriteMemCPU1(uint32_t startAddr, uint32_t memSize)
     }
     return(0U);
 }
-
 //
 // End of File
 //

@@ -8,7 +8,7 @@
 // $TI Release: $
 // 
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -41,8 +41,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 #include <clb_ex32_system_info.h>
 #include <stdint.h>
-
 const uint16_t FRAME_PERIOD = 16667;      // 16.667ms = 60 Hz frames-per-second

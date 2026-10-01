@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="DRIVERS_MCPWM_PAGE" kind="page">
+    <compoundname>DRIVERS_MCPWM_PAGE</compoundname>
+    <title>MCPWM</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="DRIVERS_MCPWM_PAGE_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_components_drivers_mcpwm"/></para>
+<para>The MCPWM driver provides API to configure the MCPWM module. Below are the high level features supported by the MCPWM driver.</para>
+<sect1 id="DRIVERS_MCPWM_PAGE_1autotoc_md84">
+<title>Features Supported</title>
+<para><itemizedlist>
+<listitem><para>2 MCPWM instances<itemizedlist>
+<listitem><para>MCPWM1 has 3 pairs of outputs and MCPWM3 has 1 pair of outputs</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Can be also used as a DAC where duty cycle is equivalent to a DAC analog value.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_MCPWM_PAGE_1autotoc_md85">
+<title>SysConfig Features</title>
+<para><simplesect kind="note"><para>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</para>
+</simplesect>
+<itemizedlist>
+<listitem><para>Timebase Configurations common for all 3 pairs of outputs</para>
+</listitem><listitem><para>Counter Compare, Action Qualifier for each pair of outputs</para>
+</listitem><listitem><para>Deadband between the MCPWMs common to the 3 pairs</para>
+</listitem><listitem><para>Trip Zone configurations common to the 3 pairs.</para>
+</listitem><listitem><para>Dedicated MCPWM cross bar, which enables selection of various trigger sources into any of the dedicated MCPWM trip inputs.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_MCPWM_PAGE_1autotoc_md86">
+<title>Features NOT Supported</title>
+<para>NA</para>
+</sect1>
+<sect1 id="DRIVERS_MCPWM_PAGE_1autotoc_md87">
+<title>Important Usage Guidelines</title>
+<para>The Shadow Registers and Active registers have different memories unlike EPWM. If Active registers are to be used directly, make sure the shadow loads are disabled from both local and global strobes. Else, use the shadow registers for the updates to be take at the Timebase Counter equals Zero events by default.</para>
+</sect1>
+<sect1 id="DRIVERS_MCPWM_PAGE_1autotoc_md88">
+<title>Example Usage</title>
+<para>Include the below file to access the APIs #include &lt;<ref refid="mcpwm_8h" kindref="compound">mcpwm.h</ref>&gt;</para>
+</sect1>
+<sect1 id="DRIVERS_MCPWM_PAGE_1autotoc_md89">
+<title>API</title>
+<para><ref refid="group__mcpwm__api" kindref="compound">MCPWM</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/mcpwm.md"/>
+  </compounddef>
+</doxygen>

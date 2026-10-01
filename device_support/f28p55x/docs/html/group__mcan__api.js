@@ -242,6 +242,18 @@ var group__mcan__api =
     [ "MCAN_STDFILTEC_PRI_FIFO0", "group__mcan__api.html#ga1cbe27ded6ef4d5c1112fc1feee37dc0", null ],
     [ "MCAN_STDFILTEC_PRI_FIFO1", "group__mcan__api.html#ga8038ec1eeabf133b5171c48fc23f8f64", null ],
     [ "MCAN_STDFILTEC_RXBUFF", "group__mcan__api.html#ga364191aded7a9a78a58d7bcad890e60d", null ],
+    [ "MCAN_EXTFILT_RANGE", "group__mcan__api.html#ga38546b301e550d774cc0f64781c3f4a2", null ],
+    [ "MCAN_EXTFILT_DUAL", "group__mcan__api.html#gab64f8f042d0bf2b0d79ec2c670747a6f", null ],
+    [ "MCAN_EXTFILT_CLASSIC", "group__mcan__api.html#gaffbc702b677cd31c74047e9b12d3951b", null ],
+    [ "MCAN_EXTFILT_RANGE_NO_XIDAM", "group__mcan__api.html#gaa97a15affa6eadba210cf135f72ef61a", null ],
+    [ "MCAN_EXTFILTEC_DISABLE", "group__mcan__api.html#gae595e97682cbacef32554516bbad4e46", null ],
+    [ "MCAN_EXTFILTEC_FIFO0", "group__mcan__api.html#gafdc107d2a667d5df698735055eacc12e", null ],
+    [ "MCAN_EXTFILTEC_FIFO1", "group__mcan__api.html#ga3b0faa794135bd37fe97bc7da8a1c246", null ],
+    [ "MCAN_EXTFILTEC_REJECT", "group__mcan__api.html#gae038820c561fd5fc6be2eba80435775a", null ],
+    [ "MCAN_EXTFILTEC_PRI", "group__mcan__api.html#ga0e8b83d3abcac6b544b4afcc60cb8dd6", null ],
+    [ "MCAN_EXTFILTEC_PRI_FIFO0", "group__mcan__api.html#ga42b49dee849cad24131d7e5a3cf9dde1", null ],
+    [ "MCAN_EXTFILTEC_PRI_FIFO1", "group__mcan__api.html#gae148f0ceefc1fb1a3b9b4f2889f22275", null ],
+    [ "MCAN_EXTFILTEC_RXBUFF", "group__mcan__api.html#ga4a2d149465fde86bb0c7df367831862d", null ],
     [ "MCAN_IntrLineNum", "group__mcan__api.html#ga50277dbe3ad4d2068d640fa016dc113c", [
       [ "MCAN_INTR_LINE_NUM_0", "group__mcan__api.html#gga50277dbe3ad4d2068d640fa016dc113cae42dd8c81703bfe5547fb8ce040427d0", null ],
       [ "MCAN_INTR_LINE_NUM_1", "group__mcan__api.html#gga50277dbe3ad4d2068d640fa016dc113cae1786dd2918426d3d9d2c4579f3ede79", null ]

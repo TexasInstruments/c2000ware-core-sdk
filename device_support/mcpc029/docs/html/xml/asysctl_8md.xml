@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="asysctl_8md" kind="file" language="Markdown">
+    <compoundname>asysctl.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>ASYSCTL<sp/>{#DRIVERS_ASYSCTL_PAGE}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>ASYSCTL<sp/>driver<sp/>provides<sp/>API<sp/>to<sp/>configure<sp/>the<sp/>ASYSCTL<sp/>module.</highlight></codeline>
+<codeline><highlight class="normal">Below<sp/>are<sp/>the<sp/>high<sp/>level<sp/>features<sp/>supported<sp/>by<sp/>the<sp/>ASYSCTL<sp/>driver.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Features<sp/>Supported</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>analog<sp/>subsystem<sp/>has<sp/>the<sp/>following<sp/>features:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Flexible<sp/>voltage<sp/>references:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>The<sp/>ADC<sp/>is<sp/>referenced<sp/>to<sp/>VREFHI<sp/>and<sp/>VSSA<sp/>pins</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>VREFHI<sp/>pin<sp/>voltage<sp/>can<sp/>be<sp/>driven<sp/>in<sp/>externally<sp/>or<sp/>can<sp/>be<sp/>generated<sp/>by<sp/>an<sp/>internal<sp/>bandgap<sp/>voltage<sp/>reference.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>The<sp/>internal<sp/>voltage<sp/>reference<sp/>range<sp/>can<sp/>be<sp/>selected<sp/>to<sp/>be<sp/>0V<sp/>to<sp/>3.3V<sp/>or<sp/>0V<sp/>to<sp/>2.5V</highlight></codeline>
+<codeline><highlight class="normal">–<sp/>The<sp/>buffered<sp/>DAC<sp/>is<sp/>referenced<sp/>to<sp/>VREFHI<sp/>and<sp/>VSSA</highlight></codeline>
+<codeline><highlight class="normal">–<sp/>The<sp/>comparator<sp/>DACs<sp/>are<sp/>referenced<sp/>to<sp/>VDDA<sp/>and<sp/>VSSA</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Flexible<sp/>pin<sp/>usage:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Buffered<sp/>DAC<sp/>outputs,<sp/>Comparator<sp/>subsystem<sp/>inputs,<sp/>PGA<sp/>functions,<sp/>and<sp/>digital<sp/>inputs<sp/>(AIOs)/outputs<sp/>(AGPIOs)<sp/>are<sp/>multiplexed<sp/>with<sp/>ADC<sp/>inputs</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Comparator<sp/>DAC<sp/>can<sp/>optionally<sp/>be<sp/>buffered<sp/>and<sp/>brought<sp/>out<sp/>to<sp/>a<sp/>multiplexed<sp/>ADC<sp/>pin<sp/>(mutually<sp/>exclusive<sp/>with<sp/>use<sp/>of<sp/>CMPSS<sp/>compare<sp/>functions)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Internal<sp/>connection<sp/>to<sp/>VREFLO<sp/>on<sp/>ADC<sp/>for<sp/>offset<sp/>self-calibration</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>SysConfig<sp/>Features</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@VAR_SYSCFG_USAGE_NOTE</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Enable/Disable<sp/>temperature<sp/>sensor</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Configuring<sp/>Analog<sp/>reference<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Enable/Disable<sp/>CMPSS<sp/>DAC<sp/>output<sp/>to<sp/>external<sp/>pin</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Features<sp/>NOT<sp/>Supported</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">NA</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Important<sp/>Usage<sp/>Guidelines</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">NA</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Example<sp/>Usage</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Include<sp/>the<sp/>below<sp/>file<sp/>to<sp/>access<sp/>the<sp/>APIs</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;asysctl.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>API</highlight></codeline>
+<codeline><highlight class="normal">\ref<sp/>asysctl_api</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/asysctl.md"/>
+  </compounddef>
+</doxygen>

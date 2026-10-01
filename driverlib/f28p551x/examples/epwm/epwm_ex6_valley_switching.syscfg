@@ -1,4 +1,9 @@
-
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P551x" --part "F28P551x_100PZ" --package "100PZ" --context "system"
+ * @v2CliArgs --device "TMS320F28P551SG" --package "100PZ" --variant "TMS320F28P551SG5" --context "system"
+ */
 /**
  * Import the modules used in this configuration.
  */
@@ -10,7 +15,6 @@ const gpio       = scripting.addModule("/driverlib/gpio.js", {}, false);
 const gpio1      = gpio.addInstance();
 const inputxbar  = scripting.addModule("/driverlib/inputxbar.js", {}, false);
 const inputxbar1 = inputxbar.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -46,18 +50,13 @@ epwm1.epwmDigitalCompare_EPWM_TZ_DC_OUTPUT_B1                         = "EPWM_TZ
 epwm1.epwm.$assign                                                    = "EPWM1";
 epwm1.epwm.epwm_aPin.$assign                                      = "GPIO0";
 epwm1.epwm.epwm_bPin.$assign                                      = "GPIO1";
-
 epwmxbar1.$name      = "myEPWMXBAR0";
 epwmxbar1.muxesUsed  = ["XBAR_MUX01"];
 epwmxbar1.mux1Config = "XBAR_EPWM_MUX01_INPUTXBAR1_INPUT1";
-
 gpio1.$name           = "myGPIO25";
 gpio1.direction       = "GPIO_DIR_MODE_OUT";
 gpio1.qualMode        = "GPIO_QUAL_ASYNC";
 gpio1.gpioPin.$assign = "GPIO25";
-
 inputxbar1.$name          = "myINPUTXBAR1";
 inputxbar1.inputsUsed     = ["inputxbar1Gpio"];
 inputxbar1.inputxbar1Gpio = "GPIO25";
-
-

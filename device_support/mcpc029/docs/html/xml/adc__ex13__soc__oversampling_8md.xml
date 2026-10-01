@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="adc__ex13__soc__oversampling_8md" kind="file" language="Markdown">
+    <compoundname>adc_ex13_soc_oversampling.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>ADC<sp/>SOC<sp/>Oversampling<sp/>{#EXAMPLES_DRIVERS_ADC_EX13_SOC_OVERSAMPLING}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>Demontrates<sp/>ADC<sp/>oversampling<sp/>using<sp/>multiple<sp/>SOCs.&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>ADC&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x</highlight></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>sets<sp/>up<sp/>ePWM1<sp/>to<sp/>periodically<sp/>trigger<sp/>a<sp/>set<sp/>of<sp/>conversions<sp/>on<sp/>ADCA<sp/>including<sp/>multiple<sp/>SOCs<sp/>that<sp/>all<sp/>convert<sp/>A2<sp/>to<sp/>achieve<sp/>oversampling<sp/>on<sp/>A2.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28P55x<sp/>||<sp/>F28P551x<sp/></highlight></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>sets<sp/>up<sp/>ePWM1<sp/>to<sp/>periodically<sp/>trigger<sp/>a<sp/>set<sp/>of<sp/>conversions<sp/>on<sp/>ADCA<sp/>including<sp/>multiple<sp/>SOCs<sp/>that<sp/>all<sp/>convert<sp/>A2<sp/>to<sp/>achieve<sp/>oversampling<sp/>on<sp/>A2.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x<sp/>||<sp/>MCPC029</highlight></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>sets<sp/>up<sp/>MCPWM1<sp/>to<sp/>periodically<sp/>trigger<sp/>a<sp/>set<sp/>of<sp/>conversions<sp/>on<sp/>ADCA<sp/>including<sp/>multiple<sp/>SOCs<sp/>that<sp/>all<sp/>convert<sp/>A8<sp/>to<sp/>achieve<sp/>oversampling<sp/>on<sp/>A8.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ADCA<sp/>Interrupt<sp/>ISRs<sp/>are<sp/>used<sp/>to<sp/>read<sp/>results<sp/>of<sp/>ADCA.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Watch<sp/><sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>adcAResult0<sp/>-<sp/>Digital<sp/>representation<sp/>of<sp/>the<sp/>voltage<sp/>on<sp/>pin<sp/>A0</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>adcAResult1<sp/>-<sp/>Digital<sp/>representation<sp/>of<sp/>the<sp/>voltage<sp/>on<sp/>pin<sp/>A1</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>adcAResult2<sp/>-<sp/>Digital<sp/>representation<sp/>of<sp/>the<sp/>voltage<sp/>on<sp/>pin<sp/>A2</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28P55x<sp/>||<sp/>F28P551x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>adcAResult0<sp/>-<sp/>Digital<sp/>representation<sp/>of<sp/>the<sp/>voltage<sp/>on<sp/>pin<sp/>A0</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>adcAResult1<sp/>-<sp/>Digital<sp/>representation<sp/>of<sp/>the<sp/>voltage<sp/>on<sp/>pin<sp/>A1</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>adcAResult2<sp/>-<sp/>Digital<sp/>representation<sp/>of<sp/>the<sp/>voltage<sp/>on<sp/>pin<sp/>A2</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>adcAResult0<sp/>-<sp/>Digital<sp/>representation<sp/>of<sp/>the<sp/>voltage<sp/>on<sp/>pin<sp/>A0</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>adcAResult1<sp/>-<sp/>Digital<sp/>representation<sp/>of<sp/>the<sp/>voltage<sp/>on<sp/>pin<sp/>A5</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>adcAResult2<sp/>-<sp/>Digital<sp/>representation<sp/>of<sp/>the<sp/>voltage<sp/>on<sp/>pin<sp/>A8</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>A0,<sp/>A1,<sp/>A2<sp/>should<sp/>be<sp/>connected<sp/>to<sp/>signals<sp/>to<sp/>be<sp/>converted.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>A0,<sp/>A5,<sp/>A8<sp/>should<sp/>be<sp/>connected<sp/>to<sp/>signals<sp/>to<sp/>be<sp/>converted.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Using<sp/>the<sp/>watch<sp/>variables,<sp/>view<sp/>the<sp/>ADC<sp/>conversion<sp/>results.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_ADC_PAGE</highlight></codeline>
+<codeline></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/adc_ex13_soc_oversampling.md"/>
+  </compounddef>
+</doxygen>

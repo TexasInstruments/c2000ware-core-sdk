@@ -5,7 +5,6 @@
 #include "fpu.h"
 #include "dsp.h"
 #include "dsp_examples_setup.h"
-
 float64_t test_input[1024] = {
     31.000000000000L,  0.000000000000L, 29.769646610604L,  8.638242341660L,
     26.177014608406L, 16.588199639409L, 20.509450684819L, 23.216865592711L,
@@ -264,7 +263,6 @@ float64_t test_input[1024] = {
     21.107139358960L, 20.631290235795L, 14.473093893824L, 25.585961054555L,
      6.753570481103L, 28.481911402047L, -1.430879738947L, 29.107961195275L,
 };
-
 const float64_t test_golden[2048] = {
     117.619584943462L, 127.242033175182L, 122.152715752133L, 133.687099634118L,
     127.120532885294L, 140.738781568502L, 132.589267225241L, 148.487804903146L,
@@ -779,9 +777,7 @@ const float64_t test_golden[2048] = {
      0.777647185978L,  0.783584212193L,  0.789507923644L,  0.795416919375L,
      0.801309594778L,  0.807184103190L,  0.813038308460L,  0.818869725913L,
 };
-
 #define TEST_SIZE       (512U)
-
 //
 // Used for memory alignment
 //
@@ -795,13 +791,11 @@ const float64_t test_golden[2048] = {
 #else
 #pragma DATA_SECTION(test_output, "FFT_buffer_2")
 #endif
-
 float64_t test_output[TEST_SIZE << 1];
 float64_t *inPtr = test_input;
 float64_t *outPtr = test_output;
 uint16_t pass = 0U, fail = 0U;
 float64_t tolerance = 1.2e-5;
-
 //
 // Main
 //
@@ -816,18 +810,15 @@ void main(void)
     Interrupt_initVectorTable();
     Board_init();
     C2000Ware_libraries_init();
-
     //
     // Local variables
     //
     int16_t i, j;
     float64u_t out, gold, errld;
-
     //
     // Run the calculation function
     //
     myCFFT0_handle->calc(myCFFT0_handle);
-
     //
     // Verify results
     //
@@ -845,12 +836,10 @@ void main(void)
             fail++;
         }
     }
-
     //
     // Run the magnitude function
     //
     myCFFT0_handle->mag(myCFFT0_handle);
-
     //
     // Verify results
     //
@@ -868,12 +857,10 @@ void main(void)
             fail++;
         }
     }
-
     //
     // Run the phase function
     //
     myCFFT0_handle->phase(myCFFT0_handle);
-
     //
     // Verify results
     //
@@ -890,11 +877,9 @@ void main(void)
         {
             fail++;
         }
-
     }
     while(1);
 }
-
 //
 // End of File
 //

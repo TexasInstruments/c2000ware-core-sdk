@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_MCPWM_EX7_DMA" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_MCPWM_EX7_DMA</compoundname>
+    <title>MCPWM Using DMA for Advanced PWM Generation</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_MCPWM_EX7_DMA_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_mcpwm_ex7_dma"/></para>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX7_DMA_1autotoc_md406">
+<title>Example Overview</title>
+<para>This example demonstrates how to configure MCPWM modules and DMA controllers to implement dynamic updates of PWM parameters without CPU intervention. By utilizing DMA to automatically update PWM compare values, the system can generate complex PWM patterns without requiring CPU cycles for each update.</para>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX7_DMA_1autotoc_md407">
+<title>MCPWM Configuration</title>
+<para><itemizedlist>
+<listitem><para>MCPWM0 and MCPWM1 are configured for PWM output generation</para>
+</listitem><listitem><para>MCPWM0 provides SOC trigger for DMA CH1 operations</para>
+</listitem><listitem><para>MCPWM1 provides SOC trigger for DMA CH2 operations</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX7_DMA_1autotoc_md408">
+<title>DMA Configuration</title>
+<para><itemizedlist>
+<listitem><para>DMA CH1 is configured to update MCPWM0 compare registers (PWM1-3 CMPAs) in burst mode, transferring 3 words per trigger</para>
+</listitem><listitem><para>DMA CH2 is configured to update MCPWM1 compare registers (PWM1 CMPA) in burst mode, transferring 1 word per trigger</para>
+</listitem><listitem><para>Both DMA channels operate continuously, cycling through 4 different configurations stored in memory</para>
+</listitem><listitem><para>The example demonstrates advanced PWM pattern generation without CPU overhead by allowing DMA to dynamically update multiple PWM parameters on each PWM period</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX7_DMA_1autotoc_md409">
+<title>Key Features and Benefits</title>
+<para><itemizedlist>
+<listitem><para>Generates complex PWM patterns for motor control without CPU intervention</para>
+</listitem><listitem><para>Demonstrates how to synchronize multiple MCPWM outputs through DMA operations</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX7_DMA_1autotoc_md410">
+<title>Implementation Details</title>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX7_DMA_1autotoc_md411">
+<title>DMA Configuration</title>
+<para>The example configures two DMA channels:</para>
+<para><orderedlist>
+<listitem><para><bold>DMA Channel 1</bold>:<itemizedlist>
+<listitem><para>Source: Memory array <computeroutput>compareConfigs_6ch[]</computeroutput></para>
+</listitem><listitem><para>Destination: MCPWM0 compare registers (PWM1-3 CMPAs)</para>
+</listitem><listitem><para>Burst Size: 3 words (updating 3 compare values at once)</para>
+</listitem><listitem><para>Trigger: MCPWM1 SOCA event</para>
+</listitem><listitem><para>Mode: Continuous with 4 transfers (different configurations)</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para><bold>DMA Channel 2</bold>:<itemizedlist>
+<listitem><para>Source: Memory array <computeroutput>compareConfigs_2ch[]</computeroutput></para>
+</listitem><listitem><para>Destination: MCPWM1 compare registers (PWM1 CMPA)</para>
+</listitem><listitem><para>Burst Size: 1 word</para>
+</listitem><listitem><para>Trigger: MCPWM3 SOCA event</para>
+</listitem><listitem><para>Mode: Continuous with 4 transfers (different configurations)</para>
+</listitem></itemizedlist>
+</para>
+</listitem></orderedlist>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX7_DMA_1autotoc_md412">
+<title>Memory Configuration</title>
+<para>Two configuration arrays are defined and placed in GSRAM for optimal DMA access:<itemizedlist>
+<listitem><para><computeroutput>compareConfigs_6ch[]</computeroutput>: Contains 12 values (4 sets of 3) for MCPWM0 compare registers</para>
+</listitem><listitem><para><computeroutput>compareConfigs_2ch[]</computeroutput>: Contains 4 values for MCPWM1 compare register</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX7_DMA_1autotoc_md413">
+<title>PWM Signal Generation</title>
+<para>The DMA continuously updates the PWM compare values, which results in dynamically changing duty cycles across the PWM outputs. This creates a pattern of waveforms that would typically require significant CPU intervention to maintain.</para>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX7_DMA_1autotoc_md414">
+<title>External Connections</title>
+<para>Monitor the MCPWM pins for the waveforms:<itemizedlist>
+<listitem><para>J4 40 - GPIO0 - myMCPWM0 Output A1</para>
+</listitem><listitem><para>J4 39 - GPIO1 - myMCPWM0 Output B1</para>
+</listitem><listitem><para>J4 38 - GPIO2 - myMCPWM0 Output A2</para>
+</listitem><listitem><para>J4 37 - GPIO3 - myMCPWM0 Output B2</para>
+</listitem><listitem><para>J4 36 - GPIO4 - myMCPWM0 Output A3</para>
+</listitem><listitem><para>J4 35 - GPIO5 - myMCPWM0 Output B3</para>
+</listitem><listitem><para>J4 7 - GPIO12 - myMCPWM1 Output A1</para>
+</listitem><listitem><para>J2 19 - GPIO29 - myMCPWM1 Output B1</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX7_DMA_1autotoc_md415">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Using the watch variables, observe the waveforms.</para>
+</listitem></itemizedlist>
+</para>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX7_DMA_1autotoc_md416">
+<title>Watch Variables</title>
+<para><itemizedlist>
+<listitem><para><computeroutput>compareConfigs_6ch[]</computeroutput> - Array containing MCPWM0 compare values for PWM1-3 CMPAs</para>
+</listitem><listitem><para><computeroutput>compareConfigs_2ch[]</computeroutput> - Array containing MCPWM1 compare values for PWM1 CMPA</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX7_DMA_1autotoc_md417">
+<title>See Also</title>
+<para><itemizedlist>
+<listitem><para><ref refid="DRIVERS_MCPWM_PAGE" kindref="compound">MCPWM</ref></para>
+</listitem><listitem><para><ref refid="DRIVERS_DMA_PAGE" kindref="compound">DMA</ref></para>
+</listitem><listitem><para><ref refid="EXAMPLES_DRIVERS_MCPWM_EX1_BASIC_PWM" kindref="compound">MCPWM Basic PWM Generation Examples</ref> </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/mcpwm_ex7_dma.md"/>
+  </compounddef>
+</doxygen>

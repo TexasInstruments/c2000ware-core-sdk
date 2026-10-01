@@ -33,12 +33,9 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 #ifndef FSI_OPTIMAL_DELAY_H
 #define FSI_OPTIMAL_DELAY_H
-
 #include "device.h"
-
 //! \brief The structure containing the FSI Execution Point
 //!
 //! \details The delay values for RX0, RX1 and CLK lines.
@@ -49,13 +46,10 @@ typedef struct FSIExecutionPoint{
     uint16_t CLKDelay;
     bool Valid;
 }FSIExecutionPoint;
-
 typedef struct XYPoint{
     int16_t X;
     int16_t Y;
 }XYPoint;
-
-
 //*****************************************************************************
 //
 //! \brief Calibrates the FSIRX module using nLanes data width
@@ -76,8 +70,6 @@ typedef struct XYPoint{
 //*****************************************************************************
 FSIExecutionPoint FSI_calibrateExecutionPoint(uint32_t rxbase, uint32_t txbase, FSI_DataWidth nLanes,
                                               uint16_t reliableTXPrescalar);
-
-
 //*****************************************************************************
 //
 //! \brief Transmits frames to calibrates the FSIRX module of the receiving 
@@ -98,7 +90,6 @@ FSIExecutionPoint FSI_calibrateExecutionPoint(uint32_t rxbase, uint32_t txbase, 
 //
 //*****************************************************************************
 void FSI_transmitToCalibrate(uint32_t rxbase, uint32_t txbase, uint16_t txPrescalar);
-
 //*****************************************************************************
 //
 //! \brief Sets the FSITX clock prescalar
@@ -114,15 +105,12 @@ static inline void FSI_setTxPrescale(uint32_t base, uint16_t preScaleValue)
     // Check the arguments.
     //
     ASSERT(FSI_isTxBaseValid(base));
-
     HWREGH(base + FSI_O_TX_CLK_CTRL) = (HWREGH(base + FSI_O_TX_CLK_CTRL) &
            (~FSI_TX_CLK_CTRL_PRESCALE_VAL_M)) |
            (preScaleValue <<
            FSI_TX_CLK_CTRL_PRESCALE_VAL_S);
-
     return;
 }
-
 //*****************************************************************************
 //
 //! \brief Returns the current FSITX clock prescalar
@@ -138,14 +126,10 @@ static inline uint16_t FSI_getTxPrescale(uint32_t base)
     // Check the arguments.
     //
     ASSERT(FSI_isTxBaseValid(base));
-
-
     return ((HWREGH(base + FSI_O_TX_CLK_CTRL) &
             (FSI_TX_CLK_CTRL_PRESCALE_VAL_M)) >>
             FSI_TX_CLK_CTRL_PRESCALE_VAL_S);
-
 }
-
 //*****************************************************************************
 //
 //! \brief Returns the current FSITX Frame Tag
@@ -161,12 +145,9 @@ static inline FSI_FrameTag FSI_getTxFrameTag(uint32_t base)
     // Check the arguments.
     //
     ASSERT(FSI_isTxBaseValid(base));
-
     return (FSI_FrameTag)(HWREGH(base + FSI_O_TX_FRAME_TAG_UDATA) &
                           (FSI_TX_FRAME_TAG_UDATA_FRAME_TAG_M));
 }
-
-
 //*****************************************************************************
 //
 //! \brief Returns the current FSITX Frame Type
@@ -183,12 +164,9 @@ FSI_getTxFrameType(uint32_t base)
     // Check the arguments.
     //
     ASSERT(FSI_isTxBaseValid(base));
-
     return (FSI_FrameType)(HWREGH(base + FSI_O_TX_FRAME_CTRL) &
                                  (FSI_TX_FRAME_CTRL_FRAME_TYPE_M));
 }
-
-
 //*****************************************************************************
 //
 //! \brief Returns the current FSITX Interrupt event that has occured
@@ -203,14 +181,11 @@ FSI_getTxFrameType(uint32_t base)
 static inline uint16_t FSI_getTxInterrupt(uint32_t base, FSI_InterruptNum intNum)
 {
     uint16_t intStatus = 0;
-
     //
     // Check the arguments.
     //
     ASSERT(FSI_isTxBaseValid(base));
-
     EALLOW;
-
     if(intNum == FSI_INT1)
     {
         intStatus = (HWREGH(base + FSI_O_TX_INT_CTRL) & (FSI_TX_EVTMASK));
@@ -219,12 +194,9 @@ static inline uint16_t FSI_getTxInterrupt(uint32_t base, FSI_InterruptNum intNum
     {
         intStatus = (HWREGH(base + FSI_O_TX_INT_CTRL) >> FSI_TX_INT2_CTRL_S) & (FSI_TX_EVTMASK);
     }
-
     EDIS;
-
     return intStatus;
 }
-
 //*****************************************************************************
 //
 //! \brief Returns the current FSITX Interrupt event that has occured
@@ -240,14 +212,11 @@ static inline uint16_t
 FSI_getRxInterrupt(uint32_t base, FSI_InterruptNum intNum)
 {
     uint16_t intStatus = 0;
-
     //
     // Check the arguments.
     //
     ASSERT(FSI_isRxBaseValid(base));
-
     EALLOW;
-
     if(intNum == FSI_INT1)
     {
         intStatus = (HWREGH(base + FSI_O_RX_INT1_CTRL) & FSI_RX_EVTMASK);
@@ -256,9 +225,7 @@ FSI_getRxInterrupt(uint32_t base, FSI_InterruptNum intNum)
     {
         intStatus = (HWREGH(base + FSI_O_RX_INT2_CTRL) & FSI_RX_EVTMASK);
     }
-
     EDIS;
-
     return intStatus;
 }
 #endif

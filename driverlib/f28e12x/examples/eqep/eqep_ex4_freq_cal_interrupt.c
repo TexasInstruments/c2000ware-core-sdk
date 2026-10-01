@@ -68,15 +68,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
-
 //
 // Defines
 //
@@ -86,13 +83,10 @@
                                             // for up-down count mode
 #define UNIT_PERIOD  10000U // Specify the unit timeout period in
                             // microseconds
-                            
 //
 // Function Prototypes
 //
-
 void initMCPWM(void);
-
 //
 // Globals
 //
@@ -100,7 +94,6 @@ uint32_t oldcount = 0;  // stores the previous position counter value
 int32_t freq = 0;      // measured frequency using eQEP
 uint32_t count = 0;     // just to make sure measured frequency gets saturated
 uint32_t pass = 0, fail = 0; // test pass or fail indicator
-
 //
 // Main
 //
@@ -110,23 +103,19 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-    
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Board Initialization
     // - Setup eQEP1, configuring the unit timer and quadrature capture units
@@ -136,13 +125,11 @@ void main(void)
     // - Enable interrupts required for this example
     //
     Board_init();
-
     //
     // Initialize GPIOs for EPWM1A
     //
     GPIO_setPinConfig(GPIO_0_MCPWM1_1A);
     GPIO_setPadConfig(0, GPIO_PIN_TYPE_STD);
-
     //
     // Setup ePWM1 to generate a 5 kHz signal to be an input to the eQEP
     //
@@ -152,7 +139,6 @@ void main(void)
     //
     EINT;
     ERTM;
-
     //
     // Loop indefinitely
     //
@@ -171,7 +157,6 @@ initMCPWM(void)
     // Disable the MCPWM time base clock before configuring the module
     //
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     MCPWM_setPeriodLoadMode(PWM1_BASE, MCPWM_PERIOD_SHADOW_LOAD_DISABLE);
     MCPWM_setCounterCompareShadowLoadMode(PWM1_BASE, MCPWM_COUNTER_COMPARE_1A, MCPWM_COMP_LOAD_FREEZE);
     MCPWM_setCounterCompareShadowLoadMode(PWM1_BASE, MCPWM_COUNTER_COMPARE_1B, MCPWM_COMP_LOAD_FREEZE);
@@ -184,13 +169,11 @@ initMCPWM(void)
     //
     MCPWM_setPhaseShift(PWM1_BASE, 0);
     MCPWM_setTimeBaseCounter(PWM1_BASE, 0);
-
     //
     // Set the compare A value to half the period value, compare B to 0
     //
     MCPWM_setCounterCompareActiveValue(PWM1_BASE, MCPWM_COUNTER_COMPARE_1A, PRD_VAL/2);
     MCPWM_setCounterCompareActiveValue(PWM1_BASE, MCPWM_COUNTER_COMPARE_1B, 0);
-
     //
     // Set action qualifier behavior on compare A events
     // - MCPWM1A --> 1 when CTR = CMPA and increasing
@@ -202,7 +185,6 @@ initMCPWM(void)
         MCPWM_AQ_OUTPUT_LOW_DOWN_CMPA |
         MCPWM_AQ_OUTPUT_NO_CHANGE_UP_CMPB |
         MCPWM_AQ_OUTPUT_NO_CHANGE_DOWN_CMPB);
-
     //
     // Configure MCPWM1B to be complementary to MCPWM1A
     //
@@ -210,42 +192,33 @@ initMCPWM(void)
                                   MCPWM_DB_POLARITY_ACTIVE_LOW);
     MCPWM_setDeadBandDelayMode(PWM1_BASE, MCPWM_DB_FED, true);
     MCPWM_setDeadBandDelayMode(PWM1_BASE, MCPWM_DB_RED, true);
-
     //
     // Set the time base clock prescaler to /1
     //
     MCPWM_setClockPrescaler(PWM1_BASE, MCPWM_CLOCK_DIVIDER_1);
-
     //
     // Set the period value; don't shadow the register
     //
     MCPWM_setTimeBasePeriodActive(PWM1_BASE, PRD_VAL);
-
     //
     // Put the time base counter into up-down count mode
     //
     MCPWM_setTimeBaseCounterMode(PWM1_BASE, MCPWM_COUNTER_MODE_UP_DOWN);
-
     //
     // Sync the MCPWM time base clock
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
 }
-
 //
 // eqep11 ISR- interrupts once per ePWM period
 //
 __interrupt void
 INT_myEQEP0_ISR(void)
 {
-
     uint32_t temp =0, newcount = 0 ;
-    
     count++;  // increment count value so to wait for frequency saturation
-
     newcount = EQEP_getPositionLatch(myEQEP0_BASE); // new position counter value
     temp = newcount;
-
     //
     // Calculates the number of position counts in unit time
     //
@@ -253,18 +226,15 @@ INT_myEQEP0_ISR(void)
         newcount = newcount - oldcount;
     else
         newcount = (0xFFFFFFFF - oldcount) + newcount;
-
     //
     // Stores the current position count value to oldcount variable
     //
     oldcount = temp;
-
     //
     // Frequency calculation equation i.e
     // freq = ((position counts) * 1000000 )/ (2 * Unit_time (in microseconds))
     //
     freq = (newcount * (uint32_t)1000000U)/(2 * (uint32_t)UNIT_PERIOD);
-
     //
     // Compares the measured frequency with input frequency
     //
@@ -276,14 +246,12 @@ INT_myEQEP0_ISR(void)
             fail = 1; pass = 0;
         }
     }
-
     //
     // Clears the interrupt flag
     //
     EQEP_clearInterruptStatus(myEQEP0_BASE,EQEP_INT_UNIT_TIME_OUT|EQEP_INT_GLOBAL);
     Interrupt_clearACKGroup(INT_myEQEP0_INTERRUPT_ACK_GROUP);
 }
-
 //
 // End of File
 //

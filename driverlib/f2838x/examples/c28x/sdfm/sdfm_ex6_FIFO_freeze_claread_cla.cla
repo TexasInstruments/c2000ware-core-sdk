@@ -12,7 +12,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -52,26 +52,21 @@
 #include "f2838x_device.h"
 #include "f2838x_sdfm_drivers.h"
 #include "sdfm_claread.h"
-
 //
 // Whether MDEBUGSTOP needs to be compiled or not
 //
 #define CLA_DEBUG       1
 #define PIEACK_GROUP5   0x0010
-
 #pragma DATA_SECTION(filter1Result,"Filter1_RegsFile");
 #pragma DATA_SECTION(filter2Result,"Filter2_RegsFile");
 #pragma DATA_SECTION(filter3Result,"Filter3_RegsFile");
 #pragma DATA_SECTION(filter4Result,"Filter4_RegsFile");
-
 int16_t  filter1Result[MAX_SAMPLES];
 int16_t  filter2Result[MAX_SAMPLES];
 int16_t  filter3Result[MAX_SAMPLES];
 int16_t  filter4Result[MAX_SAMPLES];
-
 int16_t loopCounter1;
 int16_t loopCounter2;
-
 //
 // Task 1
 //
@@ -82,12 +77,10 @@ __mdebugstop();
 #endif
         uint32_t sdfmReadFlagRegister;
         uint16_t i=0;
-
         //
         // Read SDIFLG of SDFM1
         //
         sdfmReadFlagRegister = Sdfm1Regs.SDIFLG.all;
-
         //
         // Reset the loop counter
         //
@@ -95,9 +88,7 @@ __mdebugstop();
         {
             loopCounter1 = 0;
         }
-
         uint16_t fifolevel = Sdfm1Regs.SDFIFOCTL1.bit.SDFFST;
-
         for(i=0;i<fifolevel;i++)
         {
             filter1Result[loopCounter1]   = Sdfm1Regs.SDDATFIFO1.all >> 16;
@@ -105,13 +96,11 @@ __mdebugstop();
             filter3Result[loopCounter1]   = Sdfm1Regs.SDDATFIFO3.all >> 16;
             filter4Result[loopCounter1++] = Sdfm1Regs.SDDATFIFO4.all >> 16;
         }
-
         //
         // Clear SDFM1.SDIFLG register
         //
         Sdfm1Regs.SDIFLGCLR.all = sdfmReadFlagRegister;
 }
-
 //
 // Task 2
 //
@@ -122,12 +111,10 @@ __mdebugstop();
 #endif
     uint32_t sdfmReadFlagRegister;
     uint16_t i=0;
-    
     //
     // Read SDIFLG of SDFM2
     //
     sdfmReadFlagRegister = Sdfm2Regs.SDIFLG.all;
-    
     //
     // Reset the loop counter
     //
@@ -135,9 +122,7 @@ __mdebugstop();
     {
         loopCounter1 = 0;
     }
-    
     uint16_t fifolevel = Sdfm2Regs.SDFIFOCTL1.bit.SDFFST;
-    
     for(i=0;i<fifolevel;i++)
     {
         filter1Result[loopCounter1]   = Sdfm2Regs.SDDATFIFO1.all >> 16;
@@ -145,13 +130,11 @@ __mdebugstop();
         filter3Result[loopCounter1]   = Sdfm2Regs.SDDATFIFO3.all >> 16;
         filter4Result[loopCounter1++] = Sdfm2Regs.SDDATFIFO4.all >> 16;
     }
-    
     //
     // Clear SDFM1.SDIFLG register
     //
     Sdfm2Regs.SDIFLGCLR.all = sdfmReadFlagRegister;
 }
-
 //
 // Task 3
 //
@@ -161,7 +144,6 @@ __interrupt void Cla1Task3 ( void )
     __mdebugstop();
     #endif
 }
-
 //
 // Task 4
 //
@@ -171,7 +153,6 @@ __interrupt void Cla1Task4 ( void )
     __mdebugstop();
     #endif
 }
-
 //
 // Task 5
 //
@@ -180,9 +161,7 @@ __interrupt void Cla1Task5 ( void )
     #if (CLA_DEBUG==1)
     __mdebugstop();
     #endif
-
 }
-
 //
 // Task 6
 //
@@ -192,7 +171,6 @@ __interrupt void Cla1Task6 ( void )
     __mdebugstop();
     #endif
 }
-
 //
 // Task 7
 //
@@ -202,7 +180,6 @@ __interrupt void Cla1Task7 ( void )
     __mdebugstop();
     #endif
 }
-
 //
 // Task 8
 //
@@ -211,7 +188,6 @@ __interrupt void Cla1Task8 ( void )
     loopCounter1 = 0;
     loopCounter2 = 0;
 }
-
 //
 // End of file
 //

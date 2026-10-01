@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="lpm__ex1_8md" kind="file" language="Markdown">
+    <compoundname>lpm_ex1.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Device<sp/>Idle<sp/>Mode<sp/>and<sp/>Wakeup<sp/>using<sp/>GPIO<sp/>{#EXAMPLES_DRIVERS_LPM_EX1}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>Device<sp/>Idle<sp/>Mode<sp/>and<sp/>Wakeup<sp/>using<sp/>GPIO<sp/>&quot;</highlight></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>LPM,<sp/>IDLE,<sp/>Wakeup&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>This<sp/>example<sp/>puts<sp/>the<sp/>device<sp/>into<sp/>IDLE<sp/>mode<sp/>and<sp/>then<sp/>wakes<sp/>up<sp/>the<sp/>device</highlight></codeline>
+<codeline><highlight class="normal"><sp/>from<sp/>IDLE<sp/>using<sp/>XINT1<sp/>which<sp/>triggers<sp/>on<sp/>a<sp/>falling<sp/>edge<sp/>of<sp/>GPIO0.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>The<sp/>GPIO0<sp/>pin<sp/>must<sp/>be<sp/>pulled<sp/>from<sp/>high<sp/>to<sp/>low<sp/>by<sp/>an<sp/>external<sp/>agent<sp/>for</highlight></codeline>
+<codeline><highlight class="normal"><sp/>wakeup.<sp/>GPIO0<sp/>is<sp/>configured<sp/>as<sp/>an<sp/>XINT1<sp/>pin<sp/>to<sp/>trigger<sp/>an<sp/>XINT1<sp/>interrupt</highlight></codeline>
+<codeline><highlight class="normal"><sp/>upon<sp/>detection<sp/>of<sp/>a<sp/>falling<sp/>edge.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>Initially,<sp/>pull<sp/>GPIO0<sp/>high<sp/>externally.<sp/>To<sp/>wake<sp/>device<sp/>from<sp/>IDLE<sp/>mode<sp/>by</highlight></codeline>
+<codeline><highlight class="normal"><sp/>triggering<sp/>an<sp/>XINT1<sp/>interrupt,<sp/>pull<sp/>GPIO0<sp/>low<sp/>(falling<sp/>edge).<sp/>The<sp/>wakeup</highlight></codeline>
+<codeline><highlight class="normal"><sp/>process<sp/>begins<sp/>as<sp/>soon<sp/>as<sp/>GPIO0<sp/>is<sp/>held<sp/>low<sp/>for<sp/>the<sp/>time<sp/>indicated<sp/>in<sp/>the</highlight></codeline>
+<codeline><highlight class="normal"><sp/>device<sp/>datasheet.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>GPIO1<sp/>is<sp/>pulled<sp/>high<sp/>before<sp/>entering<sp/>the<sp/>IDLE<sp/>mode<sp/>and<sp/>is<sp/>pulled<sp/>low<sp/>when</highlight></codeline>
+<codeline><highlight class="normal"><sp/>in<sp/>the<sp/>external<sp/>interrupt<sp/>ISR.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>GPIO0<sp/>needs<sp/>to<sp/>be<sp/>pulled<sp/>low<sp/>to<sp/>wake<sp/>up<sp/>the<sp/>device.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>On<sp/>device<sp/>wakeup,<sp/>the<sp/>GPIO1<sp/>will<sp/>be<sp/>low<sp/>and<sp/>LED1<sp/>will<sp/>start<sp/>blinking</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/lpm_ex1.md"/>
+  </compounddef>
+</doxygen>

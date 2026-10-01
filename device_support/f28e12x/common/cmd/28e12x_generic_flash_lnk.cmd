@@ -2,8 +2,8 @@ MEMORY
 {
    /* BEGIN is used for the "boot to SARAM" bootloader mode   */
    BEGIN            : origin = 0x080000, length = 0x000002
-   BOOT_RSVD        : origin = 0x000002, length = 0x000126     /* Part of M0, BOOT rom will use this for stack */
-   RAMM0            : origin = 0x000128, length = 0x0002D8
+   BOOT_RSVD        : origin = 0x000002, length = 0x0001BE     /* Part of M0, BOOT rom will use this for stack */
+   RAMM0            : origin = 0x0001C0, length = 0x000240
    RAMM1            : origin = 0x000400, length = 0x000400
    
    RAMGS0           : origin = 0x00C000, length = 0x001800

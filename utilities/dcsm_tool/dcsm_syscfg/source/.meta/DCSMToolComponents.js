@@ -13,8 +13,9 @@ if ([ "F2837xD",
       "F280015x",
       "F28P65x",
       "F28P55x",
+      "F28P551x",
       "F28E12x",
-      "F28P551x"].includes(Common.getDeviceName()))
+      "MCPC029"].includes(Common.getDeviceName()))
 {
 
     dcsm_export = {

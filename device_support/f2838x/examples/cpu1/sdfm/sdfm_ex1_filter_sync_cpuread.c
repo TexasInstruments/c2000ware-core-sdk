@@ -53,7 +53,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -86,7 +86,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
@@ -94,7 +93,6 @@
 #include "f2838x_struct.h"
 #include "f2838x_sdfm_drivers.h"
 #include <stdio.h>
-
 //
 // Defines
 //
@@ -103,7 +101,6 @@
 #define SDFM_PIN_MUX_OPTION2      2
 #define SDFM_PIN_MUX_OPTION3      3
 #define SDFM_INT_MASK             0x8000F000U
-
 //
 // Globals
 //
@@ -116,7 +113,6 @@ int16_t  Filter4_Result[MAX_SAMPLES];
 #pragma DATA_SECTION(Filter2_Result,"Filter2_RegsFile");
 #pragma DATA_SECTION(Filter3_Result,"Filter3_RegsFile");
 #pragma DATA_SECTION(Filter4_Result,"Filter4_RegsFile");
-
 //
 // Function Prototypes
 //
@@ -124,7 +120,6 @@ void Sdfm_configurePins(uint16_t);
 void done(void);
 __interrupt void Sdfm1_ISR(void);
 __interrupt void Sdfm2_ISR(void);
-
 //
 // Main
 //
@@ -132,20 +127,17 @@ int main(void)
 {
    uint16_t  pinMuxoption; // Variable for selecting pin mux option
    uint16_t  HLT, LLT;     // Variables for comparator thresholds
-
     //
     // Initialize System Control:
     // PLL, WatchDog, enable Peripheral Clocks
     // This example function is found in the f2838x_sysctrl.c file.
     //
     InitSysCtrl();
-
     //
     // Clear all interrupts and initialize PIE vector table:
     // Disable CPU interrupts
     //
     DINT;
-
     //
     // Initialize PIE control registers to their default state.
     // The default state is all PIE __interrupts disabled and flags
@@ -153,13 +145,11 @@ int main(void)
     // This function is found in the f2838x_piectrl.c file.
     //
     InitPieCtrl();
-
     //
     // Disable CPU __interrupts and clear all CPU __interrupt flags:
     //
     IER = 0x0000;
     IFR = 0x0000;
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
@@ -169,7 +159,6 @@ int main(void)
     // This function is found in f2838x_sysctrl.c.
     //
     InitPieVectTable();
-
     //
     // Interrupts that are used in this example are re-mapped to
     // ISR functions found within this file.
@@ -178,26 +167,22 @@ int main(void)
     PieVectTable.SDFM1_INT = &Sdfm1_ISR;
     PieVectTable.SDFM2_INT = &Sdfm2_ISR;
     EDIS;
-
     //
     // Enable CPU INT5 which is connected to SDFM INT
     //
     IER |= M_INT5;
-
     //
     // Enable SDFM INTn in the PIE: Group 5 __interrupt 9-10
     //
     PieCtrlRegs.PIEIER5.bit.INTx9 = 1;    // SDFM1 interrupt enabled
     PieCtrlRegs.PIEIER5.bit.INTx10 = 1;   // SDFM2 interrupt enabled
     EINT;
-
     //
     // Configure SDFM type to 0
     //
     EALLOW;
     DevCfgRegs.SDFMTYPE.all = 0x8000;
     EDIS;
-
 #ifdef CPU1
     pinMuxoption = SDFM_PIN_MUX_OPTION1;
     //
@@ -205,12 +190,10 @@ int main(void)
     //
     Sdfm_configurePins(pinMuxoption);
 #endif
-
     //
     // Select SDFM1
     //
     gPeripheralNumber = SDFM1;
-
     //
     // Input Control Module
     //
@@ -220,13 +203,11 @@ int main(void)
     Sdfm_configureInputCtrl(gPeripheralNumber, FILTER2, MODE_0);
     Sdfm_configureInputCtrl(gPeripheralNumber, FILTER3, MODE_0);
     Sdfm_configureInputCtrl(gPeripheralNumber, FILTER4, MODE_0);
-
     //
     // Comparator Module
     //
     HLT = 0x7FFF;    // Over value threshold settings
     LLT = 0x0000;    // Under value threshold settings
-
     //
     // Configure Comparator module's comparator filter type and comparator's OSR
     // value, higher threshold, lower threshold
@@ -239,7 +220,6 @@ int main(void)
                              HLT, LLT);
     Sdfm_configureComparator(gPeripheralNumber, FILTER4, SINC3, OSR_32,
                              HLT, LLT);
-
     //
     // Data filter Module
     //
@@ -254,14 +234,12 @@ int main(void)
                               OSR_256, DATA_16_BIT, SHIFT_10_BITS);
     Sdfm_configureData_filter(gPeripheralNumber, FILTER4, FILTER_ENABLE, SINC3,
                               OSR_256, DATA_16_BIT, SHIFT_10_BITS);
-
     //
     // Enable Master filter bit: Unless this bit is set none of the filter modules
     // can be enabled. All the filter modules are synchronized when master filter
     // bit is enabled after individual filter modules are enabled.
     //
     Sdfm_enableMFE(gPeripheralNumber);
-
     //
     // PWM11.CMPC, PWM11.CMPD signals can synchronize SDFM1 filters and
     // PWM12.CMPC and PWM12.CMPD signals can synchronize SDFM2 filters. This
@@ -271,7 +249,6 @@ int main(void)
                                 FILTER_2_EXT_RESET_DISABLE,
                                 FILTER_3_EXT_RESET_DISABLE,
                                 FILTER_4_EXT_RESET_DISABLE);
-
     //
     // Enable interrupts
     //
@@ -289,29 +266,24 @@ int main(void)
                             IEL_DISABLE, MFIE_ENABLE, AE_ENABLE);
     Sdfm_configureInterrupt(gPeripheralNumber, FILTER4, IEH_DISABLE,
                             IEL_DISABLE, MFIE_ENABLE, AE_ENABLE);
-
     //
     // Enable master interrupt so that any of the filter interrupts can trigger
     // by SDFM interrupt to CPU
     //
     Sdfm_enableMIE(gPeripheralNumber);
-
     while(1);
 }
-
 //
 // Sdfm1_ISR - SDFM 1 ISR
 //
 __interrupt void Sdfm1_ISR(void)
 {
     static uint16_t loopCounter1 = 0;
-
     //
     // Wait for result from all the filters (SDIFLG)
     //
     while((Sdfm_readFlagRegister(gPeripheralNumber) &
            SDFM_INT_MASK) != SDFM_INT_MASK);
-
     //
     // Reset the loop counter
     //
@@ -319,7 +291,6 @@ __interrupt void Sdfm1_ISR(void)
     {
         loopCounter1 = 0;
     }
-
     //
     // Read each SDFM filter output and store it in respective filter
     // result array
@@ -328,31 +299,26 @@ __interrupt void Sdfm1_ISR(void)
     Filter2_Result[loopCounter1] = SDFM1_READ_FILTER2_DATA_16BIT;
     Filter3_Result[loopCounter1] = SDFM1_READ_FILTER3_DATA_16BIT;
     Filter4_Result[loopCounter1++] = SDFM1_READ_FILTER4_DATA_16BIT;
-
     //
     // Clear SDFM flag register
     //
     Sdfm_clearFlagRegister(gPeripheralNumber,SDFM_INT_MASK);
-
     //
     // Acknowledge this interrupt to receive more interrupts from group 5
     //
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP5;
 }
-
 //
 // Sdfm2_ISR - SDFM 2 ISR
 //
 __interrupt void Sdfm2_ISR(void)
 {
     static uint16_t loopCounter1 = 0;
-
     //
     // Wait for result from all the filters (SDIFLG)
     //
     while((Sdfm_readFlagRegister(gPeripheralNumber) &
            SDFM_INT_MASK) != SDFM_INT_MASK);
-
     //
     // Reset the loop counter
     //
@@ -360,7 +326,6 @@ __interrupt void Sdfm2_ISR(void)
     {
         loopCounter1 = 0;
     }
-
     //
     // Read each SDFM filter output and store it in respective filter
     // result array
@@ -369,25 +334,21 @@ __interrupt void Sdfm2_ISR(void)
     Filter2_Result[loopCounter1] = SDFM2_READ_FILTER2_DATA_16BIT;
     Filter3_Result[loopCounter1] = SDFM2_READ_FILTER3_DATA_16BIT;
     Filter4_Result[loopCounter1++] = SDFM2_READ_FILTER4_DATA_16BIT;
-
     //
     // Clear SDFM flag register
     //
     Sdfm_clearFlagRegister(gPeripheralNumber,SDFM_INT_MASK);
-
     //
     // Acknowledge this interrupt to receive more interrupts from group 5
     //
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP5;
 }
-
 //
 // Sdfm_configurePins - Configure SDFM GPIOs
 //
 void Sdfm_configurePins(uint16_t sdfmPinOption)
 {
     uint16_t pin;
-
     switch (sdfmPinOption)
     {
         case SDFM_PIN_MUX_OPTION1:
@@ -397,7 +358,6 @@ void Sdfm_configurePins(uint16_t sdfmPinOption)
                 GPIO_SetupPinMux(pin,GPIO_MUX_CPU1,7);
             }
             break;
-
         case SDFM_PIN_MUX_OPTION2:
             for(pin=48;pin<=63;pin++)
             {
@@ -405,7 +365,6 @@ void Sdfm_configurePins(uint16_t sdfmPinOption)
                 GPIO_SetupPinMux(pin,GPIO_MUX_CPU1,7);
             }
             break;
-
         case SDFM_PIN_MUX_OPTION3:
             for(pin=122;pin<=137;pin++)
             {
@@ -415,7 +374,6 @@ void Sdfm_configurePins(uint16_t sdfmPinOption)
             break;
     }
 }
-
 //
 // done - Function to halt debugger and stop application
 //
@@ -424,7 +382,6 @@ void done(void)
     asm(" ESTOP0");
     for (;;);
 }
-
 //
 // End of file
 //

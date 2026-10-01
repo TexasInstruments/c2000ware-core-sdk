@@ -5,7 +5,6 @@
 #include "fpu.h"
 #include "dsp.h"
 #include "dsp_examples_setup.h"
-
 float64_t test_input[571] = {
     12.182432736101L, 13.240272807741L, 13.453528790544L,  6.573832585863L,
      2.065944310244L, -3.063989115918L, -1.505559123697L, -4.363534124143L,
@@ -150,7 +149,6 @@ float64_t test_input[571] = {
      0.005070891835L,  0.002199321830L, -0.000295152412L, -0.002018453018L,
     -0.002849792236L, -0.002895125406L, -0.002401690879L, -0.001662963303L,
     -0.000941633220L, -0.000434091233L,  0.000359976670L, };
-
 const float64_t test_golden[512] = {
      0.004385391575L, -0.000522097922L, -0.012375913210L, -0.036200051835L,
     -0.066054766368L, -0.097631349697L, -0.117450189298L, -0.118527317646L,
@@ -281,9 +279,7 @@ const float64_t test_golden[512] = {
     -2.177162732637L, -1.323295914728L, -0.141820461136L,  1.192072862441L,
      2.474310342119L,  3.479610607274L,  4.028080289905L,  3.995589143634L,
 };
-
 #define TEST_SIZE       (512U)
-
 float64u_t in, out, gold, errld;
 uint16_t pass = 0U, fail = 0U;
 float64_t tolerance = 1.0e-6;
@@ -294,7 +290,6 @@ float64_t *coeffBuff = &test_input[TEST_SIZE];
 float64_t *delayBuff = delayLine;
 float64_t *inPtr = (float64_t *)&in;
 float64_t *outPtr = (float64_t *)&out;
-
 //
 // Main
 //
@@ -306,12 +301,10 @@ void main(void)
     Interrupt_initVectorTable();
     Board_init();
     C2000Ware_libraries_init();
-
     //
     // Local variables
     //
     uint16_t i;
-
     //
     // Run and verify results
     //
@@ -319,15 +312,12 @@ void main(void)
     {
         out.f64  = DBL_MAX;
         in.f64   = test_input[i];
-
         //
         // Call the calculation routine
         //
         myFIR0_handle->calc(myFIR0_handle);
-
         test_output[i] = out.f64;
         gold.f64 = test_golden[i];
-
         errld.f64 = fabsf(out.f64 - gold.f64);
         if(errld.f64 < tolerance)
         {
@@ -340,7 +330,6 @@ void main(void)
     }
     while(1);
 }
-
 //
 // End of File
 //

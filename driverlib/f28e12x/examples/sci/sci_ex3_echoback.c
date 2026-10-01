@@ -67,24 +67,20 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
 // Define AUTOBAUD to use the autobaud lock feature
 //#define AUTOBAUD
-
 //
 // Globals
 //
 uint16_t loopCounter = 0;
-
 //
 // Main
 //
@@ -93,17 +89,14 @@ void main(void)
     uint16_t receivedChar;
     unsigned char *msg;
     uint16_t rxStatus = 0U;
-
     //
     // Configure PLL, disable WD, enable peripheral clocks.
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // SCI Rx pin configuration.
     //
@@ -111,7 +104,6 @@ void main(void)
     GPIO_setDirectionMode(DEVICE_GPIO_PIN_SCIRXDA, GPIO_DIR_MODE_IN);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_SCIRXDA, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_SCIRXDA, GPIO_QUAL_ASYNC);
-
     //
     // SCI Tx pin configuration.
     //
@@ -119,18 +111,15 @@ void main(void)
     GPIO_setDirectionMode(DEVICE_GPIO_PIN_SCITXDA, GPIO_DIR_MODE_OUT);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_SCITXDA, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_SCITXDA, GPIO_QUAL_ASYNC);
-
     //
     // Initialize interrupt controller and vector table.
     //
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
     //
     // Initialize SCIA and its FIFO.
     //
     SCI_performSoftwareReset(SCIA_BASE);
-
     //
     // Configure SCIA for echoback.
     //
@@ -144,7 +133,6 @@ void main(void)
     SCI_enableFIFO(SCIA_BASE);
     SCI_enableModule(SCIA_BASE);
     SCI_performSoftwareReset(SCIA_BASE);
-
 #ifdef AUTOBAUD
     //
     // Perform an autobaud lock.
@@ -152,7 +140,6 @@ void main(void)
     //
     SCI_lockAutobaud(SCIA_BASE);
 #endif
-
     //
     // Send starting message.
     //
@@ -160,17 +147,14 @@ void main(void)
     SCI_writeCharArray(SCIA_BASE, (uint16_t*)msg, 17);
     msg = "\r\nYou will enter a character, and the DSP will echo it back!\n\0";
     SCI_writeCharArray(SCIA_BASE, (uint16_t*)msg, 62);
-
     for(;;)
     {
         msg = "\r\nEnter a character: \0";
         SCI_writeCharArray(SCIA_BASE, (uint16_t*)msg, 22);
-
         //
         // Read a character from the FIFO.
         //
         receivedChar = SCI_readCharBlockingFIFO(SCIA_BASE);
-
         rxStatus = SCI_getRxStatus(SCIA_BASE);
         if((rxStatus & SCI_RXSTATUS_ERROR) != 0)
         {
@@ -180,22 +164,18 @@ void main(void)
             //
             ESTOP0;
         }
-
         //
         // Echo back the character.
         //
         msg = "  You sent: \0";
         SCI_writeCharArray(SCIA_BASE, (uint16_t*)msg, 13);
         SCI_writeCharBlockingFIFO(SCIA_BASE, receivedChar);
-
         //
         // Increment the loop count variable.
         //
         loopCounter++;
     }
 }
-
 //
 // End of File
 //
-

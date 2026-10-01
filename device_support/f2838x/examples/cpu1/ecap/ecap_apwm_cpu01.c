@@ -20,7 +20,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -53,27 +53,22 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Define for period count value 20000000U.
 //
 #define PERIODCOUNT  0x01312D00
-
 //
 // Define for compare count value 10000000U.
 //
 #define COMPARECOUNT 0x00989680
-   
 //
 // Globals
 //
 Uint16 direction = 0;
-
 void main(void)
 {
 //
@@ -82,25 +77,21 @@ void main(void)
 // This example function is found in the f2838x_sysctrl.c file.
 //
    InitSysCtrl();
-
 //
 // Step 2. Initialize GPIO:
 // This example function is found in the f2838x_gpio.c file and
 // illustrates how to set the GPIO to its default state.
 //
 // InitGpio();  // Skipped for this example
-
 //
 // Initialize the GPIO pins for APWM1.
 //
    InitAPwm1Gpio();
-
 //
 // Step 3. Clear all interrupts and initialize PIE vector table:
 // Disable CPU interrupts
 //
    DINT;
-
 //
 // Initialize the PIE control registers to their default state.
 // The default state is all PIE interrupts disabled and flags
@@ -108,13 +99,11 @@ void main(void)
 // This function is found in the f2838x_piectrl.c file.
 //
    InitPieCtrl();
-
 //
 // Disable CPU interrupts and clear all CPU interrupt flags:
 //
    IER = 0x0000;
    IFR = 0x0000;
-
 //
 // Initialize the PIE vector table with pointers to the shell Interrupt
 // Service Routines (ISR).
@@ -124,15 +113,12 @@ void main(void)
 // This function is found in f2838x_pievect.c.
 //
    InitPieVectTable();
-
 //
 // No interrupts used for this example.
 //
-
 //
 // Step 4. User specific code
 //
-
 //
 // Setup APWM mode on CAP1, set period and compare registers
 //
@@ -141,19 +127,16 @@ void main(void)
    ECap1Regs.CAP2 = COMPARECOUNT;          // Set Compare value
    ECap1Regs.ECCLR.all = 0x0FF;            // Clear pending interrupts
    ECap1Regs.ECEINT.bit.CTR_EQ_CMP = 1;    // enable Compare Equal Int
-
 //
 // Start counters
 //
    ECap1Regs.ECCTL2.bit.TSCTRSTOP = 1;
-
    for(;;)
    {
         //
         // set next duty cycle to 50%
         //
         ECap1Regs.CAP4 = ECap1Regs.CAP1 >> 1;
-
         //
         // vary freq
         //
@@ -165,7 +148,6 @@ void main(void)
         {
             direction = 1;
         }
-
         if(direction == 0)
         {
             ECap1Regs.CAP3 = ECap1Regs.CAP1 - 500000;
@@ -176,7 +158,6 @@ void main(void)
         }
    }
 }
-
 //
 // End of file
 //

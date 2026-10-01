@@ -149,6 +149,11 @@ void Device_init(void)
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
 
     //
+    // Configure Watchdog clock domain
+    //
+    SysCtl_selectWatchdogclkSource(DEVICE_WATCHDOG_CLK_SRC);
+
+    //
     // Configure GPIO 12, 13 and 28 as digital pins
     //
     GPIO_setAnalogMode(12U, GPIO_ANALOG_DISABLED);

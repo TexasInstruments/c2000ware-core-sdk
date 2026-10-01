@@ -36,7 +36,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -69,26 +69,22 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Globals
 //
 uint32_t  epwm1TZIntCount;
 uint32_t  epwm2TZIntCount;
-
 //
 // Function Prototypes
 //
 __interrupt void epwm1TZISR(void);
 __interrupt void epwm2TZISR(void);
-
 void main(void)
 {
     //
@@ -96,49 +92,40 @@ void main(void)
     //
     epwm1TZIntCount = 0U;
     epwm2TZIntCount = 0U;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull-ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Disable sync(Freeze clock to PWM as well)
     //
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Configure ePWM1, ePWM2, and TZ GPIOs/Modules
     //
     Board_init();
-
     //
     // Enable sync and clock to PWM
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Enable Global Interrupt (INTM) and real time interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // IDLE loop. Just sit and loop forever (optional):
     //
@@ -147,47 +134,39 @@ void main(void)
         NOP;
     }
 }
-
 //
 // epwm1TZISR - ePWM1 TZ ISR
 //
 __interrupt void epwm1TZISR(void)
 {
     epwm1TZIntCount++;
-
     //
     // To re-enable the OST Interrupt, uncomment the below code:
     //
     // EPWM_clearTripZoneFlag(EPWM1_BASE,
     //                        (EPWM_TZ_INTERRUPT | EPWM_TZ_FLAG_OST));
-
     //
     // Acknowledge this interrupt to receive more interrupts from group 2
     //
     Interrupt_clearACKGroup(INT_myEPWM1_TZ_INTERRUPT_ACK_GROUP);
 }
-
 //
 // epwm2TZISR - ePWM2 TZ ISR
 //
 __interrupt void epwm2TZISR(void)
 {
     epwm2TZIntCount++;
-
     //
     // Toggle GPIO to notify when TZ is entered
     //
     GPIO_togglePin(myGPIO11);
-
     //
     // Clear the flags - we will continue to take this interrupt until the TZ
     // pin goes high.
     //
     EPWM_clearTripZoneFlag(myEPWM2_BASE, (EPWM_TZ_INTERRUPT | EPWM_TZ_FLAG_CBC));
-
     //
     // Acknowledge this interrupt to receive more interrupts from group 2
     //
     Interrupt_clearACKGroup(INT_myEPWM2_TZ_INTERRUPT_ACK_GROUP);
 }
-

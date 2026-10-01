@@ -1,11 +1,9 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --device "F28E12x" --package "48PT" --part "F28E12x_48PT" --context "system" --product "C2000WARE@5.04.00.00"
- * @v2CliArgs --device "F28E120SC" --package "48PT" --product "C2000WARE@6.00.00.00"
- * @versions {"tool":"1.21.0+dev"}
+ * @cliArgs --device "F28E12x" --part "F28E12x_48PT" --package "48PT" --context "system"
+ * @v2CliArgs ---device "F28E120SC" --package "48PT" --context "system"
  */
-
 /**
  * Import the modules used in this configuration.
  */
@@ -16,7 +14,6 @@ const CMD1           = CMD.addInstance();
 const CMD2           = CMD.addInstance();
 const dma            = scripting.addModule("/driverlib/dma.js", {}, false);
 const dma1           = dma.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -37,10 +34,8 @@ dma1.destAddressInputMode = "VARIABLE";
 dma1.destAddressVariable  = "destAddr";
 dma1.destBurstStep        = 1;
 dma1.destTransferStep     = 1;
-
 CMD1.$name                    = "generic_ram_lnk";
 CMD2.$name                    = "generic_flash_lnk";
-
 CMD1.sectionMemory_text       = ["RAMM1","RAMGS0"];
 CMD1.sectionMemory_bss        = ["RAMGS0","RAMM1"];
 CMD1.sectionMemory_const      = ["RAMM1","RAMGS0","RAMM0"];
@@ -51,16 +46,11 @@ CMD1.sectionMemory_stack      = ["RAMM1"];
 CMD1.sectionMemory_init_array = ["RAMM0"];
 CMD1.sectionMemory_switch     = ["RAMM0"];
 CMD1.sectionMemory_sysmem     = ["RAMGS0"];
-
 CMD1.userSection.create(1);
-
-
 CMD1.userSection[0].$name         = "userSection0";
 CMD1.userSection[0].sectionName   = "ramgs0";
 CMD1.userSection[0].sectionMemory = ["RAMGS0"];
 CMD1.userSection[0].sectionType   = "NOINIT";
-
-
 CMD2.sectionAlignEnable_ramfunc    = true;
 CMD2.sectionAlignEnable_text       = true;
 CMD2.sectionAlignEnable_binit      = true;
@@ -85,11 +75,8 @@ CMD2.sectionMemory_ovly            = ["FLASH_BANK0_SEC_0_63"];
 CMD2.sectionRunFromDifferentAddr_ramfunc = true;
 CMD2.sectionRun_ramfunc                  = ["RAMGS0"];
 CMD2.sectionBinit_ramfunc                = false;
-
 CMD2.userSection.create(1);
 CMD2.userSection[0].$name          = "userSection1";
-
-
 CMD2.userSection[0].sectionName    = "ramgs0";
 CMD2.userSection[0].sectionMemory  = ["RAMGS0"];
 CMD2.userSection[0].sectionType    = "NOINIT";

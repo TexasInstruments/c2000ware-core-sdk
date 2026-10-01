@@ -82,14 +82,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
 #include "f28p551x_struct.h"
 #include "f28p551x_sdfm_drivers.h"
-
 //
 // Defines
 //
@@ -103,7 +101,6 @@
 #define TRANSFER_SIZE_0x400                       0x03FF
 #define TRANSFER_STEP_SOURCE_NO_CHANGE            0
 #define TRANSFER_STEP_DEST_INCREMENT_ONE_ADDRESS  1
-
 //
 // Globals
 //
@@ -116,7 +113,6 @@ int16  Filter4_Result[MAX_SAMPLES];
 #pragma DATA_SECTION(Filter2_Result,"Filter2_RegsFile");
 #pragma DATA_SECTION(Filter3_Result,"Filter3_RegsFile");
 #pragma DATA_SECTION(Filter4_Result,"Filter4_RegsFile");
-
 //
 // Pointers for DMA source & dest addresses
 //
@@ -124,9 +120,7 @@ volatile int16 *DMA1Source, *DMA1Dest;
 volatile int16 *DMA2Source, *DMA2Dest;
 volatile int16 *DMA3Source, *DMA3Dest;
 volatile int16 *DMA4Source, *DMA4Dest;
-
 volatile Uint16 DMA_Done = 0; // Variable to update DMA transfer status
-
 //
 // Function Prototypes
 //
@@ -141,7 +135,6 @@ void DMA_setup(void);
 void DMA_configure(void);
 __interrupt void SDFM1_ISR(void);
 __interrupt void SDFM2_ISR(void);
-
 //
 // Main
 //
@@ -149,27 +142,23 @@ void main(void)
 {
     Uint16  pinMuxoption;
     Uint16  HLT, LLT;
-
     //
     // Initialize System Control:
     // PLL, WatchDog, enable Peripheral Clocks
     // This example function is found in the <device>_sysctrl.c file.
     //
     InitSysCtrl();
-
     //
     // Initialize GPIO:
     // This example function is found in the <device>_gpio.c file and
     // illustrates how to set the GPIO to it's default state.
     //
     InitGpio();
-
     //
     // Clear all __interrupts and initialize PIE vector table:
     // Disable CPU __interrupts
     //
     DINT;
-
     //
     // Initialize PIE control registers to their default state.
     // The default state is all PIE __interrupts disabled and flags
@@ -177,13 +166,11 @@ void main(void)
     // This function is found in the <device>_piectrl.c file.
     //
     InitPieCtrl();
-
     //
     // Disable CPU __interrupts and clear all CPU __interrupt flags:
     //
     IER = 0x0000;
     IFR = 0x0000;
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
@@ -193,7 +180,6 @@ void main(void)
     // This function is found in <device>_sysctrl.c.
     //
     InitPieVectTable();
-
     //
     // Interrupts that are used in this example are re-mapped to
     // ISR functions found within this file.
@@ -203,7 +189,6 @@ void main(void)
     PieVectTable.DMA_CH2_INT = &local_DMACH2_ISR;
     PieVectTable.DMA_CH3_INT = &local_DMACH3_ISR;
     PieVectTable.DMA_CH4_INT = &local_DMACH4_ISR;
-
     //
     // Enable DMA INTn in the PIE: Group 7 __interrupt 1-6
     //
@@ -211,34 +196,27 @@ void main(void)
     PieCtrlRegs.PIEIER7.bit.INTx2 = 1;  //DMACH2 interrupt
     PieCtrlRegs.PIEIER7.bit.INTx3 = 1;  //DMACH3 interrupt
     PieCtrlRegs.PIEIER7.bit.INTx4 = 1;  //DMACH4 interrupt
-
     //
     // Enable CPU INT7 interrupts are enabled
     //
     IER |= M_INT7;
     EINT;
-
     //
     // Configure DMA for the transfer
     //
     DMA_configure();
-
     //
     // Configure SDFM type to 0
     //
     EALLOW;
     DevCfgRegs.SDFMTYPE.all = 0x8000;
     EDIS;
-
     pinMuxoption = SDFM_PIN_MUX_OPTION1;
-
     //
     // Configure GPIO pins as SDFM pins
     //
     Sdfm_configurePins(pinMuxoption);
-
     gPeripheralNumber = SDFM1;
-
     //
     // Input Control Module
     //
@@ -248,13 +226,11 @@ void main(void)
     Sdfm_configureInputCtrl(gPeripheralNumber, FILTER2, MODE_0);
     Sdfm_configureInputCtrl(gPeripheralNumber, FILTER3, MODE_0);
     Sdfm_configureInputCtrl(gPeripheralNumber, FILTER4, MODE_0);
-
     //
     // Comparator Module
     //
     HLT = 0x7FFF;  // Over value threshold settings
     LLT = 0x0000;  // Under value threshold settings
-
     //
     // Configure Comparator module's comparator filter type and comparator's OSR
     // value, higher threshold, lower threshold
@@ -267,7 +243,6 @@ void main(void)
                              HLT, LLT);
     Sdfm_configureComparator(gPeripheralNumber, FILTER4, SINC3, OSR_32,
                              HLT, LLT);
-
     //
     // Data filter Module
     //
@@ -282,14 +257,12 @@ void main(void)
                               OSR_256, DATA_16_BIT, SHIFT_10_BITS);
     Sdfm_configureData_filter(gPeripheralNumber, FILTER4, FILTER_ENABLE, SINC3,
                               OSR_256, DATA_16_BIT, SHIFT_10_BITS);
-
     //
     // Enable main filter bit: Unless this bit is set none of the filter
     // modules can be enabled. All the filter modules are synchronized when
     // main filter bit is enabled after individual filter modules are enabled.
     //
     Sdfm_enableMFE(gPeripheralNumber);
-
     //
     // PWM11.CMPC, PWM11.CMPD signals can synchronize SDFM1 filters and
     // PWM12.CMPC and PWM12.CMPD signals can synchronize SDFM2 filters. This
@@ -299,7 +272,6 @@ void main(void)
                                 FILTER_2_EXT_RESET_DISABLE,
                                 FILTER_3_EXT_RESET_DISABLE,
                                 FILTER_4_EXT_RESET_DISABLE);
-
     //
     // Enable interrupts
     //
@@ -317,23 +289,19 @@ void main(void)
                             IEL_DISABLE, MFIE_ENABLE, AE_ENABLE);
     Sdfm_configureInterrupt(gPeripheralNumber, FILTER4, IEH_DISABLE,
                             IEL_DISABLE, MFIE_ENABLE, AE_ENABLE);
-
     //
     // Enable main interrupt so that any of the filter interrupts can trigger
     // by SDFM interrupt to CPU
     //
     Sdfm_enableMIE(gPeripheralNumber);
-
     while(1);
 }
-
 //
 // Sdfm_configurePins - Configure SDFM GPIOs
 //
 void Sdfm_configurePins(Uint16 sdfmPinOption)
 {
     Uint16 pin;
-
     switch (sdfmPinOption)
     {
         case SDFM_PIN_MUX_OPTION1:
@@ -343,7 +311,6 @@ void Sdfm_configurePins(Uint16 sdfmPinOption)
                 // Configure GPIOs as asynchronous input
                 //
                 GPIO_SetupPinOptions(pin, GPIO_INPUT, GPIO_ASYNC);
-
                 //
                 // Configure this pin to be owned by CPU1 and configure this
                 // pin as SDFM pin
@@ -351,7 +318,6 @@ void Sdfm_configurePins(Uint16 sdfmPinOption)
                 GPIO_SetupPinMux(pin,GPIO_MUX_CPU1,7);
             }
             break;
-
         case SDFM_PIN_MUX_OPTION2:
             for(pin=46;pin<=61;pin++)
             {
@@ -361,7 +327,6 @@ void Sdfm_configurePins(Uint16 sdfmPinOption)
             break;
     }
 }
-
 //
 // local_DMACH1_ISR - DMA Channel 1 ISR
 //
@@ -371,7 +336,6 @@ __interrupt void local_DMACH1_ISR(void)
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP7;
     ESTOP0;
 }
-
 //
 // local_DMACH2_ISR - DMA Channel 2 ISR
 //
@@ -381,7 +345,6 @@ __interrupt void local_DMACH2_ISR(void)
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP7;
     ESTOP0;
 }
-
 //
 // local_DMACH3_ISR - DMA Channel 3 ISR
 //
@@ -391,7 +354,6 @@ __interrupt void local_DMACH3_ISR(void)
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP7;
     ESTOP0;
 }
-
 //
 // local_DMACH4_ISR - DMA Channel 4 ISR
 //
@@ -401,7 +363,6 @@ __interrupt void local_DMACH4_ISR(void)
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP7;
     ESTOP0;
 }
-
 //
 // DMA_setup - Initialize DMA burst, transfer, and wrap configurations
 //
@@ -419,72 +380,60 @@ void DMA_setup()
     DMA3Dest = &Filter3_Result[0];
     DMA4Source = (int16 *)(0x5E47);
     DMA4Dest = &Filter4_Result[0];
-
     DMACH1AddrConfig((Uint16 *)DMA1Dest, (Uint16 *)DMA1Source);
     DMACH2AddrConfig((Uint16 *)DMA2Dest, (Uint16 *)DMA2Source);
     DMACH3AddrConfig((Uint16 *)DMA3Dest, (Uint16 *)DMA3Source);
     DMACH4AddrConfig((Uint16 *)DMA4Dest, (Uint16 *)DMA4Source);
-
     //
     // Set up to use 16-bit data size
     // Pointers are based on 16-bit words
     // Increment by 1 (16 16-bit words)
     //
-
     //
     // BURST size = 1 | Source step size = 0 | Dest step size += 1
     //
     DMACH1BurstConfig(ONE_WORD_BURST,SOURCE_NO_ADDRESS_CHANGE,
                       DESTINATION_INCREMENT_ONE_ADDRESS);
-
     //
     // BURST size = 1 | Source step size = 0 | Dest step size += 1
     //
     DMACH2BurstConfig(ONE_WORD_BURST,SOURCE_NO_ADDRESS_CHANGE,
                       DESTINATION_INCREMENT_ONE_ADDRESS);
-
     //
     // BURST size = 1 | Source step size = 0 | Dest step size += 1
     //
     DMACH3BurstConfig(ONE_WORD_BURST,SOURCE_NO_ADDRESS_CHANGE,
                       DESTINATION_INCREMENT_ONE_ADDRESS);
-
     //
     // BURST size = 1 | Source step size = 0 | Dest step size += 1
     //
     DMACH4BurstConfig(ONE_WORD_BURST,SOURCE_NO_ADDRESS_CHANGE,
                       DESTINATION_INCREMENT_ONE_ADDRESS);
-
     //
     // Transfer size = 0x400 | Source step size = 0 | Dest step size += 1
     //
     DMACH1TransferConfig(TRANSFER_SIZE_0x400,TRANSFER_STEP_SOURCE_NO_CHANGE,
                          TRANSFER_STEP_DEST_INCREMENT_ONE_ADDRESS);
-
     //
     // Transfer size = 0x400 | Source step size = 0 | Dest step size += 1
     //
     DMACH2TransferConfig(TRANSFER_SIZE_0x400,TRANSFER_STEP_SOURCE_NO_CHANGE,
                          TRANSFER_STEP_DEST_INCREMENT_ONE_ADDRESS);
-
     //
     // Transfer size = 0x400 | Source step size = 0 | Dest step size += 1
     //
     DMACH3TransferConfig(TRANSFER_SIZE_0x400,TRANSFER_STEP_SOURCE_NO_CHANGE,
                          TRANSFER_STEP_DEST_INCREMENT_ONE_ADDRESS);
-
     //
     // Transfer size = 0x400 | Source step size = 0 | Dest step size += 1
     //
     DMACH4TransferConfig(TRANSFER_SIZE_0x400,TRANSFER_STEP_SOURCE_NO_CHANGE,
                          TRANSFER_STEP_DEST_INCREMENT_ONE_ADDRESS);
-
     DMACH1WrapConfig(0xFFFF,0,0xFFFF,0);
     DMACH2WrapConfig(0xFFFF,0,0xFFFF,0);
     DMACH3WrapConfig(0xFFFF,0,0xFFFF,0);
     DMACH4WrapConfig(0xFFFF,0,0xFFFF,0);
 }
-
 //
 // DMA_configure - Configure DMA channels 1,2,3, and 4
 //
@@ -492,7 +441,6 @@ void DMA_configure(void)
 {
     DMAInitialize();
     DMA_setup();
-
     DMACH1ModeConfig(DMA_SD1FLT1,PERINT_ENABLE,ONESHOT_DISABLE,CONT_DISABLE,
                      SYNC_DISABLE,SYNC_SRC,OVRFLOW_DISABLE,SIXTEEN_BIT,
                      CHINT_END,CHINT_ENABLE);
@@ -505,13 +453,11 @@ void DMA_configure(void)
     DMACH4ModeConfig(DMA_SD1FLT4,PERINT_ENABLE,ONESHOT_DISABLE,CONT_DISABLE,
                      SYNC_DISABLE,SYNC_SRC,OVRFLOW_DISABLE,SIXTEEN_BIT,
                      CHINT_END,CHINT_ENABLE);
-
     StartDMACH1();
     StartDMACH2();
     StartDMACH3();
     StartDMACH4();
 }
-
 //
 // End of file
 //

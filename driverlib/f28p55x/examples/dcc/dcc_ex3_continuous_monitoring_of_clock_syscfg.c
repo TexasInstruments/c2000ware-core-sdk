@@ -36,7 +36,7 @@
 // $TI Release: $
 // 
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -75,13 +75,11 @@
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Defines
 //
 #define PASS 0
 #define FAIL 1
-
 //
 //   SysConfig Contains the assumptions for the DCC error tolerances
 //   This example uses the internal oscillator2 clock source(Fclk0) to measure the accuracy of the PLL(Fclk1)
@@ -90,91 +88,70 @@
 //   Frequency Error Tolerance is set to 3% due to the spec of the internal oscillator
 //   These assumptions are slightly optimistic in order for the example to trigger a DCC error
 //   Error Signal is enabled to trigger the DCC ISR
-
-
 //
 // Globals
 //
 uint32_t result = FAIL, pass_base = myDCC0_BASE , isr_enter = 0;
 uint32_t cnt0 = 0,cnt1 = 0,valid = 0;
-
-
-
 void main(void)
 {
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     //Initialize PIE and clear PIE registers. Disables CPU interrupts
     //
     Interrupt_initModule();
-
     //
     //Initialize the PIE vector table with pointers to the shell Interrupt
     //Service Routines (ISR)
     //
     Interrupt_initVectorTable();
-
     //
     //Call Board_init() to invoke the Sysconfig controlled settings
     //
     Board_init();
-
     //
     // Enable Global Interrupts
     //
     EINT;
     ERTM;
-
-
     //
     //Start the DCC timers
     //
     DCC_enableModule(myDCC0_BASE);
-
     //
     //Allow time for the dcc module to complete
     //
     DEVICE_DELAY_US(1000);
-
     //
     // Status of the PLL clock measurement
     //
     if (isr_enter)
     {
-        result = FAIL;
+        result = PASS;
     }
     else
     {
-        result = PASS;
+        result = FAIL;
     }
-
     ESTOP0;
 }
-
-
-
 //
 // DCC ISR triggered on an error
 //
 __interrupt void INT_myDCC0_ISR()
 {
     uint32_t base;
-
     //
     // Pass the DCC base address to the ISR
     //
     base = pass_base;
-
     //
     // Shows that the ISR was called
     //
     isr_enter = 1;
-
     if (DCC_getErrorStatus(base) == 1U)
     {
         //
@@ -183,16 +160,13 @@ __interrupt void INT_myDCC0_ISR()
         cnt0 = DCC_getCounter0Value(base);
         cnt1 = DCC_getCounter1Value(base);
         valid = DCC_getValidCounter0Value(base);
-
         //
         // Clear the Error flag
         //
         DCC_clearErrorFlag(base);
     }
-
     //
     // Clear the interrupt at PIE level
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP6);
 }
-

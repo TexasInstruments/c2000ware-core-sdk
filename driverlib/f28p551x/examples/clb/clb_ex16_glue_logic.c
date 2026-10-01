@@ -16,7 +16,7 @@
 //
 //
 //#############################################################################
-// $TI Release: F28P551x Support Library v26.01.00.00 $
+// $TI Release: F28P551x Support Library v26.02.00.00 $
 // 
 // $Copyright:
 // Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
@@ -50,101 +50,70 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
 #include "driverlib.h"
 #include "device.h"
 #include "clb_config.h"
 #include "clb.h"
 #include "board.h"
-
 #define EPWM1_TIMER_TBPRD   0x0020
 #define EPWM1_CMPA          0x0010
 #define EPWM1_CMPB          0x0010
-
 #define EPWM2_TIMER_TBPRD   0x05C0
 #define EPWM2_CMPA          0x02E0
 #define EPWM2_CMPB          0x02E0
-
 void initEPWM1(void);
 void initEPWM2(void);
 void initCLB1(void);
-
-
 void main(void)
 {
     Device_init();
     Device_initGPIO();
-
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     Board_init();
-
     initEPWM1();
     initEPWM2();
-
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
 	SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB1);
-
     initCLB1();
-
     EPWM_setTimeBaseCounterMode(myEPWM1_BASE, EPWM_COUNTER_MODE_UP);
     EPWM_setTimeBaseCounterMode(myEPWM2_BASE, EPWM_COUNTER_MODE_UP);
 }
-
-
 void initEPWM1()
 {
     EPWM_setTimeBasePeriod(myEPWM1_BASE, EPWM1_TIMER_TBPRD);
     EPWM_setPhaseShift(myEPWM1_BASE, 0U);
     EPWM_setTimeBaseCounter(myEPWM1_BASE, 0U);
-
     EPWM_enableSyncOutPulseSource(myEPWM1_BASE, EPWM_SYNC_OUT_PULSE_ON_CNTR_ZERO);
-
     EPWM_setCounterCompareValue(myEPWM1_BASE, EPWM_COUNTER_COMPARE_A, EPWM1_CMPA);
     EPWM_setCounterCompareValue(myEPWM1_BASE, EPWM_COUNTER_COMPARE_B, EPWM1_CMPB);
-
     EPWM_disablePhaseShiftLoad(myEPWM1_BASE);
     EPWM_setClockPrescaler(myEPWM1_BASE, EPWM_CLOCK_DIVIDER_1, EPWM_HSCLOCK_DIVIDER_1);
-
     EPWM_setCounterCompareShadowLoadMode(myEPWM1_BASE, EPWM_COUNTER_COMPARE_A, EPWM_COMP_LOAD_ON_CNTR_ZERO);
     EPWM_setCounterCompareShadowLoadMode(myEPWM1_BASE, EPWM_COUNTER_COMPARE_B, EPWM_COMP_LOAD_ON_CNTR_ZERO);
-
     EPWM_setActionQualifierAction(myEPWM1_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_HIGH, EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);
     EPWM_setActionQualifierAction(myEPWM1_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_LOW, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);
     EPWM_setActionQualifierAction(myEPWM1_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_HIGH, EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);
     EPWM_setActionQualifierAction(myEPWM1_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_LOW, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);
 }
-
-
 void initEPWM2()
 {
     EPWM_setTimeBasePeriod(myEPWM2_BASE, EPWM2_TIMER_TBPRD);
     EPWM_setPhaseShift(myEPWM2_BASE, 0U);
     EPWM_setTimeBaseCounter(myEPWM2_BASE, 0U);
-
     EPWM_enableSyncOutPulseSource(myEPWM2_BASE, EPWM_SYNC_OUT_PULSE_ON_CNTR_ZERO);
-
     EPWM_setCounterCompareValue(myEPWM2_BASE, EPWM_COUNTER_COMPARE_A, EPWM2_CMPA);
     EPWM_setCounterCompareValue(myEPWM2_BASE, EPWM_COUNTER_COMPARE_B, EPWM2_CMPB);
-
     EPWM_disablePhaseShiftLoad(myEPWM2_BASE);
     EPWM_setClockPrescaler(myEPWM2_BASE, EPWM_CLOCK_DIVIDER_1, EPWM_HSCLOCK_DIVIDER_1);
-
     EPWM_setCounterCompareShadowLoadMode(myEPWM2_BASE, EPWM_COUNTER_COMPARE_A, EPWM_COMP_LOAD_ON_CNTR_ZERO);
     EPWM_setCounterCompareShadowLoadMode(myEPWM2_BASE, EPWM_COUNTER_COMPARE_B, EPWM_COMP_LOAD_ON_CNTR_ZERO);
-
     EPWM_setActionQualifierAction(myEPWM2_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_HIGH, EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);
     EPWM_setActionQualifierAction(myEPWM2_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_LOW, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);
     EPWM_setActionQualifierAction(myEPWM2_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_HIGH, EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);
     EPWM_setActionQualifierAction(myEPWM2_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_LOW, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);
 }
-
-
 void initCLB1(void)
 {
     //
@@ -158,20 +127,17 @@ void initCLB1(void)
     CLB_configOutputLUT(myTILE1_BASE, CLB_OUT5, TILE1_CFG_OUTLUT_5);
     CLB_configOutputLUT(myTILE1_BASE, CLB_OUT6, TILE1_CFG_OUTLUT_6);
     CLB_configOutputLUT(myTILE1_BASE, CLB_OUT7, TILE1_CFG_OUTLUT_7);
-
     //
     // LUT4
     //
     CLB_selectLUT4Inputs(myTILE1_BASE, TILE1_CFG_LUT4_IN0, TILE1_CFG_LUT4_IN1, TILE1_CFG_LUT4_IN2, TILE1_CFG_LUT4_IN3);
     CLB_configLUT4Function(myTILE1_BASE, TILE1_CFG_LUT4_FN10, TILE1_CFG_LUT4_FN2);
-
     //
     // FSM
     //
     CLB_selectFSMInputs(myTILE1_BASE, TILE1_CFG_FSM_EXT_IN0, TILE1_CFG_FSM_EXT_IN1, TILE1_CFG_FSM_EXTRA_IN0, TILE1_CFG_FSM_EXTRA_IN1);
     CLB_configFSMNextState(myTILE1_BASE, TILE1_CFG_FSM_NEXT_STATE_0, TILE1_CFG_FSM_NEXT_STATE_1, TILE1_CFG_FSM_NEXT_STATE_2);
     CLB_configFSMLUTFunction(myTILE1_BASE, TILE1_CFG_FSM_LUT_FN10, TILE1_CFG_FSM_LUT_FN2);
-
     //
     // Counters
     //

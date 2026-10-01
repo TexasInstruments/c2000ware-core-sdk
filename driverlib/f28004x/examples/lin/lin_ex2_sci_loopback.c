@@ -57,19 +57,16 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
 #define CHAR_LENGTH     8
 #define FRAME_LENGTH    1
-
 //
 // Globals
 //
@@ -78,13 +75,11 @@ volatile uint32_t vectorOffset = 0;
 volatile uint16_t error = 0;
 uint16_t transmitChar = 0x0;
 uint16_t receivedChar = 0x0;
-
 //
 // Function Prototypes
 //
 __interrupt void dataRxISR(void);
 void configureSCIMode(void);
-
 //
 // Main
 //
@@ -94,17 +89,14 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
@@ -112,35 +104,29 @@ void main(void)
     Interrupt_initVectorTable();
     EINT;
     ERTM;
-
     //
     // Interrupts that are used in this example are re-mapped to
     // ISR functions found within this file.
     // This registers the interrupt handler in PIE vector table.
     //
     Interrupt_register(INT_LINA_0, &dataRxISR);
-
     //
     // Enable the LIN interrupt signal
     //
     Interrupt_enable(INT_LINA_0);
-
     //
     // Initialize the LIN module
     //
     LIN_initModule(LINA_BASE);
-
     //
     // Configure the LIN module to operate in SCI mode
     //
     configureSCIMode();
-
     //
     // Enable global interrupt lines and clear status to known value
     //
     LIN_enableGlobalInterrupt(LINA_BASE, LIN_INTERRUPT_LINE0);
     LIN_clearGlobalInterruptStatus(LINA_BASE, LIN_INTERRUPT_LINE0);
-
     //
     // Continuously transmit an 8-bit character, wait for ISR to run, and 
     // verify everything was received correctly
@@ -148,12 +134,10 @@ void main(void)
     for(;;)
     {
         vectorOffset = 0;
-
         //
         // Increment transmit character to new value
         //
         transmitChar++;
-
         //
         // Reset transmit character when larger than a byte
         //
@@ -161,22 +145,18 @@ void main(void)
         {
             transmitChar = 0;
         }
-
         //
         // Wait for the SCI receiver to be idle
         //
         while(!LIN_isSCIReceiverIdle(LINA_BASE));
-
         //
         // Transmit the byte of data
         //
         LIN_writeSCICharBlocking(LINA_BASE, transmitChar);
-
         //
         // Wait for ISR to trigger and read the transmitted character
         //
         while(vectorOffset != LIN_VECT_RX);
-
         //
         // Halt the example if any errors occurred
         //
@@ -186,7 +166,6 @@ void main(void)
         }
     }
 }
-
 //
 // Configure SCI Mode - This function configures the LIN module to operate as 
 // an SCI with the specified settings.
@@ -198,68 +177,55 @@ configureSCIMode(void)
     // Enter LIN reset state to perform configurations
     //
     LIN_enterSoftwareReset(LINA_BASE);
-
     //
     // Switch LIN into SCI mode
     //
     LIN_enableSCIMode(LINA_BASE);
-
     //
     // Set the SCI communication mode to idle line
     //
     LIN_setSCICommMode(LINA_BASE, LIN_COMM_SCI_IDLELINE);
-
     //
     // Set SCI to transmit one stop bit
     //
     LIN_setSCIStopBits(LINA_BASE,LIN_SCI_STOP_ONE);
-
     //
     // Disable parity check
     //
     LIN_disableSCIParity(LINA_BASE);
-
     //
     // Disable multi-buffer mode
     //
     LIN_disableMultibufferMode(LINA_BASE);
-
     //
     // Module set to complete operations when halted by debugger
     //
     LIN_setDebugSuspendMode(LINA_BASE, LIN_DEBUG_COMPLETE);
-
     //
     // Set character length as 8-bits
     //
     LIN_setSCICharLength(LINA_BASE, CHAR_LENGTH);
-
     //
     // Set to 1 character in response field
     //
     LIN_setSCIFrameLength(LINA_BASE, FRAME_LENGTH);
-
     //
     // Enable Internal Loopback mode
     //
     LIN_enableIntLoopback(LINA_BASE);
-
     //
     // Enable interrupt for when a frame has been completely received
     //
     LIN_enableSCIInterrupt(LINA_BASE, LIN_SCI_INT_RX);
-
     //
     // Set the interrupt priority to line 0 (high)
     //
     LIN_setSCIInterruptLevel0(LINA_BASE, LIN_SCI_INT_RX);
-
     //
     // Exit LIN reset state
     //
     LIN_exitSoftwareReset(LINA_BASE);
 }
-
 //
 // Received Data ISR - An interrupt service routine (ISR) to handle when new
 // data is received. Once received, the data is read and interrupt status 
@@ -272,17 +238,14 @@ dataRxISR(void)
     // Increment the interrupt count
     //
     rxCount++;
-
     //
     // Read the highest priority interrupt vector
     //
     vectorOffset = LIN_getInterruptLine0Offset(LINA_BASE);
-
     //
     // Read the transmitted character
     //
     receivedChar = LIN_readSCICharBlocking(LINA_BASE, false);
-
     //
     // Check that the received character matches the transmitted character
     //
@@ -290,19 +253,16 @@ dataRxISR(void)
     {
         error++;
     }
-
     //
     // Clear module interrupt flag and global interrupt flag for line 0
     //
     LIN_clearInterruptStatus(LINA_BASE, LIN_INT_RX);
     LIN_clearGlobalInterruptStatus(LINA_BASE, LIN_INTERRUPT_LINE0);
-
     //
     // Acknowledge this interrupt located in group 8
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP8);
 }
-
 //
 // End of File
 //

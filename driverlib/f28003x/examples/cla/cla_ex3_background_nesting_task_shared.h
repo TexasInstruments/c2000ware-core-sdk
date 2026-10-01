@@ -42,38 +42,26 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 #ifndef _CLA_EX3_BACKGROUND_NESTING_TASK_H_
 #define _CLA_EX3_BACKGROUND_NESTING_TASK_H_
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 //
 // Included Files
 //
-
 //
 // Globals
 //
 //Task 1 (C) Variables
-
 //Task 2 (C) Variables
-
 //Task 3 (C) Variables
-
 //Task 4 (C) Variables
-
 //Task 5 (C) Variables
-
 //Task 6 (C) Variables
-
 //Task 7 (C) Variables
-
 //Background Task (C) Variables
-
 //Common (C) Variables
-
 //
 // Function Prototypes
 //
@@ -90,12 +78,10 @@ __attribute__((interrupt))  void Cla1BackgroundTask();
 #else
 __attribute__((interrupt("background")))  void Cla1BackgroundTask();
 #endif
-
 #ifdef __cplusplus
 }
 #endif // extern "C"
 #endif //_CLA_EX3_BACKGROUND_NESTING_TASK_H_
-
 //
 // End of File
 //

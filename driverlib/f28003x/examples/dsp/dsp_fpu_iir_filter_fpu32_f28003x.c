@@ -44,8 +44,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
 //
 // Included Files
 //
@@ -55,7 +53,6 @@
 #include "fpu.h"
 #include "dsp.h"
 #include "c2000ware_libraries.h"
-
 float test_input[533] = {
     11.73525203635F, 13.38124076568F, 10.05466394101F,  5.26632496464F,
      2.04209681707F, -1.83163666450F, -1.20494165191F, -4.37017185269F,
@@ -191,7 +188,6 @@ float test_input[533] = {
      1.00000000000F,  1.00000000000F,  0.00000000000F,  1.00000000000F,
     0.82953774579F,  0.00000000000F,  0.15692115684F,  0.07003708026F,
      0.14488515596F, };
-
 const float test_golden[512] = {
      0.01868640889F,  0.07030061348F,  0.16126293937F,  0.31326365486F,
      0.54508244160F,  0.86355774629F,  1.26858868302F,  1.74490682108F,
@@ -322,11 +318,9 @@ const float test_golden[512] = {
     -2.05062180640F, -1.60991928723F, -1.03910708908F, -0.40216095001F,
      0.23338195449F,  0.80114067531F,  1.25190014057F,  1.55254724133F,
 };
-
 #define TEST_SIZE       (512U)
 #define NUM_SOS         (3U)    // Number of Second Order Stages (biquad)
 #define FILTER_ORDER    (NUM_SOS<<1)
-
 uint16_t pass = 0U, fail = 0U;
 float32u_t gold, err;
 float32_t in, out;
@@ -337,14 +331,12 @@ float scaleFactors[NUM_SOS];
 float delayLine[NUM_SOS*4U];
 float test_output[TEST_SIZE];
 float test_error[TEST_SIZE];
-
 float32_t *denCoeffs = coeffs_A;
 float32_t *numCoeffs = coeffs_B;
 float32_t *delayBuff = delayLine;
 float32_t *inBuff = &in;
 float32_t *outBuff = &out;
 float32_t *biquadPtr = scaleFactors;
-
 //
 // Main
 //
@@ -356,13 +348,10 @@ void main(void)
     Interrupt_initVectorTable();
 	Board_init();
     C2000Ware_libraries_init();
-
     uint16_t i;
     float *p_cb, *p_ca;
-
     p_cb = &test_input[TEST_SIZE];
     p_ca = p_cb + 3UL;
-
     for(i = 0U; i < NUM_SOS; i++)
     {
         memcpy(&coeffs_B[3U*i], p_cb, 3U*sizeof(float));
@@ -372,21 +361,16 @@ void main(void)
     }
     memcpy(scaleFactors, &test_input[TEST_SIZE+(6U*NUM_SOS)],
             NUM_SOS*sizeof(float));
-
     myIIR0_handle->init(myIIR0_handle);
-
     for(i = 0U; i < TEST_SIZE; i++)
     {
         out  = FLT_MAX;
         in   = test_input[i];
-
         // Call the calculation routine
         myIIR0_handle->calc(myIIR0_handle);
-
         test_output[i] = out;
         gold.f32 = test_golden[i];
         err.f32 = fabsf(out - gold.f32);
-
         if(err.f32 < tolerance)
         {
             pass++;
@@ -398,7 +382,6 @@ void main(void)
     }
     while(1);
 }
-
 //
 // End of File
 //

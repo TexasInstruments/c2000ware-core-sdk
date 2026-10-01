@@ -20,7 +20,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -53,14 +53,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Defines
 //
@@ -70,7 +68,6 @@
 #define PWM_PRD_VAL          DEVICE_SYSCLK_FREQ / PWM_FREQUENCY
 #define PWM_CMP_VAL          (uint32_t)(PWM_DUTY * PWM_PRD_VAL)
 #define PWM_PHASE_VAL        (uint32_t)(PWM_PHASE_SHIFT * PWM_PRD_VAL)
-
 //
 // Main
 //
@@ -80,23 +77,19 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Board initialization
     // Select eCAP1OUT on MUX 0. Make GPIO5 as eCAP1OUT for PWM output
@@ -105,14 +98,10 @@ void main(void)
     // Polarity as low and configure SYNCOUT at CTR=PRD
     //
     Board_init();
-
     while(1)
     {
-        
     }
 }
-
 //
 // End of File
 //
-

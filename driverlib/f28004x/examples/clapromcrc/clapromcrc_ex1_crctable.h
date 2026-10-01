@@ -45,16 +45,13 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 #ifndef _CLAPROMCRC_EX1_CRCTABLE_H_
 #define _CLAPROMCRC_EX1_CRCTABLE_H_
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Globals
 //
@@ -158,9 +155,7 @@ uint32_t clapromcrcTable[97] =
     0x5B0AF1EA,
     0x35C381E7
 };
-
 #endif //_CLAPROMCRC_EX1_CRCTABLE_H_
-
 //
 // End of File
 //

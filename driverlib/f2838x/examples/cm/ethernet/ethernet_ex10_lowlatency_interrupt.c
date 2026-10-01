@@ -36,7 +36,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -69,29 +69,22 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib_cm.h"
 #include "cm.h"
-
 //
 // Defines
 //
-
 #define PACKET_LENGTH 508
 #define NUM_PACKETS 4
-
 //
 // Globals
 //
-
 static Ethernet_Handle emac_handle;
 uint8_t pData[PACKET_LENGTH];
 uint8_t rxBuffer[NUM_PACKETS*PACKET_LENGTH];
-
-
 //
 // The Descriptor Ring can be organized as
 // Descriptors for TX Channel 0
@@ -101,28 +94,21 @@ uint8_t rxBuffer[NUM_PACKETS*PACKET_LENGTH];
 // Use the Descriptor pool in driver
 //
 extern Ethernet_HW_descriptor Ethernet_descArray[ETHERNET_DESCRIPTORS_NUM];
-
 uint8_t indexWriteTx=0;
 uint8_t indexMaxTx = ETHERNET_DESCRIPTORS_NUM_TX_PER_CHANNEL;
 uint8_t indexReadTx=0;
-
 uint8_t indexMaxRx=
         (ETHERNET_DESCRIPTORS_NUM_TX+ETHERNET_DESCRIPTORS_NUM_RX_PER_CHANNEL);
 uint8_t indexWriteRx=0;
 uint8_t indexReadRx=0;
-
 uint8_t buffIndex=0;
-
 uint32_t genericISRCount,transmitISRCount, receiveISRCount,getBufferCount;
-
 //
 //This is a temporary Packet Descriptor passed to the
 //Low level driver it is not linked by the driver
 //
 Ethernet_Pkt_Desc tempDescriptor;
-
 Ethernet_Pkt_Desc *getPacketBuffer(void);
-
 //
 //This is a light weight implementation for sending a packet over Ethernet
 //It does not maintain any software queue for the packets
@@ -139,7 +125,6 @@ void SendPacket(uint8_t *pData,uint32_t length)
                                     ETHERNET_DMA_CHANNEL_NUM_0,
                                     (Ethernet_HW_descriptor *)
                                      (&Ethernet_descArray[indexWriteTx]));
-
     //
     //End check for last descriptor
     //
@@ -148,7 +133,6 @@ void SendPacket(uint8_t *pData,uint32_t length)
         indexWriteTx = 0;
     }
 }
-
 //
 //Transmit interrupt handler only increments the book keeping variable
 //and clears the interrupt can be modified as per needs
@@ -162,24 +146,18 @@ interrupt void transmitISR(void)
                 ETHERNET_DMA_CH0_STATUS_TI
                 );
 }
-
 //
 //Receive interrupt handler called when complete packet is received
 //
 interrupt void receiveISR(void)
 {
-
     Ethernet_Pkt_Desc *ptrNewPacket=NULL;
-
-
     //
     //Clear the interrupt
     //
     Ethernet_clearDMAChannelInterrupt(EMAC_BASE,
                                       ETHERNET_DMA_CHANNEL_NUM_0,
                                       ETHERNET_DMA_CH0_STATUS_RI);
-
-
     //
     // Callback - Invoke any application specific callback here
     //Just incrementing the indexRead here we are not consuming the buffers here
@@ -189,13 +167,11 @@ interrupt void receiveISR(void)
     {
         indexReadRx = ETHERNET_DESCRIPTORS_NUM_TX;
     }
-
     //
     //Refill the packet buffer
     //
     if(Ethernet_descArray[indexReadRx].des3 & ETHERNET_DESC_OWNER )
     {
-
         ptrNewPacket = getPacketBuffer();
         Ethernet_descArray[indexWriteRx].des0 =
                     (uint32_t)ptrNewPacket->dataBuffer;
@@ -204,7 +180,6 @@ interrupt void receiveISR(void)
         Ethernet_descArray[indexWriteRx].des3 = (ETHERNET_DESC_OWNER |
                                                  ETHERNET_RX_DESC_IOC |
                                                  ETHERNET_RX_DESC_BUF1_VALID);
-
         if(++indexWriteRx == ETHERNET_DESCRIPTORS_NUM_TX +
                               ETHERNET_DESCRIPTORS_NUM_RX_PER_CHANNEL)
         {
@@ -213,16 +188,12 @@ interrupt void receiveISR(void)
     }
     receiveISRCount++;
 }
-
 void IntermediateFragmentCallback(uint8_t segmentnumber)
 {
-
     //
     //Add contents here to service the received chunk (of partial packet)
     //
-
 }
-
 //
 //This generic ISR handles only the Early Rx completion interrupt
 //If Early Transmit interrupt needs to be handled it can be added here as well
@@ -231,7 +202,6 @@ interrupt void genericISR(void)
 {
     uint16_t fragNumber;
     genericISRCount++;
-
     //
     //Get the count of how many chunks of packets have come in
     //If the Progammable Buffer length 32 bytes
@@ -241,12 +211,10 @@ interrupt void genericISR(void)
     fragNumber = Ethernet_getRxERICount(
                     EMAC_BASE,
                     ETHERNET_DMA_CHANNEL_NUM_0);
-
     //
     //Callback for signalling the arrival of chunk
     //
     IntermediateFragmentCallback(fragNumber);
-
     //
     //Clear the interrupts at hardware
     //
@@ -260,7 +228,6 @@ interrupt void genericISR(void)
                 ETHERNET_DMA_CHANNEL_NUM_0,
                 ETHERNET_DMA_CH0_STATUS_ERI | ETHERNET_DMA_CH0_STATUS_NIS);
 }
-
 //
 //This is a simple implementation of Buffer management it returns
 //a new buffer pointer from the given packet buffer pool
@@ -280,12 +247,10 @@ main(void)
     Ethernet_InitInterfaceConfig initInterfaceConfig;
     Ethernet_InitConfig *pInitCfg;
     uint32_t i;
-    
     //
     // Initialize device clock and peripherals
     //
     CM_init();
-
     //
     //Initialize the indexes for Descriptor Ring access
     //
@@ -294,13 +259,10 @@ main(void)
                     ETHERNET_DESCRIPTORS_NUM_RX_PER_CHANNEL;
     indexWriteTx= indexReadTx = 0;
     indexWriteRx = indexReadRx = ETHERNET_DESCRIPTORS_NUM_TX;
-
     //
     //Book keeping Watch variables initialized to zero
     //
     genericISRCount = transmitISRCount = receiveISRCount= getBufferCount= 0;
-
-
     //
     //Form the Packet in Memory
     //
@@ -313,11 +275,9 @@ main(void)
         else
             HWREG((uint32_t *)pData +i) = 0xFFFFFFFF;
     }
-
     initInterfaceConfig.ssbase = EMAC_SS_BASE;
     initInterfaceConfig.enet_base = EMAC_BASE;
     initInterfaceConfig.phyMode = ETHERNET_SS_PHY_INTF_SEL_MII;
-
     //
     //Assign SoC specific functions for Enabling,Disabling interrupts
     //and for enabling the Peripheral at system level
@@ -328,12 +288,12 @@ main(void)
     initInterfaceConfig.ptrPlatformPeripheralEnable =
                         &Platform_enablePeripheral;
     initInterfaceConfig.ptrPlatformPeripheralReset = &Platform_resetPeripheral;
-
+    initInterfaceConfig.ptrCoreInterruptDisable = &Interrupt_disableInProcessor;
+    initInterfaceConfig.ptrCoreInterruptEnable = &Interrupt_enableInProcessor;
     //
     //Assign the peripheral number at the SoC
     //
     initInterfaceConfig.peripheralNum = SYSCTL_PERIPH_CLK_ENET;
-
     //
     //Assign the default SoC specific interrupt numbers of Ethernet interrupts
     //
@@ -342,11 +302,8 @@ main(void)
     initInterfaceConfig.interruptNum[2] = INT_EMAC_TX1;
     initInterfaceConfig.interruptNum[3] = INT_EMAC_RX0;
     initInterfaceConfig.interruptNum[4] = INT_EMAC_RX1;
-
     pInitCfg = Ethernet_initInterface(initInterfaceConfig);
-
     Ethernet_getInitConfig(pInitCfg);
-
     pInitCfg->numChannels = 1;
     for(i=0;i<pInitCfg->numChannels;i++)
     {
@@ -357,32 +314,24 @@ main(void)
                                   ETHERNET_MTL_TXQ_OPMODE_TSF_DISABLE;
         pInitCfg->chInfo[ETHERNET_CH_DIR_TX][i].dmaQueueSize =
                                     ETHERNET_MTL_Q_OP_MODE_QSIZE_2048;
-
         //
         //Configure the IP in threshold mode
         //For the RX Size
         //
         pInitCfg->chInfo[ETHERNET_CH_DIR_RX][i].storeNForward =
                                     ETHERNET_MTL_RX_Q_OP_MODE_RSF_DISABLE;
-
     }
-
     //
     //Enable the Loopback mode of MAC
     //
     pInitCfg->loopbackMode = ETHERNET_MAC_CONFIGURATION_LM_LOOPBACK_ENABLED;
-
-
     pInitCfg->dmaMode.InterruptMode = ETHERNET_DMA_MODE_INTM_MODE1;
-
     //
     //We are implementing our own ISR and hence this callback is not needed
     //
     pInitCfg->pfcbRxPacket = NULL;
     pInitCfg->pfcbGetPacket = &getPacketBuffer;
-
     Ethernet_getHandle((Ethernet_Handle)1,pInitCfg , &emac_handle);
-
     //
     //Register the interrupt handlers and enable interrupts
     //
@@ -392,7 +341,6 @@ main(void)
     Interrupt_enable(INT_EMAC_TX0);
     Interrupt_enable(INT_EMAC_RX0);
     Interrupt_enable(INT_EMAC);
-
     //
     //Enable Early receive and Early Transmit interrupts
     //Abnormal interrupt is to be enabled for Early recive handling
@@ -402,13 +350,7 @@ main(void)
                                 (ETHERNET_DMA_CH0_INTERRUPT_ENABLE_AIE |
                                  ETHERNET_DMA_CH0_INTERRUPT_ENABLE_ETIE |
                                  ETHERNET_DMA_CH0_INTERRUPT_ENABLE_ERIE));
-
     Ethernet_setDMAChannelTransmitStart(EMAC_BASE,ETHERNET_DMA_CHANNEL_NUM_0);
-
-
     SendPacket(pData,PACKET_LENGTH);
-
     while(1);
-
 }
-

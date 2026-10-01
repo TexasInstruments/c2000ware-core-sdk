@@ -61,38 +61,30 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
 #define CHAR_LENGTH     8
 #define FRAME_LENGTH    1
-
 //
 // Configure the Baud Rate to 115.207kHz
 //
 uint32_t PRESCALER=0x000001a;
 uint16_t DIVIDER=0x0002;
-
 //
 // Globals
 //
 uint16_t sData[128];
 uint16_t rData[128];
-
-
 //Place buffers in GSRAM
 #pragma DATA_SECTION(sData, "ramgs0");
 #pragma DATA_SECTION(rData, "ramgs0");
-
 volatile uint16_t done = 0;         // Flag to set when all data transfered
-
 //
 // Function Prototypes
 //
@@ -100,8 +92,6 @@ void initDMA(void);
 void configureSCIMode(void);
 __interrupt void dmaCh5ISR(void);
 __interrupt void dmaCh6ISR(void);
-
-
 //
 // Main
 //
@@ -112,17 +102,14 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
@@ -130,7 +117,6 @@ void main(void)
     Interrupt_initVectorTable();
     EINT;
     ERTM;
-
     //
     // Interrupts that are used in this example are re-mapped to
     // ISR functions found within this file.
@@ -138,28 +124,23 @@ void main(void)
     //
     Interrupt_register(INT_DMA_CH5, &dmaCh5ISR);
     Interrupt_register(INT_DMA_CH6, &dmaCh6ISR);
-
     //
     // Enable the DMA interrupt signals
     //
     Interrupt_enable(INT_DMA_CH5);
     Interrupt_enable(INT_DMA_CH6);
-
     //
     // Initialize the DMA
     //
     initDMA();
-
     //
     //Initialize the LIN Module
     //
     LIN_initModule(LINA_BASE);
-
     //
     // Configure the LIN module to operate in SCI mode
     //
     configureSCIMode();
-
     //
     // Initialize the data buffers
     //
@@ -168,39 +149,31 @@ void main(void)
        sData[i]= i;
        rData[i]= 0;
     }
-
     //
     // Wait for the SCI receiver to be idle
     //
     while(!LIN_isSCIReceiverIdle(LINA_BASE));
-
     //
     // Wait until space is available in the transmit buffer.
     //
     while(!LIN_isSCISpaceAvailable(LINA_BASE)){}
-
     //
     // Start the DMA receive channel
     //
     DMA_startChannel(DMA_CH6_BASE);
-
     //
     //Start the DMA transmit channel
     //
     DMA_startChannel(DMA_CH5_BASE);
-
     //
     //Wait until the DMA transfer is complete
     //
     while(!done);
-
     //
     //When the DMA transfer is complete the program will stop here
     //
     ESTOP0;
-
 }
-
 //
 // Function to configure LIN in SCI Mode
 //
@@ -211,76 +184,61 @@ configureSCIMode(void)
     // Enter LIN reset state to perform configurations
     //
     LIN_enterSoftwareReset(LINA_BASE);
-
     //
     // Switch LIN into SCI mode
     //
     LIN_enableSCIMode(LINA_BASE);
-
     //
     // Set the SCI communication mode to idle line
     //
     LIN_setSCICommMode(LINA_BASE, LIN_COMM_SCI_IDLELINE);
-
     //
     // Set SCI to transmit one stop bit
     //
     LIN_setSCIStopBits(LINA_BASE,LIN_SCI_STOP_ONE);
-
     //
     // Disable parity check
     //
     LIN_disableSCIParity(LINA_BASE);
-
     //
     // Disable multi-buffer mode
     // Single depth SCI-compatible buffer is used
     //
     LIN_disableMultibufferMode(LINA_BASE);
-
     //
     // Module set to complete operations when halted by debugger
     //
     LIN_setDebugSuspendMode(LINA_BASE, LIN_DEBUG_COMPLETE);
-
     //
     // Set character length as 8-bits
     //
     LIN_setSCICharLength(LINA_BASE, CHAR_LENGTH);
-
     //
     // Set to 1 character in response field
     //
     LIN_setSCIFrameLength(LINA_BASE, FRAME_LENGTH);
-
     //
     // Set the Baud Rate
     //
     LIN_setBaudRatePrescaler(LINA_BASE, PRESCALER, DIVIDER);
-
     //
     // Enable Internal Loopback mode
     //
     LIN_enableIntLoopback(LINA_BASE);
-
     //
     //Enable the DMA for transmission
     //
     LIN_enableSCIInterrupt(LINA_BASE, LIN_SCI_INT_TX_DMA);
-
     //
     // Enable the DMA to receive
     // Both LIN_SCI_INT_RX_DMA and LIN_SCI_INT_RX_DMA_ALL must be enabled to
     // receive interrupts in SCI-compatible single buffer mode
     //
     LIN_enableSCIInterrupt(LINA_BASE, (LIN_SCI_INT_RX_DMA | LIN_SCI_INT_RX_DMA_ALL));
-
-
     // Exit LIN reset state
     //
     LIN_exitSoftwareReset(LINA_BASE);
 }
-
 //
 // DMA setup for both TX and RX channels.
 //
@@ -290,7 +248,6 @@ void initDMA()
     // Initialize DMA
     //
     DMA_initController();
-
     //
     // Configure DMA Ch5 for TX. When the buffer in SCITD register is free, data
     // will be transferred from the sdata buffer to this SCI Mode transmit register.
@@ -302,14 +259,12 @@ void initDMA()
     DMA_configTransfer(DMA_CH5_BASE, 128, 1, 0);
     DMA_configMode(DMA_CH5_BASE, DMA_TRIGGER_LINATX, DMA_CFG_ONESHOT_DISABLE |
                    DMA_CFG_CONTINUOUS_DISABLE | DMA_CFG_SIZE_16BIT);
-
     //
     // Configure DMA Ch5 interrupts
     //
     DMA_setInterruptMode(DMA_CH5_BASE, DMA_INT_AT_END);
     DMA_enableInterrupt(DMA_CH5_BASE);
     DMA_enableTrigger(DMA_CH5_BASE);
-
     //
     // Configure DMA Ch6 for RX. When the buffer in SCIRD register is full, data
     // will be transferred from this register to the rData buffer. The source
@@ -321,7 +276,6 @@ void initDMA()
     DMA_configTransfer(DMA_CH6_BASE, 128, 0, 1);
     DMA_configMode(DMA_CH6_BASE, DMA_TRIGGER_LINARX, DMA_CFG_ONESHOT_DISABLE |
                    DMA_CFG_CONTINUOUS_DISABLE | DMA_CFG_SIZE_16BIT);
-
     //
     // Configure DMA Ch6 interrupts
     //
@@ -329,7 +283,6 @@ void initDMA()
     DMA_enableInterrupt(DMA_CH6_BASE);
     DMA_enableTrigger(DMA_CH6_BASE);
 }
-
 //
 // DMA Channel 5 ISR
 //
@@ -339,7 +292,6 @@ __interrupt void dmaCh5ISR(void)
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
     return;
 }
-
 //
 // DMA Channel 6 ISR
 //
@@ -348,7 +300,6 @@ __interrupt void dmaCh5ISR(void)
     uint16_t i;
     DMA_stopChannel(DMA_CH6_BASE);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
-
     //
     //Check for data integrity
     //
@@ -360,7 +311,6 @@ __interrupt void dmaCh5ISR(void)
            ESTOP0;
         }
     }
-
     done = 1;
     return;
 }

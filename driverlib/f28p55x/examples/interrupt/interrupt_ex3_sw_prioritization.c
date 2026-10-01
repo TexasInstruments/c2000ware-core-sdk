@@ -55,7 +55,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -88,37 +88,31 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "sw_prioritized_isr_levels.h"
-
 //
 // Defines
 //
 #define TRACE_SIZE  51U
-
 //
 // Globals
 //
 uint16_t cpuTimer0IntCount;
 uint16_t cpuTimer1IntCount;
 uint16_t cpuTimer2IntCount;
-
 //
 // This array will be used as a trace to check the
 // order that the interrupts were serviced
 //
 uint16_t  traceISR[TRACE_SIZE];
-
 //
 // Index to update an element in the trace buffer
 //
 uint16_t  traceISRIndex = 0;
-
 //
 // Function Prototypes
 //
@@ -127,42 +121,35 @@ __interrupt void cpuTimer1ISR(void);
 __interrupt void cpuTimer2ISR(void);
 void initCPUTimers(void);
 void configCPUTimer(uint32_t, float, float);
-
 //
 // Main
 //
 void main(void)
 {
     uint32_t i;
-
     //
     // Initializes device clock and peripherals
     //
     Device_init();
-
     //
     // Configures the GPIO pin as a push-pull output
     //
     Device_initGPIO();
-
     //
     // Initializes PIE and clears PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initializes the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // ISRs for each CPU Timer interrupt
     //
     Interrupt_register(INT_TIMER0, &cpuTimer0ISR);
     Interrupt_register(INT_TIMER1, &cpuTimer1ISR);
     Interrupt_register(INT_TIMER2, &cpuTimer2ISR);
-
     //
     // Reset the ISR trace
     //
@@ -170,13 +157,11 @@ void main(void)
     {
        traceISR[i] = 0;
     }
-
     //
     // Initializes the Device Peripheral. For this example, only initialize the
     // Cpu Timers.
     //
     initCPUTimers();
-
     //
     // Configure CPU-Timer 0, 1, and 2 to interrupt every second:
     // 1 second Period (in uSeconds)
@@ -184,7 +169,6 @@ void main(void)
     configCPUTimer(CPUTIMER0_BASE, DEVICE_SYSCLK_FREQ, 1000000);
     configCPUTimer(CPUTIMER1_BASE, DEVICE_SYSCLK_FREQ, 1000000);
     configCPUTimer(CPUTIMER2_BASE, DEVICE_SYSCLK_FREQ, 1000000);
-
     //
     // To ensure precise timing, use write-only instructions to write to the
     // entire register. Therefore, if any of the configuration bits are changed
@@ -194,7 +178,6 @@ void main(void)
     CPUTimer_enableInterrupt(CPUTIMER0_BASE);
     CPUTimer_enableInterrupt(CPUTIMER1_BASE);
     CPUTimer_enableInterrupt(CPUTIMER2_BASE);
-
     //
     // Enables CPU int1, int13, and int14 which are connected to CPU-Timer 0,
     // CPU-Timer 1, and CPU-Timer 2 respectively.
@@ -203,20 +186,17 @@ void main(void)
     Interrupt_enable(INT_TIMER0);
     Interrupt_enable(INT_TIMER1);
     Interrupt_enable(INT_TIMER2);
-
     //
     // Starts CPU-Timer 0, CPU-Timer 1, and CPU-Timer 2.
     //
     CPUTimer_startTimer(CPUTIMER0_BASE);
     CPUTimer_startTimer(CPUTIMER1_BASE);
     CPUTimer_startTimer(CPUTIMER2_BASE);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // IDLE loop. Just sit and loop forever (optional)
     //
@@ -224,7 +204,6 @@ void main(void)
     {
     }
 }
-
 //
 // initCPUTimers - This function initializes all three CPU timers
 // to a known state.
@@ -238,28 +217,24 @@ initCPUTimers(void)
     CPUTimer_setPeriod(CPUTIMER0_BASE, 0xFFFFFFFF);
     CPUTimer_setPeriod(CPUTIMER1_BASE, 0xFFFFFFFF);
     CPUTimer_setPeriod(CPUTIMER2_BASE, 0xFFFFFFFF);
-
     //
     // Initialize pre-scale counter to divide by 1 (SYSCLKOUT)
     //
     CPUTimer_setPreScaler(CPUTIMER0_BASE, 0);
     CPUTimer_setPreScaler(CPUTIMER1_BASE, 0);
     CPUTimer_setPreScaler(CPUTIMER2_BASE, 0);
-
     //
     // Make sure timer is stopped
     //
     CPUTimer_stopTimer(CPUTIMER0_BASE);
     CPUTimer_stopTimer(CPUTIMER1_BASE);
     CPUTimer_stopTimer(CPUTIMER2_BASE);
-
     //
     // Reload all counter register with period value
     //
     CPUTimer_reloadTimerCounter(CPUTIMER0_BASE);
     CPUTimer_reloadTimerCounter(CPUTIMER1_BASE);
     CPUTimer_reloadTimerCounter(CPUTIMER2_BASE);
-
     //
     // Reset interrupt counter
     //
@@ -267,7 +242,6 @@ initCPUTimers(void)
     cpuTimer1IntCount = 0;
     cpuTimer2IntCount = 0;
 }
-
 //
 // configCPUTimer - This function initializes the selected timer to the
 // period specified by the "freq" and "period" parameters. The "freq" is
@@ -278,18 +252,15 @@ void
 configCPUTimer(uint32_t cpuTimer, float freq, float period)
 {
     uint32_t temp;
-
     //
     // Initialize timer period:
     //
     temp = (uint32_t)(freq / 1000000 * period);
     CPUTimer_setPeriod(cpuTimer, temp - 1);
-
     //
     // Set pre-scale counter to divide by 1 (SYSCLKOUT):
     //
     CPUTimer_setPreScaler(cpuTimer, 0);
-
     //
     // Initializes timer control register. The timer is stopped, reloaded,
     // free run disabled, and interrupt enabled.
@@ -300,7 +271,6 @@ configCPUTimer(uint32_t cpuTimer, float freq, float period)
     CPUTimer_setEmulationMode(cpuTimer,
                               CPUTIMER_EMULATIONMODE_STOPAFTERNEXTDECREMENT);
     CPUTimer_enableInterrupt(cpuTimer);
-
     //
     // Resets interrupt counters for the three cpuTimers
     //
@@ -317,7 +287,6 @@ configCPUTimer(uint32_t cpuTimer, float freq, float period)
         cpuTimer2IntCount = 0;
     }
 }
-
 //
 // cpuTimer0ISR - Counter for CpuTimer0
 //
@@ -328,7 +297,6 @@ cpuTimer0ISR(void)
     // Save IER register on stack
     //
     volatile uint16_t tempPIEIER = HWREGH(PIECTRL_BASE + PIE_O_IER1);
-
     //
     // Set the global and group priority to allow CPU interrupts
     // with higher priority
@@ -336,32 +304,27 @@ cpuTimer0ISR(void)
     IER |= M_INT1;
     IER &= MINT1;
     HWREGH(PIECTRL_BASE + PIE_O_IER1) &= MG1_7;
-
     //
     // Enable Interrupts
     //
     Interrupt_clearACKGroup(0xFFFFU);
     __asm("  NOP");
     EINT;
-
     //
     // Insert ISR code here
     //
     cpuTimer0IntCount++;
-
     //
     // Disable interrupts and restore registers saved:
     //
     DINT;
     HWREGH(PIECTRL_BASE + PIE_O_IER1) = tempPIEIER;
-
     //
     //  Add ISR to Trace
     //
     traceISR[traceISRIndex % TRACE_SIZE] = 0x0017;
     traceISRIndex++;
 }
-
 //
 // cpuTimer1ISR - Counter for CpuTimer1
 //
@@ -373,24 +336,21 @@ cpuTimer1ISR(void)
     //
     IER &= MINT13;
     EINT;
-
     //
     // Insert ISR code here
     //
+    SysCtl_delay(5);
     cpuTimer1IntCount++;
-
     //
     // Disable Interrupts
     //
     DINT;
-
     //
     //  Add ISR to Trace
     //
     traceISR[traceISRIndex % TRACE_SIZE] = 0x00D0;
     traceISRIndex++;
 }
-
 //
 // cpuTimer2ISR - Counter for CpuTimer2
 //
@@ -399,24 +359,20 @@ cpuTimer2ISR(void)
 {
     IER &= MINT14;                 // Set "global" priority
     EINT;
-
     //
     // Insert ISR code here
     //
     cpuTimer2IntCount++;
-
     //
     // Disable interrupts
     //
     DINT;
-
     //
     //  Add ISR to Trace
     //
     traceISR[traceISRIndex % TRACE_SIZE] = 0x00E0;
     traceISRIndex++;
 }
-
 //
 // End of File
 //

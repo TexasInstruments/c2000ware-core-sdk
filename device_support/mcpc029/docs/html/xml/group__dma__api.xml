@@ -1,0 +1,1496 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="group__dma__api" kind="group">
+    <compoundname>dma_api</compoundname>
+    <title>DMA</title>
+    <innerclass refid="structDMA__ConfigParams" prot="public">DMA_ConfigParams</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="group__dma__api_1ga754b55b8adb26102e0d825ad5ecf1973" prot="public" static="no" strong="no">
+        <type></type>
+        <name>DMA_Trigger</name>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a0a9a7347ed1c488a3592cee213cae79b" prot="public">
+          <name>DMA_TRIGGER_SOFTWARE</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a895b8583ad80c8e1ee5bcdb5933d9d43" prot="public">
+          <name>DMA_TRIGGER_ADCA1</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>TRIGGER SOFTWARE. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973aca3d0d20a5dc46e124d4a4d25f3e0b88" prot="public">
+          <name>DMA_TRIGGER_ADCA2</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+<para>TRIGGER ADCA1. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a251cf7d67b30469f9b0729233fdd64dc" prot="public">
+          <name>DMA_TRIGGER_ADCAEVT</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+<para>TRIGGER ADCA2. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a4e98385d3caeb0f8ee396ab37f58ba1a" prot="public">
+          <name>DMA_TRIGGER_XINT1</name>
+          <initializer>= 7</initializer>
+          <briefdescription>
+<para>TRIGGER ADCAEVT. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a2fc7c5cf5ea5c9dfd0341d0ae2d7033d" prot="public">
+          <name>DMA_TRIGGER_XINT2</name>
+          <initializer>= 8</initializer>
+          <briefdescription>
+<para>TRIGGER XINT1. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a8fef9e5ecb6814795f7323b9f0f94767" prot="public">
+          <name>DMA_TRIGGER_XINT3</name>
+          <initializer>= 9</initializer>
+          <briefdescription>
+<para>TRIGGER XINT2. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973af7af14e3100a04eed96cf79d2f1af593" prot="public">
+          <name>DMA_TRIGGER_XINT4</name>
+          <initializer>= 10</initializer>
+          <briefdescription>
+<para>TRIGGER XINT3. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a02b42a5d33432bc88499ddfddd34db0c" prot="public">
+          <name>DMA_TRIGGER_XINT5</name>
+          <initializer>= 11</initializer>
+          <briefdescription>
+<para>TRIGGER XINT4. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a71415e554bfa268f0e76be0a250ebcd2" prot="public">
+          <name>DMA_TRIGGER_MCPWM1SOCA</name>
+          <initializer>= 12</initializer>
+          <briefdescription>
+<para>TRIGGER XINT5. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a09c6aa54b08da078c4713c06286b0310" prot="public">
+          <name>DMA_TRIGGER_MCPWM1SOCB</name>
+          <initializer>= 13</initializer>
+          <briefdescription>
+<para>TRIGGER MCPWM1SOCA. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a79ef5aa7e89ceeb75b2153c3be5f429c" prot="public">
+          <name>DMA_TRIGGER_MCPWM1SOCC</name>
+          <initializer>= 14</initializer>
+          <briefdescription>
+<para>TRIGGER MCPWM1SOCB. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973ac0dd0765ac9183be8a94c1c7d9c153aa" prot="public">
+          <name>DMA_TRIGGER_MCPWM1SOCD</name>
+          <initializer>= 15</initializer>
+          <briefdescription>
+<para>TRIGGER MCPWM1SOCC. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a0cdf550e5f8c44992d94fb4522bfa11e" prot="public">
+          <name>DMA_TRIGGER_MCPWM3SOCA</name>
+          <initializer>= 20</initializer>
+          <briefdescription>
+<para>TRIGGER MCPWM1SOCD. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a0d23de10d90ad328a12321af6ec270b5" prot="public">
+          <name>DMA_TRIGGER_MCPWM3SOCB</name>
+          <initializer>= 21</initializer>
+          <briefdescription>
+<para>TRIGGER MCPWM3SOCA. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973afdc53959788c4b7484b68b0e182d75d6" prot="public">
+          <name>DMA_TRIGGER_TINT0</name>
+          <initializer>= 28</initializer>
+          <briefdescription>
+<para>TRIGGER MCPWM3SOCB. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a30d298ff199db6d46ee33f5f36cda04f" prot="public">
+          <name>DMA_TRIGGER_TINT1</name>
+          <initializer>= 29</initializer>
+          <briefdescription>
+<para>TRIGGER TINT0. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a34a63182646f2ff12b6adc90cd077b99" prot="public">
+          <name>DMA_TRIGGER_TINT2</name>
+          <initializer>= 30</initializer>
+          <briefdescription>
+<para>TRIGGER TINT1. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a7bd9b4c80cdf102b80ef347b7a08b990" prot="public">
+          <name>DMA_TRIGGER_ECAP1</name>
+          <initializer>= 31</initializer>
+          <briefdescription>
+<para>TRIGGER TINT2. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a45b2b59a43ab1ede2911621de60e8a54" prot="public">
+          <name>DMA_TRIGGER_SPIATX</name>
+          <initializer>= 35</initializer>
+          <briefdescription>
+<para>TRIGGER ECAP1. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a5051e85523782550936f592d76330e6f" prot="public">
+          <name>DMA_TRIGGER_SPIARX</name>
+          <initializer>= 36</initializer>
+          <briefdescription>
+<para>TRIGGER SPIATX. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a94ec49aa27a429310c79f92265dfc013" prot="public">
+          <name>DMA_TRIGGER_UARTARX</name>
+          <initializer>= 37</initializer>
+          <briefdescription>
+<para>TRIGGER SPIARX. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a0e937067067833f0e19a4bd6ef815cd1" prot="public">
+          <name>DMA_TRIGGER_UARTATX</name>
+          <initializer>= 39</initializer>
+          <briefdescription>
+<para>TRIGGER UARTARX. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Values that can be passed to <ref refid="group__dma__api_1ga60e33dcbda8ed7c6d603cab17bdb7f19" kindref="member">DMA_configMode()</ref> as the <emphasis>trigger</emphasis> parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="97" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="98" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__dma__api_1ga97af429464af799862f05c17057a5274" prot="public" static="no" strong="no">
+        <type></type>
+        <name>DMA_InterruptMode</name>
+        <enumvalue id="group__dma__api_1gga97af429464af799862f05c17057a5274ab83f42cce7a0bb8f4dc2950f20b3b409" prot="public">
+          <name>DMA_INT_AT_BEGINNING</name>
+          <briefdescription>
+<para>DMA interrupt is generated at the beginning of a transfer. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga97af429464af799862f05c17057a5274ad62cd29e6a459fd9d45786032b860fba" prot="public">
+          <name>DMA_INT_AT_END</name>
+          <briefdescription>
+<para>DMA interrupt is generated at the end of a transfer. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__dma__api_1ga596c5bb7d03fc2f4e2c404751a98da83" kindref="member">DMA_setInterruptMode()</ref> as the <emphasis>mode</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="131" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="132" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__dma__api_1ga1f299229c8568154779e9a37d8125596" prot="public" static="no" strong="no">
+        <type></type>
+        <name>DMA_EmulationMode</name>
+        <enumvalue id="group__dma__api_1gga1f299229c8568154779e9a37d8125596ac63080115e0c9ec6e4dffc295e0c45e9" prot="public">
+          <name>DMA_EMULATION_STOP</name>
+          <briefdescription>
+<para>Transmission stops after current read-write access is completed. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dma__api_1gga1f299229c8568154779e9a37d8125596a6f4c60bc1b1e35112c38fb01802c0720" prot="public">
+          <name>DMA_EMULATION_FREE_RUN</name>
+          <briefdescription>
+<para>Continue DMA operation regardless of emulation suspend. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__dma__api_1ga8e0855abdfe02a0540d21bfd7fa058a3" kindref="member">DMA_setEmulationMode()</ref> as the <emphasis>mode</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="145" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="146" bodyend="151"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__dma__api_1gaf24429e47b48eda3aef685d79053c083" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DMA_initController</definition>
+        <argsstring>(void)</argsstring>
+        <name>DMA_initController</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the DMA controller to a known state.</para>
+<para>This function configures does a hard reset of the DMA controller in order to put it into a known state. The function also sets the DMA to run free during an emulation suspend (see the field DEBUGCTRL.FREE for more info).</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="242" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="242" bodyend="253"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1gad547e4884e1dd591dbc7593ac0336d14" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DMA_triggerSoftReset</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DMA_triggerSoftReset</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Channel Soft Reset</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function does a soft reset to place the channel into its default state</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="267" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="267" bodyend="278"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1ga8e0855abdfe02a0540d21bfd7fa058a3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DMA_setEmulationMode</definition>
+        <argsstring>(DMA_EmulationMode mode)</argsstring>
+        <name>DMA_setEmulationMode</name>
+        <param>
+          <type><ref refid="group__dma__api_1ga1f299229c8568154779e9a37d8125596" kindref="member">DMA_EmulationMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets DMA emulation mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the emulation mode to be selected.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the behavior of the DMA operation when an emulation suspend occurs. The <emphasis>mode</emphasis> parameter can be one of the following:</para>
+<para><itemizedlist>
+<listitem><para><bold>DMA_EMULATION_STOP</bold> - DMA runs until the current read-write access is completed.</para>
+</listitem><listitem><para><bold>DMA_EMULATION_FREE_RUN</bold> - DMA operation continues regardless of a the suspend.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="298" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="298" bodyend="315"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1gae9fb39491d7b069639418c8070c5477d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DMA_enableTrigger</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DMA_enableTrigger</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables peripherals to trigger a DMA transfer.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables the selected peripheral trigger to start a DMA transfer on the specified channel.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="330" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="330" bodyend="343"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1gad05fcef34d43fc4b27e3b68eedef5ff3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DMA_disableTrigger</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DMA_disableTrigger</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables peripherals from triggering a DMA transfer.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables the selected peripheral trigger from starting a DMA transfer on the specified channel. This also disables the use of the software force using the <ref refid="group__dma__api_1ga49257e24c76546865be3e2dbad79ede4" kindref="member">DMA_forceTrigger()</ref> API.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="359" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="359" bodyend="372"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1ga49257e24c76546865be3e2dbad79ede4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DMA_forceTrigger</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DMA_forceTrigger</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Force a peripheral trigger to a DMA channel.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the peripheral trigger flag and if triggering a DMA burst is enabled (see <ref refid="group__dma__api_1gae9fb39491d7b069639418c8070c5477d" kindref="member">DMA_enableTrigger()</ref>), a DMA burst transfer will be forced.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="388" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="388" bodyend="401"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1ga20440b78c16f2d22c2c3a7d6821b98e7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DMA_clearTriggerFlag</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DMA_clearTriggerFlag</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clears a DMA channel&apos;s peripheral trigger flag.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function clears the peripheral trigger flag. Normally, you would use this function when initializing the DMA for the first time. The flag is cleared automatically when the DMA starts the first burst of a transfer.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="417" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="417" bodyend="430"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1ga8c289bc2dcb49b73b29466f37b729383" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool DMA_getTransferStatusFlag</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DMA_getTransferStatusFlag</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the status of a DMA channel&apos;s Transfer Status Flag.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns <bold>true</bold> if the Transfer Status Flag is set, which means a DMA transfer has begun. This flag is cleared when TRANSFER_COUNT reaches zero, or when the HARDRESET or SOFTRESET bit is set.</para>
+<para><simplesect kind="return"><para>Returns <bold>true</bold> if the Transfer Status Flag is set. Returns <bold>false</bold> otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="448" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="448" bodyend="459"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1ga83612ace854ed924c299dde96d6cfa48" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool DMA_getBurstStatusFlag</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DMA_getBurstStatusFlag</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the status of a DMA channel&apos;s Burst Status Flag.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns <bold>true</bold> if the Burst Status Flag is set, which means a DMA burst has begun. This flag is cleared when BURST_COUNT reaches zero, or when the HARDRESET or SOFTRESET bit is set.</para>
+<para><simplesect kind="return"><para>Returns <bold>true</bold> if the Burst Status Flag is set. Returns <bold>false</bold> otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="477" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="477" bodyend="488"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1ga4857353007c6bfe465f3f0ea43a3d638" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool DMA_getRunStatusFlag</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DMA_getRunStatusFlag</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the status of a DMA channel&apos;s Run Status Flag.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns <bold>true</bold> if the Run Status Flag is set, which means the DMA channel is enabled. This flag is cleared when a transfer completes (TRANSFER_COUNT = 0) and continuous mode is disabled, or when the HARDRESET, SOFTRESET, or HALT bit is set.</para>
+<para><simplesect kind="return"><para>Returns <bold>true</bold> if the channel is enabled. Returns <bold>false</bold> otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="507" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="507" bodyend="518"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1gac2e3a33ed6408afed5c10e22347ebe49" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool DMA_getOverflowFlag</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DMA_getOverflowFlag</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the status of a DMA channel&apos;s Overflow Flag.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns <bold>true</bold> if the Overflow Flag is set, which means peripheral event trigger was received while Peripheral Event Trigger Flag was already set. This flag can be cleared by writing to ERRCLR bit, using the function <ref refid="group__dma__api_1gaf9fec00e68d03c8c1fcc8741fd15d473" kindref="member">DMA_clearErrorFlag()</ref>.</para>
+<para><simplesect kind="return"><para>Returns <bold>true</bold> if the channel is enabled. Returns <bold>false</bold> otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="537" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="537" bodyend="548"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1gac19fecbd3d7828bdcb724d2bc366e79d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool DMA_getTriggerFlagStatus</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DMA_getTriggerFlagStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the status of a DMA channel&apos;s peripheral trigger flag.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns <bold>true</bold> if a peripheral trigger event has occurred The flag is automatically cleared when the first burst transfer begins, but if needed, it can be cleared using <ref refid="group__dma__api_1ga20440b78c16f2d22c2c3a7d6821b98e7" kindref="member">DMA_clearTriggerFlag()</ref>.</para>
+<para><simplesect kind="return"><para>Returns <bold>true</bold> if a peripheral trigger event has occurred and its flag is set. Returns <bold>false</bold> otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="565" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="565" bodyend="576"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1ga307b1f39953f45040b0feb3d6b6c05db" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DMA_startChannel</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DMA_startChannel</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Starts a DMA channel.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function starts the DMA running, typically after you have configured it. It will wait for the first trigger event to start operation. To halt the channel use <ref refid="group__dma__api_1ga7eadb5b54eb1a3248b9fcb5148cd8570" kindref="member">DMA_stopChannel()</ref>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="592" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="592" bodyend="605"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1ga7eadb5b54eb1a3248b9fcb5148cd8570" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DMA_stopChannel</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DMA_stopChannel</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Halts a DMA channel.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function halts the DMA at its current state and any current read-write access is completed. To start the channel again use <ref refid="group__dma__api_1ga307b1f39953f45040b0feb3d6b6c05db" kindref="member">DMA_startChannel()</ref>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="620" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="620" bodyend="633"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1ga51c845f784ba6f47e493610ce6084b34" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DMA_enableInterrupt</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DMA_enableInterrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables a DMA channel interrupt source.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables the indicated DMA channel interrupt source.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="647" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="647" bodyend="660"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1ga6e1fe4e880dd93f80a26f96405b35fde" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DMA_disableInterrupt</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DMA_disableInterrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables a DMA channel interrupt source.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables the indicated DMA channel interrupt source.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="674" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="674" bodyend="687"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1ga44032aea9d6cf961b7b82b591b2475af" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DMA_enableOverrunInterrupt</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DMA_enableOverrunInterrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables the DMA channel overrun interrupt.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables the indicated DMA channel&apos;s ability to generate an interrupt upon the detection of an overrun. An overrun is when a peripheral event trigger is received by the DMA before a previous trigger on that channel had been serviced and its flag had been cleared.</para>
+<para>Note that this is the same interrupt signal as the interrupt that gets generated at the beginning/end of a transfer. That interrupt must first be enabled using <ref refid="group__dma__api_1ga51c845f784ba6f47e493610ce6084b34" kindref="member">DMA_enableInterrupt()</ref> in order for the overrun interrupt to be generated.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="709" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="709" bodyend="722"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1ga4e2c2b6c11267d8b23b22720afa24fdb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DMA_disableOverrunInterrupt</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DMA_disableOverrunInterrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables the DMA channel overrun interrupt.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables the indicated DMA channel&apos;s ability to generate an interrupt upon the detection of an overrun.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="737" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="737" bodyend="750"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1gaf9fec00e68d03c8c1fcc8741fd15d473" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DMA_clearErrorFlag</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DMA_clearErrorFlag</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clears the DMA channel error flags.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function clears both the DMA channel&apos;s sync error flag and its overrun error flag.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="765" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="765" bodyend="778"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1ga596c5bb7d03fc2f4e2c404751a98da83" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DMA_setInterruptMode</definition>
+        <argsstring>(uint32_t base, DMA_InterruptMode mode)</argsstring>
+        <name>DMA_setInterruptMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__dma__api_1ga97af429464af799862f05c17057a5274" kindref="member">DMA_InterruptMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the interrupt generation mode of a DMA channel interrupt.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a flag to indicate the channel interrupt mode.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the channel interrupt mode. When the <emphasis>mode</emphasis> parameter is <bold>DMA_INT_AT_END</bold>, the DMA channel interrupt will be generated at the end of the transfer. If <bold>DMA_INT_AT_BEGINNING</bold>, the interrupt will be generated at the beginning of a new transfer. Generating at the beginning of a new transfer is the default behavior.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="797" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="797" bodyend="819"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1ga543dc469332c63aaa8a7408063297608" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DMA_setPriorityMode</definition>
+        <argsstring>(bool ch1IsHighPri)</argsstring>
+        <name>DMA_setPriorityMode</name>
+        <param>
+          <type>bool</type>
+          <declname>ch1IsHighPri</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the DMA channel priority mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ch1IsHighPri</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a flag to indicate the channel interrupt mode.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the channel interrupt mode. When the <emphasis>ch1IsHighPri</emphasis> parameter is <bold>false</bold>, the DMA channels are serviced in round-robin mode. This is the default behavior.</para>
+<para>If <bold>true</bold>, channel 1 will be given higher priority than the other channels. This means that if a channel 1 trigger occurs, the current word transfer on any other channel is completed and channel 1 is serviced for the complete burst count. The lower-priority channel&apos;s interrupted transfer will then resume.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="841" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="841" bodyend="860"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1ga98a2ece7483e546416054f2407ce1499" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DMA_configSourceAddress</definition>
+        <argsstring>(uint32_t base, const void *srcAddr)</argsstring>
+        <name>DMA_configSourceAddress</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>srcAddr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Configures the source address for the DMA channel</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>*srcAddr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a source address.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the source address of a DMA channel.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="876" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="876" bodyend="892"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1gac45d0425e3d1767d92de5e399b099a23" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DMA_configDestAddress</definition>
+        <argsstring>(uint32_t base, const void *destAddr)</argsstring>
+        <name>DMA_configDestAddress</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>destAddr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Configures the destination address for the DMA channel</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>*destAddr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the destination address.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the destinaton address of a DMA channel.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="908" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="908" bodyend="924"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1gace97e0ecaa35c4ba7e8978f24b0b32a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DMA_configChannel</definition>
+        <argsstring>(uint32_t base, const DMA_ConfigParams *transfParams)</argsstring>
+        <name>DMA_configChannel</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structDMA__ConfigParams" kindref="compound">DMA_ConfigParams</ref> *</type>
+          <declname>transfParams</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Setup DMA to transfer data on the specified channel.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is Base address of the DMA channel control register </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>*transfParams</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>configuration parameter Refer struct <ref refid="structDMA__ConfigParams" kindref="compound">DMA_ConfigParams</ref></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the DMA transfer on the specified channel.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="940" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" declline="940" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1ga6ce0b2e96a07ac5ece62f8dff7a61ad2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DMA_configAddresses</definition>
+        <argsstring>(uint32_t base, const void *destAddr, const void *srcAddr)</argsstring>
+        <name>DMA_configAddresses</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>destAddr</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>srcAddr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Configures the DMA channel</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>*destAddr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the destination address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>*srcAddr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a source address.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the source and destination addresses of a DMA channel. The parameters are pointers to the data to be transferred.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="957" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" declline="957" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1ga2439c8b8c65376c649965a180166e0d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DMA_configBurst</definition>
+        <argsstring>(uint32_t base, uint16_t size, int16_t srcStep, int16_t destStep)</argsstring>
+        <name>DMA_configBurst</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>int16_t</type>
+          <declname>srcStep</declname>
+        </param>
+        <param>
+          <type>int16_t</type>
+          <declname>destStep</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Configures the DMA channel&apos;s burst settings.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the number of words transferred per burst. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>srcStep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the amount to increment or decrement the source address after each word of a burst. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>destStep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the amount to increment or decrement the destination address after each word of a burst.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the size of each burst and the address step size.</para>
+<para>The <emphasis>size</emphasis> parameter is the number of words that will be transferred during a single burst. Possible amounts range from 1 word to 32 words.</para>
+<para>The <emphasis>srcStep</emphasis> and <emphasis>destStep</emphasis> parameters specify the address step that should be added to the source and destination addresses after each transferred word of a burst. Only signed values from -4096 to 4095 are valid.</para>
+<para><simplesect kind="note"><para>Note that regardless of what data size (configured by <ref refid="group__dma__api_1ga60e33dcbda8ed7c6d603cab17bdb7f19" kindref="member">DMA_configMode()</ref>) is used, parameters are in terms of 16-bits words.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="986" column="13" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" declline="986" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1ga0aa51ed5155166eb9332bf6c2165ae92" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DMA_configTransfer</definition>
+        <argsstring>(uint32_t base, uint32_t transferSize, int16_t srcStep, int16_t destStep)</argsstring>
+        <name>DMA_configTransfer</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>transferSize</declname>
+        </param>
+        <param>
+          <type>int16_t</type>
+          <declname>srcStep</declname>
+        </param>
+        <param>
+          <type>int16_t</type>
+          <declname>destStep</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Configures the DMA channel&apos;s transfer settings.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>transferSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the number of bursts per transfer. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>srcStep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the amount to increment or decrement the source address after each burst of a transfer unless a wrap occurs. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>destStep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the amount to increment or decrement the destination address after each burst of a transfer unless a wrap occurs.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the transfer size and the address step that is made after each burst.</para>
+<para>The <emphasis>transferSize</emphasis> parameter is the number of bursts per transfer. If DMA channel interrupts are enabled, they will occur after this number of bursts have completed. The maximum number of bursts is 65536.</para>
+<para>The <emphasis>srcStep</emphasis> and <emphasis>destStep</emphasis> parameters specify the address step that should be added to the source and destination addresses after each transferred burst of a transfer. Only signed values from -4096 to 4095 are valid. If a wrap occurs, these step values will be ignored. Wrapping is configured with <ref refid="group__dma__api_1ga3bf1e97d735ac34a5dc04645227ee31a" kindref="member">DMA_configWrap()</ref>.</para>
+<para><simplesect kind="note"><para>Note that regardless of what data size (configured by <ref refid="group__dma__api_1ga60e33dcbda8ed7c6d603cab17bdb7f19" kindref="member">DMA_configMode()</ref>) is used, parameters are in terms of 16-bits words.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="1020" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" declline="1020" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1ga3bf1e97d735ac34a5dc04645227ee31a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DMA_configWrap</definition>
+        <argsstring>(uint32_t base, uint32_t srcWrapSize, int16_t srcStep, uint32_t destWrapSize, int16_t destStep)</argsstring>
+        <name>DMA_configWrap</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>srcWrapSize</declname>
+        </param>
+        <param>
+          <type>int16_t</type>
+          <declname>srcStep</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>destWrapSize</declname>
+        </param>
+        <param>
+          <type>int16_t</type>
+          <declname>destStep</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Configures the DMA channel&apos;s wrap settings.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>srcWrapSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the number of bursts to be transferred before a wrap of the source address occurs. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>srcStep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the amount to increment or decrement the source address after each burst of a transfer unless a wrap occurs. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>destWrapSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the number of bursts to be transferred before a wrap of the destination address occurs. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>destStep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the amount to increment or decrement the destination address after each burst of a transfer unless a wrap occurs.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the DMA channel&apos;s wrap settings.</para>
+<para>The <emphasis>srcWrapSize</emphasis> and <emphasis>destWrapSize</emphasis> parameters are the number of bursts that are to be transferred before their respective addresses are wrapped. The maximum wrap size is 65536 bursts.</para>
+<para>The <emphasis>srcStep</emphasis> and <emphasis>destStep</emphasis> parameters specify the address step that should be added to the source and destination addresses when the wrap occurs. Only signed values from -4096 to 4095 are valid.</para>
+<para><simplesect kind="note"><para>Note that regardless of what data size (configured by <ref refid="group__dma__api_1ga60e33dcbda8ed7c6d603cab17bdb7f19" kindref="member">DMA_configMode()</ref>) is used, parameters are in terms of 16-bits words.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="1054" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" declline="1054" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dma__api_1ga60e33dcbda8ed7c6d603cab17bdb7f19" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DMA_configMode</definition>
+        <argsstring>(uint32_t base, DMA_Trigger trigger, uint32_t config)</argsstring>
+        <name>DMA_configMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__dma__api_1ga754b55b8adb26102e0d825ad5ecf1973" kindref="member">DMA_Trigger</ref></type>
+          <declname>trigger</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>config</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Configures the DMA channel trigger and mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the DMA channel control registers. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>trigger</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the interrupt source that triggers a DMA transfer. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>config</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a bit field of several configuration selections.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the DMA channel&apos;s trigger and mode.</para>
+<para>The <emphasis>trigger</emphasis> parameter is the interrupt source that will trigger the start of a DMA transfer.</para>
+<para>The <emphasis>config</emphasis> parameter is the logical OR of the following values:<itemizedlist>
+<listitem><para><bold>DMA_CFG_ONESHOT_DISABLE</bold> or <bold>DMA_CFG_ONESHOT_ENABLE</bold>. If enabled, the subsequent burst transfers occur without additional event triggers after the first event trigger. If disabled, only one burst transfer is performed per event trigger.</para>
+</listitem><listitem><para><bold>DMA_CFG_CONTINUOUS_DISABLE</bold> or <bold>DMA_CFG_CONTINUOUS_ENABLE</bold>. If enabled the DMA reinitializes when the transfer count is zero and waits for the next interrupt event trigger. If disabled, the DMA stops and clears the run status bit.</para>
+</listitem><listitem><para><bold>DMA_CFG_SIZE_16BIT</bold> or <bold>DMA_CFG_SIZE_32BIT</bold>. This setting selects whether the databus width is 16 or 32 bits.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="1086" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" declline="1086" declcolumn="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__dma__api_1gafb24dc3641edf6de2825263e011276ca" prot="public" static="no">
+        <name>DMA_CFG_ONESHOT_DISABLE</name>
+        <initializer>0U</initializer>
+        <briefdescription>
+<para>Only one burst transfer performed per trigger. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="78" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dma__api_1ga4d169efab7d753a99565375a5498b123" prot="public" static="no">
+        <name>DMA_CFG_ONESHOT_ENABLE</name>
+        <initializer>DMA_MODE_ONESHOT</initializer>
+        <briefdescription>
+<para>Burst transfers occur without additional event triggers after the first. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="80" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dma__api_1gaa9b388933f94abc75c681a86663e7142" prot="public" static="no">
+        <name>DMA_CFG_CONTINUOUS_DISABLE</name>
+        <initializer>0U</initializer>
+        <briefdescription>
+<para>DMA channel will be disabled at the end of a transfer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="83" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dma__api_1gac9454e1d36871bcdcd3b49aa61f21cec" prot="public" static="no">
+        <name>DMA_CFG_CONTINUOUS_ENABLE</name>
+        <initializer>DMA_MODE_CONTINUOUS</initializer>
+        <briefdescription>
+<para>DMA reinitializes when the transfer count is zero and waits for a trigger. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="85" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dma__api_1ga9518c4804b92cdd68c4456a91f6d82aa" prot="public" static="no">
+        <name>DMA_CFG_SIZE_16BIT</name>
+        <initializer>0U</initializer>
+        <briefdescription>
+<para>DMA transfers 16 bits at a time. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="88" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dma__api_1ga58bf946ba53a61ce4d9565c23bf8a861" prot="public" static="no">
+        <name>DMA_CFG_SIZE_32BIT</name>
+        <initializer>DMA_MODE_DATASIZE</initializer>
+        <briefdescription>
+<para>DMA transfers 32 bits at a time. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" line="90" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dma.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This module is used for DMA configurations. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

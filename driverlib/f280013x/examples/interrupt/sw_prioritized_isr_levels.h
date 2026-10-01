@@ -42,11 +42,9 @@
 //#############################################################################
 #ifndef SW_PRIORITZIED_ISR_LEVELS_H
 #define SW_PRIORITZIED_ISR_LEVELS_H
-
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 //
 // Mask for interrupt groups
 //
@@ -66,13 +64,11 @@ extern "C" {
 #define M_INT14     0x2000  // INT14 Mask
 #define M_DLOG      0x4000  // DLOGINT Mask
 #define M_RTOS      0x8000  // RTOSINT Mask
-
 //
 // Interrupt Enable Register Allocation:
 // Interrupts can be enabled/disabled using the CPU interrupt enable register
 // (IER) and the PIE interrupt enable registers (PIEIER1 to PIEIER12).
 //
-
 //
 // Set "Global" Interrupt Priority Level (IER register):
 //
@@ -111,7 +107,6 @@ extern "C" {
 #define INT14PL     1        // Global Priority for INT14 (TINT2)
 #define INT15PL     0        // Global Priority for DATALOG
 #define INT16PL     0        // Global Priority for RTOSINT
-
 //
 // Set "Group" Interrupt Priority Level (PIEIER1 to PIEIER12 registers):
 //
@@ -154,7 +149,6 @@ extern "C" {
 #define G1_6PL      0       // SYS_ERR_INT
 #define G1_7PL      4       // TIMER0_INT
 #define G1_8PL      0       // WAKE_INT
-
 #define G2_1PL      0       // EPWM1_TZ_INT
 #define G2_2PL      0       // EPWM2_TZ_INT
 #define G2_3PL      0       // EPWM3_TZ_INT
@@ -163,7 +157,6 @@ extern "C" {
 #define G2_6PL      0       // EPWM6_TZ_INT
 #define G2_7PL      0       // EPWM7_TZ_INT
 #define G2_8PL      0       // Reserved
-
 #define G3_1PL      0       // EPWM1_INT
 #define G3_2PL      0       // EPWM2_INT
 #define G3_3PL      0       // EPWM3_INT
@@ -172,7 +165,6 @@ extern "C" {
 #define G3_6PL      0       // EPWM6_INT
 #define G3_7PL      0       // EPWM7_INT
 #define G3_8PL      0       // Reserved
-
 #define G4_1PL      0       // ECAP1_INT
 #define G4_2PL      0       // ECAP2_INT
 #define G4_3PL      0       // Reserved
@@ -181,7 +173,6 @@ extern "C" {
 #define G4_6PL      0       // Reserved
 #define G4_7PL      0       // Reserved
 #define G4_8PL      0       // Reserved
-
 #define G5_1PL      0       // EQEP1_INT
 #define G5_2PL      0       // Reserved
 #define G5_3PL      0       // Reserved
@@ -190,7 +181,6 @@ extern "C" {
 #define G5_6PL      0       // Reserved
 #define G5_7PL      0       // Reserved
 #define G5_8PL      0       // Reserved
-
 #define G6_1PL      0       // SPIA_RX_INT
 #define G6_2PL      0       // SPIA_TX_INT
 #define G6_3PL      0       // Reserved
@@ -199,7 +189,6 @@ extern "C" {
 #define G6_6PL      0       // Reserved
 #define G6_7PL      0       // DCC0_INT
 #define G6_8PL      0       // Reserved
-
 #define G7_1PL      0       // Reserved
 #define G7_2PL      0       // Reserved
 #define G7_3PL      0       // Reserved
@@ -208,7 +197,6 @@ extern "C" {
 #define G7_6PL      0       // Reserved
 #define G7_7PL      0       // Reserved
 #define G7_8PL      0       // Reserved
-
 #define G8_1PL      0       // I2CA_INT
 #define G8_2PL      0       // I2CA_FIFO_INT
 #define G8_3PL      0       // I2CB_INT
@@ -217,7 +205,6 @@ extern "C" {
 #define G8_6PL      0       // SCIC_TX_INT
 #define G8_7PL      0       // Reserved
 #define G8_8PL      0       // Reserved
-
 #define G9_1PL      0       // SCIA_RX_INT
 #define G9_2PL      0       // SCIA_TX_INT
 #define G9_3PL      0       // SCIB_RX_INT
@@ -226,7 +213,6 @@ extern "C" {
 #define G9_6PL      0       // CANA1_INT
 #define G9_7PL      0       // Reserved
 #define G9_8PL      0       // Reserved
-
 #define G10_1PL     0       // ADCA_EVT_INT
 #define G10_2PL     0       // ADCA2_INT
 #define G10_3PL     0       // ADCA3_INT
@@ -235,7 +221,6 @@ extern "C" {
 #define G10_6PL     0       // ADCC2_INT
 #define G10_7PL     0       // ADCC3_INT
 #define G10_8PL     0       // ADCC4_INT
-
 #define G11_1PL     0       // Reserved
 #define G11_2PL     0       // Reserved
 #define G11_3PL     0       // Reserved
@@ -244,7 +229,6 @@ extern "C" {
 #define G11_6PL     0       // Reserved
 #define G11_7PL     0       // Reserved
 #define G11_8PL     0       // Reserved
-
 #define G12_1PL     0       // XINT3_INT
 #define G12_2PL     0       // XINT4_INT
 #define G12_3PL     0       // XINT5_INT
@@ -253,19 +237,14 @@ extern "C" {
 #define G12_6PL     0       // Reserved
 #define G12_7PL     0       // Reserved
 #define G12_8PL     0       // Reserved
-
-
 //
 // Include the header file with software interrupt prioritization logic
 //
 #include "sw_interrupt_prioritization_logic.h"
-
 #ifdef __cplusplus
 }
 #endif /* extern "C" */
-
 #endif // eof
-
 //
 // End of file
 //

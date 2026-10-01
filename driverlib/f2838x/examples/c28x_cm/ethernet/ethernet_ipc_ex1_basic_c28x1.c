@@ -25,7 +25,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -58,40 +58,32 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
 #define IPC_CMD_READ_MEM   0x1001
 #define IPC_CMD_RESP       0x2001
-
 #define TEST_PASS          0x5555
 #define TEST_FAIL          0xAAAA
-
 #define PACKET_LENGTH 132
 #pragma DATA_SECTION(packetData, "MSGRAM_CPU_TO_CM")
 uint8_t packetData[PACKET_LENGTH];
-
 uint32_t pass;
-
 //
 // Main
 //
 void main(void)
 {
     int i;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Boot CM core
     //
@@ -100,7 +92,6 @@ void main(void)
 #else
     Device_bootCM(BOOTMODE_BOOT_TO_S0RAM);
 #endif
-
     //
     //Set up EnetCLK to use SYSPLL as the clock source and set the
     //clock divider to 2.
@@ -110,65 +101,52 @@ void main(void)
     //to be made available to the CM side code beforehand.
     //
     SysCtl_setEnetClk(SYSCTL_ENETCLKOUT_DIV_2, SYSCTL_SOURCE_SYSPLL);
-
     //
     // Configure the GPIOs for ETHERNET.
     //
-
     //
     // MDIO Signals
     //
     GPIO_setPinConfig(GPIO_105_ENET_MDIO_CLK);
     GPIO_setPinConfig(GPIO_106_ENET_MDIO_DATA);
-
     //
     // Use this only for RMII Mode
     //GPIO_setPinConfig(GPIO_73_ENET_RMII_CLK);
     //
-
     //
     //MII Signals
     //
     GPIO_setPinConfig(GPIO_109_ENET_MII_CRS);
     GPIO_setPinConfig(GPIO_110_ENET_MII_COL);
-
     GPIO_setPinConfig(GPIO_75_ENET_MII_TX_DATA0);
     GPIO_setPinConfig(GPIO_122_ENET_MII_TX_DATA1);
     GPIO_setPinConfig(GPIO_123_ENET_MII_TX_DATA2);
     GPIO_setPinConfig(GPIO_124_ENET_MII_TX_DATA3);
-
     //
     //Use this only if the TX Error pin has to be connected
     //GPIO_setPinConfig(GPIO_46_ENET_MII_TX_ERR);
     //
-
     GPIO_setPinConfig(GPIO_118_ENET_MII_TX_EN);
-
     GPIO_setPinConfig(GPIO_114_ENET_MII_RX_DATA0);
     GPIO_setPinConfig(GPIO_115_ENET_MII_RX_DATA1);
     GPIO_setPinConfig(GPIO_116_ENET_MII_RX_DATA2);
     GPIO_setPinConfig(GPIO_117_ENET_MII_RX_DATA3);
     GPIO_setPinConfig(GPIO_113_ENET_MII_RX_ERR);
     GPIO_setPinConfig(GPIO_112_ENET_MII_RX_DV);
-
     GPIO_setPinConfig(GPIO_44_ENET_MII_TX_CLK);
     GPIO_setPinConfig(GPIO_111_ENET_MII_RX_CLK);
-
     //
     //Power down pin to bring the external PHY out of Power down
     //
     GPIO_setDirectionMode(108, GPIO_DIR_MODE_OUT);
     GPIO_setPadConfig(108, GPIO_PIN_TYPE_PULLUP);
     GPIO_writePin(108,1);
-
     //
     //PHY Reset Pin to be driven High to bring external PHY out of Reset
     //
-
     GPIO_setDirectionMode(119, GPIO_DIR_MODE_OUT);
     GPIO_setPadConfig(119, GPIO_PIN_TYPE_PULLUP);
     GPIO_writePin(119,1);
-
     //
     //Form the unicast Ethernet Packet in Memory
     //
@@ -185,19 +163,14 @@ void main(void)
         else
             HWREG((uint32_t *)packetData +i) = i;
     }
-
     //
     // Clear any IPC flags if set already
     //
     IPC_clearFlagLtoR(IPC_CPU1_L_CM_R, IPC_FLAG_ALL);
-
     //
     // Synchronize both the cores.
     //
     IPC_sync(IPC_CPU1_L_CM_R, IPC_FLAG31);
-
-
-
     //
     // Send a message without message queue
     // Since C28x and CM does not share the same address space for shared RAM,
@@ -206,12 +179,10 @@ void main(void)
     //
     IPC_sendCommand(IPC_CPU1_L_CM_R, IPC_FLAG0, IPC_ADDR_CORRECTION_ENABLE,
                     IPC_CMD_READ_MEM, (uint32_t)packetData, PACKET_LENGTH);
-
     //
     // Wait for acknowledgment
     //
     IPC_waitForAck(IPC_CPU1_L_CM_R, IPC_FLAG0);
-
     //
     // Read response
     //
@@ -223,7 +194,6 @@ void main(void)
     {
         pass = 0;
     }
-
     //
     // End of example. Loop forever
     //

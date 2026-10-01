@@ -1,12 +1,9 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --device "F28E12x" --package "48PT" --part "F28E12x_48PT" --context "system" --product "C2000WARE@5.04.00.00"
- * @v2CliArgs --device "F28E120SC" --package "48PT" --product "C2000WARE@6.00.00.00"
- * @versions {"tool":"1.21.0+dev"}
+ * @cliArgs --device "F28E12x" --part "F28E12x_48PT" --package "48PT" --context "system"
+ * @v2CliArgs ---device "F28E120SC" --package "48PT" --context "system"
  */
-
-
 /**
  * Import the modules used in this configuration.
  */
@@ -15,14 +12,12 @@ const inputxbar_input1 = inputxbar_input.addInstance();
 const mcpwm            = scripting.addModule("/driverlib/mcpwm.js", {}, false);
 const mcpwm1           = mcpwm.addInstance();
 const mcpwm2           = mcpwm.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
 inputxbar_input1.$name          = "myINPUTXBARINPUT0";
 inputxbar_input1.inputxbarInput = "XBAR_INPUT5";
 inputxbar_input1.inputxbarGpio  = "GPIO43";
-
 mcpwm1.$name                                                       = "myMCPWM0";
 mcpwm1.mcpwmTimebase_period                                        = 15999;
 mcpwm1.mcpwmTimebase_counterMode                                   = "MCPWM_COUNTER_MODE_UP";
@@ -46,7 +41,6 @@ mcpwm1.mcpwm.$assign                                               = "MCPWM1";
 mcpwm1.mcpwm.mcpwm_1aPin.$assign                                   = "GPIO0";
 mcpwm1.mcpwm.mcpwm_1bPin.$assign                                   = "GPIO1";
 mcpwm1.mcpwmInt.enableInterrupt                                    = true;
-
 mcpwm2.$name                                                       = "myMCPWM1";
 mcpwm2.mcpwmTimebase_phaseEnable                                   = true;
 mcpwm2.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1A_ON_TIMEBASE_ZERO    = "MCPWM_AQ_OUTPUT_HIGH";

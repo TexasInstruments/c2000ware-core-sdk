@@ -39,7 +39,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -72,14 +72,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Globals
 //
@@ -87,46 +85,38 @@ volatile uint16_t sData[2];                  // Send data buffer
 volatile uint16_t rData[2];                  // Receive data buffer
 volatile uint16_t rDataPoint = 0;            // To keep track of where we are in the
                                     // data stream to check received data
-
 //
 // Function Prototypes
 //
 __interrupt void spibTxFIFOISR(void);
 __interrupt void spiaRxFIFOISR(void);
-
 //
 // Main
 //
 void main(void)
 {
     uint16_t i;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Board initialization
     //
     Board_init();
-
     //
     // Initialize the data buffers
     //
@@ -135,13 +125,11 @@ void main(void)
         sData[i] = i;
         rData[i]= 0;
     }
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Loop forever. Suspend or place breakpoints to observe the buffers.
     //
@@ -150,14 +138,12 @@ void main(void)
         ;
     }
 }
-
 //
 // SPI B Transmit FIFO ISR
 //
 __interrupt void spibTxFIFOISR(void)
 {
     uint16_t i;
-
     //
     // Send data
     //
@@ -165,7 +151,6 @@ __interrupt void spibTxFIFOISR(void)
     {
        SPI_writeDataNonBlocking(SPIB_BASE, sData[i]);
     }
-
     //
     // Increment data for next cycle
     //
@@ -173,21 +158,18 @@ __interrupt void spibTxFIFOISR(void)
     {
        sData[i] = sData[i] + 1;
     }
-
     //
     // Clear interrupt flag and issue ACK
     //
     SPI_clearInterruptStatus(SPIB_BASE, SPI_INT_TXFF);
     Interrupt_clearACKGroup(INT_SPIB_controller_TX_INTERRUPT_ACK_GROUP);
 }
-
 //
 // SPI A Receive FIFO ISR
 //
  __interrupt void spiaRxFIFOISR(void)
 {
     uint16_t i;
-
     //
     // Read data
     //
@@ -195,7 +177,6 @@ __interrupt void spibTxFIFOISR(void)
     {
         rData[i] = SPI_readDataNonBlocking(SPIA_BASE);
     }
-
     //
     // Check received data
     //
@@ -207,16 +188,13 @@ __interrupt void spibTxFIFOISR(void)
             ESTOP0;
         }
     }
-
     rDataPoint++;
-
     //
     // Clear interrupt flag and issue ACK
     //
     SPI_clearInterruptStatus(SPIA_BASE, SPI_INT_RXFF);
     Interrupt_clearACKGroup(INT_SPIA_peripheral_RX_INTERRUPT_ACK_GROUP);
 }
-
  //
  // Enabled only for SysConfig functionality
  //
@@ -226,7 +204,6 @@ __interrupt void INT_SPIA_peripheral_TX_ISR(void) {
     //
     Interrupt_clearACKGroup(INT_SPIA_peripheral_TX_INTERRUPT_ACK_GROUP);
 }
-
 //
 // Enabled only for SysConfig functionality
 //
@@ -235,9 +212,7 @@ __interrupt void INT_SPIB_controller_RX_ISR(void) {
     // Issue ACK
     //
     Interrupt_clearACKGroup(INT_SPIB_controller_RX_INTERRUPT_ACK_GROUP);
-
 }
-
 //
 // End of file
 //

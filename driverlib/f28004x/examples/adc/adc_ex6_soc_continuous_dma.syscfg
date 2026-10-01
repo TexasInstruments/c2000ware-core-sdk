@@ -1,4 +1,9 @@
-
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28004x" --part "F28004x_100PZ" --package "F28004x_100PZ" --context "system"
+ * @v2CliArgs --device "TMS320F280049C" --package "100PZ" --context "system"
+ */
 /**
  * Import the modules used in this configuration.
  */
@@ -70,10 +75,8 @@ adc1.enableInterrupt1ContinuousMode = true;
 adc1.enableInterrupt2ContinuousMode = true;
 adc1.interrupt1SOCSource     = "ADC_SOC_NUMBER0";
 adc1.interrupt2SOCSource     = "ADC_SOC_NUMBER15";
-
 adc1.adcInt1.enableInterrupt = true;
 adc1.adcInt1.interruptHandler = "adcA1ISR";
-
 adc2.$name              = "myADC1";
 adc2.adcBase            = "ADCC_BASE";
 adc2.adcClockPrescaler       = "ADC_CLK_DIV_2_0";
@@ -135,6 +138,5 @@ adc2.interrupt1SOCSource     = "ADC_SOC_NUMBER0";
 adc2.interrupt2SOCSource     = "ADC_SOC_NUMBER15";
 adc2.enableInterrupt1ContinuousMode = true;
 adc2.enableInterrupt2ContinuousMode = true;
-
 asysctl.analogReference         = "INTERNAL";
 asysctl.analogReferenceVoltage  = "1P65";

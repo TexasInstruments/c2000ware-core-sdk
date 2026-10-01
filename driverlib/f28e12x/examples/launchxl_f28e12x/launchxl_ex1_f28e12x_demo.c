@@ -59,7 +59,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -67,35 +66,29 @@
 #include <stdio.h>
 #include <file.h>
 #include <launchxl_ex1_sci_io_driverlib.h>
-
 #include "launchxl_ex1_ti_ascii.h"
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Globals
 //
 static unsigned short indexX=0;
 static unsigned short indexY=0;
-
 const unsigned char escRed[] = {0x1B, 0x5B, '3','1', 'm'};
 const unsigned char escWhite[] = {0x1B, 0x5B, '3','7', 'm'};
 const unsigned char escLeft[] = {0x1B, 0x5B, '3','7', 'm'};
 const unsigned char pucTempString[] = "ADCINA8 Sample:     ";
 int16_t currentSample;
-
 //
 // sampleADC - ADCINA8
 //
 int16_t sampleADC(void)
 {
     int16_t sample;
-
     //
     // Force start of conversion on SOC0
     //
     ADC_forceSOC(ADCA_BASE, ADC_SOC_NUMBER0);
-
     //
     // Wait for ADCA to complete, then acknowledge flag
     //
@@ -103,22 +96,18 @@ int16_t sampleADC(void)
     {
     }
     ADC_clearInterruptStatus(ADCA_BASE, ADC_INT_NUMBER1);
-
     //
     // Get ADC sample result from SOC0
     //
     sample = ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER0);
-
     return(sample);
 }
-
 //
 // drawTILogo - Draw the TI logo in the display
 //
 void drawTILogo(void)
 {
     unsigned char ucChar, lastChar;
-
     putchar('\n');
     while(indexY<45)
     {
@@ -127,7 +116,6 @@ void drawTILogo(void)
             if(indexX<77)
             {
                 ucChar = ti_ascii[indexY][indexX++] ;
-
                 //
                 // We are in the TI logo make it red
                 //
@@ -139,7 +127,6 @@ void drawTILogo(void)
                     putchar(escRed[3]);
                     putchar(escRed[4]);
                 }
-
                 //
                 // We are in the TI logo make it red
                 //
@@ -151,11 +138,9 @@ void drawTILogo(void)
                     putchar(escWhite[3]);
                     putchar(escWhite[4]);
                 }
-
                 putchar(ucChar);
                 lastChar = ucChar;
             }
-
             else
             {
                 ucChar = 10;
@@ -168,14 +153,12 @@ void drawTILogo(void)
         }
     }
 }
-
 //
 // clearTextBox - Clear the text box
 //
 void clearTextBox(void)
 {
     putchar(0x08);
-
     //
     // Move back 24 columns
     //
@@ -184,7 +167,6 @@ void clearTextBox(void)
     putchar('2');
     putchar('6');
     putchar('D');
-
     //
     // Move up 3 lines
     //
@@ -192,7 +174,6 @@ void clearTextBox(void)
     putchar('[');
     putchar('3');
     putchar('A');
-
     //
     // Change to Red text
     //
@@ -201,9 +182,7 @@ void clearTextBox(void)
     putchar(escRed[2]);
     putchar(escRed[3]);
     putchar(escRed[4]);
-
     printf((char*)pucTempString);
-
     //
     // Move down 1 lines
     //
@@ -211,7 +190,6 @@ void clearTextBox(void)
     putchar('[');
     putchar('1');
     putchar('B');
-
     //
     // Move back 20 columns
     //
@@ -220,7 +198,6 @@ void clearTextBox(void)
     putchar('2');
     putchar('0');
     putchar('D');
-
     //
     // Save cursor position
     //
@@ -228,7 +205,6 @@ void clearTextBox(void)
     putchar('[');
     putchar('s');
 }
-
 //
 // updateDisplay - Update the serial display
 //
@@ -240,10 +216,8 @@ void updateDisplay(void)
     putchar(0x1B);
     putchar('[');
     putchar('u');
-
     printf("%d                ", currentSample);
 }
-
 //
 // scia_init - SCIA  8-bit word, baud rate 0x001A, default, 1 STOP bit,
 // no parity
@@ -254,17 +228,14 @@ void scia_init()
     // Note: Clocks were turned on to the SCIA peripheral
     // in the InitSysCtrl() function
     //
-
     //
     // 1 stop bit,  No loopback, No parity,8 char bits, async mode,
     // idle-line protocol
     //
     SCI_performSoftwareReset(SCIA_BASE);
-
     SCI_setConfig(SCIA_BASE, DEVICE_LSPCLK_FREQ, 115200, (SCI_CONFIG_WLEN_8 |
                                                         SCI_CONFIG_STOP_ONE |
                                                         SCI_CONFIG_PAR_NONE));
-
     SCI_resetChannels(SCIA_BASE);
 //    SCI_resetRxFIFO(SCIA_BASE);
 //    SCI_resetTxFIFO(SCIA_BASE);
@@ -273,10 +244,8 @@ void scia_init()
     SCI_enableInterrupt(SCIA_BASE, SCI_INT_RXRDY_BRKDT | SCI_INT_TXRDY);
     SCI_enableModule(SCIA_BASE);
     SCI_performSoftwareReset(SCIA_BASE);
-
     return;
 }
-
 //
 // initADCs - Function to configure and power up ADCs A and B.
 //
@@ -286,25 +255,20 @@ void initADCs(void)
     // Setup VREF as internal
     //
     ADC_setVREF(ADCA_BASE, ADC_REFERENCE_INTERNAL, ADC_REFERENCE_3_3V);
-
     //
     // Set ADCCLK divider to /4
     //
     ADC_setPrescaler(ADCA_BASE, ADC_CLK_DIV_4_0);
-
     //
     // Set pulse positions to late
     //
     ADC_setInterruptPulseMode(ADCA_BASE, ADC_PULSE_END_OF_CONV);
-
     //
     // Power up the ADCs and then delay for 1 ms
     //
     ADC_enableConverter(ADCA_BASE);
-
     DEVICE_DELAY_US(1000);
 }
-
 //
 // initADCSOCs - Function to configure SOC 0 of ADC A.
 //
@@ -316,7 +280,6 @@ void initADCSOCs(void)
     //
     ADC_setupSOC(ADCA_BASE, ADC_SOC_NUMBER0, ADC_TRIGGER_SW_ONLY,
                  ADC_CH_ADCIN8, 10);
-
     //
     // Set SOC0 to set the interrupt 1 flag. Enable the interrupt and make
     // sure its flag is cleared.
@@ -325,7 +288,6 @@ void initADCSOCs(void)
     ADC_enableInterrupt(ADCA_BASE, ADC_INT_NUMBER1);
     ADC_clearInterruptStatus(ADCA_BASE, ADC_INT_NUMBER1);
 }
-
 //
 // Main
 //
@@ -334,17 +296,14 @@ void main()
     volatile int status = 0;
     uint16_t i;
     volatile FILE *fid;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // For this example, only init the pins for the SCI-A port.
     //
@@ -352,37 +311,30 @@ void main()
     //
     // GPIO43 is the SCI Rx pin.
     //
-
     GPIO_setPinConfig(DEVICE_GPIO_CFG_SCIRXDA);
     GPIO_setDirectionMode(DEVICE_GPIO_PIN_SCIRXDA, GPIO_DIR_MODE_IN);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_SCIRXDA, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_SCIRXDA, GPIO_QUAL_ASYNC);
-
     //
     // GPIO42 is the SCI Tx pin.
     //
-
     GPIO_setPinConfig(DEVICE_GPIO_CFG_SCITXDA);
     GPIO_setDirectionMode(DEVICE_GPIO_PIN_SCITXDA, GPIO_DIR_MODE_OUT);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_SCITXDA, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_SCITXDA, GPIO_QUAL_ASYNC);
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Initialize SCIA
     //
     scia_init();
-
     //
     // Initialize GPIOs for the USER LEDs and turn them off
     // GPIO45 is LED4
@@ -390,25 +342,20 @@ void main()
     //
     GPIO_setPadConfig(DEVICE_GPIO_PIN_LED1, GPIO_PIN_TYPE_STD);
     GPIO_setDirectionMode(DEVICE_GPIO_PIN_LED1, GPIO_DIR_MODE_OUT);
-
     GPIO_setPadConfig(DEVICE_GPIO_PIN_LED2, GPIO_PIN_TYPE_STD);
     GPIO_setDirectionMode(DEVICE_GPIO_PIN_LED2, GPIO_DIR_MODE_OUT);
-
     GPIO_writePin(DEVICE_GPIO_PIN_LED1, 1);
     GPIO_writePin(DEVICE_GPIO_PIN_LED2, 1);
-
     //
     // Enable global Interrupts and higher priority real-time debug events:
     //
     EINT;   // Enable Global interrupt INTM
     ERTM;   // Enable Global realtime interrupt DBGM
-
     //
     // Set up ADCs, initializing the SOCs to be triggered by software
     //
     initADCs();
     initADCSOCs();
-
     //
     // Redirect STDOUT to SCI
     //
@@ -417,38 +364,31 @@ void main()
     fid = fopen("scia","w");
     freopen("scia:", "w", stdout);
     setvbuf(stdout, NULL, _IONBF, 0);
-
     //
     // Print a TI Logo to STDOUT
     //
     drawTILogo();
-
     //
     // Twiddle LEDs
     //
     GPIO_writePin(DEVICE_GPIO_PIN_LED1, 0);
     GPIO_writePin(DEVICE_GPIO_PIN_LED2, 1);
-
     for(i = 0; i < 50; i++)
     {
         GPIO_togglePin(DEVICE_GPIO_PIN_LED1);
         GPIO_togglePin(DEVICE_GPIO_PIN_LED2);
         DEVICE_DELAY_US(50000);
     }
-
     //
     // LEDs off
     //
     GPIO_writePin(DEVICE_GPIO_PIN_LED1, 1);
     GPIO_writePin(DEVICE_GPIO_PIN_LED2, 1);
-
     //
     // Clear out one of the text boxes so we can write more info to it
     //
     clearTextBox();
-
     currentSample = sampleADC();
-
     //
     // Main program loop - continually sample temperature
     //
@@ -458,12 +398,10 @@ void main()
         // Sample ADCINA8
         //
         currentSample = sampleADC();
-
         //
         // Update the serial terminal output
         //
         updateDisplay();
-
         //
         // If the sample is above midscale light one LED
         //
@@ -480,11 +418,9 @@ void main()
             GPIO_writePin(DEVICE_GPIO_PIN_LED1, 1);
             GPIO_writePin(DEVICE_GPIO_PIN_LED2, 0);
         }
-
         DEVICE_DELAY_US(1000000);
     }
 }
-
 //
 // End of File
 //

@@ -1,4 +1,10 @@
 /**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F2838x" --part "F2838x_337bga" --package "337bga" --context "CPU1" 
+ * @v2CliArgs --device "TMS320F28388D" --package "337bga" --context "CPU1"
+ */
+/**
  * Import the modules used in this configuration.
  */
 const epwm       = scripting.addModule("/driverlib/epwm.js", {}, false);
@@ -8,7 +14,6 @@ const epwm3      = epwm.addInstance();
 const epwm4      = epwm.addInstance();
 const inputxbar  = scripting.addModule("/driverlib/inputxbar.js", {}, false);
 const inputxbar1 = inputxbar.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -31,7 +36,6 @@ epwm1.epwmTimebase_hsClockDiv                                    = "EPWM_HSCLOCK
 epwm1.epwm.$assign                                               = "EPWM1";
 epwm1.epwm.epwmaPin.$assign                                      = "GPIO0";
 epwm1.epwm.epwmbPin.$assign                                      = "GPIO1";
-
 epwm2.$name                                                      = "myEPWM2";
 epwm2.epwmTimebase_emulationMode                                 = "EPWM_EMULATION_FREE_RUN";
 epwm2.epwmCounterCompare_cmpA                                    = 50;
@@ -51,7 +55,6 @@ epwm2.epwmTimebase_hsClockDiv                                    = "EPWM_HSCLOCK
 epwm2.epwm.$assign                                               = "EPWM2";
 epwm2.epwm.epwmaPin.$assign                                      = "GPIO2";
 epwm2.epwm.epwmbPin.$assign                                      = "GPIO3";
-
 epwm3.$name                                                      = "myEPWM3";
 epwm3.epwmTimebase_emulationMode                                 = "EPWM_EMULATION_FREE_RUN";
 epwm3.epwmCounterCompare_cmpA                                    = 50;
@@ -71,7 +74,6 @@ epwm3.epwmTimebase_hsClockDiv                                    = "EPWM_HSCLOCK
 epwm3.epwm.$assign                                               = "EPWM3";
 epwm3.epwm.epwmaPin.$assign                                      = "GPIO4";
 epwm3.epwm.epwmbPin.$assign                                      = "GPIO5";
-
 epwm4.$name                                                      = "myEPWM4";
 epwm4.epwmTimebase_emulationMode                                 = "EPWM_EMULATION_FREE_RUN";
 epwm4.epwmCounterCompare_cmpA                                    = 50;
@@ -91,10 +93,7 @@ epwm4.epwmTimebase_hsClockDiv                                    = "EPWM_HSCLOCK
 epwm4.epwm.$assign                                               = "EPWM4";
 epwm4.epwm.epwmaPin.$assign                                      = "GPIO6";
 epwm4.epwm.epwmbPin.$assign                                      = "GPIO7";
-
 inputxbar1.$name          = "myINPUTXBAR5";
 inputxbar1.inputsUsed     = ["inputxbar5Gpio","inputxbar6Gpio"];
 inputxbar1.inputxbar5Gpio = "GPIO56";
 inputxbar1.inputxbar6Gpio = "GPIO56";
-
-

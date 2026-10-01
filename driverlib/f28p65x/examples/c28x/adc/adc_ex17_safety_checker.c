@@ -29,7 +29,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -63,14 +63,12 @@
 // $
 //#############################################################################
 //
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Globals
 //
@@ -79,9 +77,7 @@ uint16_t myADC0Result1;
 uint32_t count;
 uint32_t getsafecheckStatus;
 volatile uint16_t tolerance;
-
 void myADCSafetyChecker0_init();
-
 //
 // Main
 //
@@ -91,23 +87,19 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Set up ADCs, initializing the SOCs to be triggered by software
     // Signal Mode           : single-ended
@@ -115,13 +107,11 @@ void main(void)
     //
     myADCSafetyChecker0_init();
     Board_init();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Loop indefinitely
     //
@@ -131,7 +121,6 @@ void main(void)
         // Convert, wait for completion, and store results
         //
         ADC_forceMultipleSOC(myADC0_BASE, (ADC_FORCE_SOC0 | ADC_FORCE_SOC1));
-
         //
         // Wait for ADCA to complete, then acknowledge flag
         //
@@ -139,13 +128,11 @@ void main(void)
         {
         }
         ADC_clearInterruptStatus(myADC0_BASE, ADC_INT_NUMBER1);
-
         //
         // Store results
         //
         myADC0Result0 = ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER0);
         myADC0Result1 = ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER1);
-
         //
         // Get the safety checker result and generate flag if the difference exceeds the tolerance value
         //
@@ -156,7 +143,6 @@ void main(void)
             // Indicate that the OOT flag is generated
             //
             count++;
-
             //
             // Software breakpoint. At this point, conversion results (myADC0Result0, myADC0Result1)
             // are compared with each other, generated safety checker out-of-tolerance flag and incremented count
@@ -168,10 +154,7 @@ void main(void)
         ADC_clearSafetyCheckStatus(ADCSAFETYINTEVTAGG1_BASE, ADC_SAFETY_CHECKER1, ADC_SAFETY_CHECK_OOT_FLG);
     }
 }
-
-
 void myADCSafetyChecker0_init(void){
-
     //
     // Enable the safety checker event.
     //
@@ -180,27 +163,22 @@ void myADCSafetyChecker0_init(void){
     // Configures the safety checker result for a selected SOC.
     //
     ADC_configSOCSafetyCheckerInput(myADC0_BASE,ADC_SOC_NUMBER0,ADC_SAFETY_CHECKER_INPUT_SOCx);
-
     //
     // Configures the safety checker module.
     //
     ADC_configureSafetyChecker(ADCSAFETYCHK1_BASE, ADC_SAFETY_CHECK1,ADC_A,ADC_RESULT0);
-
     //
     // Configures the safety checker result for a selected SOC.
     //
     ADC_configSOCSafetyCheckerInput(myADC0_BASE,ADC_SOC_NUMBER1,ADC_SAFETY_CHECKER_INPUT_SOCx);
-    
     //
     // Configures the safety checker module.
     //
     ADC_configureSafetyChecker(ADCSAFETYCHK1_BASE, ADC_SAFETY_CHECK2,ADC_A,ADC_RESULT1);
-
     //
     // Configures the tolerance allowed between safety check results.
     //
     ADC_setSafetyCheckerTolerance(ADCSAFETYCHK1_BASE,tolerance);
-
     //
     // Enables the ADC result safety checker module.
     //

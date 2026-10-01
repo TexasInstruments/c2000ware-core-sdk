@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="indexpage" kind="page">
+    <compoundname>index</compoundname>
+    <title>Introduction</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="index_1mainpage"/></para>
+<para>The MCPC029 Peripheral Driver Library is a set of drivers for accessing the peripherals found on the MCPC029 real time control MCU. While they are not drivers in the pure operating system sense (that is, they do not have a common interface and do not connect into a global device driver infrastructure), they do provide a software layer to facilitate a slightly higher level of programming than direct register accesses.</para>
+<para>The capabilities and organization of the drivers are governed by the following design goals:</para>
+<para><itemizedlist>
+<listitem><para>They are written entirely in C except where absolutely not possible.</para>
+</listitem><listitem><para>Where possible, computations that can be performed at compile time are done there instead of at run time.</para>
+</listitem><listitem><para>They are intended to make code more portable across other C2000 devices.</para>
+</listitem><listitem><para>Code written with these APIs will be more readable than code written using many direct register accesses.</para>
+</listitem></itemizedlist>
+</para>
+<para>Some consequences of this are that the drivers are not necessarily as efficient as they could be (from a code size and/or execution speed point of view). While the most efficient piece of code for operating a peripheral would be written in assembly and custom tailored to the specific requirements of the application, further size optimizations of the drivers would make them more difficult to understand.</para>
+<para>For many applications, the drivers can be used as is. But in some cases, the drivers will have to be enhanced or rewritten in order to meet the functionality, memory, or processing requirements of the application. If so, the existing driver can be used as a reference on how to operate the peripheral.</para>
+<sect1 id="index_1autotoc_md0">
+<title>Programming Models</title>
+<para>see <ref refid="PROGRAMMING_MODELS" kindref="compound">Programming Models</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="main_page.md"/>
+  </compounddef>
+</doxygen>

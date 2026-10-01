@@ -41,7 +41,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -74,13 +74,11 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
 #include "f28p65x_ipc_defines.h"
-
 //
 // Globals
 //
@@ -88,19 +86,16 @@ uint16_t c2_r_w_array[256];   // mapped to GS1 of shared RAM owned by CPU02
 uint16_t c2_r_array[256];     // mapped to GS0 of shared RAM owned by CPU01
 #pragma DATA_SECTION(c2_r_array,"SHARERAMGS1");
 #pragma DATA_SECTION(c2_r_w_array,"SHARERAMGS0");
-
 extern uint16_t isrfuncLoadStart;
 extern uint16_t isrfuncLoadEnd;
 extern uint16_t isrfuncRunStart;
 extern uint16_t isrfuncLoadSize;
-
 //
 // Function Prototypes
 //
 __interrupt void cpu_timer0_isr(void);
 #pragma CODE_SECTION(cpu_timer0_isr,"isrfunc")
 void Shared_Ram_dataWrite_c2(void);
-
 //
 // Main
 //
@@ -112,13 +107,11 @@ void main(void)
     // This example function is found in the f28p65x_sysctrl.c file.
     //
     InitSysCtrl();
-
     //
     // Clear all interrupts and initialize PIE vector table:
     // Disable CPU interrupts
     //
     DINT;
-
     //
     // Initialize the PIE control registers to their default state.
     // The default state is all PIE interrupts disabled and flags
@@ -126,13 +119,11 @@ void main(void)
     // This function is found in the f28p65x_piectrl.c file.
     //
     InitPieCtrl();
-
     //
     // Disable CPU interrupts and clear all CPU interrupt flags:
     //
     IER = 0x0000;
     IFR = 0x0000;
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
@@ -142,7 +133,6 @@ void main(void)
     // This function is found in f28p65x_pievect.c.
     //
     InitPieVectTable();
-
     //
     // Wait until Shared RAM is available.
     //
@@ -150,12 +140,10 @@ void main(void)
             MemCfgRegs.GSxMSEL.bit.MSEL_GS4 ))
     {
     }
-
     //
     // Copy ISR routine to a specified RAM location to determine the size
     //
     memcpy(&isrfuncRunStart, &isrfuncLoadStart, (uint32_t)&isrfuncLoadSize);
-
     //
     // Interrupts that are used in this example are re-mapped to
     // ISR functions found within this file.
@@ -163,45 +151,37 @@ void main(void)
     EALLOW;  // This is needed to write to EALLOW protected registers
     PieVectTable.TIMER0_INT = &cpu_timer0_isr;
     EDIS;    // This is needed to disable write to EALLOW protected registers
-
     //
     // Initialize the Device Peripheral. This function can be
     // found in f28p65x_cputimers.c
     //
     InitCpuTimers();   // For this example, only initialize the Cpu Timers
-
     //
     // Configure CPU-Timer0 to interrupt every second:
     // c2_FREQ in MHz, 1 second Period (in uSeconds)
     //
     ConfigCpuTimer(&CpuTimer0, 200, 1000000);
-
     //
     // To ensure precise timing, use write-only instructions to write to the
     // entire register.
     //
     CpuTimer0Regs.TCR.all = 0x4000;
-
     //
     // User specific code, enable interrupts:
     //
-
     //
     // Enable CPU int1 which is connected to CPU-Timer 0
     //
     IER |= M_INT1;
-
     //
     // Enable TINT0 in the PIE: Group 1 interrupt 7
     //
     PieCtrlRegs.PIEIER1.bit.INTx7 = 1;
-
     //
     // Enable global Interrupts and higher priority real-time debug events:
     //
     EINT;   // Enable Global interrupt INTM
     ERTM;   // Enable Global realtime interrupt DBGM
-
     while(1)
     {
         if(IPCRtoLFlagBusy(IPC_FLAG10) == 1)
@@ -214,7 +194,6 @@ void main(void)
          }
     }
 }
-
 //
 // cpu_timer0_isr - CPU Timer0 ISR
 //
@@ -224,10 +203,8 @@ __interrupt void cpu_timer0_isr(void)
    CpuTimer0.InterruptCount++;
    GpioDataRegs.GPATOGGLE.bit.GPIO31 = 1;
    EDIS;
-
    PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
 }
-
 //
 // Shared_Ram_dataWrite_c2 - Read data from c2_r_array written by CPU01 and
 //                           modify and write into c2_r_w_array
@@ -238,16 +215,13 @@ void Shared_Ram_dataWrite_c2(void)
 {
     uint16_t index;
     uint16_t multiplier;
-
     multiplier = c2_r_array[0];
     c2_r_w_array[0] = multiplier;
-
     for(index = 1; index < 256; index ++)
     {
         c2_r_w_array[index] = multiplier*c2_r_array[index];
     }
 }
-
 //
 // End of file
 //

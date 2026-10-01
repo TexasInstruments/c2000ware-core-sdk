@@ -28,7 +28,6 @@ function onChangeEnableDisable(inst, ui)
     else if (inst.epwmTimebase_phaseEnable == false)
     {
         ui.epwmTimebase_phaseShift.hidden = true;
-        inst.epwmTimebase_phaseShift = 0; // Set default
     }
 
     if (inst.epwmTimebase_periodLoadMode == "EPWM_PERIOD_SHADOW_LOAD")

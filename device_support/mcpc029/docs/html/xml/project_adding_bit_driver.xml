@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="project_adding_bit_driver" kind="page">
+    <compoundname>project_adding_bit_driver</compoundname>
+    <title>Project: Adding Bit-field or DriverLib Support</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>MCPC029 devices support two types of development software, driver library APIs and bit-field structures. Each have their advantages and are implemented to be compatible together within the same user application. This section details how to add driverlib support to a bit-field project as well as how to add bit-field support to a driverlib project.</para>
+<para>When combining bit-field and driverlib support, add a pre-defined symbol within the project properties called &quot;_DUAL_HEADERS&quot;. This is required to avoid having conflicting definitions (in enums/structs/macros) which share the exact same names in both bit-field and driverlib headers.</para>
+<para><itemizedlist>
+<listitem><para>Adding DriverLib Support<itemizedlist>
+<listitem><para>Add the following include directory path to the project: {driverlib\mcpc029\driverlib}</para>
+</listitem><listitem><para>Include the following header file in the project main source file:{device_support\mcpc029\common\include\driverlib.h}</para>
+</listitem><listitem><para>Add or link the { driverlib.lib} library to the project. Location of file:{driverlib\mcpc029\driverlib\ccs\Debug}</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Adding Bit-field Support<itemizedlist>
+<listitem><para>Add the following include directory path to the project: {device_support\mcpc029\headers\include}</para>
+</listitem><listitem><para>Include the following header file in the project main source file:{device_support\mcpc029\headers\include\mcpc029_device.h}</para>
+</listitem><listitem><para>Add or link the {mcpc029_globalvariabledefs.c} file to the project. Location of file:{device_support\mcpc029\headers\source}</para>
+</listitem><listitem><para>Add or link the {mcpc029_Headers_nonBIOS.cmd} file to the project. Location of file:{device_support\mcpc029\headers\cmd} </para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <location file="example_intro.md"/>
+  </compounddef>
+</doxygen>

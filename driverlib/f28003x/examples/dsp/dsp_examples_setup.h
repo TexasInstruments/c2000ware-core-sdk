@@ -9,7 +9,6 @@
 //! \date   Jan 8, 2016
 //
 //  Group:          C2000
-
 //
 //#############################################################################
 //
@@ -17,7 +16,6 @@
 // $Copyright: Copyright (C) 2022 Texas Instruments Incorporated -
 //             http://www.ti.com/ ALL RIGHTS RESERVED $
 //#############################################################################
-
 //*****************************************************************************
 // the includes
 //*****************************************************************************
@@ -26,18 +24,14 @@
 #include <math.h>
 #include "device.h"
 #include "inc/hw_types.h"
-
 //!
 //! \defgroup DSP_EXAMPLES_SETUP DSP Examples Setup Code
-
 //!
 //! \ingroup DSP_EXAMPLES_SETUP
 //@{
-
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 //*****************************************************************************
 //defines
 //*****************************************************************************
@@ -47,21 +41,16 @@ extern "C" {
 #else
 #define EPWM_CLK            DEVICE_SYSCLK_FREQ/2
 #endif
-
 #define EPWM_CLKDIV         32UL        // TBCTL_CLKDIV(4)*TBCTL_HSPCLKDIV(8)
-
 #define EPWM1_FREQ          10000UL
 #define EPWM2_FREQ          1000UL
 #define EPWM1_PERIOD        (uint16_t)(EPWM_CLK/(EPWM_CLKDIV*EPWM1_FREQ))
 #define EPWM2_PERIOD        (uint16_t)(EPWM_CLK/(2UL*EPWM_CLKDIV*EPWM2_FREQ))
 #define EPWM2_DUTY_CYCLE    (EPWM2_PERIOD/2)
-
 #define USE_REAL_ADC_INPUT  0U
-
 //*****************************************************************************
 // typedefs
 //*****************************************************************************
-
 //*****************************************************************************
 //globals
 //*****************************************************************************
@@ -79,7 +68,6 @@ extern uint16_t FPUmathTablesRunStart, FPUmathTablesLoadStart,
                 FPUmathTablesLoadSize;
 #endif
 #endif //defined(_FLASH)
-
 // Each test will define these variables
 extern uint16_t pass, fail;
 #if defined(__TMS320C28XX_FPU64__)
@@ -109,17 +97,14 @@ extern float test_error[];
     version of the library. --float_support=fpu32 must be set to build the \
     FPU32 version of the DSP library"
 #endif
-
 #if defined(ADC_INPUT)
 // Used in the RFFT ADC examples
 //
 // Flag to signal the ADC has finished sampling, and storing,
 // N points in the FFT input buffer
 extern volatile uint16_t flagInputReady;
-
 // Index into the FFT input buffer
 extern volatile uint16_t sampleIndex;
-
 // Maximum Frequency component index
 extern uint32_t max_idx;
 #endif// ADC_INPUT
@@ -129,24 +114,19 @@ extern uint32_t max_idx;
 //! \brief Setup system controls
 //!
 extern void DSP_Example_setupSysCtrl( void );
-
 //! \brief Function to disable pin locks and enable pullups on GPIOs.
 //!
 extern void DSP_Example_initGPIO(void);
-
 //! \brief Setup flash
 //!
 extern void DSP_Example_setupFlash( void );
-
 //! \brief Run a particular Fast RTS routine
 //!
 extern void DSP_runTest( void );
-
 //! \brief Initialize ADCA
 //! Function to configure and power up ADC A
 //
 void DSP_Example_initADCA(void);
-
 //! \breif ADC SOC Initialization
 //!
 //! This function will configure the ADC, channel A0 to start its conversion
@@ -155,7 +135,6 @@ void DSP_Example_initADCA(void);
 //! is then used to trigger task 1 of the CLA (the filter)
 //
 void DSP_Example_initADCSOC(void);
-
 //! \brief EPWM Initialization
 //!
 //!  EPWM1A will run at EPWM1_FREQ Hz and serves as the sampling
@@ -181,19 +160,16 @@ void DSP_Example_initADCSOC(void);
 //!              = 250000
 //
 void DSP_Example_initEPWM(void);
-
 //! \brief ADC Interrupt Service Routine
 //! The ISR will store each sampled value in the FFT buffer, and
 //! raise the flag once the buffer is full
 //!
 __interrupt void DSP_Example_adcaIsr()
-
 #if __TI_COMPILER_VERSION__ >= 15009000
   __attribute__((section(".TI.ramfunc")));
 #else
   __attribute__((section(".ramfuncs")));
 #endif
-
 #if defined(__TMS320C28XX_FPU64__)
 //! \brief Error calculation
 //!
@@ -227,16 +203,12 @@ int16_t DSP_Example_calcError(const float64_t *p_out,
                               const float64_t *p_ldtol,
                               const uint64_t  ulltol);
 #endif //__TMS320C28XX_FPU64__
-
 //! \brief Function indicating end of test (Autobot regression)
 //!
 extern void done( void );
-
 #ifdef __cplusplus
 }
 #endif // extern "C"
 //@}  // ingroup
-
 #endif  // end of  _DSP_EXAMPLES_SETUP_H_ definition
-
 // End of File

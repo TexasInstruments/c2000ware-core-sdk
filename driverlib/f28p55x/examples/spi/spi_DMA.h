@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -41,45 +41,34 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
 //
 // Included Files
 //
 #include<stdarg.h>
 #include "driverlib.h"
 #include "device.h"
-
 #include "board.h"
-
 #ifndef SPI_DMA_H
 #define SPI_DMA_H
-
 //
 // Defines
 //
 #define EEPROM_ADDR                 0x0000
-
 #define FIFO_LVL    16       // FIFO interrupt level
 #define BURST       16        // 16 words / burst
 #define TRANSFER    1        // 4 burts / transfer
-
-
 #define NULL ((void *)0x0)
-
 //
 // Defines for Chip Select toggle.
 //
 #define CS_LOW                      GPIO_writePin(SPI_CS_GPIO, 0)
 #define CS_HIGH                     GPIO_writePin(SPI_CS_GPIO, 1)
-
 typedef enum
 {
     SPI_DMA_TRANSACTION_IDLE     = 0x0000,
     SPI_DMA_TRANSACTION_STARTED  = 0x0BAD,
     SPI_DMA_TRANSACTION_COMPLETE = 0x55AA,
 }SPI_TransactionStatus;
-
 typedef enum
 {
     SPI_DMA_WRITE_ENABLE         = 0x0000,
@@ -87,20 +76,14 @@ typedef enum
     SPI_DMA_WRITE_TRANSACTION    = 0x0002,
     SPI_DMA_READ_TRANSACTION     = 0x0003,
 }SPI_TransactionType;
-
 #define BUFFER_SIZE 64
 #define ADDL_WORDS  10
-
 #define DUMMY_DATA 0xFF
 #define NO_DELAY   0
-
-
 extern uint16_t DMATXbuff[BUFFER_SIZE + ADDL_WORDS];
 extern uint16_t DMARXbuff[BUFFER_SIZE + ADDL_WORDS];
-
 extern struct DMA_CH SPITXDMA;
 extern struct DMA_CH SPIRXDMA;
-
 struct DMA_CH
 {
     uint32_t dmach;
@@ -108,42 +91,32 @@ struct DMA_CH
     uint16_t currentpointer;
     uint16_t maxTransactionSize;
 };
-
-
 typedef void (*functionPointer)(void);
-
 struct SPI_DMA_handle
 {
     uint32_t spibase;                       //Specifies SPI base address
     uint16_t charlength;                    //Specifies SPI character length
     struct DMA_CH *pSPITXDMA;               //Pointer to SPITXDMA
     struct DMA_CH *pSPIRXDMA;               //Pointer to SPIRXDMA
-
-
     functionPointer pFunction[5U];          //Array of function pointer which executes
                                             //different command sequence
     uint16_t FunctionCount;                 //Counter which specifies which function
                                             //command sequence
     SPI_TransactionType TransactionType;    //Stores the type of EEPROM transaction
     SPI_TransactionStatus TransactionStatus;//Stores the status of SPI transaction
-
     uint16_t expectedOutput;                //Output expected from EEPROM
     uint16_t offsetRXbuff;                  //Offset pointer for RXbuffer
     uint32_t RXdata;                        //Stores received data
     SPI_endianess endianess;                //Stores endianess of transaction
 };
-
 struct EEPROM_Transaction
 {
     uint16_t EEPROMAddress;
     uint16_t numofBytes;
     uint16_t *pbuff;
 };
-
 extern struct SPI_DMA_handle SPI_DMA_Handle;
 extern struct EEPROM_Transaction EEPROM_Transaction;
-
-
 //*****************************************************************************
 //! This macro can be used to fill up the transmit buffer to transmit a byte.
 //!
@@ -154,7 +127,6 @@ extern struct EEPROM_Transaction EEPROM_Transaction;
 //
 //*****************************************************************************
 #define SPI_DMA_TransmitByte(data, pSPI_DMA_Handle)  SPI_DMA_ByteTransaction(data, pSPI_DMA_Handle)
-
 //*****************************************************************************
 //! This macro can be used to fill up the transmit buffer to transmit 16-bits
 //!
@@ -165,7 +137,6 @@ extern struct EEPROM_Transaction EEPROM_Transaction;
 //
 //*****************************************************************************
 #define SPI_DMA_Transmit16bitWord(data, pSPI_DMA_Handle) SPI_DMA_16bitWordTransaction(data, pSPI_DMA_Handle)
-
 //*****************************************************************************
 //! This macro can be used to fill up the transmit buffer to transmit N-bytes
 //!
@@ -177,10 +148,8 @@ extern struct EEPROM_Transaction EEPROM_Transaction;
 //
 //*****************************************************************************
 #define SPI_DMA_Transmit_NBytes(pTXbuffer, numOfbytes, pSPI_DMA_Handle) SPI_DMA_NBytesTransaction(pTXbuffer, numOfbytes, pSPI_DMA_Handle)
-
 #define SPI_DMA_ReceiveByte(dummyData, pSPI_DMA_Handle)      SPI_DMA_ByteTransaction(dummyData, pSPI_DMA_Handle)
 #define SPI_DMA_Receive16bitWord(dummydata, pSPI_DMA_Handle) SPI_DMA_16bitWordTransaction(dummydata, pSPI_DMA_Handle)
-
 //*****************************************************************************
 //! This macro can be used to receive N-bytes
 //!
@@ -191,11 +160,8 @@ extern struct EEPROM_Transaction EEPROM_Transaction;
 //
 //*****************************************************************************
 #define SPI_DMA_Receive_NBytes(numOfbytes, pSPI_DMA_Handle)   SPI_DMA_NBytesTransaction(NULL, numOfbytes, pSPI_DMA_Handle)
-
-
 extern void SPI_DMA_ByteTransaction(uint16_t data, struct SPI_DMA_handle *pSPI_DMA_Handle);
 extern void SPI_DMA_16bitWordTransaction(uint16_t data, struct SPI_DMA_handle *pSPI_DMA_Handle);
-
 //*****************************************************************************
 //! This function can be used to configure SPI_DMA_Handle structure
 //!
@@ -214,7 +180,6 @@ extern void SPI_DMA_16bitWordTransaction(uint16_t data, struct SPI_DMA_handle *p
 //
 //*****************************************************************************
 void setupSPI_DMA_Handler(uint32_t spibase, uint16_t charlength, uint32_t dmaTXbase, uint32_t dmaRXbase);
-
 //*****************************************************************************
 //! This function configures DMA / SPI based on pSPI_DMA_Handle and starts
 //! SPI transaction using DMA
@@ -230,10 +195,7 @@ void setupSPI_DMA_Handler(uint32_t spibase, uint16_t charlength, uint32_t dmaTXb
 extern void SPI_DMA_StartTransaction(struct SPI_DMA_handle *pSPI_DMA_Handle, uint16_t charlength, uint16_t txdly);
 extern void SPI_DMA_NBytesTransaction(uint16_t *pTXbuffer, uint16_t numOfbytes, struct SPI_DMA_handle *pSPI_DMA_Handle);
 extern uint32_t selectDMA_PIE_Interrupt(uint32_t dmabase);
-
 extern void RunCommandSequence(functionPointer *pFunction);
-
 __interrupt void dmaTXISR(void);
 __interrupt void dmaRXISR(void);
-
 #endif

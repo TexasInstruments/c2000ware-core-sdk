@@ -34,7 +34,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -72,9 +72,7 @@
 //
 #include <stdint.h>
 #include <stdbool.h>
-
 #include "cm.h"
-
 //
 // Defines
 //
@@ -82,59 +80,49 @@
 #define NUM_I2C_DATA    3
 #define PASS 0
 #define FAIL 1
-
 //
 // Globals
 //
 uint32_t result = FAIL;
 uint32_t ui32DataTx;
 static uint32_t ui32DataRx;
- 
 //
 // Function Prototypes
 //
 void initI2C(void);
 __interrupt void I2C0SlaveIntHandler(void);
-
 //
 // Main
 //
 void main(void)
 {
     uint16_t i;
-
     //
     // disable WD, enable peripheral clocks.
     //
     CM_init();
-
     //
     // Enable the I2C0 interrupt on the processor (NVIC).
     //
     I2C_registerInt(INT_I2C0,I2C0SlaveIntHandler);
-
     //
     // Set I2C use, initializing master and slave
     //
     initI2C();
-
     //
     // Initialize the data to send.
     //
     ui32DataTx = 'I';
-
     //
     // Place the data to be sent in the data register.
     //
     I2C_putMasterData(I2C0_BASE, ui32DataTx);
-
     //
     // Initiate send of single piece of data from the master.  Since the
     // loopback mode is enabled, the Master and Slave units are connected
     // allowing us to receive the same data that we sent out.
     //
     I2C_setMasterConfig(I2C0_BASE, I2C_MASTER_CMD_SINGLE_SEND);
-
     while(1)
     {
         //
@@ -143,7 +131,6 @@ void main(void)
         for(i=1000; i>0; i--);
     } 
 }
-
 //
 // Function to configure I2C0.
 //
@@ -153,67 +140,54 @@ void initI2C()
     // Enable the Master module.
     //
     I2C_enableMaster(I2C0_BASE);
-
     //
     // I2C configuration. Set up to transfer data at 100 Kbps.
     //
     I2C_initMaster(I2C0_BASE,I2C_CLK_FREQ,false);
-
     //
     // Enable the Slave module.
     //
     I2C_enableSlave(I2C0_BASE);
-    
     //
     // Configure for internal loopback mode
     //
     I2C_setSlaveAddress(I2C0_BASE,SLAVE_ADDRESS,I2C_MASTER_WRITE);
     I2C_setOwnSlaveAddress(I2C0_BASE,I2C_SLAVE_ADDR_PRIMARY,SLAVE_ADDRESS);
     I2C_enableLoopback(I2C0_BASE);
-
     //
     // Configure and turn on the I2C0 slave interrupt.  The I2C_enableSlaveInt()
     // gives you the ability to only enable specific interrupts.  For this case
     // we are only interrupting when the slave device receives data.
     //
     I2C_enableSlaveInt(I2C0_BASE);
-
 }
-
 //
 // I2C0 Receive ISR. 
 //
  __interrupt void I2C0SlaveIntHandler(void)
 {
     uint32_t slvStatus;
-
     //
     // Get the slave interrupt status
     //
     slvStatus = I2C_getSlaveIntStatus(I2C0_BASE,I2C_MASTER_RAW_INT);
-    
     //
     // Clear the I2C0 interrupt flag.
     //
     I2C_clearSlaveInt(I2C0_BASE);
-    
     //
     // Read the data from the slave.
     //
     ui32DataRx =  I2C_getSlaveData(I2C0_BASE);
-
     if(ui32DataRx != ui32DataTx)
         result = FAIL;
     else
         result = PASS;
-    
     //
     // Clear the slave interrupt status
     //
     I2C_clearSlaveIntSource(I2C0_BASE,slvStatus);
 }
-
 //
 // End of File
 //
-

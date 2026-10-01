@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="DRIVERS_DMA_PAGE" kind="page">
+    <compoundname>DRIVERS_DMA_PAGE</compoundname>
+    <title>DMA</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="DRIVERS_DMA_PAGE_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_components_drivers_dma"/></para>
+<para>The DMA driver provides API to configure the DMA module. Below are the high level features supported by the DMA driver.</para>
+<sect1 id="DRIVERS_DMA_PAGE_1autotoc_md44">
+<title>Features Supported</title>
+<para><itemizedlist>
+<listitem><para>2 DMA channels with software configurable priority levels and independent PIPE interrupts</para>
+</listitem><listitem><para>Channel 1 has the ability to be configured at a higher priority than Channel 2</para>
+</listitem><listitem><para>Up to 63 hardware trigger sources to initiate DMA transfers</para>
+</listitem><listitem><para>Internal trigger generation for data transfers and trigger sources for channels</para>
+</listitem><listitem><para>Independent Read and Write buses</para>
+</listitem><listitem><para>Word Size: 16-bit or 32-bit transfers (SPI limited to 16-bit)</para>
+</listitem><listitem><para>Throughput: 3 cycle/word without arbitration</para>
+</listitem><listitem><para>Supports linear and circular addressing modes</para>
+</listitem><listitem><para>Supports multiple data transformation functions as data is transferred from source to destination</para>
+</listitem><listitem><para>Burst Mode Support</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_DMA_PAGE_1autotoc_md45">
+<title>SysConfig Features</title>
+<para><simplesect kind="note"><para>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</para>
+</simplesect>
+<itemizedlist>
+<listitem><para>DMA channel selection and configuration.</para>
+</listitem><listitem><para>Source and destination address setup options.</para>
+</listitem><listitem><para>Enabling and configuring DMA interrupt.</para>
+</listitem><listitem><para>Configuring DMA Error aggregator events in Error Signaling Module.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_DMA_PAGE_1autotoc_md46">
+<title>Features NOT Supported</title>
+<para>NA</para>
+</sect1>
+<sect1 id="DRIVERS_DMA_PAGE_1autotoc_md47">
+<title>Important Usage Guidelines</title>
+<para>NA</para>
+</sect1>
+<sect1 id="DRIVERS_DMA_PAGE_1autotoc_md48">
+<title>Example Usage</title>
+<para>Include the below file to access the APIs #include &lt;<ref refid="dma_8h" kindref="compound">dma.h</ref>&gt;</para>
+</sect1>
+<sect1 id="DRIVERS_DMA_PAGE_1autotoc_md49">
+<title>API</title>
+<para><ref refid="group__dma__api" kindref="compound">DMA</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/dma.md"/>
+  </compounddef>
+</doxygen>

@@ -18,7 +18,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -51,7 +51,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 //
 // Included Files
 //
@@ -72,28 +71,24 @@
 #endif
 #include "usb_ex8_descriptors.h"
 #include "usb_ex8_dual_detect.h"
-
 //******************************************************************************
 //
 // The current state of the USB in the system based on the detected mode.
 //
 //******************************************************************************
 volatile tUSBMode g_eCurrentUSBMode = eUSBModeNone;
-
 //******************************************************************************
 //
 // The saved number of clock ticks per millisecond.
 //
 //******************************************************************************
 uint32_t g_ui32ClockMS;
-
 //******************************************************************************
 //
 // The size of the host controller's memory pool in bytes.
 //
 //******************************************************************************
 //#define HCD_MEMORY_SIZE         128
-
 //******************************************************************************
 //
 // The memory pool to provide to the Host controller driver.
@@ -108,9 +103,7 @@ extern uint8_t g_pui8HCDPool[myUSB0_LIB_HCD_MEMORY_SIZE];
 //
 //******************************************************************************
 uint32_t g_ui32NewState;
-
 extern tUSBDHIDMouseDevice g_sMouseDevice;
-
 //******************************************************************************
 //
 // Callback function for mode changes.
@@ -122,9 +115,7 @@ ModeCallback(uint32_t ui32Index, tUSBMode eMode)
     //
     // Save the new mode.
     //
-
     g_eCurrentUSBMode = eMode;
-
     switch(eMode)
     {
         case eUSBModeHost:
@@ -150,7 +141,6 @@ ModeCallback(uint32_t ui32Index, tUSBMode eMode)
     }
     g_ui32NewState = 1;
 }
-
 //******************************************************************************
 //
 // Configure the UART and its pins.  This must be called before UARTprintf().
@@ -167,7 +157,6 @@ ConfigureSCI(void)
     GPIO_setDirectionMode(28, GPIO_DIR_MODE_IN);
     GPIO_setPadConfig(28, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(28, GPIO_QUAL_ASYNC);
-
     //
     // GPIO29 is the SCI Tx pin.
     //
@@ -176,13 +165,11 @@ ConfigureSCI(void)
     GPIO_setDirectionMode(29, GPIO_DIR_MODE_OUT);
     GPIO_setPadConfig(29, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(29, GPIO_QUAL_ASYNC);
-
     //
     // Initialize the SCI for console I/O.
     //
     SCIStdioConfig(SCIA_BASE, 115200, SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ));
 }
-
 //******************************************************************************
 //
 // Capture one sequence of DEVCTL register values during a session request.
@@ -192,81 +179,64 @@ int
 main(void)
 {
     uint8_t oldID = 2;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure GPIO pins for USB.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
-
     //
     // Set the clocking to run from the PLL at 60MHz
     //
     //SysCtl_setAuxClock(DEVICE_AUXSETCLOCK_CFG_USB);
     Board_init();
-
     C2000Ware_libraries_init();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Configure the required pins for USB operation.
     //
     USBGPIOEnable();
     Interrupt_register(INT_USBA, f28x_USB0DualModeIntHandler);
-
 #ifdef DEBUG
     //
     // Configure SCIA for debug output.
     //
     ConfigureSCI();
     SCIprintf("\033[2JDual Mode Detection Application\n");
-
 #endif
-
     //
     // Determine the number of SysCtlDelay loops required to delay 1mS.
     //
     g_ui32ClockMS = SysCtl_getClock(DEVICE_OSCSRC_FREQ) / (3 * 1000);
-
     //
     // Initialize the host stack.
     //
     HostStackInit();
-
     //
     // Initialize the device stack.
     //
     DeviceStackInit();
-
     Interrupt_enableGlobal();
-
     //
     // Set the new state so that the screen updates on the first
     // pass.
     //
     g_ui32NewState = 1;
-
     //
     // Loop forever.
     //
@@ -282,12 +252,10 @@ main(void)
                 // Kill the host mode
                 //
                 USBHCDTerm(0);
-
                 //
                 // Force device and re-initialize the stack
                 //
                 USBStackModeSet(0, eUSBModeForceDevice, ModeCallback);
-
                 DeviceStackInit();
                 g_eCurrentUSBMode = eUSBModeForceDevice;
             }
@@ -304,14 +272,12 @@ main(void)
                 g_eCurrentUSBMode = eUSBModeForceHost;
             }
         }
-
         if(g_eCurrentUSBMode == eUSBModeForceHost)
         {
             HostMain();
         }
     }
 }
-
 //
 // End of file
 //

@@ -62,9 +62,9 @@
 float scratch_buffer[FE_FRAME_SIZE * 4];
 
 // test case from test vector
-extern float raw_input_test[];
-extern float model_test_input[];
-extern model_output_t golden_output[];
+extern const float raw_input_test[];
+extern const float model_test_input[];
+extern const model_output_t golden_output[];
 
 // NN model output
 #define FAIL 0
@@ -122,8 +122,8 @@ void main(void)
     FE_allocFeatureExtract(fe_handle);
     ASSERT(FE_FRAME_SIZE * 4 * sizeof(float) >= fe.size_required_by_library);
 
-    fe_handle->input_buffer = &raw_input_test[0];
-    fe_handle->history_buffer = &model_test_input[0];
+    fe_handle->input_buffer = (float *)raw_input_test;
+    fe_handle->history_buffer = (float *)model_test_input;
 
 #if defined(TEST_FEATURE_EXTRACT)
     fe_handle->output_buffer = &test_feature_extraction[0];
@@ -151,7 +151,7 @@ void main(void)
     while (!tvmgen_default_finished);
 #endif
 
-    error = FE_compareModelOutput(golden_output, model_output);
+    error = FE_compareModelOutput((model_output_t *)golden_output, model_output);
 
     if (error == 0)
     {

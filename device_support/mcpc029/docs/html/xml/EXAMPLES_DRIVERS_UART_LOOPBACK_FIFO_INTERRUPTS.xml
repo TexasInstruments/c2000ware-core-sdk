@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_UART_LOOPBACK_FIFO_INTERRUPTS" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_UART_LOOPBACK_FIFO_INTERRUPTS</compoundname>
+    <title>UART Internal Loopback with FIFO &amp; Interrupts</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_UART_LOOPBACK_FIFO_INTERRUPTS_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_uart_loopback_fifo_interrupts"/></para>
+<sect1 id="EXAMPLES_DRIVERS_UART_LOOPBACK_FIFO_INTERRUPTS_1autotoc_md500">
+<title>Introduction</title>
+<para>This example uses the internal loopback test mode of the UART module. UART RX interrupt is used with FIFO level 2. The receive ISR verifies the received data. It then prepares and sends data for the next transmission.</para>
+<para>The sent data looks like this:</para>
+<para><programlisting><codeline><highlight class="normal">00<sp/>01</highlight></codeline>
+<codeline><highlight class="normal">01<sp/>02</highlight></codeline>
+<codeline><highlight class="normal">02<sp/>03</highlight></codeline>
+<codeline><highlight class="normal">....<sp/></highlight></codeline>
+<codeline><highlight class="normal">FE<sp/>FF</highlight></codeline>
+<codeline><highlight class="normal">FF<sp/>00</highlight></codeline>
+<codeline><highlight class="normal">etc..</highlight></codeline>
+</programlisting></para>
+<para>This pattern is repeated forever.</para>
+<para><simplesect kind="note"><para>Avoid keeping the memory browser open while the execution is in progress.</para>
+</simplesect>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_UART_LOOPBACK_FIFO_INTERRUPTS_1autotoc_md501">
+<title>Watch  Variables</title>
+<para><itemizedlist>
+<listitem><para>sData : Data being sent</para>
+</listitem><listitem><para>rData : Data received</para>
+</listitem><listitem><para>loopCount : Number of times ISR is executed</para>
+</listitem><listitem><para>errorCount : Number of errors detected</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_UART_LOOPBACK_FIFO_INTERRUPTS_1autotoc_md502">
+<title>External Connections</title>
+<para>Connect the UARTA Rx port to Tx port for external loopback.<itemizedlist>
+<listitem><para>GPIO32 is UARTARX to be connected to GPIO43 is UARTATX</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_UART_LOOPBACK_FIFO_INTERRUPTS_1autotoc_md503">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Using the watch variables, monitor data transmission</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_UART_LOOPBACK_FIFO_INTERRUPTS_1autotoc_md504">
+<title>See Also</title>
+<para><ref refid="DRIVERS_UART_PAGE" kindref="compound">UART</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/uart_loopback_fifo_interrupts.md"/>
+  </compounddef>
+</doxygen>

@@ -35,7 +35,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -68,16 +68,13 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 #include "driverlib_cm.h"
 #include "limits.h"
 #include "string.h"
-
 //
 // Definition of 1 Billion or 10^9
 //
 #define ONE_BILLION    1000000000
-
 //
 // This frequency is actually set in the c28x side code. If it is changed
 // there, then the following value also needs to be updated since the
@@ -86,17 +83,13 @@
 //
 #define PTP_REF_CLOCK_FREQ   100000000
 #define PTP_REF_CLOCK_PERIOD ONE_BILLION/PTP_REF_CLOCK_FREQ
-
 static Ethernet_Handle emac_handle;
 #define PACKET_LENGTH 200
 Ethernet_Pkt_Desc gPktDesc;
-
 #define ETHERNET_NO_OF_RX_PACKETS   8U
 #define ETHERNET_MAX_PACKET_LENGTH  PACKET_LENGTH
 #define NUM_PACKET_DESC_RX_APPLICATION 8U
-
 #define PTP_HEADER_OFFSET   14U
-
 //
 // Globals
 //
@@ -105,17 +98,13 @@ uint8_t Ethernet_rxBuffer[ETHERNET_NO_OF_RX_PACKETS *
 // Update clock if the offset from master wanders off further than this cutoff.
 //
 #define PTP_OFM_NANOSECONDS_CUTOFF  10000U
-
 uint32_t Ethernet_numRxCallbackCustom = 0;
 uint32_t releaseTxCount = 0;
 Ethernet_Pkt_Desc  pktDescriptorRXCustom[NUM_PACKET_DESC_RX_APPLICATION];
 extern uint32_t Ethernet_numGetPacketBufferCallback;
 extern Ethernet_Device Ethernet_device_struct;
-
 uint8_t delayReqMsg[PACKET_LENGTH] = {0};
-
 #define abs(x)  (x<0?-x:x)
-
 //
 // Taking care of network byte order conversions using these macros.
 //
@@ -129,17 +118,14 @@ uint8_t delayReqMsg[PACKET_LENGTH] = {0};
 #define PP_NTOHL(x) PP_HTONL(x)
 #define flip16(x) PP_HTONS(x)
 #define flip32(x) PP_HTONL(x)
-
 //
 // Following definitions and prototypes are specific to the PTP state machine
 // and have been adapted from the IEEE 1588 standard spec.
 //
-
 #define PTP_TWO_STEP                            0x02
 #define PTP_UUID_LENGTH                         6
 #define CLOCK_IDENTITY_LENGTH                   8
 #define FLAG_FIELD_LENGTH                       2
-
 #define HEADER_LENGTH                           34
 #define ANNOUNCE_LENGTH                         64
 #define SYNC_LENGTH                             44
@@ -150,7 +136,6 @@ uint8_t delayReqMsg[PACKET_LENGTH] = {0};
 #define PDELAY_RESP_LENGTH                      54
 #define PDELAY_RESP_FOLLOW_UP_LENGTH            54
 #define MANAGEMENT_LENGTH                       48
-
 typedef enum {FALSE=0, TRUE} Boolean;
 typedef char Octet;
 typedef signed char Integer8;
@@ -164,7 +149,6 @@ typedef unsigned char Enumeration8;
 typedef unsigned char Enumeration4;
 typedef unsigned char UInteger4;
 typedef unsigned char Nibble;
-
 //
 // brief Implementation specific of Integer64 type
 //
@@ -172,17 +156,14 @@ typedef struct {
     unsigned int lsb;
     int msb;
 } Integer64;
-
 typedef struct {
     unsigned int lsb;
     unsigned short msb;
 } UInteger48;
-
 typedef struct  {
     UInteger48 secondsField;
     UInteger32 nanosecondsField;
 } Timestamp;
-
 //
 // brief Time structure to handle Linux time information
 //
@@ -190,12 +171,10 @@ typedef struct {
     Integer32 seconds;
     Integer32 nanoseconds;
 } TimeInternal;
-
 //
 // brief The ClockIdentity type identifies a clock
 //
 typedef Octet ClockIdentity[CLOCK_IDENTITY_LENGTH];
-
 //
 // brief The PortIdentity identifies a PTP port.
 //
@@ -203,11 +182,9 @@ typedef struct {
     ClockIdentity clockIdentity;
     UInteger16 portNumber;
 } PortIdentity;
-
 //
 // brief The common header for all PTP messages (Table 18 of the spec)
 //
-
 //
 // Message header
 //
@@ -224,7 +201,6 @@ typedef struct {
     UInteger8 controlField;
     Integer8 logMessageInterval;
 } MsgHeader;
-
 typedef struct
 {
     PortIdentity portIdentity;
@@ -245,7 +221,6 @@ typedef struct
     Boolean waitingForDelayResp;
 } PTPSlaveState;
 PTPSlaveState gPtpSlaveState = {0};
-
 //
 // brief PTP Messages
 //
@@ -255,56 +230,37 @@ enum {
     FOLLOW_UP = 0x8,
     DELAY_RESP = 0x9,
 };
-
 //
 // Function prototypes used in this example
 //
-
 void fromInternalTime(TimeInternal * internal, Timestamp * external);
-
 void msgPackHeader(Octet * buf, PTPSlaveState *ptpSlaveState);
-
 void msgUnpackHeader(Octet * buf, MsgHeader * header);
-
 void msgPackDelayReq(Octet * buf, PTPSlaveState * ptpSlaveState);
-
 void InitConstants(PTPSlaveState *ptpSlaveState);
-
 void normalizeTime(TimeInternal * r);
-
 void
 subTime(TimeInternal * r, const TimeInternal * x, const TimeInternal * y);
-
 void
 addTime(TimeInternal * r, const TimeInternal * x, const TimeInternal * y);
-
 void div2Time(TimeInternal *r);
-
 void toInternalTime(TimeInternal * internal, Timestamp * external);
-
 void getTime(TimeInternal *time);
-
 void setTime(TimeInternal *time);
-
 void updateClock(void);
-
 Ethernet_Pkt_Desc* Ethernet_getPacketBufferCustom(void);
-
 Ethernet_Pkt_Desc* Ethernet_receivePacketCallbackCustom(
         Ethernet_Handle handleApplication,
         Ethernet_Pkt_Desc *pPacket);
-
 void Ethernet_releaseTxPacketBufferCustom(
         Ethernet_Handle handleApplication,
         Ethernet_Pkt_Desc *pPacket);
-
 main(void)
 {
     Ethernet_InitConfig *pInitCfg;
     uint32_t varPtpConfig = 0;
     Ethernet_InitInterfaceConfig initInterfaceConfig;
     float subSecondInc;
-
     initInterfaceConfig.ssbase = EMAC_SS_BASE;
     initInterfaceConfig.enet_base = EMAC_BASE;
     initInterfaceConfig.phyMode = ETHERNET_SS_PHY_INTF_SEL_MII;
@@ -316,6 +272,8 @@ main(void)
     initInterfaceConfig.ptrPlatformInterruptEnable = &Platform_enableInterrupt;
     initInterfaceConfig.ptrPlatformPeripheralEnable = &Platform_enablePeripheral;
     initInterfaceConfig.ptrPlatformPeripheralReset = &Platform_resetPeripheral;
+    initInterfaceConfig.ptrCoreInterruptDisable = &Interrupt_disableInProcessor;
+    initInterfaceConfig.ptrCoreInterruptEnable = &Interrupt_enableInProcessor;
     //
     //Assign the peripheral number at the SoC
     //
@@ -328,38 +286,30 @@ main(void)
     initInterfaceConfig.interruptNum[2] = INT_EMAC_TX1;
     initInterfaceConfig.interruptNum[3] = INT_EMAC_RX0;
     initInterfaceConfig.interruptNum[4] = INT_EMAC_RX1;
-
     pInitCfg = Ethernet_initInterface(initInterfaceConfig);
-
     Ethernet_getInitConfig(pInitCfg);
-
     pInitCfg->pfcbFreePacket = &Ethernet_releaseTxPacketBufferCustom;
     pInitCfg->pfcbRxPacket = &Ethernet_receivePacketCallbackCustom;
     pInitCfg->pfcbGetPacket = &Ethernet_getPacketBufferCustom;
-
     varPtpConfig = 0x0 |
                     (0 << ETHERNET_MAC_TIMESTAMP_CONTROL_SNAPTYPSEL_S) |
                     ETHERNET_MAC_TIMESTAMP_CONTROL_TSCTRLSSR |
                     ETHERNET_MAC_TIMESTAMP_CONTROL_TSEVNTENA |
                     ETHERNET_MAC_TIMESTAMP_CONTROL_TSVER2ENA |
                     ETHERNET_MAC_TIMESTAMP_CONTROL_TSIPENA;
-
     //
     // Subsecond increment is added to the systime counter every ptp clock tick
     // hence for Digital rollover, it is simply the time period of the clock
     // tick.
     //
     subSecondInc = PTP_REF_CLOCK_PERIOD;
-
     Ethernet_setConfigTimestampPTP(EMAC_BASE, varPtpConfig, subSecondInc);
     Ethernet_enableSysTimePTP(EMAC_BASE);
-    
     //
     // Start the system with a random value.
     //
     Ethernet_setSysTimePTP(EMAC_BASE, 0x4132EDCA, 0x25a5a5a5);
     pInitCfg->rxBuffer = Ethernet_rxBuffer;
-
     Ethernet_getHandle((Ethernet_Handle)1,pInitCfg , &emac_handle);
     //
     //Do global Interrupt Enable
@@ -375,7 +325,6 @@ main(void)
     //
     Interrupt_enable(INT_EMAC_TX0);
     Interrupt_enable(INT_EMAC_RX0);
-
     //
     // We need to program this standard multicast address so that this device
     // identifies PTP over Ethernet packets correctly. "01:1B:19:00:00:00"
@@ -385,14 +334,11 @@ main(void)
                         0x00000000,
                         0x00191B01,
                         ETHERNET_CHANNEL_0);
-
     InitConstants(&gPtpSlaveState);
-
     while(1)
     {
     }
 }
-
 void
 fromInternalTime(TimeInternal * internal, Timestamp * external)
 {
@@ -400,7 +346,6 @@ fromInternalTime(TimeInternal * internal, Timestamp * external)
     external->nanosecondsField = internal->nanoseconds;
     external->secondsField.msb = 0;
 }
-
 //
 // Pack header message into OUT buffer of ptpClock
 //
@@ -408,48 +353,39 @@ void
 msgPackHeader(Octet * buf, PTPSlaveState *ptpSlaveState)
 {
     Nibble transport = 0x80;
-
     //
     // (spec annex D)
     //
     *(UInteger8 *) (buf + 0) = transport;
-
     //
     // PTPv2
     //
     *(UInteger4 *) (buf + 1) = 0x2;
-
     //
     // Default domain number is 0.
     //
     *(UInteger8 *) (buf + 4) = 0;
-
     if (PTP_TWO_STEP)
         *(UInteger8 *) (buf + 6) = PTP_TWO_STEP;
-
     //
     // correctionField
     //
     memset((buf + 8), 0, 8);
-
     //
     // sourcePortIdentity first 8 octets
     //
     memcpy((buf + 20), ptpSlaveState->portIdentity.clockIdentity,
            CLOCK_IDENTITY_LENGTH);
-
     //
     // sourcePortIdentity last 2 octets
     //
     *(UInteger16 *) (buf + 28) =
             flip16(ptpSlaveState->portIdentity.portNumber);
-
     //
     // Default value(spec Table 24)
     //
     *(UInteger8 *) (buf + 33) = 0x7F;
 }
-
 //
 // Unpack Header from IN buffer to msgTmpHeader field
 //
@@ -459,7 +395,6 @@ msgUnpackHeader(Octet * buf, MsgHeader * header)
     header->transportSpecific = (*(Nibble *) (buf + 0)) >> 4;
     header->messageType = (*(Enumeration4 *) (buf + 0)) & 0x0F;
     header->versionPTP = (*(UInteger4 *) (buf + 1)) & 0x0F;
-
     //
     // force reserved bit to zero if not
     //
@@ -478,7 +413,6 @@ msgUnpackHeader(Octet * buf, MsgHeader * header)
     header->controlField = (*(UInteger8 *) (buf + 32));
     header->logMessageInterval = (*(Integer8 *) (buf + 33));
 }
-
 //
 // pack delayReq message into OUT buffer of ptpClock
 //
@@ -486,56 +420,45 @@ void
 msgPackDelayReq(Octet * buf, PTPSlaveState * ptpSlaveState)
 {
     msgPackHeader(buf, ptpSlaveState);
-
     //
     // changes in header
     //
     *(char *)(buf + 0) = *(char *)(buf + 0) & 0xF0;
-
     //
     // RAZ messageType
     //
     *(char *)(buf + 0) = *(char *)(buf + 0) | 0x01; /* Table 19 */
-
     //
     // messageLength
     //
     *(UInteger16 *) (buf + 2) = flip16(DELAY_REQ_LENGTH);
-
     //
     // Sequence Id
     //
     *(UInteger16 *) (buf + 30) =
             flip16(ptpSlaveState->delayReqSeqId);
-
     //
     // controlField
     //
     *(UInteger8 *) (buf + 32) = 0x01; /* Table 23 */
-
     //
     // logMessageInterval
     //
     *(Integer8 *) (buf + 33) = 0x7F; /* Table 24 */
 }
-
 void InitConstants(PTPSlaveState *ptpSlaveState)
 {
     uint32_t mac_low,mac_high, i, j;
     uint8_t *pucTemp;
-
     Ethernet_getMACAddr(EMAC_BASE, 0, &mac_high, &mac_low);
-
     pucTemp = (uint8_t *)&mac_low;
     ptpSlaveState->port_uuid_field[0] = pucTemp[0];
     ptpSlaveState->port_uuid_field[1] = pucTemp[1];
     ptpSlaveState->port_uuid_field[2] = pucTemp[2];
     ptpSlaveState->port_uuid_field[3] = pucTemp[3];
-
     pucTemp = (uint8_t *)&mac_high;
     ptpSlaveState->port_uuid_field[4] = pucTemp[0];
     ptpSlaveState->port_uuid_field[5] = pucTemp[1];
-
     //
     // Init global constants.
     //
@@ -551,13 +474,11 @@ void InitConstants(PTPSlaveState *ptpSlaveState)
        }
     }
 }
-
 void
 normalizeTime(TimeInternal * r)
 {
     r->seconds += r->nanoseconds / ONE_BILLION;
     r->nanoseconds -= r->nanoseconds / ONE_BILLION * ONE_BILLION;
-
     if (r->seconds > 0 && r->nanoseconds < 0) {
         r->seconds -= 1;
         r->nanoseconds += ONE_BILLION;
@@ -566,39 +487,30 @@ normalizeTime(TimeInternal * r)
         r->nanoseconds -= ONE_BILLION;
     }
 }
-
 void
 addTime(TimeInternal * r, const TimeInternal * x, const TimeInternal * y)
 {
     r->seconds = x->seconds + y->seconds;
     r->nanoseconds = x->nanoseconds + y->nanoseconds;
-
     normalizeTime(r);
 }
-
 void
 subTime(TimeInternal * r, const TimeInternal * x, const TimeInternal * y)
 {
     r->seconds = x->seconds - y->seconds;
     r->nanoseconds = x->nanoseconds - y->nanoseconds;
-
     normalizeTime(r);
 }
-
 void div2Time(TimeInternal *r)
 {
     r->nanoseconds += r->seconds % 2 * ONE_BILLION;
     r->seconds /= 2;
     r->nanoseconds /= 2;
-
     normalizeTime(r);
 }
-
-
 void
 toInternalTime(TimeInternal * internal, Timestamp * external)
 {
-
     //
     // Program will not run after 2038...
     //
@@ -616,7 +528,6 @@ toInternalTime(TimeInternal * internal, Timestamp * external)
         return;
     }
 }
-
 void
 getTime(TimeInternal *time)
 {
@@ -626,7 +537,6 @@ getTime(TimeInternal *time)
     Ethernet_getSysTimePTP(EMAC_BASE, (uint32_t *)&time->seconds,
                                 (uint32_t *)&time->nanoseconds);
 }
-
 void
 setTime(TimeInternal *time)
 {
@@ -636,11 +546,9 @@ setTime(TimeInternal *time)
     Ethernet_setSysTimePTP(EMAC_BASE, (uint32_t)time->seconds,
                             (uint32_t)time->nanoseconds);
 }
-
 void updateClock(void)
 {
     TimeInternal timeTmp;
-
     //
     // Update the clock if either
     //
@@ -654,7 +562,6 @@ void updateClock(void)
         gPtpSlaveState.clockUpdateCount++;
     }
 }
-
 //*****************************************************************************
 //
 //  This function is a callback function called by the example to
@@ -669,45 +576,38 @@ Ethernet_Pkt_Desc* Ethernet_getPacketBufferCustom(void)
     //
     uint32_t shortIndex = (Ethernet_numGetPacketBufferCallback + 3)
                 % NUM_PACKET_DESC_RX_APPLICATION;
-
     //
     // Increment the book-keeping pointer which acts as a head pointer
     // to the circular array of packet descriptor pool.
     //
     Ethernet_numGetPacketBufferCallback++;
-
     //
     // Update buffer length information to the newly procured packet
     // descriptor.
     //
     pktDescriptorRXCustom[shortIndex].bufferLength =
                                   ETHERNET_MAX_PACKET_LENGTH;
-
     //
     // Update the receive buffer address in the packer descriptor.
     //
     pktDescriptorRXCustom[shortIndex].dataBuffer =
                                       &Ethernet_device_struct.rxBuffer [ \
                (ETHERNET_MAX_PACKET_LENGTH*Ethernet_device_struct.rxBuffIndex)];
-
     //
     // Update the receive buffer pool index.
     //
     Ethernet_device_struct.rxBuffIndex += 1U;
     Ethernet_device_struct.rxBuffIndex  = \
     (Ethernet_device_struct.rxBuffIndex%ETHERNET_NO_OF_RX_PACKETS);
-
     //
     // Receive buffer is usable from Address 0
     //
     pktDescriptorRXCustom[shortIndex].dataOffset = 0U;
-
     //
     // Return this new descriptor to the driver.
     //
     return (&(pktDescriptorRXCustom[shortIndex]));
 }
-
 //*****************************************************************************
 //
 //  This is a hook function and called by the driver when it receives a
@@ -724,9 +624,7 @@ Ethernet_Pkt_Desc* Ethernet_receivePacketCallbackCustom(
     TimeInternal recvTime;
     TimeInternal sendTime;
     uint32_t i;
-
     msgUnpackHeader((Octet*)(pPacket->dataBuffer + PTP_HEADER_OFFSET), &header);
-
     switch(header.messageType)
     {
     case SYNC:
@@ -738,7 +636,6 @@ Ethernet_Pkt_Desc* Ethernet_receivePacketCallbackCustom(
         gPtpSlaveState.syncRecvTimestamp.secondsField.lsb =
                 pPacket->timeStampHigh;
         gPtpSlaveState.syncRecvTimestamp.secondsField.msb = 0;
-
         gPtpSlaveState.lastSyncSeqId = header.sequenceId;
         break;
     case FOLLOW_UP:
@@ -756,33 +653,26 @@ Ethernet_Pkt_Desc* Ethernet_receivePacketCallbackCustom(
                 flip32(*(UInteger32 *) (pPacket->dataBuffer + PTP_HEADER_OFFSET + 36));
             gPtpSlaveState.syncOriginTimestamp.nanosecondsField =
                 flip32(*(UInteger32 *) (pPacket->dataBuffer + PTP_HEADER_OFFSET + 40));
-
             while(gPtpSlaveState.syncOriginTimestamp.secondsField.lsb == 0x2000CE44);
-
             //
             // converting the origin timestamp to internal time
             //
             toInternalTime(&sendTime, &gPtpSlaveState.syncOriginTimestamp);
-
             //
             // converting the sync receive timestamp to internal time
             //
             toInternalTime(&recvTime, &gPtpSlaveState.syncRecvTimestamp);
-
             //
             // Calculate Master to slave delay
             //
             subTime(&gPtpSlaveState.delayMS, &recvTime, &sendTime);
-
             //
             // Calculate offset from master
             //
             subTime(&gPtpSlaveState.offsetFromMaster,
                     &gPtpSlaveState.delayMS,
                     &gPtpSlaveState.meanPathDelay);
-
             updateClock();
-
             //
             // If sufficient sync/followups have been received, then issue a
             // delay request packet.
@@ -796,14 +686,11 @@ Ethernet_Pkt_Desc* Ethernet_receivePacketCallbackCustom(
                 //
                 i=0; *((uint32_t *)delayReqMsg + i) = 0x00191B01;
                 i++; *((uint32_t *)delayReqMsg + i)  = 0xF7880000;
-
                 //
                 // Reset the buffer next sync packet.
                 //
                 memset(delayReqMsg+8, 0, PACKET_LENGTH-8);
-
                 msgPackDelayReq((Octet *)delayReqMsg + 8, &gPtpSlaveState);
-
                 gPktDesc.bufferLength = PACKET_LENGTH;
                 gPktDesc.dataOffset = 0;
                 gPktDesc.dataBuffer = delayReqMsg;
@@ -817,16 +704,11 @@ Ethernet_Pkt_Desc* Ethernet_receivePacketCallbackCustom(
                 gPktDesc.pktLength = DELAY_REQ_LENGTH + 6 + 2;
                 gPktDesc.validLength = gPktDesc.pktLength;
                 gPktDesc.numPktFrags = 1;
-
-
                 Ethernet_sendPacket(emac_handle,&gPktDesc);
-
                 gPtpSlaveState.delayReqSeqId++;
             }
         }
-
         break;
-
     case DELAY_RESP:
         //
         // 1. Get the "Delay Request receive timestamp.
@@ -836,33 +718,25 @@ Ethernet_Pkt_Desc* Ethernet_receivePacketCallbackCustom(
         if(gPtpSlaveState.waitingForDelayResp == TRUE)
         {
             gPtpSlaveState.waitingForDelayResp = FALSE;
-
             gPtpSlaveState.delayReqRecvTimestamp.secondsField.msb =
                 flip16(*(UInteger16 *) (pPacket->dataBuffer + PTP_HEADER_OFFSET + 34 ));
             gPtpSlaveState.delayReqRecvTimestamp.secondsField.lsb =
                 flip32(*(UInteger32 *) (pPacket->dataBuffer + PTP_HEADER_OFFSET + 36));
             gPtpSlaveState.delayReqRecvTimestamp.nanosecondsField =
                 flip32(*(UInteger32 *) (pPacket->dataBuffer + PTP_HEADER_OFFSET + 40));
-
             //
             // Update delay and calculate Mean Path Delay.
             //
             toInternalTime(&sendTime, &gPtpSlaveState.delayReqSentTimestamp);
-
             toInternalTime(&recvTime, &gPtpSlaveState.delayReqRecvTimestamp);
-
             subTime(&gPtpSlaveState.delaySM, &recvTime, &sendTime);
-
             addTime(&gPtpSlaveState.meanPathDelay,
                     &gPtpSlaveState.delaySM,
                     &gPtpSlaveState.delayMS);
-
             div2Time(&gPtpSlaveState.meanPathDelay);
         }
         break;
-
     }
-
     //
     // Book-keeping to maintain number of callbacks received.
     //
@@ -871,7 +745,6 @@ Ethernet_Pkt_Desc* Ethernet_receivePacketCallbackCustom(
 #endif
     return Ethernet_getPacketBufferCustom();
 }
-
 void Ethernet_releaseTxPacketBufferCustom(
         Ethernet_Handle handleApplication,
         Ethernet_Pkt_Desc *pPacket)
@@ -881,7 +754,6 @@ void Ethernet_releaseTxPacketBufferCustom(
     gPtpSlaveState.delayReqSentTimestamp.secondsField.lsb =
                                                     pPacket->timeStampHigh;
     gPtpSlaveState.delayReqSentTimestamp.secondsField.msb = 0;
-
     gPtpSlaveState.waitingForDelayResp = TRUE;
     //
     // Increment the book-keeping counter.

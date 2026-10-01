@@ -1,4 +1,10 @@
 /**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F2838x" --part "F2838x_337bga" --package "337bga" --context "CPU1" 
+ * @v2CliArgs --device "TMS320F28388D" --package "337bga" --context "CPU1"
+ */
+/**
  * Import the modules used in this configuration.
  */
 const clb                              = scripting.addModule("/driverlib/clb.js", {}, false);
@@ -20,7 +26,6 @@ const clb_run_dynamic_template_clb_c   = scripting.addModule("/utilities/clb_too
 const clb_run_dynamic_template_clb_dot = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_dot.js");
 const clb_run_dynamic_template_clb_h   = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_h.js");
 const clb_run_dynamic_template_clb_sim = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_sim.js");
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -39,7 +44,6 @@ clb1.globalConfigCLB_IN2 = "CLB_GLOBAL_IN_MUX_EPWM1B";
 clb1.globalConfigCLB_IN3 = "CLB_GLOBAL_IN_MUX_EPWM1B";
 clb1.filterConfigCLB_IN0 = "CLB_FILTER_FALLING_EDGE";
 clb1.filterConfigCLB_IN2 = "CLB_FILTER_FALLING_EDGE";
-
 clb2.clbBase             = "CLB2_BASE";
 clb2.$name               = "myTILE2";
 clb2.enableCLB           = true;
@@ -58,7 +62,6 @@ clb2.globalConfigCLB_IN2 = "CLB_GLOBAL_IN_MUX_EPWM2B";
 clb2.globalConfigCLB_IN3 = "CLB_GLOBAL_IN_MUX_EPWM2B";
 clb2.filterConfigCLB_IN0 = "CLB_FILTER_FALLING_EDGE";
 clb2.filterConfigCLB_IN2 = "CLB_FILTER_FALLING_EDGE";
-
 clb3.clbBase             = "CLB3_BASE";
 clb3.$name               = "myTILE3";
 clb3.enableCLB           = true;
@@ -77,7 +80,6 @@ clb3.globalConfigCLB_IN1 = "CLB_GLOBAL_IN_MUX_EPWM3A";
 clb3.globalConfigCLB_IN2 = "CLB_GLOBAL_IN_MUX_EPWM3B";
 clb3.globalConfigCLB_IN3 = "CLB_GLOBAL_IN_MUX_EPWM3B";
 clb3.filterConfigCLB_IN2 = "CLB_FILTER_FALLING_EDGE";
-
 clb4.clbBase             = "CLB4_BASE";
 clb4.$name               = "myTILE4";
 clb4.enableCLB           = true;
@@ -96,29 +98,23 @@ clb4.globalConfigCLB_IN0 = "CLB_GLOBAL_IN_MUX_EPWM4A";
 clb4.globalConfigCLB_IN1 = "CLB_GLOBAL_IN_MUX_EPWM4A";
 clb4.globalConfigCLB_IN2 = "CLB_GLOBAL_IN_MUX_EPWM4B";
 clb4.globalConfigCLB_IN3 = "CLB_GLOBAL_IN_MUX_EPWM4B";
-
 epwm1.$name                  = "myEPWM1";
 epwm1.epwm.$assign           = "EPWM1";
 epwm1.epwm.epwmaPin.$assign = "GPIO0";
 epwm1.epwm.epwmbPin.$assign = "GPIO1";
-
 epwm2.$name                  = "myEPWM2";
 epwm2.epwm.$assign           = "EPWM2";
 epwm2.epwm.epwmaPin.$assign = "GPIO2";
 epwm2.epwm.epwmbPin.$assign = "GPIO3";
-
 epwm3.$name                  = "myEPWM3";
 epwm3.epwm.$assign           = "EPWM3";
 epwm3.epwm.epwmaPin.$assign = "GPIO4";
 epwm3.epwm.epwmbPin.$assign = "GPIO5";
-
 epwm4.$name                  = "myEPWM4";
 epwm4.epwm.$assign           = "EPWM4";
 epwm4.epwm.epwmaPin.$assign = "GPIO6";
 epwm4.epwm.epwmbPin.$assign = "GPIO7";
-
 TILE.sim_duration = 500000000;
-
 TILE1.$name                  = "TILE1";
 TILE1.BOUNDARY.$name         = "BOUNDARY0";
 TILE1.BOUNDARY.boundaryInput0           = "squareWave";
@@ -197,7 +193,6 @@ TILE1.AOC_4.$name            = "AOC_4";
 TILE1.AOC_5.$name            = "AOC_5";
 TILE1.AOC_6.$name            = "AOC_6";
 TILE1.AOC_7.$name            = "AOC_7";
-
 TILE2.$name                = "TILE2";
 TILE2.BOUNDARY.$name       = "BOUNDARY1";
 TILE2.LUT_0.$name          = "LUT_3";
@@ -260,7 +255,6 @@ TILE2.AOC_4.$name          = "AOC_12";
 TILE2.AOC_5.$name          = "AOC_13";
 TILE2.AOC_6.$name          = "AOC_14";
 TILE2.AOC_7.$name          = "AOC_15";
-
 TILE3.$name                = "TILE3";
 TILE3.BOUNDARY.$name       = "BOUNDARY2";
 TILE3.LUT_0.$name          = "LUT_6";
@@ -323,7 +317,6 @@ TILE3.AOC_4.$name          = "AOC_20";
 TILE3.AOC_5.$name          = "AOC_21";
 TILE3.AOC_6.$name          = "AOC_22";
 TILE3.AOC_7.$name          = "AOC_23";
-
 TILE4.$name                = "TILE4";
 TILE4.BOUNDARY.$name       = "BOUNDARY3";
 TILE4.LUT_0.$name          = "LUT_9";

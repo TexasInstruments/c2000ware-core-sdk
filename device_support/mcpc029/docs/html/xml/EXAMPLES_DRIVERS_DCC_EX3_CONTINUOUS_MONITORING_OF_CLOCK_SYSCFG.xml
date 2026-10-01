@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_DCC_EX3_CONTINUOUS_MONITORING_OF_CLOCK_SYSCFG" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_DCC_EX3_CONTINUOUS_MONITORING_OF_CLOCK_SYSCFG</compoundname>
+    <title>DCC Continuous Monitoring of Clock Sysconfig</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_DCC_EX3_CONTINUOUS_MONITORING_OF_CLOCK_SYSCFG_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_dcc_ex3_continuous_monitoring_of_clock_syscfg"/></para>
+<sect1 id="EXAMPLES_DRIVERS_DCC_EX3_CONTINUOUS_MONITORING_OF_CLOCK_SYSCFG_1autotoc_md186">
+<title>Program Overview</title>
+<para>This program demonstrates continuous monitoring of the PLL Clock in the system using SYSOSCDIV4 as the reference clock. The Dual-Clock Comparator (DCC) Module 0 is utilized for clock monitoring. The program triggers an interrupt on any error , causing the decrement/reload of counters to stop.</para>
+<para><table rows="3" cols="3"><row>
+<entry thead="yes"><para>Clock Source   </para>
+</entry><entry thead="yes"><para>Description   </para>
+</entry><entry thead="yes"><para>Frequency    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Fclk0</bold>   </para>
+</entry><entry thead="no"><para>SYSOSCDIV4 clock   </para>
+</entry><entry thead="no"><para>8 MHz    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Fclk1</bold>   </para>
+</entry><entry thead="no"><para>PLL clock to be monitored   </para>
+</entry><entry thead="no"><para>160 MHz   </para>
+</entry></row>
+</table>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_DCC_EX3_CONTINUOUS_MONITORING_OF_CLOCK_SYSCFG_1autotoc_md187">
+<title>Error Tolerance</title>
+<para><table rows="3" cols="2"><row>
+<entry thead="yes"><para>Error Type   </para>
+</entry><entry thead="yes"><para>Tolerance Value    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>DCC Error Tolerance</bold>   </para>
+</entry><entry thead="no"><para>1%    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Frequency Error Tolerance</bold>   </para>
+</entry><entry thead="no"><para>3% (due to internal oscillator specifications)   </para>
+</entry></row>
+</table>
+</para>
+<para>These tolerances are configured in the SysConfig file. For demonstration purposes, an unrealistic tolerance is assumed to generate an error during continuous monitoring.</para>
+<sect2 id="EXAMPLES_DRIVERS_DCC_EX3_CONTINUOUS_MONITORING_OF_CLOCK_SYSCFG_1autotoc_md188">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>None</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_DCC_EX3_CONTINUOUS_MONITORING_OF_CLOCK_SYSCFG_1autotoc_md189">
+<title>Watch Variables</title>
+<para><table rows="5" cols="2"><row>
+<entry thead="yes"><para>Variable   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>result</computeroutput>   </para>
+</entry><entry thead="no"><para>Status of the PLLRAW clock monitoring (PASS/FAIL)    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>cnt0</computeroutput>   </para>
+</entry><entry thead="no"><para>Counter0 value measured when an error is generated    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>cnt1</computeroutput>   </para>
+</entry><entry thead="no"><para>Counter1 value measured when an error is generated    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>valid</computeroutput>   </para>
+</entry><entry thead="no"><para>Valid0 value measured when an error is generated   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_DCC_EX3_CONTINUOUS_MONITORING_OF_CLOCK_SYSCFG_1autotoc_md190">
+<title>ISR Table</title>
+<para><table rows="2" cols="3"><row>
+<entry thead="yes"><para>ISR Name   </para>
+</entry><entry thead="yes"><para>Trigger Condition   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>INT_myDCC0_ISR()</computeroutput>   </para>
+</entry><entry thead="no"><para>DCC error signal detected   </para>
+</entry><entry thead="no"><para>Handles DCC error, dumps counter values, clears flags   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_DCC_EX3_CONTINUOUS_MONITORING_OF_CLOCK_SYSCFG_1autotoc_md191">
+<title>Watch Variables</title>
+<para><table rows="7" cols="2"><row>
+<entry thead="yes"><para>Variables   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>result</computeroutput>   </para>
+</entry><entry thead="no"><para>Indicates the status of the PLL clock monitoring (PASS/FAIL).    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>pass_base</computeroutput>   </para>
+</entry><entry thead="no"><para>Base address of the DCC module.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>isr_enter</computeroutput>   </para>
+</entry><entry thead="no"><para>Flag to indicate if the ISR was entered.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>cnt0</computeroutput>   </para>
+</entry><entry thead="no"><para>Counter0 value measured during an error.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>cnt1</computeroutput>   </para>
+</entry><entry thead="no"><para>Counter1 value measured during an error.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>valid</computeroutput>   </para>
+</entry><entry thead="no"><para>Valid0 value measured during an error.   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_DCC_EX3_CONTINUOUS_MONITORING_OF_CLOCK_SYSCFG_1autotoc_md192">
+<title>Calculation Details</title>
+<para><verbatim>  Since Fclk1&gt;Fclk0, Async. Error (In Clock0 cycles) = 2 + 2*(Fsysclk/Fclk0)
+
+  Digitization error (In Clock0 cycles) = 8
+
+  DCC Error = Async. Error + Digitization error
+
+  Window (in Cycles) = (DCC Error) / (0.01 * Tolerance)
+
+
+  Frequency Error Allowed (In Clock0 Cycles)
+                        = Window * (Allowable Frequency Tolerance (in %) / 100)
+
+  Total Error = DCC Error + Frequency Error Allowed
+
+  Counter0 = Window - Total Error
+
+  Valid0   = 2 * Total Error 
+
+  Counter1 = Window x (Fclk1/Fclk0)
+</verbatim></para>
+<para><simplesect kind="note"><para>Above calculation is done as part of sysconfig in this example</para>
+</simplesect>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_DCC_EX3_CONTINUOUS_MONITORING_OF_CLOCK_SYSCFG_1autotoc_md193">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>None</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_DCC_EX3_CONTINUOUS_MONITORING_OF_CLOCK_SYSCFG_1autotoc_md194">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Using the watch variables, view the Clock monitoring status and the counter values when the error is generated.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para><itemizedlist>
+<listitem><para>When running in flash configuration, it is recommended to reset and restart after loading the example to remove any stale flags or states.</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_DCC_EX3_CONTINUOUS_MONITORING_OF_CLOCK_SYSCFG_1autotoc_md195">
+<title>See Also</title>
+<para><ref refid="DRIVERS_DCC_PAGE" kindref="compound">DCC</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/dcc_ex3_continuous_monitoring_of_clock_syscfg.md"/>
+  </compounddef>
+</doxygen>

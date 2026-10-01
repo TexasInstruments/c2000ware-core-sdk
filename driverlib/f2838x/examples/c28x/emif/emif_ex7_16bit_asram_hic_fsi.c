@@ -45,7 +45,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -78,14 +78,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "device.h"
 #include "driverlib.h"
 #include "inc/hw_hic.h"
-
 //
 // Defines
 //
@@ -99,38 +97,31 @@
 #define DEVICE_FSI_TX_FRAME_CTRL_START   0x8000U
 #define CS2_BASE_ADDR               0x00100000
 #define HIC_HOST_BASE CS2_BASE_ADDR
-
 #define HIC_EVTTRIG_EVENT_0         0x010000U //!< EVTTRIG0
-
 //
 //Defines for EMIF Timings and HIC
 //
 #define WAIT_POLAR_INV              0
 #define WAIT_COUNT                  16
-
 #define TURN_AROUND_TIME            0
 #define R_HOLD_TIME                 2
 #define R_STROBE_TIME               7
 #define R_SETUP_TIME                2
-
 #define W_HOLD_TIME                 2
 #define W_STROBE_TIME               7
 #define W_SETUP_TIME                2
 #define HIC_D2HINTFLG_D2H_FLG       1
-
 //
 // Globals
 //
 uint16_t errCountGlobal = 0;
 uint32_t fsiInterruptReceived=0;
 uint32_t xint1Count =0;
-
 //
 // Function Prototypes
 //
 void setupEMIF1PinmuxAsync16Bit_HIC(void);
 interrupt void xint1ISR(void);
-
 //
 //HIC Specific Utility Functions
 //
@@ -138,86 +129,66 @@ static inline void HIC_MMR_WR_FIELD32(uint32_t addr, uint32_t value)
 {
     HWREG(CS2_BASE_ADDR + (addr&0xFF) ) = value;
 }
-
 static inline uint32_t HIC_MMR_RD_FIELD32(uint32_t addr)
 {
     return(HWREG(CS2_BASE_ADDR + (addr&0xFF)));
-
 }
-
 static inline void HIC_DEVICE_WR_FIELD16(uint16_t addr, uint16_t value)
 {
     HWREGH(CS2_BASE_ADDR + (addr | 0x100)) = value;
 }
-
-
 static uint16_t HIC_DEVICE_REGION_RD_FIELD16(uint8_t region,uint16_t addr)
 {
     return( HWREGH(CS2_BASE_ADDR + (addr | (region<<8))));
 }
-
 static inline void HIC_Host_selectBaseAddress(uint32_t baseSel)
 {
     HIC_MMR_WR_FIELD32( (HIC_HOST_BASE + HIC_O_BASESEL) , baseSel);
 }
-
 static inline void HIC_Host_hostConfig(uint32_t hostConfig)
 {
     HIC_MMR_WR_FIELD32( (HIC_HOST_BASE + HIC_O_HOSTCR) , (hostConfig|0xA500));
 }
-
 static inline void HIC_Host_setH2DToken(uint32_t h2dToken)
 {
     HIC_MMR_WR_FIELD32( (HIC_HOST_BASE + HIC_O_H2DTOKEN) , h2dToken );
 }
-
 static inline void HIC_Host_enableH2DInterrupt(uint32_t interruptFlags)
 {
     HIC_MMR_WR_FIELD32( (HIC_HOST_BASE + HIC_O_H2DINTEN) , interruptFlags) ;
 }
-
 static inline void HIC_Host_disableH2DInterrupt(uint32_t interruptFlags)
 {
     HIC_MMR_WR_FIELD32( (HIC_HOST_BASE + HIC_O_H2DINTEN) , ~interruptFlags) ;
 }
-
 static inline void HIC_Host_clearH2DInterrupt(uint32_t interruptFlagClear)
 {
     HIC_MMR_WR_FIELD32( (HIC_HOST_BASE + HIC_O_H2DINTCLR) , interruptFlagClear);
 }
-
 uint32_t HIC_Host_getH2DInterruptStatus()
 {
     return(HIC_MMR_RD_FIELD32(HIC_HOST_BASE + HIC_O_H2DINTFLG));
 }
-
 static inline void HIC_Host_clearD2HInterrupt(uint32_t interruptFlagClear)
 {
     HIC_MMR_WR_FIELD32( (HIC_HOST_BASE + HIC_O_D2HINTCLR) , interruptFlagClear);
 }
-
 uint32_t HIC_Host_getD2HInterruptStatus()
 {
     return(HIC_MMR_RD_FIELD32(HIC_HOST_BASE + HIC_O_D2HINTFLG));
 }
-
-
 static inline void HIC_Host_writeH2DBuffer(uint32_t bufferNo,uint32_t data)
 {
     uint32_t index;
     index = bufferNo * 2;
-
     HIC_MMR_WR_FIELD32( (HIC_HOST_BASE + HIC_O_H2D_BUF0 + index) , data);
 }
-
 uint32_t HIC_Host_readD2HBuffer(uint32_t bufferNo)
 {
     uint32_t index;
-
     index = bufferNo * 2;
     return(HIC_MMR_RD_FIELD32(HIC_O_D2H_BUF0 + index));
 }
-
 #if 0
 //
 //These routines are not used in this program
@@ -235,7 +206,6 @@ static inline void HIC_DEVICE_WR_BASESELFROMPIN_FIELD16(uint16_t addr, uint16_t 
 {
     HWREGH(CS2_BASE_ADDR + addr ) = value;
 }
-
 static uint16_t HIC_DEVICE_RD_BASESELFROMPIN_FIELD16(uint16_t addr)
 {
     return( HWREGH(CS2_BASE_ADDR + (addr | 0x100)) );
@@ -245,7 +215,6 @@ static inline void HIC_DEVICE_WR_BASESELFROMPIN_FIELD32(uint32_t addr, uint32_t 
     HWREGH(CS2_BASE_ADDR + (addr & 0xFE )) = value;
     HWREGH(CS2_BASE_ADDR + ((addr & 0xFE) + 1)) = (value >> 16);
 }
-
 static uint32_t HIC_DEVICE_RD_BASESELFROMPIN_FIELD32(uint32_t addr)
 {
     uint32_t temp1, temp2;
@@ -262,7 +231,6 @@ static inline uint32_t HIC_DEVICE_RD_FIELD32(uint32_t addr)
     return( HWREG(CS2_BASE_ADDR + ( (addr & 0xFF) | 0x100)) ) ;
 }
 #endif
-
 //
 // Main
 //
@@ -271,90 +239,73 @@ void main(void)
     EMIF_AsyncTimingParams tparam;
     uint32_t index = 0U;
     uint16_t frameControl = 0;
-
-
     //
     // Initialize device clock and peripherals.
     //
     Device_init();
-
     //
     // Disable all the interrupts.
     //
     DINT;
-
     //
     // Setup GPIO by disabling pin locks and enabling pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Configure to run EMIF1 on full Rate. (EMIF1CLK = CPU1SYSCLK)
     //
     SysCtl_setEMIF1ClockDivider(SYSCTL_EMIF1CLK_DIV_2);
-
     //
     // Grab EMIF1 For CPU1.
     //
     EMIF_selectController(EMIF1CONFIG_BASE, EMIF_CONTROLLER_CPU1_G);
-
     //
     // Disable Access Protection. (CPU_FETCH/CPU_WR/DMA_WR)
     //
     EMIF_setAccessProtection(EMIF1CONFIG_BASE, 0x0);
-
     //
     // Commit the configuration related to protection. Till this bit remains
     // set, contents of EMIF1ACCPROT0 register can't be changed.
     //
     EMIF_commitAccessConfig(EMIF1CONFIG_BASE);
-
     //
     // Lock the configuration so that EMIF1COMMIT register can't be changed
     // any more.
     //
     EMIF_lockAccessConfig(EMIF1CONFIG_BASE);
-
     //
     // Configure GPIO pins for EMIF1.
     // TBD GPIO10 as input for HINT interrupt
     //
     setupEMIF1PinmuxAsync16Bit_HIC();
-
     //
     // Configures Normal Asynchronous Mode of Operation.
     //
     EMIF_setAsyncMode(EMIF1_BASE, EMIF_ASYNC_CS2_OFFSET,
                       EMIF_ASYNC_NORMAL_MODE);
-
     //
     // Enable Extended Wait Mode.
     //
     EMIF_setAsyncMaximumWaitCycles(EMIF1_BASE,WAIT_COUNT);
-
     //
     //Active Low Polarity for Wait Signal
     //
     EMIF_setAsyncWaitPolarity(EMIF1_BASE,EMIF_ASYNC_WAIT_POLARITY_LOW);
     EMIF_enableAsyncExtendedWait(EMIF1_BASE,EMIF_ASYNC_CS2_OFFSET);
-
     //
     // Configure EMIF1 Data Bus Width.
     //
     EMIF_setAsyncDataBusWidth(EMIF1_BASE, EMIF_ASYNC_CS2_OFFSET,
                               EMIF_ASYNC_DATA_WIDTH_16);
-
     //
     // Configure the access timing for CS2 space.
     //
@@ -366,17 +317,13 @@ void main(void)
     tparam.wStrobe = W_STROBE_TIME;
     tparam.wHold = W_HOLD_TIME;
     EMIF_setAsyncTimingParams(EMIF1_BASE, EMIF_ASYNC_CS2_OFFSET, &tparam);
-
     Interrupt_register(INT_XINT1, &xint1ISR);
-
     GPIO_setQualificationMode(10, GPIO_QUAL_ASYNC);
-
     //
     //Configure GPIO 10 for XINT1
     //
     GPIO_setInterruptPin(10,GPIO_INT_XINT1);
     GPIO_enableInterrupt(GPIO_INT_XINT1);
-   
     //
     // Configure Rising edge trigger for XINT1
     //
@@ -384,23 +331,18 @@ void main(void)
     Interrupt_enable(INT_XINT1);
     EINT;
     ERTM;
-
     //
     //Wait till the Flag is set by the HIC module
     //
     while(HIC_Host_getD2HInterruptStatus() != HIC_D2HINTFLG_D2H_FLG);
-
     //
     //Clear the flag to process further commands
     //
     HIC_Host_clearD2HInterrupt(HIC_D2HINTFLG_D2H_FLG);
-
-
     //
     //Use the first Base Address Region
     //
     HIC_Host_selectBaseAddress(0);
-
     //
     //Using 6 word per Frame
     //Fill the Transmit buffer
@@ -409,7 +351,6 @@ void main(void)
     {
         HIC_DEVICE_WR_FIELD16(DEVICE_FSI_O_TX_BUF_BASE(index),index);
     }
-
     //
     //Read the Frame control register of Device FSI
     //Set the Frame Start to trigger Transmit
@@ -417,12 +358,10 @@ void main(void)
     frameControl = HIC_DEVICE_REGION_RD_FIELD16(1,DEVICE_FSI_O_TX_FRAME_CTRL);
     frameControl = (frameControl | DEVICE_FSI_TX_FRAME_CTRL_START);
     HIC_DEVICE_WR_FIELD16(DEVICE_FSI_O_TX_FRAME_CTRL,frameControl);
-    
     //
     //Check if the read data is same as what is written
     //
     while(0U == fsiInterruptReceived);
-        
     //
     //Check received data correctness
     //
@@ -433,9 +372,7 @@ void main(void)
            index)
             errCountGlobal++;
     }
-
     ESTOP0;
-
 }
 //
 // Setup EMIF1 Pinmux Async 16Bit - This function configures pins for 16 bit
@@ -444,12 +381,10 @@ void main(void)
 void setupEMIF1PinmuxAsync16Bit_HIC(void)
 {
     uint16_t index;
-
     GPIO_setPinConfig(GPIO_31_EMIF1_WEN);
     GPIO_setPinConfig(GPIO_34_EMIF1_CS2N);
     GPIO_setPinConfig(GPIO_36_EMIF1_WAIT);
     GPIO_setPinConfig(GPIO_37_EMIF1_OEN);
-
     //
     // Selecting address lines.
     //
@@ -461,7 +396,6 @@ void setupEMIF1PinmuxAsync16Bit_HIC(void)
     GPIO_setPinConfig(GPIO_45_EMIF1_A5);
     GPIO_setPinConfig(GPIO_46_EMIF1_A6);
     GPIO_setPinConfig(GPIO_47_EMIF1_A7);
-
     //
     // Selecting data lines.
     //
@@ -481,14 +415,12 @@ void setupEMIF1PinmuxAsync16Bit_HIC(void)
     GPIO_setPinConfig(GPIO_82_EMIF1_D2);
     GPIO_setPinConfig(GPIO_83_EMIF1_D1);
     GPIO_setPinConfig(GPIO_85_EMIF1_D0);
-
     //
     // Setting DQM and Bank Select lines
     //
     GPIO_setPinConfig(GPIO_24_EMIF1_DQM0);
     GPIO_setPinConfig(GPIO_25_EMIF1_DQM1);
     GPIO_setPinConfig(GPIO_21_EMIF1_BA1);
-
     //
     // Setup async mode and enable pull-ups for Data pins.
     //
@@ -500,7 +432,6 @@ void setupEMIF1PinmuxAsync16Bit_HIC(void)
             GPIO_setQualificationMode(index, GPIO_QUAL_ASYNC);
         }
     }
-
     //
     // Make GPIO10 an input on GPIO10
     //
@@ -508,21 +439,17 @@ void setupEMIF1PinmuxAsync16Bit_HIC(void)
     GPIO_setPinConfig(GPIO_10_GPIO10);               // GPIO10 = GPIO10
     GPIO_setDirectionMode(10, GPIO_DIR_MODE_IN);     // GPIO10 = input
 }
-
 //
 // xint1ISR - External Interrupt 1 ISR
 //
 interrupt void xint1ISR(void)
 {
-
     xint1Count++;
-
     if((HIC_Host_getD2HInterruptStatus() & HIC_EVTTRIG_EVENT_0))
     {
         fsiInterruptReceived = 1;
         HIC_Host_clearD2HInterrupt(HIC_EVTTRIG_EVENT_0);
     }
-
     //
     // Acknowledge this interrupt to get more from group 1
     //

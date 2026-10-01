@@ -2,7 +2,6 @@
 #include "device.h"
 #include "board.h"
 #include "c2000ware_libraries.h"
-
 //
 // Used for memory alignment
 //
@@ -16,7 +15,6 @@
 #else
 #pragma DATA_SECTION(test_output, "FFT_buffer_2")
 #endif
-
 float test_input[256] = {
                          77.000000000000F,    0.000000000000F,   45.321542597114F,   28.517201792762F,
                          48.938746669790F,   48.715947146598F,   -1.272077938642F,   55.440734982460F,
@@ -218,10 +216,8 @@ float32_t test_twiddles[myCFFT0_CFFT_SIZE];
 float32_t *inPtr = test_input;
 float32_t *outPtr = test_output;
 float32_t *twiddleFacs = test_twiddles;
-
 uint16_t pass = 0U, fail = 0U;
 float tolerance = 3e-2;
-
 void main(void)
 {
     //
@@ -233,19 +229,16 @@ void main(void)
     Interrupt_initVectorTable();
     Board_init();
     C2000Ware_libraries_init();
-
     //
     // Variable initialization
     //
     int16_t i;
     float32u_t out, gold, err;
     float *p_temp;
-
     //
     // Run complex FFT function
     //
     CFFT_f32t(myCFFT0_handle);
-
     //
     // Verify results
     //

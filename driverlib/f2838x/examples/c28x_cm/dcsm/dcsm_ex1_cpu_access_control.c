@@ -48,7 +48,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -81,21 +81,17 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
 #define PASS 0
 #define FAIL 1
-
 uint32_t result = FAIL;
-
 //
 // Main
 //
@@ -105,19 +101,15 @@ void main(void)
     //Variable showing the error occurred while testing DCSM
     //
     uint16_t set_error=0;
-
     DCSM_SecurityStatus status1;
-
     //
     //Variable to check the status of the CM's Ram module allocated to zone
     //
     DCSM_MemoryStatus mem_status;
-
     //
     //Initialize device clock and peripherals
     //
     Device_init();
-
     //
     //Boot CM core
     //
@@ -126,24 +118,20 @@ void main(void)
 #else
     Device_bootCM(BOOTMODE_BOOT_TO_S0RAM);
 #endif
-
     //
     //Synchronize CPU1 and CM cores - CPU1 device init & CM boot complete
     //
     IPC_sync(IPC_CPU1_L_CM_R, IPC_FLAG12);
-
     //
     //Synchronize CPU1 and CM cores - CM has finished unlocking all
     //zones at start
     //
     IPC_sync(IPC_CPU1_L_CM_R, IPC_FLAG11);
-
     //
     //Getting the default status of the zone 1
     //
     status1 = DCSM_getZone1CSMSecurityStatus();
     if(status1!=DCSM_STATUS_UNSECURE) set_error++;
-    
     //
     //Since this example writes/reads to CM's C0RAM & C1RAM
     //memories, only the status of these RAMs are checked.
@@ -152,41 +140,34 @@ void main(void)
     //
     mem_status = DCSM_getRAMZone(DCSM_RAM_CM_C0,DCSM_CPUSEL_CM);
     if(mem_status!=DCSM_MEMORY_ZONE1) set_error++;
-    
     //
     //Getting the default status of the CM's C1RAM allocation
     //
     mem_status = DCSM_getRAMZone(DCSM_RAM_CM_C1,DCSM_CPUSEL_CM);
     if(mem_status!=DCSM_MEMORY_ZONE2) set_error++;
-
     //
     //Synchronize CPU1 and CM cores - CM has finished writing to the memories
     //
     IPC_sync(IPC_CPU1_L_CM_R, IPC_FLAG11);
-
     //
     //Synchronize CPU1 and CM cores - CM's memories are secure
     //
     IPC_sync(IPC_CPU1_L_CM_R, IPC_FLAG12);
-
     //
     //Getting the status of zone1 after locking it
     //
     status1 = DCSM_getZone1CSMSecurityStatus();
     if(status1!=DCSM_STATUS_SECURE) set_error++;
-
     //
     //Perform dummy read of the Zone 1 CSM password before 
     //the CM writes to the CSM key to unlock the memories
     //
     DCSM_readZone1CSMPwd();
-
     //
     //Synchronize CPU1 and CM cores - CPU1 dummy read of the Zone 1 
     //CSM password before the CM writes to the CSM key complete
     //
     IPC_sync(IPC_CPU1_L_CM_R, IPC_FLAG11);
-
     //
     //Status of Memory Access control by CPU1
     //
@@ -197,13 +178,9 @@ void main(void)
     else
     {
         result = PASS;
-
     }
-
     while(1);
-
 }
-
 //
 // End of File
 //

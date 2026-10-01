@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">F28E12x Driverib and Example User Guide
-   &#160;<span id="projectnumber">26.01.00.00</span>
+   &#160;<span id="projectnumber">26.02.00.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -907,14 +907,14 @@ $(document).ready(function(){initNavTree('mcpwm_8h_source.html',''); initResizab
 <div class="line"><a name="l01218"></a><span class="lineno"> 1218</span>&#160;        <span class="comment">//</span></div>
 <div class="line"><a name="l01219"></a><span class="lineno"> 1219</span>&#160;        <span class="comment">// Clear PRDLD</span></div>
 <div class="line"><a name="l01220"></a><span class="lineno"> 1220</span>&#160;        <span class="comment">//</span></div>
-<div class="line"><a name="l01221"></a><span class="lineno"> 1221</span>&#160;        HWREG(base + MCPWM_O_TBCTL) &amp;= ~MCPWM_TBCTL_PRDLD;</div>
+<div class="line"><a name="l01221"></a><span class="lineno"> 1221</span>&#160;        HWREG(base + MCPWM_O_TBCTL) &amp;= ~((uint32_t)MCPWM_TBCTL_PRDLD);</div>
 <div class="line"><a name="l01222"></a><span class="lineno"> 1222</span>&#160;    }</div>
 <div class="line"><a name="l01223"></a><span class="lineno"> 1223</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l01224"></a><span class="lineno"> 1224</span>&#160;    {</div>
 <div class="line"><a name="l01225"></a><span class="lineno"> 1225</span>&#160;        <span class="comment">//</span></div>
 <div class="line"><a name="l01226"></a><span class="lineno"> 1226</span>&#160;        <span class="comment">// Set PRDLD</span></div>
 <div class="line"><a name="l01227"></a><span class="lineno"> 1227</span>&#160;        <span class="comment">//</span></div>
-<div class="line"><a name="l01228"></a><span class="lineno"> 1228</span>&#160;        HWREG(base + MCPWM_O_TBCTL) |= MCPWM_TBCTL_PRDLD;</div>
+<div class="line"><a name="l01228"></a><span class="lineno"> 1228</span>&#160;        HWREG(base + MCPWM_O_TBCTL) |= (uint32_t)MCPWM_TBCTL_PRDLD;</div>
 <div class="line"><a name="l01229"></a><span class="lineno"> 1229</span>&#160;    }</div>
 <div class="line"><a name="l01230"></a><span class="lineno"> 1230</span>&#160;}</div>
 <div class="line"><a name="l01231"></a><span class="lineno"> 1231</span>&#160; </div>
@@ -933,7 +933,7 @@ $(document).ready(function(){initNavTree('mcpwm_8h_source.html',''); initResizab
 <div class="line"><a name="l01252"></a><span class="lineno"> 1252</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l01253"></a><span class="lineno"> 1253</span>&#160;    <span class="comment">// Set PHSEN bit</span></div>
 <div class="line"><a name="l01254"></a><span class="lineno"> 1254</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l01255"></a><span class="lineno"> 1255</span>&#160;    HWREG(base + MCPWM_O_TBCTL) |= MCPWM_TBCTL_PHSEN;</div>
+<div class="line"><a name="l01255"></a><span class="lineno"> 1255</span>&#160;    HWREG(base + MCPWM_O_TBCTL) |= (uint32_t)MCPWM_TBCTL_PHSEN;</div>
 <div class="line"><a name="l01256"></a><span class="lineno"> 1256</span>&#160;}</div>
 <div class="line"><a name="l01257"></a><span class="lineno"> 1257</span>&#160; </div>
 <div class="line"><a name="l01258"></a><span class="lineno"> 1258</span>&#160;<span class="comment">//*****************************************************************************</span></div>
@@ -971,14 +971,14 @@ $(document).ready(function(){initNavTree('mcpwm_8h_source.html',''); initResizab
 <div class="line"><a name="l01310"></a><span class="lineno"> 1310</span>&#160;        <span class="comment">//</span></div>
 <div class="line"><a name="l01311"></a><span class="lineno"> 1311</span>&#160;        <span class="comment">// Set PHSDIR bit</span></div>
 <div class="line"><a name="l01312"></a><span class="lineno"> 1312</span>&#160;        <span class="comment">//</span></div>
-<div class="line"><a name="l01313"></a><span class="lineno"> 1313</span>&#160;        HWREG(base + MCPWM_O_TBCTL) |= MCPWM_TBCTL_PHSDIR;</div>
+<div class="line"><a name="l01313"></a><span class="lineno"> 1313</span>&#160;        HWREG(base + MCPWM_O_TBCTL) |= (uint32_t)MCPWM_TBCTL_PHSDIR;</div>
 <div class="line"><a name="l01314"></a><span class="lineno"> 1314</span>&#160;    }</div>
 <div class="line"><a name="l01315"></a><span class="lineno"> 1315</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l01316"></a><span class="lineno"> 1316</span>&#160;    {</div>
 <div class="line"><a name="l01317"></a><span class="lineno"> 1317</span>&#160;        <span class="comment">//</span></div>
 <div class="line"><a name="l01318"></a><span class="lineno"> 1318</span>&#160;        <span class="comment">// Clear PHSDIR bit</span></div>
 <div class="line"><a name="l01319"></a><span class="lineno"> 1319</span>&#160;        <span class="comment">//</span></div>
-<div class="line"><a name="l01320"></a><span class="lineno"> 1320</span>&#160;        HWREG(base + MCPWM_O_TBCTL) &amp;= ~MCPWM_TBCTL_PHSDIR;</div>
+<div class="line"><a name="l01320"></a><span class="lineno"> 1320</span>&#160;        HWREG(base + MCPWM_O_TBCTL) &amp;= ~((uint32_t)MCPWM_TBCTL_PHSDIR);</div>
 <div class="line"><a name="l01321"></a><span class="lineno"> 1321</span>&#160;    }</div>
 <div class="line"><a name="l01322"></a><span class="lineno"> 1322</span>&#160;}</div>
 <div class="line"><a name="l01323"></a><span class="lineno"> 1323</span>&#160; </div>
@@ -997,7 +997,7 @@ $(document).ready(function(){initNavTree('mcpwm_8h_source.html',''); initResizab
 <div class="line"><a name="l01343"></a><span class="lineno"> 1343</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l01344"></a><span class="lineno"> 1344</span>&#160;    <span class="comment">// Set SWFSYNC bit</span></div>
 <div class="line"><a name="l01345"></a><span class="lineno"> 1345</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l01346"></a><span class="lineno"> 1346</span>&#160;    HWREG(base + MCPWM_O_TBCTL) |= MCPWM_TBCTL_SWSYNC;</div>
+<div class="line"><a name="l01346"></a><span class="lineno"> 1346</span>&#160;    HWREG(base + MCPWM_O_TBCTL) |= (uint32_t)MCPWM_TBCTL_SWSYNC;</div>
 <div class="line"><a name="l01347"></a><span class="lineno"> 1347</span>&#160;}</div>
 <div class="line"><a name="l01348"></a><span class="lineno"> 1348</span>&#160; </div>
 <div class="line"><a name="l01349"></a><span class="lineno"> 1349</span>&#160;<span class="comment">//*****************************************************************************</span></div>
@@ -1773,7 +1773,7 @@ $(document).ready(function(){initNavTree('mcpwm_8h_source.html',''); initResizab
 <div class="line"><a name="l02659"></a><span class="lineno"> 2659</span>&#160;    <span class="comment">// Shadow to active load is controlled globally</span></div>
 <div class="line"><a name="l02660"></a><span class="lineno"> 2660</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l02661"></a><span class="lineno"> 2661</span>&#160;    EALLOW;</div>
-<div class="line"><a name="l02662"></a><span class="lineno"> 2662</span>&#160;    HWREG(base + MCPWM_O_GLDCTL) |= MCPWM_GLDCTL_GLD;</div>
+<div class="line"><a name="l02662"></a><span class="lineno"> 2662</span>&#160;    HWREG(base + MCPWM_O_GLDCTL) |= (uint32_t)MCPWM_GLDCTL_GLD;</div>
 <div class="line"><a name="l02663"></a><span class="lineno"> 2663</span>&#160;    EDIS;</div>
 <div class="line"><a name="l02664"></a><span class="lineno"> 2664</span>&#160;}</div>
 <div class="line"><a name="l02665"></a><span class="lineno"> 2665</span>&#160; </div>
@@ -1793,7 +1793,7 @@ $(document).ready(function(){initNavTree('mcpwm_8h_source.html',''); initResizab
 <div class="line"><a name="l02687"></a><span class="lineno"> 2687</span>&#160;    <span class="comment">// Shadow to active load is controlled individually</span></div>
 <div class="line"><a name="l02688"></a><span class="lineno"> 2688</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l02689"></a><span class="lineno"> 2689</span>&#160;    EALLOW;</div>
-<div class="line"><a name="l02690"></a><span class="lineno"> 2690</span>&#160;    HWREG(base + MCPWM_O_GLDCTL) &amp;= ~MCPWM_GLDCTL_GLD;</div>
+<div class="line"><a name="l02690"></a><span class="lineno"> 2690</span>&#160;    HWREG(base + MCPWM_O_GLDCTL) &amp;= ~((uint32_t)MCPWM_GLDCTL_GLD);</div>
 <div class="line"><a name="l02691"></a><span class="lineno"> 2691</span>&#160;    EDIS;</div>
 <div class="line"><a name="l02692"></a><span class="lineno"> 2692</span>&#160;}</div>
 <div class="line"><a name="l02693"></a><span class="lineno"> 2693</span>&#160; </div>
@@ -1814,7 +1814,7 @@ $(document).ready(function(){initNavTree('mcpwm_8h_source.html',''); initResizab
 <div class="line"><a name="l02734"></a><span class="lineno"> 2734</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l02735"></a><span class="lineno"> 2735</span>&#160;    EALLOW;</div>
 <div class="line"><a name="l02736"></a><span class="lineno"> 2736</span>&#160;    HWREG(base + MCPWM_O_GLDCTL) =</div>
-<div class="line"><a name="l02737"></a><span class="lineno"> 2737</span>&#160;               ((HWREG(base + MCPWM_O_GLDCTL) &amp; ~MCPWM_GLDCTL_GLDMODE_M) |</div>
+<div class="line"><a name="l02737"></a><span class="lineno"> 2737</span>&#160;               ((HWREG(base + MCPWM_O_GLDCTL) &amp; ~((uint32_t)MCPWM_GLDCTL_GLDMODE_M)) |</div>
 <div class="line"><a name="l02738"></a><span class="lineno"> 2738</span>&#160;                ((uint32_t)loadTrigger &lt;&lt; MCPWM_GLDCTL_GLDMODE_S));</div>
 <div class="line"><a name="l02739"></a><span class="lineno"> 2739</span>&#160;    EDIS;</div>
 <div class="line"><a name="l02740"></a><span class="lineno"> 2740</span>&#160;}</div>
@@ -1835,7 +1835,7 @@ $(document).ready(function(){initNavTree('mcpwm_8h_source.html',''); initResizab
 <div class="line"><a name="l02764"></a><span class="lineno"> 2764</span>&#160;    <span class="comment">// Enable global continuous shadow to active load</span></div>
 <div class="line"><a name="l02765"></a><span class="lineno"> 2765</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l02766"></a><span class="lineno"> 2766</span>&#160;    EALLOW;</div>
-<div class="line"><a name="l02767"></a><span class="lineno"> 2767</span>&#160;    HWREG(base + MCPWM_O_GLDCTL) |= MCPWM_GLDCTL_OSHTMODE;</div>
+<div class="line"><a name="l02767"></a><span class="lineno"> 2767</span>&#160;    HWREG(base + MCPWM_O_GLDCTL) |= (uint32_t)MCPWM_GLDCTL_OSHTMODE;</div>
 <div class="line"><a name="l02768"></a><span class="lineno"> 2768</span>&#160;    EDIS;</div>
 <div class="line"><a name="l02769"></a><span class="lineno"> 2769</span>&#160;}</div>
 <div class="line"><a name="l02770"></a><span class="lineno"> 2770</span>&#160; </div>
@@ -1855,7 +1855,7 @@ $(document).ready(function(){initNavTree('mcpwm_8h_source.html',''); initResizab
 <div class="line"><a name="l02793"></a><span class="lineno"> 2793</span>&#160;    <span class="comment">// Enable global continuous shadow to active load</span></div>
 <div class="line"><a name="l02794"></a><span class="lineno"> 2794</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l02795"></a><span class="lineno"> 2795</span>&#160;    EALLOW;</div>
-<div class="line"><a name="l02796"></a><span class="lineno"> 2796</span>&#160;    HWREG(base + MCPWM_O_GLDCTL) &amp;= ~MCPWM_GLDCTL_OSHTMODE;</div>
+<div class="line"><a name="l02796"></a><span class="lineno"> 2796</span>&#160;    HWREG(base + MCPWM_O_GLDCTL) &amp;= ~((uint32_t)MCPWM_GLDCTL_OSHTMODE);</div>
 <div class="line"><a name="l02797"></a><span class="lineno"> 2797</span>&#160;    EDIS;</div>
 <div class="line"><a name="l02798"></a><span class="lineno"> 2798</span>&#160;}</div>
 <div class="line"><a name="l02799"></a><span class="lineno"> 2799</span>&#160; </div>
@@ -1875,7 +1875,7 @@ $(document).ready(function(){initNavTree('mcpwm_8h_source.html',''); initResizab
 <div class="line"><a name="l02822"></a><span class="lineno"> 2822</span>&#160;    <span class="comment">// Set a one shot Global shadow load pulse.</span></div>
 <div class="line"><a name="l02823"></a><span class="lineno"> 2823</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l02824"></a><span class="lineno"> 2824</span>&#160;    EALLOW;</div>
-<div class="line"><a name="l02825"></a><span class="lineno"> 2825</span>&#160;    HWREG(base + MCPWM_O_GLDOSHTCTL) |= MCPWM_GLDOSHTCTL_OSHTLD;</div>
+<div class="line"><a name="l02825"></a><span class="lineno"> 2825</span>&#160;    HWREG(base + MCPWM_O_GLDOSHTCTL) |= (uint32_t)MCPWM_GLDOSHTCTL_OSHTLD;</div>
 <div class="line"><a name="l02826"></a><span class="lineno"> 2826</span>&#160;    EDIS;</div>
 <div class="line"><a name="l02827"></a><span class="lineno"> 2827</span>&#160;}</div>
 <div class="line"><a name="l02828"></a><span class="lineno"> 2828</span>&#160; </div>
@@ -1895,7 +1895,7 @@ $(document).ready(function(){initNavTree('mcpwm_8h_source.html',''); initResizab
 <div class="line"><a name="l02851"></a><span class="lineno"> 2851</span>&#160;    <span class="comment">// Set a one shot Global shadow load pulse.</span></div>
 <div class="line"><a name="l02852"></a><span class="lineno"> 2852</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l02853"></a><span class="lineno"> 2853</span>&#160;    EALLOW;</div>
-<div class="line"><a name="l02854"></a><span class="lineno"> 2854</span>&#160;    HWREG(base + MCPWM_O_GLDOSHTCTL) &amp;= ~MCPWM_GLDOSHTCTL_OSHTLD;</div>
+<div class="line"><a name="l02854"></a><span class="lineno"> 2854</span>&#160;    HWREG(base + MCPWM_O_GLDOSHTCTL) &amp;= ~((uint32_t)MCPWM_GLDOSHTCTL_OSHTLD);</div>
 <div class="line"><a name="l02855"></a><span class="lineno"> 2855</span>&#160;    EDIS;</div>
 <div class="line"><a name="l02856"></a><span class="lineno"> 2856</span>&#160;}</div>
 <div class="line"><a name="l02857"></a><span class="lineno"> 2857</span>&#160; </div>
@@ -2076,14 +2076,14 @@ $(document).ready(function(){initNavTree('mcpwm_8h_source.html',''); initResizab
 <div class="line"><a name="l03128"></a><span class="lineno"> 3128</span>&#160;        <span class="comment">//</span></div>
 <div class="line"><a name="l03129"></a><span class="lineno"> 3129</span>&#160;        <span class="comment">// Set the Falling Edge Delay input</span></div>
 <div class="line"><a name="l03130"></a><span class="lineno"> 3130</span>&#160;        <span class="comment">//</span></div>
-<div class="line"><a name="l03131"></a><span class="lineno"> 3131</span>&#160;        HWREG(base + MCPWM_O_DBCTL) |= MCPWM_DBCTL_DEDB_MODE;</div>
+<div class="line"><a name="l03131"></a><span class="lineno"> 3131</span>&#160;        HWREG(base + MCPWM_O_DBCTL) |= (uint32_t)MCPWM_DBCTL_DEDB_MODE;</div>
 <div class="line"><a name="l03132"></a><span class="lineno"> 3132</span>&#160;    }</div>
 <div class="line"><a name="l03133"></a><span class="lineno"> 3133</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l03134"></a><span class="lineno"> 3134</span>&#160;    {</div>
 <div class="line"><a name="l03135"></a><span class="lineno"> 3135</span>&#160;        <span class="comment">//</span></div>
 <div class="line"><a name="l03136"></a><span class="lineno"> 3136</span>&#160;        <span class="comment">// Set the Falling Edge Delay input</span></div>
 <div class="line"><a name="l03137"></a><span class="lineno"> 3137</span>&#160;        <span class="comment">//</span></div>
-<div class="line"><a name="l03138"></a><span class="lineno"> 3138</span>&#160;        HWREG(base + MCPWM_O_DBCTL) &amp;= ~MCPWM_DBCTL_DEDB_MODE;</div>
+<div class="line"><a name="l03138"></a><span class="lineno"> 3138</span>&#160;        HWREG(base + MCPWM_O_DBCTL) &amp;= ~((uint32_t)MCPWM_DBCTL_DEDB_MODE);</div>
 <div class="line"><a name="l03139"></a><span class="lineno"> 3139</span>&#160; </div>
 <div class="line"><a name="l03140"></a><span class="lineno"> 3140</span>&#160;        <span class="comment">//</span></div>
 <div class="line"><a name="l03141"></a><span class="lineno"> 3141</span>&#160;        <span class="comment">// Set the Rising Edge Delay input</span></div>
@@ -2347,7 +2347,7 @@ $(document).ready(function(){initNavTree('mcpwm_8h_source.html',''); initResizab
 <div class="line"><a name="l03617"></a><span class="lineno"> 3617</span>&#160;    <span class="comment">// Check the arguments</span></div>
 <div class="line"><a name="l03618"></a><span class="lineno"> 3618</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l03619"></a><span class="lineno"> 3619</span>&#160;    ASSERT(MCPWM_isBaseValid(base));</div>
-<div class="line"><a name="l03620"></a><span class="lineno"> 3620</span>&#160;    ASSERT((tzFlags &amp; ~<a class="code" href="group__mcpwm__api.html#gadb51a70de077607263d2326951bfb469">MCPWM_TZ_FLAG_ALL</a>) == 0U);</div>
+<div class="line"><a name="l03620"></a><span class="lineno"> 3620</span>&#160;    ASSERT((tzFlags &amp; ~((uint32_t)<a class="code" href="group__mcpwm__api.html#gadb51a70de077607263d2326951bfb469">MCPWM_TZ_FLAG_ALL</a>)) == 0U);</div>
 <div class="line"><a name="l03621"></a><span class="lineno"> 3621</span>&#160; </div>
 <div class="line"><a name="l03622"></a><span class="lineno"> 3622</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l03623"></a><span class="lineno"> 3623</span>&#160;    <span class="comment">// Clear the Cycle By Cycle Trip zone flag</span></div>
@@ -2375,16 +2375,16 @@ $(document).ready(function(){initNavTree('mcpwm_8h_source.html',''); initResizab
 <div class="line"><a name="l03658"></a><span class="lineno"> 3658</span>&#160;    <span class="keywordflow">switch</span> (adcSOCType)</div>
 <div class="line"><a name="l03659"></a><span class="lineno"> 3659</span>&#160;    {</div>
 <div class="line"><a name="l03660"></a><span class="lineno"> 3660</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="group__mcpwm__api.html#gga71166afcbf4d8333a8ee528f8f14fbafae8649a65163139e4de4731ddc957dc3e">MCPWM_SOC_A</a>:</div>
-<div class="line"><a name="l03661"></a><span class="lineno"> 3661</span>&#160;        HWREG(base + MCPWM_O_SOCEN) |= MCPWM_SOCEN_SOCA_ENABLE;</div>
+<div class="line"><a name="l03661"></a><span class="lineno"> 3661</span>&#160;        HWREG(base + MCPWM_O_SOCEN) |= (uint32_t)MCPWM_SOCEN_SOCA_ENABLE;</div>
 <div class="line"><a name="l03662"></a><span class="lineno"> 3662</span>&#160;        <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l03663"></a><span class="lineno"> 3663</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="group__mcpwm__api.html#gga71166afcbf4d8333a8ee528f8f14fbafa9bc169f08d0c4eb3a687ba94395778e7">MCPWM_SOC_B</a>:</div>
-<div class="line"><a name="l03664"></a><span class="lineno"> 3664</span>&#160;        HWREG(base + MCPWM_O_SOCEN) |= MCPWM_SOCEN_SOCB_ENABLE;</div>
+<div class="line"><a name="l03664"></a><span class="lineno"> 3664</span>&#160;        HWREG(base + MCPWM_O_SOCEN) |= (uint32_t)MCPWM_SOCEN_SOCB_ENABLE;</div>
 <div class="line"><a name="l03665"></a><span class="lineno"> 3665</span>&#160;        <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l03666"></a><span class="lineno"> 3666</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="group__mcpwm__api.html#gga71166afcbf4d8333a8ee528f8f14fbafaace49b443572d85c6bdc939ea3bd687a">MCPWM_SOC_C</a>:</div>
-<div class="line"><a name="l03667"></a><span class="lineno"> 3667</span>&#160;        HWREG(base + MCPWM_O_SOCEN) |= MCPWM_SOCEN_SOCC_ENABLE;</div>
+<div class="line"><a name="l03667"></a><span class="lineno"> 3667</span>&#160;        HWREG(base + MCPWM_O_SOCEN) |= (uint32_t)MCPWM_SOCEN_SOCC_ENABLE;</div>
 <div class="line"><a name="l03668"></a><span class="lineno"> 3668</span>&#160;        <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l03669"></a><span class="lineno"> 3669</span>&#160;    <span class="keywordflow">default</span>:    <span class="comment">// MCPWM_SOC_D</span></div>
-<div class="line"><a name="l03670"></a><span class="lineno"> 3670</span>&#160;        HWREG(base + MCPWM_O_SOCEN) |= MCPWM_SOCEN_SOCD_ENABLE;</div>
+<div class="line"><a name="l03670"></a><span class="lineno"> 3670</span>&#160;        HWREG(base + MCPWM_O_SOCEN) |= (uint32_t)MCPWM_SOCEN_SOCD_ENABLE;</div>
 <div class="line"><a name="l03671"></a><span class="lineno"> 3671</span>&#160;        <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l03672"></a><span class="lineno"> 3672</span>&#160;    }</div>
 <div class="line"><a name="l03673"></a><span class="lineno"> 3673</span>&#160;}</div>
@@ -2588,16 +2588,16 @@ $(document).ready(function(){initNavTree('mcpwm_8h_source.html',''); initResizab
 <div class="line"><a name="l03981"></a><span class="lineno"> 3981</span>&#160;   <span class="keywordflow">switch</span> (adcSOCType)</div>
 <div class="line"><a name="l03982"></a><span class="lineno"> 3982</span>&#160;    {</div>
 <div class="line"><a name="l03983"></a><span class="lineno"> 3983</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="group__mcpwm__api.html#gga71166afcbf4d8333a8ee528f8f14fbafae8649a65163139e4de4731ddc957dc3e">MCPWM_SOC_A</a>:</div>
-<div class="line"><a name="l03984"></a><span class="lineno"> 3984</span>&#160;        HWREG(base + MCPWM_O_SOCCLR) |= MCPWM_SOCCLR_SOCA;</div>
+<div class="line"><a name="l03984"></a><span class="lineno"> 3984</span>&#160;        HWREG(base + MCPWM_O_SOCCLR) |= (uint32_t)MCPWM_SOCCLR_SOCA;</div>
 <div class="line"><a name="l03985"></a><span class="lineno"> 3985</span>&#160;        <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l03986"></a><span class="lineno"> 3986</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="group__mcpwm__api.html#gga71166afcbf4d8333a8ee528f8f14fbafa9bc169f08d0c4eb3a687ba94395778e7">MCPWM_SOC_B</a>:</div>
-<div class="line"><a name="l03987"></a><span class="lineno"> 3987</span>&#160;        HWREG(base + MCPWM_O_SOCCLR) |= MCPWM_SOCCLR_SOCB;</div>
+<div class="line"><a name="l03987"></a><span class="lineno"> 3987</span>&#160;        HWREG(base + MCPWM_O_SOCCLR) |= (uint32_t)MCPWM_SOCCLR_SOCB;</div>
 <div class="line"><a name="l03988"></a><span class="lineno"> 3988</span>&#160;        <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l03989"></a><span class="lineno"> 3989</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="group__mcpwm__api.html#gga71166afcbf4d8333a8ee528f8f14fbafaace49b443572d85c6bdc939ea3bd687a">MCPWM_SOC_C</a>:</div>
-<div class="line"><a name="l03990"></a><span class="lineno"> 3990</span>&#160;        HWREG(base + MCPWM_O_SOCCLR) |= MCPWM_SOCCLR_SOCC;</div>
+<div class="line"><a name="l03990"></a><span class="lineno"> 3990</span>&#160;        HWREG(base + MCPWM_O_SOCCLR) |= (uint32_t)MCPWM_SOCCLR_SOCC;</div>
 <div class="line"><a name="l03991"></a><span class="lineno"> 3991</span>&#160;        <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l03992"></a><span class="lineno"> 3992</span>&#160;    <span class="keywordflow">default</span>:    <span class="comment">// MCPWM_SOC_D</span></div>
-<div class="line"><a name="l03993"></a><span class="lineno"> 3993</span>&#160;        HWREG(base + MCPWM_O_SOCCLR) |= MCPWM_SOCCLR_SOCD;</div>
+<div class="line"><a name="l03993"></a><span class="lineno"> 3993</span>&#160;        HWREG(base + MCPWM_O_SOCCLR) |= (uint32_t)MCPWM_SOCCLR_SOCD;</div>
 <div class="line"><a name="l03994"></a><span class="lineno"> 3994</span>&#160;        <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l03995"></a><span class="lineno"> 3995</span>&#160;    }</div>
 <div class="line"><a name="l03996"></a><span class="lineno"> 3996</span>&#160;}</div>
@@ -2707,7 +2707,7 @@ $(document).ready(function(){initNavTree('mcpwm_8h_source.html',''); initResizab
 <div class="line"><a name="l04180"></a><span class="lineno"> 4180</span>&#160;    <span class="comment">// Set bits in ECEINT register</span></div>
 <div class="line"><a name="l04181"></a><span class="lineno"> 4181</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l04182"></a><span class="lineno"> 4182</span>&#160;    EALLOW;</div>
-<div class="line"><a name="l04183"></a><span class="lineno"> 4183</span>&#160;    HWREG(base + MCPWM_O_INTEN) |= intFlags;</div>
+<div class="line"><a name="l04183"></a><span class="lineno"> 4183</span>&#160;    HWREG(base + MCPWM_O_INTEN) |= (uint32_t)intFlags;</div>
 <div class="line"><a name="l04184"></a><span class="lineno"> 4184</span>&#160;    EDIS;</div>
 <div class="line"><a name="l04185"></a><span class="lineno"> 4185</span>&#160;}</div>
 <div class="line"><a name="l04186"></a><span class="lineno"> 4186</span>&#160; </div>
@@ -2726,7 +2726,7 @@ $(document).ready(function(){initNavTree('mcpwm_8h_source.html',''); initResizab
 <div class="line"><a name="l04214"></a><span class="lineno"> 4214</span>&#160;    <span class="comment">// Clear bits in ECEINT register</span></div>
 <div class="line"><a name="l04215"></a><span class="lineno"> 4215</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l04216"></a><span class="lineno"> 4216</span>&#160;    EALLOW;</div>
-<div class="line"><a name="l04217"></a><span class="lineno"> 4217</span>&#160;    HWREG(base + MCPWM_O_INTEN) &amp;= ~intFlags;</div>
+<div class="line"><a name="l04217"></a><span class="lineno"> 4217</span>&#160;    HWREG(base + MCPWM_O_INTEN) &amp;= ~((uint32_t)intFlags);</div>
 <div class="line"><a name="l04218"></a><span class="lineno"> 4218</span>&#160;    EDIS;</div>
 <div class="line"><a name="l04219"></a><span class="lineno"> 4219</span>&#160;}</div>
 <div class="line"><a name="l04220"></a><span class="lineno"> 4220</span>&#160; </div>

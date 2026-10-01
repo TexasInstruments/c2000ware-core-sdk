@@ -60,19 +60,16 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Globals
 //
 volatile uint16_t dacResult;
 volatile uint16_t pgaResult;
 float pgaGain;
-
 //
 // Function Prototypes
 //
@@ -80,7 +77,6 @@ void initPGA(void);
 void initDAC(void);
 void initADC(void);
 void initADCSOC(void);
-
 //
 // Main
 //
@@ -90,61 +86,49 @@ void main(void)
     // Initialize device clock and peripherals
     //
     InitSysCtrl();
-
     //
     // Initialize GPIO
     //
     InitGpio();
-
     //
     // Disable CPU interrupts
     //
     DINT;
-
     //
     // Initialize the PIE control registers to their default state.
     // The default state is all PIE interrupts disabled and flags
     // are cleared.
     //
     InitPieCtrl();
-
     //
     // Disable CPU interrupts and clear all CPU interrupt flags:
     //
     IER = 0x0000;
     IFR = 0x0000;
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     InitPieVectTable();
-
     //
     // Initialize PGA, DAC, and ADC
     //
     initPGA();
-
     initDAC();
     DacaRegs.DACVALS.all = 600;
-
     initADC();
     initADCSOC();
-
     DELAY_US(3000);
-
     //
     // Enable Global Interrupt (INTM) and real time interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Force ADC conversion
     //
     AdcaRegs.ADCSOCFRC1.bit.SOC0 = 1;
     AdcaRegs.ADCSOCFRC1.bit.SOC1 = 1;
-
     //
     // Loop indefinitely
     //
@@ -159,11 +143,9 @@ void main(void)
             // Acknowledge flag
             //
             AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
-
             dacResult = AdcaResultRegs.ADCRESULT0;
             pgaResult = AdcaResultRegs.ADCRESULT1;
             pgaGain   = (float)pgaResult / (float)dacResult;
-
             //
             // Force ADC conversion
             //
@@ -172,7 +154,6 @@ void main(void)
         }
     }
 }
-
 //
 // initADC - Function to configure and power up ADCA.
 //
@@ -187,28 +168,22 @@ void initADC(void)
     //
     ESTOP0;
     SetVREF(ADC_ADCA, ADC_INTERNAL, ADC_VREF3P3);
-
     EALLOW;
-
     //
     // Set ADCCLK divider to /4
     //
     AdcaRegs.ADCCTL2.bit.PRESCALE = 6;
-
     //
     // Set pulse positions to late
     //
     AdcaRegs.ADCCTL1.bit.INTPULSEPOS = 1;
-
     //
     // Power up the ADC and then delay for 1 ms
     //
     AdcaRegs.ADCCTL1.bit.ADCPWDNZ = 1;
     EDIS;
-
     DELAY_US(1000);
 }
-
 //
 // initADCSOC - Function to configure ADCA's SOC0 to be triggered by ePWM1.
 //
@@ -218,86 +193,70 @@ void initADCSOC(void)
     // Select the channels to convert and the end of conversion flag
     //
     EALLOW;
-
     //
     // Convert DACA output
     //
     AdcaRegs.ADCSOC0CTL.bit.CHSEL = 0;     // SOC0 will convert A0 (DACA_OUT)
     AdcaRegs.ADCSOC0CTL.bit.ACQPS = 9;     // Sample window is 10 SYSCLK cycles
     AdcaRegs.ADCSOC0CTL.bit.TRIGSEL = 0;   // Trigger by software
-
     //
     // Convert PGA1 output
     //
     AdcaRegs.ADCSOC1CTL.bit.CHSEL = 11;    // SOC1 will convert A11 (PGA1_OUT)
     AdcaRegs.ADCSOC1CTL.bit.ACQPS = 9;     // Sample window is 10 SYSCLK cycles
     AdcaRegs.ADCSOC1CTL.bit.TRIGSEL = 0;   // Trigger by software
-
     //
     // Configure ADC interrupt status flags
     //
     AdcaRegs.ADCINTSEL1N2.bit.INT1SEL = 1; // End of SOC1 will set INT1 flag
     AdcaRegs.ADCINTSEL1N2.bit.INT1E = 1;   // Enable INT1 flag
     AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1; // Make sure INT1 flag is cleared
-
     EDIS;
 }
-
 //
 // initDAC - Configure DAC
 //
 void initDAC(void)
 {
     EALLOW;
-
     //
     // Set the DAC gain to 2
     //
     DacaRegs.DACCTL.bit.MODE = 1;
-
     //
     // Use ADC voltage reference
     //
     DacaRegs.DACCTL.bit.DACREFSEL = 1;
-
     //
     // Load count value for DAC on next SYSCLK
     //
     DacaRegs.DACCTL.bit.LOADMODE = 0;
-
     //
     // Enable DAC output
     //
     DacaRegs.DACOUTEN.bit.DACOUTEN = 1;
-
     EDIS;
 }
-
 //
 // initPGA - Configure PGA1 gain
 //
 void initPGA(void)
 {
     EALLOW;
-
     //
     // Set a gain of 3 to PGA1
     //
     Pga1Regs.PGACTL.bit.GAIN = 0;
-
     //
     // No filter resistor for output
     //
     Pga1Regs.PGACTL.bit.FILTRESSEL = 0;
-
     //
     // Enable PGA1
     //
     Pga1Regs.PGACTL.bit.PGAEN = 1;
-
     EDIS;
 }
-
 //
 // End of File
 //

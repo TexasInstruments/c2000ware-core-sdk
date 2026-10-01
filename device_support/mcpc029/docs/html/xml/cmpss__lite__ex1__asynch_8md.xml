@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="cmpss__lite__ex1__asynch_8md" kind="file" language="Markdown">
+    <compoundname>cmpss_lite_ex1_asynch.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>CMPSSLITE<sp/>Asynchronous<sp/>Trip<sp/>{#EXAMPLES_DRIVERS_CMPSSLITE_EX1_ASYNCH}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>enables<sp/>the<sp/>CMPSSLITE2<sp/>COMPH<sp/>comparator<sp/>and<sp/>feeds<sp/>the<sp/>asynchronous<sp/>CTRIPOUTH<sp/>signal<sp/>to<sp/>the<sp/>GPIO4/OUTPUTXBAR3<sp/>pin<sp/>and<sp/>CTRIPH<sp/>to<sp/>GPIO0/MCPWM1A.<sp/>CMPSS<sp/>is<sp/>configured<sp/>to<sp/>generate<sp/>trip<sp/>signals<sp/>to<sp/>trip<sp/>the<sp/>MCPWM<sp/>signals.<sp/>CMPIN2P<sp/>is<sp/>used<sp/>to<sp/>give<sp/>positive<sp/>input<sp/>and<sp/>internal<sp/>DAC<sp/>is<sp/>configured<sp/>to<sp/>provide<sp/>the<sp/>negative<sp/>input.<sp/>Internal<sp/>DAC<sp/>is<sp/>configured<sp/>to<sp/>provide<sp/>a<sp/>signal<sp/>at<sp/>VDD/2.<sp/>An<sp/>MCPWM<sp/>signal<sp/>is<sp/>generated<sp/>at<sp/>GPIO0<sp/>and<sp/>is<sp/>configured<sp/>to<sp/>be<sp/>tripped<sp/>by<sp/>CTRIPOUTH.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">When<sp/>a<sp/>low<sp/>input(VSS)<sp/>is<sp/>provided<sp/>to<sp/>CMPIN2P,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Trip<sp/>signal(GPIO4)<sp/>output<sp/>is<sp/>low</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>PWM1B(GPIO0)<sp/>gives<sp/>a<sp/>PWM<sp/>signal</highlight></codeline>
+<codeline><highlight class="normal">When<sp/>a<sp/>high<sp/>input(higher<sp/>than<sp/>VDD/2)<sp/>is<sp/>provided<sp/>to<sp/>CMPIN2P,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Trip<sp/>signal(GPIO4)<sp/>output<sp/>turns<sp/>high</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>PWM1B(GPIO0)<sp/>gets<sp/>tripped<sp/>and<sp/>outputs<sp/>as<sp/>high</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Watch<sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Outputs<sp/>can<sp/>be<sp/>observed<sp/>on<sp/>GPIO4<sp/>and<sp/>GPIO0<sp/>using<sp/>an<sp/>oscilloscope</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Give<sp/>input<sp/>on<sp/>CMPIN1P.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Using<sp/>the<sp/>watch<sp/>variables,<sp/>view<sp/>the<sp/>required<sp/>waveforms.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_CMPSSLITE_PAGE</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/cmpss_lite_ex1_asynch.md"/>
+  </compounddef>
+</doxygen>

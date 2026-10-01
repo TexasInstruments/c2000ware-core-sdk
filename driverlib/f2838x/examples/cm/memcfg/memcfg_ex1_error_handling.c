@@ -27,7 +27,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -60,18 +60,14 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 #include <stdint.h>
 #include <stdbool.h>
 #include "cpu.h"
 #include "sysctl.h"
 #include "interrupt.h"
 #include "memcfg.h"
-
-
 #define TEST_PASS 0xABCDABCD
 #define TEST_FAIL 0xDEADDEAD
-
 void Write_CAFECAFE(uint32_t startAddress, uint32_t endAddress)
 {
     uint32_t * addr;
@@ -80,15 +76,11 @@ void Write_CAFECAFE(uint32_t startAddress, uint32_t endAddress)
             *addr = 0xCAFECAFE;
         }
 }
-
 static volatile uint32_t memcfgErrorCount;
 static volatile uint32_t nmiFaultCount, nmiFaultAddr;
 uint32_t offset, eccRead1, eccRead2, readDataStart, cnt;
-
 static volatile uint32_t testStatus = TEST_FAIL;
 static volatile uint32_t errorGlobalCount = 0;
-
-
 void
 NMIFaultHandler(void)
 {
@@ -100,20 +92,16 @@ NMIFaultHandler(void)
         errorGlobalCount++;
     }
     SysCtl_clearAllNMIFlags();
-	
 	//
 	// get the address at which error occured and clear the flag
 	//
     nmiFaultAddr = MemCfg_getUncorrErrorAddress(MEMCFG_UCERR_M4READ);
     MemCfg_clearUncorrErrorStatus(MEMCFG_UCERR_M4READ);
-
     //
     // Increment a counter to indicate the fault occurred.
     //
     nmiFaultCount++;
 }
-
-
 void
 memcfgErrorISR(void)
 {
@@ -125,17 +113,14 @@ memcfgErrorISR(void)
         errorGlobalCount++;
     }
     MemCfg_clearCorrErrorInterruptStatus(MEMCFG_CERR_M4READ);
-
     //
     // Increment a counter to indicate the error occurred.
     //
     memcfgErrorCount++;
 }
-
 bool Test_CorrErr_DiagMode();
 bool Test_CorrErr_FuncMode();
 bool Test_UncorrErr();
-
 //
 // Main
 //
@@ -147,25 +132,20 @@ main(void)
     //
     Interrupt_registerHandler(INT_CMRAM_TESTERROR_LOG, memcfgErrorISR);
     Interrupt_enable(INT_CMRAM_TESTERROR_LOG);
-
     Interrupt_registerHandler(FAULT_NMI, NMIFaultHandler);
     SysCtl_enableGlobalNMI();
-
     //
     // Run the tests
     //
     bool ret1 = Test_CorrErr_DiagMode();
     bool ret2 = Test_CorrErr_FuncMode();
     bool ret3 = Test_UncorrErr();
-
     if(ret1 && ret2 && ret3)
         testStatus = TEST_PASS;
     else
         testStatus = TEST_FAIL;
-
     while(1);
 }
-
 //
 // Induce correctable error in memory in diagnostics mode
 //
@@ -174,9 +154,7 @@ bool Test_CorrErr_DiagMode()
     memcfgErrorCount = 0;
     nmiFaultCount = 0;
     bool status = true;
-
     MemCfg_setTestMode(MEMCFG_SECT_E0, MEMCFG_TEST_FUNCTIONAL);
-	
     //
     // Initial ROM read leads to error since ROM parity bits are not loaded
     // properly
@@ -185,43 +163,36 @@ bool Test_CorrErr_DiagMode()
     MemCfg_clearCorrErrorStatus(MEMCFG_CERR_M4READ);
     MemCfg_enableCorrErrorInterrupt(MEMCFG_CERR_M4READ);
     SysCtl_clearAllNMIFlags();
-
     //
     // Write to E0 RAM
     //
     Write_CAFECAFE(E0RAM_BASE, E0RAM_BASE + 0x3FFF);
-
     //
     // Set correctable error threshold. Correctable interrupt will be generated
     // once correctable error count reaches the threshold value.
     //
     MemCfg_setCorrErrorThreshold(5U);
-
     //
 	// Generate 6 correctable errors
 	//
     for(cnt = 1U; cnt<= 6U; cnt++)
     {
         offset = 0x08U + cnt*4U;
-
         //
 		// ECC data read before corrupting
         //
 		MemCfg_setTestMode(MEMCFG_SECT_E0,MEMCFG_TEST_WRITE_ECC);
         eccRead1 = HWREG(E0RAM_BASE + offset);
-
         //
 		// Flip single bit and write back
         //
 		MemCfg_setTestMode(MEMCFG_SECT_E0,MEMCFG_TEST_WRITE_DATA);
         HWREG(E0RAM_BASE + offset) = HWREG(E0RAM_BASE + offset) ^ 0x02;
-
         //
 		// ECC data read after corrupting
         //
 		MemCfg_setTestMode(MEMCFG_SECT_E0,MEMCFG_TEST_WRITE_ECC);
         eccRead2 = HWREG(E0RAM_BASE + offset);
-
         //
         // Go to diagnostic mode.
         // Try to read data and ceheck if diagnostic log register bits
@@ -229,29 +200,24 @@ bool Test_CorrErr_DiagMode()
         //
         MemCfg_setTestMode(MEMCFG_SECT_E0,MEMCFG_TEST_FUNC_DIAG);
         readDataStart = HWREG(E0RAM_BASE + offset);
-		
         uint32_t diagErrStatus = MemCfg_getDiagErrorStatus();
         uint32_t diagErrAddr = MemCfg_getDiagErrorAddress();
-		
         if((diagErrStatus != MEMCFG_DIAGERR_CORR_READ) ||
             (diagErrAddr != (E0RAM_BASE + offset)) ||
             (eccRead1 != eccRead2))
         {
            return false;
         }
-		
 		//
 		// Clear the error flag
 		//
         MemCfg_clearDiagErrorStatus(MEMCFG_DIAGERR_CORR_READ);
     }
-
 	//
 	// Go back to functional mode
 	//
     MemCfg_setTestMode(MEMCFG_SECT_E0, MEMCFG_TEST_FUNCTIONAL);
     MemCfg_disableCorrErrorInterrupt(MEMCFG_CERR_M4READ);
-
 	//
 	// Adding NOPs to introduce delay
 	//
@@ -259,7 +225,6 @@ bool Test_CorrErr_DiagMode()
     asm(" nop");
     asm(" nop");
     asm(" nop");
-
 	//
 	// Check for fault flags if any
 	//
@@ -267,10 +232,8 @@ bool Test_CorrErr_DiagMode()
         return false;
     if(nmiFaultCount != 0)
         return false;
-
     return status;
 }
-
 //
 // Induce correctable error & check if interrupt is
 // getting generated once threshold is reached.
@@ -280,9 +243,7 @@ bool Test_CorrErr_FuncMode()
     memcfgErrorCount = 0;
     nmiFaultCount = 0;
     errorGlobalCount = 0;
-
     MemCfg_setTestMode(MEMCFG_SECT_E0, MEMCFG_TEST_FUNCTIONAL);
-
     //
     // Initial ROM read leads to error since ROM parity bits are not loaded
     // properly
@@ -292,56 +253,46 @@ bool Test_CorrErr_FuncMode()
     MemCfg_enableCorrErrorInterrupt(MEMCFG_CERR_M4READ);
     SysCtl_clearAllNMIFlags();
     HWREG(CMMEMORYERROR_BASE + MEMCFG_O_CERRCNT) = 0;
-
     //
     // Write to E0 RAM
     //
     Write_CAFECAFE(E0RAM_BASE, E0RAM_BASE+0x3FFF);
-
     //
     // Set correctable error threshold. Correctable interrupt will be generated
     // once corr error count reaches the threshold value.
     //
     MemCfg_setCorrErrorThreshold(5U);
-
     //
 	// Generate 6 correctable erros
     //
 	for(cnt = 1U; cnt<= 6U; cnt++)
     {
         offset = 0x08U + cnt * 4U;
-
        //
 	   // ECC data read before corrupting
        //
 	   MemCfg_setTestMode(MEMCFG_SECT_E0,MEMCFG_TEST_WRITE_ECC);
        eccRead1 = HWREG(E0RAM_BASE + offset);
-
        //
 	   // Flip single bit and write back
        //
 	   MemCfg_setTestMode(MEMCFG_SECT_E0,MEMCFG_TEST_WRITE_DATA);
        HWREG(E0RAM_BASE + offset) = HWREG(E0RAM_BASE + offset) ^ 0x02;
        readDataStart = HWREG(E0RAM_BASE + offset);
-
        //
 	   // ECC data read after corrupting
        //
 	   MemCfg_setTestMode(MEMCFG_SECT_E0,MEMCFG_TEST_WRITE_ECC);
        eccRead2 = HWREG(E0RAM_BASE + offset);
-
        //
 	   // Bring back to functional mode.
 	   //
 	   MemCfg_setTestMode(MEMCFG_SECT_E0,MEMCFG_TEST_FUNCTIONAL);
        MemCfg_clearUncorrErrorStatus(MEMCFG_UCERR_M4READ);
-
-
        //
 	   // Read data to induce error
        //
 	   readDataStart = HWREG(E0RAM_BASE + offset);
-	   
 	   //
 	   // Check for the correctable error count. An interrupt is genertaed one
 	   // the count reaches 5 and the count is reset
@@ -349,7 +300,6 @@ bool Test_CorrErr_FuncMode()
        uint32_t corrErrCnt = MemCfg_getCorrErrorCount();
        if(corrErrCnt != (cnt % 5))
            return false;
-
        //
 	   // Check if the ECC before and after corruption is the same
 	   // Check for error flag and address
@@ -362,18 +312,14 @@ bool Test_CorrErr_FuncMode()
        {
            return false;
        }
-	   
 	   //
 	   // Clear the flags
 	   //
        MemCfg_clearCorrErrorStatus(MEMCFG_CERR_M4READ);
        MemCfg_disableCorrErrorInterrupt(MEMCFG_CERR_M4READ);
        MemCfg_enableCorrErrorInterrupt(MEMCFG_CERR_M4READ);
-
     }
-
     MemCfg_disableCorrErrorInterrupt(MEMCFG_CERR_M4READ);
-
 	//
 	// Adding NOPs to introduce delay
 	//
@@ -381,7 +327,6 @@ bool Test_CorrErr_FuncMode()
     asm(" nop");
     asm(" nop");
     asm(" nop");
-
 	//
 	// Check for the fault ISRs. Check if MemCfg error interrupt is invoked once
 	//
@@ -391,10 +336,8 @@ bool Test_CorrErr_FuncMode()
         return false;
     if(errorGlobalCount != 0)
         return false;
-
     return true;
 }
-
 //
 //Induce uncorrectable error in memory
 //
@@ -403,9 +346,7 @@ bool Test_UncorrErr()
     memcfgErrorCount = 0;
     nmiFaultCount = 0;
     errorGlobalCount = 0;
-
     MemCfg_setTestMode(MEMCFG_SECT_E0, MEMCFG_TEST_FUNCTIONAL);
-
     //
     // Initial ROM read leads to error since ROM parity bits are not loaded
     // properly
@@ -414,60 +355,49 @@ bool Test_UncorrErr()
     MemCfg_clearCorrErrorStatus(MEMCFG_CERR_M4READ);
     MemCfg_enableCorrErrorInterrupt(MEMCFG_CERR_M4READ);
     SysCtl_clearAllNMIFlags();
-
     //
     // Write to E0 RAM
     //
     Write_CAFECAFE(E0RAM_BASE, E0RAM_BASE+0x3FFF);
-
     //
     // Set correctable error threshold. Correctable interrupt will be generated
     // once corr error count reaches the threshold value.
     //
     MemCfg_setCorrErrorThreshold(5U);
-
     //
 	// Generate 6 correctable erros
     //
 	for(cnt = 1U; cnt<= 6U; cnt++)
     {
         offset = 0x08U + cnt*4U;
-
         MemCfg_setTestMode(MEMCFG_SECT_E0,MEMCFG_TEST_WRITE_ECC);
-
         //
 		// ECC data read before corrupting
         //
 		eccRead1 = HWREG(E0RAM_BASE + offset);
         MemCfg_setTestMode(MEMCFG_SECT_E0,MEMCFG_TEST_WRITE_DATA);
-
         //
 		// Flip two bits and write back
         //
 		HWREG(E0RAM_BASE + offset) = HWREG(E0RAM_BASE + offset) ^ 0x03;
-
         //
 		// ECC data read after corrupting
         //
 		MemCfg_setTestMode(MEMCFG_SECT_E0,MEMCFG_TEST_WRITE_ECC);
         eccRead2 = HWREG(E0RAM_BASE + offset);
-
         //
         // Bring back to functional mode.
         //
         MemCfg_setTestMode(MEMCFG_SECT_E0,MEMCFG_TEST_FUNCTIONAL);
-
         //
         // Initial ROM read leads to error since ROM parity bits are not loaded
         // properly
         //
         MemCfg_clearUncorrErrorStatus(MEMCFG_UCERR_M4READ);
-		
         //
 		// Read data to induce error. This causes an NMI
         //
 		readDataStart = HWREG(E0RAM_BASE + offset);
-
 		//
 		// Adding NOPs to introduce delay
 		//
@@ -475,7 +405,6 @@ bool Test_UncorrErr()
         asm(" nop");
         asm(" nop");
         asm(" nop");
-
         //
 		// Check if the ECC before and after corruption is the same
 		// Check for NMI flag and address
@@ -484,10 +413,8 @@ bool Test_UncorrErr()
         {
             return false;
         }
-		
         MemCfg_clearUncorrErrorStatus(MEMCFG_UCERR_M4READ);
     }
-
  	//
 	// Adding NOPs to introduce delay
 	//
@@ -495,7 +422,6 @@ bool Test_UncorrErr()
     asm(" nop");
     asm(" nop");
     asm(" nop");
-
 	//
 	// Check for fault ISRs. Check if NMI fault is invoked 6 times
 	//
@@ -505,6 +431,5 @@ bool Test_UncorrErr()
         return false;
     if(errorGlobalCount != 0)
         return false;
-
     return true;
 }

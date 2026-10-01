@@ -70,29 +70,21 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
 //
 // Included Files
 //
 #include "board.h"
 #include "sfo_v8.h"
-
-
 #define EPWM_TIMER_TBPRD            100UL
-
 //
 // Globals
 //
-
 uint16_t phaseFine = 1;
 uint16_t status;
-
 int MEP_ScaleFactor; // Global variable used by the SFO library
                      // Result can be used for all HRPWM channels
                      // This variable is also copied to HRMSTEP
                      // register by SFO() function.
-
 volatile uint32_t ePWM[] =
     {0, myEPWM1_BASE, myEPWM2_BASE};
 extern volatile uint32_t gHrpwmCal_base;
@@ -100,35 +92,28 @@ extern volatile uint32_t gHrpwmCal_base;
 // Function Prototypes
 //
 void error(void);
-
 //
 // Main
 //
 void main(void)
 {
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-    
-
     //
     // Calling SFO() updates the HRMSTEP register with calibrated MEP_ScaleFactor.
     // HRMSTEP must be populated with a scale factor value prior to enabling
@@ -142,9 +127,6 @@ void main(void)
             error();   // SFO function returns 2 if an error occurs & # of MEP
         }              // steps/coarse step exceeds maximum of 255.
     }
-
-
-
     //
     // Disable sync(Freeze clock to PWM as well)
     //
@@ -153,22 +135,17 @@ void main(void)
     // Initialize the EPWM GPIO Pins and change the XBAR inputs from using GPIO0
     //
     Board_init();
-
     //Set initial phase shift
     EPWM_setPhaseShift(myEPWM2_BASE, 2);
-
     //
     // Enable sync and clock to PWM
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
-
     for(;;)
     {
          //
@@ -179,8 +156,6 @@ void main(void)
              DEVICE_DELAY_US(100000);
              // Set only High resolution phase shift to observe shift within one TBCLK 
              HRPWM_setHiResPhaseShiftOnly(ePWM[2], phaseFine);
-
-
              //
              // Call the scale factor optimizer lib function SFO()
              // periodically to track for any change due to temp/voltage.
@@ -192,7 +167,6 @@ void main(void)
              //
              status = SFO(); // in background, MEP calibration module
                              // continuously updates MEP_ScaleFactor
-
              if (status == SFO_ERROR)
              {
                  error();   // SFO function returns 2 if an error occurs & #
@@ -201,7 +175,6 @@ void main(void)
          }
      }
 }
-
 //
 // error - Halt debugger when called
 //

@@ -30,7 +30,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -63,7 +63,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 //
 // Included Files
 //
@@ -79,9 +78,7 @@
 #include "device/usbdhid.h"
 #include "device/usbdhidkeyb.h"
 #include "scistdio.h"
-
 void INT_myUSB0_ISR(void);
-
 //
 // Defines
 //
@@ -90,11 +87,9 @@ void INT_myUSB0_ISR(void);
                                       // each USB packet to be sent before we
                                       // assume the host has disconnected.  The
                                       // value 50 equates to half a second.
-
 //
 // Globals
 //
-
 //******************************************************************************
 //
 // A mapping from the ASCII value received from the SCI to the corresponding
@@ -199,7 +194,6 @@ static const int8_t g_ppi8KeyUsageCodes[][2] =
     { HID_KEYB_LEFT_SHIFT, HID_KEYB_USAGE_RBRACKET },  // } 0x7d
     { HID_KEYB_LEFT_SHIFT, HID_KEYB_USAGE_BQUOTE },    // ~ 0x7e
 };
-
 volatile bool g_bConnected = false; // This global indicates whether or not we
                                     // are connected to a USB host.
 volatile bool g_bSuspended = false; // This global indicates whether or not the
@@ -210,7 +204,6 @@ volatile uint32_t g_ui32SysTickCount; // Global system tick counter holds
 volatile bool g_bDisplayUpdateRequired; // This global is set to true if the
                                         // host sends a request to set or clear
                                         // any keyboard LED.
-
 //******************************************************************************
 //
 // This enumeration holds the various states that the keyboard can be in during
@@ -223,19 +216,16 @@ volatile enum
     // Unconfigured.
     //
     STATE_UNCONFIGURED,
-
     //
     // No keys to send and not waiting on data.
     //
     STATE_IDLE,
-
     //
     // Waiting on data to be sent out.
     //
     STATE_SENDING
 }
 g_eKeyboardState = STATE_UNCONFIGURED;
-
 #ifdef DEBUG
 //******************************************************************************
 //
@@ -255,7 +245,6 @@ ConfigureSCI(void)
     GPIO_setDirectionMode(28, GPIO_DIR_MODE_IN);
     GPIO_setPadConfig(28, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(28, GPIO_QUAL_ASYNC);
-
     //
     // GPIO29 is the SCI Tx pin.
     //
@@ -264,7 +253,6 @@ ConfigureSCI(void)
     GPIO_setDirectionMode(29, GPIO_DIR_MODE_OUT);
     GPIO_setPadConfig(29, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(29, GPIO_QUAL_ASYNC);
-
     //
     // Initialize the SCI for console I/O.
     //
@@ -272,7 +260,6 @@ ConfigureSCI(void)
                    SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ));
 }
 #endif
-
 //******************************************************************************
 //
 // KeyboardHandler - Handles asynchronous events from the HID keyboard driver.
@@ -306,7 +293,6 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_bSuspended = false;
             break;
         }
-
         //
         // The host has disconnected from us.
         //
@@ -315,7 +301,6 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_bConnected = false;
             break;
         }
-
         //
         // We receive this event every time the host acknowledges transmission
         // of a report. It is used here purely as a way of determining whether
@@ -329,7 +314,6 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_eKeyboardState = STATE_IDLE;
             break;
         }
-
         //
         // This event indicates that the host has suspended the USB bus.
         //
@@ -338,7 +322,6 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_bSuspended = true;
             break;
         }
-
         //
         // This event signals that the host has resumed signalling on the bus.
         //
@@ -347,7 +330,6 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_bSuspended = false;
             break;
         }
-
         //
         // This event indicates that the host has sent us an Output or
         // Feature report and that the report is now in the buffer we provided
@@ -359,10 +341,8 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             // Set the LED to match the current state of the caps lock LED.
             //
             GPIO_writePin(31,((ui32MsgData & HID_KEYB_CAPS_LOCK) ? 1 : 0));
-
             break;
         }
-
         //
         // We ignore all other events.
         //
@@ -371,10 +351,8 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             break;
         }
     }
-
     return(0);
 }
-
 //******************************************************************************
 //
 // WaitForSendIdle - Wait for a period of time for the state to become idle.
@@ -396,10 +374,8 @@ WaitForSendIdle(uint_fast32_t ui32TimeoutTicks)
     uint32_t ui32Start;
     uint32_t ui32Now;
     uint32_t ui32Elapsed;
-
     ui32Start = g_ui32SysTickCount;
     ui32Elapsed = 0;
-
     while(ui32Elapsed < ui32TimeoutTicks)
     {
         //
@@ -409,7 +385,6 @@ WaitForSendIdle(uint_fast32_t ui32TimeoutTicks)
         {
             return(true);
         }
-
         //
         // Determine how much time has elapsed since we started waiting.  This
         // should be safe across a wrap of g_ui32SysTickCount.
@@ -418,14 +393,12 @@ WaitForSendIdle(uint_fast32_t ui32TimeoutTicks)
         ui32Elapsed = ((ui32Start < ui32Now) ? (ui32Now - ui32Start) :
                      (((uint32_t)0xFFFFFFFF - ui32Start) + ui32Now + 1));
     }
-
     //
     // If we get here, we timed out so return a bad return code to let the
     // caller know.
     //
     return(false);
 }
-
 //******************************************************************************
 //
 // SendString - Sends a string of characters via the USB HID keyboard
@@ -436,7 +409,6 @@ void
 SendString(char *pcStr)
 {
     uint32_t ui32Char;
-
     //
     // Loop while there are more characters in the string.
     //
@@ -446,7 +418,6 @@ SendString(char *pcStr)
         // Get the next character from the string.
         //
         ui32Char = *pcStr++;
-
         //
         // Skip this character if it is a non-printable character.
         //
@@ -454,13 +425,11 @@ SendString(char *pcStr)
         {
             continue;
         }
-
         //
         // Convert the character into an index into the keyboard usage code
         // table.
         //
         ui32Char -= ' ';
-
         //
         // Send the key press message.
         //
@@ -472,7 +441,6 @@ SendString(char *pcStr)
         {
             return;
         }
-
         //
         // Wait until the key press message has been sent.
         //
@@ -481,7 +449,6 @@ SendString(char *pcStr)
             g_bConnected = 0;
             return;
         }
-
         //
         // Send the key release message.
         //
@@ -492,7 +459,6 @@ SendString(char *pcStr)
         {
             return;
         }
-
         //
         // Wait until the key release message has been sent.
         //
@@ -503,7 +469,6 @@ SendString(char *pcStr)
         }
     }
 }
-
 //******************************************************************************
 //
 // CPUTimerIntHandler - This is the interrupt handler for the CPU Timer
@@ -515,10 +480,8 @@ __interrupt void
 CPUTimerIntHandler(void)
 {
     g_ui32SysTickCount++;
-
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP1);
 }
-
 //******************************************************************************
 //
 // Main
@@ -530,105 +493,84 @@ main(void)
     uint_fast32_t ui32LastTickCount;
     uint32_t ui32Button, ui32Previous;
     bool bLastSuspend;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure GPIO pins for USB.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
-
     //
     // Set the clocking to run from the PLL at 60MHz
     //
     //SysCtl_setAuxClock(DEVICE_AUXSETCLOCK_CFG_USB);
     Board_init();
-
     C2000Ware_libraries_init();
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
 #ifdef DEBUG
     //
     // Configure the SCI for debug output.
     //
     ConfigureSCI();
 #endif
-
     USBGPIOEnable();
-
     //
     // Register the interrupt handler for USB Interrupts.
     //
     //Interrupt_register(INT_USBA, INT_myUSB0_ISR);
-
     //
     // Initialize the buttons driver
     //
     GPIO_setDirectionMode(0, GPIO_DIR_MODE_IN);
     GPIO_setDirectionMode(31, GPIO_DIR_MODE_OUT);
     GPIO_writePin(31, 1);
-
     //
     // Not configured initially.
     //
     g_bConnected = false;
     g_bSuspended = false;
     bLastSuspend = false;
-
     //
     // Initialize the USB stack for device mode.
     //
     //USBStackModeSet(0, eUSBModeForceDevice, 0);
-
     //
     // Pass our device information to the USB HID device class driver,
     // initialize the USB
     // controller and connect the device to the bus.
     //
     //USBDHIDKeyboardInit(0, &g_sKeyboardDevice);
-
     //
     // Register the interrupt handler, returning an error if an error occurs.
     //
     Interrupt_register(INT_TIMER0, &CPUTimerIntHandler);
-
     CPUTimerInit();
-
     CPUTimer_setPeriod(CPUTIMER0_BASE,
                       (SysCtl_getClock(DEVICE_OSCSRC_FREQ) / TICKS_PER_SECOND));
-
     //
     // Enable the CPU Timer interrupt.
     //
     CPUTimer_enableInterrupt(CPUTIMER0_BASE);
     Interrupt_enable(INT_TIMER0);
-
     //
     // Start the CPU Timer.
     //
     CPUTimer_startTimer(CPUTIMER0_BASE);
-
     Interrupt_enableGlobal();
-
     //
     // The main loop starts here.  We begin by waiting for a host connection
     // then drop into the main keyboard handling section.  If the host
@@ -641,7 +583,6 @@ main(void)
         // Tell the user what we are doing and provide some basic instructions.
         //
         SCIprintf("Waiting for host...\n");
-
         //
         // Wait here until USB device is connected to a host.
         //
@@ -651,7 +592,6 @@ main(void)
             // Remember the current time.
             //
             ui32LastTickCount = g_ui32SysTickCount;
-
             //
             // Has the suspend state changed since last time we checked?
             //
@@ -664,7 +604,6 @@ main(void)
                 SCIprintf(bLastSuspend ? "Bus suspended...\n" :
                            "Waiting for host...\n");
             }
-
             //
             // Update the global variable ui32Button in the expression window
             // to request a remote wake up of the USB.
@@ -677,7 +616,6 @@ main(void)
                 USBDHIDKeyboardRemoteWakeupRequest((void *)&g_sKeyboardDevice);
             }
             ui32Previous = ui32Button;
-
             //
             // Wait for at least 1 system tick to have gone by before we poll
             // the buttons again.
@@ -686,23 +624,19 @@ main(void)
             {
             }
         }
-
         //
         // Update the status.
         //
         SCIprintf("Host connected...\n");
-
         //
         // Enter the idle state.
         //
         g_eKeyboardState = STATE_IDLE;
-
         //
         // Assume that the bus is not currently suspended if we have just been
         // configured.
         //
         bLastSuspend = false;
-
         //
         // Keep transferring characters from the SCI to the USB host for as
         // long as we are connected to the host.
@@ -713,7 +647,6 @@ main(void)
             // Remember the current time.
             //
             ui32LastTickCount = g_ui32SysTickCount;
-
             //
             // Has the suspend state changed since last time we checked?
             //
@@ -726,7 +659,6 @@ main(void)
                 SCIprintf(bLastSuspend ? "Bus suspended...\n" :
                            "Host connected...\n");
             }
-
             //
             // Update the global variable ui32Button in the expression window
             // to send the string if the bus is not suspended.
@@ -748,7 +680,6 @@ main(void)
                 }
             }
             ui32Previous = ui32Button;
-
             //
             // Wait for at least 1 system tick to have gone by before we poll
             // the buttons again.

@@ -47,13 +47,16 @@ void `instance.$name`_init(){
 %               clataskconfig[taskconfig.name] = taskconfig;
 %           });
 %
-%           var enabletask = element.name.replace("group_", "enable_");
-%           if (instance[enabletask])
+%           var configtask = element.name.replace("group_", "enable_");
+%           var enabletask = element.name.replace("group_", "enableTask_");
+%           if (instance[configtask])
 %           {
 %
-%               // Add task to taskflasg list
+%               // Add task to taskflags list
+%               if (instance[enabletask])
+%               {
 %               taskflaglist += "CLA_TASKFLAG_" + element.name[element.name.length-1] + " | ";
-%
+%               }
 %               var taskname = element.name.replace("group_", "");
 %               var mvectname = element.name.replace("group_", "mvect_");
 %               var isrname = element.name.replace("group_", "name_");

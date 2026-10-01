@@ -58,20 +58,17 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
 #define FRAME_LENGTH    0x8
 #define LIN_PASS        0xABCD
 #define LIN_FAIL        0xFFFF
-
 //
 // Globals
 //
@@ -81,8 +78,6 @@ volatile uint32_t vectorOffset = 0;
 uint16_t result;
 uint16_t txData[8] = {0x11, 0x34, 0x56, 0x78, 0x9A, 0xAB, 0xCD, 0xEF};
 uint16_t rxData[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
-
-
 //
 // Main
 //
@@ -90,33 +85,26 @@ void main(void)
 {
     uint32_t i, dataIndex;
     uint16_t txID, error;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure GPIO pins for LINTX/LINRX
     //
     Device_initGPIO();
-
     //
     // Initialize the LIN module
     //
     LIN_initModule(LINA_BASE);
-
     //
     // Enable Internal Loopback mode
     //
     LIN_enableIntLoopback(LINA_BASE);
-
     //
     // Enable parity check
     //
     LIN_enableParity(LINA_BASE);
-
-
     //
     // Perform 8 data transmissions with different transmit IDs and varying
     // number of bytes transmitted. Received data is checked for correctness.
@@ -124,20 +112,16 @@ void main(void)
     for(i = 1 ; i <= FRAME_LENGTH; i++)
     {
         vectorOffset = 0;
-
-
         //
         // Create a new transmit ID and update with parity bits
         //
         txID = (0x10 + i);
         txID = LIN_generateParityID(txID);
-
         //
         // Increment the value of the first 8-bits of the transmitted
         // message data
         //
         txData[0]++;
-
         //
         // Reset values in receive buffer array
         //
@@ -145,44 +129,34 @@ void main(void)
         {
             rxData[dataIndex] = 0xFF;
         }
-
         //
         // Set the frame length (number of bytes to be transmitted)
         //
         LIN_setFrameLength(LINA_BASE, i);
-
         //
         // This places data into the transmit buffer.
         // No ID or data is placed on the bus and transmitted yet.
         //
         LIN_sendData(LINA_BASE, txData);
-
         //
         // Set the message ID to initiate a header transmission.
         // This causes the ID to be written to the bus followed by the
         // data in the transmit buffers.
         //
         LIN_setIDByte(LINA_BASE, txID);
-
        //
        // Wait until Transmit buffer is empty and has completed transmission
        //
        while(!LIN_isTxBufferEmpty(LINA_BASE));
-
        //
        //Wait for the Reception
        //
        while(!LIN_isRxMatch(LINA_BASE));
-
        LIN_clearInterruptStatus(LINA_BASE,LIN_INT_ID);
-
-
-
         //
         // Read the received data in the receive buffers
         //
         LIN_getData(LINA_BASE, rxData);
-
         //
         // Verify the transmitted data matches the received data
         //
@@ -194,7 +168,6 @@ void main(void)
             }
         }
     }
-
     //
     // Check if any data errors occurred
     //
@@ -206,13 +179,11 @@ void main(void)
     {
       result = LIN_FAIL;
     }
-
     //
     // Example completed. Check "result" variable for completion status.
     //
     asm("   ESTOP0");
 }
-
 //
 // End of File
 //

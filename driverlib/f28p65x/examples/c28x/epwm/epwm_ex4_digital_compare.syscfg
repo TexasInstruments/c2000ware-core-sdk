@@ -1,4 +1,10 @@
 /**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P65x" --part "F28P65x_256ZEJ" --package "256ZEJ" --board "/boards/TMDSCNCD28P65X" --context "CPU1"
+ * @v2CliArgs --device "TMS320F28P650DK" --package "256ZEJ" --variant "TMS320F28P650DK9" --context "CPU1"
+ */
+/**
  * Import the modules used in this configuration.
  */
 const epwm       = scripting.addModule("/driverlib/epwm.js", {}, false);
@@ -9,7 +15,6 @@ const gpio       = scripting.addModule("/driverlib/gpio.js", {}, false);
 const gpio1      = gpio.addInstance();
 const inputxbar  = scripting.addModule("/driverlib/inputxbar.js", {}, false);
 const inputxbar1 = inputxbar.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -29,18 +34,13 @@ epwm1.epwmTripZone_tzInterruptSource                                = ["EPWM_TZ_
 epwm1.useCase                                                   = "CUSTOM";
 epwm1.epwm.$assign                                              = "EPWM1";
 epwm1.epwm.epwm_aPin.$assign                                      = "GPIO0";
-
 epwmxbar1.$name      = "myEPWMXBAR0";
 epwmxbar1.muxesUsed  = ["XBAR_MUX01"];
 epwmxbar1.mux1Config = "XBAR_EPWM_MUX01_INPUTXBAR1_INPUT1";
-
 gpio1.$name           = "myGPIO25";
 gpio1.padConfig       = "PULLUP";
 gpio1.qualMode        = "GPIO_QUAL_ASYNC";
 gpio1.gpioPin.$assign = "GPIO25";
-
 inputxbar1.$name          = "myINPUTXBAR1";
 inputxbar1.inputsUsed     = ["inputxbar1Gpio"];
 inputxbar1.inputxbar1Gpio = "GPIO25";
-
-

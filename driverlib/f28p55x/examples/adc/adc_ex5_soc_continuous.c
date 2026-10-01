@@ -22,7 +22,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -56,56 +56,47 @@
 // $
 //#############################################################################
 //
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Defines
 //
 #define RESULTS_BUFFER_SIZE     256 //buffer for storing conversion results
                                 //(size must be multiple of 16)
-
 //
 // Globals
 //
 uint16_t adcAResults[RESULTS_BUFFER_SIZE];
 uint16_t resultsIndex;
-
 void main(void)
 {
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     // 
     // Board Initialization
     // - Configure the ADC and power it up
     // - Setup the ADC for continuous conversions on channel 0
     // 
     Board_init();
-
     //
     // Initialize results buffer
     //
@@ -114,13 +105,11 @@ void main(void)
         adcAResults[resultsIndex] = 0;
     }
     resultsIndex = 0;
-
     //
     // Enable global Interrupts and higher priority real-time debug events:
     //
     EINT;  // Enable Global interrupt INTM
     ERTM;  // Enable Global realtime interrupt DBGM
-
     //
     // Take conversions indefinitely in loop
     //
@@ -133,22 +122,18 @@ void main(void)
         ADC_enableInterrupt(myADC0_BASE, ADC_INT_NUMBER2);
         ADC_enableInterrupt(myADC0_BASE, ADC_INT_NUMBER3);
         ADC_enableInterrupt(myADC0_BASE, ADC_INT_NUMBER4);
-
         //
         // Clear all interrupts flags(INT1-4)
         //
         HWREGH(myADC0_BASE + ADC_O_INTFLGCLR) = 0x000F;
-
         //
         // Initialize results index
         //
         resultsIndex = 0;
-
         //
         // Software force start SOC0 to SOC7
         //
         HWREGH(myADC0_BASE + ADC_O_SOCFRC1) = 0x00FF;
-
         //
         // Keep taking samples until the results buffer is full
         //
@@ -158,12 +143,10 @@ void main(void)
             // Wait for first set of 8 conversions to complete
             //
             while(false == ADC_getInterruptStatus(myADC0_BASE, ADC_INT_NUMBER3));
-
             //
             // Clear the interrupt flag
             //
             ADC_clearInterruptStatus(myADC0_BASE, ADC_INT_NUMBER3);
-
             //
             // Save results for first 8 conversions
             //
@@ -187,17 +170,14 @@ void main(void)
                                                          ADC_SOC_NUMBER6);
             adcAResults[resultsIndex++] = ADC_readResult(ADCARESULT_BASE,
                                                          ADC_SOC_NUMBER7);
-
             //
             // Wait for the second set of 8 conversions to complete
             //
             while(false == ADC_getInterruptStatus(myADC0_BASE, ADC_INT_NUMBER4));
-
             //
             // Clear the interrupt flag
             //
             ADC_clearInterruptStatus(myADC0_BASE, ADC_INT_NUMBER4);
-
             //
             // Save results for second 8 conversions
             //
@@ -222,7 +202,6 @@ void main(void)
             adcAResults[resultsIndex++] = ADC_readResult(ADCARESULT_BASE,
                                                          ADC_SOC_NUMBER15);
         }
-
         //
         // Disable all ADCINT flags to stop sampling
         //
@@ -230,12 +209,10 @@ void main(void)
         ADC_disableInterrupt(myADC0_BASE, ADC_INT_NUMBER2);
         ADC_disableInterrupt(myADC0_BASE, ADC_INT_NUMBER3);
         ADC_disableInterrupt(myADC0_BASE, ADC_INT_NUMBER4);
-
         //
         // At this point, adcAResults[] contains a sequence of conversions
         // from the selected channel
         //
-
         //
         // Software breakpoint, hit run again to get updated conversions
         //
@@ -243,7 +220,6 @@ void main(void)
     }
     while(1); // Loop forever
 }
-
 //
 // End of file
 //

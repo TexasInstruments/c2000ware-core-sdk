@@ -1,0 +1,292 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION</compoundname>
+    <title>MCPWM Synchronization Example</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_mcpwm_ex2_synchronization"/></para>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1autotoc_md334">
+<title>Introduction</title>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1autotoc_md335">
+<title>Synchronization</title>
+<para>MCPWM synchronization is a crucial feature that allows multiple PWM modules to operate in a coordinated manner.</para>
+<sect3 id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1autotoc_md336">
+<title>Synchronization Sources</title>
+<para><itemizedlist>
+<listitem><para><bold>External Sync</bold><itemizedlist>
+<listitem><para>Input XBAR routing for external sync signals</para>
+</listitem><listitem><para>Configurable sync input selection (SYNCISEL)</para>
+</listitem><listitem><para>Edge-triggered synchronization events</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para><bold>Internal Sync</bold><itemizedlist>
+<listitem><para>Module-to-module synchronization</para>
+</listitem><listitem><para>Counter synchronization between PWM modules</para>
+</listitem><listitem><para>Cascaded synchronization chains possible</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+<sect3 id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1autotoc_md337">
+<title>Sync Mechanisms</title>
+<sect4 id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1autotoc_md338">
+<title>Time Base Synchronization</title>
+<para><itemizedlist>
+<listitem><para><bold>TBCTL Register Controls</bold><itemizedlist>
+<listitem><para>PHSEN (Phase Load Enable)<itemizedlist>
+<listitem><para><computeroutput><ref refid="group__mcpwm__api_1ga7f995960d6d152e4a4286ddb0b59ef5a" kindref="member">MCPWM_enablePhaseShiftLoad()</ref></computeroutput></para>
+</listitem><listitem><para><computeroutput><ref refid="group__mcpwm__api_1gac73d27a744e5d9d6fba029715ccbb2e3" kindref="member">MCPWM_disablePhaseShiftLoad()</ref></computeroutput></para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>SYNCOSEL (Sync Output Select)<itemizedlist>
+<listitem><para><computeroutput><ref refid="group__mcpwm__api_1gab9dd51b67be129058031e1e4d8e16af7" kindref="member">MCPWM_setSyncOutPulseMode()</ref></computeroutput></para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>SYNCISEL (Sync Input Select)<itemizedlist>
+<listitem><para><computeroutput><ref refid="group__mcpwm__api_1gab29bc913704dba2ac9d708e30f973a52" kindref="member">MCPWM_setSyncInPulseSource()</ref></computeroutput></para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>PHSDIR (Phase Direction)<itemizedlist>
+<listitem><para><computeroutput><ref refid="group__mcpwm__api_1gab6274c8743a785e8ae02ce46b990733c" kindref="member">MCPWM_setCountModeAfterSync()</ref></computeroutput></para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+<para>Sync Out Events, see enum <ref refid="group__mcpwm__api_1gafa3e001be20c36635e173513b8002b35" kindref="member">MCPWM_SyncOutPulseMode</ref></para>
+<para>Sync In Sources, see enum <ref refid="group__mcpwm__api_1gaa92a0e27b775005188d820cf5751ca83" kindref="member">MCPWM_SyncInPulseSource</ref></para>
+</sect4>
+</sect3>
+<sect3 id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1autotoc_md339">
+<title>Phase Control Features</title>
+<sect4 id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1autotoc_md340">
+<title>Phase Loading</title>
+<para><itemizedlist>
+<listitem><para><bold>TBPHS Register</bold><itemizedlist>
+<listitem><para>16-bit phase offset value</para>
+</listitem><listitem><para>Loaded on sync event when PHSEN enabled</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</sect4>
+<sect4 id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1autotoc_md341">
+<title>Counter Behavior</title>
+<para><itemizedlist>
+<listitem><para><bold>Post-Sync Options</bold><itemizedlist>
+<listitem><para>Software configurable direction<itemizedlist>
+<listitem><para>Force UP counting</para>
+</listitem><listitem><para>Force DOWN counting</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</sect4>
+</sect3>
+<sect3 id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1autotoc_md342">
+<title>Runtime Phase Control</title>
+<para><itemizedlist>
+<listitem><para>Phase offset modifications during operation</para>
+</listitem><listitem><para>Direction control after synchronization</para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+<sect3 id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1autotoc_md343">
+<title>Timing Considerations</title>
+<para><itemizedlist>
+<listitem><para><bold>Sync Latency</bold><itemizedlist>
+<listitem><para>One PWM clock cycle for sync recognition</para>
+</listitem><listitem><para>Counter update on next clock edge</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para><bold>Phase Accuracy</bold><itemizedlist>
+<listitem><para>Resolution based on PWM clock</para>
+</listitem><listitem><para>Deterministic phase relationships</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+<sect3 id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1autotoc_md344">
+<title>Applications</title>
+<para><itemizedlist>
+<listitem><para>Three-phase inverter control</para>
+</listitem><listitem><para>Interleaved power converters</para>
+</listitem><listitem><para>Multi-channel motor drives</para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1autotoc_md345">
+<title>Example Overview</title>
+<para>These examples demonstrate two different approaches to implement MCPWM synchronization functionality:<orderedlist>
+<listitem><para>Driverlib Implementation (mcpwm_ex2_synchronization.c in driverlib)</para>
+</listitem><listitem><para>Direct Register/Bitfield Implementation (mcpwm_ex2_synchronization.c in examples_bitfield)</para>
+</listitem></orderedlist>
+</para>
+<para>Key synchronization features demonstrated in this example include:<orderedlist>
+<listitem><para><bold>Sync Mechanism</bold><itemizedlist>
+<listitem><para>External sync input through InputXBAR</para>
+</listitem><listitem><para>Module-to-module sync (MCPWM1 to MCPWM3)</para>
+</listitem><listitem><para>Configurable sync events (Period match)</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para><bold>Phase Control</bold><itemizedlist>
+<listitem><para>Dynamic phase shift adjustments</para>
+</listitem><listitem><para>Phase shift loading on sync events</para>
+</listitem><listitem><para>Configurable counter direction after sync</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para><bold>Timing Coordination</bold><itemizedlist>
+<listitem><para>Synchronized counter updates</para>
+</listitem><listitem><para>Phase-shifted operation of recieving module</para>
+</listitem></itemizedlist>
+</para>
+</listitem></orderedlist>
+</para>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1autotoc_md346">
+<title>Common Functionality</title>
+<para>Both implementations configure myMCPWM0(MCPWM1) and myMCPWM1(MCPWM3) with synchronization features:</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1autotoc_md347">
+<title>myMCPWM0 Configuration</title>
+<para><orderedlist>
+<listitem><para>Time Base Settings:<itemizedlist>
+<listitem><para>Up Count Mode</para>
+</listitem><listitem><para>10KHz Frequency (15999 TBCLKs for 160MHz TBCLK)</para>
+</listitem><listitem><para>Sync input enabled from InputXbar 5</para>
+</listitem><listitem><para>Phase shift load enabled</para>
+</listitem><listitem><para>Sync Out configured for Counter equals Period event</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Action Qualifier Outputs:<itemizedlist>
+<listitem><para>Output A1: Set High on zero, Low on CMPA match</para>
+</listitem><listitem><para>Output B1: Set High on zero, Low on CMPB match</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Interrupt Configuration:<itemizedlist>
+<listitem><para>ET2 triggers every 5 &quot;Counter = Period&quot; events</para>
+</listitem><listitem><para>Updates phase shift values at runtime</para>
+</listitem></itemizedlist>
+</para>
+</listitem></orderedlist>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1autotoc_md348">
+<title>myMCPWM1 Configuration</title>
+<para><orderedlist>
+<listitem><para>Time Base Settings:<itemizedlist>
+<listitem><para>Up-Down Count Mode</para>
+</listitem><listitem><para>10KHz Frequency (8000 TBCLKs for 160MHz TBCLK)</para>
+</listitem><listitem><para>Sync input from myMCPWM0</para>
+</listitem><listitem><para>Phase shift load enabled</para>
+</listitem><listitem><para>Configurable counter direction after sync</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Action Qualifier Outputs:<itemizedlist>
+<listitem><para>Output A1: Set High on zero, Low on CMPA match</para>
+</listitem><listitem><para>Output B1: Set High on zero, Low on CMPB match</para>
+</listitem></itemizedlist>
+</para>
+</listitem></orderedlist>
+</para>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1autotoc_md349">
+<title>External Connections</title>
+<para>Monitor these PWM outputs on Launchpad:<itemizedlist>
+<listitem><para>J4 40 - GPIO0 - myMCPWM0 Output A1</para>
+</listitem><listitem><para>J4 39 - GPIO1 - myMCPWM0 Output B1</para>
+</listitem><listitem><para>J4 7 - GPIO12 - myMCPWM1 Output A1</para>
+</listitem><listitem><para>J2 19 - GPIO29 - myMCPWM1 Output B1</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1autotoc_md350">
+<title>Implementation Approaches</title>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1autotoc_md351">
+<title>Implementation Comparison</title>
+<para><table rows="5" cols="3"><row>
+<entry thead="yes"><para>Aspect   </para>
+</entry><entry thead="yes"><para>Driverlib Implementation   </para>
+</entry><entry thead="yes"><para>Bitfield Implementation    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Source File   </para>
+</entry><entry thead="no"><para>mcpwm_ex2_synchronization.c (driverlib)   </para>
+</entry><entry thead="no"><para>mcpwm_ex2_synchronization.c (examples_bitfield)    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Configuration Method   </para>
+</entry><entry thead="no"><para>Driverlib API calls   </para>
+</entry><entry thead="no"><para>Direct register access    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Hardware Abstraction   </para>
+</entry><entry thead="no"><para>Medium (driverlib)   </para>
+</entry><entry thead="no"><para>None (direct hardware)    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Phase Control   </para>
+</entry><entry thead="no"><para>API-based phase updates   </para>
+</entry><entry thead="no"><para>Direct register phase updates   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1autotoc_md352">
+<title>Watch Variables</title>
+<para><table rows="4" cols="3"><row>
+<entry thead="yes"><para>Variable   </para>
+</entry><entry thead="yes"><para>Purpose   </para>
+</entry><entry thead="yes"><para>Default    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>gUsePhaseValueUpdate   </para>
+</entry><entry thead="no"><para>Enable runtime phase updates   </para>
+</entry><entry thead="no"><para>false    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>gPhaseShiftValue   </para>
+</entry><entry thead="no"><para>Phase shift value to apply   </para>
+</entry><entry thead="no"><para>0    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>gPhaseDirUp   </para>
+</entry><entry thead="no"><para>Counter direction after sync   </para>
+</entry><entry thead="no"><para>true   </para>
+</entry></row>
+</table>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1autotoc_md353">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Using the watch variables, observe the waveforms.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION_1autotoc_md354">
+<title>See Also</title>
+<para><itemizedlist>
+<listitem><para><ref refid="DRIVERS_MCPWM_PAGE" kindref="compound">MCPWM</ref></para>
+</listitem><listitem><para><ref refid="EXAMPLES_DRIVERS_MCPWM_EX1_BASIC_PWM" kindref="compound">MCPWM Basic PWM Generation Examples</ref></para>
+</listitem><listitem><para><ref refid="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND" kindref="compound">MCPWM Deadband Example</ref> </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/mcpwm_ex2_synchronization.md"/>
+  </compounddef>
+</doxygen>

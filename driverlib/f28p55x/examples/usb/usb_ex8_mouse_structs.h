@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -41,17 +41,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 #ifndef USB_EX8_MOUSE_STRUCTS_H
 #define USB_EX8_MOUSE_STRUCTS_H
-
 extern uint32_t MouseHandler(void *pvCBData, uint32_t ui32Event,
                              uint32_t ui32MsgData, void *pvMsgData);
-
 extern tUSBDHIDMouseDevice g_sMouseDevice;
-
 #endif // USB_EX8_MOUSE_STRUCTS_H
-
 //
 // End of file
 //

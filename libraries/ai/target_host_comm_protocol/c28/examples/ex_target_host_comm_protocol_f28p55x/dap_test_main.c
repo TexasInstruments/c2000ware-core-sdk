@@ -2,127 +2,246 @@
 //
 // FILE:   dap_test_main.c
 //
-//!
-//! This example is shows how to execute device agent protocol(dap) on the target
-//! MCU side
+//! This example shows how to run the Device Agent Protocol (DAP) on the
+//! MCU side.
 //
 //#############################################################################
 //
 //
-// $Copyright:  $
+// 
+// C2000Ware v26.02.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
+// are met:
+//
+//   Redistributions of source code must retain the above copyright
+//   notice, this list of conditions and the following disclaimer.
+//
+//   Redistributions in binary form must reproduce the above copyright
+//   notice, this list of conditions and the following disclaimer in the
+//   documentation and/or other materials provided with the distribution.
+//
+//   Neither the name of Texas Instruments Incorporated nor the names of
+//   its contributors may be used to endorse or promote products derived
+//   from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// $
 //#############################################################################
-
-//
-// Included Files
-//
 
 #include "board.h"
-#include "c2000ware_libraries.h"
-#include "dap_interface.h"
+#include "Dap.h"
+
+/* ========================================================================== */
+/*                 Private Function Prototypes                                */
+/* ========================================================================== */
+
+static void App_LiveCapture_Run(void);
+
+/* ========================================================================== */
+/*                 DAP Interface Configuration                                */
+/* ========================================================================== */
+
+/* Sensor JSON descriptors */
+static const char gSensor1Json[] =
+    "{\"name\":\"AFE1_current\",\"type\":6,\"dataFormat\":5,\"sequenceNumbers\":true, "
+    "\"labels\":\"Arc current if Ch1 is selected\"}";
+static const char gSensor2Json[] =
+    "{\"name\":\"AFE2_current\",\"type\":6,\"dataFormat\":5,"
+    "\"labels\":\"Arc current if Ch2 is selected\"}";
+static const char gSensor3Json[] =
+    "{\"name\":\"AFE_Ch3_current\",\"type\":6,\"dataFormat\":5,"
+    "\"labels\":\"Arc current if Ch3 is selected\"}";
+static const char gSensor4Json[] =
+    "{\"name\":\"Vib_sensor1\",\"type\":7,\"dataFormat\":6,\"labels\":\"x\"}";
+
+/* Model JSON descriptors */
+static const char gModel1Json[] =
+    "{\"name\":\"ArcFault_model_200_t\",\"task\":\"ArcFault_model\","
+    "\"projectID\":\"Project_Name\"}";
+static const char gModel2Json[] =
+    "{\"name\":\"ArcFault_model_300_t\",\"task\":\"ArcFault_model\","
+    "\"projectID\":\"Project_Name\"}";
+static const char gModel3Json[] =
+    "{\"name\":\"ArcFault_model_700_t\",\"task\":\"ArcFault_model\","
+    "\"projectID\":\"Project_Name\"}";
+
+/* Properties */
+static Dap_Interface_PropertyInfoType gProperty1 = {
+    "Property1", DAP_DATA_FORMAT_UINT16, {0U}
+};
+
+/* Inference value */
+static const Dap_Interface_InfValueInfoType gInference1 = {
+    "inferenceA", DAP_DATA_FORMAT_UINT16
+};
+
+/* Interface configuration populated in main() */
+static Dap_InterfaceConfigType gInterfaceConfig;
+
+/* ========================================================================== */
+/*                 Global Instances                                           */
+/* ========================================================================== */
+
+Uart_Hal_InstanceType gUartInstance;
+Dap_InstanceType      gDapInstance;
 
 
-extern volatile int start_sending_data;
+/* ========================================================================== */
+/*                 Main                                                       */
+/* ========================================================================== */
 
-
-//
-// Main
-//
 void main(void)
 {
+    Uart_Hal_InitParamsType halParams;
+    Dap_InitParamsType      dapParams;
 
-    //
-    // Initialize device clock and peripherals
-    //
+    /* ---------------------------------------------------------------------- */
+    /* Device and GPIO initialisation                                          */
+    /* ---------------------------------------------------------------------- */
+
     Device_init();
-
-    //
-    // Disable pin locks and enable internal pull-ups.
-    //
     Device_initGPIO();
 
-    //
-    // GPIO28 is the SCI Rx pin.
-    //
+    /* GPIO28 — SCI-A Rx */
     GPIO_setPinConfig(DEVICE_GPIO_CFG_SCIRXDA);
     GPIO_setDirectionMode(DEVICE_GPIO_PIN_SCIRXDA, GPIO_DIR_MODE_IN);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_SCIRXDA, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_SCIRXDA, GPIO_QUAL_ASYNC);
 
-    //
-    // GPIO29 is the SCI Tx pin.
-    //
+    /* GPIO29 — SCI-A Tx */
     GPIO_setPinConfig(DEVICE_GPIO_CFG_SCITXDA);
     GPIO_setDirectionMode(DEVICE_GPIO_PIN_SCITXDA, GPIO_DIR_MODE_OUT);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_SCITXDA, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_SCITXDA, GPIO_QUAL_ASYNC);
 
-    //
-    // Initialize PIE and clear PIE registers. Disables CPU interrupts.
-    //
+    /* PIE initialisation */
     Interrupt_initModule();
-
-    //
-    // Initialize the PIE vector table with pointers to the shell Interrupt
-    // Service Routines (ISR).
-    //
     Interrupt_initVectorTable();
 
-    //
-    // Interrupts that are used in this example are re-mapped to
-    // ISR functions found within this file.
-    //
-    guiInitialization();
+    /* ---------------------------------------------------------------------- */
+    /* UART HAL initialisation                                                 */
+    /* ---------------------------------------------------------------------- */
 
-    //
-    // Enable Global Interrupt (INTM) and real time interrupt (DBGM)
-    //
+    halParams.BaudRateBps = 9600UL;
+    Uart_Hal_Init(&gUartInstance, &halParams);
+
+    /* ---------------------------------------------------------------------- */
+    /* Build interface configuration                                           */
+    /* ---------------------------------------------------------------------- */
+
+    gProperty1.Value.U16 = 1000U;
+
+    gInterfaceConfig.SensorList[0]  = gSensor1Json;
+    gInterfaceConfig.SensorList[1]  = gSensor2Json;
+    gInterfaceConfig.SensorList[2]  = gSensor3Json;
+    gInterfaceConfig.SensorList[3]  = gSensor4Json;
+    gInterfaceConfig.SensorCount    = 4U;
+
+    gInterfaceConfig.ModelList[0]   = gModel1Json;
+    gInterfaceConfig.ModelList[1]   = gModel2Json;
+    gInterfaceConfig.ModelList[2]   = gModel3Json;
+    gInterfaceConfig.ModelCount     = 3U;
+
+    gInterfaceConfig.PropertyList[0]  = &gProperty1;
+    gInterfaceConfig.PropertyCount    = 1U;
+
+    gInterfaceConfig.InfValueList[0]  = &gInference1;
+    gInterfaceConfig.InfValueCount    = 1U;
+
+    /* ---------------------------------------------------------------------- */
+    /* DAP initialisation                                                      */
+    /* ---------------------------------------------------------------------- */
+
+    Dap_InitParamsSetDefault(&dapParams);
+    dapParams.LinkParams.UartInstancePtr = &gUartInstance;
+    dapParams.InterfaceConfigPtr         = &gInterfaceConfig;
+    dapParams.StreamingMode              = DAP_STREAMING_MODE_DISCRETE;
+
+    Dap_Init(&gDapInstance, &dapParams);
+    Dap_Open(&gDapInstance);
+
+    /* Enable global interrupts and real-time debug */
     EINT;
     ERTM;
-    //
-    // Send starting message (for debugging purposes)
-    //
-    if(TERMINAL_DEBUGGING_MODE){
-        unsigned char *msg;
-        msg = "Welcome\n";
-        sci_write_char_array((uint16_t*)msg, 8);
-    }
 
-    while(1)
+    /* ---------------------------------------------------------------------- */
+    /* Main loop                                                               */
+    /* ---------------------------------------------------------------------- */
+
+    while (1)
     {
+        Dap_Process(&gDapInstance);
 
-        if(start_sending_data==1)
+        boolean                isStreaming = FALSE;
+        Dap_PipelineConfigType pipelineConfig;
+
+        Dap_IsStreaming(&gDapInstance, &isStreaming);
+        Dap_GetPipelineConfig(&gDapInstance, &pipelineConfig);
+
+        if (isStreaming == TRUE)
         {
-
-            // For 16 bits sensor data transmission check comment/uncomment below part
-            /*
-            uint8_t temp_databuff[4*2];
-            uint16_t sensor3_data[4] = {0xa1ab,0xb2bc,0xc3cd,0xd4ef};
-            int sample_size1 = sizeof(sensor3_data);
-            data_conversion_from_16_to_8_bits(sensor3_data, sample_size1, temp_databuff);
-            */
-
-            // For 32 bits sensor data transmission check comment/uncomment below part
-
-            uint8_t temp_databuff[4*2*2];
-            uint32_t sensor4_data[4] = {0xa1a2a3a4,0xb1b2b3b4,0xc1c2c3c4,0xd1d2d3d4};
-            int sample_size2 = sizeof(sensor4_data);
-            data_conversion_from_32_to_8_bits(sensor4_data, sample_size2, temp_databuff);
-
-            uint32_t dataLen = sizeof(temp_databuff);
-            //uint32_t dataLen = 0x9d;
-
-            uint16_t channelVal = sensor_signal;
-
-            received_data_response(dataLen, channelVal, temp_databuff);
-            DEVICE_DELAY_US(4000);
-            NOP;
-
-        }
-        else
-        {
-            //start_sending_data=0;
+            if (pipelineConfig.Mode == DAP_PIPELINE_MODE_DATA_ACQUISITION)
+            {
+                App_LiveCapture_Run();
+            }
         }
     }
+}
+
+/* ========================================================================== */
+/*                 Private Functions                                          */
+/* ========================================================================== */
+
+static void App_LiveCapture_Run(void)
+{
+    static const uint16 sensorSampleSizes[1] = {2U};
+    static uint16       sawtoothValue        = 0U;
+    uint8               temp_databuff[2];
+    sint32              status;
+
+    temp_databuff[0] = (uint8)((sawtoothValue >> 8U) & 0xFFU);
+    temp_databuff[1] = (uint8)(sawtoothValue & 0xFFU);
+
+    status = Dap_StartSensorStream(&gDapInstance, sensorSampleSizes, sizeof(sensorSampleSizes), 1U,
+                                   DAP_DATA_CHANNEL_SENSOR_SIGNAL);
+    if (status == DAP_ERROR_NONE)
+    {
+        (void)Dap_StreamSensorSample(&gDapInstance, 0U, temp_databuff, 2U);
+
+        sawtoothValue = (sawtoothValue < 500U) ? (sawtoothValue + 1U) : 0U;
+
+        DEVICE_DELAY_US(4000);
+    }
+}
+
+/* ========================================================================== */
+/*                 UART HAL Callbacks                                         */
+/* ========================================================================== */
+
+void Uart_Hal_RxCompleteCallback(Uart_Hal_InstanceType *instancePtr, Uart_Hal_RxStatusType *statusPtr,
+                                 void *userArgsPtr)
+{
+    Dap_ReceiveCallback(instancePtr, statusPtr, userArgsPtr);
+}
+
+void Uart_Hal_TxCompleteCallback(Uart_Hal_InstanceType *instancePtr, Uart_Hal_TxStatusType *statusPtr,
+                                 void *userArgsPtr)
+{
+    Dap_TransmitCallback(instancePtr, statusPtr, userArgsPtr);
 }
 
 //

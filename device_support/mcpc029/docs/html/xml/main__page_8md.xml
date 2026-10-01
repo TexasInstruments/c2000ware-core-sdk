@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="main__page_8md" kind="file" language="Markdown">
+    <compoundname>main_page.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Introduction<sp/>{#mainpage}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>MCPC029<sp/>Peripheral<sp/>Driver<sp/>Library<sp/>is<sp/>a<sp/>set<sp/>of<sp/>drivers<sp/>for<sp/>accessing<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">peripherals<sp/>found<sp/>on<sp/>the<sp/>MCPC029<sp/>real<sp/>time<sp/>control<sp/>MCU.<sp/><sp/>While<sp/>they<sp/>are<sp/>not</highlight></codeline>
+<codeline><highlight class="normal">drivers<sp/>in<sp/>the<sp/>pure<sp/>operating<sp/>system<sp/>sense<sp/>(that<sp/>is,<sp/>they<sp/>do<sp/>not<sp/>have<sp/>a<sp/>common</highlight></codeline>
+<codeline><highlight class="normal">interface<sp/>and<sp/>do<sp/>not<sp/>connect<sp/>into<sp/>a<sp/>global<sp/>device<sp/>driver<sp/>infrastructure),<sp/>they</highlight></codeline>
+<codeline><highlight class="normal">do<sp/>provide<sp/>a<sp/>software<sp/>layer<sp/>to<sp/>facilitate<sp/>a<sp/>slightly<sp/>higher<sp/>level<sp/>of</highlight></codeline>
+<codeline><highlight class="normal">programming<sp/>than<sp/>direct<sp/>register<sp/>accesses.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>capabilities<sp/>and<sp/>organization<sp/>of<sp/>the<sp/>drivers<sp/>are<sp/>governed<sp/>by<sp/>the<sp/>following</highlight></codeline>
+<codeline><highlight class="normal">design<sp/>goals:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>They<sp/>are<sp/>written<sp/>entirely<sp/>in<sp/>C<sp/>except<sp/>where<sp/>absolutely<sp/>not<sp/>possible.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Where<sp/>possible,<sp/>computations<sp/>that<sp/>can<sp/>be<sp/>performed<sp/>at<sp/>compile<sp/>time<sp/>are<sp/>done</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>there<sp/>instead<sp/>of<sp/>at<sp/>run<sp/>time.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>They<sp/>are<sp/>intended<sp/>to<sp/>make<sp/>code<sp/>more<sp/>portable<sp/>across<sp/>other<sp/>C2000<sp/>devices.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Code<sp/>written<sp/>with<sp/>these<sp/>APIs<sp/>will<sp/>be<sp/>more<sp/>readable<sp/>than<sp/>code<sp/>written<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>many<sp/>direct<sp/>register<sp/>accesses.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Some<sp/>consequences<sp/>of<sp/>this<sp/>are<sp/>that<sp/>the<sp/>drivers<sp/>are<sp/>not<sp/>necessarily<sp/>as<sp/>efficient</highlight></codeline>
+<codeline><highlight class="normal">as<sp/>they<sp/>could<sp/>be<sp/>(from<sp/>a<sp/>code<sp/>size<sp/>and/or<sp/>execution<sp/>speed<sp/>point<sp/>of<sp/>view).<sp/>While</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>most<sp/>efficient<sp/>piece<sp/>of<sp/>code<sp/>for<sp/>operating<sp/>a<sp/>peripheral<sp/>would<sp/>be<sp/>written</highlight></codeline>
+<codeline><highlight class="normal">in<sp/>assembly<sp/>and<sp/>custom<sp/>tailored<sp/>to<sp/>the<sp/>specific<sp/>requirements<sp/>of<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">application,<sp/>further<sp/>size<sp/>optimizations<sp/>of<sp/>the<sp/>drivers<sp/>would<sp/>make<sp/>them<sp/>more</highlight></codeline>
+<codeline><highlight class="normal">difficult<sp/>to<sp/>understand.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">For<sp/>many<sp/>applications,<sp/>the<sp/>drivers<sp/>can<sp/>be<sp/>used<sp/>as<sp/>is.<sp/><sp/>But<sp/>in<sp/>some<sp/>cases,<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">drivers<sp/>will<sp/>have<sp/>to<sp/>be<sp/>enhanced<sp/>or<sp/>rewritten<sp/>in<sp/>order<sp/>to<sp/>meet<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">functionality,<sp/>memory,<sp/>or<sp/>processing<sp/>requirements<sp/>of<sp/>the<sp/>application.<sp/><sp/>If<sp/>so,</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>existing<sp/>driver<sp/>can<sp/>be<sp/>used<sp/>as<sp/>a<sp/>reference<sp/>on<sp/>how<sp/>to<sp/>operate<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">peripheral.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Programming<sp/>Models</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>see<sp/>\ref<sp/>PROGRAMMING_MODELS</highlight></codeline>
+<codeline></codeline>
+    </programlisting>
+    <location file="main_page.md"/>
+  </compounddef>
+</doxygen>

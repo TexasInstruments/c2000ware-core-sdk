@@ -7,7 +7,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -40,21 +40,17 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 #ifndef USB_EX9_HOST_HUB_H
 #define USB_EX9_HOST_HUB_H
-
 //*****************************************************************************
 //
 // The ASCII code for a backspace character.
 //
 //*****************************************************************************
 #define ASCII_BACKSPACE         0x08
-
 void KeyboardOpen(void);
 void MouseOpen(void);
 void KeyboardMain(void);
 void MouseMain(void);
 void UpdateStatus(uint32_t ui32Port);
-
 #endif //USB_EX9_HOST_HUB_H

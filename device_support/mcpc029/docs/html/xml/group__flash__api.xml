@@ -1,0 +1,622 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="group__flash__api" kind="group">
+    <compoundname>flash_api</compoundname>
+    <title>Flash</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__flash__api_1gaeaf8c1707632e8d3e3c51e2b6f72ee05" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Flash_setWaitstates</definition>
+        <argsstring>(uint32_t ctrlBase, uint16_t waitstates)</argsstring>
+        <name>Flash_setWaitstates</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>ctrlBase</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>waitstates</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the random read wait state amount.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctrlBase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the flash wrapper control registers. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>waitstates</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the wait-state value.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the number of wait states for a flash read access. The <emphasis>waitstates</emphasis> parameter is a number between 0 and 15. It is <bold>important</bold> to look at your device&apos;s datasheet for information about what the required minimum flash wait-state is for your selected SYSCLK frequency.</para>
+<para>By default the wait state amount is configured to the maximum 15.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="188" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="188" bodyend="209"/>
+      </memberdef>
+      <memberdef kind="function" id="group__flash__api_1gabbdf2cfb303a5b4cef08301ba7ad1bda" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Flash_enablePrefetch</definition>
+        <argsstring>(uint32_t ctrlBase)</argsstring>
+        <name>Flash_enablePrefetch</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>ctrlBase</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables prefetch mechanism.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctrlBase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the flash wrapper control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="224" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="224" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="function" id="group__flash__api_1ga8cb5785a86006f11ee84883f0a417e3b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Flash_disablePrefetch</definition>
+        <argsstring>(uint32_t ctrlBase)</argsstring>
+        <name>Flash_disablePrefetch</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>ctrlBase</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables prefetch mechanism.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctrlBase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the flash wrapper control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="254" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="254" bodyend="269"/>
+      </memberdef>
+      <memberdef kind="function" id="group__flash__api_1ga86d568ad7789cac51856e72f3dc715cf" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Flash_enableCache</definition>
+        <argsstring>(uint32_t ctrlBase)</argsstring>
+        <name>Flash_enableCache</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>ctrlBase</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables data cache.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctrlBase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the flash wrapper control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="284" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="284" bodyend="299"/>
+      </memberdef>
+      <memberdef kind="function" id="group__flash__api_1ga17d66dc40412fe0565719d9f29c4f140" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Flash_disableCache</definition>
+        <argsstring>(uint32_t ctrlBase)</argsstring>
+        <name>Flash_disableCache</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>ctrlBase</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables data cache.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctrlBase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the flash wrapper control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="314" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="314" bodyend="329"/>
+      </memberdef>
+      <memberdef kind="function" id="group__flash__api_1gab26b064b16eacd0e6dc6c52610c6002c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Flash_setFLWEPROT</definition>
+        <argsstring>(uint32_t ctrlBase)</argsstring>
+        <name>Flash_setFLWEPROT</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>ctrlBase</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the FLWEPROT value of the FLPROT register.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctrlBase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the flash wrapper control registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="341" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="341" bodyend="357"/>
+      </memberdef>
+      <memberdef kind="function" id="group__flash__api_1ga4d08064a46bbd2440d8878308e740924" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Flash_enableECC</definition>
+        <argsstring>(uint32_t eccBase)</argsstring>
+        <name>Flash_enableECC</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>eccBase</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables flash error correction code (ECC) protection.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eccBase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the flash wrapper ECC registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="372" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="372" bodyend="388"/>
+      </memberdef>
+      <memberdef kind="function" id="group__flash__api_1ga75fd98a9d0e4e584572353fd834f6ee8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Flash_disableECC</definition>
+        <argsstring>(uint32_t eccBase)</argsstring>
+        <name>Flash_disableECC</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>eccBase</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables flash error correction code (ECC) protection.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eccBase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the flash wrapper ECC registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="400" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="400" bodyend="416"/>
+      </memberdef>
+      <memberdef kind="function" id="group__flash__api_1ga9b0624bfabb2c54c46e80fb8cb060da2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Flash_enableSingleBitECCTestMode</definition>
+        <argsstring>(uint32_t eccBase)</argsstring>
+        <name>Flash_enableSingleBitECCTestMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>eccBase</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables Single Bit ECC Test mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eccBase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the flash wrapper ECC registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="430" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="430" bodyend="444"/>
+      </memberdef>
+      <memberdef kind="function" id="group__flash__api_1ga68a75f861d747b300499ae4622e52436" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Flash_enableDoubleBitECCTestMode</definition>
+        <argsstring>(uint32_t eccBase)</argsstring>
+        <name>Flash_enableDoubleBitECCTestMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>eccBase</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables Double Bit ECC Test mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eccBase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the flash wrapper ECC registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="456" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="456" bodyend="470"/>
+      </memberdef>
+      <memberdef kind="function" id="group__flash__api_1ga8f49b9ab79d8573bf52c544f39421189" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Flash_disableSingleBitECCTestMode</definition>
+        <argsstring>(uint32_t eccBase)</argsstring>
+        <name>Flash_disableSingleBitECCTestMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>eccBase</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables Single Bit ECC Test mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eccBase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the flash wrapper ECC registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="482" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="482" bodyend="496"/>
+      </memberdef>
+      <memberdef kind="function" id="group__flash__api_1ga745320bf4ab87f1e31c70221b79aaa93" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Flash_disableDoubleBitECCTestMode</definition>
+        <argsstring>(uint32_t eccBase)</argsstring>
+        <name>Flash_disableDoubleBitECCTestMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>eccBase</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables Double Bit ECC Test mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eccBase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the flash wrapper ECC registers.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="508" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="508" bodyend="522"/>
+      </memberdef>
+      <memberdef kind="function" id="group__flash__api_1ga26ce567e2daf0410ce349629b70599df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Flash_initModule</definition>
+        <argsstring>(uint32_t ctrlBase, uint32_t eccBase, uint16_t waitstates)</argsstring>
+        <name>Flash_initModule</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>ctrlBase</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>eccBase</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>waitstates</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the flash control registers.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctrlBase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the flash wrapper control registers. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>eccBase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the flash wrapper ECC registers. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>waitstates</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the wait-state value.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function initializes the flash control registers. At reset bank and pump are in sleep. A flash access will power up the bank and pump automatically. This function will power up Flash bank and pump and set the fallback mode of flash and pump as active.</para>
+<para>This function also sets the number of wait-states for a flash access (see <ref refid="group__flash__api_1gaeaf8c1707632e8d3e3c51e2b6f72ee05" kindref="member">Flash_setWaitstates()</ref> for more details), and enables cache, the prefetch mechanism, and ECC.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="545" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" declline="545" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__flash__api_1ga91c808f852b3ffff3460f869647b9345" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Flash_writeTrims</definition>
+        <argsstring>(uint32_t reg_offset, uint32_t mask, uint32_t shift, uint32_t value)</argsstring>
+        <name>Flash_writeTrims</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>reg_offset</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>mask</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>shift</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the flash trim registers.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="556" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="556" bodyend="569"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__flash__api_1ga276efbf257505771d8cb5be4b391465b" prot="public" static="no">
+        <name>FLASHCONFIG_BASE</name>
+        <initializer>0x00052000U</initializer>
+        <briefdescription>
+<para>Flash Trim Defines. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="87" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__flash__api_1ga669ee40363b47a7aaaf886ca0bda7ff9" prot="public" static="no">
+        <name>FLASH_O_TRIMCTL</name>
+        <initializer>0x600U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="92" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__flash__api_1gad0f5c305e1406602eefa53fa29d91597" prot="public" static="no">
+        <name>FLASH_O_TRIMLOCK</name>
+        <initializer>0x604U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="94" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__flash__api_1ga194650ba7770e3c0d1398a4b075a2ffc" prot="public" static="no">
+        <name>FLASH_O_TRIMCOMMIT</name>
+        <initializer>0x608U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="96" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__flash__api_1gad48aed0ad6848704480a5fcf1b3996b6" prot="public" static="no">
+        <name>FLASH_TRIMCTL_ENABLE_M</name>
+        <initializer>0x1U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="98" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__flash__api_1ga13d9afa2e6b6c36b08784c15948aef1e" prot="public" static="no">
+        <name>FLASH_TRIMCTL_ENABLE_S</name>
+        <initializer>0x0U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="99" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__flash__api_1ga47bdf104f035ec41bbc908261e4dcfd8" prot="public" static="no">
+        <name>FLASH_TRIMLOCK_TRIMLOCKREAD_TRIMLOCKOTHER_M</name>
+        <initializer>0x3U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="100" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__flash__api_1gacdc4966dbc393a2d7f20ac560131dd64" prot="public" static="no">
+        <name>FLASH_TRIMLOCK_TRIMLOCKREAD_TRIMLOCKOTHER_S</name>
+        <initializer>0x0U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="101" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__flash__api_1gacf5c6ef278c6661a24a891eaab991694" prot="public" static="no">
+        <name>FLASH_TRIMCOMMIT_TRIMCOMMITREAD_TRIMCOMMITOTHER_M</name>
+        <initializer>0x3U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="102" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__flash__api_1gad1302024ee3b8947b92b36cf3aa0e266" prot="public" static="no">
+        <name>FLASH_TRIMCOMMIT_TRIMCOMMITREAD_TRIMCOMMITOTHER_S</name>
+        <initializer>0x0U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="103" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__flash__api_1ga1b984f8cbcb88236e6f28911516dca7c" prot="public" static="no">
+        <name>FLASH_DELAY_CONFIG</name>
+        <initializer>__asm(&quot; RPT #7 || NOP&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="111" column="12" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__flash__api_1gac431ec71921c91888807bcdac8c2697b" prot="public" static="no">
+        <name>FLASH_SINGLE_BIT_ECC_TEST_EN</name>
+        <initializer>0x1U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="118" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__flash__api_1ga8f1ca203684131e9f45084164f8df083" prot="public" static="no">
+        <name>FLASH_DOUBLE_BIT_ECC_TEST_EN</name>
+        <initializer>0x3U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" line="119" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/flash.h" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

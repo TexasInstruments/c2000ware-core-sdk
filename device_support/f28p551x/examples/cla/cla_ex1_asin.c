@@ -58,22 +58,18 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
 #include "cla_ex1_asin_shared.h"
-
 //
 // Defines
 //
 #define WAITSTEP     asm(" RPT #255 || NOP")
-
 //
 // Globals
 //
-
 //
 //Task 1 (C) Variables
 // NOTE: Do not initialize the Message RAM variables globally, they will be
@@ -92,35 +88,27 @@ float fVal;
 float fResult;
 #endif //__cplusplus
 float y[BUFFER_SIZE];
-
 //
 //Task 2 (C) Variables
 //
-
 //
 //Task 3 (C) Variables
 //
-
 //
 //Task 4 (C) Variables
 //
-
 //
 //Task 5 (C) Variables
 //
-
 //
 //Task 6 (C) Variables
 //
-
 //
 //Task 7 (C) Variables
 //
-
 //
 //Task 8 (C) Variables
 //
-
 //
 //Common (C) Variables
 //The Exponential table
@@ -196,7 +184,6 @@ float CLAasinTable[]={
     27.202707817485, -57.466598393615, 31.741016484669,
     83.158101335898, -171.803399517566, 90.149831709374
 };
-
 float asin_expected[BUFFER_SIZE]={
     1.570796, 1.393789, 1.320141, 1.263401, 1.215375,
     1.172892, 1.134327, 1.098718, 1.065436, 1.034046,
@@ -212,10 +199,8 @@ float asin_expected[BUFFER_SIZE]={
     0.1410927, 0.1253278, 0.1095943, 0.09388787, 0.07820469,
     0.06254076, 0.04689218, 0.03125509, 0.01562564
 };
-
 uint16_t pass=0;
 uint16_t fail=0;
-
 //
 // Function Prototypes
 //
@@ -230,7 +215,6 @@ __interrupt void cla1Isr5();
 __interrupt void cla1Isr6();
 __interrupt void cla1Isr7();
 __interrupt void cla1Isr8();
-
 //
 // Main
 //
@@ -242,13 +226,11 @@ void main(void)
 // This example function is found in the <device>_sysctrl.c file.
 //
     InitSysCtrl();
-
 //
 // Step 2. Clear all interrupts and initialize PIE vector table:
 // Disable CPU interrupts
 //
     DINT;
-
 //
 // Initialize the PIE control registers to their default state.
 // The default state is all PIE interrupts disabled and flags
@@ -256,13 +238,11 @@ void main(void)
 // This function is found in the <device>_piectrl.c file.
 //
     InitPieCtrl();
-
 //
 // Disable CPU interrupts and clear all CPU interrupt flags:
 //
     IER = 0x0000;
     IFR = 0x0000;
-
 //
 // Initialize the PIE vector table with pointers to the default Interrupt
 // Service Routines (ISR).
@@ -270,30 +250,25 @@ void main(void)
 // This function is found in <device>_pievect.c.
 //
     InitPieVectTable();
-
 //
 // Step 3. Configure the CLA memory spaces first followed by
 // the CLA task vectors
 //
     CLA_configClaMemory();
     CLA_initCpu1Cla1();
-
 //
 // Step 4. Enable global Interrupts and higher priority real-time debug events:
 //
     EINT;  // Enable Global interrupt INTM
     ERTM;  // Enable Global realtime interrupt DBGM
-
 //
 // Step 5. Run the test
 //
     CLA_runTest();
-
     for(;;)
     {
     }
 }
-
 //
 // CLA_runTest - Execute CLA task tests for specified vectors
 //
@@ -301,15 +276,12 @@ void CLA_runTest(void)
 {
     int16_t i;
     float error;
-
     for(i=0; i < BUFFER_SIZE; i++)
     {
         fVal= (float)(BUFFER_SIZE - i)/(float)BUFFER_SIZE;
         Cla1ForceTask1andWait();
-
         y[i] = fResult;
         error = fabsf(asin_expected[i]-y[i]);
-
         if(error < 0.1f)
         {
             pass++;
@@ -319,34 +291,26 @@ void CLA_runTest(void)
             fail++;
         }
     }
-
     //
     // CLA tasks 2-8 are not used in this example
     //
 #if 0
     Cla1ForceTask2andWait();
     WAITSTEP;
-
     Cla1ForceTask3andWait();
     WAITSTEP;
-
     Cla1ForceTask4andWait();
     WAITSTEP;
-
     Cla1ForceTask5andWait();
     WAITSTEP;
-
     Cla1ForceTask6andWait();
     WAITSTEP;
-
     Cla1ForceTask7andWait();
     WAITSTEP;
-
     Cla1ForceTask8andWait();
     WAITSTEP;
 #endif
 }
-
 //
 // CLA_configClaMemory - Configure CLA memory sections
 //
@@ -354,7 +318,6 @@ void CLA_configClaMemory(void)
 {
     extern uint32_t Cla1ProgRunStart, Cla1ProgLoadStart, Cla1ProgLoadSize;
     EALLOW;
-
 #ifdef _FLASH
     //
     // Copy over code from FLASH to RAM
@@ -362,36 +325,30 @@ void CLA_configClaMemory(void)
     memcpy((uint32_t *)&Cla1ProgRunStart, (uint32_t *)&Cla1ProgLoadStart,
            (uint32_t)&Cla1ProgLoadSize);
 #endif //_FLASH
-
     //
     // Initialize and wait for CLA1ToCPUMsgRAM
     //
     MemCfgRegs.MSGxINIT.bit.INIT_CLA1TOCPU = 1;
     while(MemCfgRegs.MSGxINITDONE.bit.INITDONE_CLA1TOCPU != 1){};
-
     //
     // Initialize and wait for CPUToCLA1MsgRAM
     //
     MemCfgRegs.MSGxINIT.bit.INIT_CPUTOCLA1 = 1;
     while(MemCfgRegs.MSGxINITDONE.bit.INITDONE_CPUTOCLA1 != 1){};
-
     //
     // CLA Program will reside in RAMLS0 and data in RAMLS1, RAMLS2
     //
     MemCfgRegs.LSxCLAPGM.bit.CLAPGM_LS0 = 1U;
     MemCfgRegs.LSxCLAPGM.bit.CLAPGM_LS1 = 0U;
     MemCfgRegs.LSxCLAPGM.bit.CLAPGM_LS2 = 0U;
-
     //
     // Select CLA as the master of RAMLS0, RAMSL1, RAMLS2
     //
     MemCfgRegs.LSxMSEL.bit.MSEL_LS0 = 1U;
     MemCfgRegs.LSxMSEL.bit.MSEL_LS1 = 1U;
     MemCfgRegs.LSxMSEL.bit.MSEL_LS2 = 1U;
-
     EDIS;
 }
-
 //
 // CLA_initCpu1Cla1 - Initialize CLA1 task vectors and end of task interrupts
 //
@@ -414,7 +371,6 @@ void CLA_initCpu1Cla1(void)
     Cla1Regs.MVECT7 = (uint16_t)(&Cla1Task7);
     Cla1Regs.MVECT8 = (uint16_t)(&Cla1Task8);
 #pragma diag_warning=770
-
     //
     // Enable the IACK instruction to start a task on CLA in software
     // for all  8 CLA tasks. Also, globally enable all 8 tasks (or a
@@ -423,7 +379,6 @@ void CLA_initCpu1Cla1(void)
     //
     Cla1Regs.MCTL.bit.IACKE = 1;
     Cla1Regs.MIER.all = 0x00FF;
-
     //
     // Configure the vectors for the end-of-task interrupt for all
     // 8 tasks
@@ -436,14 +391,12 @@ void CLA_initCpu1Cla1(void)
     PieVectTable.CLA1_6_INT = &cla1Isr6;
     PieVectTable.CLA1_7_INT = &cla1Isr7;
     PieVectTable.CLA1_8_INT = &cla1Isr8;
-
     //
     // Enable CLA interrupts at the group and subgroup levels
     //
     PieCtrlRegs.PIEIER11.all = 0xFFFF;
     IER |= (M_INT11 );
 }
-
 //
 // cla1Isr1 - CLA1 ISR 1
 //
@@ -453,13 +406,11 @@ __interrupt void cla1Isr1 ()
     // Acknowledge the end-of-task interrupt for task 1
     //
     PieCtrlRegs.PIEACK.all = M_INT11;
-
     //
     // Uncomment to halt debugger and stop here
     //
 //    asm(" ESTOP0");
 }
-
 //
 // cla1Isr2 - CLA1 ISR 2
 //
@@ -467,7 +418,6 @@ __interrupt void cla1Isr2 ()
 {
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr3 - CLA1 ISR 3
 //
@@ -475,7 +425,6 @@ __interrupt void cla1Isr3 ()
 {
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr4 - CLA1 ISR 4
 //
@@ -483,7 +432,6 @@ __interrupt void cla1Isr4 ()
 {
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr5 - CLA1 ISR 5
 //
@@ -491,7 +439,6 @@ __interrupt void cla1Isr5 ()
 {
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr6 - CLA1 ISR 6
 //
@@ -499,7 +446,6 @@ __interrupt void cla1Isr6 ()
 {
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr7 - CLA1 ISR 7
 //
@@ -507,7 +453,6 @@ __interrupt void cla1Isr7 ()
 {
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr8 - CLA1 ISR 8
 //
@@ -517,13 +462,11 @@ __interrupt void cla1Isr8 ()
     // Acknowledge the end-of-task interrupt for task 8
     //
     PieCtrlRegs.PIEACK.all = M_INT11;
-
     //
     // Uncomment to halt debugger and stop here
     //
 //    asm(" ESTOP0");
 }
-
 //
 // End of file
 //

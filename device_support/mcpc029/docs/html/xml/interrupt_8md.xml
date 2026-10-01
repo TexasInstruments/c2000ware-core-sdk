@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="interrupt_8md" kind="file" language="Markdown">
+    <compoundname>interrupt.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Interrupt<sp/>{#DRIVERS_INTERRUPT_PAGE}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>Interrupt<sp/>driver<sp/>provides<sp/>API<sp/>to<sp/>configure<sp/>the<sp/>PIPE<sp/>module.</highlight></codeline>
+<codeline><highlight class="normal">Below<sp/>are<sp/>the<sp/>high<sp/>level<sp/>features<sp/>supported<sp/>by<sp/>the<sp/>Interrupt<sp/>driver.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Features<sp/>Supported</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Initialization<sp/>of<sp/>PIPE<sp/>module<sp/>and<sp/>vector<sp/>table</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Default<sp/>interrupt<sp/>handlers</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>PIPE<sp/>Global<sp/>configuration</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Interrupt<sp/>channel<sp/>configuration</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>SysConfig<sp/>Features</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@VAR_SYSCFG_USAGE_NOTE</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>PIPE<sp/>Global<sp/>configuration</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Interrupt<sp/>channel<sp/>configuration</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Generates<sp/>the<sp/>init<sp/>code<sp/>and<sp/>the<sp/>ISR<sp/>protypes</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Generates<sp/>a<sp/>file<sp/>named<sp/>interrupt_list.txt<sp/>with<sp/>the<sp/>list<sp/>of<sp/>all<sp/>interrupts<sp/>in<sp/>the<sp/>order<sp/>of<sp/>priority<sp/>and<sp/>grouped<sp/>as<sp/>per<sp/>the<sp/>nesting<sp/>groups</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Features<sp/>NOT<sp/>Supported</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Diagnostic<sp/>features<sp/>present<sp/>in<sp/>the<sp/>PIPE<sp/>module<sp/>is<sp/>not<sp/>supported<sp/>in<sp/>the<sp/>driver</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Important<sp/>Usage<sp/>Guidelines</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Make<sp/>sure<sp/>the<sp/>ISRs<sp/>are<sp/>defined<sp/>with<sp/>the<sp/>interrupt<sp/>attribute.<sp/>Recommended<sp/>to<sp/>use<sp/>Sysconfig<sp/>for<sp/>configuring<sp/>interrupt.<sp/>It<sp/>generates<sp/>the<sp/>correct<sp/>attribute<sp/>based<sp/>on<sp/>whether<sp/>the<sp/>interrupt<sp/>is<sp/>INT/RTINT/NMI.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>__attribute__((interrupt(&quot;INT&quot;)))<sp/><sp/><sp/>-<sp/>In<sp/>case<sp/>of<sp/>normal<sp/>INTs</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>__attribute__((interrupt(&quot;RTINT&quot;)))<sp/>-<sp/>In<sp/>case<sp/>of<sp/>RTINTs</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>__attribute__((interrupt(&quot;RTINT&quot;)))<sp/>-<sp/>In<sp/>case<sp/>of<sp/>NMI</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Make<sp/>sure<sp/>the<sp/>RTINT<sp/>threshold<sp/>is<sp/>aligned<sp/>with<sp/>nesting<sp/>group<sp/>mask.<sp/>This<sp/>is<sp/>enforced<sp/>in<sp/>Sysconfig<sp/>UI.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Example<sp/>Usage</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Include<sp/>the<sp/>below<sp/>file<sp/>to<sp/>access<sp/>the<sp/>APIs</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;interrupt.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>API</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>interrupt_api</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/interrupt.md"/>
+  </compounddef>
+</doxygen>

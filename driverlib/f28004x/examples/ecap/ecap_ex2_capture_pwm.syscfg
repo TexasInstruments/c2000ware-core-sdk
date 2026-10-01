@@ -1,4 +1,9 @@
-
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28004x" --part "F28004x_100PZ" --package "F28004x_100PZ" --context "system"
+ * @v2CliArgs --device "TMS320F280049C" --package "100PZ" --context "system"
+ */
 /**
  * Import the modules used in this configuration.
  */
@@ -8,7 +13,6 @@ const gpio       = scripting.addModule("/driverlib/gpio.js", {}, false);
 const gpio1      = gpio.addInstance();
 const inputxbar  = scripting.addModule("/driverlib/inputxbar.js", {}, false);
 const inputxbar1 = inputxbar.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -25,13 +29,9 @@ ecap1.reArm                  = true;
 ecap1.ecapInput              = "ECAP_INPUT_INPUTXBAR7";
 ecap1.registerInterrupts     = true;
 ecap1.ecapInt.enableInterrupt = true;
-
 gpio1.$name           = "myGPIO0";
 gpio1.qualMode        = "GPIO_QUAL_ASYNC";
 gpio1.gpioPin.$assign = "GPIO16";
-
-
 inputxbar1.$name          = "myINPUTXBAR0";
 inputxbar1.inputsUsed     = ["inputxbar7Gpio"];
 inputxbar1.inputxbar7Gpio = "GPIO16";
-

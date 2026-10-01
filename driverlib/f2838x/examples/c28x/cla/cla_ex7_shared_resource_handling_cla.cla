@@ -11,7 +11,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -44,13 +44,11 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include <cla_ex7_shared_resource_handling.h>
 #include <stdint.h>
-
 //
 // Globals
 //
@@ -61,7 +59,6 @@
 //
 volatile uint16_t cla_flag; // Flag used in task to implement toggle of
                             // EPWM1A output
-
 //-----------------------------------------------------------------------------
 //
 // Task 1 - PWM output control via software
@@ -73,12 +70,10 @@ __attribute__((interrupt)) void Cla1Task1 ( void )
     // Uncomment this to debug the CLA while connected to the debugger
     //
     //__mdebugstop();
-
     //
     // Turn ON Profiling GPIO2
     //
     GPIO_writePin(2,1);
-
     //
     // Toggle the EPWM1A output using SW Force Action
     //
@@ -87,24 +82,20 @@ __attribute__((interrupt)) void Cla1Task1 ( void )
         EPWM_setActionQualifierContSWForceAction(EPWM1_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_SW_OUTPUT_HIGH);
         cla_flag = 0;
     }
-
     else
     {
         EPWM_setActionQualifierContSWForceAction(EPWM1_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_SW_OUTPUT_LOW);
         cla_flag = 1;
     }
-
     //
     // Turn OFF Profiling GPIO2
     //
     GPIO_writePin(2,0);
-
     //
     // Clear EPWM5 interrupt flag so that next interrupt can come in
     //
     EPWM_clearEventTriggerInterruptFlag(EPWM5_BASE);
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 2 - Title Here
@@ -114,9 +105,7 @@ __attribute__((interrupt)) void Cla1Task1 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task2 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 3 - Title Here
@@ -126,9 +115,7 @@ __attribute__((interrupt))  void Cla1Task2 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task3 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 4 - Title Here
@@ -138,9 +125,7 @@ __attribute__((interrupt))  void Cla1Task3 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task4 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 5 - Title Here
@@ -150,9 +135,7 @@ __attribute__((interrupt))  void Cla1Task4 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task5 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 6 - Title Here
@@ -162,9 +145,7 @@ __attribute__((interrupt))  void Cla1Task5 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task6 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 7 - Title Here
@@ -174,9 +155,7 @@ __attribute__((interrupt))  void Cla1Task6 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task7 ( void )
 {
-
 }
-
 ///-----------------------------------------------------------------------------
 //
 // Task 8 - One Time Initialization Task
@@ -190,10 +169,8 @@ __attribute__((interrupt))  void Cla1Task8 ( void )
     // Uncomment this to debug the CLA while connected to the debugger
     //
     //__mdebugstop();
-
     cla_flag = 0;
 }
-
 //
 // End of File
 //

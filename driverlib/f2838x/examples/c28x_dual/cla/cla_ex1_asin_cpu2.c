@@ -11,7 +11,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -44,7 +44,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -52,12 +51,10 @@
 #include "device.h"
 #include "ipc.h"
 #include "cla_ex1_asin_shared.h"
-
 //
 // Defines
 //
 #define WAITSTEP     asm(" RPT #255 || NOP")
-
 //
 // Globals
 //
@@ -78,35 +75,27 @@ float fVal;
 float fResult;
 #endif //__cplusplus
 float y[BUFFER_SIZE];
-
 //
 //Task 2 (C) Variables
 //
-
 //
 //Task 3 (C) Variables
 //
-
 //
 //Task 4 (C) Variables
 //
-
 //
 //Task 5 (C) Variables
 //
-
 //
 //Task 6 (C) Variables
 //
-
 //
 //Task 7 (C) Variables
 //
-
 //
 //Task 8 (C) Variables
 //
-
 //
 //Common (C) Variables
 //The Exponential table
@@ -182,7 +171,6 @@ float CLAasinTable[]={
     27.202707817485, -57.466598393615, 31.741016484669,
     83.158101335898, -171.803399517566, 90.149831709374
 };
-
 float asin_expected[BUFFER_SIZE]={
     1.570796, 1.393789, 1.320141, 1.263401, 1.215375,
     1.172892, 1.134327, 1.098718, 1.065436, 1.034046,
@@ -198,17 +186,14 @@ float asin_expected[BUFFER_SIZE]={
     0.1410927, 0.1253278, 0.1095943, 0.09388787, 0.07820469,
     0.06254076, 0.04689218, 0.03125509, 0.01562564
 };
-
 uint16_t pass=0;
 uint16_t fail=0;
-
 //
 // Function Prototypes
 //
 void runTest(void);
 void configClaMemory(void);
 void initCpu2Cla1(void);
-
 __interrupt void cla1Isr1();
 __interrupt void cla1Isr2();
 __interrupt void cla1Isr3();
@@ -217,7 +202,6 @@ __interrupt void cla1Isr5();
 __interrupt void cla1Isr6();
 __interrupt void cla1Isr7();
 __interrupt void cla1Isr8();
-
 //
 // Main
 //
@@ -227,53 +211,44 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure the GPIO pin as a push-pull output
     //
     // This is configured by CPU1
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Configure the CLA memory spaces first followed by
     // the CLA task vectors.
     //
     configClaMemory();
     initCpu2Cla1();
-
     //
     // Enable global Interrupts and higher priority real-time debug events:
     //
     EINT;  // Enable Global interrupt INTM
     ERTM;  // Enable Global realtime interrupt DBGM
-
     //
     // Run the test
     //
     runTest();
 }
-
 //
 // runTest - Run CLA test
 //
 void runTest(void)
 {
     int16_t i, error;
-
     for(i = 0; i < BUFFER_SIZE; i++)
     {
         fVal= (float)(BUFFER_SIZE - i)/(float)BUFFER_SIZE;
-
         //
         // Force Task 1 and wait
         //
@@ -283,10 +258,8 @@ void runTest(void)
         {
         }
         WAITSTEP;
-
         y[i] = fResult;
         error = fabsf(asin_expected[i]-y[i]);
-
         if(error < 0.001f)
         {
         pass++;
@@ -296,10 +269,8 @@ void runTest(void)
         fail++;
         }
     }
-
     while(1);
 }
-
 //
 // configClaMemory - Configure CLA memory
 //
@@ -309,7 +280,6 @@ void configClaMemory(void)
     // Sync with CPU1 using IPC flag 31
     //
     IPC_sync(IPC_CPU2_L_CPU1_R, IPC_FLAG31);
-
 #ifdef _FLASH
     extern uint32_t Cla1funcsRunStart, Cla1funcsLoadStart, Cla1funcsLoadSize;
     //
@@ -318,14 +288,12 @@ void configClaMemory(void)
     memcpy((uint32_t *)&Cla1funcsRunStart, (uint32_t *)&Cla1funcsLoadStart,
            (uint32_t)&Cla1funcsLoadSize);
 #endif //_FLASH
-
 #ifdef CPU2
     //
     // Enable CPU2 clocking at the sys clock level
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLA1);
 #endif //CPU2
-
     //
     // Initialize and wait for CLA1ToCPUMsgRAM
     //
@@ -333,7 +301,6 @@ void configClaMemory(void)
     while(!MemCfg_getInitStatus(MEMCFG_SECT_MSGCLA1TOCPU))
     {
     }
-
     //
     // Initialize and wait for CPUToCLA1MsgRAM
     //
@@ -341,7 +308,6 @@ void configClaMemory(void)
     while(!MemCfg_getInitStatus(MEMCFG_SECT_MSGCPUTOCLA1))
     {
     }
-
     //
     // Select LS5RAM to be the programming space for the CLA
     // First configure the CLA to be the master for LS5 and then
@@ -349,7 +315,6 @@ void configClaMemory(void)
     //
     MemCfg_setLSRAMMasterSel(MEMCFG_SECT_LS5, MEMCFG_LSRAMMASTER_CPU_CLA1);
     MemCfg_setCLAMemType(MEMCFG_SECT_LS5, MEMCFG_CLA_MEM_PROGRAM);
-
     //
     // Next configure LS0RAM and LS1RAM as data spaces for the CLA
     // First configure the CLA to be the master for LS0(1) and then
@@ -357,11 +322,9 @@ void configClaMemory(void)
     //
     MemCfg_setLSRAMMasterSel(MEMCFG_SECT_LS0, MEMCFG_LSRAMMASTER_CPU_CLA1);
     MemCfg_setCLAMemType(MEMCFG_SECT_LS0, MEMCFG_CLA_MEM_DATA);
-
     MemCfg_setLSRAMMasterSel(MEMCFG_SECT_LS1, MEMCFG_LSRAMMASTER_CPU_CLA1);
     MemCfg_setCLAMemType(MEMCFG_SECT_LS1, MEMCFG_CLA_MEM_DATA);
 }
-
 //
 // initCpu2Cla1 - Initialize CLA1 task vectors and end of task ISRs
 //
@@ -386,7 +349,6 @@ void initCpu2Cla1(void)
     CLA_mapTaskVector(CLA1_BASE, CLA_MVECT_7, (uint16_t)&Cla1Task7);
     CLA_mapTaskVector(CLA1_BASE, CLA_MVECT_8, (uint16_t)&Cla1Task8);
 #pragma diag_warning=770
-
     //
     // Enable the IACK instruction to start a task on CLA in software
     // for all  8 CLA tasks. Also, globally enable all 8 tasks (or a
@@ -395,7 +357,6 @@ void initCpu2Cla1(void)
     //
     CLA_enableIACK(CLA1_BASE);
     CLA_enableTasks(CLA1_BASE, 0x00FF);
-
     //
     // Configure the vectors for the end-of-task interrupt for all
     // 8 tasks
@@ -408,7 +369,6 @@ void initCpu2Cla1(void)
     Interrupt_register(INT_CLA1_6, cla1Isr6);
     Interrupt_register(INT_CLA1_7, cla1Isr7);
     Interrupt_register(INT_CLA1_8, cla1Isr8);
-
     //
     // Enable CLA interrupts at the group and subgroup levels
     //
@@ -422,7 +382,6 @@ void initCpu2Cla1(void)
     Interrupt_enable(INT_CLA1_8);
     IER |= INTERRUPT_CPU_INT11;
 }
-
 //
 // cla1Isr1 - CLA1 ISR 1
 //
@@ -434,7 +393,6 @@ __interrupt void cla1Isr1 ()
 	Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP11);
 //    asm(" ESTOP0");
 }
-
 //
 // cla1Isr2 - CLA1 ISR 2
 //
@@ -442,7 +400,6 @@ __interrupt void cla1Isr2 ()
 {
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr3 - CLA1 ISR 3
 //
@@ -450,7 +407,6 @@ __interrupt void cla1Isr3 ()
 {
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr4 - CLA1 ISR 4
 //
@@ -458,7 +414,6 @@ __interrupt void cla1Isr4 ()
 {
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr5 - CLA1 ISR 5
 //
@@ -466,7 +421,6 @@ __interrupt void cla1Isr5 ()
 {
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr6 - CLA1 ISR 6
 //
@@ -474,7 +428,6 @@ __interrupt void cla1Isr6 ()
 {
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr7 - CLA1 ISR 7
 //
@@ -482,7 +435,6 @@ __interrupt void cla1Isr7 ()
 {
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr8 - CLA1 ISR 8
 //
@@ -494,7 +446,6 @@ __interrupt void cla1Isr8 ()
 	Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP11);
 //    asm(" ESTOP0");
 }
-
 //
 // End of file
 //

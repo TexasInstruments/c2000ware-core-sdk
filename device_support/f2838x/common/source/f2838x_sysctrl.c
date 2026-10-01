@@ -12,7 +12,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -114,6 +114,16 @@
 #define AUX_DIV         AUXPLLRAWCLK_BY_1
 
 #endif
+
+//
+// Macro used for adding delay between 2 consecutive writes to CLKSRCCTL1
+// register.
+// Delay = 300 NOPs
+//
+#define SYSCTRL_CLKSRCCTL1_DELAY  asm(" RPT #250 || NOP \n RPT #50 || NOP")
+
+//
+
 
 //
 // InitSysCtrl - Initialization of system resources.
@@ -779,9 +789,9 @@ void InitSysPll(Uint16 clock_source, Uint16 imult, Uint32 refdiv, Uint32 odiv,
         }
 
         //
-        // Delay of at least 60 OSCCLK cycles
+        // Delay of at least 300 OSCCLK cycles
         //
-        asm(" RPT #60 || NOP");
+        SYSCTRL_CLKSRCCTL1_DELAY;
 
         EALLOW;
 
@@ -943,9 +953,9 @@ void InitAuxPll(Uint16 clock_source,  Uint16 imult, Uint32 refdiv, Uint32 odiv,
         }
 
         //
-        // Delay of at least 60 OSCCLK cycles
+        // Delay of at least 300 OSCCLK cycles
         //
-        asm(" RPT #60 || NOP");
+        SYSCTRL_CLKSRCCTL1_DELAY;
 
         EALLOW;
         //

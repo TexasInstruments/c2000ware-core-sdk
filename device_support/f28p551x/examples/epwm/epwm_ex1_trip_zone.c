@@ -67,24 +67,20 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Defines
 //
 #define EXTTrig     // Leave Uncommented for Testing with External Trigger.
                     // Comment for Testing with ePWM Trigger.
-
 //
 // Globals
 //
 Uint32  EPwm1TZIntCount;
 Uint32  EPwm2TZIntCount;
-
 //
 // Function Prototypes
 //
@@ -94,7 +90,6 @@ void InitTzGpio(void);
 __interrupt void epwm1_tzint_isr(void);
 __interrupt void epwm2_tzint_isr(void);
 void InitEPwmGpio_TZ(void);
-
 //
 // Main
 //
@@ -106,14 +101,12 @@ void main(void)
 // This example function is found in the f2838x_sysctrl.c file.
 //
     InitSysCtrl();
-
 //
 // Step 2. Initialize GPIO:
 // This example function is found in the <device>_gpio.c file and
 // illustrates how to set the GPIO to it's default state.
 //
     InitGpio();
-
 //
 // enable PWM1, and PWM2
 //
@@ -121,19 +114,16 @@ void main(void)
     CpuSysRegs.PCLKCR2.bit.EPWM1=1;
     CpuSysRegs.PCLKCR2.bit.EPWM2=1;
     EDIS;
-
 //
 // For this case just init GPIO pins for ePWM1, ePWM2, ePWM3
 //
     InitEPwmGpio_TZ();
     InitTzGpio();
-
 //
 // Step 3. Clear all interrupts and initialize PIE vector table:
 // Disable CPU interrupts
 //
     DINT;
-
 //
 // Initialize the PIE control registers to their default state.
 // The default state is all PIE interrupts disabled and flags
@@ -141,13 +131,11 @@ void main(void)
 // This function is found in the f2838x_piectrl.c file.
 //
     InitPieCtrl();
-
 //
 // Disable CPU interrupts and clear all CPU interrupt flags:
 //
     IER = 0x0000;
     IFR = 0x0000;
-
 //
 // Initialize the PIE vector table with pointers to the shell Interrupt
 // Service Routines (ISR).
@@ -157,7 +145,6 @@ void main(void)
 // This function is found in f2838x_pievect.c.
 //
     InitPieVectTable();
-
 //
 // Interrupts that are used in this example are re-mapped to
 // ISR functions found within this file.
@@ -166,44 +153,36 @@ void main(void)
     PieVectTable.EPWM1_TZ_INT = &epwm1_tzint_isr;
     PieVectTable.EPWM2_TZ_INT = &epwm2_tzint_isr;
     EDIS;   // This is needed to disable write to EALLOW protected registers
-
 //
 // Step 4. Initialize the Device Peripherals:
 //
     EALLOW;
     CpuSysRegs.PCLKCR0.bit.TBCLKSYNC =0;
     EDIS;
-
     InitEPwm1Example();
     InitEPwm2Example();
-
     EALLOW;
     CpuSysRegs.PCLKCR0.bit.TBCLKSYNC =1;
     EDIS;
-
 //
 // Step 5. User specific code, enable interrupts:
 //
     EPwm1TZIntCount = 0;
     EPwm2TZIntCount = 0;
-
 //
 // Enable CPU INT2 which is connected to EPWM1-3 INT:
 //
     IER |= M_INT2;
-
 //
 // Enable EPWM INTn in the PIE: Group 3 interrupt 1-3
 //
     PieCtrlRegs.PIEIER2.bit.INTx1 = 1;
     PieCtrlRegs.PIEIER2.bit.INTx2 = 1;
-
 //
 // Enable global Interrupts and higher priority real-time debug events:
 //
     EINT;  // Enable Global interrupt INTM
     ERTM;  // Enable Global realtime interrupt DBGM
-
 //
 // Step 6. IDLE loop. Just sit and loop forever (optional):
 //
@@ -212,14 +191,12 @@ void main(void)
         asm ("  NOP");
     }
 }
-
 //
 // epwm1_tzint_isr - EPWM1 TZ ISR
 //
 __interrupt void epwm1_tzint_isr(void)
 {
     EPwm1TZIntCount++;
-
     //
     // To Re-enable the OST Interrupt, do the following:
     // EALLOW;
@@ -227,22 +204,18 @@ __interrupt void epwm1_tzint_isr(void)
     // EPwm1Regs.TZCLR.bit.INT = 1;
     // EDIS;
     //
-
     //
     // Acknowledge this interrupt to receive more interrupts from group 2
     //
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP2;
 }
-
 //
 // epwm2_tzint_isr - EPWM2 TZ ISR
 //
 __interrupt void epwm2_tzint_isr(void)
 {
     GpioDataRegs.GPATOGGLE.bit.GPIO11 = 1;
-
     EPwm2TZIntCount++;
-
     //
     // Clear the flags - we will continue to take
     // this interrupt until the TZ pin goes high
@@ -251,13 +224,11 @@ __interrupt void epwm2_tzint_isr(void)
     EPwm2Regs.TZCLR.bit.CBC = 1;
     EPwm2Regs.TZCLR.bit.INT = 1;
     EDIS;
-
     //
     // Acknowledge this interrupt to receive more interrupts from group 2
     //
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP2;
 }
-
 //
 // InitEPwm1Example - Initialize EPWM1 configuration
 //
@@ -268,22 +239,18 @@ void InitEPwm1Example()
     //
     EALLOW;
     EPwm1Regs.TZSEL.bit.OSHT1 = 1;
-
     //
     // Set TZA
     //
     EPwm1Regs.TZCTL.bit.TZA = TZ_FORCE_HI;
-
     //
     // Enable TZ interrupt
     //
     EPwm1Regs.TZEINT.bit.OST = 1;
     EDIS;
-
     EPwm1Regs.TBPRD = 12000;                        // Set timer period
     EPwm1Regs.TBPHS.bit.TBPHS = 0x0000;             // Phase is 0
     EPwm1Regs.TBCTR = 0x0000;                       // Clear counter
-
     //
     // Setup TBCLK
     //
@@ -291,22 +258,18 @@ void InitEPwm1Example()
     EPwm1Regs.TBCTL.bit.PHSEN = TB_DISABLE;        // Disable phase loading
     EPwm1Regs.TBCTL.bit.HSPCLKDIV = TB_DIV4;       // Clock ratio to SYSCLKOUT
     EPwm1Regs.TBCTL.bit.CLKDIV = TB_DIV4;
-
     EPwm1Regs.CMPCTL.bit.SHDWAMODE = CC_SHADOW;    // Load registers every ZERO
     EPwm1Regs.CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;
-
     //
     // Setup compare
     //
     EPwm1Regs.CMPA.bit.CMPA = 6000;
-
     //
     // Set actions
     //
     EPwm1Regs.AQCTLA.bit.CAU = AQ_SET;             // Set PWM1A on CAU
     EPwm1Regs.AQCTLA.bit.CAD = AQ_CLEAR;           // Clear PWM1A on CAD
 }
-
 //
 // InitEPwm2Example - Initialize EPWM2 configuration
 //
@@ -317,22 +280,18 @@ void InitEPwm2Example()
     //
     EALLOW;
     EPwm2Regs.TZSEL.bit.CBC1 = 1;
-
     //
     // Set TZA
     //
     EPwm2Regs.TZCTL.bit.TZA = TZ_FORCE_HI;
-
     //
     // Enable TZ interrupt
     //
     EPwm2Regs.TZEINT.bit.CBC = 1;
     EDIS;
-
     EPwm2Regs.TBPRD = 6000;                       // Set timer period
     EPwm2Regs.TBPHS.bit.TBPHS = 0x0000;           // Phase is 0
     EPwm2Regs.TBCTR = 0x0000;                     // Clear counter
-
     //
     // Setup TBCLK
     //
@@ -341,19 +300,16 @@ void InitEPwm2Example()
     EPwm2Regs.TBCTL.bit.HSPCLKDIV = TB_DIV4;       // Clock ratio to SYSCLKOUT
     EPwm2Regs.TBCTL.bit.CLKDIV = TB_DIV4;          // Slow just to observe on
                                                    // the scope.
-
     //
     // Setup compare
     //
     EPwm2Regs.CMPA.bit.CMPA = 3000;
-
     //
     // Set actions
     //
     EPwm2Regs.AQCTLA.bit.CAU = AQ_SET;             // Set PWM2A on CAU
     EPwm2Regs.AQCTLA.bit.CAD = AQ_CLEAR;           // Clear PWM2A on CAD
 }
-
 //
 // InitTzGpio - Initialize TZ GPIOs
 //
@@ -364,14 +320,11 @@ void InitTzGpio(void)
     //
     EALLOW;
     GpioCtrlRegs.GPAPUD.bit.GPIO12 = 0;    // Enable pull-up on GPIO12 (TZ1)
-
     GpioCtrlRegs.GPAQSEL1.bit.GPIO12 = 3;  // Asynch input GPIO12 (TZ1)
     EDIS;
-
     EALLOW;
     InputXbarRegs.INPUT1SELECT = 12;
     EDIS;
-
     //
     // For monitoring when the TZ Interrupt has been entered
     //
@@ -381,7 +334,6 @@ void InitTzGpio(void)
     GpioCtrlRegs.GPADIR.bit.GPIO11 = 1;
     EDIS;
 }
-
 //
 // InitEPwmGpio_TZ - Initialize EPWM1A and EPWM2A GPIOs
 //
@@ -394,7 +346,6 @@ void InitEPwmGpio_TZ(void)
     GpioCtrlRegs.GPAMUX1.bit.GPIO2 = 1;   // Configure GPIO2 as EPWM2A
     EDIS;
 }
-
 //
 // End of file
 //

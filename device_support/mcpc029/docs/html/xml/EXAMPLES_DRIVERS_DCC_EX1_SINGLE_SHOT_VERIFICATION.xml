@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_DCC_EX1_SINGLE_SHOT_VERIFICATION" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_DCC_EX1_SINGLE_SHOT_VERIFICATION</compoundname>
+    <title>DCC Single shot Clock verification</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_DCC_EX1_SINGLE_SHOT_VERIFICATION_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_dcc_ex1_single_shot_verification"/></para>
+<sect1 id="EXAMPLES_DRIVERS_DCC_EX1_SINGLE_SHOT_VERIFICATION_1autotoc_md164">
+<title>Introduction</title>
+<para>This example demonstrates the use of the Dual-Clock Comparator (DCC) module to verify the frequency of the PLLRAW clock using the XTAL clock as a reference.</para>
+<sect2 id="EXAMPLES_DRIVERS_DCC_EX1_SINGLE_SHOT_VERIFICATION_1autotoc_md165">
+<title>Details</title>
+<para>The DCC module is configured to compare two clock sources: <table rows="3" cols="3"><row>
+<entry thead="yes"><para>Clock Source   </para>
+</entry><entry thead="yes"><para>Description   </para>
+</entry><entry thead="yes"><para>Frequency    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Fclk0   </para>
+</entry><entry thead="no"><para>Reference clock (XTAL clock)   </para>
+</entry><entry thead="no"><para>20 MHz    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Fclk1   </para>
+</entry><entry thead="no"><para>Clock to be verified (PLLRAW clock)   </para>
+</entry><entry thead="no"><para>160 MHz   </para>
+</entry></row>
+</table>
+</para>
+<para>The program uses the <computeroutput><ref refid="group__dcc__api_1ga337c8343635bbae9e6f52f382c7f6f10" kindref="member">DCC_verifyClockFrequency()</ref></computeroutput> function to perform the clock verification with a specified tolerance of 1%. The result of the verification is stored in the <computeroutput>result</computeroutput> variable, which indicates whether the PLLRAW clock frequency is within the expected range.</para>
+<para><simplesect kind="note"><para><itemizedlist>
+<listitem><para>Update the parameters in the <computeroutput><ref refid="group__dcc__api_1ga337c8343635bbae9e6f52f382c7f6f10" kindref="member">DCC_verifyClockFrequency()</ref></computeroutput> function if using different PLL or XTAL frequencies.</para>
+</listitem><listitem><para>Refer to the device Technical Reference Manual (TRM) for details on counter seed values and DCC module configuration.</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_DCC_EX1_SINGLE_SHOT_VERIFICATION_1autotoc_md166">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>None</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_DCC_EX1_SINGLE_SHOT_VERIFICATION_1autotoc_md167">
+<title>Watch Variables</title>
+<para><table rows="2" cols="2"><row>
+<entry thead="yes"><para>Variable Name   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>result</computeroutput>   </para>
+</entry><entry thead="no"><para>Status of the PLLRAW clock verification (PASS or FAIL).   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_DCC_EX1_SINGLE_SHOT_VERIFICATION_1autotoc_md168">
+<title>Example Configuration</title>
+<para><table rows="6" cols="2"><row>
+<entry thead="yes"><para>Parameter   </para>
+</entry><entry thead="yes"><para>Value    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>FClk1 (PLL frequency)</bold>   </para>
+</entry><entry thead="no"><para>160 MHz    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>FClk0 (XTAL frequency)</bold>   </para>
+</entry><entry thead="no"><para>20 MHz    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Tolerance</bold>   </para>
+</entry><entry thead="no"><para>1%    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Allowable Frequency Tolerance</bold>   </para>
+</entry><entry thead="no"><para>0%    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>System Clock Frequency</bold>   </para>
+</entry><entry thead="no"><para>160 MHz   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_DCC_EX1_SINGLE_SHOT_VERIFICATION_1autotoc_md169">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Using the watch variables, view the Clock monitoring status and the counter values when the error is generated.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para><itemizedlist>
+<listitem><para>When running in flash configuration, it is recommended to reset and restart after loading the example to remove any stale flags or states.</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_DCC_EX1_SINGLE_SHOT_VERIFICATION_1autotoc_md170">
+<title>See Also</title>
+<para><ref refid="DRIVERS_DCC_PAGE" kindref="compound">DCC</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/dcc_ex1_single_shot_verification.md"/>
+  </compounddef>
+</doxygen>

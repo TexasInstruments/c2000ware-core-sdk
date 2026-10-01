@@ -44,8 +44,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
 //
 // Included Files
 //
@@ -53,7 +51,6 @@
 #include "device.h"
 #include "board.h"
 #include "c2000ware_libraries.h"
-
 //
 // Main
 //
@@ -67,20 +64,17 @@ void main(void)
     Interrupt_initModule();
     Interrupt_initVectorTable();
 	Board_init();
-
 	//
 	// Convert floating-point to fixed-point (_iq) value
 	// NOTE: Default N data type value for _iq is _iq24
 	//
     _iq param0 = _IQ(9.0);
     _iq param1 = _IQ(3.0);
-
     //
     // Perform arithmetic (multiplication and division)
     //
     _iq resultMult = _IQmpy(param0, param1);
     _iq resultDivi = _IQdiv(param0, param1);
-
     //
     // Convert results and parameters to floating point to verify results
     // and proper conversion
@@ -89,10 +83,8 @@ void main(void)
     float32_t floatParam1 = _IQtoF(param1);
     float32_t floatResultMult = _IQtoF(resultMult);
     float32_t floatResultDivi = _IQtoF(resultDivi);
-
 	while(1);
 }
-
 //
 // End of File
 //

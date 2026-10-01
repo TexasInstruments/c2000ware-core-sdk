@@ -24,7 +24,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -57,7 +57,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Include Files
 //
@@ -67,13 +66,11 @@
 #include "inc/stw_types.h"
 #include <string.h>
 #include "board.h"
-
 //
 // Defines
 //
 #define MCAN_EXT_ID_AND_MASK            (0x1FFFFFFFU)
 #define MCAN_MSG_INT                    (0x81200)
-
 //
 // Global Variables.
 //
@@ -81,7 +78,6 @@ volatile uint32_t isrIntr0Flag = 1U;
 volatile uint32_t isrIntr1Flag = 1U;
 volatile unsigned long msgCount = 0;
 volatile unsigned long error = 0;
-
 //
 // Function Prototype.
 //
@@ -89,7 +85,6 @@ static void MCANFilterConfig(void);
 static void MCANIntrConfig(void);
 __interrupt void MCANIntr0ISR(void);
 __interrupt void MCANIntr1ISR(void);
-
 //
 // Main
 //
@@ -99,32 +94,26 @@ void main(void)
     MCAN_TxBufElement    txMsg;
     MCAN_RxBufElement    rxMsg;
     MCAN_RxNewDataStatus newData;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and unlock the GPIO configuration registers
     //
     Device_initGPIO();
-
     //
     // Configure the divisor for the MCAN bit-clock
     //
     SysCtl_setMCANClk(SYSCTL_MCANA, SYSCTL_MCANCLK_DIV_5);
-
     //
     // CrossBar and ISR Configuration.
     //
     MCANIntrConfig();
-
     //
     // Board initialization
     //
     Board_init();
-
     //
     // Initialize message to transmit.
     //
@@ -139,7 +128,6 @@ void main(void)
     txMsg.fdf      = 1U; // Frame transmitted in CAN FD format.
     txMsg.efc      = 1U; // Store Tx events.
     txMsg.mm       = 0xAAU; // Message Marker.
-
     //
     // Data bytes.
     //
@@ -147,40 +135,33 @@ void main(void)
     txMsg.data[1]  = 0x34;
     txMsg.data[2]  = 0x56;
     txMsg.data[3]  = 0x78;
-
     //
     // Write Tx Message to the Message RAM.
     //
     MCAN_writeMsgRam(MCANA_DRIVER_BASE, MCAN_MEM_TYPE_BUF, 1U, &txMsg);
-
     //
     // Enable Transmission interrupt.
     //
     MCAN_txBufTransIntrEnable(MCANA_DRIVER_BASE, 1U,1U);
-
     //
     // Add request for transmission.
     //
     MCAN_txBufAddReq(MCANA_DRIVER_BASE, 1U);
-
     //
     // Wait for the isrIntr1Flag to be reset.
     //
     while(isrIntr1Flag)
     {
     }
-
     //
     // Read Message RAM.
     //
     MCAN_readMsgRam(MCANA_DRIVER_BASE, MCAN_MEM_TYPE_BUF, 0U, MCAN_RX_FIFO_NUM_1,
                     &rxMsg);
-
     //
     // Get the New Data Status.
     //
     MCAN_getNewDataStatus(MCANA_DRIVER_BASE, &newData);
-
     //
     // Check that received data matches sent data.
     // Device will halt here during debug if data doesn't match.
@@ -203,26 +184,20 @@ void main(void)
         //
         msgCount++;
     }
-
     //
     // Stop Application.
     //
     asm(" ESTOP0");
 }
-
 //
 // This function will configure X-BAR for MCAN interrupts.
 //
 static void MCANIntrConfig(void)
 {
-
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
     Interrupt_enableGlobal();
-
 }
-
 //
 // This is Interrupt Service Routine for MCAN interrupt 0.
 //
@@ -230,56 +205,50 @@ __interrupt void MCANIntr0ISR(void)
 {
     uint32_t intrStatus;
     intrStatus = MCAN_getIntrStatus(MCANA_DRIVER_BASE);
-
     if (MCAN_MSG_INT != intrStatus)
     {
         error++;
     }
-
     //
     // Clear the interrupt Status.
     //
     MCAN_clearIntrStatus(MCANA_DRIVER_BASE, intrStatus);
-
+    //
+    //  Clearing the interrupt lineNum
+    //
+    MCAN_clearInterrupt(MCANA_DRIVER_BASE, 0x2);
     //
     // Update the flag value.
     //
     isrIntr0Flag = 0U;
-
     //
     // Acknowledge this interrupt located in group 9
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP9);
 }
-
 //
 // This is Interrupt Service Routine for MCAN interrupt 1.
 //
 __interrupt void MCANIntr1ISR(void)
 {
     uint32_t intrStatus;
-
     intrStatus = MCAN_getIntrStatus(MCANA_DRIVER_BASE);
     if (MCAN_MSG_INT != intrStatus)
     {
         error++;
     }
-
-    //
-    //  Clearing the interrupt lineNum
-    //
-    HW_WR_FIELD32(MCANA_DRIVER_BASE + MCAN_MCANSS_EOI, MCAN_MCANSS_EOI, 0x2U);
-
     //
     // Clear the interrupt Status.
     //
     MCAN_clearIntrStatus(MCANA_DRIVER_BASE, intrStatus);
-
+    //
+    //  Clearing the interrupt lineNum
+    //
+    MCAN_clearInterrupt(MCANA_DRIVER_BASE, 0x2);
     //
     // Update the flag value.
     //
     isrIntr1Flag = 0U;
-
     //
     // Acknowledge this interrupt located in group 9
     //

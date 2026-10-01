@@ -70,7 +70,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -78,18 +77,15 @@
 #include "device.h"
 #include "board.h"
 #include "c2000ware_libraries.h"
-
 //
 // Defines
 //
 #define TOT_NUM_I2C_DATA 18
-
 //
 // Set to 1 for additional NACK check - NACK the controller if
 // 0xB0 or 0xB1 is received.
 //
 #define NACK_ON_INVALID_DATA 0
-
 //
 // Globals
 //
@@ -98,66 +94,53 @@ uint16_t addrByte = 0;
 uint16_t rxDataIndex = 0;
 bool stretch50 = true;
 bool addrByteRX = true;
-
 //
 // Function Prototypes
 //
 __interrupt void INT_myI2C0_ISR(void);
-
 //
 // Main
 //
 void main(void)
 {
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull-ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // PinMux and Peripheral Initialization
     //
     Board_init();
-
     //
     // Enable Alternative Extended Clock Stretching Mode
     //
     I2C_enableAlternateExtendedAutomaticClkStretchingMode(myI2C0_BASE);
-
     //
     // C2000Ware Library initialization
     //
     C2000Ware_libraries_init();
-
     //
     // Enable Global Interrupt (INTM) and real time interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     while(1)
     {
-
     }
 }
-
 //
 // I2C A Transmit & Receive ISR - used for error checking
 //
@@ -175,16 +158,13 @@ __interrupt void INT_myI2C0_ISR(){
             //
             addrByteRX = false;
             addrByte = I2C_getData(myI2C0_BASE);
-
         }
         else{
             //
             // Receive 1 data byte
             //
             rxData[rxDataIndex] = I2C_getData(myI2C0_BASE);
-
 #if NACK_ON_INVALID_DATA == 1
-
             //
             // Change outcome of ACK/NACK once 0xBX is received
             //
@@ -194,7 +174,6 @@ __interrupt void INT_myI2C0_ISR(){
 #endif
             rxDataIndex++;
         }
-
         //
         // Delay - clock stretching should happen here after each byte received
         //
@@ -206,7 +185,6 @@ __interrupt void INT_myI2C0_ISR(){
             DEVICE_DELAY_US(10);
             stretch50 = true;
         }
-
         //
         // Finish clock stretching
         //
@@ -227,7 +205,6 @@ __interrupt void INT_myI2C0_ISR(){
         }
         break;
     case I2C_INTSRC_STOP_CONDITION:
-
         //
         // If NACK_ON_INVALID_DATA=0: Data packet has been fully received
         //      in rxData (18 characters).

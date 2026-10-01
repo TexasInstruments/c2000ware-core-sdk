@@ -33,7 +33,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -66,25 +66,19 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib_cm.h"
 #include "cm.h"
-
 //
 // Defines
 //
-
-
 #define ETHERNET_NO_OF_RX_PACKETS   1U
 //
 //Change this define for changing Packet buffer length
 //
 #define ETHERNET_MAX_PACKET_LENGTH 128U
-
-
 //
 // Globals
 //
@@ -113,9 +107,7 @@ uint8_t icmp98[92] = {
 0x2e, 0x2f, 0x30, 0x31, 0x32, 0x33, 0x34, 0x35, /* ./012345 */
 0x36, 0x38                                      /* 67 */
 };
-
 #define PACKET_LENGTH sizeof(icmp98)
-
 //
 // Main
 //
@@ -126,12 +118,10 @@ void main(void)
     Ethernet_Pkt_Desc pktDesc;
     Ethernet_Statistics stats;
     Ethernet_Handle emac_handle;
-
     //
     // Initialize device clock and peripherals
     //
     CM_init();
-
     //
     //Select the MII interface of the module
     //
@@ -146,6 +136,8 @@ void main(void)
     initInterfaceConfig.ptrPlatformInterruptEnable = &Platform_enableInterrupt;
     initInterfaceConfig.ptrPlatformPeripheralEnable = &Platform_enablePeripheral;
     initInterfaceConfig.ptrPlatformPeripheralReset = &Platform_resetPeripheral;
+    initInterfaceConfig.ptrCoreInterruptDisable = &Interrupt_disableInProcessor;
+    initInterfaceConfig.ptrCoreInterruptEnable = &Interrupt_enableInProcessor;
     //
     //Assign the peripheral number at the SoC
     //
@@ -158,14 +150,11 @@ void main(void)
     initInterfaceConfig.interruptNum[2] = INT_EMAC_TX1;
     initInterfaceConfig.interruptNum[3] = INT_EMAC_RX0;
     initInterfaceConfig.interruptNum[4] = INT_EMAC_RX1;
-
     pInitCfg = Ethernet_initInterface(initInterfaceConfig);
-
     //
     // Get an initial configuration of known good parameters
     //
     Ethernet_getInitConfig(pInitCfg);
-
     //
     //Configure the Loopback mode
     //
@@ -188,7 +177,6 @@ void main(void)
     //Hence using a dummy value of 1
     //
     Ethernet_getHandle((Ethernet_Handle)1,pInitCfg , &emac_handle);
-
     //
     //Do global Interrupt Enable
     //
@@ -203,7 +191,6 @@ void main(void)
     //
     Interrupt_enable(INT_EMAC_TX0);
     Interrupt_enable(INT_EMAC_RX0);
-
     //
     //Prepare a Packet Descriptor structure to send a packet
     //This contains a single buffer packet
@@ -229,28 +216,21 @@ void main(void)
     pktDesc.pktLength = PACKET_LENGTH;
     pktDesc.validLength = PACKET_LENGTH;
     pktDesc.numPktFrags = 1;
-
     //
     //Send the packet prepared
     //
     Ethernet_sendPacket(emac_handle,&pktDesc);
-
     //
     //Delay for the MAC to send the packet on the wire and receive it
     //
     SysCtl_delay(3000);
-
     //
     //Read the statistics of the Module
     //
     Ethernet_getStatistics(emac_handle, &stats);
-
     //
     //Check if a packet has been received
     //
     if(!stats.rxUnicastPacketsGood)
          __asm("   bkpt #0");
-
 }
-
-

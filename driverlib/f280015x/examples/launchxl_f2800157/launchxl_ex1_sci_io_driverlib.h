@@ -1,6 +1,5 @@
 #ifndef _SCI_IO_H_
 #define _SCI_IO_H_
-
 //#############################################################################
 //
 // FILE:   launchxl_ex1_sci_io_driverlib.h
@@ -43,15 +42,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 //
 // Globals
 //
-
 // 
 // Function prototypes
 //
@@ -62,15 +58,10 @@ int SCI_write(int dev_fd, const char * buf, unsigned count);
 off_t SCI_lseek(int dev_fd, off_t offset, int origin);
 int SCI_unlink(const char * path);
 int SCI_rename(const char * old_name, const char * new_name);
-
-
 #ifdef __cplusplus
 }
 #endif // extern "C"
-
 #endif // end of _SCI_H_ definition
-
 //
 // End of File
 //
-

@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -115,7 +115,7 @@ PGA_setOffsetTrimNMOS(uint32_t base)
     if(offsetTrim > 0x0U)
     {
         EALLOW;
-        HWREG(base + PGA_O_OFFSETTRIM) |= offsetTrim;
+        HWREG(base + PGA_O_OFFSETTRIM) |= (uint32_t)offsetTrim;
         EDIS;
     }
 }

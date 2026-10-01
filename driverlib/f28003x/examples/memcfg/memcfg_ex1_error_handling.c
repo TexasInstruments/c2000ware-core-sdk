@@ -74,29 +74,24 @@
 //
 #include "device.h"
 #include "driverlib.h"
-
 //
 // Defines
 //
 #define TEST_PASS 0xABCDABCD
 #define TEST_FAIL 0xDEADDEAD
-
 //
 // Globals
 //
 uint16_t errCountGlobal = 0, sysIntFlagGlobal = 0;
 uint32_t testStatusGlobal;
-
 //
 // Globals to capture error type & address in ISR
 //
 volatile uint32_t errorAddress = 0, errorType = 0;
-
 //
 // Global to capture source of memory error
 //
 volatile uint32_t intStatus = 0;
-
 //
 // Interrupt counters
 //
@@ -108,7 +103,6 @@ volatile uint32_t nmiIntCnt = 0;
 //
 volatile uint32_t corrErrIntFlg = 0;
 volatile uint32_t uncorrErrIntFlg = 0;
-
 //
 // Function Prototypes
 //
@@ -117,14 +111,12 @@ uint32_t generateNonMasterCPURdViolation(void);
 uint32_t generateECCMemCorrError(void);
 uint32_t generateECCMemUncorrError(void);
 uint32_t forceNonMasterDMAReadViolation(void);
-
 //
 // ISRs
 //
 __interrupt void nmiISR(void);
 __interrupt void ramAccViolISR(void);;
 __interrupt void ramCorrErrISR(void);;
-
 //
 // Main
 //
@@ -132,81 +124,67 @@ void main(void)
 {
     uint16_t errCountLocal = 0;
     testStatusGlobal = TEST_FAIL;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure the GPIO pin as a push-pull output
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Enable RAM Correctable Error Interrupt register the ISR
     //
     Interrupt_register(INT_RAM_CORR_ERR, ramCorrErrISR);
     Interrupt_enable(INT_RAM_CORR_ERR);
-
     //
     // Enable RAM Correctable Error Interrupt register the ISR
     //
     Interrupt_register(INT_RAM_ACC_VIOL, ramAccViolISR);
     Interrupt_enable(INT_RAM_ACC_VIOL);
-
     //
     // Enable global Interrupts and higher priority real-time debug events:
     //
     EINT;
     ERTM;
-
     //
     // Register ISR for NMI
     //
     Interrupt_register(INT_NMI, nmiISR);
     SysCtl_enableNMIGlobalInterrupt();
-
     //
     // ECC memory uncorrectable error generation & handling
     //
     errCountLocal = generateECCMemUncorrError();
     errCountGlobal = errCountGlobal + errCountLocal;
-
     //
     // ECC memory correctable error generation & handling
     //
     errCountLocal = generateECCMemCorrError();
     errCountGlobal = errCountGlobal + errCountLocal;
-
     //
     // Non-master CPU-read violation generation & handling
     //
     errCountLocal = generateNonMasterCPURdViolation();
     errCountGlobal = errCountGlobal + errCountLocal;
-
     //
     // Non-Master DMA-read violation generation & handling
     //
     errCountLocal = forceNonMasterDMAReadViolation();
     errCountGlobal = errCountGlobal + errCountLocal;
-
     if(errCountGlobal == 0x0)
     {
         testStatusGlobal = TEST_PASS;
     }
-
     //
     // Loop indefinitely
     //
@@ -214,7 +192,6 @@ void main(void)
     {
     }
 }
-
 //
 // forceNonMasterDMAReadViolation - Force non-master DMA read access violation
 // through software and demonstrate violation handling.
@@ -222,17 +199,14 @@ void main(void)
 uint32_t forceNonMasterDMAReadViolation(void)
 {
     uint32_t i, testPassCnt = 0U;
-
     //
     // Enable interrupt
     //
     MemCfg_enableViolationInterrupt(MEMCFG_NMVIOL_DMAREAD);
-
     //
     // Reset ramAccViolCnt counter
     //
     ramAccViolCnt = 0;
-
     //
     // Force non-master DMA read violation through software
     //
@@ -240,14 +214,11 @@ uint32_t forceNonMasterDMAReadViolation(void)
     {
         MemCfg_forceViolationInterrupt(MEMCFG_NMVIOL_DMAREAD);
     }
-
     while(ramAccViolCnt == 0U);
     if(ramAccViolCnt == 5U)
     {
         testPassCnt++;
     }
-
-
     //
     // Return status
     //
@@ -260,7 +231,6 @@ uint32_t forceNonMasterDMAReadViolation(void)
         return(1U);
     }
 }
-
 //
 // generateECCMemUncorrError - Generate uncorrectable error in ECC memory &
 // demonstrate the interrupt handling in case of uncorr error in ECC memories.
@@ -271,28 +241,23 @@ uint32_t generateECCMemUncorrError()
     uint32_t i, memOffset;
     uint32_t readMemData = 0, testPassCnt = 0;
     uint32_t eccRead1 = 0, eccRead2 = 0;
-
     //
     // Clear uncorrectable error status.
     //
     MemCfg_clearUncorrErrorStatus(MEMCFG_UCERR_CPUREAD);
-
     //
     // Initialize memories & check if it is getting initialized
     //
     MemCfg_initSections(MEMCFG_SECT_LS6);
     while(MemCfg_getInitStatus(MEMCFG_SECT_LS6) != 1U);
-
     //
     // Write to LS6 RAM - 0xB000-0xB7FF
     //
     writeCAFE(LS6_RAM_BASE, 0xB7FFU);
-
     //
     // Reset the error flag
     //
     uncorrErrIntFlg = 0U;
-
     //
     // Generating 5 uncorrectable errors at some locations in memory
     //
@@ -302,18 +267,15 @@ uint32_t generateECCMemUncorrError()
         // Reset error flag which gets set in ISR
         //
         uncorrErrIntFlg = 0;
-
         //
         // Corrupting some random address
         //
         memOffset = 0x08U + (i * 8U);
-
         //
         // Set the memory in ECC write mode.
         //
         MemCfg_setTestMode(MEMCFG_SECT_LS6, MEMCFG_TEST_WRITE_ECC);
         eccRead1 = HWREGH(LS6_RAM_BASE + memOffset);
-
         //
         // Set the memory in Data write mode & flip 2 bits in data to generate
         // uncorrectable error. Writing the data to memory in test mode
@@ -322,13 +284,11 @@ uint32_t generateECCMemUncorrError()
         MemCfg_setTestMode(MEMCFG_SECT_LS6, MEMCFG_TEST_WRITE_DATA);
         HWREGH(LS6_RAM_BASE + memOffset) = HWREGH(LS6_RAM_BASE + memOffset) ^
                                            0x03;
-
         //
         // Go back to ECC write mode to confirm that ECC is not changed.
         //
         MemCfg_setTestMode(MEMCFG_SECT_LS6, MEMCFG_TEST_WRITE_PARITY);
         eccRead2 = HWREGH(LS6_RAM_BASE + memOffset);
-
         //
         // Go to functional mode and try to read data from memory to generate
         // uncorrectable error as 2 bits of data were flipped in data write
@@ -336,9 +296,7 @@ uint32_t generateECCMemUncorrError()
         //
         MemCfg_setTestMode(MEMCFG_SECT_LS6, MEMCFG_TEST_FUNCTIONAL);
         readMemData = HWREGH(LS6_RAM_BASE + memOffset);
-
         while(uncorrErrIntFlg == 0);
-
         //
         // Check whether uncorrectable error is getting generated at the
         // correct address or not.
@@ -349,7 +307,6 @@ uint32_t generateECCMemUncorrError()
         {
             testPassCnt++;
         }
-
         //
         // Write the correct data in memory. Application can choose to re-write the
         // whole memory region to avoid any possible data corruption using following:
@@ -357,7 +314,6 @@ uint32_t generateECCMemUncorrError()
         //
         HWREGH(errorAddress) = 0xCAFE;
     }
-
     //
     // Return status
     //
@@ -370,7 +326,6 @@ uint32_t generateECCMemUncorrError()
         return 1;
     }
 }
-
 //
 // generateECCMemCorrError - Generate correctable error in ECC memory
 // Note- Single bit errors in ECC memories generate correctable errors.
@@ -380,40 +335,33 @@ uint32_t generateECCMemCorrError()
     uint32_t i, memOffset;
     uint32_t readMemData = 0, testPassCnt = 0;
     uint32_t eccRead1 = 0, eccRead2 = 0;
-
     //
     // Initialize memories & check if it is getting initialized
     //
     MemCfg_initSections(MEMCFG_SECT_LS7);
     while(MemCfg_getInitStatus(MEMCFG_SECT_LS7) != 1U);
-
     //
     // Write to LS7 RAM - 0xB800 - 0xBFFF
     //
     writeCAFE(LS7_RAM_BASE, 0xBFFFU);
-
     //
     // Clear correctable error status
     //
     MemCfg_clearCorrErrorStatus(MEMCFG_CERR_CPUREAD);
     MemCfg_clearCorrErrorInterruptStatus(MEMCFG_CERR_CPUREAD);
-
     //
     // Set error threshold to generate interrupt after configured no of
     // correctable errors. Setting it to 1 to generate error on each error.
     //
     MemCfg_setCorrErrorThreshold(1U);
-
     //
     // Enable correctable errors at peripheral level
     //
     MemCfg_enableCorrErrorInterrupt(MEMCFG_CERR_CPUREAD);
-
     //
     // Clear sys_int counter
     //
     ramCorrErrCnt = 0;
-
     //
     // Generating 5 correctable errors at some locations in memory
     //
@@ -423,18 +371,15 @@ uint32_t generateECCMemCorrError()
         // Reset the corr error count.
         //
         corrErrIntFlg = 0U;
-
         //
         //  Corrupting some random address
         //
         memOffset = 0x08U + (i * 8U);
-
         //
         // Set the memory in ECC write mode.
         //
         MemCfg_setTestMode(MEMCFG_SECT_LS7, MEMCFG_TEST_WRITE_ECC);
         eccRead1 = HWREGH(LS7_RAM_BASE + memOffset);
-
         //
         // Set the memory in Data write mode & flip 1 bit in data to generate
         // correctable error. Writing the data to memory in test mode
@@ -443,13 +388,11 @@ uint32_t generateECCMemCorrError()
         MemCfg_setTestMode(MEMCFG_SECT_LS7, MEMCFG_TEST_WRITE_DATA);
         HWREGH(LS7_RAM_BASE + memOffset) = HWREGH(LS7_RAM_BASE + memOffset) ^
                                            0x02U;
-
         //
         // Go back to ECC write mode to confirm that ecc is not changed.
         //
         MemCfg_setTestMode(MEMCFG_SECT_LS7, MEMCFG_TEST_WRITE_ECC);
         eccRead2 = HWREGH(LS7_RAM_BASE + memOffset);
-
         //
         // Go to functional mode and try to read data from memory to generate
         // correctable error as 1 bits of data was flipped in data write
@@ -457,14 +400,12 @@ uint32_t generateECCMemCorrError()
         //
         MemCfg_setTestMode(MEMCFG_SECT_LS7 ,MEMCFG_TEST_FUNCTIONAL);
         readMemData = HWREGH(LS7_RAM_BASE + memOffset);
-
         while(corrErrIntFlg == 0U);
         if((eccRead1 == eccRead2) && (readMemData == 0xCAFE))
         {
             testPassCnt++;
         }
     }
-
     //
     // Return status
     //
@@ -477,40 +418,33 @@ uint32_t generateECCMemCorrError()
         return 1U;
     }
 }
-
 //
 // generateNonMasterCPURdViolation - Generate non-master CPU read violation
 //
 uint32_t generateNonMasterCPURdViolation()
 {
     uint32_t i, readMemData = 0, testPassCnt = 0;
-
     //
     // Initialize memories & check if it is getting initialized
     //
     MemCfg_initSections(MEMCFG_SECT_LS6);
     while(MemCfg_getInitStatus(MEMCFG_SECT_LS6) != 1U);
-
     //
     // Write to LS6 RAM - 0xB000-0xB7FF
     //
     writeCAFE(LS6_RAM_BASE, 0xB7FFU);
-
     //
     // Enable violation interrupt
     //
     MemCfg_enableViolationInterrupt(MEMCFG_NMVIOL_CPUREAD);
-
     //
     // Memory is shared between CLA & CPU
     //
     MemCfg_setLSRAMMasterSel(MEMCFG_SECT_LS6, MEMCFG_LSRAMMASTER_CPU_CLA1);
-
     //
     // Clear ramAccViolCnt counter
     //
     ramAccViolCnt = 0;
-
     //
     // Memory is set as Data memory for CLA, hence CPU will have read access to
     // the memory. No violation will be raised
@@ -524,18 +458,15 @@ uint32_t generateNonMasterCPURdViolation()
             testPassCnt++;
         }
     }
-
     //
     // Set memory as program memory for CLA. Now the read access from CPU
     // will result in non-master CPU read violation.
     //
     MemCfg_setCLAMemType(MEMCFG_SECT_LS6, MEMCFG_CLA_MEM_PROGRAM);
-
     //
     // Reset the sys_int counter
     //
     ramAccViolCnt = 0U;
-
     //
     // Initiate CPU read from memory.
     //
@@ -545,12 +476,10 @@ uint32_t generateNonMasterCPURdViolation()
     }
     while(ramAccViolCnt < 5U);
     testPassCnt++;
-
     //
     // Disable interrupt
     //
     MemCfg_disableViolationInterrupt(MEMCFG_NMVIOL_CPUREAD);
-
     //
     // Return status
     //
@@ -563,20 +492,16 @@ uint32_t generateNonMasterCPURdViolation()
         return 1U;
     }
 }
-
 __interrupt void ramAccViolISR(void)
 {
     ramAccViolCnt++;
-
     intStatus = MemCfg_getViolationInterruptStatus();
-
     if((intStatus & MEMCFG_NMVIOL_DMAREAD) != 0x0U)
     {
         //
         // Capture the address at which violation occurred
         //
         errorAddress = MemCfg_getViolationAddress(MEMCFG_NMVIOL_DMAREAD);
-
         //
         // Clear peripheral related flags
         //
@@ -588,7 +513,6 @@ __interrupt void ramAccViolISR(void)
         // Capture the address at which violation occurred
         //
         errorAddress = MemCfg_getViolationAddress(MEMCFG_NMVIOL_CPUREAD);
-
         //
         // Clear peripheral related flags
         //
@@ -600,7 +524,6 @@ __interrupt void ramAccViolISR(void)
         // Capture the address at which violation occurred
         //
         errorAddress = MemCfg_getViolationAddress(MEMCFG_NMVIOL_CPUWRITE);
-
         //
         // Clear peripheral related flags
         //
@@ -612,47 +535,38 @@ __interrupt void ramAccViolISR(void)
         // Capture the address at which violation occurred
         //
         errorAddress = MemCfg_getViolationAddress(MEMCFG_MVIOL_CPUWRITE);
-
         //
         // Clear peripheral related flags
         //
         MemCfg_clearViolationInterruptStatus(MEMCFG_MVIOL_CPUWRITE);
     }
-
     //
     // Clear the interrupt at PIE level
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP12);
 }
-
 __interrupt void ramCorrErrISR(void)
 {
     ramCorrErrCnt++;
-
     intStatus = MemCfg_getCorrErrorStatus();
     if((intStatus & MEMCFG_CERR_CPUREAD) != 0x0U)
     {
         corrErrIntFlg = 1U;
-
         //
         // Capture error address
         //
         errorAddress = MemCfg_getCorrErrorAddress(MEMCFG_CERR_CPUREAD);
-
         //
         // Clear flags at the memcfg peripheral side
         //
         MemCfg_clearCorrErrorStatus(MEMCFG_CERR_CPUREAD);
         MemCfg_clearCorrErrorInterruptStatus(MEMCFG_CERR_CPUREAD);
     }
-
     //
     // Clear the interrupt at PIE level
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP12);
 }
-
-
 __interrupt void nmiISR(void)
 {
     //
@@ -665,25 +579,21 @@ __interrupt void nmiISR(void)
         // capture error address
         //
         errorAddress = MemCfg_getUncorrErrorAddress(MEMCFG_UCERR_CPUREAD);
-
         //
         // Clear the flag at peripheral level
         //
         MemCfg_clearUncorrErrorStatus(MEMCFG_UCERR_CPUREAD);
     }
-
     //
     // Clear NMI flags
     //
     intStatus = SysCtl_getNMIFlagStatus();
     SysCtl_clearNMIStatus(intStatus);
-
     //
     // Set the flag
     //
     uncorrErrIntFlg = 1U;
 }
-
 void writeCAFE(uint32_t startAddress, uint32_t endAddress)
 {
     uint16_t* addr;
@@ -692,7 +602,6 @@ void writeCAFE(uint32_t startAddress, uint32_t endAddress)
         *addr = 0xCAFE;
     }
 }
-
 //
 // End of File
 //

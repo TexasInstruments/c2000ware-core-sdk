@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -41,10 +41,8 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 #ifndef USB_EX2_DEVICE_MOUSE_STRUCTS_H
 #define USB_EX2_DEVICE_MOUSE_STRUCTS_H
-
 #include "cm.h"
 #include "usblib.h"
 #include "usbhid.h"
@@ -52,10 +50,7 @@
 #include "device/usbdevice.h"
 #include "device/usbdhid.h"
 #include "device/usbdhidmouse.h"
-
 extern uint32_t MouseHandler(void *pvCBData, uint32_t ui32Event,
                                   uint32_t ui32MsgData, void *pvMsgData);
-
 extern tUSBDHIDMouseDevice g_sMouseDevice;
-
 #endif // USB_EX2_DEVICE_MOUSE_STRUCTS_H

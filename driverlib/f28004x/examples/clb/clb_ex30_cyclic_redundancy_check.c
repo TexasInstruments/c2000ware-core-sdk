@@ -26,7 +26,7 @@
 //! failCount - number of messages that fail the CRC value verification
 //!
 //#############################################################################
-// $TI Release: F28004x Support Library v26.01.00.00 $
+// $TI Release: F28004x Support Library v26.02.00.00 $
 // 
 // $Copyright:
 // Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
@@ -60,15 +60,11 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
-
 #include "driverlib.h"
 #include "device.h"
 #include "clb_config.h"
 #include "clb.h"
 #include "board.h"
-
 #define NUM_MESSAGES       12  // Number of input messages
 #define NUM_CRC_POLY       10  // Number of CRC Polynomials in the test
 #define BIT_LIMIT (5ul)
@@ -114,7 +110,6 @@ struct CRC_DATA myCRC[NUM_CRC_POLY] =
     //    x^13 + x^12 + x^11 + x^8 + x^7 + x^6 + x^2 + x^1 + x0
     {30u, 0x3FFFFFFFul, 0b1100000001100001011100111000111ul}
 };
-
 //
 // First element in each input_data is the message length in bits
 // Second element is the message.
@@ -154,70 +149,54 @@ uint32_t output_data[NUM_CRC_POLY][NUM_MESSAGES] = {
     {0x00ul, 0x2030b9c7ul, 0x2051ca49ul, 0x24a9d36ful, 0x393897e8ul, 0x3f90cada, 0x269a9339, 0x356b051c,
      0x03f87CEDul, 0x08548079ul, 0x01a89110ul, 0x37066ef0ul  }                                          // 9
 };
-
 uint32_t calculate_crc(uint32_t *data, uint16_t bitCount, uint16_t crcSize, uint32_t crcPoly);
-
 void main(void)
 {
-     
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-    
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Board Initialization
     //
     Board_init();
-
     //
     // Initialize CLB1 Tile
     //
     initTILE1(myTILE1_BASE);
-
     //
     // Enabling CLB1
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB1);
     CLB_enableCLB(myTILE1_BASE);
-
     uint16_t myPoly;
-
-
     for(myPoly = 0; myPoly < NUM_CRC_POLY; myPoly++)
     {
         uint16_t myMessage;
-
         for(myMessage = 0; myMessage < NUM_MESSAGES; myMessage++ )
         {
             uint16_t bitCount;
             uint32_t crc;
-
             //
             // CRC verification is done based on bit specified in bitCount
             //
             bitCount = input_data[myMessage][0]; 
-
             crc = 0x00;
             crc = calculate_crc(&input_data[myMessage][1], bitCount,
                 myCRC[myPoly].crcSize, myCRC[myPoly].crcPoly);
-
             crc &= myCRC[myPoly].crcMask;
             if (crc == output_data[myPoly][myMessage])
             {
@@ -228,7 +207,6 @@ void main(void)
                 failCount++;
             }
         }
-
     }
 //
 // Passcount displays - number which satisfies the CRC
@@ -245,7 +223,6 @@ void main(void)
         asm(" ESTOP0");
     }
 }
-
 uint32_t calculate_crc(uint32_t * data, uint16_t bitCount,
             uint16_t crcSize, uint32_t crcPoly)
 {
@@ -265,18 +242,15 @@ uint32_t calculate_crc(uint32_t * data, uint16_t bitCount,
     //    match1 -> crc size - 1
     //    mode_1 -> 1
     //
-
     // CRC generator
     //
     CLB_writeInterface(myTILE1_BASE, CLB_ADDR_COUNTER_0_MATCH1, crcSize - 1);
     CLB_writeInterface(myTILE1_BASE, CLB_ADDR_COUNTER_0_MATCH2, crcPoly);
-
     //
     // Serialize Data - feeds the data to the CRC generator input
     //
     CLB_configCounterTapSelects(myTILE1_BASE, (bitCount) << BIT_LIMIT);
     CLB_writeInterface(myTILE1_BASE, CLB_ADDR_COUNTER_1_LOAD, msg);
-
     //
     // Bit count is limited to 32 bits which denoted as << BIT_LIMIT
     // Counts the number of shifts required to serialize the data
@@ -284,7 +258,6 @@ uint32_t calculate_crc(uint32_t * data, uint16_t bitCount,
     // When the count is matched, the CRC and serializer are halted
     //
     CLB_writeInterface(myTILE1_BASE, CLB_ADDR_COUNTER_2_MATCH1, (bitCount + crcSize + 1) );
-
     //
     //  Release RESET and assert RUN
     //  Wait for the CRC to complete, then read the CRC Result on the passcount and failcount
@@ -297,6 +270,4 @@ uint32_t calculate_crc(uint32_t * data, uint16_t bitCount,
     CLB_clearInterruptTag(myTILE1_BASE);
     return(crc);
 }
-
-
 //

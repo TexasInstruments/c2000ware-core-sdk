@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_ECAP_EX2_CAPTURE_PWM" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_ECAP_EX2_CAPTURE_PWM</compoundname>
+    <title>ECAP Capture PWM</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_ECAP_EX2_CAPTURE_PWM_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_ecap_ex2_capture_pwm"/></para>
+<sect1 id="EXAMPLES_DRIVERS_ECAP_EX2_CAPTURE_PWM_1autotoc_md220">
+<title>Introduction</title>
+<para>This examples uses ECAP to capture the EPWM (MCPWM in case of F28E12x and MCPC029) signal. ECAP can be used to calculate time period, frequency of the required signal. Here, ECAP is configured to capture time between rising and falling edge of the EPWM. (MCPWM in case of F28E12x and MCPC029)</para>
+<para>The example does the below This example configures ePWM3A for: (MCPWM1A in case of F28E12x and MCPC029)<itemizedlist>
+<listitem><para>Up count mode</para>
+</listitem><listitem><para>Period starts at 500 and goes up to 8000</para>
+</listitem><listitem><para>Toggle output on PRD</para>
+</listitem></itemizedlist>
+</para>
+<para>Watch Variables<itemizedlist>
+<listitem><para>ecap1PassCount - Successful ECAP captures.</para>
+</listitem><listitem><para>ecap1IntCount - Number of Interrupt counts.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_ECAP_EX2_CAPTURE_PWM_1autotoc_md221">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>eCAP1 is on GPIO2</para>
+</listitem><listitem><para>MCPWM1A is on GPIO0</para>
+</listitem><listitem><para>Connect GPIO0 to GPIO2.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_ECAP_EX2_CAPTURE_PWM_1autotoc_md222">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Using the watch variables, view the number the number of captures and interrupt counts.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_ECAP_EX2_CAPTURE_PWM_1autotoc_md223">
+<title>See Also</title>
+<para><ref refid="DRIVERS_ECAP_PAGE" kindref="compound">ECAP</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/ecap_ex2_capture_pwm.md"/>
+  </compounddef>
+</doxygen>

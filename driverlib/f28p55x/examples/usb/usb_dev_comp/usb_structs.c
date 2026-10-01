@@ -30,10 +30,6 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-
-
-
-
 //
 // Included Files
 //
@@ -45,10 +41,7 @@
 #include "usb_ids.h"
 #include "device/usbdevice.h"
 #include "usb_structs.h"
-
-
 // Data structures defining this CDC USB device.
-
 //******************************************************************************
 //
 // The languages supported by this device.
@@ -60,7 +53,6 @@ const uint8_t g_pui8LangDescriptor[] =
     USB_DTYPE_STRING,
     USBShort(USB_LANG_EN_US)
 };
-
 //******************************************************************************
 //
 // The manufacturer string.
@@ -72,7 +64,6 @@ const uint8_t g_pui8ManufacturerString[] =
     USB_DTYPE_STRING,
     'T',0,'e',0,'x',0,'a',0,'s',0,' ',0,'I',0,'n',0,'s',0,'t',0,'r',0,'u',0,'m',0,'e',0,'n',0,'t',0,'s',0,
 };
-
 //******************************************************************************
 //
 // The product string.
@@ -84,7 +75,6 @@ const uint8_t g_pui8ProdectString[] =
     USB_DTYPE_STRING,
     'C',0,'o',0,'m',0,'p',0,'o',0,'s',0,'i',0,'t',0,'e',0,' ',0,'v',0,'i',0,'r',0,'t',0,'u',0,'a',0,'l',0,' ',0,'D',0,'e',0,'v',0,'i',0,'c',0,'e',0
 };
-
 //******************************************************************************
 //
 // The serial number string.
@@ -96,7 +86,6 @@ const uint8_t g_pui8SerialNumberString[] =
     USB_DTYPE_STRING,
     '1',0,'2',0,'3',0,'4',0,'5',0,'6',0,'7',0,'8',0,
 };
-
 //******************************************************************************
 //
 // The control interface description string.
@@ -108,7 +97,6 @@ const uint8_t g_pui8ControlInterfaceString[] =
     USB_DTYPE_STRING,
 	'A',0,'C',0,'M',0,' ',0,'C',0,'o',0,'n',0,'t',0,'r',0,'o',0,'l',0,' ',0,'I',0,'n',0,'t',0,'e',0,'r',0,'f',0,'a',0,'c',0,'e',0,
 };
-
 //******************************************************************************
 //
 // The configuration description string.
@@ -120,7 +108,6 @@ const uint8_t g_pui8ConfigString[] =
     USB_DTYPE_STRING,
 	'S',0,'e',0,'l',0,'f',0,' ',0,'P',0,'o',0,'w',0,'e',0,'r',0,'e',0,'d',0,' ',0,'C',0,'o',0,'n',0,'f',0,'i',0,'g',0,'u',0,'r',0,'a',0,'t',0,'i',0,'o',0,'n',0,
 };
-
 //******************************************************************************
 //
 // The descriptor string table.
@@ -135,52 +122,40 @@ const uint8_t * const g_pui8StringDescriptors[] =
     g_pui8ControlInterfaceString,
     g_pui8ConfigString
 };
-
 #define NUM_STRING_DESCRIPTORS (sizeof(g_pui8StringDescriptors)              /\
                                 sizeof(uint8_t *))
-
 uint8_t g_pui8DescriptorData[DESCRIPTOR_DATA_SIZE];
-
 tCompositeEntry g_psCompDevices[NUM_DEVICES];
-
 tUSBDCompositeDevice g_sCompDevice =
 {
     //
     // Tiva VID.
     //
     USB_VID_TI_1CBE,
-
     //
     // Tiva PID for composite HID and HID.
     //
     USB_PID_COMP_HID_HID,
-
     //
     // This is in 2mA increments so 500mA.
     //
     250,
-
     //
     // Bus powered device.
     //
     USB_CONF_ATTR_BUS_PWR,
-
     //
     // There is no need for a default composite event handler.
     //
     USBEventHandler,
-
     //
     // The string table.
     //
     g_pui8StringDescriptors,
     NUM_STRING_DESCRIPTORS,
-
     //
     // The Composite device array.
     //
     NUM_DEVICES,
     g_psCompDevices,
 };
-
-

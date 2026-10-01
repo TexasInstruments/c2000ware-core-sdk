@@ -23,7 +23,7 @@
 //      22-Apr-2020 : MAC Filter Configuration added in _getHandle API
 //###########################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -1763,9 +1763,11 @@ uint32_t Ethernet_getStatistics(Ethernet_Handle hEMAC,
     statAddrPtr = (uint32_t *)statisticsPtr;
     for (i = 0U; i < ETHERNET_NUMSTATS; i++)
     {
+        /* Read the register (Reset on read is Enabled on init) */
         statval = *regAddrPtr;
-        *regAddrPtr = statval;
         regAddrPtr = regAddrPtr + 1U;
+
+        /* Find the accumulated value  and write into statPtr*/
         statval += *statAddrPtr;
         *statAddrPtr = statval;
         statAddrPtr = statAddrPtr + 1U;
@@ -1890,6 +1892,10 @@ uint32_t Ethernet_getHandle(Ethernet_Handle handleApplication,
                             1U, 0U, 0U);
     Ethernet_configurePHYAddress(Ethernet_device_struct.baseAddresses.enet_base,
                                   0U);
+
+    /* Enable reset on read for MMC counters. Use Ethernet_getStatistics() to get stats*/
+    HWREG(Ethernet_device_struct.baseAddresses.enet_base + ETHERNET_O_MMC_CONTROL) |= ETHERNET_MMC_CONTROL_RSTONRD;
+
     Ethernet_device_struct.devMagic = ETHERNET_DRV_DEVMAGIC;
     *ethernetHandlePtr = &Ethernet_device_struct;
     return(ETHERNET_RET_SUCCESS);
@@ -2245,7 +2251,10 @@ void Ethernet_addPacketsIntoTxQueue(Ethernet_DescCh *channelDescPtr)
     Ethernet_Pkt_Desc      *pktPtr;
     uint32_t          numPktFrags;
 
-    Ethernet_device_struct.ptrCoreInterruptDisable();
+    if(NULL != Ethernet_device_struct.ptrCoreInterruptDisable)
+    {
+        Ethernet_device_struct.ptrCoreInterruptDisable();
+    }
     //
     //descWrite is in initialized to 0xffffffff to indicate 1st time
     //tx enqueue, starting point
@@ -2267,6 +2276,10 @@ void Ethernet_addPacketsIntoTxQueue(Ethernet_DescCh *channelDescPtr)
         pktPtr = channelDescPtr->waitQueue.head;
         if(0U == pktPtr)
         {
+            if(NULL != Ethernet_device_struct.ptrCoreInterruptEnable)
+            {
+                Ethernet_device_struct.ptrCoreInterruptEnable();
+            }
             return;
         }
         else
@@ -2620,7 +2633,10 @@ void Ethernet_addPacketsIntoTxQueue(Ethernet_DescCh *channelDescPtr)
         }
     }
 
-    Ethernet_device_struct.ptrCoreInterruptEnable();
+    if(NULL != Ethernet_device_struct.ptrCoreInterruptEnable)
+    {
+        Ethernet_device_struct.ptrCoreInterruptEnable();
+    }
 }
 
 
@@ -2632,7 +2648,10 @@ void Ethernet_removePacketsFromTxQueue
     /*
     Secure the function execution inside the critical session
     */
-    Ethernet_device_struct.ptrCoreInterruptDisable();
+    if(NULL != Ethernet_device_struct.ptrCoreInterruptDisable)
+    {
+        Ethernet_device_struct.ptrCoreInterruptDisable();
+    }
 
     uint32_t descCount = Ethernet_HW_descQueueGetCount(channelDescPtr);
 
@@ -2736,7 +2755,10 @@ void Ethernet_removePacketsFromTxQueue
         descCount = Ethernet_HW_descQueueGetCount(channelDescPtr);
     }
 
-    Ethernet_device_struct.ptrCoreInterruptEnable();
+    if(NULL != Ethernet_device_struct.ptrCoreInterruptEnable)
+    {
+        Ethernet_device_struct.ptrCoreInterruptEnable();
+    }
 
     channelDescPtr->dmaInProgress = 0U;
     //
@@ -2753,18 +2775,27 @@ void Ethernet_addPacketsIntoRxQueue(Ethernet_DescCh *channelDescPtr)
         Ethernet_Pkt_Desc           *pktPtr;
         Ethernet_HW_descriptor    *descPtr;
 
-        Ethernet_device_struct.ptrCoreInterruptDisable();
+        if(NULL != Ethernet_device_struct.ptrCoreInterruptDisable)
+        {
+            Ethernet_device_struct.ptrCoreInterruptDisable();
+        }
         //
         //Fill RX Packets Until Full
         //
         while(channelDescPtr->descCount < channelDescPtr->descMax)
         {
-            Ethernet_device_struct.ptrCoreInterruptEnable();
+            if(NULL != Ethernet_device_struct.ptrCoreInterruptEnable)
+            {
+                Ethernet_device_struct.ptrCoreInterruptEnable();
+            }
             //
             // Get a buffer from the application
             //
             pktPtr = (*Ethernet_device_struct.initConfig.pfcbGetPacket)();
-            Ethernet_device_struct.ptrCoreInterruptDisable();
+            if(NULL != Ethernet_device_struct.ptrCoreInterruptDisable)
+            {
+                Ethernet_device_struct.ptrCoreInterruptDisable();
+            }
             //
             // If no more buffers are available, break out of loop
             //
@@ -2803,15 +2834,16 @@ void Ethernet_addPacketsIntoRxQueue(Ethernet_DescCh *channelDescPtr)
             Ethernet_performPushOnPacketQueue(&channelDescPtr->descQueue,
                                               pktPtr);
         }
-        Ethernet_device_struct.ptrCoreInterruptEnable();
+        if(NULL != Ethernet_device_struct.ptrCoreInterruptEnable)
+        {
+            Ethernet_device_struct.ptrCoreInterruptEnable();
+        }
 
 }
 
 Ethernet_Pkt_Desc* Ethernet_retrieveRxPacket(Ethernet_DescCh *channelDescPtr, Ethernet_CompletionMode earlyFlag)
 {
     Ethernet_Pkt_Desc    *pktPtr = 0U;
-    Ethernet_Pkt_Desc    *newPktPtr = 0U;
-
 
     uint32_t      PktFlgLen;
     uint8_t       contextTStampAvailable;
@@ -2819,14 +2851,20 @@ Ethernet_Pkt_Desc* Ethernet_retrieveRxPacket(Ethernet_DescCh *channelDescPtr, Et
 
     contextTStampAvailable = 0U;
 
-    Ethernet_device_struct.ptrCoreInterruptDisable();
+    if(NULL != Ethernet_device_struct.ptrCoreInterruptDisable)
+    {
+        Ethernet_device_struct.ptrCoreInterruptDisable();
+    }
     /*
     If the ownership is not with the software, don't take any packets.
     */
     descRead = &channelDescPtr->descFirst[channelDescPtr->indexRead];
     if((descRead->des3 & ETHERNET_DESC_OWNER) != 0)
     {
-        Ethernet_device_struct.ptrCoreInterruptEnable();
+        if(NULL != Ethernet_device_struct.ptrCoreInterruptEnable)
+        {
+            Ethernet_device_struct.ptrCoreInterruptEnable();
+        }
         return NULL;
     }
 
@@ -2836,125 +2874,102 @@ Ethernet_Pkt_Desc* Ethernet_retrieveRxPacket(Ethernet_DescCh *channelDescPtr, Et
         * the read pointer to pDescAsk are linked to each other via
         * their pNext field
     */
-    if(earlyFlag == ETHERNET_COMPLETION_EARLY)
+    /* Get the status of this descriptor*/
+    PktFlgLen = descRead->des3;
+    if(0U != (descRead->des1 &
+            (1U<< ETHERNET_RX_NORMAL_DESC_RDES1_TSA_LBIT_POS)))
     {
-        pktPtr = Ethernet_returnTopOfPacketQueue(
-                        &channelDescPtr->descQueue);
+        contextTStampAvailable = 1U;
+    }
+    /* Bit 16,17 and 18 indicate the port number(ingress)
+    * Passcrc bit is always set in the received packets
+    *Clear it before putting the
+    * packet in receive queue*/
+    PktFlgLen = PktFlgLen & 0x0BFFFFFFU;
 
-        ASSERT(NULL != pktPtr);
-        pktPtr->bufferLength = channelDescPtr->chInfo->burstLength;
+    pktPtr = Ethernet_performPopOnPacketQueue(&channelDescPtr->descQueue);
+    if(0U != pktPtr)
+    {
         pktPtr->pktChannel = channelDescPtr->chInfo->chNum;
-        pktPtr->numPktFrags = Ethernet_getRxERICount(
-            Ethernet_device_struct.baseAddresses.enet_base,
-            channelDescPtr->chInfo->chNum);
-        pktPtr->flags |= ETHERNET_INTERRUPT_FLAG_RECEIVE;
         if(earlyFlag == ETHERNET_COMPLETION_EARLY)
         {
-            pktPtr->flags |= ETHERNET_INTERRUPT_FLAG_EARLY;
+            pktPtr->bufferLength = channelDescPtr->chInfo->burstLength;
+            pktPtr->numPktFrags  = Ethernet_getRxERICount(
+                Ethernet_device_struct.baseAddresses.enet_base,
+                channelDescPtr->chInfo->chNum);
+            pktPtr->flags |= (ETHERNET_INTERRUPT_FLAG_RECEIVE |
+                              ETHERNET_INTERRUPT_FLAG_EARLY);
         }
-                /* Pass the packet to the application*/
-        newPktPtr = (*Ethernet_device_struct.initConfig.pfcbRxPacket)
-                        (channelDescPtr->devicePtr->handleApplication[0],
-                        pktPtr);
-    }
-    else
-    {
-        descRead = &channelDescPtr->descFirst[channelDescPtr->indexRead];
-        /* Get the status of this descriptor*/
-        PktFlgLen = descRead->des3;
-        if(0U != (descRead->des1 &
-                (1U<< ETHERNET_RX_NORMAL_DESC_RDES1_TSA_LBIT_POS)))
+        else
         {
-            contextTStampAvailable = 1U;
-        }
-        /* Bit 16,17 and 18 indicate the port number(ingress)
-        * Passcrc bit is always set in the received packets
-        *Clear it before putting the
-        * packet in receive queue*/
-        PktFlgLen = PktFlgLen & 0x0BFFFFFFU;
-
-        /* Check the ownership of the packet*/
-        if(0x0U == (PktFlgLen & ETHERNET_DESC_OWNER))
-        {
-            /* Recover the buffer and free it*/
-            pktPtr = Ethernet_performPopOnPacketQueue(
-                &channelDescPtr->descQueue);
-            if(0U != pktPtr)
+            /* Fill in the necessary packet header fields*/
+            pktPtr->flags       = (PktFlgLen & 0xFFFF8000U) |
+                                   ETHERNET_INTERRUPT_FLAG_RECEIVE;
+            //
+            //Payload Length is Least 14 bits in Receive Descriptor
+            //Writeback
+            //
+            pktPtr->pktLength   = (PktFlgLen & 0x7FFFU);
+            pktPtr->validLength = pktPtr->pktLength;
+            pktPtr->numPktFrags = 1U;
+            if(0U != contextTStampAvailable)
             {
-                /* Fill in the necessary packet header fields*/
-                pktPtr->flags = PktFlgLen & 0xFFFF8000U;
                 //
-                //Payload Length is Least 14 bits in Receive Descriptor
-                //Writeback
+                //Read the Next Descriptor to read the time stamp
+                // Move the read pointer and decrement count
                 //
-                pktPtr->pktLength = (PktFlgLen & 0x7FFFU);
-                pktPtr->validLength = pktPtr->pktLength;
-                pktPtr->pktChannel = channelDescPtr->chInfo->chNum;
-                pktPtr->numPktFrags = 1U;
-                pktPtr->flags |= ETHERNET_INTERRUPT_FLAG_RECEIVE;
-                pktPtr->flags &= ~ETHERNET_INTERRUPT_FLAG_EARLY;
-                if(earlyFlag == ETHERNET_COMPLETION_EARLY)
+                if(channelDescPtr->indexRead == channelDescPtr->indexLast)
                 {
-                    pktPtr->flags |= ETHERNET_INTERRUPT_FLAG_EARLY;
+                    channelDescPtr->indexRead = channelDescPtr->indexFirst;
                 }
-                if(0U != contextTStampAvailable)
-                {
-                    //
-                    //Read the Next Descriptor to read the time stamp
-                    // Move the read pointer and decrement count
-                    //
-                    if(channelDescPtr->indexRead ==
-                        channelDescPtr->indexLast)
-                    {
-                        channelDescPtr->indexRead =
-                            channelDescPtr->indexFirst;
-                    }
-                    else
-                    {
-                        channelDescPtr->indexRead =
-                            channelDescPtr->indexRead + 1U;
-                    }
-                    channelDescPtr->descCount--;
-                    descRead =
-                        &channelDescPtr->descFirst[
-                        channelDescPtr->indexRead];
-                    if(0U != (descRead->des3 &
-                            (1U <<
-                    ETHERNET_RX_CONTEXT_DESC_RDES3_CTXT_HBIT_POS)))
-                    {
-                        pktPtr->timeStampLow = descRead->des0;
-                        pktPtr->timeStampHigh = descRead->des1;
-                        pktPtr->nextBufferDiscarded = 1;
-#ifdef ETHERNET_DEBUG
-                        Ethernet_rxContextTimeStamp++;
-#endif
-                    }
-                }
-
-                /* Move the read pointer and decrement count*/
-                if(channelDescPtr->indexRead ==
-                        channelDescPtr->indexLast)
-                    {
-                        channelDescPtr->indexRead =
-                            channelDescPtr->indexFirst;
-                    }
                 else
-                    {
-                        channelDescPtr->indexRead =
-                            channelDescPtr->indexRead + 1U;
-                    }
+                {
+                    channelDescPtr->indexRead =
+                        channelDescPtr->indexRead + 1U;
+                }
                 channelDescPtr->descCount--;
+                descRead =
+                    &channelDescPtr->descFirst[
+                    channelDescPtr->indexRead];
+                if(0U != (descRead->des3 &
+                        (1U <<
+                ETHERNET_RX_CONTEXT_DESC_RDES3_CTXT_HBIT_POS)))
+                {
+                    pktPtr->timeStampLow = descRead->des0;
+                    pktPtr->timeStampHigh = descRead->des1;
+                    pktPtr->nextBufferDiscarded = 1;
+#ifdef ETHERNET_DEBUG
+                    Ethernet_rxContextTimeStamp++;
+#endif
+                }
             }
         }
+
+        /* Move the read pointer and decrement count*/
+        if(channelDescPtr->indexRead == channelDescPtr->indexLast)
+        {
+            channelDescPtr->indexRead = channelDescPtr->indexFirst;
+        }
+        else
+        {
+            channelDescPtr->indexRead = channelDescPtr->indexRead + 1U;
+        }
+        channelDescPtr->descCount--;
     }
 
-    Ethernet_device_struct.ptrCoreInterruptEnable();
+    if(NULL != Ethernet_device_struct.ptrCoreInterruptEnable)
+    {
+        Ethernet_device_struct.ptrCoreInterruptEnable();
+    }
     return pktPtr;
 }
 
 void Ethernet_submitRxPacket(Ethernet_DescCh* channelDescPtr, Ethernet_Pkt_Desc* newPktPtr)
 {
-    Ethernet_device_struct.ptrCoreInterruptDisable();
+    if(NULL != Ethernet_device_struct.ptrCoreInterruptDisable)
+    {
+        Ethernet_device_struct.ptrCoreInterruptDisable();
+    }
     Ethernet_HW_descriptor* descNewRxLastPtr = &channelDescPtr->descFirst[channelDescPtr->indexWrite];
 
     /* Move the write pointer and bump count*/
@@ -2980,7 +2995,10 @@ void Ethernet_submitRxPacket(Ethernet_DescCh* channelDescPtr, Ethernet_Pkt_Desc*
     /* Push the packet buffer on the local descriptor queue */
     Ethernet_performPushOnPacketQueue(&channelDescPtr->descQueue,
                                         newPktPtr);
-    Ethernet_device_struct.ptrCoreInterruptEnable();
+    if(NULL != Ethernet_device_struct.ptrCoreInterruptEnable)
+    {
+        Ethernet_device_struct.ptrCoreInterruptEnable();
+    }
 }
 
 void Ethernet_removePacketsFromRxQueue(Ethernet_DescCh *channelDescPtr,
@@ -3002,11 +3020,17 @@ void Ethernet_removePacketsFromRxQueue(Ethernet_DescCh *channelDescPtr,
 
         contextDescAvailable = (pktPtr->nextBufferDiscarded == 1);
 
-        Ethernet_device_struct.ptrCoreInterruptDisable();
+        if(NULL != Ethernet_device_struct.ptrCoreInterruptDisable)
+        {
+            Ethernet_device_struct.ptrCoreInterruptDisable();
+        }
         Ethernet_Pkt_Desc* newPktPtr = ((channelDescPtr->devicePtr->initConfig.pfcbRxPacket)
                                         (channelDescPtr->devicePtr->handleApplication[0U],
                                         pktPtr));
-        Ethernet_device_struct.ptrCoreInterruptEnable();
+        if(NULL != Ethernet_device_struct.ptrCoreInterruptEnable)
+        {
+            Ethernet_device_struct.ptrCoreInterruptEnable();
+        }
 
         if(newPktPtr == NULL)
         {
@@ -4802,10 +4826,17 @@ void Ethernet_configureMDIO(uint32_t base,
 void Ethernet_configurePHYAddress(uint32_t base,
                                   uint8_t phyAddr)
 {
-    HWREG(base + ETHERNET_O_MAC_MDIO_ADDRESS) =
-                        ((uint32_t)phyAddr <<
-                         (uint32_t) ETHERNET_MAC_MDIO_ADDRESS_PA_S);
+    HWREG(base + ETHERNET_O_MAC_MDIO_ADDRESS) |=
+    ((uint32_t)phyAddr << (uint32_t) ETHERNET_MAC_MDIO_ADDRESS_PA_S) & ETHERNET_MAC_MDIO_ADDRESS_PA_M;
 }
+
+void Ethernet_configureMMDAddress(uint32_t base,
+                                  uint8_t mmdAddr)
+{
+    HWREG(base + ETHERNET_O_MAC_MDIO_ADDRESS) |= 
+    ((uint32_t)mmdAddr << (uint32_t) ETHERNET_MAC_MDIO_ADDRESS_RDA_S) & ETHERNET_MAC_MDIO_ADDRESS_RDA_M;
+}
+
 uint8_t Ethernet_getPHYMode(uint32_t base)
 {
     uint8_t clause45enable;

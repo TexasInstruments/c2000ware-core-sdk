@@ -20,7 +20,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -53,29 +53,24 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Function Prototypes
 //
 __interrupt void adca1_isr(void);
 __interrupt void dmach1_isr(void);
-
 void ConfigureEPWM(void);
 void ConfigureADC(void);
 void SetupADCContinuous(volatile struct ADC_REGS * adcRegs, Uint16 channel);
 void DMAInit(void);
-
 //
 // Defines
 //
 #define RESULTS_BUFFER_SIZE 1024    // Buffer for storing conversion results
                                     // (size must be multiple of 16)
-
 //
 // Globals
 //
@@ -84,31 +79,26 @@ void DMAInit(void);
 Uint16 adcData0[RESULTS_BUFFER_SIZE];
 Uint16 adcData1[RESULTS_BUFFER_SIZE];
 volatile Uint16 done;
-
 void main(void)
 {
     Uint16 resultsIndex;
-
 //
 // Step 1. Initialize System Control:
 // PLL, WatchDog, enable Peripheral Clocks
 // This example function is found in the f2838x_sysctrl.c file.
 //
     InitSysCtrl();
-
 //
 // Step 2. Initialize GPIO:
 // This example function is found in the f2838x_gpio.c file and
 // illustrates how to set the GPIO to it's default state.
 //
     InitGpio();
-
 //
 // Step 3. Clear all interrupts and initialize PIE vector table:
 // Disable CPU interrupts
 //
     DINT;
-
 //
 // Initialize the PIE control registers to their default state.
 // The default state is all PIE interrupts disabled and flags
@@ -116,13 +106,11 @@ void main(void)
 // This function is found in the f2838x_piectrl.c file.
 //
     InitPieCtrl();
-
 //
 // Disable CPU interrupts and clear all CPU interrupt flags:
 //
     IER = 0x0000;
     IFR = 0x0000;
-
 //
 // Initialize the PIE vector table with pointers to the shell Interrupt
 // Service Routines (ISR).
@@ -132,7 +120,6 @@ void main(void)
 // This function is found in f2838x_pievect.c.
 //
     InitPieVectTable();
-
 //
 // Set up ISRs used by this example
 //
@@ -143,13 +130,11 @@ void main(void)
     PieVectTable.ADCA1_INT = &adca1_isr;
     PieVectTable.DMA_CH1_INT = &dmach1_isr;
     EDIS;
-
 //
 // Enable specific CPU interrupts: INT1 for ADCs and INT7 for DMA
 //
     IER |= M_INT1;
     IER |= M_INT7;
-
 //
 // Enable specific PIE interrupts
 //
@@ -158,48 +143,40 @@ void main(void)
 //
     PieCtrlRegs.PIEIER1.bit.INTx1 = 1;
     PieCtrlRegs.PIEIER7.bit.INTx1 = 1;
-
 //
 // Stop the ePWM clock
 //
     EALLOW;
     CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 0;
     EDIS;
-
 //
 // Call the set up function for ePWM 2
 //
     ConfigureEPWM();
-
 //
 // Start the ePWM clock
 //
     EALLOW;
     CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 1;
     EDIS;
-
 //
 // Configure the ADC and power it up
 //
     ConfigureADC();
-
 //
 // Setup the ADC for continuous conversions on channels A3 and B3
 //
     SetupADCContinuous(&AdcaRegs, 3);
     SetupADCContinuous(&AdcbRegs, 3);
-
 //
 // Initialize the DMA
 //
     DMAInit();
-
 //
 // Enable global Interrupts and higher priority real-time debug events:
 //
     EINT;  // Enable Global interrupt INTM
     ERTM;  // Enable Global realtime interrupt DBGM
-
 //
 // Initialize results buffer
 //
@@ -208,40 +185,33 @@ void main(void)
         adcData0[resultsIndex] = 0;
         adcData1[resultsIndex] = 0;
     }
-
 //
 // Clearing all pending interrupt flags
 //
     EALLOW;
-
     DmaRegs.CH1.CONTROL.bit.PERINTCLR = 1;
     DmaRegs.CH2.CONTROL.bit.PERINTCLR = 1;
     AdcaRegs.ADCINTFLGCLR.all = 0x3;
     AdcbRegs.ADCINTFLGCLR.all = 0x3;
     EPwm2Regs.ETCNTINITCTL.bit.SOCAINITFRC = 1;
     EPwm2Regs.ETCLR.bit.SOCA = 1;
-
 //
 // Enable continuous operation by setting the last SOC to re-trigger the first
 //
     AdcaRegs.ADCINTSOCSEL1.bit.SOC0 = 2;
     AdcbRegs.ADCINTSOCSEL1.bit.SOC0 = 2;
-
     EDIS;
-
 //
 // Start DMA
 //
     done = 0;
     StartDMACH1();
     StartDMACH2();
-
 //
 // Finally, enable the SOCA trigger from ePWM. This will kick off
 // conversions at the next ePWM event.
 //
     EPwm2Regs.ETSEL.bit.SOCAEN = 1;
-
 //
 // Loop until the ISR signals the transfer is complete
 //
@@ -251,7 +221,6 @@ void main(void)
     }
     ESTOP0;
 }
-
 //
 // adca1_isr - This is called after the very first conversion and will disable
 //             the ePWM SOC to avoid re-triggering problems.
@@ -263,18 +232,15 @@ __interrupt void adca1_isr(void)
     // Remove ePWM trigger
     //
     EPwm2Regs.ETSEL.bit.SOCAEN = 0;
-
     //
     // Disable this interrupt from happening again
     //
     PieCtrlRegs.PIEIER1.bit.INTx1 = 0;
-
     //
     // Acknowledge
     //
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
 }
-
 //
 // dmach1_isr - This is called at the end of the DMA transfer, the conversions
 //              are stopped by removing the trigger of the first SOC from
@@ -290,16 +256,12 @@ __interrupt void dmach1_isr(void)
     AdcaRegs.ADCINTSOCSEL1.bit.SOC0 = 0;
     AdcbRegs.ADCINTSOCSEL1.bit.SOC0 = 0;
     EDIS;
-
     done = 1;
-
     //
     // Acknowledge
     //
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP7;
 }
-
-
 //
 // ConfigureEPWM - Set up the ePWM2 module so that the A output has a period
 //                 of 40us with a 50% duty. The SOCA signal is coincident with
@@ -312,24 +274,20 @@ void ConfigureEPWM(void)
     //
     EPwm2Regs.TBCTL.all = 0x0000;
     EPwm2Regs.TBPRD = 4000;
-
     //
     // Set the A output on zero and reset on CMPA
     //
     EPwm2Regs.AQCTLA.bit.ZRO = AQ_SET;
     EPwm2Regs.AQCTLA.bit.CAU = AQ_CLEAR;
-
     //
     // Set CMPA to 20us to get a 50% duty
     //
     EPwm2Regs.CMPA.bit.CMPA = 2000;
-
     //
     // Start ADC when timer equals zero (note: don't enable yet)
     //
     EPwm2Regs.ETSEL.bit.SOCASEL = ET_CTR_ZERO;
     EPwm2Regs.ETPS.bit.SOCAPRD =  ET_1ST;
-
     //
     // Enable initialization of the SOCA event counter. Since we are
     // disabling the ETSEL.SOCAEN bit, we need a way to reset the SOCACNT.
@@ -337,7 +295,6 @@ void ConfigureEPWM(void)
     //
     EPwm2Regs.ETCNTINITCTL.bit.SOCAINITEN = 1;
 }
-
 //
 // ConfigureADC - Write ADC configurations and power up the ADC for both
 //                ADC A and ADC B
@@ -345,46 +302,38 @@ void ConfigureEPWM(void)
 void ConfigureADC(void)
 {
     EALLOW;
-
     //
     // Write prescale configurations
     //
     AdcaRegs.ADCCTL2.bit.PRESCALE = 6; // Set ADCCLK divider to /4
     AdcbRegs.ADCCTL2.bit.PRESCALE = 6;
-
     //
     // Set mode
     //
     AdcSetMode(ADC_ADCA, ADC_RESOLUTION_12BIT, ADC_SIGNALMODE_SINGLE);
     AdcSetMode(ADC_ADCB, ADC_RESOLUTION_12BIT, ADC_SIGNALMODE_SINGLE);
-
     //
     // Set pulse positions to late
     //
     AdcaRegs.ADCCTL1.bit.INTPULSEPOS = 1;
     AdcbRegs.ADCCTL1.bit.INTPULSEPOS = 1;
-
     //
     // Power up the ADC
     //
     AdcaRegs.ADCCTL1.bit.ADCPWDNZ = 1;
     AdcbRegs.ADCCTL1.bit.ADCPWDNZ = 1;
-
     //
     // Delay for 1ms to allow ADCs time to power up
     //
     DELAY_US(1000);
-
     EDIS;
 }
-
 //
 // SetupADCContinuous - setup the ADC to continuously convert on one channel
 //
 void SetupADCContinuous(volatile struct ADC_REGS * adcRegs, Uint16 channel)
 {
     Uint16 acqps;
-
     //
     // Determine minimum acquisition window (in SYSCLKS) based on resolution
     //
@@ -396,9 +345,7 @@ void SetupADCContinuous(volatile struct ADC_REGS * adcRegs, Uint16 channel)
     {
         acqps = 63; // 320ns
     }
-
     EALLOW;
-
     //
     // SOCs will convert on same specified channel
     //
@@ -418,7 +365,6 @@ void SetupADCContinuous(volatile struct ADC_REGS * adcRegs, Uint16 channel)
     adcRegs->ADCSOC13CTL.bit.CHSEL = channel;
     adcRegs->ADCSOC14CTL.bit.CHSEL = channel;
     adcRegs->ADCSOC15CTL.bit.CHSEL = channel;
-
     //
     // Sample window is acqps + 1 SYSCLK cycles
     //
@@ -437,12 +383,10 @@ void SetupADCContinuous(volatile struct ADC_REGS * adcRegs, Uint16 channel)
     adcRegs->ADCSOC13CTL.bit.ACQPS = acqps;
     adcRegs->ADCSOC14CTL.bit.ACQPS = acqps;
     adcRegs->ADCSOC15CTL.bit.ACQPS = acqps;
-
     //
     // Trigger SCO0 from EPWM2SOCA
     //
     adcRegs->ADCSOC0CTL.bit.TRIGSEL = 7;
-
     //
     // Trigger all other SOCs from INT1 (EOC on SOC0)
     //
@@ -461,21 +405,16 @@ void SetupADCContinuous(volatile struct ADC_REGS * adcRegs, Uint16 channel)
     adcRegs->ADCINTSOCSEL2.bit.SOC13 = 1;
     adcRegs->ADCINTSOCSEL2.bit.SOC14 = 1;
     adcRegs->ADCINTSOCSEL2.bit.SOC15 = 1;
-
     adcRegs->ADCINTSEL1N2.bit.INT1E = 1;    // Enable INT1 flag
     adcRegs->ADCINTSEL1N2.bit.INT2E = 1;    // Enable INT2 flag
     adcRegs->ADCINTSEL3N4.bit.INT3E = 0;    // Disable INT3 flag
     adcRegs->ADCINTSEL3N4.bit.INT4E = 0;    // Disable INT4 flag
-
     adcRegs->ADCINTSEL1N2.bit.INT1CONT = 1;
     adcRegs->ADCINTSEL1N2.bit.INT2CONT = 1;
-
     adcRegs->ADCINTSEL1N2.bit.INT1SEL = 0;  // End of SOC0
     adcRegs->ADCINTSEL1N2.bit.INT2SEL = 15; // End of SOC15
-
     EDIS;
 }
-
 //
 // DMAInit - Initialize DMA ch 1 to transfer ADCA results and DMA ch 2 to
 //           transfer ADCB results
@@ -486,12 +425,10 @@ void DMAInit(void)
     // Initialize DMA
     //
     DMAInitialize();
-
     //
     // DMA set up for first ADC
     //
     DMACH1AddrConfig(adcData0, &AdcaResultRegs.ADCRESULT0);
-
     //
     // Perform enough 16-word bursts to fill the results buffer. Data will be
     // transferred 32 bits at a time hence the address steps below.
@@ -512,12 +449,10 @@ void DMAInit(void)
                         CHINT_END,
                         CHINT_ENABLE
                     );
-
     //
     // DMA set up for second ADC
     //
     DMACH2AddrConfig(adcData1, &AdcbResultRegs.ADCRESULT0);
-
     //
     // Perform enough 16-word bursts to fill the results buffer. Data will be
     // transferred 32 bits at a time hence the address steps below.
@@ -537,7 +472,6 @@ void DMAInit(void)
                         CHINT_DISABLE
                     );
 }
-
 //
 // End of file
 //

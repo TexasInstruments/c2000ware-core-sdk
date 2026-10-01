@@ -32,7 +32,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -65,37 +65,29 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 #include "cm.h"
-
 #pragma DATA_ALIGN(ucControlTable, 1024)
 UDMA_ControlTable ucControlTable[64];
-
 //
 // Initialize the data arrays
 //
 uint16_t TxData[] = {0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0xA, 0xB, 0xC, 0xD, 0xE, 0xF};
 uint16_t RxData[] = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0};
-
 void ConfigureSSI(void)
 {
     uint32_t data;
-
     //
     // Configure SSI in master mode, baud rate = 62500, dataWidth = 16
     //
     SSI_setConfig(SSI0_BASE, CM_CLK_FREQ, SSI_FRF_TI, SSI_MODE_MASTER, 625000, 16);
-
     //
     // Enable the SSI0 module.
     //
     SSI_enableModule(SSI0_BASE);
-
     //
     // Enable loopback mode
     //
     SSI_enableLoopback(SSI0_BASE);
-
         //
     // Read any residual data from the SSI port.  This makes sure the receive
     // FIFOs are empty, so we don't read any unwanted junk.  This is done here
@@ -109,31 +101,26 @@ void ConfigureSSI(void)
     {
     }
 }
-
 void ConfigureDMA(uint16_t* TxDma, uint16_t* RxDma, uint8_t size)
 {
 //
     // Enable DMA for Tx snd Rx events
     //
     SSI_enableDMA(SSI0_BASE, SSI_DMA_TX | SSI_DMA_RX);
-
     //
     // Enable UDMA
     //
     UDMA_enable(UDMA_BASE);
-
     //
     // Point at the control table to use for channel control structures.
     //
     UDMA_setControlBase(UDMA_BASE, ucControlTable);
-
     //
     // Put the attributes in a known state for the uDMA software channel.
     // These should already be disabled by default.
     //
     UDMA_disableChannelAttribute(UDMA_BASE, UDMA_CHANNEL_SSI0_TX, UDMA_CH_ATTR_ALL);
     UDMA_disableChannelAttribute(UDMA_BASE, UDMA_CHANNEL_SSI0_RX, UDMA_CH_ATTR_ALL);
-
     //
     // Configure the control parameters for the SSI TX channels
     // Tx channel will be used to transfer data from the buffer to the SSI Data
@@ -150,11 +137,9 @@ void ConfigureDMA(uint16_t* TxDma, uint16_t* RxDma, uint8_t size)
     UDMA_setChannelControlParams(UDMA_BASE, (UDMA_CHANNEL_SSI0_TX | UDMA_PRI_SELECT),
                                  (UDMA_SIZE_16 | UDMA_SRC_INC_16 | UDMA_DST_INC_NONE
                                   | UDMA_ARB_1));
-
     UDMA_setChannelTransferParams(UDMA_BASE, (UDMA_CHANNEL_SSI0_TX | UDMA_PRI_SELECT),
                                   TxDma, (void *)(SSI0_BASE + SSI_O_DR), UDMA_MODE_BASIC,
                                   size);
-
     //
     // Configure the control parameters for the SSI RX channel.
     // Rx channel will be used to transfer data from the SSI Data register to
@@ -172,12 +157,10 @@ void ConfigureDMA(uint16_t* TxDma, uint16_t* RxDma, uint8_t size)
     UDMA_setChannelControlParams(UDMA_BASE, (UDMA_CHANNEL_SSI0_RX | UDMA_PRI_SELECT),
                                  (UDMA_SIZE_16 | UDMA_SRC_INC_NONE | UDMA_DST_INC_16
                                   | UDMA_ARB_1));
-
     UDMA_setChannelTransferParams(UDMA_BASE, (UDMA_CHANNEL_SSI0_RX | UDMA_PRI_SELECT),
                                   (void *)(SSI0_BASE + SSI_O_DR), RxDma, UDMA_MODE_BASIC,
                                   size);
 }
-
 //
 // Main
 //
@@ -185,27 +168,22 @@ void main(void)
 {
     uint8_t i;
     uint8_t  errCount = 0;
-
     //
     // Enable clocks
     //
     CM_init();
-
     ConfigureSSI();
     ConfigureDMA(TxData, RxData, 16);
-
     //
     // Enable the UDMA channels
     //
     UDMA_enableChannel(UDMA_BASE, UDMA_CHANNEL_SSI0_RX);
     UDMA_enableChannel(UDMA_BASE, UDMA_CHANNEL_SSI0_TX);
-
     //
     // Wait until the complete transfer is done
     //
     while(UDMA_isChannelEnabled(UDMA_BASE, UDMA_CHANNEL_SSI0_TX));
     while(UDMA_isChannelEnabled(UDMA_BASE, UDMA_CHANNEL_SSI0_RX));
-
     //
     // Check the receicved data
     //
@@ -216,7 +194,6 @@ void main(void)
             errCount++;
         }
     }
-
     //
     // Loop forever. Optional
     //

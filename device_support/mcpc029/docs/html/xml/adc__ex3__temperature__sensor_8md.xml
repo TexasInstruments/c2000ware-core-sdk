@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="adc__ex3__temperature__sensor_8md" kind="file" language="Markdown">
+    <compoundname>adc_ex3_temperature_sensor.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>ADC<sp/>Temperature<sp/>Sensor<sp/>{#EXAMPLES_DRIVERS_ADC_EX3_TEMPERATURE_SENSOR}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>Coverts<sp/>the<sp/>internal<sp/>connection<sp/>to<sp/>the<sp/>temperature<sp/>sensor<sp/>on<sp/>an<sp/>PWM<sp/>trigger&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>ADC&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>sets<sp/>up<sp/>the<sp/>ePWM<sp/>(MCPWM<sp/>in<sp/>case<sp/>of<sp/>F28E12x<sp/>and<sp/>MCPC029)<sp/>to<sp/>periodically<sp/>trigger<sp/>the<sp/>ADC.<sp/>The<sp/>ADC<sp/>converts<sp/>the<sp/>internal<sp/>connection<sp/>to<sp/>the<sp/>temperature<sp/>sensor,<sp/>which<sp/>is<sp/>then<sp/>interpreted<sp/>as<sp/>a<sp/>temperature<sp/>by<sp/>calling<sp/>the<sp/>ADC_getTemperatureC()<sp/>function.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Watch<sp/><sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>sensorSample<sp/>-<sp/>The<sp/>raw<sp/>reading<sp/>from<sp/>the<sp/>temperature<sp/>sensor</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>sensorTemp<sp/><sp/><sp/>-<sp/>The<sp/>interpretation<sp/>of<sp/>the<sp/>sensor<sp/>sample<sp/>as<sp/>a<sp/>temperature</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>in<sp/>degrees<sp/>Celsius.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>None.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x<sp/>||<sp/>MCPC029</highlight></codeline>
+<codeline><highlight class="normal">##<sp/>Implementation<sp/>Comparison</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Aspect<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Driverlib<sp/>Implementation<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Bitfield<sp/>Implementation<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|-----------------------|-----------------------------------------|--------------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Source<sp/>File<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>adc_ex3_temp_sensor.c<sp/>(driverlib)<sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>adc_ex2_mcpwm_tempsensor.c<sp/>(examples_bitfield)<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Configuration<sp/>Method<sp/><sp/>|<sp/>Driverlib<sp/>API<sp/>calls<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Direct<sp/>register<sp/>access<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Hardware<sp/>Abstraction<sp/><sp/>|<sp/>Medium<sp/>(driverlib)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>None<sp/>(direct<sp/>hardware)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>TempSensor<sp/>Calculation|<sp/>API-based<sp/>configuration<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Direct<sp/>register<sp/>configuration<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Using<sp/>the<sp/>watch<sp/>variables,<sp/>view<sp/>the<sp/>ADC<sp/>conversion<sp/>results.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_ADC_PAGE</highlight></codeline>
+<codeline></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/adc_ex3_temperature_sensor.md"/>
+  </compounddef>
+</doxygen>

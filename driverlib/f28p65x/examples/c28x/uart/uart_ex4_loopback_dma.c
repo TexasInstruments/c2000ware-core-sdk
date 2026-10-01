@@ -67,7 +67,7 @@
 //
 // 
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -100,35 +100,28 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include <stdint.h>
 #include <stdbool.h>
-
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // DMA data sections
 //
-
 //
 // Map the TX data buffer to DMA accessible global shared memory.
 //
 #pragma DATA_SECTION(txData, "ramgs0");
-
 //
 // Map the RX data buffer to DMA accessible global shared memory.
 //
 #pragma DATA_SECTION(rxData, "ramgs1");
-
 //
 // Defines
 //
-
 //
 // Amount of data words that will trigger UART FIFOs.
 // For the 16 byte deep UART FIFOs: set to 2, 4, 8, 12 or 14.
@@ -136,7 +129,6 @@
 // chosen UART_BUFFER_SIZE.
 //
 #define UART_BUFFER_SIZE  2
-
 //
 // Set total amount of data words to transfer from TxData to RxData.
 // Must be divisible by UART_BUFFER_SIZE and even numbered.
@@ -144,68 +136,55 @@
 // to the BUFFER_SIZE / UART_BUFFER_SIZE.
 //
 #define BUFFER_SIZE      32
-
 //
 // Globals
 //
-
 //
 // BUFFER_SIZE elements stored in memory to be transmitted by UART.
 // Each element is stored as a 16-bit value, however only the lower 8 bits will
 // be transmitted since only 8 bits can be written to the UART data register.
 //
 uint16_t txData[BUFFER_SIZE];
-
 //
 // BUFFER_SIZE elements allocated in memory to store data received by UART.
 // Each element is stored as a 16-bit value, however only the lower 8 bits are
 // received since only 8 bits can be read from the UART data register.
 //
 uint16_t rxData[BUFFER_SIZE];
-
 //
 // Set up pointers to txData/rxData buffers, and UART data register.
 //
 const void *txAddr = (const void *)txData;
 const void *rxAddr = (const void *)rxData;
 const void *drAddr = (const void *)(myUART0_BASE + UART_O_DR);
-
-
 //
 // Number of data mismatches between txData and rxData after BUFFER_SIZE
 // elements are transmitted and received.
 //
 uint8_t  errCount = 0;
-
 //
 // Flag to set in DMA CH5 ISR (INT_myDMA0_ISR) when BUFFER_SIZE elements
 // from txData buffer are transferred to the UART data register.
 //
 volatile uint16_t txDone = 0;
-
 //
 // Flag to set in DMA CH6 ISR (INT_myDMA1_ISR) when BUFFER_SIZE elements
 // from UART data register are transferred to the rxData buffer.
 //
 volatile uint16_t rxDone = 0;
-
 //
 // Function Prototypes
 //
-
 //
 // Interrupt called at the end of TX DMA (DMA CH5) transfer of BUFFER_SIZE
 // elements.
 //
 __interrupt void INT_myDMA0_ISR(void);
-
 //
 // Interrupt called at the end of RX DMA (DMA CH6) transfer of BUFFER_SIZE
 // elements.
 //
 __interrupt void INT_myDMA1_ISR(void);
-
-
 void ConfigureUART()
 {
     //
@@ -234,7 +213,6 @@ void ConfigureUART()
         //
         ESTOP0;
     }
-
     //
     // FIFO interrupt levels are set to generate an interrupt
     // when the TX FIFO is less than or equal to 16-burstSize elements full
@@ -261,65 +239,50 @@ void ConfigureUART()
             UART_setFIFOLevel(myUART0_BASE, UART_FIFO_TX7_8, UART_FIFO_RX1_8);
             break;
     }
-
     //
     // Enable DMA for TX and RX events
     //
     UART_enableDMA(myUART0_BASE, UART_DMA_TX | UART_DMA_RX);
-
 }
-
-
-
 //
 // Main
 //
 void main(void)
 {
-
     //
     // disable WD, enable peripheral clocks.
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Call Sysconfig configured code.
     //
     Board_init();
-
-
     //
     // Configure the UART FIFO.
     //
     ConfigureUART();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM).
     //
     EINT;
     ERTM;
-
     while(1){
         txDone = 0;
         rxDone = 0;
         uint8_t bufferIndex = 0;
-
         //
         // Initialize the data buffers.
         //
@@ -328,18 +291,15 @@ void main(void)
             txData[bufferIndex] = bufferIndex&0x00FF;
             rxData[bufferIndex]= 0;
         }
-
         //
         // Start DMA Channels.
         //
         DMA_startChannel(myDMA0_BASE);
         DMA_startChannel(myDMA1_BASE);
-
         //
         // Wait until both DMA transfers are complete.
         //
         while(!txDone || !rxDone);
-
         //
         // Check the received data.
         //
@@ -350,15 +310,12 @@ void main(void)
                 errCount++;
             }
         }
-
         //
         // When the DMA transfers are complete the program will stop here.
         //
         ESTOP0;
     }
 }
-
-
 //
 // TX DMA Channel 5 end of transfer ISR.
 // Called when all data in txData is copied to the UART data register.
@@ -370,7 +327,6 @@ __interrupt void INT_myDMA0_ISR(void)
     txDone = 1;
     return;
 }
-
 //
 // RX DMA Channel 6 end of transfer ISR.
 // Called when all data received by the UART data register is copied to rxData.
@@ -382,7 +338,6 @@ __interrupt void INT_myDMA1_ISR(void)
     rxDone = 1;
     return;
 }
-
 //
 // End of File
 //

@@ -1,4 +1,10 @@
 /**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28004x" --part "F28004x_100PZ" --package "F28004x_100PZ" --context "system"
+ * @v2CliArgs --device "TMS320F280049C" --package "100PZ" --context "system"
+ */
+/**
  * Import the modules used in this configuration.
  */
 const erad                             = scripting.addModule("/driverlib/erad.js", {}, false);
@@ -9,7 +15,6 @@ const clb_run_dynamic_template_clb_c   = scripting.addModule("/utilities/clb_too
 const clb_run_dynamic_template_clb_dot = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_dot.js");
 const clb_run_dynamic_template_clb_h   = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_h.js");
 const clb_run_dynamic_template_clb_sim = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_sim.js");
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -18,7 +23,6 @@ erad1.hwbpsUsed                         = ["BUSCOMP1"];
 erad1.eradBUSCOMP1.$name                = "ERAD_HWBP0";
 erad1.eradBUSCOMP1.hwbpAddressInputMode = "CODE";
 erad1.eradBUSCOMP1.hwbpRefCodeName      = "addr_adcA1ISR";
-
 TILE1.$name                     = "TILE1";
 TILE1.BOUNDARY.$name            = "BOUNDARY0";
 TILE1.BOUNDARY.in_period0       = 1000;

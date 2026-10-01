@@ -29,7 +29,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -67,21 +67,17 @@
 //
 #include <stdint.h>
 #include <stdbool.h>
-
 #include "cm.h"
-
 //
 // Defines
 //
 uint16_t cmnmi;
 bool wdstatus = false;
 uint32_t nmiflagstatus = 0, fail = 0;
-
 //
 // Function Prototypes
 //
 __interrupt void cmnmiISR(void);
-
 //
 // Main
 //
@@ -91,29 +87,23 @@ void main(void)
     // Register the interrupt handler.
     //
     Interrupt_registerHandler(FAULT_NMI,cmnmiISR);
-
     //
     // Enable the NMI interrupt.
     //
     Interrupt_enable(FAULT_NMI);
-    
     //
     // Clear All NMI flags
     //
     SysCtl_clearAllNMIFlags();
-    
     //SysCtl_setWatchdogWindowValue(0x0F);
-        
     //
     // Enable the watchdog.
     //
     SysCtl_enableWatchdog();
-
     //
     // Enable global interrupts.
     //
     SysCtl_enableGlobalNMI();
-    
     //
     // Wait till the NMI is triggered
     //
@@ -125,7 +115,6 @@ void main(void)
       //
       SysCtl_delay(1000);
     }
-    
     //
     // Check if the WWD caused an non-maskable interrupt on expiry.
     //
@@ -133,7 +122,6 @@ void main(void)
     { 
         fail++;       
     }
-    
     //
     // Check if the NMI was handled after
     // the WWD expired
@@ -142,13 +130,11 @@ void main(void)
     { 
         fail++;       
     }
-    
     //
     // Disable the watchdog.
     //
     SysCtl_disableWatchdog();
 }
-
 //
 // NMI ISR
 //
@@ -159,7 +145,6 @@ void main(void)
     //
     wdstatus = SysCtl_getWatchdogStatus();
     SysCtl_clearWatchdogStatus();
-
     //
     // NMI was handled after the WWD expired
     // 
@@ -167,8 +152,6 @@ void main(void)
     nmiflagstatus = SysCtl_getNMIFlagStatus();
     SysCtl_clearAllNMIFlags();
 }
-
 //
 // End of File
 //
-

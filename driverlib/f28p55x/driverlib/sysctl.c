@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -258,10 +258,11 @@ SysCtl_setClock(uint32_t config)
     if(SysCtl_isMCDClockFailureDetected())
     {
         //
-        // OSCCLKSRC2 failure detected. Returning false. You'll need to clear
-        // the MCD error.
+        // If the code is stuck here, OSCCLKSRC2 failure is detected. 
+        // Returning false. You'll need to clear the MCD error.
         //
         status = false;
+        ESTOP0;
     }
     else
     {
@@ -708,6 +709,8 @@ SysCtl_selectOscSource(uint32_t oscSource)
     }
     EDIS;
 }
+
+
 
 //*****************************************************************************
 //

@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="DRIVERS_I2C_PAGE" kind="page">
+    <compoundname>DRIVERS_I2C_PAGE</compoundname>
+    <title>I2C</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="DRIVERS_I2C_PAGE_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_components_drivers_i2c"/></para>
+<para>The I2C driver provides API to configure the I2C module. Below are the high level features supported by the I2C driver.</para>
+<sect1 id="DRIVERS_I2C_PAGE_1autotoc_md70">
+<title>Features Supported</title>
+<para><itemizedlist>
+<listitem><para>Each I2C has 2 selectable mode i.e. Controller and Target with bit rate upto 400Kbps</para>
+</listitem><listitem><para>Support for Clock duty cyle of 33% and 55% over Transmitter and Receiver Mode with bit count upto 8 bit per byte</para>
+</listitem><listitem><para>FIFO Mode, Loopback mode, Repeat Mode</para>
+</listitem><listitem><para>Support for 7-bit and 10-bit addressing mode and 16 FIFO level interrupt</para>
+</listitem><listitem><para>Support for Manual and Automatic Extended Clock Stretching via hardware and software interrupts</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_I2C_PAGE_1autotoc_md71">
+<title>SysConfig Features</title>
+<para><simplesect kind="note"><para>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</para>
+</simplesect>
+<itemizedlist>
+<listitem><para>Selecting I2C Device mode - Controller Mode or Target Mode.</para>
+</listitem><listitem><para>Selecting I2C Clock duty cycle - 33% or 55% duty cycle.</para>
+</listitem><listitem><para>Specifying initial mode, bit count, data count, emulation mode, target and own addresses fo each I2C SOC.</para>
+</listitem><listitem><para>Enabling and configuring I2C FIFO and non-FIFO interrupts and registering interrupt handlers.</para>
+</listitem><listitem><para>Configuring I2C GPIO Pinmux and Interrupt Levelfor each I2C SOC.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_I2C_PAGE_1autotoc_md72">
+<title>Features NOT Supported</title>
+<para><itemizedlist>
+<listitem><para>High-Speed Mode (HS-Mode)</para>
+</listitem><listitem><para>CBUS-Compatibility mode</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_I2C_PAGE_1autotoc_md73">
+<title>Important Usage Guidelines</title>
+<para><itemizedlist>
+<listitem><para>I2C has both SDA and SCL pin qualification set as Open-drain output with pull-up enabled and no synchronization. A pull-up register is required for both SDA and SCL channel for proper functioning of I2C module. Push-Pull and Inverted pin type is invalid for I2C module.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_I2C_PAGE_1autotoc_md74">
+<title>Example Usage</title>
+<para>Include the below file to access the APIs</para>
+<para>#include &lt;<ref refid="i2c_8h" kindref="compound">i2c.h</ref>&gt;</para>
+</sect1>
+<sect1 id="DRIVERS_I2C_PAGE_1autotoc_md75">
+<title>API</title>
+<para><ref refid="group__i2c__api" kindref="compound">I2C</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/i2c.md"/>
+  </compounddef>
+</doxygen>

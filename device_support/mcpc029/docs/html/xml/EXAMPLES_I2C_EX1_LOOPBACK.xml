@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_I2C_EX1_LOOPBACK" kind="page">
+    <compoundname>EXAMPLES_I2C_EX1_LOOPBACK</compoundname>
+    <title>I2C Loopback</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_I2C_EX1_LOOPBACK_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_i2c_ex1_loopback"/></para>
+<sect1 id="EXAMPLES_I2C_EX1_LOOPBACK_1autotoc_md280">
+<title>Introduction</title>
+<para>This program demonstrates the use of the I2C module&apos;s internal loopback test mode with FIFO interrupts. It sends a stream of data and verifies the received data against the expected pattern. The example uses the TX and RX I2C FIFOs and their associated interrupts.</para>
+<sect2 id="EXAMPLES_I2C_EX1_LOOPBACK_1autotoc_md281">
+<title>Description</title>
+<para><itemizedlist>
+<listitem><para>The sent data follows a repeating pattern:<itemizedlist>
+<listitem><para><computeroutput>0000 0001</computeroutput></para>
+</listitem><listitem><para><computeroutput>0001 0002</computeroutput></para>
+</listitem><listitem><para><computeroutput>0002 0003</computeroutput></para>
+</listitem><listitem><para>...</para>
+</listitem><listitem><para><computeroutput>00FE 00FF</computeroutput></para>
+</listitem><listitem><para><computeroutput>00FF 0000</computeroutput></para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>The program initializes the device, GPIO, PIE, and I2C modules.</para>
+</listitem><listitem><para>Data is transmitted and received using FIFO interrupts.</para>
+</listitem><listitem><para>The received data is validated against the expected pattern.</para>
+</listitem><listitem><para>If a mismatch occurs, the program halts execution for debugging.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para><itemizedlist>
+<listitem><para>This example supports migration across C2000 device families. Ensure the correct board is specified in the <computeroutput>.syscfg</computeroutput> file.</para>
+</listitem><listitem><para>No external connections are required for this example.</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_I2C_EX1_LOOPBACK_1autotoc_md282">
+<title>Watch Variables</title>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para>Variable   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>sData</computeroutput>   </para>
+</entry><entry thead="no"><para>Data to send.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>rData</computeroutput>   </para>
+</entry><entry thead="no"><para>Received data.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>rDataPoint</computeroutput>   </para>
+</entry><entry thead="no"><para>Tracks the last position in the receive stream for error checking.   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_I2C_EX1_LOOPBACK_1autotoc_md283">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>None.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_I2C_EX1_LOOPBACK_1autotoc_md284">
+<title>ISR Table</title>
+<para><table rows="3" cols="2"><row>
+<entry thead="yes"><para>ISR Name   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>i2cFIFOISR</computeroutput>   </para>
+</entry><entry thead="no"><para>Handles FIFO interrupts for transmitting and receiving data, validates received data, and clears interrupt flags.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>INT_myI2C0_ISR</computeroutput>   </para>
+</entry><entry thead="no"><para>Clears interrupt acknowledgment for SysConfig functionality.   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_I2C_EX1_LOOPBACK_1autotoc_md285">
+<title>Code Flow</title>
+<para><programlisting filename=".markdown"><codeline><highlight class="normal">```mermaid</highlight></codeline>
+<codeline><highlight class="normal">flowchart<sp/>TD</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>A[Start]<sp/>--&gt;<sp/>B[Initialize<sp/>device,<sp/>GPIO,<sp/>PIE,<sp/>and<sp/>I2C<sp/>modules]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>B<sp/>--&gt;<sp/>C[Enable<sp/>I2C<sp/>internal<sp/>loopback<sp/>mode]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>C<sp/>--&gt;<sp/>D[Transmit<sp/>data<sp/>using<sp/>TX<sp/>FIFO<sp/>interrupts]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>D<sp/>--&gt;<sp/>E[Receive<sp/>data<sp/>using<sp/>RX<sp/>FIFO<sp/>interrupts]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>E<sp/>--&gt;<sp/>F[Validate<sp/>received<sp/>data<sp/>against<sp/>expected<sp/>pattern]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>F<sp/>--&gt;<sp/>G{Data<sp/>matches<sp/>expected<sp/>pattern?}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>G<sp/>--&gt;|Yes|<sp/>H[Continue<sp/>operation]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>G<sp/>--&gt;|No|<sp/>I[Halt<sp/>execution<sp/>for<sp/>debugging]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>H<sp/>--&gt;<sp/>J[Observe<sp/>sData<sp/>and<sp/>rData<sp/>buffers]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>J<sp/>--&gt;<sp/>K[Use<sp/>breakpoints<sp/>or<sp/>suspend<sp/>execution<sp/>to<sp/>debug]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>K<sp/>--&gt;<sp/>L[End]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>I<sp/>--&gt;<sp/>L</highlight></codeline>
+</programlisting> </para>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_I2C_EX1_LOOPBACK_1autotoc_md286">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>). \cond F29H85x</para>
+</listitem><listitem><para><bold>When using makefiles to build</bold>, note the required combination and build using make command (see MAKEFILE_BUILD_PAGE) \endcond</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para><itemizedlist>
+<listitem><para>When running in flash configuration, it is recommended to reset and restart after loading the example to remove any stale flags or states.</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+<sect3 id="EXAMPLES_I2C_EX1_LOOPBACK_1autotoc_md287">
+<title>See Also</title>
+<para><ref refid="DRIVERS_I2C_PAGE" kindref="compound">I2C</ref> </para>
+</sect3>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/i2c_ex1_loopback.md"/>
+  </compounddef>
+</doxygen>

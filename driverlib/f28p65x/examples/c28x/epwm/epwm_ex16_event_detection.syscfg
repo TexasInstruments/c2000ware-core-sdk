@@ -1,10 +1,9 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --device "F28P65x" --package "256ZEJ" --part "F28P65x_256ZEJ" --context "CPU1" --product "C2000WARE"
- * 
+ * @cliArgs --device "F28P65x" --part "F28P65x_256ZEJ" --package "256ZEJ" --board "/boards/TMDSCNCD28P65X" --context "CPU1"
+ * @v2CliArgs --device "TMS320F28P650DK" --package "256ZEJ" --variant "TMS320F28P650DK9" --context "CPU1"
  */
-
 /**
  * Import the modules used in this configuration.
  */
@@ -20,7 +19,6 @@ const inputxbar_input2 = inputxbar_input.addInstance();
 const outputxbar       = scripting.addModule("/driverlib/outputxbar.js", {}, false);
 const outputxbar1      = outputxbar.addInstance();
 const outputxbar2      = outputxbar.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -67,7 +65,6 @@ epwm1.epwm.epwm_bPin.$assign                            = "GPIO1";
 epwm1.epwmTZInt.enableInterrupt                         = true;
 epwm1.epwmTZInt.interruptHandler                        = "epwm1_TZ_ISR";
 scripting.suppress("When XCMP mode is enabled, EPWM Time Base Period will be set within XCMP Mode", epwm1, "epwmTimebase_period");
-
 epwm2.epwmTimebase_counterMode                          = "EPWM_COUNTER_MODE_UP";
 epwm2.epwmCounterCompare_shadowLoadModeCMPC             = "EPWM_COMP_LOAD_ON_CNTR_PERIOD";
 epwm2.epwmCounterCompare_shadowLoadModeCMPD             = "EPWM_COMP_LOAD_ON_CNTR_PERIOD";
@@ -110,30 +107,24 @@ epwm2.epwm.epwm_bPin.$assign                            = "GPIO3";
 epwm2.epwmTZInt.enableInterrupt                         = true;
 epwm2.epwmTZInt.interruptHandler                        = "epwm2_TZ_ISR";
 scripting.suppress("When XCMP mode is enabled, EPWM Time Base Period will be set within XCMP Mode", epwm2, "epwmTimebase_period");
-
 epwmxbar1.$name      = "myEPWMXBAR0";
 epwmxbar1.muxesUsed  = ["XBAR_MUX01"];
 epwmxbar1.mux1Config = "XBAR_EPWM_MUX01_INPUTXBAR1_INPUT1";
 epwmxbar1.tripInput  = "XBAR_TRIP4";
-
 epwmxbar2.$name      = "myEPWMXBAR1";
 epwmxbar2.tripInput  = "XBAR_TRIP5";
 epwmxbar2.mux3Config = "XBAR_EPWM_MUX03_INPUTXBAR1_INPUT2";
 epwmxbar2.muxesUsed  = ["XBAR_MUX03"];
-
 inputxbar_input1.$name         = "myINPUTXBARINPUT0";
 inputxbar_input1.inputxbarLock = true;
-
 inputxbar_input2.$name          = "myINPUTXBARINPUT1";
 inputxbar_input2.inputxbarInput = "XBAR_INPUT2";
 inputxbar_input2.inputxbarGpio  = "GPIO2";
 inputxbar_input2.inputxbarLock  = true;
-
 outputxbar1.$name                            = "myOUTPUTXBAR0";
 outputxbar1.muxesUsed                        = ["XBAR_MUX32"];
 outputxbar1.outputxbar.$assign               = "OUTPUTXBAR1";
 outputxbar1.outputxbar.outputxbarPin.$assign = "GPIO24";
-
 outputxbar2.$name                            = "myOUTPUTXBAR1";
 outputxbar2.muxesUsed                        = ["XBAR_MUX33"];
 outputxbar2.outputxbar.$assign               = "OUTPUTXBAR2";

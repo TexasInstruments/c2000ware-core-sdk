@@ -2,7 +2,7 @@
   <project
         name="transfer_ex5_comslogger_export_sci"
         device="TMS320F28P650DK9"
-        cgtVersion="22.6.3.LTS"
+        cgtVersion="25.11.1.LTS"
 		products="sysconfig;C2000WARE"
         outputFormat="ELF"
         launchWizard="False"
@@ -11,9 +11,7 @@
         sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json"
         postBuildStep="
            echo &quot;========= Build of the CLB simulation has moved to the CLB Tool. Click the '?' icon by the _Generate CLB Simulation File_ enable for more details (located in the Global Parameters of the Tile Design SysConfig module) =============&quot;
-          ;if ${GENERATE_DIAGRAM} == 1  ${NODE_TOOL} &quot;${C2000WARE_ROOT}/utilities/clb_tool/clb_syscfg/dot_file_libraries/clbDotUtility.js&quot;  &quot;${C2000WARE_ROOT}/utilities/clb_tool/clb_syscfg/&quot; &quot;${BuildDirectory}/syscfg&quot; &quot;${BuildDirectory}/syscfg/clb.dot&quot;
-          ;if ${GENERATE_DIAGRAM} == 1  mkdir &quot;${BuildDirectory}/diagrams&quot;
-          ;if ${GENERATE_DIAGRAM} == 1  ${NODE_TOOL} &quot;${C2000WARE_ROOT}/driverlib/.meta/generate_diagrams.js&quot; &quot;${C2000WARE_ROOT}&quot; &quot;${BuildDirectory}/diagrams&quot; &quot;${BuildDirectory}/syscfg&quot;
+          ;${NODE_TOOL} -e &quot;if(process.argv[1]==='1'){var s=require('child_process').spawnSync,n=process.execPath,r=process.argv[2],b=process.argv[3];s(n,[r+'/utilities/clb_tool/clb_syscfg/dot_file_libraries/clbDotUtility.js',r+'/utilities/clb_tool/clb_syscfg/',b+'/syscfg',b+'/syscfg/clb.dot'],{stdio:'inherit'});require('fs').mkdirSync(b+'/diagrams',{recursive:true});s(n,[r+'/driverlib/.meta/generate_diagrams.js',r,b+'/diagrams',b+'/syscfg'],{stdio:'inherit'})}&quot; &quot;${GENERATE_DIAGRAM}&quot; &quot;${C2000WARE_ROOT}&quot; &quot;${BuildDirectory}&quot;
           ;if ${GUI_SUPPORT} == 1  &quot;${BuildDirectory}/syscfg/gui_setup.bat&quot;
         "
         >
@@ -21,7 +19,6 @@
     <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -v28 -ml -mt --float_support=fpu64 --define=DEBUG --define=CPU1 --define=_FLASH --define=generic_flash_lnk --diag_warning=225 --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200  --define=_FLASH -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs -lboard.cmd.genlibs --define=generic_flash_lnk"/>
     <configuration name="CPU1_LAUNCHXL_RAM" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -v28 -ml -mt --float_support=fpu64 --define=DEBUG --define=CPU1 --define=RAM --define=generic_ram_lnk --diag_warning=225 --diag_suppress=10063 --define=_LAUNCHXL_F28P65X" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs -lboard.cmd.genlibs --define=generic_ram_lnk"/>
     <configuration name="CPU1_LAUNCHXL_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -v28 -ml -mt --float_support=fpu64 --define=DEBUG --define=CPU1 --define=_FLASH --define=generic_flash_lnk --diag_warning=225 --diag_suppress=10063 --define=_LAUNCHXL_F28P65X" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 --define=_FLASH -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs -lboard.cmd.genlibs --define=generic_flash_lnk"/>
-
     <pathVariable name="C2000WARE_ROOT" path="../../../../../../" scope="project" />
     <pathVariable name="CLB_SYSCFG_ROOT" path="../../../../../utilities/clb_tool/clb_syscfg/" scope="project" />
     <pathVariable name="SYSTEMC_INSTALL" path="../../../../../utilities/clb_tool/clb_syscfg/systemc-2.3.3" scope="project" />

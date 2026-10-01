@@ -41,48 +41,38 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 //
 // Included Files
 //
 #include "scistdio.h"
-
 //******************************************************************************
 //
 //! \addtogroup SCIstdio_api
 //! @{
 //
 //******************************************************************************
-
 //
 // The base address of the chosen SCI.
 //
 static uint32_t g_ui32Base = 0;
-
 //
 // A mapping from an integer between 0 and 15 to its ASCII character
 // equivalent.
 //
 static const char * const g_pcHex = "0123456789abcdef";
-
-
 void SCIHexDump(uint8_t *data, uint32_t size)
 {
     int iter = 0;
-
     for (iter = 0; iter < size; iter++) {
         if ((iter % 16) == 0) {
             if (iter != 0)
                 SCIprintf("\r\n");
-
             //SCIprintf("%04x: ",iter);
         }
-
         SCIprintf("%02X ", data[iter] & 0xFF);
     }
     SCIprintf("\r\n");
 }
-
 //******************************************************************************
 //
 //! Configures the SCI console.
@@ -111,7 +101,6 @@ SCIStdioConfig(uint32_t base, uint32_t ui32Baud, uint32_t ui32SrcClock)
     // Select the base address of the SCI.
     //
     g_ui32Base = base;
-
     //
     // Configure the SCI for 115200, n, 8, 1
     //
@@ -119,7 +108,6 @@ SCIStdioConfig(uint32_t base, uint32_t ui32Baud, uint32_t ui32SrcClock)
                   (SCI_CONFIG_PAR_NONE | SCI_CONFIG_STOP_ONE |
                    SCI_CONFIG_WLEN_8));
 }
-
 //******************************************************************************
 //
 //! Writes a string of characters to the SCI output.
@@ -149,15 +137,12 @@ SCIStdioConfig(uint32_t base, uint32_t ui32Baud, uint32_t ui32SrcClock)
 int
 SCIwrite(const char *pcBuf, uint32_t ui32Len)
 {
-
     unsigned int uIdx;
-
     //
     // Check for valid SCI base address, and valid arguments.
     //
     ASSERT(g_ui32Base != 0);
     ASSERT(pcBuf != 0);
-
     //
     // Send the characters
     //
@@ -171,19 +156,16 @@ SCIwrite(const char *pcBuf, uint32_t ui32Len)
         {
             SCI_writeCharBlockingNonFIFO(g_ui32Base, '\r');
         }
-
         //
         // Send the character to the SCI output.
         //
         SCI_writeCharBlockingNonFIFO(g_ui32Base, pcBuf[uIdx]);
     }
-
     //
     // Return the number of characters written.
     //
     return(uIdx);
 }
-
 //*****************************************************************************
 //
 //! A simple SCI based vprintf function supporting \%c, \%d, \%p, \%s, \%u,
@@ -228,12 +210,10 @@ SCIvprintf(const char *pcString, va_list vaArgP)
 {
     uint32_t ui32Idx, ui32Value, ui32Pos, ui32Count, ui32Base, ui32Neg;
     char *pcStr, pcBuf[16], cFill;
-
     //
     // Check the arguments.
     //
     ASSERT(pcString != 0);
-
     //
     // Loop while there are more characters in the string.
     //
@@ -247,17 +227,14 @@ SCIvprintf(const char *pcString, va_list vaArgP)
             ui32Idx++)
         {
         }
-
         //
         // Write this portion of the string.
         //
         SCIwrite(pcString, ui32Idx);
-
         //
         // Skip the portion of the string that was written.
         //
         pcString += ui32Idx;
-
         //
         // See if the next character is a %.
         //
@@ -267,21 +244,18 @@ SCIvprintf(const char *pcString, va_list vaArgP)
             // Skip the %.
             //
             pcString++;
-
             //
             // Set the digit count to zero, and the fill character to space
             // (in other words, to the defaults).
             //
             ui32Count = 0;
             cFill = ' ';
-
             //
             // It may be necessary to get back here to process more characters.
             // Goto's aren't pretty, but effective.  I feel extremely dirty for
             // using not one but two of the beasts.
             //
 again:
-
             //
             // Determine how to handle the next character.
             //
@@ -309,19 +283,16 @@ again:
                     {
                         cFill = '0';
                     }
-
                     //
                     // Update the digit count.
                     //
                     ui32Count *= 10;
                     ui32Count += pcString[-1] - '0';
-
                     //
                     // Get the next character.
                     //
                     goto again;
                 }
-
                 //
                 // Handle the %c command.
                 //
@@ -331,18 +302,15 @@ again:
                     // Get the value from the varargs.
                     //
                     ui32Value = va_arg(vaArgP, uint32_t);
-
                     //
                     // Print out the character.
                     //
                     SCIwrite((char *)&ui32Value, 1);
-
                     //
                     // This command has been handled.
                     //
                     break;
                 }
-
                 //
                 // Handle the %d and %i commands.
                 //
@@ -353,12 +321,10 @@ again:
                     // Get the value from the varargs.
                     //
                     ui32Value = va_arg(vaArgP, uint32_t);
-
                     //
                     // Reset the buffer position.
                     //
                     ui32Pos = 0;
-
                     //
                     // If the value is negative, make it positive and indicate
                     // that a minus sign is needed.
@@ -369,7 +335,6 @@ again:
                         // Make the value positive.
                         //
                         ui32Value = -(int32_t)ui32Value;
-
                         //
                         // Indicate that the value is negative.
                         //
@@ -383,18 +348,15 @@ again:
                         //
                         ui32Neg = 0;
                     }
-
                     //
                     // Set the base to 10.
                     //
                     ui32Base = 10;
-
                     //
                     // Convert the value to ASCII.
                     //
                     goto convert;
                 }
-
                 //
                 // Handle the %l command.
                 //
@@ -404,12 +366,10 @@ again:
                     // Get the value from the varargs.
                     //
                     ui32Value = va_arg(vaArgP, uint32_t);
-
                     //
                     // Reset the buffer position.
                     //
                     ui32Pos = 0;
-
                     //
                     // If the value is negative, make it positive and indicate
                     // that a minus sign is needed.
@@ -420,7 +380,6 @@ again:
                     	// Make the value positive.
                     	//
                     	ui32Value = -(int32_t)ui32Value;
-
                     	//
                     	// Indicate that the value is negative.
                     	//
@@ -434,18 +393,15 @@ again:
                     	//
                     	ui32Neg = 0;
                     }
-
                     //
                     // Set the base to 10.
                     //
                     ui32Base = 10;
-
                     //
                     // Convert the value to ASCII.
                     //
                     goto convert;
                 }
-
                 //
                 // Handle the %s command.
                 //
@@ -455,19 +411,16 @@ again:
                     // Get the string pointer from the varargs.
                     //
                     pcStr = va_arg(vaArgP, char *);
-
                     //
                     // Determine the length of the string.
                     //
                     for(ui32Idx = 0; pcStr[ui32Idx] != '\0'; ui32Idx++)
                     {
                     }
-
                     //
                     // Write the string.
                     //
                     SCIwrite(pcStr, ui32Idx);
-
                     //
                     // Write any required padding spaces
                     //
@@ -479,13 +432,11 @@ again:
                             SCIwrite(" ", 1);
                         }
                     }
-
                     //
                     // This command has been handled.
                     //
                     break;
                 }
-
                 //
                 // Handle the %u command.
                 //
@@ -495,29 +446,24 @@ again:
                     // Get the value from the varargs.
                     //
                     ui32Value = va_arg(vaArgP, uint32_t);
-
                     //
                     // Reset the buffer position.
                     //
                     ui32Pos = 0;
-
                     //
                     // Set the base to 10.
                     //
                     ui32Base = 10;
-
                     //
                     // Indicate that the value is positive so that a minus sign
                     // isn't inserted.
                     //
                     ui32Neg = 0;
-
                     //
                     // Convert the value to ASCII.
                     //
                     goto convert;
                 }
-
                 //
                 // Handle the %x and %X commands.  Note that they are treated
                 // identically; in other words, %X will use lower case letters
@@ -532,23 +478,19 @@ again:
                     // Get the value from the varargs.
                     //
                     ui32Value = va_arg(vaArgP, uint32_t);
-
                     //
                     // Reset the buffer position.
                     //
                     ui32Pos = 0;
-
                     //
                     // Set the base to 16.
                     //
                     ui32Base = 16;
-
                     //
                     // Indicate that the value is positive so that a minus sign
                     // isn't inserted.
                     //
                     ui32Neg = 0;
-
                     //
                     // Determine the number of digits in the string version of
                     // the value.
@@ -560,7 +502,6 @@ convert:
                         ui32Idx *= ui32Base, ui32Count--)
                     {
                     }
-
                     //
                     // If the value is negative, reduce the count of padding
                     // characters needed.
@@ -569,7 +510,6 @@ convert:
                     {
                         ui32Count--;
                     }
-
                     //
                     // If the value is negative and the value is padded with
                     // zeros, then place the minus sign before the padding.
@@ -580,14 +520,12 @@ convert:
                         // Place the minus sign in the output buffer.
                         //
                         pcBuf[ui32Pos++] = '-';
-
                         //
                         // The minus sign has been placed, so turn off the
                         // negative flag.
                         //
                         ui32Neg = 0;
                     }
-
                     //
                     // Provide additional padding at the beginning of the
                     // string conversion if needed.
@@ -599,7 +537,6 @@ convert:
                             pcBuf[ui32Pos++] = cFill;
                         }
                     }
-
                     //
                     // If the value is negative, then place the minus sign
                     // before the number.
@@ -611,7 +548,6 @@ convert:
                         //
                         pcBuf[ui32Pos++] = '-';
                     }
-
                     //
                     // Convert the value into a string.
                     //
@@ -620,18 +556,15 @@ convert:
                         pcBuf[ui32Pos++] =
                             g_pcHex[(ui32Value / ui32Idx) % ui32Base];
                     }
-
                     //
                     // Write the string.
                     //
                     SCIwrite(pcBuf, ui32Pos);
-
                     //
                     // This command has been handled.
                     //
                     break;
                 }
-
                 //
                 // Handle the %% command.
                 //
@@ -641,13 +574,11 @@ convert:
                     // Simply write a single %.
                     //
                     SCIwrite(pcString - 1, 1);
-
                     //
                     // This command has been handled.
                     //
                     break;
                 }
-
                 //
                 // Handle all other commands.
                 //
@@ -657,7 +588,6 @@ convert:
                     // Indicate an error.
                     //
                     SCIwrite("ERROR", 5);
-
                     //
                     // This command has been handled.
                     //
@@ -667,17 +597,14 @@ convert:
         }
     }
 }
-
 void SCImyvprintf(const char *pcString, va_list vaArgP)
 {
     char pcBuf[32];
     uint32_t ui32Value, ui32Pos, ui32Base;
     uint32_t i;
-
     while (*pcString) {
         if (*pcString == '%') {
             pcString++;  
-
             switch (*pcString) {
                 case 'd': {  
                     int32_t i32Value = va_arg(vaArgP, int32_t);
@@ -690,12 +617,10 @@ void SCImyvprintf(const char *pcString, va_list vaArgP)
                     ui32Base = 10;
                     break;
                 }
-
                 case 'x':  
                     ui32Value = va_arg(vaArgP, uint32_t);
                     ui32Base = 16;
                     break;
-
                 case 's': {  
                     const char *str = va_arg(vaArgP, const char *);
                     if (str) {
@@ -705,18 +630,14 @@ void SCImyvprintf(const char *pcString, va_list vaArgP)
                     }
                     break;
                 }
-
                 case '%': 
                     SCIwrite("%", 1);
                     break;
-
                 default:  ʽ
                     SCIwrite("%", 1);
                     SCIwrite(pcString, 1);
                     break;
             }
-
-            
             if (*pcString == 'd' || *pcString == 'x') {
                 ui32Pos = 0;
                 do {
@@ -724,18 +645,14 @@ void SCImyvprintf(const char *pcString, va_list vaArgP)
                     pcBuf[ui32Pos++] = (remainder < 10) ? '0' + remainder : 'a' + (remainder - 10);
                     ui32Value /= ui32Base;
                 } while (ui32Value > 0);
-
                 for (i = 0; i < ui32Pos / 2; i++) {
                     char temp = pcBuf[i];
                     pcBuf[i] = pcBuf[ui32Pos - 1 - i];
                     pcBuf[ui32Pos - 1 - i] = temp;
                 }
-
                 SCIwrite(pcBuf, ui32Pos);
             }
-
         } else {
-            
             const char *start = pcString;
             while (*pcString && *pcString != '%') {
                 pcString++;
@@ -743,12 +660,9 @@ void SCImyvprintf(const char *pcString, va_list vaArgP)
             SCIwrite(start, pcString - start);
             continue;
         }
-
         pcString++;
     }
 }
-
-
 //*****************************************************************************
 //
 //! A simple SCI based printf function supporting \%c, \%d, \%p, \%s, \%u,
@@ -791,12 +705,10 @@ void
 SCIprintf(const char *pcString, ...)
 {
     va_list vaArgP;
-
     //
     // Start the varargs processing.
     //
     va_start(vaArgP, pcString);
-
     SCIvprintf(pcString, vaArgP);
     //SCImyvprintf(pcString, vaArgP);
     //
@@ -804,14 +716,12 @@ SCIprintf(const char *pcString, ...)
     //
     va_end(vaArgP);
 }
-
 //*****************************************************************************
 //
 // Close the Doxygen group.
 //! @}
 //
 //*****************************************************************************
-
 //
 // End of file
 //

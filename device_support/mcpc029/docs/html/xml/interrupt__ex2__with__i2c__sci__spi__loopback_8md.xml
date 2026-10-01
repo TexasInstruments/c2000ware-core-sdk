@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="interrupt__ex2__with__i2c__sci__spi__loopback_8md" kind="file" language="Markdown">
+    <compoundname>interrupt_ex2_with_i2c_sci_spi_loopback.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Multiple<sp/>interrupt<sp/>handling<sp/>example{#EXAMPLES_DRIVERS_INTERRUPT_EX2_WITH_I2C_SCI_SPI_LOOPBACK}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>Multiple<sp/>interrupt<sp/>handling<sp/>of<sp/>I2C,<sp/>SCI<sp/>&amp;<sp/>SPI<sp/>Digital<sp/><sp/><sp/>Loopback<sp/>example&quot;</highlight></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>Interrupt&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>demonstrates<sp/>multiple<sp/>interrupt<sp/>handling<sp/>of<sp/>I2C,<sp/>SCI<sp/>&amp;<sp/>SPI<sp/>Digital<sp/>Loopback</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>program<sp/>is<sp/>used<sp/>to<sp/>demonstrate<sp/>how<sp/>to<sp/>handle<sp/>multiple<sp/>interrupts</highlight></codeline>
+<codeline><highlight class="normal">when<sp/>using<sp/>multiple<sp/>communication<sp/>peripherals<sp/>like<sp/>I2C,<sp/>SCI<sp/>&amp;<sp/>SPI</highlight></codeline>
+<codeline><highlight class="normal">Digital<sp/>Loopback<sp/>all<sp/>in<sp/>a<sp/>single<sp/>example.<sp/>The<sp/>data<sp/>transfers<sp/>would</highlight></codeline>
+<codeline><highlight class="normal">be<sp/>done<sp/>with<sp/>FIFO<sp/>Interrupts.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">It<sp/>uses<sp/>the<sp/>internal<sp/>loopback<sp/>test<sp/>mode<sp/>of<sp/>these<sp/>modules.<sp/>Both</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>TX<sp/>and<sp/>RX<sp/>FIFOs<sp/>and<sp/>their<sp/>interrupts<sp/>are<sp/>used.</highlight></codeline>
+<codeline><highlight class="normal">Other<sp/>than<sp/>boot<sp/>mode<sp/>pin<sp/>configuration,<sp/>no<sp/>other<sp/>hardware<sp/>configuration</highlight></codeline>
+<codeline><highlight class="normal">is<sp/>required.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">A<sp/>stream<sp/>of<sp/>data<sp/>is<sp/>sent<sp/>and<sp/>then<sp/>compared<sp/>to<sp/>the<sp/>received<sp/>stream.</highlight></codeline>
+<codeline><highlight class="normal">The<sp/>sent<sp/>data<sp/>looks<sp/>like<sp/>this<sp/>for<sp/>I2C<sp/>and<sp/>SCI:</highlight></codeline>
+<codeline><highlight class="normal">0000<sp/>0001</highlight></codeline>
+<codeline><highlight class="normal">0001<sp/>0002</highlight></codeline>
+<codeline><highlight class="normal">0002<sp/>0003</highlight></codeline>
+<codeline><highlight class="normal">....</highlight></codeline>
+<codeline><highlight class="normal">00FE<sp/>00FF</highlight></codeline>
+<codeline><highlight class="normal">00FF<sp/>0000</highlight></codeline>
+<codeline><highlight class="normal">etc..</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>sent<sp/>data<sp/>looks<sp/>like<sp/>this<sp/>for<sp/>SPI:</highlight></codeline>
+<codeline><highlight class="normal">0000<sp/>0001</highlight></codeline>
+<codeline><highlight class="normal">0001<sp/>0002</highlight></codeline>
+<codeline><highlight class="normal">0002<sp/>0003</highlight></codeline>
+<codeline><highlight class="normal">....</highlight></codeline>
+<codeline><highlight class="normal">FFFE<sp/>FFFF</highlight></codeline>
+<codeline><highlight class="normal">FFFF<sp/>0000</highlight></codeline>
+<codeline><highlight class="normal">etc..</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>pattern<sp/>is<sp/>repeated<sp/>forever.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>None</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Watch<sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/><sp/>sDatai2cA<sp/>-<sp/>Data<sp/>to<sp/>send<sp/>through<sp/>I2C</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/><sp/>rDatai2cA<sp/>-<sp/>Received<sp/>I2C<sp/>data</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/><sp/>rDataPoint<sp/>-<sp/>Used<sp/>to<sp/>keep<sp/>track<sp/>of<sp/>the<sp/>last<sp/>position<sp/>in<sp/>the<sp/>receive</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>I2C<sp/>stream<sp/>for<sp/>error<sp/>checking</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/><sp/>sDataspiA<sp/>-<sp/>Data<sp/>to<sp/>send<sp/>through<sp/>SPI</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/><sp/>rDataspiA<sp/>-<sp/>Received<sp/>SPI<sp/>data</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/><sp/>rDataPointspiA<sp/>-<sp/>Used<sp/>to<sp/>keep<sp/>track<sp/>of<sp/>the<sp/>last<sp/>position<sp/>in<sp/>the<sp/>receive</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SPI<sp/>stream<sp/>for<sp/>error<sp/>checking</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/><sp/>sDatasciA<sp/>-<sp/>SCI<sp/>Data<sp/>being<sp/>sent</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/><sp/>rDatasciA<sp/>-<sp/>SCI<sp/>Data<sp/>received</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/><sp/>rDataPointA<sp/>-<sp/>Keep<sp/>track<sp/>of<sp/>where<sp/>we<sp/>are<sp/>in<sp/>the<sp/>SCI<sp/>data<sp/>stream.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>This<sp/>is<sp/>used<sp/>to<sp/>check<sp/>the<sp/>incoming<sp/>data</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/interrupt_ex2_with_i2c_sci_spi_loopback.md"/>
+  </compounddef>
+</doxygen>

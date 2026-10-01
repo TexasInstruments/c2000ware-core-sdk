@@ -9,7 +9,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -42,12 +42,10 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 //
 // Included Files
 //
 #include "usb_ex1_device_structs.h"
-
 //******************************************************************************
 //
 // The languages supported by this device.
@@ -59,7 +57,6 @@ const uint8_t g_pui8LangDescriptor[] =
     USB_DTYPE_STRING,
     USBShort(USB_LANG_EN_US)
 };
-
 //******************************************************************************
 //
 // The manufacturer string.
@@ -72,7 +69,6 @@ const uint8_t g_pui8ManufacturerString[] =
     'T', 0, 'e', 0, 'x', 0, 'a', 0, 's', 0, ' ', 0, 'I', 0, 'n', 0, 's', 0,
     't', 0, 'r', 0, 'u', 0, 'm', 0, 'e', 0, 'n', 0, 't', 0, 's', 0,
 };
-
 //******************************************************************************
 //
 // The product string.
@@ -85,7 +81,6 @@ const uint8_t g_pui8ProdectString[] =
     'V', 0, 'i', 0, 'r', 0, 't', 0, 'u', 0, 'a', 0, 'l', 0, ' ', 0,
     'C', 0, 'O', 0, 'M', 0, ' ', 0, 'P', 0, 'o', 0, 'r', 0, 't', 0
 };
-
 //******************************************************************************
 //
 // The serial number string.
@@ -97,7 +92,6 @@ const uint8_t g_pui8SerialNumberString[] =
     USB_DTYPE_STRING,
     '1', 0, '2', 0, '3', 0, '4', 0, '5', 0, '6', 0, '7', 0, '8', 0
 };
-
 //******************************************************************************
 //
 // The control interface description string.
@@ -111,7 +105,6 @@ const uint8_t g_pui8ControlInterfaceString[] =
     'r', 0, 'o', 0, 'l', 0, ' ', 0, 'I', 0, 'n', 0, 't', 0, 'e', 0,
     'r', 0, 'f', 0, 'a', 0, 'c', 0, 'e', 0
 };
-
 //******************************************************************************
 //
 // The configuration description string.
@@ -126,7 +119,6 @@ const uint8_t g_pui8ConfigString[] =
     'f', 0, 'i', 0, 'g', 0, 'u', 0, 'r', 0, 'a', 0, 't', 0, 'i', 0,
     'o', 0, 'n', 0
 };
-
 //******************************************************************************
 //
 // The descriptor string table.
@@ -141,10 +133,8 @@ const uint8_t * const g_pui8StringDescriptors[] =
     g_pui8ControlInterfaceString,
     g_pui8ConfigString
 };
-
 #define NUM_STRING_DESCRIPTORS (sizeof(g_pui8StringDescriptors)               /\
                                 sizeof(uint8_t *))
-
 //******************************************************************************
 //
 // The CDC device initialization and customization structures. In this case,
@@ -173,7 +163,6 @@ tUSBDCDCDevice g_sCDCDevice =
     g_pui8StringDescriptors,
     NUM_STRING_DESCRIPTORS
 };
-
 //******************************************************************************
 //
 // Receive buffer (from the USB perspective).
@@ -190,7 +179,6 @@ tUSBBuffer g_sRxBuffer =
     g_pi8USBRxBuffer,               // pi8Buffer
     UART_BUFFER_SIZE                 // ui32BufferSize
 };
-
 //******************************************************************************
 //
 // Transmit buffer (from the USB perspective).
@@ -207,7 +195,6 @@ tUSBBuffer g_sTxBuffer =
     g_pi8USBTxBuffer,               // pi8Buffer
     UART_BUFFER_SIZE                 // ui32BufferSize
 };
-
 //
 // End of file
 //

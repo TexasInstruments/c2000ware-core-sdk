@@ -23,7 +23,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -56,20 +56,17 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include <string.h>
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
 #define TEST_PASS 0xABCDABCD
 #define TEST_FAIL 0xDEADDEAD
-
 #define BURST_SIZE         0x8
 #define BURST_SRCSTEP      0x2
 #define BURST_DESTSTEP     0x2
@@ -83,24 +80,20 @@
 //
 // Global Variables
 //
-
 //
 // Global error counter & status
 //
 uint16_t errCountGlobal = 0;
 uint32_t testStatusGlobal;
-
 //
 // Output plain-text array
 //
 #pragma DATA_SECTION(plainTextArray,"ramgs0");
 uint32_t plainTextArray[16];
-
 //
 // Global interrupt status
 //
 static volatile uint32_t intStatus;
-
 //
 // The AES interrupt handler and interrupt flags.
 //
@@ -112,7 +105,6 @@ static volatile bool contextInDMADoneIntFlag;
 static volatile bool dataInDMADoneIntFlag;
 static volatile bool contextOutDMADoneIntFlag;
 static volatile bool dataOutDMADoneIntFlag;
-
 //
 // Structure for NIST AES CBC tests
 //
@@ -125,7 +117,6 @@ typedef struct
     uint32_t plainTextArray[16];
     uint32_t cipherTextArray[16];
 } testVectorCBC;
-
 //
 // Test Cases from NIST CBC Revised Spec.
 //
@@ -149,7 +140,6 @@ testVectorCBC testVectorCBCArray[] =
                        0xEF921408, 0xF41842EA, 0xA9A88823, 0x9E538B62,
                        0xCBD5E0A0, 0x30C79E94, 0x5AD7CF97, 0x170EB52D }
  },
-
  //
  // Test Case #2 with 256 bit key
  //
@@ -169,7 +159,6 @@ testVectorCBC testVectorCBCArray[] =
                        0x3018FF2A, 0xFD3150C4, 0x0B8DADD5, 0xBEBF926E }
  }
 };
-
 //
 // Function Prototypes
 //
@@ -185,35 +174,30 @@ void configureDMAInterruptCH1(void);
 void configureDMAInterruptCH2(void);
 void initilizeAES(void);
 void startAES(void);
-
 interrupt void AESDMADataInISR(void)
 {
     AES_disableDMARequest(AESA_BASE, AES_DMA_EN_DATA_IN);
     dataInDMADoneIntFlag = true;
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
 }
-
 interrupt void AESDMADataOutISR(void)
 {
     AES_disableDMARequest(AESA_BASE, AES_DMA_EN_DATA_OUT);
     dataOutDMADoneIntFlag = true;
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
 }
-
 void initializeDMACH1(void)
 {
     DMA_disableTrigger(DMA_CH1_BASE);
     DMA_clearTriggerFlag(DMA_CH1_BASE);
     DMA_clearErrorFlag(DMA_CH1_BASE);
 }
-
 void initializeDMACH2(void)
 {
     DMA_disableTrigger(DMA_CH2_BASE);
     DMA_clearTriggerFlag(DMA_CH2_BASE);
     DMA_clearErrorFlag(DMA_CH2_BASE);
 }
-
 void configureDMACH1(const void *src, const void *dst, uint32_t transferSize)
 {
     //
@@ -236,7 +220,6 @@ void configureDMACH1(const void *src, const void *dst, uint32_t transferSize)
                    DMA_CFG_CONTINUOUS_DISABLE | DMA_CFG_SIZE_32BIT);
     DMA_enableTrigger(DMA_CH1_BASE);
 }
-
 void configureDMACH2(const void *src, const void *dst, uint32_t transferSize)
 {
     //
@@ -259,14 +242,12 @@ void configureDMACH2(const void *src, const void *dst, uint32_t transferSize)
                    DMA_CFG_CONTINUOUS_DISABLE | DMA_CFG_SIZE_32BIT);
     DMA_enableTrigger(DMA_CH2_BASE);
 }
-
 void configureDMAInterruptCH1(void)
 {
     //
     // Register the interrupt handler.
     //
     Interrupt_register(INT_DMA_CH1, AESDMADataInISR);
-
     //
     // Enable the DMA interrupt.
     //
@@ -278,14 +259,12 @@ void configureDMAInterruptCH1(void)
     //
     DMA_setInterruptMode(DMA_CH1_BASE,DMA_INT_AT_END);
 }
-
 void configureDMAInterruptCH2(void)
 {
     //
     // Register the interrupt handler.
     //
     Interrupt_register(INT_DMA_CH2, AESDMADataOutISR);
-
     //
     // Enable the DMA interrupt.
     //
@@ -297,14 +276,12 @@ void configureDMAInterruptCH2(void)
     //
     DMA_setInterruptMode(DMA_CH2_BASE,DMA_INT_AT_END);
 }
-
 void initilizeAES(void)
 {
     Interrupt_disableGlobal();
     AES_disableGlobalInterrupt(AESA_SS_BASE);
     AES_performSoftReset(AESA_BASE);
 }
-
 void startAES(void)
 {
     //
@@ -315,10 +292,8 @@ void startAES(void)
     //start the DMA Channel and wait for the trigger event.
     //
     DMA_startChannel(DMA_CH2_BASE);
-
     AES_enableDMARequest(AESA_BASE, AES_DMA_EN_DATA_IN | AES_DMA_EN_DATA_OUT);
 }
-
 //
 // Main
 //
@@ -330,44 +305,36 @@ void main(void)
     uint32_t vectorCnt;
     uint32_t *iv;
     AES_KeySize keySize;
-
     //
        // Initialize device clock and peripherals
        //
        Device_init();
-
        //
        // Initialize GPIO and configure the GPIO pin as a push-pull output
        //
        Device_initGPIO();
-
        //
        // Disable global interrupts.
        //
        DINT;
-
        //
        // Initialize PIE and clear PIE registers. Disables CPU interrupts.
        //
        Interrupt_initModule();
-
        //
        // Initialize the PIE vector table with pointers to the shell Interrupt
        // Service Routines (ISR).
        //
        Interrupt_initVectorTable();
-
        //
        // Initialize local variables.
        //
        errCountLocal = 0;
-
        //
        // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
        //
        EINT;
        ERTM;
-
     //
     // Loop through all the given vectors.
     //
@@ -384,7 +351,6 @@ void main(void)
         expPlainTextArray     = testVectorCBCArray[vectorCnt].plainTextArray;
         cipherTextArray = testVectorCBCArray[vectorCnt].cipherTextArray;
         iv                 = testVectorCBCArray[vectorCnt].iv;
-
         //
         // Clear the array containing the plain text.
         //
@@ -392,13 +358,11 @@ void main(void)
         {
             plainTextArray[cnt] = 0;
         }
-
         //
         // Perform decryption without DMA.
         //
         performCBCDecryption(keySize, cipherTextArray, plainTextArray, keyArray,
                              iv, dataLength, false);
-
         //
         // Check the results
         //
@@ -409,7 +373,6 @@ void main(void)
                 errCountLocal++;
             }
         }
-
         //
         // Update the global error counter.
         //
@@ -417,12 +380,10 @@ void main(void)
         {
             errCountGlobal++;
         }
-
         //
         // Clear the local error counter.
         //
         errCountLocal = 0;
-
         //
         // Clear the array containing the plain text.
         //
@@ -430,13 +391,11 @@ void main(void)
         {
             plainTextArray[cnt] = 0;
         }
-
         //
         // Perform decryption with DMA.
         //
         performCBCDecryption(keySize, cipherTextArray, plainTextArray, keyArray,
                              iv, dataLength, true);
-
         //
         // Check the results.
         //
@@ -447,7 +406,6 @@ void main(void)
                 errCountLocal++;
             }
         }
-
         //
         // Update the global error counter.
         //
@@ -455,18 +413,15 @@ void main(void)
         {
             errCountGlobal++;
         }
-
         //
         // Clear the local error counter.
         //
         errCountLocal = 0;
     }
-
     //
     // Clean up AES Data registers
     //
     AES_performSoftReset(AESA_BASE);
-
     //
     // Update test status variable
     //
@@ -478,7 +433,6 @@ void main(void)
     {
         testStatusGlobal = TEST_FAIL;
     }
-
     //
     // Infinite Loop to keep the core running
     //
@@ -486,7 +440,6 @@ void main(void)
     {
     }
 }
-
 //
 // Perform an AES-CBC decryption operation.
 //
@@ -498,7 +451,6 @@ void performCBCDecryption(AES_KeySize keySize, uint32_t *srcArray,
     // Perform a soft reset.
     //
     AES_performSoftReset(AESA_BASE);
-
     //
     // Clear the interrupt flags.
     //
@@ -510,12 +462,10 @@ void performCBCDecryption(AES_KeySize keySize, uint32_t *srcArray,
     dataInDMADoneIntFlag = false;
     contextOutDMADoneIntFlag = false;
     dataOutDMADoneIntFlag = false;
-
     //
     // Perform a soft reset.
     //
     initilizeAES();
-
     //
     // Configure the AES module.
     //
@@ -525,17 +475,14 @@ void performCBCDecryption(AES_KeySize keySize, uint32_t *srcArray,
     aesConfig.keySize = keySize;
     aesConfig.opMode = AES_OPMODE_CBC;
     AES_configureModule(AESA_BASE, &aesConfig);
-
     //
     // Write the initialization value
     //
     AES_setInitializationVector(AESA_BASE, iv);
-
     //
     // Write the key.
     //
     AES_setKey1(AESA_BASE, keyArray, keySize);
-
     //
     // Depending on the argument, perform the decryption
     // with or without uDMA.
@@ -543,19 +490,16 @@ void performCBCDecryption(AES_KeySize keySize, uint32_t *srcArray,
     if(useDMA)
     {
        DMA_initController();
-
        initializeDMACH1();
        configureDMACH1((const void*)srcArray,
                        (const void*)(AESA_BASE + AES_O_DATA_IN_OUT_0),
                        (roundUpDataLength(dataLength) / 16U));
        configureDMAInterruptCH1();
-
        initializeDMACH2();
        configureDMACH2((const void*)(AESA_BASE + AES_O_DATA_IN_OUT_0),
                        (const void*)dstArray,
                        (roundUpDataLength(dataLength) / 16U));
        configureDMAInterruptCH2();
-
        /*trigger dma*/
        startAES();
         //
@@ -564,7 +508,6 @@ void performCBCDecryption(AES_KeySize keySize, uint32_t *srcArray,
         while(!dataInDMADoneIntFlag)
         {
         }
-
         //
         // Wait for the data out DMA done interrupt.
         //
@@ -580,14 +523,12 @@ void performCBCDecryption(AES_KeySize keySize, uint32_t *srcArray,
         AES_enableInterrupt(AESA_BASE, (AES_INT_CONTEXT_IN |
                             AES_INT_CONTEXT_OUT | AES_INT_DATA_IN    |
                             AES_INT_DATA_OUT));
-
        //
        // Perform the decryption.
        //
        AES_processData(AESA_BASE, srcArray, dstArray, dataLength);
    }
 }
-
 //
 // roundUpDataLength - Round up length to nearest 16 byte boundary.  This is
 // needed because all four data registers must be written at once.  This is
@@ -596,7 +537,6 @@ void performCBCDecryption(AES_KeySize keySize, uint32_t *srcArray,
 uint32_t roundUpDataLength(uint32_t dataLength)
 {
     uint32_t remainder;
-
     remainder = dataLength % 16U;
     if(remainder == 0U)
     {

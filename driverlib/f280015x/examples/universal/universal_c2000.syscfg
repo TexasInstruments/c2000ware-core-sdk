@@ -1,8 +1,8 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --device "F280015x" --package "80PN" --part "F280015x_80PN" --context "system" --product "C2000WARE@5.02.00.00"
- * @versions {"tool":"1.0.0+dev"}
+ * @cliArgs --device "F280015x" --part "F280015x_80PN" --package "80PN" --context "system" 
+ * @v2CliArgs --device "TMS320F2800157" --package "80PN" --context "system"
  */
 /**
  * Import the modules used in this configuration.
@@ -17,7 +17,6 @@ const CMD2           = CMD.addInstance();
  */
 CMD1.$name                    = "generic_ram_lnk";
 CMD2.$name                    = "generic_flash_lnk";
-
 CMD1.sectionMemory_text       = ["RAMLS0","RAMLS1"];
 CMD1.sectionMemory_ramfunc    = ["RAMM0"];
 CMD1.sectionMemory_cinit      = ["RAMM0"];
@@ -28,7 +27,6 @@ CMD1.sectionMemory_const      = ["RAMLS0"];
 CMD1.sectionMemory_data       = ["RAMLS0"];
 CMD1.sectionMemory_switch     = ["RAMM0"];
 CMD1.sectionMemory_sysmem     = ["RAMLS0"];
-
 CMD2.sectionAlignEnable_ramfunc    = true;
 CMD2.sectionAlignEnable_text       = true;
 CMD2.sectionAlignEnable_binit      = true;

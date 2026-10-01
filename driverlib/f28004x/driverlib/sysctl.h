@@ -3050,6 +3050,8 @@ SysCtl_selectXTALSingleEnded(void);
 extern void
 SysCtl_selectOscSource(uint32_t oscSource);
 
+
+
 //*****************************************************************************
 //
 //! Calculates the low-speed peripheral clock frequency (LSPCLK).

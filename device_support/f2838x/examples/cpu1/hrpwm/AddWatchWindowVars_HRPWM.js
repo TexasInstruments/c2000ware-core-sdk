@@ -9,6 +9,3 @@ expAdd ("EPwm2Regs.DBRED");
 expAdd ("EPwm2Regs.DBREDHR.bit.DBREDHR");
 expAdd ("EPwm2Regs.DBFED");
 expAdd ("EPwm2Regs.DBFEDHR.bit.DBFEDHR");
-
-
-

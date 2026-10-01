@@ -96,10 +96,10 @@ Setting up modelzoo can be found [here](https://github.com/TexasInstruments/tiny
 #### 5.1.1 Step-by-step guide to use TI Modelzoo for model creation
 
 ```bash
-./run_tinyml_modelzoo.sh examples/reg_washing_machine/config.yaml
+./run_tinyml_modelzoo.sh examples/washing_machine_load_weighing/config.yaml
 ```
 - **run_tinyml_modelzoo.sh** : represents the script invoking the modelzoo, takes one argument which is the path of yaml
-- **examples/reg_washing_machine/config.yaml** : path of configuration file to execute
+- **examples/washing_machine_load_weighing/config.yaml** : path of configuration file to execute
 
 After executing the above command, you can see the modelzoo starts working according to the yaml file passed to it. In the logs you can observe the following
 - Downloading the dataset
@@ -114,7 +114,7 @@ At the end of the logs you can find the path of compiled model.
 
 From executing the above command you can find the results stored in tinyml-modelmaker. The results for a particular instance have path in the following manner:
 
-- tinyml-modelmaker/data/projects/reg_washing_machine/run/**{date-time}**/REGR_13k
+- tinyml-modelmaker/data/projects/washing_machine_load_weighing/run/**{date-time}**/REGR_13k
 
 The directory marked bold represents the time at which the script was invoked. The target device (such as c28x) has four useful file outputs by ModelMaker.
 
@@ -155,19 +155,19 @@ The directory marked bold represents the time at which the script was invoked. T
 #### 5.2.2 Compiled model files
 
 - mod.a: The compiled model is present in this file. 
-  - Path Modelmaker: *tinyml-modelmaker/data/projects/reg_washing_machine/run/{date-time}/REGR_13k/compilation/artifacts/mod.a*
+  - Path Modelmaker: *tinyml-modelmaker/data/projects/washing_machine_load_weighing/run/{date-time}/REGR_13k/compilation/artifacts/mod.a*
   - Path CCS Project: *washing_machine_load_weighing/artifacts/mod.a*
 - tvmgen_default.h: Header file to access the model inference APIs from mod.a 
-  - Path Modelmaker: *tinyml-modelmaker/data/projects/reg_washing_machine/run/{date-time}/REGR_13k/compilation/artifacts/tvmgen_default.h*
+  - Path Modelmaker: *tinyml-modelmaker/data/projects/washing_machine_load_weighing/run/{date-time}/REGR_13k/compilation/artifacts/tvmgen_default.h*
   - Path CCS Project: *washing_machine_load_weighing/artifacts/tvmgen_default.h*
 
 #### 5.2.3 Feature Extraction configuration & Test data for device verification
 
 - test_vector.c: Test cases to check if the model works on device currently
-  - Path Modelmaker: *tinyml-modelmaker/data/projects/reg_washing_machine/run/{date-time}/REGR_13k/training/quantized/golden_vectors/test_vector.c*
+  - Path Modelmaker: *tinyml-modelmaker/data/projects/washing_machine_load_weighing/run/{date-time}/REGR_13k/training/quantized/golden_vectors/test_vector.c*
   - Path CCS Project: *washing_machine_load_weighing/test_vector.c*
 - user_input_config.h: Configuration of feature extraction library in SDK. 
-  - Path Modelmaker: *tinyml-modelmaker/data/projects/reg_washing_machine/run/{date-time}/REGR_13k/training/quantized/golden_vectors/user_input_config.h*
+  - Path Modelmaker: *tinyml-modelmaker/data/projects/washing_machine_load_weighing/run/{date-time}/REGR_13k/training/quantized/golden_vectors/user_input_config.h*
   - Path CCS Project: *washing_machine_load_weighing/user_input_config.h*
 
 #### 5.2.4 Building the application

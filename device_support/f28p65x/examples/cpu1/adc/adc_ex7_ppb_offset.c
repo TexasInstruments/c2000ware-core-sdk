@@ -23,7 +23,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -56,19 +56,16 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Function Prototypes
 //
 void ConfigureADC(void);
 void SetupADCSoftware(void);
 void SetupPPBOffset(int16 aOffset, int16 bOffset);
-
 //
 // Globals
 //
@@ -76,7 +73,6 @@ Uint16 AdcaResult;
 Uint16 AdcaResult_offsetAdjusted;
 Uint16 AdcbResult;
 Uint16 AdcbResult_offsetAdjusted;
-
 void main(void)
 {
 //
@@ -85,20 +81,17 @@ void main(void)
 // This example function is found in the f28p65x_sysctrl.c file.
 //
     InitSysCtrl();
-
 //
 // Step 2. Initialize GPIO:
 // This example function is found in the f28p65x_gpio.c file and
 // illustrates how to set the GPIO to it's default state.
 //
     InitGpio();
-
 //
 // Step 3. Clear all interrupts and initialize PIE vector table:
 // Disable CPU interrupts
 //
     DINT;
-
 //
 // Initialize the PIE control registers to their default state.
 // The default state is all PIE interrupts disabled and flags
@@ -106,13 +99,11 @@ void main(void)
 // This function is found in the f28p65x_piectrl.c file.
 //
     InitPieCtrl();
-
 //
 // Disable CPU interrupts and clear all CPU interrupt flags:
 //
     IER = 0x0000;
     IFR = 0x0000;
-
 //
 // Initialize the PIE vector table with pointers to the shell Interrupt
 // Service Routines (ISR).
@@ -122,30 +113,25 @@ void main(void)
 // This function is found in f28p65x_pievect.c.
 //
     InitPieVectTable();
-
 //
 // Enable global Interrupts and higher priority real-time debug events:
 //
     EINT;  // Enable Global interrupt INTM
     ERTM;  // Enable Global realtime interrupt DBGM
-
 //
 // Configure the ADCs and power them up
 //
     ConfigureADC();
-
 //
 // Setup the ADCs for software conversions
 //
     SetupADCSoftware();
-
 //
 // Setup PPB offset correction.
 // conversion on channel A will subtract 100.
 // conversion on channel B will add 100.
 //
     SetupPPBOffset(100, -100);
-
 //
 // Take conversions indefinitely in loop
 //
@@ -156,24 +142,20 @@ void main(void)
         // Start conversions immediately via software, ADCA
         //
         AdcaRegs.ADCSOCFRC1.all = 0x0003; //SOC0 and SOC1
-
         //
         // Start conversions immediately via software, ADCB
         //
         AdcbRegs.ADCSOCFRC1.all = 0x0003; //SOC0 and SOC1
-
         //
         // Wait for ADCA to complete, then acknowledge flag
         //
         while(AdcaRegs.ADCINTFLG.bit.ADCINT1 == 0);
         AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
-
         //
         // Wait for ADCB to complete, then acknowledge flag
         //
         while(AdcbRegs.ADCINTFLG.bit.ADCINT1 == 0);
         AdcbRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
-
         //
         // Store results
         //
@@ -181,15 +163,12 @@ void main(void)
         AdcaResult_offsetAdjusted = AdcaResultRegs.ADCRESULT1;
         AdcbResult = AdcbResultRegs.ADCRESULT0;
         AdcbResult_offsetAdjusted = AdcbResultRegs.ADCRESULT1;
-
         //
         // Software breakpoint, hit run again to get updated conversions
         //
         asm("   ESTOP0");
-
     } while(1);
 }
-
 //
 // ConfigureADC - Write ADC configurations and power up the ADC for both
 //                ADC A and ADC B
@@ -197,7 +176,6 @@ void main(void)
 void ConfigureADC(void)
 {
     EALLOW;
-
     //
     // Write configurations
     //
@@ -205,34 +183,28 @@ void ConfigureADC(void)
     AdcbRegs.ADCCTL2.bit.PRESCALE = 6; //set ADCCLK divider to /4
     AdcSetMode(ADC_ADCA, ADC_RESOLUTION_12BIT, ADC_SIGNALMODE_SINGLE);
     AdcSetMode(ADC_ADCB, ADC_RESOLUTION_12BIT, ADC_SIGNALMODE_SINGLE);
-
     //
     // Set pulse positions to late
     //
     AdcaRegs.ADCCTL1.bit.INTPULSEPOS = 1;
     AdcbRegs.ADCCTL1.bit.INTPULSEPOS = 1;
-
     //
     // Power up the ADCs
     //
     AdcaRegs.ADCCTL1.bit.ADCPWDNZ = 1;
     AdcbRegs.ADCCTL1.bit.ADCPWDNZ = 1;
-
     //
     // Delay for 1ms to allow ADC time to power up
     //
     DELAY_US(1000);
-
     EDIS;
 }
-
 //
 // SetupADCSoftware - Configure ADC SOC and acquisition window
 //
 void SetupADCSoftware(void)
 {
     Uint16 acqps;
-
     //
     // Determine minimum acquisition window (in SYSCLKS) based on resolution
     //
@@ -244,7 +216,6 @@ void SetupADCSoftware(void)
     {
         acqps = 63; //320ns
     }
-
     //
     // Select the channels to convert and end of conversion flag
     // ADCA
@@ -269,7 +240,6 @@ void SetupADCSoftware(void)
     AdcbRegs.ADCINTFLGCLR.bit.ADCINT1 = 1; //make sure INT1 flag is cleared
     EDIS;
 }
-
 //
 // SetupPPBOffset - Configure PPB for SOC
 //
@@ -279,13 +249,11 @@ void SetupPPBOffset(int16 aOffset, int16 bOffset)
     AdcaRegs.ADCPPB1CONFIG.bit.CONFIG = 1; //PPB1 is associated with SOC1
     AdcaRegs.ADCPPB1OFFCAL.all = aOffset;  //PPB1 will subtract OFFCAL value
                                            //to associated SOC
-
     AdcbRegs.ADCPPB1CONFIG.bit.CONFIG = 1; //PPB1 is associated with SOC1
     AdcbRegs.ADCPPB1OFFCAL.all = bOffset;  //PPB1 will subtract OFFCAL value
                                            //to associated SOC
     EDIS;
 }
-
 //
 // End of file
 //

@@ -1,0 +1,38 @@
+let CMPSSLITE_DACVAL = [
+	{ name: "CMPSSLITE_DACVAL_SYSCLK", displayName: "DAC value updated from SYSCLK" },
+	{ name: "CMPSSLITE_DACVAL_PWMSYNC", displayName: "DAC value updated from PWMSYNC" },
+]
+let CMPSSLITE = [
+	{ name: "CMPSSLITE_isBaseValid", displayName: "SBASEVALID" },
+	{ name: "CMPSSLITE_enableModule", displayName: "NABLEMODULE" },
+	{ name: "CMPSSLITE_disableModule", displayName: "ISABLEMODULE" },
+	{ name: "CMPSSLITE_configHighComparator", displayName: "ONFIGHIGHCOMPARATOR" },
+	{ name: "CMPSSLITE_configLowComparator", displayName: "ONFIGLOWCOMPARATOR" },
+	{ name: "CMPSSLITE_configOutputsHigh", displayName: "ONFIGOUTPUTSHIGH" },
+	{ name: "CMPSSLITE_configOutputsLow", displayName: "ONFIGOUTPUTSLOW" },
+	{ name: "CMPSSLITE_getStatus", displayName: "ETSTATUS" },
+	{ name: "CMPSSLITE_setDACValueHigh", displayName: "ETDACVALUEHIGH" },
+	{ name: "CMPSSLITE_setDACValueLow", displayName: "ETDACVALUELOW" },
+	{ name: "CMPSSLITE_initFilterHigh", displayName: "NITFILTERHIGH" },
+	{ name: "CMPSSLITE_initFilterLow", displayName: "NITFILTERLOW" },
+	{ name: "CMPSSLITE_configureFilterInputHigh", displayName: "ONFIGUREFILTERINPUTHIGH" },
+	{ name: "CMPSSLITE_configureFilterInputLow", displayName: "ONFIGUREFILTERINPUTLOW" },
+	{ name: "CMPSSLITE_getDACValueHigh", displayName: "ETDACVALUEHIGH" },
+	{ name: "CMPSSLITE_getDACValueLow", displayName: "ETDACVALUELOW" },
+	{ name: "CMPSSLITE_clearFilterLatchHigh", displayName: "LEARFILTERLATCHHIGH" },
+	{ name: "CMPSSLITE_clearFilterLatchLow", displayName: "LEARFILTERLATCHLOW" },
+	{ name: "CMPSSLITE_configureSyncSourceHigh", displayName: "ONFIGURESYNCSOURCEHIGH" },
+	{ name: "CMPSSLITE_configureSyncSourceLow", displayName: "ONFIGURESYNCSOURCELOW" },
+	{ name: "CMPSSLITE_setHysteresis", displayName: "ETHYSTERESIS" },
+	{ name: "CMPSSLITE_enableLatchResetOnPWMSYNCHigh", displayName: "NABLELATCHRESETONPWMSYNCHIGH" },
+	{ name: "CMPSSLITE_disableLatchResetOnPWMSYNCHigh", displayName: "ISABLELATCHRESETONPWMSYNCHIGH" },
+	{ name: "CMPSSLITE_enableLatchResetOnPWMSYNCLow", displayName: "NABLELATCHRESETONPWMSYNCLOW" },
+	{ name: "CMPSSLITE_disableLatchResetOnPWMSYNCLow", displayName: "ISABLELATCHRESETONPWMSYNCLOW" },
+	{ name: "CMPSSLITE_configFilterHigh", displayName: "ONFIGFILTERHIGH" },
+	{ name: "CMPSSLITE_configFilterLow", displayName: "ONFIGFILTERLOW" },
+	{ name: "CMPSSLITE_configLatchOnPWMSYNC", displayName: "ONFIGLATCHONPWMSYNC" },
+]
+module.exports = {
+	CMPSSLITE_DACVAL: CMPSSLITE_DACVAL,
+	CMPSSLITE: CMPSSLITE,
+}

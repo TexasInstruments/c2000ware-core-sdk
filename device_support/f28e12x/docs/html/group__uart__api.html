@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">F28E12x Driverib and Example User Guide
-   &#160;<span id="projectnumber">26.01.00.00</span>
+   &#160;<span id="projectnumber">26.02.00.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -197,6 +197,10 @@ Functions</h2></td></tr>
 <tr class="separator:ga25f18a72192b6acb5f748333cab2f781"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga328c1865b935f22dce0e8932a91544ab"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart__api.html#ga328c1865b935f22dce0e8932a91544ab">UART_writeCharNonBlocking</a> (uint32_t base, uint8_t data)</td></tr>
 <tr class="separator:ga328c1865b935f22dce0e8932a91544ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3c4edb3443073600e339109cf80041ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart__api.html#ga3c4edb3443073600e339109cf80041ca">UART_writeCharArray</a> (uint32_t base, const uint8_t *const array, uint16_t length)</td></tr>
+<tr class="separator:ga3c4edb3443073600e339109cf80041ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7475a467dd8daa6244fe30aea4af6b6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart__api.html#ga7475a467dd8daa6244fe30aea4af6b6c">UART_readCharArray</a> (uint32_t base, int32_t *const array, uint16_t length)</td></tr>
+<tr class="separator:ga7475a467dd8daa6244fe30aea4af6b6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -3359,6 +3363,96 @@ Macros</h2></td></tr>
 </dl>
 <p>This function writes the character <em>data</em> to the transmit FIFO for the specified port. This function does not block, so if there is no space available, then a <b>false</b> is returned and the application must retry the function later.</p>
 <dl class="section return"><dt>Returns</dt><dd>Returns <b>true</b> if the character was successfully placed in the transmit FIFO or <b>false</b> if there was no space available in the transmit FIFO. </dd></dl>
+
+</div>
+</div>
+<a id="ga3c4edb3443073600e339109cf80041ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3c4edb3443073600e339109cf80041ca">&#9670;&nbsp;</a></span>UART_writeCharArray()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UART_writeCharArray </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>base</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *const&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sends an array of characters to the specified port (BLOCKING).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">base</td><td>is the base address of the UART port. </td></tr>
+    <tr><td class="paramname">array</td><td>is a pointer to the buffer of data to be transmitted. </td></tr>
+    <tr><td class="paramname">length</td><td>is the number of characters in the buffer.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Sends the number of characters specified by <em>length</em>, starting at the address <em>array</em>, out of the transmit buffer for the specified port. If there is no space available in the transmit buffer, or the transmit FIFO if it is enabled, this function waits until there is space available and <em>length</em> number of characters are transmitted before returning.</p>
+<dl class="section return"><dt>Returns</dt><dd>None. </dd></dl>
+
+</div>
+</div>
+<a id="ga7475a467dd8daa6244fe30aea4af6b6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7475a467dd8daa6244fe30aea4af6b6c">&#9670;&nbsp;</a></span>UART_readCharArray()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UART_readCharArray </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>base</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t *const&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Receives an array of characters from the specified port (BLOCKING).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">base</td><td>is the base address of the UART port. </td></tr>
+    <tr><td class="paramname">array</td><td>is a pointer to the buffer to store the received data. </td></tr>
+    <tr><td class="paramname">length</td><td>is the number of characters to read.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Receives an array of characters from the receive buffer for the specified port (including error bits) and stores them as an array of characters starting at address <em>array</em>. This function waits until the <em>length</em> number of characters are received before returning.</p>
+<dl class="section return"><dt>Returns</dt><dd>None. </dd></dl>
 
 </div>
 </div>

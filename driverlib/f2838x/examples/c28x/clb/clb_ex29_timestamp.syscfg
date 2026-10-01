@@ -1,4 +1,9 @@
-
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F2838x" --part "F2838x_337bga" --package "337bga" --context "CPU1" 
+ * @v2CliArgs --device "TMS320F28388D" --package "337bga" --context "CPU1"
+ */
 /**
  * Import the modules used in this configuration.
  */
@@ -17,7 +22,6 @@ const inputxbar  = scripting.addModule("/driverlib/inputxbar.js", {}, false);
 const inputxbar1 = inputxbar.addInstance();
 const TILE       = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/TILE", {}, false);
 const TILE1      = TILE.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -35,38 +39,31 @@ clb1.inputTypeCLB_IN1    = "GLOBAL";
 clb1.globalConfigCLB_IN1 = "CLB_GLOBAL_IN_MUX_CLB_AUXSIG1";
 clb1.inputsUsed          = ["CLB_IN0","CLB_IN1","CLB_IN7"];
 clb1.filterConfigCLB_IN7 = "CLB_FILTER_RISING_EDGE";
-
 clbxbar1.$name      = "myCLBXBAR0";
 clbxbar1.muxesUsed  = ["XBAR_MUX01"];
 clbxbar1.mux1Config = "XBAR_CLB_MUX01_INPUTXBAR1";
-
 clbxbar2.$name      = "myCLBXBAR1";
 clbxbar2.auxInput   = "XBAR_AUXSIG1";
 clbxbar2.muxesUsed  = ["XBAR_MUX03"];
 clbxbar2.mux3Config = "XBAR_CLB_MUX03_INPUTXBAR2";
-
 epwm1.$name                  = "myEPWM1";
 epwm1.useCase                = "CUSTOM";
 epwm1.useInterfacePins       = ["EPWM#A"];
 epwm1.epwm.$assign           = "EPWM1";
 epwm1.epwm.epwmaPin.$assign = "GPIO0";
-
 gpio1.$name           = "myGPIO11";
 gpio1.direction       = "GPIO_DIR_MODE_OUT";
 gpio1.padConfig       = "PULLUP";
 gpio1.qualMode        = "GPIO_QUAL_ASYNC";
 gpio1.gpioPin.$assign = "GPIO11";
-
 gpio2.$name           = "myGPIO12";
 gpio2.padConfig       = "PULLUP";
 gpio2.qualMode        = "GPIO_QUAL_ASYNC";
 gpio2.gpioPin.$assign = "GPIO12";
-
 gpio3.$name           = "myGPIO13";
 gpio3.qualMode        = "GPIO_QUAL_ASYNC";
 gpio3.padConfig       = "PULLUP";
 gpio3.gpioPin.$assign = "GPIO13";
-
 inputxbar1.$name          = "myINPUTXBAR1";
 inputxbar1.inputxbar1Gpio = "GPIO12";
 inputxbar1.inputxbar2Gpio = "GPIO13";
@@ -75,7 +72,6 @@ inputxbar1.inputxbar1Lock = true;
 inputxbar1.inputxbar2Lock = true;
 inputxbar1.inputxbar3Lock = true;
 inputxbar1.inputsUsed     = ["inputxbar1Gpio","inputxbar2Gpio"];
-
 TILE1.$name                  = "TILE1";
 TILE1.BOUNDARY.$name         = "BOUNDARY0";
 TILE1.LUT_0.$name            = "LUT_0";

@@ -1,4 +1,9 @@
-
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P551x" --part "F28P551x_100PZ" --package "100PZ" --context "system"
+ * @v2CliArgs --device "TMS320F28P551SG" --package "100PZ" --variant "TMS320F28P551SG5" --context "system"
+ */
 /**
  * Import the modules used in this configuration.
  */
@@ -8,11 +13,9 @@ const inputxbar_input  = scripting.addModule("/driverlib/inputxbar_input.js", {}
 const inputxbar_input1 = inputxbar_input.addInstance();
 const outputxbar       = scripting.addModule("/driverlib/outputxbar.js", {}, false);
 const outputxbar1      = outputxbar.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
-
 gpio1.padConfig                 = "PULLUP";
 gpio1.$name                     = "myGPIO_INPUT";
 gpio1.useInterrupt              = true;
@@ -20,7 +23,6 @@ gpio1.gpioPin.$assign           = "GPIO4";
 gpio1.xint.registerInterrupts   = true;
 gpio1.xint.enableInt            = true;
 gpio1.xint.xInt.enableInterrupt = true;
-
 inputxbar_input1.$name         = "myINPUTXBARINPUT1";
 gpio1.xint.inputxbar           = inputxbar_input1;
 inputxbar_input1.inputxbarLock = true;

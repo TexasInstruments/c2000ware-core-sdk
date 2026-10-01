@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="eqep__ex2__pos__speed_8md" kind="file" language="Markdown">
+    <compoundname>eqep_ex2_pos_speed.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>EQEP<sp/>Motor<sp/>Speed<sp/>and<sp/>Direction<sp/>Measurement<sp/>{#EXAMPLES_DRIVERS_EQEP_EX2_POS_SPEED}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>provides<sp/>position<sp/>and<sp/>speed<sp/>measurement<sp/>using<sp/>the<sp/>capture<sp/>unit<sp/>and<sp/>speed<sp/>measurement<sp/>using<sp/>unit<sp/>time<sp/>out<sp/>of<sp/>the<sp/>eQEP<sp/>module.<sp/>EPWM1A<sp/>(MCPWM1A<sp/>in<sp/>case<sp/>of<sp/>F28E12x<sp/>and<sp/>MCPC029)<sp/>and<sp/>a<sp/>GPIO<sp/>are<sp/>configured<sp/>to<sp/>generate<sp/>simulated<sp/>eQEP<sp/>signals.<sp/>The<sp/>MCPWM<sp/>module<sp/>will<sp/>interrupt<sp/>once<sp/>every<sp/>period<sp/>and<sp/>call<sp/>the<sp/>position/speed<sp/>calculation<sp/>function.<sp/>This<sp/>example<sp/>uses<sp/>the<sp/>IQMath<sp/>library<sp/>to<sp/>simplify<sp/>high-precision<sp/>calculations.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">In<sp/>addition<sp/>to<sp/>the<sp/>main<sp/>example<sp/>file,<sp/>the<sp/>following<sp/>files<sp/>must<sp/>be<sp/>included<sp/>in<sp/>this<sp/>project:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>eqep_ex2_calculation.c<sp/>-<sp/>contains<sp/>position/speed<sp/>calculation<sp/>function</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>eqep_ex2_calculation.h<sp/>-<sp/>includes<sp/>initialization<sp/>values<sp/>for</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>position/speed<sp/>structure</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>example<sp/>does<sp/>the<sp/>below</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Maximum<sp/>speed<sp/>is<sp/>configured<sp/>to<sp/>6000rpm<sp/>(baseRPM)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Minimum<sp/>speed<sp/>is<sp/>assumed<sp/>at<sp/>10rpm<sp/>for<sp/>capture<sp/>pre-scalar<sp/>selection</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Pole<sp/>pair<sp/>is<sp/>configured<sp/>to<sp/>2<sp/>(polePairs)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Encoder<sp/>resolution<sp/>is<sp/>configured<sp/>to<sp/>4000<sp/>counts/revolution<sp/>(mechScaler)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Which<sp/>means:<sp/>4000<sp/>/<sp/>4<sp/>=<sp/>1000<sp/>line/revolution<sp/>quadrature<sp/>encoder<sp/>(simulated<sp/>by<sp/>MCPWM1)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>MCPWM1<sp/>(simulating<sp/>QEP<sp/>encoder<sp/>signals)<sp/>is<sp/>configured<sp/>for<sp/>a<sp/>5kHz<sp/>frequency<sp/>or<sp/>300<sp/>rpm<sp/>(=<sp/>4<sp/>*<sp/>5000<sp/>cnts/sec<sp/>*<sp/>60<sp/>sec/min)<sp/>/<sp/>(4000<sp/>cnts/rev)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">SPEEDRPM_FR:<sp/>High<sp/>Speed<sp/>Measurement<sp/>is<sp/>obtained<sp/>by<sp/>counting<sp/>the<sp/>QEP<sp/>input<sp/>pulses<sp/>for<sp/>10ms<sp/>(unit<sp/>timer<sp/>set<sp/>to<sp/>100Hz).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">SPEEDRPM_FR<sp/>=<sp/>(Position<sp/>Delta<sp/>/<sp/>10ms)<sp/>*<sp/>60<sp/>rpm</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">SPEEDRPM_PR:<sp/>Low<sp/>Speed<sp/>Measurement<sp/>is<sp/>obtained<sp/>by<sp/>measuring<sp/>time<sp/>period<sp/>of<sp/>QEP<sp/>edges.<sp/>Time<sp/>measurement<sp/>is<sp/>averaged<sp/>over<sp/>64<sp/>edges<sp/>for<sp/>better<sp/>results<sp/>and<sp/>the<sp/>capture<sp/>unit<sp/>performs<sp/>the<sp/>time<sp/>measurement<sp/>using<sp/>pre-scaled<sp/>SYSCLK.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Note<sp/>that<sp/>the<sp/>pre-scaler<sp/>for<sp/>capture<sp/>unit<sp/>clock<sp/>is<sp/>selected<sp/>such<sp/>that<sp/>the<sp/>capture<sp/>timer<sp/>does<sp/>not<sp/>overflow<sp/>at<sp/>the<sp/>required<sp/>minimum<sp/>frequency.<sp/>This<sp/>example<sp/>runs<sp/>indefinitely<sp/>until<sp/>the<sp/>user<sp/>stops<sp/>it.<sp/>For<sp/>more<sp/>information<sp/>about<sp/>the<sp/>position/speed<sp/>calculation<sp/>see<sp/>the<sp/>comments<sp/>at<sp/>the<sp/>beginning<sp/>of<sp/>eqep_ex2_calculation.c<sp/>and<sp/>the<sp/>XLS<sp/>file<sp/>provided<sp/>with<sp/>the<sp/>project,<sp/>eqep_ex2_calculation.xls.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Watch<sp/><sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>posSpeed.speedRPMFR<sp/>-<sp/>Speed<sp/>meas.<sp/>in<sp/>rpm<sp/>using<sp/>QEP<sp/>position<sp/>counter</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>posSpeed.speedRPMPR<sp/>-<sp/>Speed<sp/>meas.<sp/>in<sp/>rpm<sp/>using<sp/>capture<sp/>unit</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>posSpeed.thetaMech<sp/><sp/>-<sp/>Motor<sp/>mechanical<sp/>angle<sp/>(Q15)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>posSpeed.thetaElec<sp/><sp/>-<sp/>Motor<sp/>electrical<sp/>angle<sp/>(Q15)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>GPIO6/eQEP1A<sp/>to<sp/>GPIO0/MCPWM1A<sp/>(simulates<sp/>eQEP<sp/>Phase<sp/>A<sp/>signal)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>GPIO7/eQEP1B<sp/>to<sp/>GPIO1/MCPWM1B<sp/>(simulates<sp/>eQEP<sp/>Phase<sp/>B<sp/>signal)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>GPIO43/eQEP1I<sp/>to<sp/>GPIO2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(simulates<sp/>eQEP<sp/>Index<sp/>Signal)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28P55x<sp/>||<sp/>F28P551x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>GPIO20/eQEP1A<sp/>to<sp/>GPIO0/ePWM1A<sp/>(simulates<sp/>eQEP<sp/>Phase<sp/>A<sp/>signal)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>GPIO21/eQEP1B<sp/>to<sp/>GPIO1/ePWM1B<sp/>(simulates<sp/>eQEP<sp/>Phase<sp/>B<sp/>signal)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>GPIO23/eQEP1I<sp/>to<sp/>GPIO2<sp/>(simulates<sp/>eQEP<sp/>Index<sp/>Signal)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Using<sp/>the<sp/>watch<sp/>variables,<sp/>view<sp/>the<sp/>position<sp/>and<sp/>speed<sp/>calculated<sp/>for<sp/>the<sp/>motor.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_EQEP_PAGE</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/eqep_ex2_pos_speed.md"/>
+  </compounddef>
+</doxygen>

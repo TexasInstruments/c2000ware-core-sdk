@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_SPI_INTERNAL_LOOPBACK_INTERRUPTS" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_SPI_INTERNAL_LOOPBACK_INTERRUPTS</compoundname>
+    <title>SPI Internal Loopback with Interrupts</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_SPI_INTERNAL_LOOPBACK_INTERRUPTS_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_spi_internal_loopback_interrupts"/></para>
+<sect1 id="EXAMPLES_DRIVERS_SPI_INTERNAL_LOOPBACK_INTERRUPTS_1autotoc_md442">
+<title>Introduction</title>
+<para>This program uses the internal loopback test mode of the SPI module. Both the SPI FIFOs are used, and SPI RX interrupt is used. A stream of data is sent and then compared to the received stream.</para>
+<para>The sent data looks like this:</para>
+<para><programlisting><codeline><highlight class="normal">0000<sp/>0001</highlight></codeline>
+<codeline><highlight class="normal">0001<sp/>0002</highlight></codeline>
+<codeline><highlight class="normal">0002<sp/>0003</highlight></codeline>
+<codeline><highlight class="normal">....</highlight></codeline>
+<codeline><highlight class="normal">FFFE<sp/>FFFF</highlight></codeline>
+<codeline><highlight class="normal">FFFF<sp/>0000</highlight></codeline>
+<codeline><highlight class="normal">etc..</highlight></codeline>
+</programlisting></para>
+<para>This pattern is repeated forever.</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_SPI_INTERNAL_LOOPBACK_INTERRUPTS_1autotoc_md443">
+<title>Watch  Variables</title>
+<para><itemizedlist>
+<listitem><para>sData : Data to send</para>
+</listitem><listitem><para>rData : Received data</para>
+</listitem><listitem><para>rDataPoint : Used to keep track of the last position in the receive stream for error checking</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_SPI_INTERNAL_LOOPBACK_INTERRUPTS_1autotoc_md444">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>None</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_SPI_INTERNAL_LOOPBACK_INTERRUPTS_1autotoc_md445">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Using the watch variables, monitor data transmission</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_SPI_INTERNAL_LOOPBACK_INTERRUPTS_1autotoc_md446">
+<title>See Also</title>
+<para><ref refid="DRIVERS_SPI_PAGE" kindref="compound">SPI</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/spi_internal_loopback_interrupts.md"/>
+  </compounddef>
+</doxygen>

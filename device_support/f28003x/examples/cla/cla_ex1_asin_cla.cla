@@ -38,16 +38,13 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "cla_ex1_asin_shared.h"
-
 //
 // Defines
 //
-
 //
 // Globals
 //
@@ -56,7 +53,6 @@
 // the CLA and the C28x CPU must be defined in the C (or C++) code, and not the
 // CLA code.  
 //
-
 //
 // Function Definitions
 //
@@ -96,7 +92,6 @@ __interrupt void Cla1Task1 ( void )
     float A0,A1,A2; //Table coefficients
     float *entry;
     float result;
-
     //
     //Preprocessing
     //
@@ -108,10 +103,7 @@ __interrupt void Cla1Task1 ( void )
     A0 = *entry++;
     A1 = *entry++;
     A2 = *entry;
-
-
     result = A0 + fVal*(A1 + A2*fVal);
-
     //
     //Post processing
     //
@@ -119,45 +111,29 @@ __interrupt void Cla1Task1 ( void )
     {
         result = - result;
     }
-
     fResult = result;
 }
-
 interrupt void Cla1Task2 ( void )
 {
-
 }
-
 interrupt void Cla1Task3 ( void )
 {
-
 }
-
 interrupt void Cla1Task4 ( void )
 {
-
 }
-
 interrupt void Cla1Task5 ( void )
 {
-
 }
-
 interrupt void Cla1Task6 ( void )
 {
-
 }
-
 interrupt void Cla1Task7 ( void )
 {
-
 }
-
 interrupt void Cla1Task8 ( void )
 {
-
 }
-
 //
 // End of file
 //

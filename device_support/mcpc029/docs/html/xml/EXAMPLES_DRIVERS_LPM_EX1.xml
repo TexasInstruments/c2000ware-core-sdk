@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_LPM_EX1" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_LPM_EX1</compoundname>
+    <title>Device Idle Mode and Wakeup using GPIO</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_LPM_EX1_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_lpm_ex1"/></para>
+<sect1 id="EXAMPLES_DRIVERS_LPM_EX1_1autotoc_md418">
+<title>Introduction</title>
+<para>This example puts the device into IDLE mode and then wakes up the device from IDLE using XINT1 which triggers on a falling edge of GPIO0.</para>
+<para>The GPIO0 pin must be pulled from high to low by an external agent for wakeup. GPIO0 is configured as an XINT1 pin to trigger an XINT1 interrupt upon detection of a falling edge.</para>
+<para>Initially, pull GPIO0 high externally. To wake device from IDLE mode by triggering an XINT1 interrupt, pull GPIO0 low (falling edge). The wakeup process begins as soon as GPIO0 is held low for the time indicated in the device datasheet.</para>
+<para>GPIO1 is pulled high before entering the IDLE mode and is pulled low when in the external interrupt ISR.</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_LPM_EX1_1autotoc_md419">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>GPIO0 needs to be pulled low to wake up the device.</para>
+</listitem><listitem><para>On device wakeup, the GPIO1 will be low and LED1 will start blinking </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/lpm_ex1.md"/>
+  </compounddef>
+</doxygen>

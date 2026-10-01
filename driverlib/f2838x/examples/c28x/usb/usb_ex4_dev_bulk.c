@@ -33,7 +33,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -66,7 +66,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 //
 // Included Files
 //
@@ -81,14 +80,12 @@
 #include "device/usbdevice.h"
 #include "device/usbdbulk.h"
 #include "scistdio.h"
-
 void INT_myUSB0_ISR(void);
 //
 // Defines
 //
 #define COMMAND_PACKET_RECEIVED 0x00000001
 #define COMMAND_STATUS_UPDATE   0x00000002
-
 //******************************************************************************
 //
 // Debug-related definitions and declarations.
@@ -104,7 +101,6 @@ void INT_myUSB0_ISR(void);
                                                             //debug print calls
                                                             //in release builds
 #endif
-
 //******************************************************************************
 //
 // Globals
@@ -122,7 +118,6 @@ char *g_pcStatus;
 static volatile bool g_bUSBConfigured = false; // Global flag indicating that a
                                                // USB configuration has been
                                                // set.
-
 //******************************************************************************
 //
 // EchoNewDataToHost - Receive new data and echo it back to the host.
@@ -148,48 +143,40 @@ EchoNewDataToHost(tUSBDBulkDevice *psDevice, uint8_t *pi8Data,
     uint_fast32_t ui32ReadIndex;
     uint_fast32_t ui32WriteIndex;
     tUSBRingBufObject sTxRing;
-
     //
     // Get the current buffer information to allow us to write directly to
     // the transmit buffer (we already have enough information from the
     // parameters to access the receive buffer directly).
     //
     USBBufferInfoGet(&g_sTxBuffer, &sTxRing);
-
     //
     // How much space is there in the transmit buffer?
     //
     ui32Space = USBBufferSpaceAvailable(&g_sTxBuffer);
-
     //
     // How many characters can we process this time round?
     //
     ui32Loop = (ui32Space < ui32NumBytes) ? ui32Space : ui32NumBytes;
     ui32Count = ui32Loop;
-
     //
     // Update our receive counter.
     //
     g_ui32RxCount += ui32NumBytes;
-
     //
     // Dump a debug message.
     //
     DEBUG_PRINT("Received %d bytes\n", ui32NumBytes);
-
     //
     // Set up to process the characters by directly accessing the USB buffers.
     //
     ui32ReadIndex = (uint32_t)(pi8Data - g_pui8USBRxBuffer);
     ui32WriteIndex = sTxRing.ui32WriteIndex;
-
     while(ui32Loop)
     {
         //
         // Copy from the receive buffer to the transmit buffer converting
         // character case on the way.
         //
-
         //
         // Is this a lower case character?
         //
@@ -225,7 +212,6 @@ EchoNewDataToHost(tUSBDBulkDevice *psDevice, uint8_t *pi8Data,
                     g_pui8USBRxBuffer[ui32ReadIndex];
             }
         }
-
         //
         // Move to the next character taking care to adjust the pointer for
         // the buffer wrap if necessary.
@@ -233,21 +219,16 @@ EchoNewDataToHost(tUSBDBulkDevice *psDevice, uint8_t *pi8Data,
         ui32WriteIndex++;
         ui32WriteIndex =
             (ui32WriteIndex == myUSB0_LIB_BULK_BUFFER_SIZE) ? 0 : ui32WriteIndex;
-
         ui32ReadIndex++;
         ui32ReadIndex = (ui32ReadIndex == myUSB0_LIB_BULK_BUFFER_SIZE) ? 0 : ui32ReadIndex;
-
         ui32Loop--;
     }
-
     //
     // We've processed the data in place so now send the processed data
     // back to the host.
     //
     USBBufferDataWritten(&g_sTxBuffer, ui32Count);
-
     DEBUG_PRINT("Wrote %d bytes\n", ui32Count);
-
     //
     // We processed as much data as we can directly from the receive buffer so
     // we need to return the number of bytes to allow the lower layer to
@@ -255,7 +236,6 @@ EchoNewDataToHost(tUSBDBulkDevice *psDevice, uint8_t *pi8Data,
     //
     return(ui32Count);
 }
-
 //******************************************************************************
 //
 // TxHandler - Handles bulk driver notifications related to the transmit
@@ -285,15 +265,12 @@ TxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
     {
         g_ui32TxCount += ui32MsgValue;
     }
-
     //
     // Dump a debug message.
     //
     DEBUG_PRINT("TX complete %d\n", ui32MsgValue);
-
     return(0);
 }
-
 //******************************************************************************
 //
 // Handles bulk driver notifications related to the receive channel (data from
@@ -328,16 +305,13 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
             g_bUSBConfigured = true;
             g_pcStatus = "Host connected.";
             g_ui32Flags |= COMMAND_STATUS_UPDATE;
-
             //
             // Flush our buffers.
             //
             USBBufferFlush(&g_sTxBuffer);
             USBBufferFlush(&g_sRxBuffer);
-
             break;
         }
-
         //
         // The host has disconnected.
         //
@@ -348,43 +322,36 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
             g_ui32Flags |= COMMAND_STATUS_UPDATE;
             break;
         }
-
         //
         // A new packet has been received.
         //
         case USB_EVENT_RX_AVAILABLE:
         {
             tUSBDBulkDevice *psDevice;
-
             //
             // Get a pointer to our instance data from the callback data
             // parameter.
             //
             psDevice = (tUSBDBulkDevice *)pvCBData;
-
             //
             // Read the new packet and echo it back to the host.
             //
             return(EchoNewDataToHost(psDevice, pvMsgData, ui32MsgValue));
         }
-
         //
         // Ignore SUSPEND and RESUME for now.
         //
         case USB_EVENT_SUSPEND:
         case USB_EVENT_RESUME:
             break;
-
         //
         // Ignore all other events and return 0.
         //
         default:
             break;
     }
-
     return(0);
 }
-
 #ifdef DEBUG
 //******************************************************************************
 //
@@ -404,7 +371,6 @@ ConfigureSCI(void)
     GPIO_setDirectionMode(28, GPIO_DIR_MODE_IN);
     GPIO_setPadConfig(28, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(28, GPIO_QUAL_ASYNC);
-
     //
     // GPIO29 is the SCI Tx pin.
     //
@@ -413,7 +379,6 @@ ConfigureSCI(void)
     GPIO_setDirectionMode(29, GPIO_DIR_MODE_OUT);
     GPIO_setPadConfig(29, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(29, GPIO_QUAL_ASYNC);
-
     //
     // Initialize the SCI for console I/O.
     //
@@ -421,7 +386,6 @@ ConfigureSCI(void)
                    SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ));
 }
 #endif
-
 //******************************************************************************
 // ModeCallback - USB Mode callback
 //
@@ -444,7 +408,6 @@ ModeCallback(uint32_t ui32Index, tUSBMode eMode)
     //
     g_eCurrentUSBMode = eMode;
 }
-
 //******************************************************************************
 //
 // Main
@@ -453,91 +416,73 @@ ModeCallback(uint32_t ui32Index, tUSBMode eMode)
 int
 main(void)
 {
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure GPIO pins for USB.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
-
     //
     // Initialize the transmit and receive buffers.
     //
     USBBufferInit(&g_sTxBuffer);
     USBBufferInit(&g_sRxBuffer);
-
     //
     // Set the clocking to run from the PLL at 60MHz
     //
     //SysCtl_setAuxClock(DEVICE_AUXSETCLOCK_CFG_USB);
     Board_init();
-
     C2000Ware_libraries_init();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
 #ifdef DEBUG
     //
     // Configure the SCI for debug output.
     //
     ConfigureSCI();
 #endif
-
     //
     // Not configured initially.
     //
     g_bUSBConfigured = false;
-
     //
     // Enable the GPIO peripheral used for USB, and configure the USB
     // pins.
     //
     USBGPIOEnable();
-
     //
     // Register the interrupt handler for USB Interrupts.
     //
     //Interrupt_register(INT_USBA, INT_myUSB0_ISR);
-
     //
     // Show the application name on the display and SCI output.
     //
     DEBUG_PRINT("\nUSB bulk device example\n");
     DEBUG_PRINT("---------------------------------\n\n");
-
     //USBStackModeSet(0, eUSBModeForceDevice, ModeCallback);
-
     //
     // Pass our device information to the USB library and place the device
     // on the bus.
     //
     //USBDBulkInit(0, &g_sBulkDevice);
-
     //
     // Enable global interrupts
     //
     Interrupt_enableGlobal();
-
     //
     // Main application loop.
     //
@@ -548,7 +493,6 @@ main(void)
         //
     }
 }
-
 //******************************************************************************
 //
 //! Device interrupt service routine wrapper to make ISR compatible with
@@ -561,7 +505,6 @@ INT_myUSB0_ISR(void)
     USB0DeviceIntHandler();
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP9);
 }
-
 //
 // End of file
 //

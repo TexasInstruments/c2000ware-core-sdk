@@ -67,7 +67,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -100,19 +100,16 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
 #define FIR_TAPS 64
 #define FIR_NUM_ITERATIONS 250
-
 //
 // Global FIR variables
 //
@@ -139,21 +136,18 @@ uint16_t FIR_values[FIR_TAPS];
 volatile uint32_t FIR_sums[FIR_NUM_ITERATIONS];
 uint32_t FIR_iterationCounter;
 uint32_t sortedArr[FIR_NUM_ITERATIONS];
-
 //
 // Pre-chosen Pseudo Random Generator constants
 //
 const uint16_t PseudoRand_multiplier = 31821;
 const uint16_t PseudoRand_increment = 13849;
 uint16_t PseudoRand_seed = 21845;
-
 //
 // Function Prototypes
 //
 uint32_t performFIR(uint16_t [], const uint16_t []);
 uint16_t generatePseudoRand16(uint16_t *);
 void sortMax(uint32_t [], uint32_t);
-
 //
 // Main
 //
@@ -163,7 +157,6 @@ int main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize FIR_values and iteration counter to 0
     //
@@ -172,9 +165,7 @@ int main(void)
     {
         FIR_values[i] = 0;
     }
-
     FIR_iterationCounter = 0;
-
     //
     // Loop forever, performing FIR calculations and sorting results
     //
@@ -191,7 +182,6 @@ int main(void)
             FIR_values[0] = generatePseudoRand16(&PseudoRand_seed);
             FIR_sums[i] = performFIR(FIR_values, FIR_coeffVals);
         }
-
         //
         // Copy sums array into scratch array
         //
@@ -199,21 +189,18 @@ int main(void)
         {
             sortedArr[i] = FIR_sums[i];
         }
-
         //
         // Sort results and grab maximum value, the last element of the sorted
         // array
         //
         sortMax(sortedArr, FIR_NUM_ITERATIONS);
         volatile uint32_t maxValue = sortedArr[FIR_NUM_ITERATIONS - 1];
-
         //
         // Record that FIR sums were calculated and sorting of the data was done
         //
         FIR_iterationCounter++;
     }
 }
-
 //
 // generatePseudoRand16 - Generate a pseudo random 16-bit number by passing a
 // start value or "seed". This generator is a linear congruential pseudo random
@@ -231,7 +218,6 @@ generatePseudoRand16(uint16_t *seed)
             & 0xFFFF;
     return(*seed);
 }
-
 //
 // performFIR - Calculate Finite Impulse Response (FIR)
 //
@@ -239,7 +225,6 @@ uint32_t
 performFIR(uint16_t values[], const uint16_t coeff[])
 {
     uint32_t sum = 0;
-
     //
     // Loop over elements starting with Nth element and ending with 1st element
     //
@@ -250,7 +235,6 @@ performFIR(uint16_t values[], const uint16_t coeff[])
         // Multiply current value by respective coefficient
         //
         sum += ((uint32_t)values[i] * (uint32_t)coeff[i]);
-
         //
         // Store value only after processing Nth (FIR_TAPS - 1) element
         //
@@ -261,7 +245,6 @@ performFIR(uint16_t values[], const uint16_t coeff[])
     }
     return(sum);
 }
-
 //
 // sortMax - Perform insertion sort on an array of values, sorting from least to
 // greatest
@@ -277,7 +260,6 @@ sortMax(uint32_t values[], uint32_t numElements)
     for(i = 1; i < numElements; i++)
     {
         uint32_t j = i;
-
         //
         // Inner loop walks elements backwards from current index
         //
@@ -295,7 +277,6 @@ sortMax(uint32_t values[], uint32_t numElements)
         }
     }
 }
-
 //
 // End of File
 //

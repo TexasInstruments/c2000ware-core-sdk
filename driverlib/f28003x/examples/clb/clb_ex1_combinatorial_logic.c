@@ -17,7 +17,7 @@
 //
 //
 //#############################################################################
-// $TI Release: F28003x Support Library v26.01.00.00 $
+// $TI Release: F28003x Support Library v26.02.00.00 $
 // 
 // $Copyright:
 // Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
@@ -51,50 +51,31 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
-
-
 #include "driverlib.h"
 #include "device.h"
 #include "clb_config.h"
 #include "clb.h"
 #include "board.h"
-
 void initCLB1(void);
-
-
 uint32_t mode = 0;
-
-
 void main(void)
 {
     Device_init();
     Device_initGPIO();
-
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
 	SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB1);
-
     Board_init();
-
     initTILE1(myTILE1_BASE);
-
     CLB_setGPREG(myTILE1_BASE, mode);
-
     CLB_setOutputMask(myTILE1_BASE, 0x5, true);
-
     Interrupt_enable(INT_EPWM1);
     EINT;
-
     while(1)
     {
         asm(" NOP");
     }
 }
-
-
 __interrupt void INT_myEPWM1_ISR(void)
 {
     EPWM_clearEventTriggerInterruptFlag(myEPWM1_BASE);

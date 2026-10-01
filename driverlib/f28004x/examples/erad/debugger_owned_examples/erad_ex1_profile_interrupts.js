@@ -21,48 +21,39 @@
 // http://software-dl.ti.com/ccs/esd/documents/users_guide/sdto_dss_handbook.html
 //
 //#############################################################################
-
 //
 // Import the DSS packages
 //
 importPackage(Packages.com.ti.debug.engine.scripting)
 importPackage(Packages.com.ti.ccstudio.scripting.environment)
 importPackage(Packages.java.lang)
-
 //
 // Load pre-defined macros for register addresses and useful functions
 //
 load(PROJ_WKSPC_LOC + "\\" + PROJ_NAME + "\\erad.js");
 load(PROJ_WKSPC_LOC + "\\" + PROJ_NAME + "\\erad_util.js");
-
 //
 // Create our scripting environment object. This is the main entry point into
 // any script and the factory for creating other scriptable servers and sessions
 //
 var script = ScriptingEnvironment.instance();
-
 script.traceSetConsoleLevel(TraceLevel.ALL)
-
 //
 // Create a debug server
 //
 var ds = script.getServer( "DebugServer.1" );
-
 //
 // Open a debug session
 //
 debugSession = ds.openSession( "*", "C28xx_CPU1" );
-
 //
 // Variables for data read/write sizes
 //
 var DATA_SIZE_16 = 16;
 var DATA_SIZE_32 = 32;
-
 //*****************************************************************************
 // Example: Profile Interrupts
 //*****************************************************************************
-
 //
 // Set owner as debugger
 //
@@ -70,7 +61,6 @@ debugSession.memory.writeData(Memory.Page.DATA,
                               EradGlobalRegs + GLBL_OWNER,
                               OWNER_DEBUGGER,
                               DATA_SIZE_16);
-
 //
 // Ensure that counters 1-4 are in idle mode (bits 15:12 are set to 0)
 //
@@ -78,24 +68,19 @@ var counter1Status =
     debugSession.memory.readData(Memory.Page.DATA,
                                  EradCounter1Regs + CTM_STATUS,
                                  DATA_SIZE_16);
-
 var counter2Status =
     debugSession.memory.readData(Memory.Page.DATA,
                                  EradCounter2Regs + CTM_STATUS,
                                  DATA_SIZE_16);
-
 var counter3Status =
     debugSession.memory.readData(Memory.Page.DATA,
                                  EradCounter3Regs + CTM_STATUS,
                                  DATA_SIZE_16);
-
 var counter4Status =
     debugSession.memory.readData(Memory.Page.DATA,
                                  EradCounter4Regs + CTM_STATUS,
                                  DATA_SIZE_16);
-
 var CTM_STATUS_M = 0xF000;
-
 if((0 == (counter1Status & CTM_STATUS_M)) &&
    (0 == (counter2Status & CTM_STATUS_M)) &&
    (0 == (counter3Status & CTM_STATUS_M)) &&
@@ -108,19 +93,16 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradHWBP1Regs + HWBP_CLEAR,
                                   0x1,
                                   DATA_SIZE_16);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradHWBP2Regs + HWBP_CLEAR,
                                   0x1,
                                   DATA_SIZE_16);
-
     //
     // Get the start and end addresses of the Timer 2 ISR
     //
     var addrFunc = getFuncAddressXML("cpuTimer2ISR");
     var startTimer2ISR = addrFunc[0];
     var endTimer2ISR = addrFunc[1];
-
     //
     // Set two hardware breakpoints at the start and end of cpuTimer2ISR
     //
@@ -128,12 +110,10 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradHWBP1Regs + HWBP_REF,
                                   startTimer2ISR,
                                   DATA_SIZE_32);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradHWBP2Regs + HWBP_REF,
                                   endTimer2ISR,
                                   DATA_SIZE_32);
-
     //
     // Set HWBP_1 and HWBP_2 to generate an event on PC match
     // RESERVED  = (0 <<  0) | -> RESERVED
@@ -150,12 +130,10 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradHWBP1Regs + HWBP_CNTL,
                                   0x0004,
                                   DATA_SIZE_16);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradHWBP2Regs + HWBP_CNTL,
                                   0x0004,
                                   DATA_SIZE_16);
-
     //
     // Reset Counters 1-4 globally
     //
@@ -163,7 +141,6 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradGlobalRegs + GLBL_CTM_RESET,
                                   0xF,
                                   DATA_SIZE_16);
-
     //
     // Clear CTM_COUNT
     //
@@ -171,7 +148,6 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradCounter1Regs + CTM_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     //
     // Clear CTM_MAX_COUNT
     //
@@ -179,7 +155,6 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradCounter1Regs + CTM_MAX_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     //
     // Clear EVENT_FIRED and OVERFLOW sticky bits
     // EVENT_CLEAR    = (1 << 0) | -> Clear EVENT_FIRED sticky bit in CTM_STATUS
@@ -190,7 +165,6 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradCounter1Regs + CTM_CLEAR,
                                   0x3,
                                   DATA_SIZE_16);
-
     //
     // Clear CTM_REF
     //
@@ -198,7 +172,6 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradCounter1Regs + CTM_REF,
                                   0x0,
                                   DATA_SIZE_32);
-
     //
     // Configure CTM_1 to count cpuTimer2ISR execution cycles
     // CTM_INP_SEL_EN = (0 <<  0) | -> Disable CTM_IN_SEL register and count
@@ -213,7 +186,6 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradCounter1Regs + CTM_INPUT_SEL,
                                   0x0800,
                                   DATA_SIZE_16);
-
     //
     // Configure CTM_1 to be in start-stop mode
     // RESERVED        = (0 <<  0) | -> RESERVED
@@ -235,7 +207,6 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradCounter1Regs + CTM_CNTL,
                                   0x004,
                                   DATA_SIZE_16);
-
     //
     // Clear CTM_COUNT, CTM_MAX_COUNT, CTM_STATUS sticky bits
     //
@@ -243,17 +214,14 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradCounter2Regs + CTM_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradCounter2Regs + CTM_MAX_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradCounter2Regs + CTM_CLEAR,
                                   0x3,
                                   DATA_SIZE_16);
-
     //
     // Configure CTM_2 to count number of times system event TIMER2_TINT2 occurs
     // CNT_INP_SEL_EN = (1 <<  0) | -> Enable CTM_INP_SEL
@@ -265,7 +233,6 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradCounter2Regs + CTM_INPUT_SEL,
                                   0x0033,
                                   DATA_SIZE_16);
-
     //
     // Configure CTM_2 to be in rising-edge count mode
     // EVENT_MODE = (1 << 3) -> Count only on rising-edge of count input
@@ -276,7 +243,6 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradCounter2Regs + CTM_CNTL,
                                   0x0008,
                                   DATA_SIZE_16);
-
     //
     // Clear CTM_COUNT, CTM_MAX_COUNT, CTM_STATUS sticky bits
     //
@@ -284,17 +250,14 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradCounter3Regs + CTM_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradCounter3Regs + CTM_MAX_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradCounter3Regs + CTM_CLEAR,
                                   0x3,
                                   DATA_SIZE_16);
-
     //
     // Configure CTM_3 to count number of times cputTimer2ISR executes
     // CTM_INP_SEL_EN = (1 << 0) | -> Enable CNT_INP_SEL
@@ -306,7 +269,6 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradCounter3Regs + CTM_INPUT_SEL,
                                   0x0001,
                                   DATA_SIZE_16);
-
     //
     // Configure CTM_3 to be in rising-edge count mode
     // EVENT_MODE = (1 << 3) -> Count only on rising-edge of count input
@@ -317,7 +279,6 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradCounter3Regs + CTM_CNTL,
                                   0x0008,
                                   DATA_SIZE_16);
-
     //
     // Clear CTM_COUNT, CTM_MAX_COUNT, CTM_STATUS sticky bits
     //
@@ -325,17 +286,14 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradCounter4Regs + CTM_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradCounter4Regs + CTM_MAX_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradCounter4Regs + CTM_CLEAR,
                                   0x3,
                                   DATA_SIZE_16);
-
     //
     // Configure CTM_4 to grab latency from TIMER2_TINT2 to cpuTimer2ISR
     // execution
@@ -348,7 +306,6 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradCounter4Regs + CTM_INPUT_SEL,
                                   0x0640,
                                   DATA_SIZE_16);
-
     //
     // Configure CTM_4 to be in start-stop mode
     // START_STOP_MODE = (1 <<  2)  -> Enable start-stop mode
@@ -359,7 +316,6 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradCounter4Regs + CTM_CNTL,
                                   0x0004,
                                   DATA_SIZE_16);
-
     //
     // Enable HWBP_1-2 and CTM_1-4
     // HWBP_GLOBAL_ENABLE    = (1 << 0) | (1 << 1)
@@ -375,62 +331,50 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradGlobalRegs + GLBL_ENABLE,
                                   enableCounter,
                                   DATA_SIZE_16);
-
     print("\nCounter Started\n");
-
     var coreRan = 0;
-
     while(1)
     {
         var cycleCount =
             debugSession.memory.readData(Memory.Page.DATA,
                                          EradCounter1Regs + CTM_COUNT,
                                          DATA_SIZE_32);
-
         var cycleMax =
             debugSession.memory.readData(Memory.Page.DATA,
                                          EradCounter1Regs +
                                          CTM_MAX_COUNT,
                                          DATA_SIZE_32);
-
         var intEventCount =
             debugSession.memory.readData(Memory.Page.DATA,
                                          EradCounter2Regs + CTM_COUNT,
                                          DATA_SIZE_32);
-
         var isrExecCount =
             debugSession.memory.readData(Memory.Page.DATA,
                                          EradCounter3Regs + CTM_COUNT,
                                          DATA_SIZE_32);
-
         var isrDelayCycleMax =
             debugSession.memory.readData(Memory.Page.DATA,
                                          EradCounter4Regs +
                                          CTM_MAX_COUNT,
                                          DATA_SIZE_32);
-
         print("Current ISR Cycle Count = " + cycleCount.toString() +
               "\t Max ISR Cycle Count = " + cycleMax.toString() +
               "\t Int Occurence Count = " + intEventCount.toString() +
               "\t ISR Execution Count = " + isrExecCount.toString() +
               "\t ISR Delay Cycle Count = " + isrDelayCycleMax.toString());
-
         //
         // Halt script if CPU is halted
         //
         var halted = debugSession.target.isHalted();
-
         if(!halted)
         {
             coreRan = 1;
         }
-
         if(coreRan && halted)
         {
             break;
         }
     }
-
     //
     // Disable  HWBP_1-2 and CTM_1-4
     //
@@ -443,7 +387,6 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradGlobalRegs + GLBL_ENABLE,
                                   enableCounter,
                                   DATA_SIZE_16);
-
     //
     // Reset CTM_1-4 values
     //
@@ -451,62 +394,50 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradCounter1Regs + CTM_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradCounter1Regs + CTM_MAX_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradCounter1Regs + CTM_CLEAR,
                                   0x3,
                                   DATA_SIZE_32);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradCounter2Regs + CTM_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradCounter2Regs + CTM_MAX_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradCounter2Regs + CTM_CLEAR,
                                   0x3,
                                   DATA_SIZE_32);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradCounter3Regs + CTM_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradCounter3Regs + CTM_MAX_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradCounter3Regs + CTM_CLEAR,
                                   0x3,
                                   DATA_SIZE_32);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradCounter4Regs + CTM_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradCounter4Regs + CTM_MAX_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradCounter4Regs + CTM_CLEAR,
                                   0x3,
                                   DATA_SIZE_32);
-
     //
     // Reset HWBP_1-2
     //
@@ -514,19 +445,16 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
                                   EradHWBP1Regs + HWBP_CLEAR,
                                   0x1,
                                   DATA_SIZE_16);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradHWBP2Regs + HWBP_CLEAR,
                                   0x1,
                                   DATA_SIZE_16);
-
     print("\nCounter Stopped\n");
 }
 else
 {
     print("Failed\n");
 }
-
 //
 // End of File
 //

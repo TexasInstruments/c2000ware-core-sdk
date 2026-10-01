@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="uart_8md" kind="file" language="Markdown">
+    <compoundname>uart.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>UART<sp/>{#DRIVERS_UART_PAGE}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>UART<sp/>driver<sp/>provides<sp/>API<sp/>to<sp/>configure<sp/>the<sp/>UART<sp/>module.</highlight></codeline>
+<codeline><highlight class="normal">Below<sp/>are<sp/>the<sp/>high<sp/>level<sp/>features<sp/>supported<sp/>by<sp/>the<sp/>UART<sp/>driver.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Features<sp/>Supported</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Programmable<sp/>baud-rate<sp/>generation</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Standard<sp/>asynchronous<sp/>communication<sp/>bits<sp/>for<sp/>start,<sp/>stop,<sp/>and<sp/>parity</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>16-level,<sp/>8-wide<sp/>Transmit<sp/>and<sp/>Receive<sp/>FIFOs<sp/>with<sp/>pre-defined<sp/>trigger<sp/>levels</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>16-level,<sp/>8-wide<sp/>Transmit<sp/>and<sp/>Receive<sp/>FIFOs<sp/>with<sp/>fine-grained<sp/>FIFO<sp/>configuration<sp/>(trigger<sp/>configurable<sp/>at<sp/>any<sp/>level<sp/>0-16)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Support<sp/>for<sp/>line-break<sp/>generation<sp/>and<sp/>detection,<sp/>IrDA<sp/>serial-IR<sp/>(SIR)<sp/>encoder<sp/>and<sp/>decoder</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Support<sp/>for<sp/>DMA,<sp/>9-bit<sp/>mode</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>SysConfig<sp/>Features</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@VAR_SYSCFG_USAGE_NOTE</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Baud<sp/>rate<sp/>calculator<sp/>with<sp/>error<sp/>estimation</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Configurable<sp/>data<sp/>width,<sp/>loopback<sp/>settings</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Fully<sp/>programmable<sp/>serial<sp/>interface<sp/>characteristics<sp/>(start,<sp/>stop,<sp/>and<sp/>parity<sp/>bits)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Separately<sp/>configurable<sp/>TX<sp/>&amp;<sp/>RX<sp/>FIFO<sp/>settings</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Integrated<sp/>support<sp/>for<sp/>interrupt<sp/>&amp;<sp/>RTDMA<sp/>modules</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Features<sp/>NOT<sp/>Supported</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">NA</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Important<sp/>Usage<sp/>Guidelines</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Avoid<sp/>keeping<sp/>the<sp/>memory<sp/>browser<sp/>open<sp/>while<sp/>the<sp/>execution<sp/>is<sp/>in<sp/>progress,<sp/>as<sp/>this<sp/>can<sp/>lead<sp/>to<sp/>erroneous<sp/>reads<sp/>from<sp/>the<sp/>UART<sp/>data<sp/>register</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Example<sp/>Usage</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Include<sp/>the<sp/>below<sp/>file<sp/>to<sp/>access<sp/>the<sp/>APIs</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;uart.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>API</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>uart_api</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/uart.md"/>
+  </compounddef>
+</doxygen>

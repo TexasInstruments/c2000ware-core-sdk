@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -331,12 +331,12 @@ extern int16_t GetTemperatureK(int16 sensorSample);
 // in Flash to a different RUN location in internal
 // RAM
 //
-extern Uint16 RamfuncsLoadStart;
-extern Uint16 RamfuncsLoadEnd;
-extern Uint16 RamfuncsLoadSize;
-extern Uint16 RamfuncsRunStart;
-extern Uint16 RamfuncsRunEnd;
-extern Uint16 RamfuncsRunSize;
+extern uint16_t RamfuncsLoadStart;
+extern uint16_t RamfuncsLoadEnd;
+extern uint16_t RamfuncsLoadSize;
+extern uint16_t RamfuncsRunStart;
+extern uint16_t RamfuncsRunEnd;
+extern uint16_t RamfuncsRunSize;
 
 //
 // External Boot ROM variable definitions

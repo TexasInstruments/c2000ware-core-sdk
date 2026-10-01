@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -41,7 +41,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 //
 // Included Files
 //
@@ -59,7 +58,6 @@
 #include "scistdio.h"
 //#include "usb_ex8_mouse_structs.h"
 #include "usb_ex8_dual_detect.h"
-
 //******************************************************************************
 //
 // The incremental update for the mouse.
@@ -67,14 +65,12 @@
 //******************************************************************************
 #define MOUSE_MOVE_INC          ((char)4)
 #define MOUSE_MOVE_DEC          ((char)-4)
-
 //******************************************************************************
 //
 // Holds command bits used to signal the main loop to perform various tasks.
 //
 //******************************************************************************
 volatile uint32_t g_ui32Commands;
-
 //******************************************************************************
 //
 // A flag used to indicate whether or not we are currently connected to the USB
@@ -82,7 +78,6 @@ volatile uint32_t g_ui32Commands;
 //
 //******************************************************************************
 volatile bool g_bConnected;
-
 //******************************************************************************
 //
 // This enumeration holds the various states that the mouse can be in during
@@ -95,19 +90,16 @@ volatile enum
     // Unconfigured.
     //
     MOUSE_STATE_UNCONFIGURED,
-
     //
     // No keys to send and not waiting on data.
     //
     MOUSE_STATE_IDLE,
-
     //
     // Waiting on data to be sent out.
     //
     MOUSE_STATE_SENDING
 }
 g_eMouseState = MOUSE_STATE_UNCONFIGURED;
-
 //******************************************************************************
 //
 // MouseHandler - This function handles notification messages from the
@@ -130,7 +122,6 @@ MouseHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_bConnected = true;
             break;
         }
-
         //
         // The USB host has disconnected from the device.
         //
@@ -141,7 +132,6 @@ MouseHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_eMouseState = MOUSE_STATE_UNCONFIGURED;
             break;
         }
-
         //
         // A report was sent to the host. We are now free to send another.
         //
@@ -154,7 +144,6 @@ MouseHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
     }
     return(0);
 }
-
 //******************************************************************************
 //
 // This function initializes the mouse in device mode.
@@ -169,7 +158,6 @@ DeviceStackInit(void)
     //
     USBDHIDMouseInit(0, (tUSBDHIDMouseDevice *)&g_sMouseDevice);
 }
-
 //
 // End of file
 //

@@ -16,7 +16,7 @@
 //
 // 
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -49,42 +49,35 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 //Global Variables
 //
 int counter = 0;
-
 //
 // Main
 //
 void main(void)
 {
     Device_init();
-
     //
     // Disable pin locks and enable internal pull-ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     //SysConfig settings
     //
@@ -92,12 +85,10 @@ void main(void)
     EINT;
     while(1);
 }
-
 __interrupt void INT_myGPIO_INPUT_XINT_ISR(void){
     counter++;
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP1);
 }
-
 //
 // End of File
 //

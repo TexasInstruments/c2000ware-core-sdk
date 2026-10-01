@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_INTERRUPT_EX1_EXTERNAL" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_INTERRUPT_EX1_EXTERNAL</compoundname>
+    <title>External Interrupt example</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_INTERRUPT_EX1_EXTERNAL_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_interrupt_ex1_external"/></para>
+<sect1 id="EXAMPLES_DRIVERS_INTERRUPT_EX1_EXTERNAL_1autotoc_md288">
+<title>Introduction</title>
+<para>This program sets up GPIO0 as XINT1 and GPIO1 as XINT2. Two other GPIO signals are used to trigger the interrupt (GPIO4 triggers XINT1 and GPIO5 triggers XINT2). The user is required to externally connect these signals for the program to work properly.</para>
+<para>XINT1 input is synced to SYSCLKOUT.</para>
+<para>XINT2 has a long qualification - 6 samples at 510*SYSCLKOUT each. GPIO16 will go high outside of the interrupts and low within the interrupts. This signal can be monitored on a scope.</para>
+<para>Each interrupt is fired in sequence - XINT1 first and then XINT2</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_INTERRUPT_EX1_EXTERNAL_1autotoc_md289">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>Connect GPIO4 to GPIO0. GPIO0 will be assigned to XINT1</para>
+</listitem><listitem><para>Connect GPIO5 to GPIO1. GPIO1 will be assigned to XINT2</para>
+</listitem><listitem><para>Monitor GPIO16 with an oscilloscope. GPIO16 will be high outside of the ISRs and low within each ISR.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_INTERRUPT_EX1_EXTERNAL_1autotoc_md290">
+<title>Watch Variables</title>
+<para><itemizedlist>
+<listitem><para>xint1Count for the number of times through XINT1 interrupt</para>
+</listitem><listitem><para>xint2Count for the number of times through XINT2 interrupt</para>
+</listitem><listitem><para>loopCount for the number of times through the idle loop </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/interrupt_ex1_external.md"/>
+  </compounddef>
+</doxygen>

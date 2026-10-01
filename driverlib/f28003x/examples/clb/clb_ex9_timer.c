@@ -21,7 +21,7 @@
 //
 //
 //#############################################################################
-// $TI Release: F28003x Support Library v26.01.00.00 $
+// $TI Release: F28003x Support Library v26.02.00.00 $
 // 
 // $Copyright:
 // Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
@@ -55,49 +55,32 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
-
 #include "driverlib.h"
 #include "device.h"
 #include "clb_config.h"
 #include "clb.h"
 #include "board.h"
-
 __interrupt void clb1ISR(void);
-
 #define RESET_TIMER     1
 #define ENABLE_TIMER    2
 #define COUNTUP_MODE    4
-
-
 void main(void)
 {
     Device_init();
     Device_initGPIO();
-
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
     Interrupt_register(INT_CLB1, &clb1ISR);
     Interrupt_enable(INT_CLB1);
-
-
     initTILE1(myTILE1_BASE);
     Board_init();
-
     CLB_setGPREG(myTILE1_BASE, ENABLE_TIMER | COUNTUP_MODE);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
-
     CLB_clearInterruptTag(myTILE1_BASE);
-
-
     while(1)
     {
         SysCtl_delay(20000000);
@@ -109,12 +92,9 @@ void main(void)
         asm(" NOP");
     }
 }
-
-
 __interrupt void clb1ISR(void)
 {
     GPIO_togglePin(myGPIO0);
     CLB_clearInterruptTag(myTILE1_BASE);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP5);
 }
-

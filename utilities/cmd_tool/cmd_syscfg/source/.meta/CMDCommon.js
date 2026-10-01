@@ -4,12 +4,12 @@ var memoryInfo = meminfo.memoryInfo;
 
 
 var LinkerSymbols = [
-    {name : "LoadStart", displayName : "LOAD_START"},
-    {name : "LoadEnd",   displayName : "LOAD_END"},
-    {name : "LoadSize",  displayName : "LOAD_SIZE"},
-    {name : "RunStart",  displayName : "RUN_START"},
-    {name : "RunEnd",    displayName : "RUN_END"},
-    {name : "RunSize",   displayName : "RUN_SIZE"}
+    {name : "loadStart", displayName : "LOAD_START"},
+    {name : "loadEnd",   displayName : "LOAD_END"},
+    {name : "loadSize",  displayName : "LOAD_SIZE"},
+    {name : "runStart",  displayName : "RUN_START"},
+    {name : "runEnd",    displayName : "RUN_END"},
+    {name : "runSize",   displayName : "RUN_SIZE"}
 ]
 
 let memoryNotCPU2Gattino = ["RAMD0", "RAMD1", "RAMLS0", "RAMLS1", "RAMLS2", "RAMLS3", "RAMLS4", "RAMLS5",
@@ -468,8 +468,8 @@ function getSectionsInDetail(inst){
     for (var sym of LinkerSymbols)
     {
         if (section.sectionSymbols.includes(sym.name))
-            // text += ",\n" + " ".repeat(30) + sym.displayName + "(" + sym.name  + "_" + section.name + ")"
-            text += ",\n" + " ".repeat(30) + sym.displayName + "(" + section.sectionName  + sym.name + ")"
+            text += ",\n" + " ".repeat(30) + sym.displayName + "(" + sym.name  + "_" + section.name + ")"
+            //text += ",\n" + " ".repeat(30) + sym.displayName + "(" + section.sectionName  + sym.name + ")"
     }
 
 

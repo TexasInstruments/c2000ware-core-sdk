@@ -56,7 +56,8 @@ if ("F28002x".includes(Common.getDeviceName()))
         {name:3 , displayName: "Disable MPOST"}
     ];
 }
-if ("F2838x".includes(Common.getDeviceName()))
+
+else if ("F2838x".includes(Common.getDeviceName()))
 {
     MPOST_options = [
         {name:0x0 , displayName: "MPOST will be run with PLL enabled for high speed (110MHz)"},
@@ -66,6 +67,7 @@ if ("F2838x".includes(Common.getDeviceName()))
         {name:0x1 , displayName: "Disable MPOST"}
     ];
 }
+
 else if ("F28003x".includes(Common.getDeviceName()))
 {
     MPOST_options = [
@@ -75,6 +77,7 @@ else if ("F28003x".includes(Common.getDeviceName()))
         {name:0x3 , displayName: "Disable MPOST"}
     ];
 }
+
 else if ("F280013x".includes(Common.getDeviceName()))
 {
     MPOST_options = [
@@ -84,6 +87,7 @@ else if ("F280013x".includes(Common.getDeviceName()))
         {name:0x3 , displayName: "Disable MPOST"}
     ];
 }
+
 else if ("F280015x".includes(Common.getDeviceName()))
 {
     MPOST_options = [
@@ -93,6 +97,7 @@ else if ("F280015x".includes(Common.getDeviceName()))
         {name:0x3 , displayName: "Disable MPOST"}
     ];
 }
+
 else if ("F28P65x".includes(Common.getDeviceName()))
 {
     MPOST_options = [
@@ -102,6 +107,7 @@ else if ("F28P65x".includes(Common.getDeviceName()))
         {name:0x3 , displayName: "Do not run MPOST"}
     ];
 }
+
 else if ("F28P55x".includes(Common.getDeviceName()))
 {
     MPOST_options = [
@@ -111,17 +117,36 @@ else if ("F28P55x".includes(Common.getDeviceName()))
         {name:0x3 , displayName: "Do not run MPOST"}
     ];
 }
+
 else if ("F28P551x".includes(Common.getDeviceName()))
-    {
-        MPOST_options = [
-            {name:0x0 , displayName: "MPOST will be run using INTOSC2 with PLL disabled (10MHz)"},
-            {name:0x1 , displayName: "MPOST will be run with PLL enabled for high speed (160MHz)"},
-            {name:0x2 , displayName: "MPOST will be run with PLL enabled for low speed (80MHz)"},
-            {name:0x3 , displayName: "Do not run MPOST"}
-        ];
-    }
+{
+    MPOST_options = [
+        {name:0x0 , displayName: "MPOST will be run using INTOSC2 with PLL disabled (10MHz)"},
+        {name:0x1 , displayName: "MPOST will be run with PLL enabled for high speed (160MHz)"},
+        {name:0x2 , displayName: "MPOST will be run with PLL enabled for low speed (80MHz)"},
+        {name:0x3 , displayName: "Do not run MPOST"}
+    ];
+}
 
+else if ("F28E12x".includes(Common.getDeviceName()))
+{
+    MPOST_options = [
+        {name:0x0 , displayName: "MPOST will be run using INTOSC2 with PLL disabled (10MHz)"},
+        {name:0x1 , displayName: "MPOST will be run with PLL enabled for high speed (160MHz)"},
+        {name:0x2 , displayName: "MPOST will be run with PLL enabled for low speed (80MHz)"},
+        {name:0x3 , displayName: "Do not run MPOST"}
+    ];
+}
 
+else if ("MCPC029".includes(Common.getDeviceName()))
+{
+    MPOST_options = [
+        {name:0x0 , displayName: "MPOST will be run using INTOSC2 with PLL disabled (10MHz)"},
+        {name:0x1 , displayName: "MPOST will be run with PLL enabled for high speed (160MHz)"},
+        {name:0x2 , displayName: "MPOST will be run with PLL enabled for low speed (80MHz)"},
+        {name:0x3 , displayName: "Do not run MPOST"}
+    ];
+}
 
 
 // CJTAGNODEID: Boot ROM takes this values and programs the lower 4 bits of the CJTAGNODEID register
@@ -145,79 +170,88 @@ var ALL_BOOT_OPTIONS = [];
 
 if ("F28004x".includes(Common.getDeviceName()))
 {
-    
-    
     ALL_BOOT_OPTIONS = Common.getBootOptions().f28004x_boot;
-    
     //console.log(ALL_BOOT_OPTIONS);
 }
+
 else if ("F28002x".includes(Common.getDeviceName()))
 {
-    
-    
     ALL_BOOT_OPTIONS = Common.getBootOptions().f28002x_boot;
-    
     //console.log(ALL_BOOT_OPTIONS);
 }
+
 else if ("F2838x".includes(Common.getDeviceName()))
 {
-    ALL_BOOT_OPTIONS = Common.getBootOptions().f2838x_boot; 
-
+    ALL_BOOT_OPTIONS = Common.getBootOptions().f2838x_boot;
+    //console.log(ALL_BOOT_OPTIONS);
 }
 
 else if ("F28003x".includes(Common.getDeviceName()))
 {
     ALL_BOOT_OPTIONS = Common.getBootOptions().f28003x_boot;
-    
     //console.log(ALL_BOOT_OPTIONS);
 }
+
 else if ("F280013x".includes(Common.getDeviceName()))
 {
     ALL_BOOT_OPTIONS = Common.getBootOptions().f280013x_boot; 
-    
     //console.log(ALL_BOOT_OPTIONS);
-} 
+}
+
 else if ("F280015x".includes(Common.getDeviceName()))
 {
     ALL_BOOT_OPTIONS = Common.getBootOptions().f280015x_boot; 
-    
     //console.log(ALL_BOOT_OPTIONS);
 }
+
 else if ("F28P65x".includes(Common.getDeviceName()))
 {
     ALL_BOOT_OPTIONS = Common.getBootOptions().f28p65x_boot; 
-
     //console.log(ALL_BOOT_OPTIONS);
 }
 
 else if ("F28P55x".includes(Common.getDeviceName()))
 {
     ALL_BOOT_OPTIONS = Common.getBootOptions().f28p55x_boot;
-
     //console.log(ALL_BOOT_OPTIONS);
 }
 
 else if ("F28E12x".includes(Common.getDeviceName()))
 {
     ALL_BOOT_OPTIONS = Common.getBootOptions().f28e12x_boot;
-
     //console.log(ALL_BOOT_OPTIONS);
 }
 
+else if ("MCPC029".includes(Common.getDeviceName()))
+{
+    ALL_BOOT_OPTIONS = Common.getBootOptions().mcpc029_boot;
+    // console.log(ALL_BOOT_OPTIONS);
+}
+
 else if ("F28P551x".includes(Common.getDeviceName()))
-    {
-        ALL_BOOT_OPTIONS = Common.getBootOptions().f28p551x_boot;
-    
-        //console.log(ALL_BOOT_OPTIONS);
-    }
+{
+    ALL_BOOT_OPTIONS = Common.getBootOptions().f28p551x_boot;
+    //console.log(ALL_BOOT_OPTIONS);
+}
 
 // Device specific options
 var pin0Defaults = "GPIO32";
 var pin1Defaults = "GPIO24";
+
 if (["F2838x","F28P65x"].includes(Common.getDeviceName()))
 {
     pin0Defaults = "GPIO84";
     pin1Defaults = "GPIO72";
+}
+
+if ("MCPC029".includes(Common.getDeviceName())) 
+{
+    var pin2Defaults =  "GPIO1";
+}
+
+else 
+{
+    var pin2Defaults = "GPIO0";
 }
 
 
@@ -238,6 +272,7 @@ if ("F28004x".includes(Common.getDeviceName()))
         unacceptableGPIOs.push("GPIO" + i.toString());
     }
 }
+
 if ("F28002x".includes(Common.getDeviceName()))
 {
     unacceptableGPIOs = ["GPIO20", "GPIO21", 
@@ -256,6 +291,7 @@ if ("F2838x".includes(Common.getDeviceName()))
         unacceptableGPIOs.push("GPIO" + i.toString());
     }
 }
+
 if ("F28003x".includes(Common.getDeviceName()))
 {
     unacceptableGPIOs = ["GPIO36", "GPIO38"]
@@ -264,6 +300,7 @@ if ("F28003x".includes(Common.getDeviceName()))
         unacceptableGPIOs.push("GPIO" + i.toString());
     }
 }
+
 if ("F280013x".includes(Common.getDeviceName()))
 {
     unacceptableGPIOs = [
@@ -283,6 +320,7 @@ if ("F280013x".includes(Common.getDeviceName()))
         unacceptableGPIOs.push("GPIO" + i.toString());
     }
 }
+
 if ("F280015x".includes(Common.getDeviceName()))
 {
     unacceptableGPIOs = [
@@ -303,6 +341,7 @@ if ("F280015x".includes(Common.getDeviceName()))
         unacceptableGPIOs.push("GPIO" + i.toString());
     }
 }
+
 if ("F28P65x".includes(Common.getDeviceName()))
 {
     unacceptableGPIOs = [
@@ -323,10 +362,11 @@ if ("F28P65x".includes(Common.getDeviceName()))
         unacceptableGPIOs.push("GPIO" + i.toString());
     }
 }
+
 if ("F28P55x".includes(Common.getDeviceName()))
 {
     unacceptableGPIOs = [
-        "GPIO36", "GPIO38", "GPIO39", ,"GPIO225", "GPIO229","GPIO254"
+        "GPIO36", "GPIO38", "GPIO39", "GPIO225", "GPIO229", "GPIO254"
     ]
     for (var i = 82; i <= 210; i++)
     {
@@ -353,71 +393,110 @@ if ("F28P55x".includes(Common.getDeviceName()))
         unacceptableGPIOs.push("GPIO" + i.toString());
     }
 }
+
 if ("F28P551x".includes(Common.getDeviceName()))
+{
+    unacceptableGPIOs = [
+        "GPIO36", "GPIO38", "GPIO39", "GPIO225", "GPIO229", "GPIO254"
+    ]
+    for (var i = 82; i <= 210; i++)
     {
-        unacceptableGPIOs = [
-            "GPIO36", "GPIO38", "GPIO39", ,"GPIO225", "GPIO229","GPIO254"
-        ]
-        for (var i = 82; i <= 210; i++)
-        {
-            unacceptableGPIOs.push("GPIO" + i.toString());
-        }
-        for (var i = 216; i <= 223; i++)
-        {
-            unacceptableGPIOs.push("GPIO" + i.toString());
-        }
-        for (var i = 231; i <= 235; i++)
-        {
-            unacceptableGPIOs.push("GPIO" + i.toString());
-        }
-        for (var i = 237; i <= 241; i++)
-        {
-            unacceptableGPIOs.push("GPIO" + i.toString());
-        }
-        for (var i = 243; i <= 246; i++)
-        {
-            unacceptableGPIOs.push("GPIO" + i.toString());
-        }
-        for (var i = 248; i <= 252; i++)
-        {
-            unacceptableGPIOs.push("GPIO" + i.toString());
-        }
+        unacceptableGPIOs.push("GPIO" + i.toString());
     }
+    for (var i = 216; i <= 223; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+    for (var i = 231; i <= 235; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+    for (var i = 237; i <= 241; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+    for (var i = 243; i <= 246; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+    for (var i = 248; i <= 252; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+}
+    
 if ("F28E12x".includes(Common.getDeviceName()))
+{
+    unacceptableGPIOs = [
+        "GPIO8", "GPIO14", "GPIO15", 
+        "GPIO31", "GPIO42", "GPIO44"
+    ]
+    for (var i = 17; i <= 22; i++)
     {
-        unacceptableGPIOs = [
-            "GPIO8", "GPIO14", "GPIO15", 
-            "GPIO31", "GPIO42", "GPIO44"
-        ]
-        for (var i = 17; i <= 22; i++)
-        {
-            unacceptableGPIOs.push("GPIO" + i.toString());
-        }
-        for (var i = 25; i <= 27; i++)
-            {
-                unacceptableGPIOs.push("GPIO" + i.toString());
-            }
-        for (var i = 34; i <= 38; i++)
-        {
-            unacceptableGPIOs.push("GPIO" + i.toString());
-        }
-        for (var i = 46; i <= 49; i++)
-        {
-            unacceptableGPIOs.push("GPIO" + i.toString());
-        }
-        for (var i = 225; i <= 229; i++)
-        {
-            unacceptableGPIOs.push("GPIO" + i.toString());
-        }
-        for (var i = 231; i <= 241; i++)
-        {
-            unacceptableGPIOs.push("GPIO" + i.toString());
-        }
-        for (var i = 244; i <= 245; i++)
-        {
-            unacceptableGPIOs.push("GPIO" + i.toString());
-        }
+        unacceptableGPIOs.push("GPIO" + i.toString());
     }
+    for (var i = 25; i <= 27; i++)
+        {
+            unacceptableGPIOs.push("GPIO" + i.toString());
+        }
+    for (var i = 34; i <= 38; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+    for (var i = 46; i <= 49; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+    for (var i = 225; i <= 229; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+    for (var i = 231; i <= 241; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+    for (var i = 244; i <= 245; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+}
+
+if ("MCPC029".includes(Common.getDeviceName()))
+{
+    unacceptableGPIOs = [
+        "GPIO8", "GPIO14", "GPIO15", 
+        "GPIO31", "GPIO42", "GPIO44"
+    ]
+    for (var i = 17; i <= 22; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+    for (var i = 25; i <= 27; i++)
+        {
+            unacceptableGPIOs.push("GPIO" + i.toString());
+        }
+    for (var i = 34; i <= 38; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+    for (var i = 46; i <= 49; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+    for (var i = 225; i <= 229; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+    for (var i = 231; i <= 241; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+    for (var i = 244; i <= 245; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+}
+
 
 for (var gpioIndex = 0; gpioIndex < gpios.length; gpioIndex++)
 {
@@ -426,6 +505,7 @@ for (var gpioIndex = 0; gpioIndex < gpios.length; gpioIndex++)
         gpioOptions.push({name: gpios[gpioIndex]});
     }
 }
+
 
 function onChangeuseZone(inst, ui)
 {
@@ -438,7 +518,7 @@ function onChangeuseZone(inst, ui)
     {
         bootConfigs = bootConfigs.concat(['RUNMPOST', 'CJTAGNODEID']);
     }
-    if (["F28E12x"].includes(Common.getDeviceName()))
+    if (["F28E12x", "MCPC029"].includes(Common.getDeviceName()))
     {
         bootConfigs = bootConfigs.concat(['CJTAGNODEID']);
     }
@@ -446,7 +526,8 @@ function onChangeuseZone(inst, ui)
     {
         bootConfigs = bootConfigs.concat(['RUNMPOST']);
     }
-    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x","F28P55x", "F28P551x", "F28E12x"].includes(Common.getDeviceName()))
+    
+    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x","F28P55x", "F28P551x", "F28E12x", "MCPC029"].includes(Common.getDeviceName()))
     {
         bootConfigs = bootConfigs.concat([
         	'CMACKEY0', 'CMACKEY1', 'CMACKEY2', 'CMACKEY3']);
@@ -502,20 +583,22 @@ function onChangeuseZone(inst, ui)
         ui['BMSP0'].hidden = true;
     }
 
-    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x","F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName()))
+
+    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x","F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName()))
     {
         if (!inst['JTAGLOCK'])
         {
             ui['JTAGPSWDH0'].hidden = true;
             ui['JTAGPSWDH1'].hidden = true;
         }
-
     }
+
 
     for (var i=Math.pow(2, inst["bootPinCount"]); i < 8; i++)
     {
         ui['BOOTDEF' + i.toString()].hidden = true;
     }
+    
     
     if ("F28004x".includes(Common.getDeviceName()))
     {
@@ -529,7 +612,9 @@ function onChangeuseZone(inst, ui)
             }
         }
     }
-    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x","F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName()))
+
+
+    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x","F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName()))
     {
         if (inst["zone"] == 2)
         {
@@ -542,7 +627,8 @@ function onChangeuseZone(inst, ui)
             ui['CMACKEY3'].hidden = true;
         }
     }
-    if (["F28002x", "F28003x", "F280013x", "F280015x", "F28P65x","F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
+
+    if (["F28002x", "F28003x", "F280013x", "F280015x", "F28P65x","F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName())){
     	ui['CJTAGNODEID'].hidden = true;
     }
 }
@@ -550,7 +636,6 @@ function onChangeuseZone(inst, ui)
 function onChangeZone(inst, ui)
 {
     onChangeuseZone(inst, ui);
-    
 }
 
 /* Array of Watchdog configurables that are common across device families */
@@ -592,7 +677,8 @@ let config = [
     },
 ]
 
-if (!["F280013x", "F28E12x"].includes(Common.getDeviceName()))
+
+if (!["F280013x", "F28E12x", "MCPC029"].includes(Common.getDeviceName()))
 {
     config = config.concat([
         {
@@ -609,7 +695,8 @@ if (!["F280013x", "F28E12x"].includes(Common.getDeviceName()))
     ])
 }
 
-if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x","F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName()))
+
+if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x","F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName()))
 {
     config = config.concat([
         {
@@ -641,6 +728,7 @@ if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x","F28P55x","F28P551x"
         },
     ]);
 }
+
 if (["F28002x", "F28004x"].includes(Common.getDeviceName()))
 {
     config = config.concat([
@@ -655,7 +743,6 @@ if (["F28002x", "F28004x"].includes(Common.getDeviceName()))
         }
     ]);
 }
-
 
 config = config.concat([
     {
@@ -703,13 +790,14 @@ config = config.concat([
         displayName : 'Boot Pin 2 (BMSP2)',
         readOnly    : false,
         hidden      : true,
-        default     : "GPIO0",
+        default     : pin2Defaults,
         options     : gpioOptions,
         onChange    : onChangeuseZone
     }
 ]);
 
-if (["F28002x", "F28004x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28E12x"].includes(Common.getDeviceName()))
+
+if (["F28002x", "F28004x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28E12x", "MCPC029"].includes(Common.getDeviceName()))
 {
     config = config.concat([{
         name        : 'ERRORSTSPIN',
@@ -721,6 +809,7 @@ if (["F28002x", "F28004x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28E12
         onChange    : onChangeuseZone
     }]);
 }
+
 if (["F28P55x"].includes(Common.getDeviceName()))
 {
     config = config.concat([{
@@ -733,6 +822,7 @@ if (["F28P55x"].includes(Common.getDeviceName()))
         onChange    : onChangeuseZone
     }]);
 }
+
 if (["F28P551x"].includes(Common.getDeviceName()))
 {
     config = config.concat([{
@@ -827,7 +917,6 @@ config = config.concat([
         options     : ALL_BOOT_OPTIONS,
         onChange    : onChangeuseZone
     },
-    
 ]);
 
 
@@ -874,7 +963,7 @@ if (["F28002x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P55
     config = config.concat(mpost_cjtagnode_config)
 }
 
-if (["F28E12x"].includes(Common.getDeviceName()))
+if (["F28E12x", "MCPC029"].includes(Common.getDeviceName()))
     {
         var cjtagnode_config = [
             {
@@ -885,13 +974,13 @@ if (["F28E12x"].includes(Common.getDeviceName()))
                 default     : 15,
                 onChange    : onChangeuseZone
             },
-    
         ]
-    
+
         config = config.concat(cjtagnode_config)
     }
 
-if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x"].includes(Common.getDeviceName()))
+
+if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x", "MCPC029"].includes(Common.getDeviceName()))
 {
     var cmac_config = [
         {
@@ -987,7 +1076,7 @@ function validate(inst, vo)
         inst["configureBoot"] == true)
     {
 
-        if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x"].includes(Common.getDeviceName()))
+        if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x", "MCPC029"].includes(Common.getDeviceName()))
         {
             var cmackkeys = ["CMACKEY0", "CMACKEY1", "CMACKEY2", "CMACKEY3"]
             for (var cmackkeys_i in cmackkeys)
@@ -999,9 +1088,10 @@ function validate(inst, vo)
                 }
             }
         }
-
+        
         var errGPIO = "";
-        if (["F28002x", "F28004x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x"].includes(Common.getDeviceName()))
+
+        if (["F28002x", "F28004x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x", "MCPC029"].includes(Common.getDeviceName()))
         {
             errGPIO = ERRORSTS_options.find(input => {
                 return input.name === inst["ERRORSTSPIN"]
@@ -1010,7 +1100,7 @@ function validate(inst, vo)
         
         if (inst["bootPinCount"] > 0)
         {
-            if (["F28002x", "F28004x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x"].includes(Common.getDeviceName())){
+            if (["F28002x", "F28004x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x", "MCPC029"].includes(Common.getDeviceName())){
                 if (inst["BMSP0"] == errGPIO)
                 {
                     Common.logError(vo, inst, "BMSP0", 
@@ -1018,9 +1108,10 @@ function validate(inst, vo)
                 }
             }
         }
+        
         if (inst["bootPinCount"] > 1)
         {
-            if (["F28002x", "F28004x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x"].includes(Common.getDeviceName())){
+            if (["F28002x", "F28004x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x", "MCPC029"].includes(Common.getDeviceName())){
                 if (inst["BMSP1"] == errGPIO)
                 {
                     Common.logError(vo, inst, "BMSP1", 
@@ -1033,9 +1124,10 @@ function validate(inst, vo)
                     'The BMSP1 pin is conflicting with BMSP0 pin.');
             }
         }
+        
         if (inst["bootPinCount"] > 2)
         {
-            if (["F28002x", "F28004x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x"].includes(Common.getDeviceName())){
+            if (["F28002x", "F28004x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x", "MCPC029"].includes(Common.getDeviceName())){
                 if (inst["BMSP2"] == errGPIO)
                 {
                     Common.logError(vo, inst, "BMSP2", 
@@ -1053,7 +1145,8 @@ function validate(inst, vo)
                     'The BMSP2 pin is conflicting with BMSP1 pin.');
             }
         }
-        if (["F28002x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x"].includes(Common.getDeviceName()))
+        
+        if (["F28002x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x", "MCPC029"].includes(Common.getDeviceName()))
         {
             if (!(inst["CJTAGNODEID"] >= 0 && inst["CJTAGNODEID"] < 16))
             {
@@ -1062,7 +1155,8 @@ function validate(inst, vo)
             }
         }
     }
-    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x"].includes(Common.getDeviceName()))
+    
+    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x", "MCPC029"].includes(Common.getDeviceName()))
     {
         if (inst["zone"] == 1 &&
             inst["useZone"] == true &&
@@ -1095,7 +1189,6 @@ function validate(inst, vo)
     //var sequenceOf1then0Result = sequenceOf1then0.test(); 
 
 }
-
 
 // Define the common/portable base Watchdog
 exports = {

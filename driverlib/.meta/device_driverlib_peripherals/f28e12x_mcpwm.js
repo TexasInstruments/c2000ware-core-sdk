@@ -84,7 +84,7 @@ let MCPWM_ActionQualifierOutputModule = [
 ]
 let MCPWM_ActionQualifierOutput = [
 	{ name: "MCPWM_AQ_OUTPUT_NO_CHANGE", displayName: "No change in the output pins" },
-	{ name: "MCPWM_AQ_OUTPUT_LOW", displayName: "Set output pins to low" },
+	{ name: "MCPWM_AQ_OUTPUT_LOW", displayName: "Set output pins to Low" },
 	{ name: "MCPWM_AQ_OUTPUT_HIGH", displayName: "Set output pins to High" },
 	{ name: "MCPWM_AQ_OUTPUT_TOGGLE", displayName: "Toggle the output pins" },
 ]

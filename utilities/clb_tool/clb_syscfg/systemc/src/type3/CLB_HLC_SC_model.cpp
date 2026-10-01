@@ -85,7 +85,7 @@ void TENOR_CLB_HLC::spi_export(void)
   //SPI export event
   if((spi_export_enable == 1) && (P_EVENT_BUS_IN[spi_event].posedge() == 1))
   {
-   spi_export_data = (comm_R0 << spi_shift);
+   spi_export_data = (comm_R0 >> spi_shift);
   }
   P_spi_export.write(spi_export_data);
 }

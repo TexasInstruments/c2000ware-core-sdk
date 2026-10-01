@@ -60,75 +60,59 @@
 #include "board.h"
 #include "c2000ware_libraries.h"
 #include "export/export_log.h"
-
-
 //
 // Main
 //
 void main(void)
 {
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull-ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // PinMux and Peripheral Initialization
     //
     Board_init();
-
     //
     // C2000Ware Library initialization
     //
     C2000Ware_libraries_init();
-
     //
     // Logging Inits
     //
     EXPORT_init();
     EXPORTLOG_init();
-
     //
     // Start the high priority ISR
     //
     CPUTimer_startTimer(myTimer1s_BASE);
-
     //
     // Enable Global Interrupt (INTM) and real time interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     while(1)
     {
-
         //
         // Export data out of the device
         //
         EXPORT_transferAllBufferData();
-
     }
 }
-
 interrupt void INT_myTimer1s_ISR(void){
-
     //
     // Log in internal memory
     //
@@ -136,10 +120,7 @@ interrupt void INT_myTimer1s_ISR(void){
     EXPORTLOG_log("Next log entry 2");
     EXPORTLOG_log("last entry 3");
     EXPORTBUFF_flushBufferElement();
-
 }
-
 //
 // End of File
 //
-

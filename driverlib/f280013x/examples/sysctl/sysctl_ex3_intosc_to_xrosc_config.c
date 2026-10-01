@@ -40,13 +40,11 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Device_init function by default uses SYSCTL_OSCSRC_OSC2.
 // User can update the macro DEVICE_SETCLOCK_CFG in device.h to use the
@@ -58,8 +56,6 @@
                                       SYSCTL_REFDIV(1) | SYSCTL_ODIV(4) | \
                                       SYSCTL_SYSDIV(1) | SYSCTL_PLL_ENABLE | \
                                       SYSCTL_DCC_BASE_0)
-
-
 //
 // Main
 //
@@ -70,36 +66,30 @@ void main(void)
     // Oscillator
     //
     SysCtl_setClock(DEVICE_SETCLOCK_CFG_EXTROSC);
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Select the clock source for XCLKOUT. Refer to the enum SysCtl_ClockOut
     // for other clock sources.
     //
     SysCtl_selectClockOutSource(SYSCTL_CLOCKOUT_INTOSC2);
-
     //
     // Configure the XCLOUT clock divider. The divider can be /1, /2, /4 or /8.
     //
     SysCtl_setXClk(SYSCTL_XCLKOUT_DIV_8);
-
     //
     // Configure GPIO16 as XCLKOUT pin. Note that GPIO18 also can be used as
     // XCLKOUT pin
     //
     GPIO_setPinConfig(GPIO_16_XCLKOUT);
     // GPIO_setPinConfig(GPIO_18_XCLKOUT);
-
     //
     // Loop Forever. The Clock can be viewed on the configured GPIO pin.
     //
     while(1);
 }
-
 //
 // End of File
 //

@@ -31,7 +31,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -64,13 +64,11 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Main
 //
@@ -80,7 +78,6 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Assign RAMs and Flash banks to CPU2.
     // In the default CPU2 linker cmd files, GS4, FLASH_BANK3 and FLASH_BANK4
@@ -94,7 +91,6 @@ void main(void)
     MemCfg_setGSRAMControllerSel(MEMCFG_SECT_GS4, MEMCFG_GSRAMCONTROLLER_CPU2);
     SysCtl_allocateFlashBank(SYSCTL_FLASH_BANK3, SYSCTL_CPUSEL_CPU2);
     SysCtl_allocateFlashBank(SYSCTL_FLASH_BANK4, SYSCTL_CPUSEL_CPU2);
- 
     //
     // Boot CPU2 core
     //
@@ -103,8 +99,6 @@ void main(void)
 #else
     Device_bootCPU2(BOOTMODE_BOOT_TO_M0RAM);
 #endif
-
-
     //
     // Initialize GPIO and configure the GPIO pin as a push-pull output
     //
@@ -113,29 +107,24 @@ void main(void)
     GPIO_setDirectionMode(DEVICE_GPIO_PIN_LED1, GPIO_DIR_MODE_OUT);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_LED2, GPIO_PIN_TYPE_STD);
     GPIO_setDirectionMode(DEVICE_GPIO_PIN_LED2, GPIO_DIR_MODE_OUT);
-
     //
     // Configure CPU2 to control the LED GPIO
     //
     GPIO_setControllerCore(DEVICE_GPIO_PIN_LED2, GPIO_CORE_CPU2);
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Loop Forever
     //
@@ -145,24 +134,20 @@ void main(void)
         // Turn on LED
         //
         GPIO_writePin(DEVICE_GPIO_PIN_LED1, 0);
-
         //
         // Delay for a bit.
         //
         DEVICE_DELAY_US(500000);
-
         //
         // Turn off LED
         //
         GPIO_writePin(DEVICE_GPIO_PIN_LED1, 1);
-
         //
         // Delay for a bit.
         //
         DEVICE_DELAY_US(500000);
     }
 }
-
 //
 // End of File
 //

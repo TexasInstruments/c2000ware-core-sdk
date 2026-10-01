@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_GPIO_EX4_AIO_EXTERNAL_INTERRUPT" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_GPIO_EX4_AIO_EXTERNAL_INTERRUPT</compoundname>
+    <title>GPIO External Interrupt</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_GPIO_EX4_AIO_EXTERNAL_INTERRUPT_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_gpio_ex4_aio_external_interrupt"/></para>
+<sect1 id="EXAMPLES_DRIVERS_GPIO_EX4_AIO_EXTERNAL_INTERRUPT_1autotoc_md255">
+<title>Introduction</title>
+<para>In this example AIO pins are configured as digital inputs. Two other GPIO signals (connected externally to AIO pins) are toggled in software to trigger external interrupt through AIO227 and AIO230 (AIO227 assigned to XINT1 and AIO230 assigned to XINT2). The user is required to externally connect these signals for the program to work properly. Each interrupt is fired in sequence: XINT1 first and then XINT2.</para>
+<para>GPIO5 will go high outside of the interrupts and low within the interrupts. This signal can be monitored on a scope.</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_GPIO_EX4_AIO_EXTERNAL_INTERRUPT_1autotoc_md256">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>Connect GPIO0 to AIO227. AIO227 will be assigned to XINT1</para>
+</listitem><listitem><para>Connect GPIO1 to AIO230. AIO230 will be assigned to XINT2</para>
+</listitem><listitem><para>Monitor the GPIO output pin on an oscilloscope</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_GPIO_EX4_AIO_EXTERNAL_INTERRUPT_1autotoc_md257">
+<title>Watch variables</title>
+<para><itemizedlist>
+<listitem><para>None </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/gpio_ex4_aio_external_interrupt.md"/>
+  </compounddef>
+</doxygen>

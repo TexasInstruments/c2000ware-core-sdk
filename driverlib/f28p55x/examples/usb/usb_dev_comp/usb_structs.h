@@ -30,8 +30,6 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-
-
 #ifndef USB_STRUCTS_H
 #define USB_STRUCTS_H
 //
@@ -44,7 +42,6 @@
 #include "usblib.h"
 #include "usb_ids.h"
 #include "device/usbdevice.h"
-
 #include "usbcdc.h"
 #include "device/usbdcdc.h"
 #include "device/usbdcomp.h"
@@ -53,28 +50,17 @@
 //#include "usb_hid_touch_structs.h"
 //#include "usb_key_structs.h"
 #include "usb_hid_custom_structs.h"
-
-
 extern const uint8_t * const g_pui8StringDescriptors[];
-
 #define NUM_DEVICES 2
-
 extern tCompositeEntry g_psCompDevices[NUM_DEVICES];
-
 uint32_t
 USBEventHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgParam,
                 void *pvMsgData);
-
 //#define DESCRIPTOR_DATA_SIZE    (COMPOSITE_DHID_SIZE + COMPOSITE_DHID_SIZE + COMPOSITE_DCDC_SIZE)
 #define DESCRIPTOR_DATA_SIZE    (COMPOSITE_DHID_SIZE + COMPOSITE_DCDC_SIZE)
-
-
 extern uint8_t g_pui8DescriptorData[DESCRIPTOR_DATA_SIZE];
-
 extern tUSBDCompositeDevice g_sCompDevice;
-
 #endif // USB_STRUCTS_H
-
 //
 // End of file 
 //

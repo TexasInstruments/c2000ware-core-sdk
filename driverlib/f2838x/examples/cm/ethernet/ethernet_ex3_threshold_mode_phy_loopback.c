@@ -62,7 +62,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -95,19 +95,16 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib_cm.h"
 #include "cm.h"
-
 //
 // Defines
 //
 #define PACKET_LENGTH 1508
 #define NUM_PACKETS 1
-
 #define ETHERNET_NO_OF_RX_PACKETS   1U
 //
 //Change this define for changing Packet buffer length
@@ -120,13 +117,11 @@
 //
 uint8_t pData[PACKET_LENGTH/2];
 uint8_t pData2[PACKET_LENGTH/2];
-
 //
 // Globals
 //
 uint8_t Ethernet_rxBuffer[ETHERNET_NO_OF_RX_PACKETS *
 ETHERNET_MAX_PACKET_LENGTH];
-
 //
 // Main
 //
@@ -138,13 +133,10 @@ void main(void)
     uint32_t i;
     Ethernet_Handle emac_handle;
     uint16_t phyRegContent=0;
-
-
     //
     // Initialize device clock and peripherals
     //
     CM_init();
-
     //
     //Form the unicast Packet in Memory
     //First 6 bytes of the packet are the MAC Destination Address
@@ -159,7 +151,6 @@ void main(void)
         else
             HWREG((uint32_t *)pData +i) = 0xFFFFFFFF;
     }
-
     //
     //Second Fragment shall not contain MAC header but just data
     //
@@ -167,7 +158,6 @@ void main(void)
     {
         HWREG((uint32_t *)pData2 +i) = 0xFFFFFFFF;
     }
-
     //
     //Select the MII interface of the module
     //
@@ -182,6 +172,8 @@ void main(void)
     initInterfaceConfig.ptrPlatformInterruptEnable = &Platform_enableInterrupt;
     initInterfaceConfig.ptrPlatformPeripheralEnable = &Platform_enablePeripheral;
     initInterfaceConfig.ptrPlatformPeripheralReset = &Platform_resetPeripheral;
+    initInterfaceConfig.ptrCoreInterruptDisable = &Interrupt_disableInProcessor;
+    initInterfaceConfig.ptrCoreInterruptEnable = &Interrupt_enableInProcessor;
     //
     //Assign the peripheral number at the SoC
     //
@@ -194,20 +186,15 @@ void main(void)
     initInterfaceConfig.interruptNum[2] = INT_EMAC_TX1;
     initInterfaceConfig.interruptNum[3] = INT_EMAC_RX0;
     initInterfaceConfig.interruptNum[4] = INT_EMAC_RX1;
-
     pInitCfg = Ethernet_initInterface(initInterfaceConfig);
-
     //
     // Get an initial configuration of known good parameters
     //
     Ethernet_getInitConfig(pInitCfg);
-
-
     //
     //Configure a single channel for Tx and Rx
     //
     pInitCfg->numChannels = 1;
-
     //
     // The default mode chosen by getInitConfig shall be Store and Forward
     //In that mode the interrupts are generated when the complete packet is sent out
@@ -221,14 +208,12 @@ void main(void)
         //
         pInitCfg->chInfo[ETHERNET_CH_DIR_TX][i].storeNForward =
         ETHERNET_MTL_TXQ_OPMODE_TSF_DISABLE;
-
         //
         //Configure the Rx Queue in threshold mode
         //Disabling Store and Forward mode will configure Threshold mode
         //
         pInitCfg->chInfo[ETHERNET_CH_DIR_RX][i].storeNForward =
         ETHERNET_MTL_RX_Q_OP_MODE_RSF_DISABLE;
-
         //
         //Burst Length is the number of beats(32 bits/one word)
         //Configuring 32 burstLength will generate an interrupt for every
@@ -239,9 +224,7 @@ void main(void)
         //driver library
         //
         pInitCfg->chInfo[ETHERNET_CH_DIR_RX][i].burstLength = 32;
-
     }
-
     //
     //Assign the callbacks for Getting packet buffer when needed
     //Releasing the TxPacketBuffer on Transmit interrupt callbacks
@@ -255,7 +238,6 @@ void main(void)
     //Packets. This should be accessible by the Ethernet DMA
     //
     pInitCfg->rxBuffer = Ethernet_rxBuffer;
-
     //
     //Get the handle for the module configured with the
     //chosen parameters as configured above in addition
@@ -295,41 +277,33 @@ void main(void)
                                 ETHERNET_DMA_CH0_INTERRUPT_ENABLE_AIE
                                 |ETHERNET_DMA_CH0_INTERRUPT_ENABLE_ETIE
                                 |ETHERNET_DMA_CH0_INTERRUPT_ENABLE_ERIE);
-
-
     //
     //Low Frequency
     //value of 5 for selecting the slowest possible MDIO Clock
     //Clause 22 mode
     //
     Ethernet_configureMDIO(EMAC_BASE,0,5,0);
-
     //
     //The DP83822 External PHY in Control Card
     //takes a PHY address of 1 by default
     //Configure the MDIO module to use PHY address of 0x1
     //
     Ethernet_configurePHYAddress(EMAC_BASE,1);
-
     //
     //Address 0 of PHY corresponds to Basic Mode Control Register(BMCR)
     //Read the register to know the state
     //
     phyRegContent= Ethernet_readPHYRegister(EMAC_BASE,0);
-
     //
     //Bit 14 of BMCR configures the MII Loopback
     //
     phyRegContent |= 0x4000;
-
     Ethernet_writePHYRegister(EMAC_BASE,0,phyRegContent);
-
     //
     //Read back the BMCR register to confirm that the MII Loopback
     //is configured properly
     //
     phyRegContent= Ethernet_readPHYRegister(EMAC_BASE,0);
-
     //
     //Prepare a Packet Descriptor structure to send a packet
     //This contains a single buffer single packet
@@ -342,16 +316,13 @@ void main(void)
     //With the first interrupt the buffer 0 can be reclaimed
     //For the second interrupt the buffer 1 can be reclaimed by the application
     //
-
     pktDesc[0].bufferLength = PACKET_LENGTH/2;
     pktDesc[0].dataOffset = 0;
     pktDesc[0].dataBuffer = pData;
-
     //
     //Point to the next descriptor for forming a chain
     //
     pktDesc[0].nextPacketDesc =&pktDesc[1];
-
     //
     //This fragment has only SOP EOP shall be in next fragment
     //
@@ -359,7 +330,6 @@ void main(void)
     pktDesc[0].pktChannel = ETHERNET_DMA_CHANNEL_NUM_0;
     pktDesc[0].pktLength = PACKET_LENGTH;
     pktDesc[0].validLength = PACKET_LENGTH/2;
-
     //
     //This packet is split into two fragments
     //
@@ -372,12 +342,10 @@ void main(void)
     pktDesc[1].pktChannel = ETHERNET_DMA_CHANNEL_NUM_0;
     pktDesc[1].pktLength = PACKET_LENGTH;
     pktDesc[1].validLength = PACKET_LENGTH/2;
-
     //
     //Send the packet prepared
     //
     Ethernet_sendPacket(emac_handle,&pktDesc[0]);
-
     //
     //Transmit Path Interrupts:
     //While the packet is being sent we should observe two early Transmit interrupts
@@ -388,7 +356,4 @@ void main(void)
     //Memory by the Ethernet DMA there will be an early interrupt
     //
     while(1);
-
 }
-
-

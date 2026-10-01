@@ -26,7 +26,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -59,21 +59,18 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Globals
 //
 volatile uint16_t dacResult;
 volatile uint16_t pgaResult;
 float pgaGain;
-
 //
 // Main
 //
@@ -83,24 +80,19 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
 	Board_init();
-
 	PGA_enableOutput(myPGA0_BASE);
 	PGA_enableInternalGainOutput(myPGA0_BASE);
-
 	//
 	// Enable Global Interrupt (INTM) and real time interrupt (DBGM)
 	//
 	EINT;
 	ERTM;
-
 	//
 	// Force ADC conversion
 	//
     ADC_forceSOC(myADC0_BASE, ADC_SOC_NUMBER0);
     ADC_forceSOC(myADC0_BASE, ADC_SOC_NUMBER1);
-
     //
     // Loop indefinitely
     //
@@ -115,11 +107,9 @@ void main(void)
 	        // Acknowledge flag
 	        //
 	        ADC_clearInterruptStatus(myADC0_BASE, ADC_INT_NUMBER1);
-
 	        dacResult = ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER0);
 	        pgaResult = ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER1);
 	        pgaGain   = (float)pgaResult / (float)dacResult;
-
 	        //
 	        // Force ADC conversion
 	        //
@@ -128,7 +118,6 @@ void main(void)
 	    }
 	}
 }
-
 //
 // End of File
 //

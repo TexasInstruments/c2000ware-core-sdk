@@ -37,7 +37,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -70,21 +70,17 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Defines
 //
 #define CPU_FREQ_MHZ 200ul
-
 //
 // Typedefs
 //
-
 //
 // The XINT ISR can be switched at run time to observe the timing differences
 // between flash, RAM, C, and assembly.
@@ -96,13 +92,11 @@ typedef enum
     ISR_ASM_RAM,
     ISR_ASM_FLASH
 } eIsrType;
-
 //
 // Globals
 //
 volatile eIsrType isrType;
 volatile Uint16 timerFlag;
-
 //
 // Function Prototypes
 //
@@ -113,7 +107,6 @@ extern interrupt void XINT_ASM_ISR_FLASH(void);
 interrupt void TIMER_ISR(void);
 void WaitLoopFlash(void);
 void WaitLoopRam(void);
-
 //
 // Main
 //
@@ -124,7 +117,6 @@ void main(void)
     // This also copies the RAM functions to RAM.
     //
     InitSysCtrl();
-
     //
     // Disable interrupts and initialize the PIE vector table and CPU interrupt
     // mask
@@ -134,7 +126,6 @@ void main(void)
     InitPieVectTable();
     IER = 0x0000;
     IFR = 0x0000;
-
     //
     // Initialize and configure the GPIO pins. GPIO16 will be used as the XINT
     // input. GPIO10 will be a push-pull output that toggles low once per
@@ -147,7 +138,6 @@ void main(void)
     GPIO_SetupPinOptions(10, GPIO_OUTPUT, GPIO_PUSHPULL);
     GPIO_SetupPinMux(19, GPIO_MUX_CPU1, 0x0);
     GPIO_SetupPinOptions(19, GPIO_OUTPUT, GPIO_PUSHPULL);
-
     //
     // Turn on XCLKOUT on GPIO73
     //
@@ -155,72 +145,58 @@ void main(void)
     EALLOW;
     ClkCfgRegs.CLKSRCCTL3.bit.XCLKOUTSEL = 0;
     ClkCfgRegs.XCLKOUTDIVSEL.all = 0;
-
     //
     // Set the initial GPIO states
     //
     GpioDataRegs.GPASET.bit.GPIO10 = 1;
     GpioDataRegs.GPACLEAR.bit.GPIO19 = 1;
-
     //
     // Enable the XINT1 interrupt on PIE channel 1.4 and the Timer0 interrupt
     // on PIE channel 1.7.
     //
     EALLOW;
     isrType = ISR_ASM_RAM;
-
     //
     // Write an XINT1 ISR to the PIE vector table
     //
     PieVectTable.XINT1_INT = &XINT_ASM_ISR_RAM;
-
     //
     // Write the Timer0 ISR to the PIE vector table
     //
     PieVectTable.TIMER0_INT = &TIMER_ISR;
-
     PieCtrlRegs.PIEIER1.bit.INTx4 = 1;     // Enable PIE channel 1.4
     PieCtrlRegs.PIEIER1.bit.INTx7 = 1;     // Enable PIE channel 1.7
     EDIS;
     IER |= M_INT1;                         // Enable CPU interrupt group 1
-
     //
     // Set up XINT1 to trigger on a falling edge on GPIO16
     //
     EALLOW;
-
     //
     // Select GPIO16 as the source for input XBAR channel 4 (XINT1)
     //
     InputXbarRegs.INPUT4SELECT = 16;
-
     XintRegs.XINT1CR.bit.POLARITY = 0;     // Trigger XINT1 on a falling edge
     XintRegs.XINT1CR.bit.ENABLE = 1;       // Enable XINT1
     EDIS;
-
     //
     // Set up CPU Timer0 to trigger an interrupt once per millisecond
     //
     timerFlag = 0;
-
     EALLOW;
     CpuTimer0Regs.TCR.bit.TSS = 1;
     CpuTimer0Regs.PRD.all = 1000ul * CPU_FREQ_MHZ;
     CpuTimer0Regs.TPR.bit.TDDR = 0;
     CpuTimer0Regs.TPRH.bit.TDDRH = 0;
-
     //
     // Enable the interrupt and reset and start the timer
     //
     CpuTimer0Regs.TCR.all = 0x4020;
-
     EDIS;
-
     //
     // Enable CPU interrupts
     //
     EINT;
-
     //
     // Wait for an interrupt
     //
@@ -233,7 +209,6 @@ void main(void)
             // worry about disabling interrupts here.
             //
             timerFlag = 0;
-
             //
             // Switch the ISR type
             //
@@ -254,7 +229,6 @@ void main(void)
                     break;
             }
             EDIS;
-
             //
             // Drive GPIO10 low to trigger the XINT. Wait until after the
             // interrupt is serviced to release GPIO10 again.
@@ -279,11 +253,9 @@ void main(void)
         }
     }
 }
-
 //
 // XINT1 interrupt handlers. Both of these toggle GPIO19.
 //
-
 //
 // XINT_C_ISR_RAM - This copy of the function runs out of RAM with zero wait
 // states. The delay from GPIO16 going low to GPIO19 going high was measured
@@ -297,7 +269,6 @@ XINT_C_ISR_RAM(void)
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
     GpioDataRegs.GPATOGGLE.bit.GPIO19 = 1;
 }
-
 //
 // XINT_C_ISR_FLASH - This copy of the function runs out of flash with three
 // wait states. The delay from GPIO16 going low to GPIO19 going high was
@@ -310,7 +281,6 @@ XINT_C_ISR_FLASH(void)
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
     GpioDataRegs.GPATOGGLE.bit.GPIO19 = 1;
 }
-
 //
 // TIMER_ISR - Timer0 interrupt handler. Tells the main loop to pull GPIO10
 // low.
@@ -322,8 +292,6 @@ TIMER_ISR(void)
     //GpioDataRegs.GPATOGGLE.bit.GPIO19 = 1;
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
 }
-
 //
 // End of File
 //
-

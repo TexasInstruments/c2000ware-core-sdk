@@ -33,29 +33,22 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 #include <fsi_optimal_delay.h>
-
 //!
 //! \brief Maximum and minimum number of delay elements
 //!
 #define FSI_DELAY_MAX   31
 #define FSI_DELAY_MIN   0
 #define FSI_CLK_DLY_OFFSET 0 // this is for debug, leave the default value otherwise
-
 //! \brief Values used to check whether FSI communication was successful or not
 //!
 #define FSI_PASS   1UL
 #define FSI_FAIL   0UL
-
 //! \brief Number of CPU cycles used to retry communication before timeout
 //!
 #define PING_TIMEOUT_VALUE   10000
 #define COUNTER_TIMEOUT      200
-
 #define CHECK_TIMEOUT()         if(pingTimeOutCount>=PING_TIMEOUT_VALUE){goto CHECK_RESULT;}
-
-
 //*****************************************************************************
 //
 //! \brief Uses a specific number of delay elements on the FSIRX module delay
@@ -82,9 +75,7 @@ bool FSI_validatePing(uint32_t rxbase, uint32_t txbase,
                   uint16_t delayTapRX1,
                   uint16_t delayTapCLK,
                   uint16_t reliableTXPrescalar);
-
 XYPoint FSI_calculateCenterPoint(uint32_t xAxis, uint32_t yAxis);
-
 //*****************************************************************************
 //
 //! \brief Uses a specific number of delay elements on the FSIRX module delay
@@ -98,13 +89,10 @@ XYPoint FSI_calculateCenterPoint(uint32_t xAxis, uint32_t yAxis);
 //!
 //! \return true if validation was succesful.
 //*****************************************************************************
-
 bool FSI_LpbkvalidatePing(uint32_t rxbase, uint32_t txbase,
                   uint16_t delayTapRX0,
                   uint16_t delayTapRX1,
                   uint16_t delayTapCLK);
-
-
 //*****************************************************************************
 //
 //! \brief Calibrates the FSIRX module using nLanes data width using the
@@ -120,35 +108,24 @@ bool FSI_LpbkvalidatePing(uint32_t rxbase, uint32_t txbase,
 //!
 //! \return None.
 //*****************************************************************************
-
-
 FSIExecutionPoint FSI_LpbkCalibrateExePoint (uint32_t rxbase, uint32_t txbase,
                                FSI_DataWidth n_lanes);
-
 void
 FSI_configRxDelayLine_fix(uint32_t base, FSI_RxDelayTapType delayTapType,
                 uint16_t tapValue);
-
-
-
 XYPoint FSI_calculateCenterPoint(uint32_t xAxis, uint32_t yAxis)
 {
     XYPoint centerPoint = {
        .X = -1,
        .Y = -1
     };
-
     uint32_t x = 0;
     uint32_t y = 0;
-
     uint16_t xIntercepts [2] = {0};
     uint16_t yIntercepts [2] = {0};
-
     uint16_t xNumberOfIntercepts = 0;
     uint16_t yNumberOfIntercepts = 0;
-
     bool previousValue = false;
-
     for (x = 0; x < 32; x++)
     {
         bool currentValue = (xAxis >> x) & 0x1;
@@ -161,7 +138,6 @@ XYPoint FSI_calculateCenterPoint(uint32_t xAxis, uint32_t yAxis)
         if(xNumberOfIntercepts == 2)
         break;
     }
-
     previousValue = false;
     for (y = 0; y < 32; y++)
     {
@@ -175,8 +151,6 @@ XYPoint FSI_calculateCenterPoint(uint32_t xAxis, uint32_t yAxis)
         if(yNumberOfIntercepts == 2)
         break;
     }
-
-
     if (xNumberOfIntercepts == 2 && yNumberOfIntercepts ==2
             && xIntercepts[0] == yIntercepts[0]
             && xIntercepts[0] == 0)
@@ -191,10 +165,8 @@ XYPoint FSI_calculateCenterPoint(uint32_t xAxis, uint32_t yAxis)
             yval = yval + offset;
             xval = xval + offset;
         }
-
         centerPoint.X = xval;
         centerPoint.Y = yval;
-
     }
     else if (xNumberOfIntercepts == 2 && yNumberOfIntercepts == 0)
     {
@@ -247,11 +219,8 @@ XYPoint FSI_calculateCenterPoint(uint32_t xAxis, uint32_t yAxis)
         centerPoint.X = 0;
         centerPoint.Y = 0;
     }
-
-
     return  centerPoint;
 }
-
 FSIExecutionPoint FSI_calibrateExecutionPoint(uint32_t rxbase, uint32_t txbase, FSI_DataWidth nLanes,
                                               uint16_t reliableTXPrescalar)
 {
@@ -260,25 +229,21 @@ FSIExecutionPoint FSI_calibrateExecutionPoint(uint32_t rxbase, uint32_t txbase, 
     uint32_t rx1Axis_dualLine = 0;
     uint32_t clkAxis_dualLine = 0;
     XYPoint centerPoint;
-
     uint32_t delayTapRX0 = 0;
     uint32_t delayTapRX1 = 0;
     uint32_t delayTapCLK = 0;
-
     FSIExecutionPoint singleLineExePoint = {
         .RX0Delay = 0,
         .RX1Delay = 0,
         .CLKDelay = 0,
         .Valid = true
     };
-
     FSIExecutionPoint dualLineExePoint = {
         .RX0Delay = 0,
         .RX1Delay = 0,
         .CLKDelay = 0,
         .Valid = true
     };
-
     FSI_FrameTag restoreTag = FSI_getTxFrameTag(txbase);
     FSI_FrameType restoreType = FSI_getTxFrameType(txbase);
     uint16_t restorePrescale = FSI_getTxPrescale(txbase);
@@ -286,13 +251,9 @@ FSIExecutionPoint FSI_calibrateExecutionPoint(uint32_t rxbase, uint32_t txbase, 
     uint16_t restoreTXInt2 = FSI_getTxInterrupt(txbase, FSI_INT2);
     uint16_t restoreRXInt1 = FSI_getRxInterrupt(rxbase, FSI_INT1);
     uint16_t restoreRXInt2 = FSI_getRxInterrupt(rxbase, FSI_INT2);
-
-
-
     // Begin with single line FSI pings
     FSI_setRxDataWidth(rxbase, FSI_DATA_WIDTH_1_LANE);
     FSI_setTxDataWidth(txbase, FSI_DATA_WIDTH_1_LANE);
-
     // Set delay tap for CLK to zero
     // Loop through the 32 delay taps for RX0
     delayTapCLK = 0;
@@ -308,7 +269,6 @@ FSIExecutionPoint FSI_calibrateExecutionPoint(uint32_t rxbase, uint32_t txbase, 
             rx0Axis_singleLine |= (FSI_PASS << delayTapRX0);
         }
     }
-
     // Set delay tap for RX0 to zero
     // Loop through the 32 delay taps for CLK
     delayTapRX0 = 0;
@@ -324,18 +284,15 @@ FSIExecutionPoint FSI_calibrateExecutionPoint(uint32_t rxbase, uint32_t txbase, 
             clkAxis_singleLine |= (FSI_PASS << delayTapCLK);
         }
     }
-
     // calculate the best point based on the rx0 and clk axies.
     centerPoint = FSI_calculateCenterPoint(rx0Axis_singleLine, clkAxis_singleLine);
     if (centerPoint.X < 0  || centerPoint.Y < 0)
     {
         // if x or y are negative, no optimal point was found
         singleLineExePoint.Valid = false;
-
         //
         // Restore
         //
-
         FSI_setTxFrameTag(txbase, restoreTag);
         FSI_setTxFrameType(txbase, restoreType);
         FSI_setTxPrescale(txbase, restorePrescale);
@@ -343,19 +300,15 @@ FSIExecutionPoint FSI_calibrateExecutionPoint(uint32_t rxbase, uint32_t txbase, 
         FSI_enableTxInterrupt(txbase, FSI_INT2, restoreTXInt2);
         FSI_enableRxInterrupt(rxbase, FSI_INT1, restoreRXInt1);
         FSI_enableRxInterrupt(rxbase, FSI_INT2, restoreRXInt2);
-
         return singleLineExePoint;
     }
-
     // Populate the new single line execution point
     singleLineExePoint.Valid = true;
     singleLineExePoint.RX0Delay = centerPoint.X;
     singleLineExePoint.CLKDelay = centerPoint.Y;
-
     // Set the delay taps for RX0 and CLk to new single line optimal values.
     delayTapRX0 = singleLineExePoint.RX0Delay;
     delayTapCLK = singleLineExePoint.CLKDelay;
-
     if (nLanes == FSI_DATA_WIDTH_1_LANE)
     {
         // Double check to make sure the single line execution point passes
@@ -367,11 +320,9 @@ FSIExecutionPoint FSI_calibrateExecutionPoint(uint32_t rxbase, uint32_t txbase, 
         {
             // if x or y are negative, no optimal point was found
             singleLineExePoint.Valid = false;
-
             //
             // Restore
             //
-
             FSI_setTxFrameTag(txbase, restoreTag);
             FSI_setTxFrameType(txbase, restoreType);
             FSI_setTxPrescale(txbase, restorePrescale);
@@ -379,19 +330,15 @@ FSIExecutionPoint FSI_calibrateExecutionPoint(uint32_t rxbase, uint32_t txbase, 
             FSI_enableTxInterrupt(txbase, FSI_INT2, restoreTXInt2);
             FSI_enableRxInterrupt(rxbase, FSI_INT1, restoreRXInt1);
             FSI_enableRxInterrupt(rxbase, FSI_INT2, restoreRXInt2);
-
             return singleLineExePoint;
         }
-
         // Set the new delay taps
         FSI_configRxDelayLine_fix(rxbase, FSI_RX_DELAY_D0, delayTapRX0);
         FSI_configRxDelayLine_fix(rxbase, FSI_RX_DELAY_D1, delayTapRX1);
         FSI_configRxDelayLine_fix(rxbase, FSI_RX_DELAY_CLK, delayTapCLK);
-
         //
         // Restore
         //
-
         FSI_setTxFrameTag(txbase, restoreTag);
         FSI_setTxFrameType(txbase, restoreType);
         FSI_setTxPrescale(txbase, restorePrescale);
@@ -399,7 +346,6 @@ FSIExecutionPoint FSI_calibrateExecutionPoint(uint32_t rxbase, uint32_t txbase, 
         FSI_enableTxInterrupt(txbase, FSI_INT2, restoreTXInt2);
         FSI_enableRxInterrupt(rxbase, FSI_INT1, restoreRXInt1);
         FSI_enableRxInterrupt(rxbase, FSI_INT2, restoreRXInt2);
-
         return singleLineExePoint;
     }
     else //Data Width = 2
@@ -412,13 +358,10 @@ FSIExecutionPoint FSI_calibrateExecutionPoint(uint32_t rxbase, uint32_t txbase, 
                 delayTapRX0, delayTapRX1, delayTapCLK, reliableTXPrescalar);
         if (!check)
         {
-
             dualLineExePoint.Valid = false;
-
             //
             // Restore
             //
-
             FSI_setTxFrameTag(txbase, restoreTag);
             FSI_setTxFrameType(txbase, restoreType);
             FSI_setTxPrescale(txbase, restorePrescale);
@@ -426,18 +369,14 @@ FSIExecutionPoint FSI_calibrateExecutionPoint(uint32_t rxbase, uint32_t txbase, 
             FSI_enableTxInterrupt(txbase, FSI_INT2, restoreTXInt2);
             FSI_enableRxInterrupt(rxbase, FSI_INT1, restoreRXInt1);
             FSI_enableRxInterrupt(rxbase, FSI_INT2, restoreRXInt2);
-
             return dualLineExePoint;
         }
-
         // Switch to 2 lanes
         FSI_setRxDataWidth(rxbase, FSI_DATA_WIDTH_2_LANE);
         FSI_setTxDataWidth(txbase, FSI_DATA_WIDTH_2_LANE);
-
         // This variable is used to skip over the CLK delays that are invalid
         // due to single line execution point calculation
         uint32_t clkOffset = singleLineExePoint.CLKDelay;
-
         // Set RX0 to execution point
         // Set RX1 to 0
         // Loop through the CLK delay taps starting at the single line execution
@@ -460,7 +399,6 @@ FSIExecutionPoint FSI_calibrateExecutionPoint(uint32_t rxbase, uint32_t txbase, 
             }
             delayTapRX0++;
         }
-
         // Set RX0 and CLK to single line execution point.
         // Loop through all 32 RX1 delay taps.
         delayTapRX0 = singleLineExePoint.RX0Delay;
@@ -477,7 +415,6 @@ FSIExecutionPoint FSI_calibrateExecutionPoint(uint32_t rxbase, uint32_t txbase, 
                 rx1Axis_dualLine |= (FSI_PASS << delayTapRX1);
             }
         }
-
         centerPoint = FSI_calculateCenterPoint(clkAxis_dualLine, rx1Axis_dualLine);
         //centerPoint.X is shifted CLK center. Must add singleLineExePoint.CLKDelay to get correct clock.
         //singleLine.RX0Delay must also be shifted to match the new CLK. Must add centerPoint.X to get correct RX0
@@ -485,11 +422,9 @@ FSIExecutionPoint FSI_calibrateExecutionPoint(uint32_t rxbase, uint32_t txbase, 
         if (centerPoint.X < 0  || centerPoint.Y < 0)
         {
             dualLineExePoint.Valid = false;
-
             //
             // Restore
             //
-
             FSI_setTxFrameTag(txbase, restoreTag);
             FSI_setTxFrameType(txbase, restoreType);
             FSI_setTxPrescale(txbase, restorePrescale);
@@ -497,31 +432,25 @@ FSIExecutionPoint FSI_calibrateExecutionPoint(uint32_t rxbase, uint32_t txbase, 
             FSI_enableTxInterrupt(txbase, FSI_INT2, restoreTXInt2);
             FSI_enableRxInterrupt(rxbase, FSI_INT1, restoreRXInt1);
             FSI_enableRxInterrupt(rxbase, FSI_INT2, restoreRXInt2);
-
             return dualLineExePoint;
         }
         dualLineExePoint.CLKDelay = singleLineExePoint.CLKDelay + centerPoint.X;
         dualLineExePoint.RX0Delay = singleLineExePoint.RX0Delay + centerPoint.X;
         dualLineExePoint.RX1Delay = centerPoint.Y;
-
         // Set the delay taps
         delayTapRX0 = dualLineExePoint.RX0Delay;
         delayTapRX1 = dualLineExePoint.RX1Delay;
         delayTapCLK = dualLineExePoint.CLKDelay;
-
         // Double check execution point
         check = FSI_validatePing(
                 rxbase, txbase, FSI_FRAME_TAG4,
                 delayTapRX0, delayTapRX1, delayTapCLK, reliableTXPrescalar);
         if (!check)
         {
-
             dualLineExePoint.Valid = false;
-
             //
             // Restore
             //
-
             FSI_setTxFrameTag(txbase, restoreTag);
             FSI_setTxFrameType(txbase, restoreType);
             FSI_setTxPrescale(txbase, restorePrescale);
@@ -529,18 +458,14 @@ FSIExecutionPoint FSI_calibrateExecutionPoint(uint32_t rxbase, uint32_t txbase, 
             FSI_enableTxInterrupt(txbase, FSI_INT2, restoreTXInt2);
             FSI_enableRxInterrupt(rxbase, FSI_INT1, restoreRXInt1);
             FSI_enableRxInterrupt(rxbase, FSI_INT2, restoreRXInt2);
-
             return dualLineExePoint;
         }
-
         FSI_configRxDelayLine_fix(rxbase, FSI_RX_DELAY_D0, delayTapRX0);
         FSI_configRxDelayLine_fix(rxbase, FSI_RX_DELAY_D1, delayTapRX1);
         FSI_configRxDelayLine_fix(rxbase, FSI_RX_DELAY_CLK, delayTapCLK);
-
         //
         // Restore
         //
-
         FSI_setTxFrameTag(txbase, restoreTag);
         FSI_setTxFrameType(txbase, restoreType);
         FSI_setTxPrescale(txbase, restorePrescale);
@@ -548,13 +473,9 @@ FSIExecutionPoint FSI_calibrateExecutionPoint(uint32_t rxbase, uint32_t txbase, 
         FSI_enableTxInterrupt(txbase, FSI_INT2, restoreTXInt2);
         FSI_enableRxInterrupt(rxbase, FSI_INT1, restoreRXInt1);
         FSI_enableRxInterrupt(rxbase, FSI_INT2, restoreRXInt2);
-
         return dualLineExePoint;
     }
-
 }
-
-
 bool FSI_validatePing(uint32_t rxbase, uint32_t txbase,
                   FSI_FrameTag lastTag,
                   uint16_t delayTapRX0,
@@ -566,8 +487,6 @@ bool FSI_validatePing(uint32_t rxbase, uint32_t txbase,
     uint16_t txEventSts = 0, rxEventSts = 0;
     uint32_t rxTimeOutCntr = COUNTER_TIMEOUT;
     uint16_t pingTimeOutCount = 0;
-
-
     //
     // Initialize basic settings for FSI
     //
@@ -575,21 +494,16 @@ bool FSI_validatePing(uint32_t rxbase, uint32_t txbase,
     FSI_disableTxInterrupt(txbase, FSI_INT2, FSI_TX_EVTMASK);
     FSI_disableRxInterrupt(rxbase, FSI_INT1, FSI_RX_EVTMASK);
     FSI_disableRxInterrupt(rxbase, FSI_INT2, FSI_RX_EVTMASK);
-
     FSI_clearTxEvents(txbase, FSI_TX_EVTMASK);
     FSI_clearRxEvents(rxbase, FSI_RX_EVTMASK);
-
     // Disable internal loopback
     FSI_disableRxInternalLoopback(rxbase);
-
     FSI_performTxInitialization(txbase, reliableTXPrescalar);
     FSI_performRxInitialization(rxbase);
-
     //Set Delay taps
     FSI_configRxDelayLine_fix(rxbase, FSI_RX_DELAY_D0, delayTapRX0);
     FSI_configRxDelayLine_fix(rxbase, FSI_RX_DELAY_D1, delayTapRX1);
     FSI_configRxDelayLine_fix(rxbase, FSI_RX_DELAY_CLK, delayTapCLK);
-
     //
     // Wait till interrupt is received on FSIRX INT1 line, verify it's for FRAME
     // DONE event for PING Frame reception
@@ -605,17 +519,14 @@ bool FSI_validatePing(uint32_t rxbase, uint32_t txbase,
             CHECK_TIMEOUT();
             rxEventSts = FSI_getRxEventStatus(rxbase);
         }
-
         if(rxEventSts != (FSI_RX_EVT_PING_FRAME | FSI_RX_EVT_FRAME_DONE))
         {
             (error)++;
         }
-
         if((uint16_t)FSI_getRxFrameType(rxbase) != (uint16_t)FSI_FRAME_TYPE_PING)
         {
             (error)++;
         }
-
         if(FSI_getRxFrameType(rxbase) == FSI_FRAME_TYPE_PING)
         {
             if((uint16_t)FSI_getRxPingTag(rxbase) != (uint16_t)FSI_FRAME_TAG0)
@@ -639,7 +550,6 @@ bool FSI_validatePing(uint32_t rxbase, uint32_t txbase,
         {
             break;
         }
-
         error = 0;
     }
     while(1)
@@ -648,18 +558,14 @@ bool FSI_validatePing(uint32_t rxbase, uint32_t txbase,
         // Send the flush sequence
         //
         FSI_executeTxFlushSequence(txbase, reliableTXPrescalar);
-
         //
         // Send a ping frame with frame tag 0001b
         //
-
         FSI_setTxFrameTag(txbase, FSI_FRAME_TAG1);
         FSI_setTxFrameType(txbase, FSI_FRAME_TYPE_PING);
         FSI_startTxTransmit(txbase);
-
         FSI_clearRxEvents(rxbase,FSI_RX_EVTMASK);
         rxEventSts = 0;
-
         while(!(rxEventSts & FSI_RX_EVT_PING_FRAME) && rxTimeOutCntr != 0U)
         {
             CHECK_TIMEOUT();
@@ -668,7 +574,6 @@ bool FSI_validatePing(uint32_t rxbase, uint32_t txbase,
             rxTimeOutCntr--;
             rxEventSts = FSI_getRxEventStatus(rxbase);
         }
-
         if(rxTimeOutCntr == 0)
         {
             rxTimeOutCntr = COUNTER_TIMEOUT;
@@ -680,12 +585,10 @@ bool FSI_validatePing(uint32_t rxbase, uint32_t txbase,
             {
                 (error)++;
             }
-
             if((uint16_t)FSI_getRxFrameType(rxbase) != (uint16_t)FSI_FRAME_TYPE_PING)
             {
                 (error)++;
             }
-
             if(FSI_getRxFrameType(rxbase) == FSI_FRAME_TYPE_PING)
             {
                 if((uint16_t)FSI_getRxPingTag(rxbase) != (uint16_t)FSI_FRAME_TAG1)
@@ -709,15 +612,12 @@ bool FSI_validatePing(uint32_t rxbase, uint32_t txbase,
             {
                 break;
             }
-
             error = 0;
         }
     }
-
     CHECK_RESULT:
     if (pingTimeOutCount < PING_TIMEOUT_VALUE)
     {
-
         FSI_setTxFrameTag(txbase, lastTag);
         txEventSts = 0;
         FSI_clearTxEvents(txbase, FSI_TX_EVTMASK);
@@ -728,15 +628,12 @@ bool FSI_validatePing(uint32_t rxbase, uint32_t txbase,
             txEventSts = FSI_getTxEventStatus(txbase);
         }
     }
-
     if (pingTimeOutCount < PING_TIMEOUT_VALUE)
     {
         return true;
     }
     return false;
 }
-
-
 void
 FSI_configRxDelayLine_fix(uint32_t base, FSI_RxDelayTapType delayTapType,
                 uint16_t tapValue)
@@ -746,7 +643,6 @@ FSI_configRxDelayLine_fix(uint32_t base, FSI_RxDelayTapType delayTapType,
     //
     ASSERT(FSI_isRxBaseValid(base));
     ASSERT(tapValue <= FSI_RX_MAX_DELAY_LINE_VAL);
-
     EALLOW;
     switch(delayTapType)
     {
@@ -756,21 +652,18 @@ FSI_configRxDelayLine_fix(uint32_t base, FSI_RxDelayTapType delayTapType,
                                                    (tapValue <<
                                                    FSI_RX_DLYLINE_CTRL_RXCLK_DLY_S);
             break;
-
         case FSI_RX_DELAY_D0:
             HWREGH(base + FSI_O_RX_DLYLINE_CTRL) = (HWREGH(base + FSI_O_RX_DLYLINE_CTRL) &
                                                    (~FSI_RX_DLYLINE_CTRL_RXD0_DLY_M)) |
                                                    (tapValue <<
                                                    FSI_RX_DLYLINE_CTRL_RXD0_DLY_S);
             break;
-
         case FSI_RX_DELAY_D1:
             HWREGH(base + FSI_O_RX_DLYLINE_CTRL) = (HWREGH(base + FSI_O_RX_DLYLINE_CTRL) &
                                                     (~FSI_RX_DLYLINE_CTRL_RXD1_DLY_M)) |
                                                     (tapValue <<
                                                     FSI_RX_DLYLINE_CTRL_RXD1_DLY_S);
             break;
-
         default:
             //
             // Invalid tap selection input
@@ -780,8 +673,6 @@ FSI_configRxDelayLine_fix(uint32_t base, FSI_RxDelayTapType delayTapType,
     }
     EDIS;
 }
-
-
 bool FSI_LpbkvalidatePing(uint32_t rxbase, uint32_t txbase,
                   uint16_t delayTapRX0,
                   uint16_t delayTapRX1,
@@ -792,20 +683,16 @@ bool FSI_LpbkvalidatePing(uint32_t rxbase, uint32_t txbase,
     uint16_t rxEventSts = 0;
     uint16_t pingTimeOutCount = 0;
     FSI_FrameTag TxPingTag = FSI_FRAME_TAG0;
-
     // Initialize basic settings for FSI
     //
     FSI_disableTxInterrupt(txbase, FSI_INT1, FSI_TX_EVTMASK);
     FSI_disableTxInterrupt(txbase, FSI_INT2, FSI_TX_EVTMASK);
     FSI_disableRxInterrupt(rxbase, FSI_INT1, FSI_RX_EVTMASK);
     FSI_disableRxInterrupt(rxbase, FSI_INT2, FSI_RX_EVTMASK);
-
     FSI_clearTxEvents(txbase, FSI_TX_EVTMASK);
     FSI_clearRxEvents(rxbase, FSI_RX_EVTMASK);
-
     // Disable internal loopback
     FSI_disableRxInternalLoopback(rxbase);
-
     FSI_performRxInitialization(rxbase);
     // This flush sequence will bring the Rx out of reset
     FSI_executeTxFlushSequence(txbase, FSI_PRESCALE_6MHZ);
@@ -814,31 +701,20 @@ bool FSI_LpbkvalidatePing(uint32_t rxbase, uint32_t txbase,
     FSI_configRxDelayLine_fix(rxbase, FSI_RX_DELAY_D0, delayTapRX0);
     FSI_configRxDelayLine_fix(rxbase, FSI_RX_DELAY_D1, delayTapRX1);
     FSI_configRxDelayLine_fix(rxbase, FSI_RX_DELAY_CLK, delayTapCLK+FSI_CLK_DLY_OFFSET);
-
-
    FSI_setTxFrameType(txbase, FSI_FRAME_TYPE_PING);
-
-
   // Do not send pingtag2 or pingtag4 as other nodes change lanes in its waiting function
   for (TxPingTag = FSI_FRAME_TAG5;
           TxPingTag <= FSI_FRAME_TAG15; TxPingTag++)
   {
       pingTimeOutCount = 0;
-
    FSI_setTxFrameTag(txbase, TxPingTag);
-
    FSI_setTxPrescale(txbase, restorePrescale);
-
    FSI_startTxTransmit(txbase);
    DEVICE_DELAY_US(1);
-
-
    rxEventSts = FSI_getRxEventStatus(rxbase);
-
     //
     // Wait till interrupt is received on FSIRX INT1 line, verify it's for FRAME
     // DONE event for PING Frame reception
-
     while(1)
     {
         while(!(rxEventSts & FSI_RX_EVT_PING_FRAME))
@@ -848,21 +724,14 @@ bool FSI_LpbkvalidatePing(uint32_t rxbase, uint32_t txbase,
             CHECK_TIMEOUT();
             rxEventSts = FSI_getRxEventStatus(rxbase);
         }
-
            if((uint16_t)FSI_getRxPingTag(rxbase) != (uint16_t)TxPingTag)
            {
                 (error)++;
-
            }
-
-
             if(rxEventSts != (FSI_RX_EVT_PING_FRAME | FSI_RX_EVT_FRAME_DONE))
             {
                 (error)++;
             }
-
-
-
         //
         // If received frame type and tag matches, exit this loop and proceed to
         // next step by sending flush sequence, otherwise clear error and
@@ -872,21 +741,16 @@ bool FSI_LpbkvalidatePing(uint32_t rxbase, uint32_t txbase,
         {
             break;
         }
-
         error = 0;
         FSI_clearRxEvents(rxbase,FSI_RX_EVTMASK);
         rxEventSts = 0;
     }
-
     CHECK_RESULT:
-
     if (pingTimeOutCount >= PING_TIMEOUT_VALUE)
     {
         calib_fail++;
     }
-
   }
-
   if (calib_fail == 0)
   {
       return true;
@@ -895,14 +759,9 @@ bool FSI_LpbkvalidatePing(uint32_t rxbase, uint32_t txbase,
   {
   return false;
   }
-
-
 }
-
-
 FSIExecutionPoint FSI_LpbkCalibrateExePoint (uint32_t rxbase, uint32_t txbase, FSI_DataWidth nLanes)
 {
-
     FSI_FrameTag restoreTag = FSI_getTxFrameTag(txbase);
     FSI_FrameType restoreType = FSI_getTxFrameType(txbase);
     uint16_t restorePrescale = FSI_getTxPrescale(txbase);
@@ -910,49 +769,39 @@ FSIExecutionPoint FSI_LpbkCalibrateExePoint (uint32_t rxbase, uint32_t txbase, F
     uint16_t restoreTXInt2 = FSI_getTxInterrupt(txbase, FSI_INT2);
     uint16_t restoreRXInt1 = FSI_getRxInterrupt(rxbase, FSI_INT1);
     uint16_t restoreRXInt2 = FSI_getRxInterrupt(rxbase, FSI_INT2);
-
     uint32_t rx0Axis_singleLine = 0;
     uint32_t clkAxis_singleLine = 0;
     uint32_t rx1Axis_dualLine = 0;
     uint32_t clkAxis_dualLine = 0;
     XYPoint centerPoint;
-
     uint32_t delayTapRX0 = 0;
     uint32_t delayTapRX1 = 0;
     uint32_t delayTapCLK = 0;
-
     FSIExecutionPoint singleLineExePoint = {
         .RX0Delay = 0,
         .RX1Delay = 0,
         .CLKDelay = 0,
         .Valid = true
     };
-
     FSIExecutionPoint dualLineExePoint = {
         .RX0Delay = 0,
         .RX1Delay = 0,
         .CLKDelay = 0,
         .Valid = true
     };
-
     FSI_disableTxInterrupt(txbase, FSI_INT1, FSI_TX_EVTMASK);
     FSI_disableTxInterrupt(txbase, FSI_INT2, FSI_TX_EVTMASK);
     FSI_disableRxInterrupt(rxbase, FSI_INT1, FSI_RX_EVTMASK);
     FSI_disableRxInterrupt(rxbase, FSI_INT2, FSI_RX_EVTMASK);
-
     FSI_clearTxEvents(txbase, FSI_TX_EVTMASK);
     FSI_clearRxEvents(rxbase, FSI_RX_EVTMASK);
-
     //
     // Initialize basic settings for FSI
     //
     FSI_disableRxInternalLoopback(rxbase);
-
     // Begin with single lane
     FSI_setRxDataWidth(rxbase, FSI_DATA_WIDTH_1_LANE);
     FSI_setTxDataWidth(txbase, FSI_DATA_WIDTH_1_LANE);
-
-
     // Set delay tap for Rx0 to zero
     // Loop through the 32 delay taps for RX0
     delayTapCLK = 0;
@@ -968,7 +817,6 @@ FSIExecutionPoint FSI_LpbkCalibrateExePoint (uint32_t rxbase, uint32_t txbase, F
             rx0Axis_singleLine |= (FSI_PASS << delayTapRX0);
         }
     }
-
     // Set delay tap for CLK to zero
     // Loop through the 32 delay taps for CLK
     delayTapRX0 = 0;
@@ -984,19 +832,15 @@ FSIExecutionPoint FSI_LpbkCalibrateExePoint (uint32_t rxbase, uint32_t txbase, F
             clkAxis_singleLine |= (FSI_PASS << delayTapCLK);
         }
     }
-
-
     // calculate the best point based on the rx0 and clk axes.
     centerPoint = FSI_calculateCenterPoint(rx0Axis_singleLine, clkAxis_singleLine);
     if (centerPoint.X < 0  || centerPoint.Y < 0)
     {
         // if x or y are negative, no optimal point was found
         singleLineExePoint.Valid = false;
-
         //
         // Restore
         //
-
         FSI_setTxFrameTag(txbase, restoreTag);
         FSI_setTxFrameType(txbase, restoreType);
         FSI_setTxPrescale(txbase, restorePrescale);
@@ -1004,23 +848,17 @@ FSIExecutionPoint FSI_LpbkCalibrateExePoint (uint32_t rxbase, uint32_t txbase, F
         FSI_enableTxInterrupt(txbase, FSI_INT2, restoreTXInt2);
         FSI_enableRxInterrupt(rxbase, FSI_INT1, restoreRXInt1);
         FSI_enableRxInterrupt(rxbase, FSI_INT2, restoreRXInt2);
-
         return singleLineExePoint;
     }
-
     // Populate the new single line execution point
     singleLineExePoint.Valid = true;
     singleLineExePoint.RX0Delay = centerPoint.X;
     singleLineExePoint.CLKDelay = centerPoint.Y;
-
     // Set the delay taps for RX0 and CLk to new single line optimal values.
     delayTapRX0 = singleLineExePoint.RX0Delay;
     delayTapCLK = singleLineExePoint.CLKDelay;
-
     if (nLanes == FSI_DATA_WIDTH_1_LANE)
-
     {
-
         // Double check to make sure the single line execution point passes
         bool check = FSI_LpbkvalidatePing(
                 rxbase, txbase,
@@ -1029,11 +867,9 @@ FSIExecutionPoint FSI_LpbkCalibrateExePoint (uint32_t rxbase, uint32_t txbase, F
           {
               // if x or y are negative, no optimal point was found
               singleLineExePoint.Valid = false;
-
               //
               // Restore
               //
-
               FSI_setTxFrameTag(txbase, restoreTag);
               FSI_setTxFrameType(txbase, restoreType);
               FSI_setTxPrescale(txbase, restorePrescale);
@@ -1041,19 +877,15 @@ FSIExecutionPoint FSI_LpbkCalibrateExePoint (uint32_t rxbase, uint32_t txbase, F
               FSI_enableTxInterrupt(txbase, FSI_INT2, restoreTXInt2);
               FSI_enableRxInterrupt(rxbase, FSI_INT1, restoreRXInt1);
               FSI_enableRxInterrupt(rxbase, FSI_INT2, restoreRXInt2);
-
               return singleLineExePoint;
           }
-
           // Set the new delay taps
           FSI_configRxDelayLine_fix(rxbase, FSI_RX_DELAY_D0, delayTapRX0);
           FSI_configRxDelayLine_fix(rxbase, FSI_RX_DELAY_D1, delayTapRX1);
           FSI_configRxDelayLine_fix(rxbase, FSI_RX_DELAY_CLK, delayTapCLK + FSI_CLK_DLY_OFFSET);
-
           //
           // Restore
           //
-
           FSI_setTxFrameTag(txbase, restoreTag);
           FSI_setTxFrameType(txbase, restoreType);
           FSI_setTxPrescale(txbase, restorePrescale);
@@ -1061,12 +893,10 @@ FSIExecutionPoint FSI_LpbkCalibrateExePoint (uint32_t rxbase, uint32_t txbase, F
           FSI_enableTxInterrupt(txbase, FSI_INT2, restoreTXInt2);
           FSI_enableRxInterrupt(rxbase, FSI_INT1, restoreRXInt1);
           FSI_enableRxInterrupt(rxbase, FSI_INT2, restoreRXInt2);
-
           return singleLineExePoint;
     }
     else //Data Width = 2
     {
-
         // If calculating dual line
         // Double check single line execution point.
         // Signal the TX device to switch to dual line ping transmission.
@@ -1075,14 +905,10 @@ FSIExecutionPoint FSI_LpbkCalibrateExePoint (uint32_t rxbase, uint32_t txbase, F
                 delayTapRX0, delayTapRX1, delayTapCLK);
         if (!check)
         {
-
             dualLineExePoint.Valid = false;
-
-
             //
             // Restore
             //
-
             FSI_setTxFrameTag(txbase, restoreTag);
             FSI_setTxFrameType(txbase, restoreType);
             FSI_setTxPrescale(txbase, restorePrescale);
@@ -1090,25 +916,18 @@ FSIExecutionPoint FSI_LpbkCalibrateExePoint (uint32_t rxbase, uint32_t txbase, F
             FSI_enableTxInterrupt(txbase, FSI_INT2, restoreTXInt2);
             FSI_enableRxInterrupt(rxbase, FSI_INT1, restoreRXInt1);
             FSI_enableRxInterrupt(rxbase, FSI_INT2, restoreRXInt2);
-
             return dualLineExePoint;
         }
-
-
         FSI_setTxFrameTag(txbase, FSI_FRAME_TAG2);
         FSI_setTxFrameType(txbase, FSI_FRAME_TYPE_PING);
         FSI_startTxTransmit(txbase);//ask all slaves to switch to dual lane
         DEVICE_DELAY_US(1);
-
-
         // Switch to 2 lanes
         FSI_setRxDataWidth(rxbase, FSI_DATA_WIDTH_2_LANE);
         FSI_setTxDataWidth(txbase, FSI_DATA_WIDTH_2_LANE);
-
         // This variable is used to skip over the CLK delays that are invalid
         // due to single line execution point calculation
         uint32_t clkOffset = singleLineExePoint.CLKDelay;
-
         // Set RX0 to execution point
         // Set RX1 to 0
         // Loop through the CLK delay taps starting at the single line execution
@@ -1131,7 +950,6 @@ FSIExecutionPoint FSI_LpbkCalibrateExePoint (uint32_t rxbase, uint32_t txbase, F
             }
             delayTapRX0++;
         }
-
         // Set RX0 and CLK to single line execution point.
         // Loop through all 32 RX1 delay taps.
         delayTapRX0 = singleLineExePoint.RX0Delay;
@@ -1148,7 +966,6 @@ FSIExecutionPoint FSI_LpbkCalibrateExePoint (uint32_t rxbase, uint32_t txbase, F
                 rx1Axis_dualLine |= (FSI_PASS << delayTapRX1);
             }
         }
-
         centerPoint = FSI_calculateCenterPoint(clkAxis_dualLine, rx1Axis_dualLine);
         //centerPoint.X is shifted CLK center. Must add singleLineExePoint.CLKDelay to get correct clock.
         //singleLine.RX0Delay must also be shifted to match the new CLK. Must add centerPoint.X to get correct RX0
@@ -1156,17 +973,13 @@ FSIExecutionPoint FSI_LpbkCalibrateExePoint (uint32_t rxbase, uint32_t txbase, F
         if (centerPoint.X < 0  || centerPoint.Y < 0)
         {
             dualLineExePoint.Valid = false;
-
-
             FSI_setTxFrameTag(txbase, FSI_FRAME_TAG4);//ask all slaves to switch to one lane
             FSI_setTxFrameType(txbase, FSI_FRAME_TYPE_PING);
             FSI_startTxTransmit(txbase);
             DEVICE_DELAY_US(1);
-
             //
             // Restore
             //
-
             FSI_setTxFrameTag(txbase, restoreTag);
             FSI_setTxFrameType(txbase, restoreType);
             FSI_setTxPrescale(txbase, restorePrescale);
@@ -1174,37 +987,29 @@ FSIExecutionPoint FSI_LpbkCalibrateExePoint (uint32_t rxbase, uint32_t txbase, F
             FSI_enableTxInterrupt(txbase, FSI_INT2, restoreTXInt2);
             FSI_enableRxInterrupt(rxbase, FSI_INT1, restoreRXInt1);
             FSI_enableRxInterrupt(rxbase, FSI_INT2, restoreRXInt2);
-
-
             return dualLineExePoint;
         }
         dualLineExePoint.CLKDelay = singleLineExePoint.CLKDelay + centerPoint.X;
         dualLineExePoint.RX0Delay = singleLineExePoint.RX0Delay + centerPoint.X;
         dualLineExePoint.RX1Delay = centerPoint.Y;
-
         // Set the delay taps
         delayTapRX0 = dualLineExePoint.RX0Delay;
         delayTapRX1 = dualLineExePoint.RX1Delay;
         delayTapCLK = dualLineExePoint.CLKDelay;
-
         // Double check execution point
         check = FSI_LpbkvalidatePing(
                 rxbase, txbase,
                 delayTapRX0, delayTapRX1, delayTapCLK);
         if (!check)
         {
-
             dualLineExePoint.Valid = false;
-
             FSI_setTxFrameTag(txbase, FSI_FRAME_TAG4);//ask all slaves to switch to one lane
             FSI_setTxFrameType(txbase, FSI_FRAME_TYPE_PING);
             FSI_startTxTransmit(txbase);
             DEVICE_DELAY_US(1);
-
             //
             // Restore
             //
-
             FSI_setTxFrameTag(txbase, restoreTag);
             FSI_setTxFrameType(txbase, restoreType);
             FSI_setTxPrescale(txbase, restorePrescale);
@@ -1212,23 +1017,18 @@ FSIExecutionPoint FSI_LpbkCalibrateExePoint (uint32_t rxbase, uint32_t txbase, F
             FSI_enableTxInterrupt(txbase, FSI_INT2, restoreTXInt2);
             FSI_enableRxInterrupt(rxbase, FSI_INT1, restoreRXInt1);
             FSI_enableRxInterrupt(rxbase, FSI_INT2, restoreRXInt2);
-
             return dualLineExePoint;
         }
-
         FSI_configRxDelayLine_fix(rxbase, FSI_RX_DELAY_D0, delayTapRX0);
         FSI_configRxDelayLine_fix(rxbase, FSI_RX_DELAY_D1, delayTapRX1);
         FSI_configRxDelayLine_fix(rxbase, FSI_RX_DELAY_CLK, delayTapCLK);
-
         FSI_setTxFrameTag(txbase, FSI_FRAME_TAG4);//ask all other nodes to switch to one lane
         FSI_setTxFrameType(txbase, FSI_FRAME_TYPE_PING);
         FSI_startTxTransmit(txbase);
         DEVICE_DELAY_US(1);
-
         //
         // Restore
         //
-
         FSI_setTxFrameTag(txbase, restoreTag);
         FSI_setTxFrameType(txbase, restoreType);
         FSI_setTxPrescale(txbase, restorePrescale);
@@ -1236,19 +1036,14 @@ FSIExecutionPoint FSI_LpbkCalibrateExePoint (uint32_t rxbase, uint32_t txbase, F
         FSI_enableTxInterrupt(txbase, FSI_INT2, restoreTXInt2);
         FSI_enableRxInterrupt(rxbase, FSI_INT1, restoreRXInt1);
         FSI_enableRxInterrupt(rxbase, FSI_INT2, restoreRXInt2);
-
         return dualLineExePoint;
     }
-
 }
-
-
 void FSI_transmitToCalibrate(uint32_t rxbase, uint32_t txbase, uint16_t txPrescalar)
 {
     uint16_t rxEventSts = 0;
     uint32_t rxTimeOutCntr = COUNTER_TIMEOUT;
     uint16_t error = 0;
-
     FSI_FrameTag restoreTag = FSI_getTxFrameTag(txbase);
     FSI_FrameType restoreType = FSI_getTxFrameType(txbase);
     uint16_t restorePrescale = FSI_getTxPrescale(txbase);
@@ -1256,27 +1051,21 @@ void FSI_transmitToCalibrate(uint32_t rxbase, uint32_t txbase, uint16_t txPresca
     uint16_t restoreTXInt2 = FSI_getTxInterrupt(txbase, FSI_INT2);
     uint16_t restoreRXInt1 = FSI_getRxInterrupt(rxbase, FSI_INT1);
     uint16_t restoreRXInt2 = FSI_getRxInterrupt(rxbase, FSI_INT2);
-
     FSI_disableTxInterrupt(txbase, FSI_INT1, FSI_TX_EVTMASK);
     FSI_disableTxInterrupt(txbase, FSI_INT2, FSI_TX_EVTMASK);
     FSI_disableRxInterrupt(rxbase, FSI_INT1, FSI_RX_EVTMASK);
     FSI_disableRxInterrupt(rxbase, FSI_INT2, FSI_RX_EVTMASK);
-
     FSI_clearTxEvents(txbase, FSI_TX_EVTMASK);
     FSI_clearRxEvents(rxbase, FSI_RX_EVTMASK);
-
     //
     // Initialize basic settings for FSI
     //
     FSI_disableRxInternalLoopback(rxbase);
-
     FSI_performTxInitialization(txbase, txPrescalar);
     FSI_performRxInitialization(rxbase);
-
     // Begin with single lane
     FSI_setRxDataWidth(rxbase, FSI_DATA_WIDTH_1_LANE);
     FSI_setTxDataWidth(txbase, FSI_DATA_WIDTH_1_LANE);
-
     //
     // Wait till interrupt is received on FSIRX INT1 line, verify it's for FRAME
     // DONE event for PING Frame reception
@@ -1289,14 +1078,12 @@ void FSI_transmitToCalibrate(uint32_t rxbase, uint32_t txbase, uint16_t txPresca
             // Send the flush sequence
             //
             FSI_executeTxFlushSequence(txbase, txPrescalar);
-
             //
             // Send a ping frame with frame tag 0000b
             //
             FSI_setTxFrameTag(txbase, FSI_FRAME_TAG0);
             FSI_setTxFrameType(txbase, FSI_FRAME_TYPE_PING);
             FSI_startTxTransmit(txbase);
-
             FSI_clearRxEvents(rxbase,FSI_RX_EVTMASK);
             rxEventSts = 0;
             while(!(rxEventSts & FSI_RX_EVT_PING_FRAME) && rxTimeOutCntr != 0U)
@@ -1305,7 +1092,6 @@ void FSI_transmitToCalibrate(uint32_t rxbase, uint32_t txbase, uint16_t txPresca
                 rxTimeOutCntr--;
                 rxEventSts = FSI_getRxEventStatus(rxbase);
             }
-
             if(rxTimeOutCntr == 0)
             {
                 rxTimeOutCntr = COUNTER_TIMEOUT;
@@ -1317,12 +1103,10 @@ void FSI_transmitToCalibrate(uint32_t rxbase, uint32_t txbase, uint16_t txPresca
                 {
                     (error)++;
                 }
-
                 if((uint16_t)FSI_getRxFrameType(rxbase) != (uint16_t)FSI_FRAME_TYPE_PING)
                 {
                     (error)++;
                 }
-
                 if(FSI_getRxFrameType(rxbase) == FSI_FRAME_TYPE_PING)
                 {
                     if((uint16_t)FSI_getRxPingTag(rxbase) != (uint16_t)FSI_FRAME_TAG1)
@@ -1346,18 +1130,15 @@ void FSI_transmitToCalibrate(uint32_t rxbase, uint32_t txbase, uint16_t txPresca
                 {
                     break;
                 }
-
                 error = 0;
             }
         }
-
         //
         // Send a ping frame with frame tag 0001b
         //
         FSI_setTxFrameTag(txbase, FSI_FRAME_TAG1);
         FSI_setTxFrameType(txbase, FSI_FRAME_TYPE_PING);
         FSI_startTxTransmit(txbase);
-
         FSI_clearRxEvents(rxbase,FSI_RX_EVTMASK);
         rxEventSts = 0;
         while(!(rxEventSts & FSI_RX_EVT_PING_FRAME) && rxTimeOutCntr != 0U)
@@ -1366,7 +1147,6 @@ void FSI_transmitToCalibrate(uint32_t rxbase, uint32_t txbase, uint16_t txPresca
             rxTimeOutCntr--;
             rxEventSts = FSI_getRxEventStatus(rxbase);
         }
-
         if(rxTimeOutCntr == 0)
         {
             rxTimeOutCntr = COUNTER_TIMEOUT;
@@ -1380,7 +1160,6 @@ void FSI_transmitToCalibrate(uint32_t rxbase, uint32_t txbase, uint16_t txPresca
                 FSI_setRxDataWidth(rxbase, FSI_DATA_WIDTH_2_LANE);
                 FSI_setTxDataWidth(txbase, FSI_DATA_WIDTH_2_LANE);
             }
-
             // If the TAG recieved is TAG4, end calibration
             if (FSI_getRxPingTag(rxbase) == (uint16_t)FSI_FRAME_TAG4)
             {
@@ -1388,14 +1167,10 @@ void FSI_transmitToCalibrate(uint32_t rxbase, uint32_t txbase, uint16_t txPresca
             }
             error = 0;
         }
-
     }
-
-
     //
     // Restore
     //
-
     FSI_setTxFrameTag(txbase, restoreTag);
     FSI_setTxFrameType(txbase, restoreType);
     FSI_setTxPrescale(txbase, restorePrescale);

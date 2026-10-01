@@ -7,7 +7,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -40,7 +40,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 //
 // Included Files
 //
@@ -53,30 +52,25 @@
 #include "host/usbhhid.h"
 #include "host/usbhhidkeyboard.h"
 #include "usb_ex9_host_hub_cm.h"
-
 //*****************************************************************************
 //
 // The size of the keyboard device interface's memory pool in bytes.
 //
 //*****************************************************************************
 #define KEYBOARD_MEMORY_SIZE    128
-
 //*****************************************************************************
 //
 // The memory pool to provide to the keyboard device.
 //
 //*****************************************************************************
 uint8_t g_pui8Buffer[KEYBOARD_MEMORY_SIZE];
-
 //*****************************************************************************
 //
 // The global value used to store the keyboard instance value.
 //
 //*****************************************************************************
 static tUSBHKeyboard * g_psKeyboardInstance;
-
 extern const tHIDKeyboardUsageTable g_sUSKeyboardMap;
-
 //*****************************************************************************
 //
 // This enumerated type is used to hold the states of the keyboard.
@@ -88,18 +82,15 @@ enum
     // No device is present.
     //
     eStateNoDevice,
-
     //
     // Keyboard has been detected and needs to be initialized in the main
     // loop.
     //
     eStateKeyboardInit,
-
     //
     // Keyboard is connected and waiting for events.
     //
     eStateKeyboardConnected,
-
     //
     // Keyboard has received a key press that requires updating the keyboard
     // in the main loop.
@@ -107,14 +98,12 @@ enum
     eStateKeyboardUpdate,
 }
 g_iKeyboardState;
-
 //*****************************************************************************
 //
 // This variable holds the current status of the modifiers keys.
 //
 //*****************************************************************************
 uint32_t g_ui32Modifiers;
-
 //*****************************************************************************
 //
 // This function prints the character out the UART and into the text area of
@@ -133,14 +122,11 @@ uint32_t g_ui32Modifiers;
 void
 PrintChar(const char cChar)
 {
-
     //
     // Send the character to the UART.
     //
     UARTprintf("%c", cChar);
-
 }
-
 //*****************************************************************************
 //
 // This is the callback from the USB HID keyboard handler.
@@ -162,7 +148,6 @@ KeyboardCallback(tUSBHKeyboard *psKbInstance, uint32_t ui32Event,
                  uint32_t ui32MsgParam, void *pvMsgData)
 {
     char cChar;
-
     switch(ui32Event)
     {
         //
@@ -178,7 +163,6 @@ KeyboardCallback(tUSBHKeyboard *psKbInstance, uint32_t ui32Event,
             g_iKeyboardState = eStateKeyboardInit;
             break;
         }
-
         //
         // Keyboard has been unplugged.
         //
@@ -191,7 +175,6 @@ KeyboardCallback(tUSBHKeyboard *psKbInstance, uint32_t ui32Event,
             g_iKeyboardState = eStateNoDevice;
             break;
         }
-
         //
         // New Key press detected.
         //
@@ -207,7 +190,6 @@ KeyboardCallback(tUSBHKeyboard *psKbInstance, uint32_t ui32Event,
                 // state.
                 //
                 g_iKeyboardState = eStateKeyboardUpdate;
-
                 //
                 // Toggle the current Caps Lock state.
                 //
@@ -220,7 +202,6 @@ KeyboardCallback(tUSBHKeyboard *psKbInstance, uint32_t ui32Event,
                 // state.
                 //
                 g_iKeyboardState = eStateKeyboardUpdate;
-
                 //
                 // Toggle the current Scroll Lock state.
                 //
@@ -233,7 +214,6 @@ KeyboardCallback(tUSBHKeyboard *psKbInstance, uint32_t ui32Event,
                 // state.
                 //
                 g_iKeyboardState = eStateKeyboardUpdate;
-
                 //
                 // Toggle the current Num Lock state.
                 //
@@ -264,7 +244,6 @@ KeyboardCallback(tUSBHKeyboard *psKbInstance, uint32_t ui32Event,
                                                 &g_sUSKeyboardMap,
                                                 (uint8_t)ui32MsgParam);
                 }
-
                 //
                 // A zero value indicates there was no textual mapping of this
                 // usage code.
@@ -293,7 +272,6 @@ KeyboardCallback(tUSBHKeyboard *psKbInstance, uint32_t ui32Event,
         }
     }
 }
-
 //*****************************************************************************
 //
 // The main routine for handling the USB keyboard.
@@ -313,17 +291,14 @@ KeyboardMain(void)
             // Initialized the newly connected keyboard.
             //
             USBHKeyboardInit(g_psKeyboardInstance);
-
             //
             // Proceed to the keyboard connected state.
             //
             g_iKeyboardState = eStateKeyboardConnected;
-
             //
             // Set the current state of the modifiers.
             //
             USBHKeyboardModifierSet(g_psKeyboardInstance, g_ui32Modifiers);
-
             break;
         }
         case eStateKeyboardUpdate:
@@ -334,9 +309,7 @@ KeyboardMain(void)
             // state then call it and return to the connected state.
             //
             g_iKeyboardState = eStateKeyboardConnected;
-
             USBHKeyboardModifierSet(g_psKeyboardInstance, g_ui32Modifiers);
-
             break;
         }
         case eStateKeyboardConnected:
@@ -346,7 +319,6 @@ KeyboardMain(void)
         }
     }
 }
-
 //*****************************************************************************
 //
 // Open the Keyboard Interface.

@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -41,10 +41,8 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 #ifndef USB_HAL_H
 #define USB_HAL_H
-
 //******************************************************************************
 // If building with a C++ compiler, make all of the definitions in this header
 // have a C binding.
@@ -53,7 +51,6 @@
 extern "C"
 {
 #endif
-
 //
 // Included Files
 //
@@ -65,7 +62,6 @@ extern "C"
 #include "host/usbhost.h"
 #include "host/usbhostpriv.h"
 #include "usblibpriv.h"
-
 //
 // Defines.
 //
@@ -100,7 +96,6 @@ extern "C"
                                       SYSCTL_AUXPLL_ENABLE                |   \
                                       SYSCTL_DCC_BASE_0)
 #endif
-
 //******************************************************************************
 //! \addtogroup c2000_specific
 //! @{
@@ -110,17 +105,14 @@ extern void CPUTimerInit(void);
 extern void USBDelay(uint32_t ui32Delay);
 extern void f28x_USB0DualModeIntHandler(void);
 extern void f28x_USB0OTGModeIntHandler(void);
-
 //******************************************************************************
 // Mark the end of the C bindings section for C++ compilers.
 //******************************************************************************
 #ifdef __cplusplus
 }
 #endif
-
 //******************************************************************************
 // Close the Doxygen group.
 //! @}
 //******************************************************************************
-
 #endif //  USB_HAL_H

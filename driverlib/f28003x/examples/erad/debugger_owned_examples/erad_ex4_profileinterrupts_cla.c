@@ -100,19 +100,16 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "erad_ex4_background_task.h"
-
 //
 // Defines
 //
 #define EPWM_CLKDIV         64UL
-
 #define EPWM1_FREQ          1000UL
 #define EPWM4_FREQ          100UL
 #define EPWM1_PERIOD        (uint16_t)(DEVICE_SYSCLK_FREQ /                    \
@@ -120,36 +117,30 @@
 #define EPWM4_PERIOD        (uint16_t)(DEVICE_SYSCLK_FREQ /                    \
                                        (EPWM_CLKDIV * 2U * EPWM4_FREQ))
 #define EPWM4_DUTY_CYCLE    (EPWM4_PERIOD / 2)
-
 //
 // Globals
 //
-
 //
 // Background Task (C) Variables
 // Circular buffer to store filtered output
 //
 #pragma DATA_SECTION(buffer, "Cla1DataRam");
 volatile float buffer[BUFFER_SIZE];
-
 //
 // Linker Defined variables
 //
 extern uint32_t Cla1ProgRunStart, Cla1ProgLoadStart, Cla1ProgLoadSize;
 extern uint32_t Cla1ConstRunStart, Cla1ConstLoadStart, Cla1ConstLoadSize;
-
 //
 // Pre-chosen Pseudo Random Generator constants
 //
 const uint16_t PseudoRand_multiplier = 31821;
 const uint16_t PseudoRand_increment = 13849;
 uint16_t PseudoRand_seed = 21845;
-
 //
 // ISR Counter
 //
 uint32_t ISR_count = 0;
-
 //
 // Function Prototypes
 //
@@ -159,7 +150,6 @@ void initEPWM(void);
 void initCLA(void);
 __attribute__((interrupt))  void cla1Isr1(void);
 uint16_t generatePseudoRand16(uint16_t *);
-
 //
 // Main
 //
@@ -169,76 +159,63 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // GPIO0 is set to EPWM1A
     //
     GPIO_setControllerCore(0, GPIO_CORE_CPU1);
     GPIO_setPadConfig(0,GPIO_PIN_TYPE_STD);
     GPIO_setPinConfig(GPIO_0_EPWM1_A);
-
     //
     // GPIO6 is set to EPWM4A
     //
     GPIO_setControllerCore(6, GPIO_CORE_CPU1);
     GPIO_setPadConfig(6,GPIO_PIN_TYPE_STD);
     GPIO_setPinConfig(GPIO_6_EPWM4_A);
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Map the ISR to the CLA end-of-task interrupt.
     //
     Interrupt_register(INT_CLA1_1, cla1Isr1);
-
     //
     // Setup the CLA and ADC
     //
     initCLA();
     initADC();
     initADCSOC();
-
     //
     // Disable sync(Freeze clock to PWM as well)
     //
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
     initEPWM();
-
     //
     // Enable the interrupts in the PIE: Group 11 interrupt 1.
     //
     Interrupt_enable(INT_CLA1_1);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP11);
-
     //
     // Enable global interrupts.
     //
     EINT;
-
     //
     // Enable sync and clock to PWM
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     for(;;)
     {
     }
 }
-
 // ADC Initialization
 //
 // Function to configure and power up ADC A
@@ -249,25 +226,20 @@ void initADC(void)
     // Setup VREF as internal
     //
     ADC_setVREF(ADCA_BASE, ADC_REFERENCE_INTERNAL, ADC_REFERENCE_3_3V);
-
     //
     // Set ADCCLK divider to /4
     //
     ADC_setPrescaler(ADCA_BASE, ADC_CLK_DIV_4_0);
-
     //
     // Set pulse positions to late
     //
     ADC_setInterruptPulseMode(ADCA_BASE, ADC_PULSE_END_OF_CONV);
-
     //
     // Power up the ADCs and then delay for 1 ms
     //
     ADC_enableConverter(ADCA_BASE);
-
     DEVICE_DELAY_US(1000);
 }
-
 //
 // ADC SOC Initialization
 //
@@ -288,7 +260,6 @@ void initADCSOC(void)
     ADC_setupSOC(ADCA_BASE, ADC_SOC_NUMBER0, ADC_TRIGGER_EPWM1_SOCA,
                  ADC_CH_ADCIN0, 10);
     ADC_enableContinuousMode(ADCA_BASE, ADC_INT_NUMBER1);
-
     //
     // Set SOC0 to set the interrupt 1 flag. Enable the interrupt and make
     // sure its flag is cleared.
@@ -297,7 +268,6 @@ void initADCSOC(void)
     ADC_enableInterrupt(ADCA_BASE, ADC_INT_NUMBER1);
     ADC_clearInterruptStatus(ADCA_BASE, ADC_INT_NUMBER1);
 }
-
 //
 // EPWM Initialization
 //
@@ -336,7 +306,6 @@ void initEPWM(void)
     EPWM_setTimeBasePeriod(EPWM1_BASE, EPWM1_PERIOD);
     EPWM_setTimeBaseCounterMode(EPWM1_BASE, EPWM_COUNTER_MODE_UP);
     EPWM_setTimeBaseCounter(EPWM1_BASE, 0U);
-
     //
     // Enable SOC-A and set it to assert when the counter hits
     // zero. It asserts on every event
@@ -344,13 +313,11 @@ void initEPWM(void)
     EPWM_enableADCTrigger(EPWM1_BASE, EPWM_SOC_A);
     EPWM_setADCTriggerSource(EPWM1_BASE, EPWM_SOC_A, EPWM_SOC_TBCTR_ZERO);
     EPWM_setADCTriggerEventPrescale(EPWM1_BASE, EPWM_SOC_A, 1U);
-
     //
     // EPWM1 should toggle each time its counter hits zero
     //
     EPWM_setActionQualifierAction(EPWM1_BASE, EPWM_AQ_OUTPUT_A,
             EPWM_AQ_OUTPUT_TOGGLE, EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);
-
     //
     // Set up EPWM4 to
     // - run on a base clock of SYSCLK/64
@@ -365,7 +332,6 @@ void initEPWM(void)
     EPWM_setTimeBaseCounter(EPWM4_BASE, 0U);
     EPWM_setCounterCompareValue(EPWM4_BASE, EPWM_COUNTER_COMPARE_A,
             EPWM4_DUTY_CYCLE);
-
     //
     // On compare A, when counting up, pull the EPWM A output high
     // On compare A, when counting down, pull the EPWM A output low
@@ -374,14 +340,12 @@ void initEPWM(void)
             EPWM_AQ_OUTPUT_HIGH, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);
     EPWM_setActionQualifierAction(EPWM4_BASE, EPWM_AQ_OUTPUT_A,
                 EPWM_AQ_OUTPUT_LOW, EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);
-
     //
     // EPWM 1 and 4 should run freely in emulation mode
     //
     EPWM_setEmulationMode(EPWM1_BASE, EPWM_EMULATION_FREE_RUN);
     EPWM_setEmulationMode(EPWM4_BASE, EPWM_EMULATION_FREE_RUN);
 }
-
 //
 // generatePseudoRand16 - Generate a pseudo random 16-bit number by passing a
 // start value or "seed". This generator is a linear congruential pseudo random
@@ -399,7 +363,6 @@ generatePseudoRand16(uint16_t *seed)
             & 0xFFFF;
     return(*seed);
 }
-
 //
 // CLA Initialization
 //
@@ -428,7 +391,6 @@ void initCLA(void)
     memcpy((uint32_t *)&Cla1ConstRunStart, (uint32_t *)&Cla1ConstLoadStart,
         (uint32_t)&Cla1ConstLoadSize );
 #endif //defined(_FLASH)
-
     //
     // CLA Program will reside in RAMLS0 and data in RAMLS1, RAMLS2
     //
@@ -438,7 +400,6 @@ void initCLA(void)
     MemCfg_setCLAMemType(MEMCFG_SECT_LS0, MEMCFG_CLA_MEM_PROGRAM);
     MemCfg_setCLAMemType(MEMCFG_SECT_LS1, MEMCFG_CLA_MEM_DATA);
     MemCfg_setCLAMemType(MEMCFG_SECT_LS2, MEMCFG_CLA_MEM_DATA);
-
 //
 // Suppressing #770-D conversion from pointer to smaller integer
 // The CLA address range is 16 bits so the addresses passed to the MVECT
@@ -446,7 +407,6 @@ void initCLA(void)
 // back on after the MVECTs are assigned addresses
 //
 #pragma diag_suppress=770
-
     //
     // Assign the task vectors and set the triggers for task 1 and 7
     //
@@ -454,14 +414,12 @@ void initCLA(void)
     CLA_mapTaskVector(CLA1_BASE, CLA_MVECT_7, (uint16_t)&Cla1Task7);
     CLA_setTriggerSource(CLA_TASK_1, CLA_TRIGGER_ADCA1);
     CLA_setTriggerSource(CLA_TASK_7, CLA_TRIGGER_SOFTWARE);
-
     //
     // Enable Tasks 1 and 7. Since task 7 is forced in software, we must
     // enable software forcing (IACKE)
     //
     CLA_enableTasks(CLA1_BASE, (CLA_TASKFLAG_1 | CLA_TASKFLAG_7));
     CLA_enableIACK(CLA1_BASE);
-
     //
     // The background task will be triggered by software; it shares
     // the same trigger source as task 8. Disable the hardware triggering
@@ -478,13 +436,11 @@ void initCLA(void)
     CLA_setTriggerSource(CLA_TASK_8, CLA_TRIGGER_SOFTWARE);
     CLA_enableBackgroundTask(CLA1_BASE);
     CLA_startBackgroundTask(CLA1_BASE);
-
     //
     // Force task 7, the one time initialization task
     //
     CLA_forceTasks(CLA1_BASE, CLA_TASKFLAG_7);
 }
-
 //
 // CLA Task 1 End-of-Task Interrupt Service Routine
 //
@@ -497,23 +453,19 @@ __attribute__((interrupt))  void cla1Isr1 ()
     // Clear the ADC interrupt flag so the next SOC can occur
     //
     ADC_clearInterruptStatus(ADCA_BASE, ADC_INT_NUMBER1);
-
     //
     // Acknowledge the end-of-task interrupt for task 1
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP11);
-
     //
     // Simulate storing data to a location. "volatile" keyword ensures this is
     // not optimized out by the compiler.
     //
     volatile uint32_t output;
-
     //
     // Generate a random number.
     //
     uint16_t count = generatePseudoRand16(&PseudoRand_seed);
-
     //
     // Simulate a task that can take some time to complete. Loop a "random"
     // number of times and store values to a location.
@@ -523,13 +475,11 @@ __attribute__((interrupt))  void cla1Isr1 ()
     {
         output = i;
     }
-
     //
     // Increment a counter signifying that ISR has executed
     //
     ISR_count++;
 }
-
 //
 // End of File
 //

@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="example__intro_8md" kind="file" language="Markdown">
+    <compoundname>example_intro.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Example<sp/>Introduction<sp/>{#EXAMPLE_INTRO}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>MCPC029<sp/>Firmware<sp/>development<sp/>library<sp/>is<sp/>a<sp/>group<sp/>of<sp/>example<sp/>applications<sp/>and<sp/>helper<sp/>libraries<sp/>that<sp/>demonstrate<sp/>the<sp/>basics<sp/>of<sp/>getting<sp/>started<sp/>with<sp/>a<sp/>MCPC029<sp/>device.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>following<sp/>section<sp/>provides<sp/>a<sp/>step<sp/>by<sp/>step<sp/>guide<sp/>project<sp/>creation<sp/>for<sp/>each<sp/>core<sp/>as<sp/>well<sp/>as<sp/>debug.<sp/><sp/>It<sp/>is<sp/>highly<sp/>recommended<sp/>that<sp/>users<sp/>new<sp/>to<sp/>the<sp/>MCPC029<sp/>family<sp/>of<sp/>devices<sp/>start<sp/>by<sp/>reading<sp/>this<sp/>section<sp/>first.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>MCPC029<sp/>devices<sp/>have<sp/>a<sp/>set<sp/>of<sp/>example<sp/>applications<sp/>that<sp/>users<sp/>can<sp/>load<sp/>and<sp/>run<sp/>on<sp/>their<sp/>device.<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>driver<sp/>library<sp/>example<sp/>applications<sp/>can<sp/>be<sp/>found<sp/>in<sp/>the<sp/>driverlib\\mcpc029\\examples<sp/>directory.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>bit-field<sp/>example<sp/>applications<sp/>can<sp/>be<sp/>found<sp/>in<sp/>the<sp/>device_support\\mcpc029\\examples<sp/>directory.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">As<sp/>users<sp/>move<sp/>past<sp/>evaluation,<sp/>and<sp/>get<sp/>started<sp/>developing<sp/>their<sp/>own<sp/>application,<sp/>TI<sp/>recommends<sp/>they<sp/>maintain<sp/>a<sp/>similar<sp/>project<sp/>directory<sp/>structure<sp/>to<sp/>that<sp/>used<sp/>in<sp/>the<sp/>example<sp/>projects.<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">Example<sp/>projects<sp/>have<sp/>a<sp/>heirarchy<sp/>as<sp/>follows:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Main<sp/>project<sp/>directory</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>Project<sp/>folder</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Project<sp/>sources<sp/>(*.c,<sp/>*.h)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>CCS<sp/>folder<sp/>(ccs)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>CCS<sp/>projectspec<sp/>file</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Getting<sp/>started<sp/>and<sp/>Troubleshooting</highlight></codeline>
+<codeline><highlight class="normal">------------------------------------</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>section<sp/>aims<sp/>to<sp/>give<sp/>you,<sp/>the<sp/>user,<sp/>a<sp/>step<sp/>by<sp/>step<sp/>guide<sp/>for<sp/>how<sp/>to<sp/>create<sp/>and<sp/>debug<sp/>projects<sp/>from<sp/>scratch.<sp/></highlight></codeline>
+<codeline><highlight class="normal">This<sp/>guide<sp/>will<sp/>focus<sp/>on<sp/>the<sp/>user<sp/>of<sp/>a<sp/>MCPC029<sp/>LaunchPad,<sp/>but<sp/>these<sp/>same<sp/>ideas<sp/>should<sp/>apply<sp/>to<sp/>other<sp/>boards<sp/>with<sp/>minimal<sp/>translation.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>Project<sp/>Creation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">A<sp/>typical<sp/>MCPC029<sp/>application<sp/>consists<sp/>of<sp/>setting<sp/>up<sp/>a<sp/>CCS<sp/>project,<sp/>which<sp/>involves<sp/>configuring<sp/>the<sp/>build<sp/>settings,<sp/>file<sp/>linking,<sp/>and<sp/>adding<sp/>in<sp/>any<sp/>source<sp/>code.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>From<sp/>the<sp/>main<sp/>CCS<sp/>window<sp/>select<sp/>File<sp/>-$&gt;$<sp/>Import<sp/>Project(s).<sp/>Browse<sp/>to<sp/>the<sp/>empty<sp/>project.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>\imageStyle{BrowseEmptyProject.jpg,width:30%}</highlight></codeline>
+<codeline><highlight class="normal"><sp/>\image<sp/>html<sp/>BrowseEmptyProject.jpg<sp/>&quot;Browse<sp/>Empty<sp/>Driverlib<sp/>project&quot;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Before<sp/>we<sp/>can<sp/>successfully<sp/>build<sp/>a<sp/>project<sp/>we<sp/>need<sp/>to<sp/>setup<sp/>some<sp/>build<sp/>specific<sp/>settings.<sp/>Right<sp/>click<sp/>on<sp/>your<sp/>project<sp/>and<sp/>select<sp/>Properties.<sp/><sp/>Look<sp/>at<sp/>the<sp/>Processor<sp/>Options<sp/>and<sp/>ensure<sp/>they<sp/>match<sp/>the<sp/>below<sp/>image:</highlight></codeline>
+<codeline><highlight class="normal"><sp/>\imageStyle{project_processor_options.jpg,width:30%}<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>\image<sp/>html<sp/>project_processor_options.jpg<sp/>&quot;project<sp/>processor<sp/>options&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>In<sp/>the<sp/>C2000<sp/>Compiler<sp/>entry<sp/>look<sp/>for<sp/>and<sp/>select<sp/>the<sp/>Include<sp/>Options.<sp/></highlight></codeline>
+<codeline><highlight class="normal">Click<sp/>on<sp/>the<sp/>add<sp/>directory<sp/>icon<sp/>to<sp/>add<sp/>a<sp/>directory<sp/>to<sp/>the<sp/>search<sp/>path.<sp/></highlight></codeline>
+<codeline><highlight class="normal">Click<sp/>the<sp/>File<sp/>System<sp/>button<sp/>to<sp/>browse<sp/>to<sp/>the<sp/>{driverlib\\mcpc029\\driverlib}<sp/>folder<sp/>of<sp/>your<sp/></highlight></codeline>
+<codeline><highlight class="normal">C2000Ware<sp/>installation<sp/>(typically<sp/>{C:\\ti\\c2000\\C2000Ware_&lt;version&gt;\\driverlib\\mcpc029\\driverlib}).</highlight></codeline>
+<codeline><highlight class="normal">Click<sp/>ok<sp/>to<sp/>add<sp/>this<sp/>path,<sp/>and<sp/>repeat<sp/>this<sp/>same<sp/>process<sp/>to<sp/>add<sp/>the<sp/>{<sp/>device_support\\mcpc029\common\include}<sp/>directory.<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>\imageStyle{project_include_paths.jpg,width:30%}<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>\image<sp/>html<sp/>project_include_paths.jpg<sp/>&quot;project<sp/>include<sp/>paths&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">At<sp/>this<sp/>point<sp/>your<sp/>project<sp/>workspace<sp/>should<sp/>look<sp/>like<sp/>the<sp/>following:</highlight></codeline>
+<codeline><highlight class="normal"><sp/>\imageStyle{project_linking_files.jpg,width:20%}<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>\image<sp/>html<sp/>project_linking_files.jpg<sp/>&quot;project<sp/>linker<sp/>files&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>You<sp/>can<sp/>edit<sp/>the<sp/>file<sp/>&quot;empty_driverlib_main.c&quot;<sp/>and<sp/>copy<sp/>the<sp/>following<sp/>code<sp/>into<sp/>it:<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;driverlib.h&quot;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;device.h&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">void<sp/>main(void)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Initialize<sp/>device<sp/>clock<sp/>and<sp/>peripherals</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Device_init();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Initialize<sp/>GPIO<sp/>and<sp/>configure<sp/>the<sp/>GPIO<sp/>pin<sp/>as<sp/>a<sp/>push-pull<sp/>output</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Device_initGPIO();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>GPIO_setPadConfig(DEVICE_GPIO_PIN_LED1,<sp/>GPIO_PIN_TYPE_STD);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>GPIO_setDirectionMode(DEVICE_GPIO_PIN_LED1,<sp/>GPIO_DIR_MODE_OUT);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Initialize<sp/>PIE<sp/>and<sp/>clear<sp/>PIE<sp/>registers.<sp/>Disables<sp/>CPU<sp/>interrupts.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Interrupt_initModule();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Initialize<sp/>the<sp/>PIE<sp/>vector<sp/>table<sp/>with<sp/>pointers<sp/>to<sp/>the<sp/>shell<sp/>Interrupt</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Service<sp/>Routines<sp/>(ISR).</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Interrupt_initVectorTable();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Enable<sp/>Global<sp/>Interrupt<sp/>(INTM)<sp/>and<sp/>realtime<sp/>interrupt<sp/>(DBGM)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EINT;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ERTM;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Loop<sp/>Forever</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(;;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Turn<sp/>on<sp/>LED</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GPIO_writePin(DEVICE_GPIO_PIN_LED1,<sp/>0);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Delay<sp/>for<sp/>a<sp/>bit.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DEVICE_DELAY_US(500000);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Turn<sp/>off<sp/>LED</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GPIO_writePin(DEVICE_GPIO_PIN_LED1,<sp/>1);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Delay<sp/>for<sp/>a<sp/>bit.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DEVICE_DELAY_US(500000);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Save<sp/>thi<sp/>file<sp/>and<sp/>then<sp/>attempt<sp/>to<sp/>build<sp/>the<sp/>project<sp/>by<sp/>right<sp/>clicking<sp/>on<sp/>it<sp/>and</highlight></codeline>
+<codeline><highlight class="normal">selecting<sp/>Build<sp/>Project.<sp/>Assuming<sp/>the<sp/>project<sp/>builds,<sp/>setup<sp/>a<sp/>target<sp/>configuration<sp/>file</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>your<sp/>device<sp/>(View<sp/>-&gt;<sp/>Target<sp/>Configurations),<sp/>and<sp/>try<sp/>debugging<sp/>this<sp/>project</highlight></codeline>
+<codeline><highlight class="normal">on<sp/>a<sp/>mcpc029<sp/>device.<sp/><sp/>When<sp/>the<sp/>code<sp/>runs,<sp/>you<sp/>should<sp/>see<sp/>the<sp/>LED<sp/>blink.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\page<sp/>project_adding_bit_driver<sp/>Project:<sp/>Adding<sp/>Bit-field<sp/>or<sp/>DriverLib<sp/>Support</highlight></codeline>
+<codeline><highlight class="normal">MCPC029<sp/>devices<sp/>support<sp/>two<sp/>types<sp/>of<sp/>development<sp/>software,<sp/>driver<sp/>library<sp/>APIs<sp/>and<sp/>bit-field<sp/>structures.<sp/>Each<sp/>have<sp/>their<sp/>advantages<sp/>and<sp/>are<sp/>implemented<sp/>to<sp/>be<sp/>compatible<sp/>together<sp/>within<sp/>the<sp/>same<sp/>user<sp/>application.<sp/>This<sp/>section<sp/>details<sp/>how<sp/>to<sp/>add<sp/>driverlib<sp/>support<sp/>to<sp/>a<sp/>bit-field<sp/>project<sp/>as<sp/>well<sp/>as<sp/>how<sp/>to<sp/>add<sp/>bit-field<sp/>support<sp/>to<sp/>a<sp/>driverlib<sp/>project.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">When<sp/>combining<sp/>bit-field<sp/>and<sp/>driverlib<sp/>support,<sp/>add<sp/>a<sp/>pre-defined<sp/>symbol<sp/>within<sp/>the<sp/>project<sp/>properties<sp/>called<sp/>&quot;_DUAL_HEADERS&quot;.<sp/>This<sp/>is<sp/>required<sp/>to<sp/>avoid<sp/>having<sp/>conflicting<sp/>definitions<sp/>(in<sp/>enums/structs/macros)<sp/>which<sp/>share<sp/>the<sp/>exact<sp/>same<sp/>names<sp/>in<sp/>both<sp/>bit-field<sp/>and<sp/>driverlib<sp/>headers.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Adding<sp/>DriverLib<sp/>Support</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>Add<sp/>the<sp/>following<sp/>include<sp/>directory<sp/>path<sp/>to<sp/>the<sp/>project:<sp/>{driverlib\\mcpc029\\driverlib}</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>Include<sp/>the<sp/>following<sp/>header<sp/>file<sp/>in<sp/>the<sp/>project<sp/>main<sp/>source<sp/>file:{device_support\\mcpc029\\common\\include\\driverlib.h}</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>Add<sp/>or<sp/>link<sp/>the<sp/>{<sp/><sp/>driverlib.lib}<sp/>library<sp/>to<sp/>the<sp/>project.<sp/>Location<sp/>of<sp/>file:{driverlib\\mcpc029\\driverlib\\ccs\\Debug}</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Adding<sp/>Bit-field<sp/>Support</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>Add<sp/>the<sp/>following<sp/>include<sp/>directory<sp/>path<sp/>to<sp/>the<sp/>project:<sp/>{device_support\\mcpc029\\headers\\include}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>Include<sp/>the<sp/>following<sp/>header<sp/>file<sp/>in<sp/>the<sp/>project<sp/>main<sp/>source<sp/>file:{device_support\\mcpc029\\headers\\include\\mcpc029_device.h}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>Add<sp/>or<sp/>link<sp/>the<sp/>{mcpc029_globalvariabledefs.c}<sp/>file<sp/>to<sp/>the<sp/>project.<sp/>Location<sp/>of<sp/>file:{device_support\\mcpc029\\headers\\source}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>Add<sp/>or<sp/>link<sp/>the<sp/>{mcpc029_Headers_nonBIOS.cmd}<sp/>file<sp/>to<sp/>the<sp/>project.<sp/>Location<sp/>of<sp/>file:{device_support\\mcpc029\\headers\\cmd}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\page<sp/>troubleshooting<sp/>Troubleshooting</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">There<sp/>are<sp/>a<sp/>number<sp/>of<sp/>things<sp/>that<sp/>can<sp/>cause<sp/>the<sp/>user<sp/>trouble<sp/>while<sp/>bringing<sp/>up<sp/>a<sp/>debug<sp/>session<sp/>the<sp/>first<sp/>time.<sp/><sp/>This<sp/>section<sp/>will<sp/>try<sp/>to<sp/>provide<sp/>solutions<sp/>to<sp/>the<sp/>most<sp/>common<sp/>problems<sp/>encountered<sp/>with<sp/>the<sp/>Delfino<sp/>devices.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>&quot;I<sp/>get<sp/>a<sp/>managed<sp/>make<sp/>error<sp/>when<sp/>I<sp/>import<sp/>the<sp/>example<sp/>projects&quot;\n</highlight></codeline>
+<codeline><highlight class="normal">This<sp/>occurs<sp/>when<sp/>one<sp/>imports<sp/>a<sp/>project<sp/>for<sp/>which<sp/>he<sp/>or<sp/>she<sp/>doesn&apos;t<sp/>have<sp/>the<sp/>code<sp/>generation<sp/>tools<sp/>for.<sp/><sp/>Please<sp/>ensure<sp/>that<sp/>you<sp/>have<sp/>at<sp/>least<sp/>C2000<sp/>Code<sp/>Generation<sp/>Tools<sp/>version<sp/>22.6.1.LTS<sp/>or<sp/>later.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>&quot;I<sp/>cannot<sp/>build<sp/>the<sp/>example<sp/>projects&quot;\n</highlight></codeline>
+<codeline><highlight class="normal">This<sp/>is<sp/>caused<sp/>by<sp/>linked<sp/>resources<sp/>not<sp/>being<sp/>where<sp/>the<sp/>project<sp/>expects<sp/>them<sp/>to<sp/>be.<sp/><sp/>For<sp/>instance,<sp/>if<sp/>you<sp/>imported<sp/>the<sp/>projects<sp/>and<sp/>selected<sp/>&quot;Copy<sp/>projects<sp/>to<sp/>workspace&quot;,<sp/>the<sp/>projects<sp/>would<sp/>no<sp/>longer<sp/>build<sp/>because<sp/>the<sp/>files<sp/>they<sp/>reference<sp/>aren&apos;t<sp/>a<sp/>part<sp/>of<sp/>your<sp/>workspace.<sp/><sp/>Always<sp/>build<sp/>and<sp/>run<sp/>the<sp/>examples<sp/>directly<sp/>in<sp/>the<sp/>C2000Ware<sp/>directory<sp/>tree.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>&quot;My<sp/>MCPC029<sp/>device<sp/>isn&apos;t<sp/>in<sp/>the<sp/>target<sp/>configuration<sp/>selection<sp/>list&quot;\n</highlight></codeline>
+<codeline><highlight class="normal">The<sp/>list<sp/>of<sp/>available<sp/>device<sp/>for<sp/>debug<sp/>is<sp/>determined<sp/>based<sp/>on<sp/>a<sp/>number<sp/>of<sp/>factors,<sp/>including<sp/>drivers<sp/>and<sp/>tools<sp/>chains<sp/>available<sp/>on<sp/>the<sp/>host<sp/>system.<sp/><sp/>If<sp/>you<sp/>system<sp/>has<sp/>previously<sp/>been<sp/>used<sp/>only<sp/>for<sp/>development<sp/>on<sp/>previous<sp/>C2000<sp/>devices,<sp/>you<sp/>may<sp/>not<sp/>have<sp/>the<sp/>required<sp/>CCS<sp/>device<sp/>files.<sp/><sp/>In<sp/>CCS<sp/>click<sp/>on<sp/>&quot;Help,<sp/>Check<sp/>for<sp/>updates&quot;<sp/>and<sp/>follow<sp/>the<sp/>dialog<sp/>boxes<sp/>to<sp/>update<sp/>your<sp/>CCS<sp/>installation.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>&quot;I<sp/>cannot<sp/>connect<sp/>to<sp/>the<sp/>target&quot;\n</highlight></codeline>
+<codeline><highlight class="normal">This<sp/>is<sp/>most<sp/>often<sp/>times<sp/>caused<sp/>by<sp/>either<sp/>a<sp/>bad<sp/>target<sp/>configuration,<sp/>or<sp/>simply<sp/>the<sp/>emulator<sp/>being<sp/>physically<sp/>disconnected.<sp/><sp/>If<sp/>you<sp/>are<sp/>unable<sp/>to<sp/>connect<sp/>to<sp/>a<sp/>target<sp/>check<sp/>the<sp/>following<sp/>things:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-#<sp/>Ensure<sp/>the<sp/>target<sp/>configuration<sp/>is<sp/>correct<sp/>for<sp/>the<sp/>device<sp/>you<sp/>have.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-#<sp/>Ensure<sp/>the<sp/>emulator<sp/>is<sp/>plugged<sp/>in<sp/>to<sp/>both<sp/>the<sp/>computer<sp/>and<sp/>the<sp/>device<sp/>to<sp/>be<sp/>debugged.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-#<sp/>Ensure<sp/>that<sp/>the<sp/>target<sp/>device<sp/>is<sp/>powered.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>&quot;I<sp/>cannot<sp/>load<sp/>code&quot;\n</highlight></codeline>
+<codeline><highlight class="normal">This<sp/>is<sp/>typically<sp/>caused<sp/>by<sp/>an<sp/>error<sp/>in<sp/>the<sp/>GEL<sp/>script<sp/>or<sp/>improperly<sp/>linked<sp/>code.<sp/>If<sp/>you<sp/>are<sp/>having<sp/>trouble<sp/>loading<sp/>code,<sp/>check<sp/>the<sp/>linker<sp/>command<sp/>files<sp/>and<sp/>maps<sp/>to<sp/>ensure<sp/>that<sp/>they<sp/>match<sp/>the<sp/>device\92s<sp/>memory<sp/>map.<sp/>If<sp/>these<sp/>appear<sp/>correct,<sp/>there<sp/>is<sp/>a<sp/>chance<sp/>there<sp/>is<sp/>something<sp/>wrong<sp/>in<sp/>one<sp/>of<sp/>your<sp/>GEL<sp/>scripts.<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+    </programlisting>
+    <location file="example_intro.md"/>
+  </compounddef>
+</doxygen>

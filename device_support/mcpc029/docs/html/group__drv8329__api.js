@@ -1,0 +1,97 @@
+var group__drv8329__api =
+[
+    [ "DRV8329_FAULT_STATUS_T", "unionDRV8329__FAULT__STATUS__T.html", [
+      [ "gateDrvFlt", "structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt.html", [
+        [ "rsvd1", "structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt.html#ad9707f427d77e49562ace07b2d8b28dd", null ],
+        [ "fault_common", "structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt.html#a905f2c3bc176555d969030de1a7ba606", null ],
+        [ "drvoff", "structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt.html#a6b047b2bcebe37107ff597d425c0f778", null ],
+        [ "gvdd_uv_flt", "structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt.html#ad3a80c65ae6aa0538177dbe4c28c9867", null ],
+        [ "bst_uv_flt", "structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt.html#ad60774152613045bf0ca4f2449af5b61", null ],
+        [ "ocp_sns_flt", "structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt.html#a43ccb88356d37639585a3a7931fa72cc", null ],
+        [ "ocp_vds_flt", "structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt.html#ae32f3b068252bc749119510fbde56eb6", null ],
+        [ "ots_flt", "structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt.html#a50076161c4a1b6f58aaea842c13a4705", null ],
+        [ "pwr_on", "structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt.html#ade5e240dd8eb513927b8260328208003", null ]
+      ] ],
+      [ "b", "unionDRV8329__FAULT__STATUS__T.html#a3ada916d3689643b806de2043f1e53a1", null ],
+      [ "w", "unionDRV8329__FAULT__STATUS__T.html#ab4096071f19aec3a9ffe6b255c6e3efc", null ]
+    ] ],
+    [ "DRV8329_CFG1_T", "unionDRV8329__CFG1__T.html", [
+      [ "drv8329Cfg1", "structDRV8329__CFG1__T_1_1drv8329Cfg1.html", [
+        [ "selVdsLvl", "structDRV8329__CFG1__T_1_1drv8329Cfg1.html#a0c8505e415586ab8b864513dc8573c83", null ],
+        [ "selVdsSpi", "structDRV8329__CFG1__T_1_1drv8329Cfg1.html#af7097bff10cd9b7a344edce3bd0c87be", null ],
+        [ "disVdsFlt", "structDRV8329__CFG1__T_1_1drv8329Cfg1.html#a32f614ef9e9a14cb491d3c1d08073e5e", null ],
+        [ "disSnsFlt", "structDRV8329__CFG1__T_1_1drv8329Cfg1.html#ad664275a7f1b2cf3628085e2dfcf1f2f", null ],
+        [ "disDrv", "structDRV8329__CFG1__T_1_1drv8329Cfg1.html#adcf1f5358aad9a7ca5cae53a14542709", null ],
+        [ "disTcp", "structDRV8329__CFG1__T_1_1drv8329Cfg1.html#ae62c95f7ac61c9c23c2f8cbf6ebae74d", null ],
+        [ "otsAutoRecover", "structDRV8329__CFG1__T_1_1drv8329Cfg1.html#aa781107b7b793bfb88f17467c84c3a65", null ],
+        [ "disBstFlt", "structDRV8329__CFG1__T_1_1drv8329Cfg1.html#a32ec4cec79eca44f0b3b3818ed9a3862", null ],
+        [ "rsvd1", "structDRV8329__CFG1__T_1_1drv8329Cfg1.html#aef3271c01056ac145c012ab3b7f3bbcf", null ],
+        [ "parity", "structDRV8329__CFG1__T_1_1drv8329Cfg1.html#add31b72aa8411ec1fd41032fde3ffe86", null ]
+      ] ],
+      [ "b", "unionDRV8329__CFG1__T.html#a564d60d4f260d6713efd39076d106d88", null ],
+      [ "w", "unionDRV8329__CFG1__T.html#a73a3e17caf8a0b66564a18e4214e2527", null ]
+    ] ],
+    [ "DRV8329_CONFIG_T", "structDRV8329__CONFIG__T.html", [
+      [ "gateDrvCfg1", "structDRV8329__CONFIG__T.html#ac6b30dc85b75801146e503385562b950", null ]
+    ] ],
+    [ "DRV8329_CTRL1_REG_DEFAULT_CONFIG", "group__drv8329__api.html#gab01c96534e6cdc0d8c0d1ca51de06920", null ],
+    [ "DRV8329_CTRL2_REG_DEFAULT_CONFIG", "group__drv8329__api.html#gaed3c82e42ad488f3e152a19ea05f23f2", null ],
+    [ "DRV8329_CTRL1_REG_DEFAULT_MASK", "group__drv8329__api.html#gafc7b14508f71cf8c00976874993c7c8b", null ],
+    [ "DRV8329_CTRL2_REG_DEFAULT_MASK", "group__drv8329__api.html#ga7bdb55cdaca1941b4fe3bc07cc21ed78", null ],
+    [ "DRV8329_FAULT_STATUS_MASK", "group__drv8329__api.html#ga269d234c3d5b556f8e04a47cb0bf5b52", null ],
+    [ "DRV8329_FAULT_STATUS_DEFAULT", "group__drv8329__api.html#gab959a0652e6f0e43aae793d709327413", null ],
+    [ "DRV8329_FAULT_STATUS_PWR_ON", "group__drv8329__api.html#ga443b5eb5f3707c7c7011f2606c4e48f6", null ],
+    [ "DRV8329_FAULT_STATUS_OTS", "group__drv8329__api.html#ga13d250f2439a2c915837c254b3d5db3b", null ],
+    [ "DRV8329_FAULT_STATUS_OCP_VDS", "group__drv8329__api.html#ga22f23f19f1159584c04a79716cf76b51", null ],
+    [ "DRV8329_FAULT_STATUS_OCP_SNS", "group__drv8329__api.html#ga56daa50e2417871ff7a04af293bc26c6", null ],
+    [ "DRV8329_FAULT_STATUS_BST_UV", "group__drv8329__api.html#ga8a6a7e23df5d18c778ef78f1b3d49639", null ],
+    [ "DRV8329_FAULT_STATUS_GVDD_UV", "group__drv8329__api.html#ga262978f45057e55e3e4e13e02e56a661", null ],
+    [ "DRV8329_FAULT_STATUS_DRVOFF", "group__drv8329__api.html#gac5b7f01955908f192783ac6df5d0fe87", null ],
+    [ "DRV8329_FAULT_STATUS_FAULT_COMMON", "group__drv8329__api.html#gac310a14bb192d4fafb0da99bf7793935", null ],
+    [ "GD1_CTRL1_MASK", "group__drv8329__api.html#ga0b2058c7a0df585232a85c51d0859508", null ],
+    [ "GD1_CTRL1_SHIFT", "group__drv8329__api.html#ga4d38d75069c82ac768cc4e78380b198d", null ],
+    [ "GD1_CTRL2_MASK", "group__drv8329__api.html#ga331b8e80a7aa7b4528fb303a7e6de7f8", null ],
+    [ "GD1_CTRL2_SHIFT", "group__drv8329__api.html#ga8025269a6abe34140f739101018a1b30", null ],
+    [ "DRV8329_VdsLevel", "group__drv8329__api.html#ga98e46e4a9e7bce6f515ef6dda7278435", [
+      [ "DRV8329_VDSLVL_0_06V", "group__drv8329__api.html#gga98e46e4a9e7bce6f515ef6dda7278435a0bcca634d8ef34cc0b6662dcf9bc8121", null ],
+      [ "DRV8329_VDSLVL_0_12V", "group__drv8329__api.html#gga98e46e4a9e7bce6f515ef6dda7278435ae4d2c6255b59296fef6ee9f81c447bd8", null ],
+      [ "DRV8329_VDSLVL_0_18V", "group__drv8329__api.html#gga98e46e4a9e7bce6f515ef6dda7278435a1c4be924314bccd19b48af68798a47e0", null ],
+      [ "DRV8329_VDSLVL_0_24V", "group__drv8329__api.html#gga98e46e4a9e7bce6f515ef6dda7278435a297414ffe685dc1175b7369f32a159e3", null ],
+      [ "DRV8329_VDSLVL_0_30V", "group__drv8329__api.html#gga98e46e4a9e7bce6f515ef6dda7278435a3069f36c83ef0e599aa245662aaa1ba4", null ],
+      [ "DRV8329_VDSLVL_0_36V", "group__drv8329__api.html#gga98e46e4a9e7bce6f515ef6dda7278435a075205ba532b393e5b1dec70a52987f4", null ],
+      [ "DRV8329_VDSLVL_0_42V", "group__drv8329__api.html#gga98e46e4a9e7bce6f515ef6dda7278435a73134a1223621b35001f68cf64416314", null ],
+      [ "DRV8329_VDSLVL_0_48V", "group__drv8329__api.html#gga98e46e4a9e7bce6f515ef6dda7278435a9e2cbb91e62d59a752a3b985a4651c95", null ],
+      [ "DRV8329_VDSLVL_0_60V", "group__drv8329__api.html#gga98e46e4a9e7bce6f515ef6dda7278435a405fbf8c0bf894e99ffd8a4c086f69d8", null ],
+      [ "DRV8329_VDSLVL_0_80V", "group__drv8329__api.html#gga98e46e4a9e7bce6f515ef6dda7278435a6a7f2dd6612d844fc3b8bc730918ea91", null ],
+      [ "DRV8329_VDSLVL_1_00V", "group__drv8329__api.html#gga98e46e4a9e7bce6f515ef6dda7278435a336d1b4cb2389ecaf30b7252d8b36177", null ],
+      [ "DRV8329_VDSLVL_1_20V", "group__drv8329__api.html#gga98e46e4a9e7bce6f515ef6dda7278435a6a1a36b4d973ea25bb3b51f803393b8e", null ],
+      [ "DRV8329_VDSLVL_1_40V", "group__drv8329__api.html#gga98e46e4a9e7bce6f515ef6dda7278435ac67d1a09f2c224395127b97297f3c760", null ],
+      [ "DRV8329_VDSLVL_1_60V", "group__drv8329__api.html#gga98e46e4a9e7bce6f515ef6dda7278435a5f4d2ed95be1c2434e1d80df8fe2f058", null ],
+      [ "DRV8329_VDSLVL_1_80V", "group__drv8329__api.html#gga98e46e4a9e7bce6f515ef6dda7278435a28b4da3374a1ea6aac7950d0aabe5e69", null ],
+      [ "DRV8329_VDSLVL_2_00V", "group__drv8329__api.html#gga98e46e4a9e7bce6f515ef6dda7278435a315bba5169c258b5864b06103fb4e0df", null ]
+    ] ],
+    [ "DRV8329_OtsRecoveryMode", "group__drv8329__api.html#ga97ebf8fb9c730af3ad30f6aa0aa4d420", [
+      [ "DRV8329_OTS_LATCH_FAULT", "group__drv8329__api.html#gga97ebf8fb9c730af3ad30f6aa0aa4d420a9bfafcab867dfe0e4ef7d0ff4d98b335", null ],
+      [ "DRV8329_OTS_AUTO_RECOVER", "group__drv8329__api.html#gga97ebf8fb9c730af3ad30f6aa0aa4d420af3c47640e870c4db0d145d3448b97686", null ]
+    ] ],
+    [ "DRV8329_clearFaults", "group__drv8329__api.html#ga789d55b5e94a261537af31fcb664b132", null ],
+    [ "DRV8329_disableDrv", "group__drv8329__api.html#ga75826cb25b4962fa4c9f80f62c144b20", null ],
+    [ "DRV8329_enableDrv", "group__drv8329__api.html#ga4901b7c06d39f86a4144edebf889556d", null ],
+    [ "DRV8329_disableSnsFault", "group__drv8329__api.html#ga688d831561dbbed86ed1d1027daa07ad", null ],
+    [ "DRV8329_enableSnsFault", "group__drv8329__api.html#gab2dd4994ca1e3056a88fb591f31caa01", null ],
+    [ "DRV8329_disableVdsFault", "group__drv8329__api.html#ga2cee858ac2e1a81151a4d83d7caa8f11", null ],
+    [ "DRV8329_enableVdsFault", "group__drv8329__api.html#gae07782dcd3f397f0697ace752f4dc70d", null ],
+    [ "DRV8329_disableBstFault", "group__drv8329__api.html#gaabb8e0028bc2ee4b9333be9f7efb3601", null ],
+    [ "DRV8329_enableBstFault", "group__drv8329__api.html#gaffe66fb5610bee84408349d6eba2c615", null ],
+    [ "DRV8329_disableTcp", "group__drv8329__api.html#ga12c3380b42d553e4970a24968d5ed4f4", null ],
+    [ "DRV8329_enableTcp", "group__drv8329__api.html#ga787bab99a789aacf076a912bcdddfbba", null ],
+    [ "DRV8329_setOtsRecoveryMode", "group__drv8329__api.html#ga2c7a357a378f425abd3a83f15a489c71", null ],
+    [ "DRV8329_disableVdsLevelSelectionThroughSpi", "group__drv8329__api.html#gae9a258fa193c33555bdd16b767924fcf", null ],
+    [ "DRV8329_enableVdsLevelSelectionThroughSpi", "group__drv8329__api.html#ga234a0fceba98caea3039531fb6d768cf", null ],
+    [ "DRV8329_setVdsLevel", "group__drv8329__api.html#gac02c7822c4b4955b7546033fe62c6d85", null ],
+    [ "DRV8329_configureParams", "group__drv8329__api.html#ga17f3157d9174b07068f752c7b995db28", null ],
+    [ "DRV8329_configureParamsDefault", "group__drv8329__api.html#ga8957b6dd04b0dd406ced32fcb279840b", null ],
+    [ "DRV8329_resetFaultStatus", "group__drv8329__api.html#ga2c95eaba27b79da7598e7cf761bae63f", null ],
+    [ "DRV8329_getFaultStatus", "group__drv8329__api.html#ga6ae73a9695f229c40d378c914500e669", null ],
+    [ "DRV8329_getAllRegisters", "group__drv8329__api.html#gaf238170cb5e8a674d9914ffd5e260a82", null ]
+];

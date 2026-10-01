@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_SYSCTL_EX1" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_SYSCTL_EX1</compoundname>
+    <title>Missing clock detection</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_SYSCTL_EX1_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_sysctl_ex1"/></para>
+<sect1 id="EXAMPLES_DRIVERS_SYSCTL_EX1_1autotoc_md463">
+<title>Introduction</title>
+<para>This example demonstrates the missing clock detection functionality and the way to handle it. Once the MCD is simulated by disconnecting the OSCCLK to the MCD module an NMI would be generated. This NMI determines that an MCD was generated due to a clock failure which is handled in the ISR.</para>
+<para>Before an MCD the clock frequency would be as per device initialization (200Mhz). Post MCD the frequency would move to 10Mhz or INTOSC1.</para>
+<para>The example also shows how we can lock the PLL after missing clock, detection, by first explicitly switching the clock source to INTOSC1, resetting the missing clock detect circuit and then re-locking the PLL. Post a re-lock the clock frequency would be 200Mhz but using the INTOSC1 as clock source.</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_SYSCTL_EX1_1autotoc_md464">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>None.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_SYSCTL_EX1_1autotoc_md465">
+<title>Watch Variables</title>
+<para><itemizedlist>
+<listitem><para><bold>fail</bold> - Indicates that a missing clock was either not detected or was not handled correctly.</para>
+</listitem><listitem><para><bold>mcd_clkfail_isr</bold> - Indicates that the missing clock failure caused an NMI to be triggered and called an the ISR to handle it.</para>
+</listitem><listitem><para><bold>mcd_detect</bold> - Indicates that a missing clock was detected.</para>
+</listitem><listitem><para><bold>result</bold> - Status of a successful handling of missing clock detection </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/sysctl_ex1.md"/>
+  </compounddef>
+</doxygen>

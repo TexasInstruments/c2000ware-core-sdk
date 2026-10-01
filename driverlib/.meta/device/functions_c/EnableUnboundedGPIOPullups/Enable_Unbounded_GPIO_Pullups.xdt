@@ -4,10 +4,12 @@ let 	Common   						= system.getScript("/driverlib/Common.js");
 var	Enable_Unbounded_GPIO_Pullups_176PTP			= system.getTemplate('./Enable_Unbounded_GPIO_Pullups_176PTP.xdt');
 var	Enable_Unbounded_GPIO_Pullups_100PZ_176PTP		= system.getTemplate('./Enable_Unbounded_GPIO_Pullups_100PZ_176PTP.xdt');
 var Enable_Unbounded_GPIO_Pullups_48PT_32RHB_32VFC  = system.getTemplate('./Enable_Unbounded_GPIO_Pullups_48PT_32RHB_32VFC.xdt');
+var Enable_Unbounded_GPIO_Pullups_48RGZ       = system.getTemplate('./Enable_Unbounded_GPIO_Pullups_48RGZ.xdt')
 const 	device  						= device_common.device;
 const	Enable_Unbounded_GPIO_Pullups_100PZ_176PTP_Type0	= device_common.Enable_Unbounded_GPIO_Pullups_100PZ_176PTP_Type0;
 const	Enable_Unbounded_GPIO_Pullups_176PTP_Type0		= device_common.Enable_Unbounded_GPIO_Pullups_176PTP_Type0;
 const	Enable_Unbounded_GPIO_Pullups_48PT_32RHB_32VFC_Type0		= device_common.Enable_Unbounded_GPIO_Pullups_48PT_32RHB_32VFC_Type0;
+const   Enable_Unbounded_GPIO_Pullups_48RGZ_Type0	                = device_common.Enable_Unbounded_GPIO_Pullups_48RGZ_Type0;	
 %%}
 % if(Enable_Unbounded_GPIO_Pullups_100PZ_176PTP_Type0.includes(device))
 %{
@@ -20,4 +22,8 @@ const	Enable_Unbounded_GPIO_Pullups_48PT_32RHB_32VFC_Type0		= device_common.Enab
 % if(Enable_Unbounded_GPIO_Pullups_48PT_32RHB_32VFC_Type0.includes(device))
 %{
 `Enable_Unbounded_GPIO_Pullups_48PT_32RHB_32VFC()`
+%}
+% if(Enable_Unbounded_GPIO_Pullups_48RGZ_Type0.includes(device))
+%{
+`Enable_Unbounded_GPIO_Pullups_48RGZ()`
 %}

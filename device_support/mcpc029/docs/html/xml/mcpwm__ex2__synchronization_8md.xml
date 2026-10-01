@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="mcpwm__ex2__synchronization_8md" kind="file" language="Markdown">
+    <compoundname>mcpwm_ex2_synchronization.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>MCPWM<sp/>Synchronization<sp/>Example<sp/>{#EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>These<sp/>examples<sp/>demonstrate<sp/>MCPWM<sp/>synchronization<sp/>capabilities<sp/>using<sp/>two<sp/>implementation<sp/>approaches&quot;</highlight></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>MCPWM,<sp/>Synchronization&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Synchronization</highlight></codeline>
+<codeline><highlight class="normal">MCPWM<sp/>synchronization<sp/>is<sp/>a<sp/>crucial<sp/>feature<sp/>that<sp/>allows<sp/>multiple<sp/>PWM<sp/>modules<sp/>to<sp/>operate<sp/>in<sp/>a<sp/>coordinated<sp/>manner.<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Synchronization<sp/>Sources</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**External<sp/>Sync**</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Input<sp/>XBAR<sp/>routing<sp/>for<sp/>external<sp/>sync<sp/>signals</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Configurable<sp/>sync<sp/>input<sp/>selection<sp/>(SYNCISEL)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Edge-triggered<sp/>synchronization<sp/>events</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**Internal<sp/>Sync**</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Module-to-module<sp/>synchronization</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Counter<sp/>synchronization<sp/>between<sp/>PWM<sp/>modules</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Cascaded<sp/>synchronization<sp/>chains<sp/>possible</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Sync<sp/>Mechanisms</highlight></codeline>
+<codeline><highlight class="normal">####<sp/>Time<sp/>Base<sp/>Synchronization</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**TBCTL<sp/>Register<sp/>Controls**</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>PHSEN<sp/>(Phase<sp/>Load<sp/>Enable)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>`MCPWM_enablePhaseShiftLoad()`</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>`MCPWM_disablePhaseShiftLoad()`</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>SYNCOSEL<sp/>(Sync<sp/>Output<sp/>Select)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>`MCPWM_setSyncOutPulseMode()`</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>SYNCISEL<sp/>(Sync<sp/>Input<sp/>Select)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>`MCPWM_setSyncInPulseSource()`</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>PHSDIR<sp/>(Phase<sp/>Direction)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>`MCPWM_setCountModeAfterSync()`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Sync<sp/>Out<sp/>Events,<sp/>see<sp/>enum<sp/>::MCPWM_SyncOutPulseMode</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Sync<sp/>In<sp/>Sources,<sp/>see<sp/>enum<sp/>::MCPWM_SyncInPulseSource</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Phase<sp/>Control<sp/>Features</highlight></codeline>
+<codeline><highlight class="normal">####<sp/>Phase<sp/>Loading</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**TBPHS<sp/>Register**</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>16-bit<sp/>phase<sp/>offset<sp/>value</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Loaded<sp/>on<sp/>sync<sp/>event<sp/>when<sp/>PHSEN<sp/>enabled</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>Counter<sp/>Behavior</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**Post-Sync<sp/>Options**</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Software<sp/>configurable<sp/>direction</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>Force<sp/>UP<sp/>counting</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>Force<sp/>DOWN<sp/>counting</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Runtime<sp/>Phase<sp/>Control</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Phase<sp/>offset<sp/>modifications<sp/>during<sp/>operation</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Direction<sp/>control<sp/>after<sp/>synchronization</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Timing<sp/>Considerations</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**Sync<sp/>Latency**</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>One<sp/>PWM<sp/>clock<sp/>cycle<sp/>for<sp/>sync<sp/>recognition</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Counter<sp/>update<sp/>on<sp/>next<sp/>clock<sp/>edge</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**Phase<sp/>Accuracy**</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Resolution<sp/>based<sp/>on<sp/>PWM<sp/>clock</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Deterministic<sp/>phase<sp/>relationships</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Applications</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Three-phase<sp/>inverter<sp/>control</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Interleaved<sp/>power<sp/>converters</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Multi-channel<sp/>motor<sp/>drives</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Example<sp/>Overview</highlight></codeline>
+<codeline><highlight class="normal">These<sp/>examples<sp/>demonstrate<sp/>two<sp/>different<sp/>approaches<sp/>to<sp/>implement<sp/>MCPWM<sp/>synchronization<sp/>functionality:</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>Driverlib<sp/>Implementation<sp/>(mcpwm_ex2_synchronization.c<sp/>in<sp/>driverlib)</highlight></codeline>
+<codeline><highlight class="normal">2.<sp/>Direct<sp/>Register/Bitfield<sp/>Implementation<sp/>(mcpwm_ex2_synchronization.c<sp/>in<sp/>examples_bitfield)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Key<sp/>synchronization<sp/>features<sp/>demonstrated<sp/>in<sp/>this<sp/>example<sp/>include:</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>**Sync<sp/>Mechanism**</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>External<sp/>sync<sp/>input<sp/>through<sp/>InputXBAR</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Module-to-module<sp/>sync<sp/>(MCPWM1<sp/>to<sp/>MCPWM3)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Configurable<sp/>sync<sp/>events<sp/>(Period<sp/>match)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.<sp/>**Phase<sp/>Control**</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Dynamic<sp/>phase<sp/>shift<sp/>adjustments</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Phase<sp/>shift<sp/>loading<sp/>on<sp/>sync<sp/>events</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Configurable<sp/>counter<sp/>direction<sp/>after<sp/>sync</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">3.<sp/>**Timing<sp/>Coordination**</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Synchronized<sp/>counter<sp/>updates</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Phase-shifted<sp/>operation<sp/>of<sp/>recieving<sp/>module</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Common<sp/>Functionality</highlight></codeline>
+<codeline><highlight class="normal">Both<sp/>implementations<sp/>configure<sp/>myMCPWM0(MCPWM1)<sp/>and<sp/>myMCPWM1(MCPWM3)<sp/>with<sp/>synchronization<sp/>features:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>myMCPWM0<sp/>Configuration</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>Time<sp/>Base<sp/>Settings:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Up<sp/>Count<sp/>Mode</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>10KHz<sp/>Frequency<sp/>(15999<sp/>TBCLKs<sp/>for<sp/>160MHz<sp/>TBCLK)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Sync<sp/>input<sp/>enabled<sp/>from<sp/>InputXbar<sp/>5</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Phase<sp/>shift<sp/>load<sp/>enabled</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Sync<sp/>Out<sp/>configured<sp/>for<sp/>Counter<sp/>equals<sp/>Period<sp/>event</highlight></codeline>
+<codeline><highlight class="normal">2.<sp/>Action<sp/>Qualifier<sp/>Outputs:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Output<sp/>A1:<sp/>Set<sp/>High<sp/>on<sp/>zero,<sp/>Low<sp/>on<sp/>CMPA<sp/>match</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Output<sp/>B1:<sp/>Set<sp/>High<sp/>on<sp/>zero,<sp/>Low<sp/>on<sp/>CMPB<sp/>match</highlight></codeline>
+<codeline><highlight class="normal">3.<sp/>Interrupt<sp/>Configuration:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>ET2<sp/>triggers<sp/>every<sp/>5<sp/>&quot;Counter<sp/>=<sp/>Period&quot;<sp/>events</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Updates<sp/>phase<sp/>shift<sp/>values<sp/>at<sp/>runtime</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>myMCPWM1<sp/>Configuration</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>Time<sp/>Base<sp/>Settings:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Up-Down<sp/>Count<sp/>Mode</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>10KHz<sp/>Frequency<sp/>(8000<sp/>TBCLKs<sp/>for<sp/>160MHz<sp/>TBCLK)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Sync<sp/>input<sp/>from<sp/>myMCPWM0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Phase<sp/>shift<sp/>load<sp/>enabled</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Configurable<sp/>counter<sp/>direction<sp/>after<sp/>sync</highlight></codeline>
+<codeline><highlight class="normal">2.<sp/>Action<sp/>Qualifier<sp/>Outputs:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Output<sp/>A1:<sp/>Set<sp/>High<sp/>on<sp/>zero,<sp/>Low<sp/>on<sp/>CMPA<sp/>match</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Output<sp/>B1:<sp/>Set<sp/>High<sp/>on<sp/>zero,<sp/>Low<sp/>on<sp/>CMPB<sp/>match</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">Monitor<sp/>these<sp/>PWM<sp/>outputs<sp/>on<sp/>Launchpad:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>J4<sp/>40<sp/>-<sp/>GPIO0<sp/><sp/>-<sp/>myMCPWM0<sp/>Output<sp/>A1</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>J4<sp/>39<sp/>-<sp/>GPIO1<sp/><sp/>-<sp/>myMCPWM0<sp/>Output<sp/>B1</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>J4<sp/>7<sp/><sp/>-<sp/>GPIO12<sp/>-<sp/>myMCPWM1<sp/>Output<sp/>A1</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>J2<sp/>19<sp/>-<sp/>GPIO29<sp/>-<sp/>myMCPWM1<sp/>Output<sp/>B1</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Implementation<sp/>Approaches</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Implementation<sp/>Comparison</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Aspect<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Driverlib<sp/>Implementation<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Bitfield<sp/>Implementation<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|-----------------------|-----------------------------------------|--------------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Source<sp/>File<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>mcpwm_ex2_synchronization.c<sp/>(driverlib)<sp/>|<sp/>mcpwm_ex2_synchronization.c<sp/>(examples_bitfield)<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Configuration<sp/>Method<sp/><sp/>|<sp/>Driverlib<sp/>API<sp/>calls<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Direct<sp/>register<sp/>access<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Hardware<sp/>Abstraction<sp/><sp/>|<sp/>Medium<sp/>(driverlib)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>None<sp/>(direct<sp/>hardware)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Phase<sp/>Control<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>API-based<sp/>phase<sp/>updates<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Direct<sp/>register<sp/>phase<sp/>updates<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Watch<sp/>Variables</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Variable<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Purpose<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Default<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|-----------------------|---------------------------------------|---------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>gUsePhaseValueUpdate<sp/>|<sp/>Enable<sp/>runtime<sp/>phase<sp/>updates<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>false<sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>gPhaseShiftValue<sp/><sp/><sp/><sp/><sp/>|<sp/>Phase<sp/>shift<sp/>value<sp/>to<sp/>apply<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>gPhaseDirUp<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Counter<sp/>direction<sp/>after<sp/>sync<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>true<sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Using<sp/>the<sp/>watch<sp/>variables,<sp/>observe<sp/>the<sp/>waveforms.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>See<sp/>Also</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\ref<sp/>DRIVERS_MCPWM_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\ref<sp/>EXAMPLES_DRIVERS_MCPWM_EX1_BASIC_PWM</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\ref<sp/>EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/mcpwm_ex2_synchronization.md"/>
+  </compounddef>
+</doxygen>

@@ -2,7 +2,6 @@
 /* Must include stdio.h before this file for the definition of fpos_t        */
 /*****************************************************************************/
 #include <stdio.h>
-
 int    UART_open(const char *path, unsigned flags, int llv_fd);
 int    UART_close(int dev_fd);
 int    UART_read(int dev_fd, char *buf, unsigned count);

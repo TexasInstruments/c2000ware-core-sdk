@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_INTERRUPT_EX4_MCPWM_REALTIME_INTERRUPT" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_INTERRUPT_EX4_MCPWM_REALTIME_INTERRUPT</compoundname>
+    <title>MCPWM Real-Time Interrupt example</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_INTERRUPT_EX4_MCPWM_REALTIME_INTERRUPT_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_interrupt_ex4_mcpwm_realtime_interrupt"/></para>
+<sect1 id="EXAMPLES_DRIVERS_INTERRUPT_EX4_MCPWM_REALTIME_INTERRUPT_1autotoc_md297">
+<title>Introduction</title>
+<para>This example configures the mcPWM1 Timer and increments a counter each time the ISR is executed. mcPWM interrupt can be configured as time critical to demonstrate real-time mode functionality and real-time interrupt capability.</para>
+<para>The example uses 2 LEDs - LED1 is toggled in the main loop and LED2 is toggled in the MCPWM Timer Interrupt. FREE_SOFT bits and DBGIER.INT3 bit must be set to enable mcPWM1 interrupt to be time critical and operational in real time mode after halt command</para>
+<para>How to run the example?<itemizedlist>
+<listitem><para>Add the watch variables as mentioned below and enable Continuous Refresh.</para>
+</listitem><listitem><para>Enable real-time mode (Run-&gt;Advanced-&gt;Enable Silicon Real-time Mode)</para>
+</listitem><listitem><para>Initially, the DBGIER register is set to 0 and the MCPWM emulation mode is set to MCPWM_EMULATION_STOP_AFTER_NEXT_TB (FREE_SOFT = 0)</para>
+</listitem><listitem><para>When the application is running, you will find both LEDs toggling and the watch variables MCPwm1TimerIntCount, MCPwm1Regs.TBCTR getting updated.</para>
+</listitem><listitem><para>When the application is halted, both LEDs stop toggling and the watch variables remain constant. MCPWM counter is stopped on debugger halt.</para>
+</listitem><listitem><para>To enable MCPWM counter run during debugger halt, set emulation mode as MCPWM_EMULATION_FREE_RUN (FREE_SOFT = 2). You will find MCPwm1Regs.TBCTR is running, but MCPwm1TimerIntCount remains constant. This means, the MCPWM counter is running, but the ISRs are not getting serviced.</para>
+</listitem><listitem><para>To enable real-time interrupts, set DBGIER.INT3 = 1 (MCPWM1 interrupt is part of PIE Group 3). You will find that the MCPwm1TimerIntCount is incrementing and the LED starts toggling. The MCPWM ISR is getting serviced even during a debugger halt.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_INTERRUPT_EX4_MCPWM_REALTIME_INTERRUPT_1autotoc_md298">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>None</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_INTERRUPT_EX4_MCPWM_REALTIME_INTERRUPT_1autotoc_md299">
+<title>Watch Variables</title>
+<para><itemizedlist>
+<listitem><para>MCPwm1TimerIntCount - MCPWM1 ISR counter</para>
+</listitem><listitem><para>MCPwm1Regs.TBCTR.TBCTR - MCPWM1 Time Base counter</para>
+</listitem><listitem><para>MCPwm1Regs.TBCTL.FREE_SOFT - Set this to 2 to enable free run</para>
+</listitem><listitem><para>DBGIER.INT3 - Set to 1 to enable real time interrupt </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/interrupt_ex4_mcpwm_realtime_interrupt.md"/>
+  </compounddef>
+</doxygen>

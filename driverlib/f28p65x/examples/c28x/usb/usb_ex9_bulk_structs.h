@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -41,10 +41,8 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 #ifndef USB_BULK_STRUCTS_H
 #define USB_BULK_STRUCTS_H
-
 //
 // Included Files
 //
@@ -56,18 +54,15 @@
 #include "usb_ids.h"
 #include "device/usbdevice.h"
 #include "device/usbdbulk.h"
-
 //
 // Defines
 //
-
 //
 // The size of the transmit and receive buffers used. 256 is chosen pretty
 // much at random though the buffer should be at least twice the size of
 // a maximum-sized USB packet.
 //
 #define BULK_BUFFER_SIZE 256
-
 //
 // Globals
 //
@@ -76,7 +71,6 @@ extern tUSBBuffer g_sRxBuffer;
 extern tUSBDBulkDevice g_sBulkDevice;
 extern uint8_t g_pui8USBTxBuffer[];
 extern uint8_t g_pui8USBRxBuffer[];
-
 //
 // Function Prototypes
 //
@@ -84,9 +78,7 @@ extern uint32_t RxHandler(void *pvCBData, uint32_t ui32Event,
                           uint32_t ui32MsgValue, void *pvMsgData);
 extern uint32_t TxHandler(void *pvi32CBData, uint32_t ui32Event,
                           uint32_t ui32MsgValue, void *pvMsgData);
-
 #endif
-
 //
 // End of file
 //

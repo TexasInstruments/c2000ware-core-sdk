@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="DRIVERS_INTERRUPT_PAGE" kind="page">
+    <compoundname>DRIVERS_INTERRUPT_PAGE</compoundname>
+    <title>Interrupt</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="DRIVERS_INTERRUPT_PAGE_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_components_drivers_interrupt"/></para>
+<para>The Interrupt driver provides API to configure the PIPE module. Below are the high level features supported by the Interrupt driver.</para>
+<sect1 id="DRIVERS_INTERRUPT_PAGE_1autotoc_md76">
+<title>Features Supported</title>
+<para><itemizedlist>
+<listitem><para>Initialization of PIPE module and vector table</para>
+</listitem><listitem><para>Default interrupt handlers</para>
+</listitem><listitem><para>PIPE Global configuration</para>
+</listitem><listitem><para>Interrupt channel configuration</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_INTERRUPT_PAGE_1autotoc_md77">
+<title>SysConfig Features</title>
+<para><simplesect kind="note"><para>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</para>
+</simplesect>
+<itemizedlist>
+<listitem><para>PIPE Global configuration</para>
+</listitem><listitem><para>Interrupt channel configuration</para>
+</listitem><listitem><para>Generates the init code and the ISR protypes</para>
+</listitem><listitem><para>Generates a file named interrupt_list.txt with the list of all interrupts in the order of priority and grouped as per the nesting groups</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_INTERRUPT_PAGE_1autotoc_md78">
+<title>Features NOT Supported</title>
+<para><itemizedlist>
+<listitem><para>Diagnostic features present in the PIPE module is not supported in the driver</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_INTERRUPT_PAGE_1autotoc_md79">
+<title>Important Usage Guidelines</title>
+<para><itemizedlist>
+<listitem><para>Make sure the ISRs are defined with the interrupt attribute. Recommended to use Sysconfig for configuring interrupt. It generates the correct attribute based on whether the interrupt is INT/RTINT/NMI.<itemizedlist>
+<listitem><para><bold>attribute</bold>((interrupt(&quot;INT&quot;))) - In case of normal INTs</para>
+</listitem><listitem><para><bold>attribute</bold>((interrupt(&quot;RTINT&quot;))) - In case of RTINTs</para>
+</listitem><listitem><para><bold>attribute</bold>((interrupt(&quot;RTINT&quot;))) - In case of NMI</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Make sure the RTINT threshold is aligned with nesting group mask. This is enforced in Sysconfig UI.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_INTERRUPT_PAGE_1autotoc_md80">
+<title>Example Usage</title>
+<para>Include the below file to access the APIs #include &lt;<ref refid="interrupt_8h" kindref="compound">interrupt.h</ref>&gt;</para>
+</sect1>
+<sect1 id="DRIVERS_INTERRUPT_PAGE_1autotoc_md81">
+<title>API</title>
+<para><ref refid="group__interrupt__api" kindref="compound">Interrupt</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/interrupt.md"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="watchdog__ex1_8md" kind="file" language="Markdown">
+    <compoundname>watchdog_ex1.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Watchdog<sp/>Service<sp/>Example<sp/>{#EXAMPLES_DRIVERS_WD_EX1}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>Servicing<sp/>Watchdog<sp/>Example&quot;</highlight></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>Watchdog&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Watchdog<sp/>Example:<sp/>Servicing<sp/>Watchdog</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>demonstrates<sp/>how<sp/>to<sp/>service<sp/>the<sp/>watchdog<sp/>or<sp/>generate<sp/>a<sp/>wakeup<sp/>interrupt<sp/>using<sp/>the<sp/>watchdog<sp/>on<sp/>the<sp/>F28E12x<sp/>device.<sp/>By<sp/>default,<sp/>the<sp/>example<sp/>generates<sp/>a<sp/>wakeup<sp/>interrupt.<sp/>To<sp/>service<sp/>the<sp/>watchdog<sp/>and<sp/>avoid<sp/>generating<sp/>the<sp/>interrupt,<sp/>uncomment<sp/>the<sp/>`SysCtl_serviceWatchdog()`<sp/>line<sp/>in<sp/>the<sp/>main<sp/>loop.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Features</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Demonstrates<sp/>the<sp/>use<sp/>of<sp/>the<sp/>watchdog<sp/>timer<sp/>in<sp/>interrupt<sp/>mode.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Configurable<sp/>to<sp/>either<sp/>service<sp/>the<sp/>watchdog<sp/>or<sp/>allow<sp/>it<sp/>to<sp/>timeout<sp/>and<sp/>trigger<sp/>an<sp/>interrupt.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Tracks<sp/>the<sp/>number<sp/>of<sp/>wakeup<sp/>interrupts<sp/>and<sp/>main<sp/>loop<sp/>iterations.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>External<sp/>Connections</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>None.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Variables</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>**Watch<sp/>Variable**<sp/><sp/>|<sp/>**Description**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|---------------|-----------------------------------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`wakeCount`<sp/><sp/><sp/>|<sp/>Tracks<sp/>the<sp/>number<sp/>of<sp/>times<sp/>the<sp/>watchdog<sp/>ISR<sp/>is<sp/>entered.<sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`loopCount`<sp/><sp/><sp/>|<sp/>Tracks<sp/>the<sp/>number<sp/>of<sp/>loops<sp/>performed<sp/>while<sp/>not<sp/>in<sp/>the<sp/>ISR.|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Code<sp/>Overview</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Included<sp/>Files</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>**Header<sp/>File**<sp/>|<sp/>**Description**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|------------------|---------------------------------------------------------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`driverlib.h`<sp/><sp/><sp/><sp/>|<sp/>Provides<sp/>access<sp/>to<sp/>device<sp/>driver<sp/>library<sp/>functions.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`device.h`<sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Contains<sp/>device-specific<sp/>definitions.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Globals</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>`uint32_t<sp/>wakeCount`:<sp/>Counter<sp/>for<sp/>the<sp/>number<sp/>of<sp/>wakeup<sp/>interrupts.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`uint32_t<sp/>loopCount`:<sp/>Counter<sp/>for<sp/>the<sp/>number<sp/>of<sp/>main<sp/>loop<sp/>iterations.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>**ISR**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>**Description**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|---------------------------------------|---------------------------------------------------------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`__interrupt<sp/>void<sp/>wakeupISR(void)`<sp/><sp/><sp/><sp/>|<sp/>Interrupt<sp/>Service<sp/>Routine<sp/>(ISR)<sp/>for<sp/>the<sp/>watchdog<sp/>wakeup<sp/>interrupt.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Code<sp/>Flow</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```mermaid</highlight></codeline>
+<codeline><highlight class="normal">flowchart<sp/>TD</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>A[Start]<sp/>--&gt;<sp/>B[Initialization]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>B<sp/>--&gt;<sp/>C[Watchdog<sp/>Configuration]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>C<sp/>--&gt;<sp/>D[Interrupts]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>D<sp/>--&gt;<sp/>E[Watchdog<sp/>Service]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>E<sp/>--&gt;<sp/>F[Main<sp/>Loop]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>F<sp/>--&gt;<sp/>G[Increment<sp/>loopCount]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>G<sp/>--&gt;<sp/>H{Service<sp/>Watchdog?}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>H<sp/>--<sp/>Yes<sp/>--&gt;<sp/>I[Reset<sp/>watchdog<sp/>counter]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>H<sp/>--<sp/>No<sp/>--&gt;<sp/>J[Allow<sp/>timeout]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>I<sp/>--&gt;<sp/>G</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>J<sp/>--&gt;<sp/>G</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Notes</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Ensure<sp/>that<sp/>the<sp/>device<sp/>is<sp/>properly<sp/>configured<sp/>and<sp/>connected<sp/>before<sp/>running<sp/>the<sp/>example.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Check<sp/>the<sp/>interrupt<sp/>Channels<sp/>corresponding<sp/>to<sp/>your<sp/>base</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/watchdog_ex1.md"/>
+  </compounddef>
+</doxygen>

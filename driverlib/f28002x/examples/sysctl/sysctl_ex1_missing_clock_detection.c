@@ -67,29 +67,23 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Globals
 //
 bool mcd_detect;
 uint16_t nmistatus = 0;
 uint32_t mcd_clkfail_isr = 0;
-
 //
 // Defines
 //
 #define PASS 0
 #define FAIL 1
-
 uint32_t result = FAIL;
-
-
 //
 // Define to pass to SysCtl_setClock(). Will configure the clock as follows:
 // PLLSYSCLK = 10MHz (INT_OSC1) * 40 (IMULT) / (2 (REFDIV) * 2 (ODIV) * 1(SYSDIV))
@@ -97,97 +91,80 @@ uint32_t result = FAIL;
 #define DEVICE_SETCLOCK_INTOSC        (SYSCTL_OSCSRC_OSC1 | SYSCTL_IMULT(40) | \
                                        SYSCTL_REFDIV(2) | SYSCTL_ODIV(2) | \
                                        SYSCTL_SYSDIV(1) | SYSCTL_PLL_ENABLE)
-
 //
 // Function Prototypes
 //
 __interrupt void nmi_isr(void);
-
 //
 // Main
 //
 void main(void)
 {
     uint32_t fail = 0;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Re-map NMI signal to call the ISR function in this
     // example
     //
     SysCtl_clearAllNMIFlags();
     Interrupt_register(INT_NMI, &nmi_isr);
-
     //
     // Enabling the NMI global interrupt
     //
     SysCtl_enableNMIGlobalInterrupt();
-
     Interrupt_enable(INT_NMI);
-
     //
     // Enable Global Interrupt (INTM) and Real Time interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Check the PLL System clock before the Missing clock detection
     // is simulated. It should be same as that set by Device_init().
     //
     if(SysCtl_getClock(DEVICE_OSCSRC_FREQ) != DEVICE_SYSCLK_FREQ)
         fail++;
-
     //
     // Enable the missing clock detection (MCD) Logic as a precaution.
     // The is continuously active, unless the MCD was disabled previously
     //
     SysCtl_enableMCD();
-
     //
     // Simulate a missing clock detection
     //
     SysCtl_disconnectMCDClockSource();
-
     //
     // Wait till the NMI is fired on clock failure
     //
     while(mcd_clkfail_isr != 0x1U);
-
     //
     // A missing clock was detected
     //
     if(mcd_detect != true)
         fail++;
-
     //
     // Check if the NMI triggered was due to a clock failure
     //
     if((nmistatus & SYSCTL_NMI_CLOCKFAIL) != SYSCTL_NMI_CLOCKFAIL)
         fail++;
-
     //
     // Check the PLL System clock after the Missing clock detection
     // is simulated. It should be equal to INTOSC1(10Mhz).
     //
     if(SysCtl_getClock(DEVICE_OSCSRC_FREQ) != SYSCTL_DEFAULT_OSC_FREQ)
         fail++;
-
     //
     // To lock the PLL after missing clock detection, we first explicitly
     // switch the clock source to INTOSC1, reset the missing clock detect
@@ -196,31 +173,25 @@ void main(void)
     // Configure oscillator source to INTOSC1
     //
     SysCtl_selectOscSource(SYSCTL_OSCSRC_OSC1);
-
     //
     // Re-connect missing clock detection clock source to stop simulating clock
     // failure
     //
     SysCtl_connectMCDClockSource();
-
     //
     // Reset the missing clock detection logic after clock failure
     //
     SysCtl_resetMCD();
-
     //
     // Set up PLL control and clock dividers using INTOSC1 as clock source
     //
     SysCtl_setClock(DEVICE_SETCLOCK_INTOSC);
-
     //
     // Check the PLL System clock after the Missing clock detection
     // is cleared and handled using INTOSC1 as clock source.
     //
     if(SysCtl_getClock(SYSCTL_DEFAULT_OSC_FREQ) != DEVICE_SYSCLK_FREQ)
         fail++;
-
-
     //
     // Status of a successful handling of missing clock detection
     //
@@ -231,11 +202,9 @@ void main(void)
     else
     {
         result = PASS;
-
     }
     while(1);
 }
-
 //
 // NMI ISR - The interrupt service routine called when the NMI
 //           is generated on clock failure detection
@@ -247,8 +216,6 @@ __interrupt void nmi_isr(void)
     nmistatus = SysCtl_getNMIFlagStatus();
     SysCtl_clearAllNMIFlags();
 }
-
-
 //
 // End of File
 //

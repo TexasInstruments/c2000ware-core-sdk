@@ -45,7 +45,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -78,31 +78,25 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib_cm.h"
 #include "cm.h"
-
 //
 // Defines
 //
 #define PASS 0
 #define FAIL 1
-
 uint16_t Zone1_Locked_Array[256];       // Mapped to C0RAM 
 uint16_t Unsecure_mem_Array[256];       // Mapped to C1RAM 
 DCSM_CSMPasswordKey csmK_z1;     //Zone1 key
 DCSM_CSMPasswordKey csmK_z2;    //Zone2 key
-
 #pragma DATA_SECTION(Zone1_Locked_Array,"ZONE1_RAM");
 #pragma DATA_SECTION(Unsecure_mem_Array,"UNSECURE_RAM");
 #pragma DATA_SECTION(csmK_z1,"CSMKEY_RAM");
 #pragma DATA_SECTION(csmK_z2,"CSMKEY_RAM");
-
 uint32_t result = FAIL;
-
 //
 // Main
 //
@@ -112,15 +106,12 @@ void main(void)
     // Variables showing the error occurred while testing DCSM
     //
     uint16_t i=0,error_not_locked=0,error_not_unlocked=0,error1=0,set_error=0;
-
     DCSM_SecurityStatus status1;
-
     //
     // Synchronize CPU1 and CM cores - CPU1 has finished device init 
     // and CM boot
     //
     IPC_sync(IPC_CM_L_CPU1_R, IPC_FLAG12);
-
     //
     // Updating the Zone1 key value
     //
@@ -128,7 +119,6 @@ void main(void)
     csmK_z1.csmKey1 = 0x4D7FFFFF;
     csmK_z1.csmKey2 = 0xFFFFFFFF;
     csmK_z1.csmKey3 = 0xFFFFFFFF;
-
     //
     // Updating the Zone2 key value
     //
@@ -136,29 +126,24 @@ void main(void)
     csmK_z2.csmKey1 = 0x1F7FFFFF;
     csmK_z2.csmKey2 = 0xFFFFFFFF;
     csmK_z2.csmKey3 = 0xFFFFFFFF;
-
     //
     // Unlocking the zone1 using the key since the password maybe
     // different from the default
     //
     DCSM_writeZone1CSM(&csmK_z1);
-
     //
     // Unlocking the zone2 using the key since the password maybe
     // different from the default
     //
     DCSM_writeZone2CSM(&csmK_z2);
-
     //
     // Synchronize CPU1 and CM cores - CM has finished device zone unlock
     //
     IPC_sync(IPC_CM_L_CPU1_R, IPC_FLAG11);
-
     //
     // Initialize device and peripherals
     //
     CM_init();
-    
     //
     // Updating the arrays one which belong to zone1 and other 
     // which belongs to zone2
@@ -168,24 +153,20 @@ void main(void)
         Unsecure_mem_Array[i] = i;
         Zone1_Locked_Array[i] = i;
     }
-
     //
     // Synchronize CPU1 and CM cores - CPU1 has finished checking 
     // status of Zones
     //
     IPC_sync(IPC_CM_L_CPU1_R, IPC_FLAG11);
-
     //
     // Locking the zone1
     //
     DCSM_secureZone1();
-
     //
     // Synchronize CPU1 and CM cores - CPU1 has finished 
     // checking status of Zones
     //
     IPC_sync(IPC_CM_L_CPU1_R, IPC_FLAG12);
-
     //
     // Read both the arrays. One which is not secured would be 
     // readable unlike the other secured one that wouldn't be.
@@ -195,24 +176,20 @@ void main(void)
         if(Unsecure_mem_Array[i] != i) error1++;
         if(Zone1_Locked_Array[i] == i) error_not_locked++ ;
     }
-
     //
     // Synchronize CPU1 and CM cores - CPU1 has dummy read 
     // the Zone1 CSM Password
     //
     IPC_sync(IPC_CM_L_CPU1_R, IPC_FLAG11);
-
     //
     // Unlocking the zone1 by writing the Zone1 CSM key 
     //
     DCSM_writeZone1CSM(&csmK_z1);
-
     //
     // Getting the status of zone 1 after unlocking it .
     //
     status1 = DCSM_getZone1CSMSecurityStatus();
     if(status1!=DCSM_STATUS_UNSECURE) set_error++;
-    
     //
     // Since the zone1 has been unlocked both should be readable
     //
@@ -221,7 +198,6 @@ void main(void)
         if(Unsecure_mem_Array[i] != i) error1++;
         if(Zone1_Locked_Array[i] != i) error_not_unlocked++ ;
     }
-
     //
     // Status of CM's secure memory access
     //
@@ -233,11 +209,8 @@ void main(void)
     {
         result = PASS;
     }
-
     while(1);
-
 }
-
 //
 // End of File
 //

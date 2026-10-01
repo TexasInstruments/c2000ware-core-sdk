@@ -26,7 +26,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -59,19 +59,16 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "device.h"
 #include "driverlib.h"
-
 //
 // Defines
 //
 #define TEST_PASS 0xABCDABCDU
 #define TEST_FAIL 0xDEADDEADU
-
 //
 // Defines for external memory addresses to be be accessed. The ASRAM memory
 // size used for this example is 256K x 16. CPU2 accesses lower 128K x 16
@@ -79,24 +76,20 @@
 //
 #define ASRAM_CS2_START_ADDR_CPU2 0x100000U
 #define ASRAM_CS2_SIZE 0x20000U
-
 //
 // Define for memory R/W iterations
 //
 #define MEM_RW_ITER    0x2U
-
 //
 // Globals
 //
 uint16_t errCountGlobalCPU2 = 0U;
 uint32_t testStatusGlobalCPU2;
 uint32_t i, iter;
-
 //
 // Function Prototypes
 //
 uint16_t readWriteMemCPU2(uint32_t startAddr, uint32_t memSize);
-
 //
 // Main
 //
@@ -105,55 +98,45 @@ void main(void)
     uint16_t errCountLocal;
     EMIF_AsyncTimingParams tparam;
     testStatusGlobalCPU2 = TEST_FAIL;
-
     //
     // Initialize device clock and peripherals.
     //
     Device_init();
-
     //
     // Disable all the interrupts.
     //
     DINT;
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Grab EMIF1 For CPU2.
     //
     EMIF_selectMaster(EMIF1CONFIG_BASE, EMIF_MASTER_CPU2_G);
-
     //
     // Configure to run EMIF1 on full Rate. (EMIF1CLK = CPU1SYSCLK)
     //
     SysCtl_setEMIF1ClockDivider(SYSCTL_EMIF1CLK_DIV_1);
-
     //
     // Configures Normal Asynchronous Mode of Operation.
     //
     EMIF_setAsyncMode(EMIF1_BASE, EMIF_ASYNC_CS2_OFFSET,
                       EMIF_ASYNC_NORMAL_MODE);
-
     //
     // Disables Extended Wait Mode.
     //
     EMIF_disableAsyncExtendedWait(EMIF1_BASE, EMIF_ASYNC_CS2_OFFSET);
-
     //
     // Configure EMIF1 Data Bus Width.
     //
     EMIF_setAsyncDataBusWidth(EMIF1_BASE, EMIF_ASYNC_CS2_OFFSET,
                               EMIF_ASYNC_DATA_WIDTH_16);
-
     //
     // Configure the access timing for CS2 space.
     //
@@ -166,12 +149,10 @@ void main(void)
     tparam.wHold = 0;
     EMIF_setAsyncTimingParams(EMIF1_BASE, EMIF_ASYNC_CS2_OFFSET, &tparam);
     EMIF_selectMaster(EMIF1CONFIG_BASE, EMIF_MASTER_CPU1_NG);
-
     //
     // Sync CPU1 and CPU2.
     //
     IPC_sync(IPC_CPU2_L_CPU1_R, IPC_FLAG11);
-
     for(iter = 0; iter < MEM_RW_ITER; iter++)
     {
         //
@@ -182,20 +163,17 @@ void main(void)
         {
             EMIF_selectMaster(EMIF1CONFIG_BASE, EMIF_MASTER_CPU2_G);
         }
-
         //
         // Check basic RD/WR access to CS2 space.
         //
         errCountLocal = readWriteMemCPU2(ASRAM_CS2_START_ADDR_CPU2,
                                          ASRAM_CS2_SIZE);
         errCountGlobalCPU2 = errCountGlobalCPU2 + errCountLocal;
-
         //
         // Release EMIF1
         //
         EMIF_selectMaster(EMIF1CONFIG_BASE, EMIF_MASTER_CPU1_NG);
     }
-
     if(errCountGlobalCPU2 == 0x0U)
     {
         testStatusGlobalCPU2 = TEST_PASS;
@@ -204,10 +182,8 @@ void main(void)
     {
         testStatusGlobalCPU2 = TEST_FAIL;
     }
-
     while(1);
 }
-
 //
 // Read Write Memory - This function performs simple read/write word accesses
 // to memory.
@@ -219,10 +195,8 @@ uint16_t readWriteMemCPU2(uint32_t startAddr, uint32_t memSize)
     uint16_t memWriteData;
     uint16_t *memPtr;
     uint32_t i;
-
     iterCnt++;
     memPtr = (uint16_t *)startAddr;
-
     //
     // Write data to memory.
     //
@@ -232,7 +206,6 @@ uint16_t readWriteMemCPU2(uint32_t startAddr, uint32_t memSize)
         *memPtr++ = memWriteData;
         memWriteData += (0x1111U + iterCnt);
     }
-
     //
     // Verify data written to memory.
     //
@@ -250,7 +223,6 @@ uint16_t readWriteMemCPU2(uint32_t startAddr, uint32_t memSize)
     }
     return(0U);
 }
-
 //
 // End of File
 //

@@ -1,11 +1,16 @@
 /**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P65x" --part "F28P65x_256ZEJ" --package "256ZEJ" --board "/boards/TMDSCNCD28P65X" --context "CPU1"
+ * @v2CliArgs --device "TMS320F28P650DK" --package "256ZEJ" --variant "TMS320F28P650DK9" --context "CPU1"
+ */
+/**
  * Import the modules used in this configuration.
  */
 const clb   = scripting.addModule("/driverlib/clb.js", {}, false);
 const clb1  = clb.addInstance();
 const TILE  = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/TILE", {}, false);
 const TILE1 = TILE.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -19,7 +24,6 @@ clb1.prescale            = 10000;
 clb1.tap                 = 5;
 clb1.inputsUsed          = ["CLB_IN0","CLB_IN1"];
 clb1.filterConfigCLB_IN1 = "CLB_FILTER_RISING_EDGE";
-
 TILE1.$name                   = "TILE1";
 TILE1.BOUNDARY.$name          = "BOUNDARY0";
 TILE1.LUT_0.$name             = "LUT_0";

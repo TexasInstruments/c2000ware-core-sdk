@@ -56,22 +56,18 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Globals
 //
 bool pass = false;
-
 volatile uint32_t currentAddress = 0x0000;
 volatile bool runStatus = false;
-
 #pragma DATA_SECTION(test_data_gs0, "ramgs0")
 #pragma DATA_ALIGN(test_data_gs0, 0x80)
 uint32_t test_data_gs0[myBGCRC0_BLOCKSIZE/4];
@@ -80,34 +76,28 @@ const void *td_gs0 = test_data_gs0;
 // Function Prototypes
 //
 __interrupt void bgcrcISR(void);
-
 //
 // Main
 //
 void main(void)
 {
     int i;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure the GPIO pin as a push-pull output
     //
     Device_initGPIO();
-
     //
     // Disable global interrupts.
     //
     DINT;
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts. 
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
@@ -120,7 +110,6 @@ void main(void)
     //
     EINT;
     ERTM;
-
     //
     // Fill RAMGS0 with known data
     //
@@ -132,11 +121,9 @@ void main(void)
     // Set runStatus to true
     //
     runStatus = true;
-
     //initialize sysconfig options
     //
     Board_init();
-
     //
     // Loop Forever
     //
@@ -149,7 +136,6 @@ void main(void)
     	currentAddress = BGCRC_getCurrentAddress(myBGCRC0_BASE);
     }
 }
-
 //
 // bgcrcISR - DONE interrupt from BGCRC.
 //
@@ -164,20 +150,15 @@ bgcrcISR(void)
     {
     	pass = true;
     }
-
     //
     // Clear the BGCRC interrupt flags.
     //
     BGCRC_clearInterruptStatus(myBGCRC0_BASE, (BGCRC_GLOBAL_INT | BGCRC_TEST_DONE | BGCRC_ALL_ERROR_FLAGS));
-
     //
     // Acknowledge the PIE interrupt.
     //
-
     Interrupt_clearACKGroup(INT_myBGCRC0_INTERRUPT_ACK_GROUP);
-
 }
-
 //
 // End of File
 //

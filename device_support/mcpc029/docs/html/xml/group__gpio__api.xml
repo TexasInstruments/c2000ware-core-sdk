@@ -1,0 +1,1706 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="group__gpio__api" kind="group">
+    <compoundname>gpio_api</compoundname>
+    <title>GPIO</title>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="group__gpio__api_1ga0c1bff6c02d7155b78f07abd8c31722f" prot="public" static="no" strong="no">
+        <type></type>
+        <name>GPIO_Direction</name>
+        <enumvalue id="group__gpio__api_1gga0c1bff6c02d7155b78f07abd8c31722fa93737545fe00b579eba10ba1b839663e" prot="public">
+          <name>GPIO_DIR_MODE_IN</name>
+          <briefdescription>
+<para>Pin is a GPIO input. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__gpio__api_1gga0c1bff6c02d7155b78f07abd8c31722fa16caaeef81e7e217565060c7afd56637" prot="public">
+          <name>GPIO_DIR_MODE_OUT</name>
+          <briefdescription>
+<para>Pin is a GPIO output. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__gpio__api_1gab50248ff19d73a592046deac995d88fb" kindref="member">GPIO_setDirectionMode()</ref> as the <emphasis>pinIO</emphasis> parameter and returned from <ref refid="group__gpio__api_1ga4bb8da3c129d7df873d871b1b0e6512d" kindref="member">GPIO_getDirectionMode()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="123" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="124" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__gpio__api_1gabf424f4c82447febc105783bb24d66b0" prot="public" static="no" strong="no">
+        <type></type>
+        <name>GPIO_IntType</name>
+        <enumvalue id="group__gpio__api_1ggabf424f4c82447febc105783bb24d66b0a48c1a6e890564f67616f67617a9ad03d" prot="public">
+          <name>GPIO_INT_TYPE_FALLING_EDGE</name>
+          <initializer>= 0x00</initializer>
+          <briefdescription>
+<para>Interrupt on falling edge. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__gpio__api_1ggabf424f4c82447febc105783bb24d66b0a31cf1779b81a7f736adee3daaa94c7dd" prot="public">
+          <name>GPIO_INT_TYPE_RISING_EDGE</name>
+          <initializer>= 0x04</initializer>
+          <briefdescription>
+<para>Interrupt on rising edge. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__gpio__api_1ggabf424f4c82447febc105783bb24d66b0a4eea0c8e3fcb89bc9ad6bafd5bf3c392" prot="public">
+          <name>GPIO_INT_TYPE_BOTH_EDGES</name>
+          <initializer>= 0x0C</initializer>
+          <briefdescription>
+<para>Interrupt on both edges. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__gpio__api_1ga5964d467bf85d71bfd833205e492a4ad" kindref="member">GPIO_setInterruptType()</ref> as the <emphasis>intType</emphasis> parameter and returned from <ref refid="group__gpio__api_1ga73e5e0d4323656fb058141f14c43dae4" kindref="member">GPIO_getInterruptType()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="135" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="136" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__gpio__api_1gac70c13a371270f023e57973be7cbd526" prot="public" static="no" strong="no">
+        <type></type>
+        <name>GPIO_QualificationMode</name>
+        <enumvalue id="group__gpio__api_1ggac70c13a371270f023e57973be7cbd526af31e732bc72c41d31506490cee606cd4" prot="public">
+          <name>GPIO_QUAL_SYNC</name>
+          <briefdescription>
+<para>Synchronization to SYSCLK. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__gpio__api_1ggac70c13a371270f023e57973be7cbd526a0e5c4a16f7e501a2b60f72dbe04d02dc" prot="public">
+          <name>GPIO_QUAL_3SAMPLE</name>
+          <briefdescription>
+<para>Qualified with 3 samples. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__gpio__api_1ggac70c13a371270f023e57973be7cbd526a6a3d48683038db1040312ae96f2e5753" prot="public">
+          <name>GPIO_QUAL_6SAMPLE</name>
+          <briefdescription>
+<para>Qualified with 6 samples. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__gpio__api_1ggac70c13a371270f023e57973be7cbd526afa8031d15a5c29eb4a76004acb7acc1c" prot="public">
+          <name>GPIO_QUAL_ASYNC</name>
+          <briefdescription>
+<para>No synchronization. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__gpio__api_1ga1e9b26b531df3ab6a0bc874318b98a98" kindref="member">GPIO_setQualificationMode()</ref> as the <emphasis>qualification</emphasis> parameter and returned by <ref refid="group__gpio__api_1ga70b8cdc542a84a7ebb68e3ebf7a9304a" kindref="member">GPIO_getQualificationMode()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="148" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="149" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__gpio__api_1ga5b59951f90496177d794c53ac93d26cb" prot="public" static="no" strong="no">
+        <type></type>
+        <name>GPIO_AnalogMode</name>
+        <enumvalue id="group__gpio__api_1gga5b59951f90496177d794c53ac93d26cba8d75f5dc91feb501f6089eff628d0f3d" prot="public">
+          <name>GPIO_ANALOG_DISABLED</name>
+          <briefdescription>
+<para>Pin is in digital mode. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__gpio__api_1gga5b59951f90496177d794c53ac93d26cba1610da71c29b40e337abdba8cbbf00fd" prot="public">
+          <name>GPIO_ANALOG_ENABLED</name>
+          <briefdescription>
+<para>Pin is in analog mode. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Values that can be passed to <ref refid="group__gpio__api_1ga36ff18f0a994cee136c665f72c324b5c" kindref="member">GPIO_setAnalogMode()</ref> as the <emphasis>mode</emphasis> parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="161" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="162" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__gpio__api_1gaf164c756418dde00ac07fd47d0962150" prot="public" static="no" strong="no">
+        <type></type>
+        <name>GPIO_Port</name>
+        <enumvalue id="group__gpio__api_1ggaf164c756418dde00ac07fd47d0962150a8b07bc36836f09ea3bf685aa40bb2a1c" prot="public">
+          <name>GPIO_PORT_A</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+<para>GPIO port A. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__gpio__api_1ggaf164c756418dde00ac07fd47d0962150af5a83964a6998f346c504ea8a14aa420" prot="public">
+          <name>GPIO_PORT_B</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>GPIO port B. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__gpio__api_1ggaf164c756418dde00ac07fd47d0962150a160734b9f43544c741c11fb095716646" prot="public">
+          <name>GPIO_PORT_H</name>
+          <initializer>= 7</initializer>
+          <briefdescription>
+<para>GPIO port H. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__gpio__api_1ga248b8f6bbaabb86f8626817bb8d892e7" kindref="member">GPIO_readPortData()</ref>, <ref refid="group__gpio__api_1ga9cb784265bd06b7cf62d3847e39b3eee" kindref="member">GPIO_setPortPins()</ref>, <ref refid="group__gpio__api_1gafa45dea38012153b735c99bce4f8c53d" kindref="member">GPIO_clearPortPins()</ref>, and <ref refid="group__gpio__api_1ga7d1b922486278b297bc6041b6fadf628" kindref="member">GPIO_togglePortPins()</ref> as the <emphasis>port</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="173" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="174" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__gpio__api_1gae7173ddc75484cf212af78426e76882a" prot="public" static="no" strong="no">
+        <type></type>
+        <name>GPIO_ExternalIntNum</name>
+        <enumvalue id="group__gpio__api_1ggae7173ddc75484cf212af78426e76882aa6b4f42314076872fcbf20082d0ca3c32" prot="public">
+          <name>GPIO_INT_XINT1</name>
+          <briefdescription>
+<para>External Interrupt 1. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__gpio__api_1ggae7173ddc75484cf212af78426e76882aa8b8f2e00108d603156582ce899906169" prot="public">
+          <name>GPIO_INT_XINT2</name>
+          <briefdescription>
+<para>External Interrupt 2. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__gpio__api_1ggae7173ddc75484cf212af78426e76882aad93fa0871f3a5649485496e1497a469b" prot="public">
+          <name>GPIO_INT_XINT3</name>
+          <briefdescription>
+<para>External Interrupt 3. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__gpio__api_1ggae7173ddc75484cf212af78426e76882aa7fc96912b8fd7fb56b015f7ad6f4544f" prot="public">
+          <name>GPIO_INT_XINT4</name>
+          <briefdescription>
+<para>External Interrupt 4. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__gpio__api_1ggae7173ddc75484cf212af78426e76882aaad558745f66c7d1fd24bb27670f2f807" prot="public">
+          <name>GPIO_INT_XINT5</name>
+          <briefdescription>
+<para>External Interrupt 5. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__gpio__api_1ga6af2e62018ca55a51bbd2d652f117c11" kindref="member">GPIO_setInterruptPin()</ref>, <ref refid="group__gpio__api_1ga5964d467bf85d71bfd833205e492a4ad" kindref="member">GPIO_setInterruptType()</ref>, <ref refid="group__gpio__api_1ga73e5e0d4323656fb058141f14c43dae4" kindref="member">GPIO_getInterruptType()</ref>, <ref refid="group__gpio__api_1gaffcc404a7f92a27af55d98b7b618c0c8" kindref="member">GPIO_enableInterrupt()</ref>, <ref refid="group__gpio__api_1ga1f0b54ca259de950f23a795bb15e8794" kindref="member">GPIO_disableInterrupt()</ref>, as the <emphasis>extIntNum</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="187" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="188" bodyend="194"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__gpio__api_1ga5964d467bf85d71bfd833205e492a4ad" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void GPIO_setInterruptType</definition>
+        <argsstring>(GPIO_ExternalIntNum extIntNum, GPIO_IntType intType)</argsstring>
+        <name>GPIO_setInterruptType</name>
+        <param>
+          <type><ref refid="group__gpio__api_1gae7173ddc75484cf212af78426e76882a" kindref="member">GPIO_ExternalIntNum</ref></type>
+          <declname>extIntNum</declname>
+        </param>
+        <param>
+          <type><ref refid="group__gpio__api_1gabf424f4c82447febc105783bb24d66b0" kindref="member">GPIO_IntType</ref></type>
+          <declname>intType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the interrupt type for the specified pin.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>extIntNum</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the external interrupt. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the type of interrupt trigger mechanism.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets up the various interrupt trigger mechanisms for the specified pin on the selected GPIO port.</para>
+<para>The following defines can be used to specify the external interrupt for the <emphasis>extIntNum</emphasis> parameter:</para>
+<para><itemizedlist>
+<listitem><para><bold>GPIO_INT_XINT1</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT2</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT3</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT4</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT5</bold> </para>
+</listitem></itemizedlist>
+</para>
+<para>One of the following flags can be used to define the <emphasis>intType</emphasis> parameter:</para>
+<para><itemizedlist>
+<listitem><para><bold>GPIO_INT_TYPE_FALLING_EDGE</bold> sets detection to edge and trigger to falling</para>
+</listitem><listitem><para><bold>GPIO_INT_TYPE_RISING_EDGE</bold> sets detection to edge and trigger to rising</para>
+</listitem><listitem><para><bold>GPIO_INT_TYPE_BOTH_EDGES</bold> sets detection to both edges</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="257" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="257" bodyend="265"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1ga73e5e0d4323656fb058141f14c43dae4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="group__gpio__api_1gabf424f4c82447febc105783bb24d66b0" kindref="member">GPIO_IntType</ref></type>
+        <definition>static GPIO_IntType GPIO_getInterruptType</definition>
+        <argsstring>(GPIO_ExternalIntNum extIntNum)</argsstring>
+        <name>GPIO_getInterruptType</name>
+        <param>
+          <type><ref refid="group__gpio__api_1gae7173ddc75484cf212af78426e76882a" kindref="member">GPIO_ExternalIntNum</ref></type>
+          <declname>extIntNum</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the interrupt type for a pin.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>extIntNum</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the external interrupt.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function gets the interrupt type for a interrupt. The interrupt can be configured as a falling-edge, rising-edge, or both-edges detected interrupt.</para>
+<para>The following defines can be used to specify the external interrupt for the <emphasis>extIntNum</emphasis> parameter:</para>
+<para><itemizedlist>
+<listitem><para><bold>GPIO_INT_XINT1</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT2</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT3</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT4</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT5</bold> </para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>Returns one of the flags described for <ref refid="group__gpio__api_1ga5964d467bf85d71bfd833205e492a4ad" kindref="member">GPIO_setInterruptType()</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="290" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="290" bodyend="297"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1gaffcc404a7f92a27af55d98b7b618c0c8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void GPIO_enableInterrupt</definition>
+        <argsstring>(GPIO_ExternalIntNum extIntNum)</argsstring>
+        <name>GPIO_enableInterrupt</name>
+        <param>
+          <type><ref refid="group__gpio__api_1gae7173ddc75484cf212af78426e76882a" kindref="member">GPIO_ExternalIntNum</ref></type>
+          <declname>extIntNum</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables the specified external interrupt.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>extIntNum</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the external interrupt.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables the indicated external interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt. Disabled sources have no effect on the processor.</para>
+<para>The following defines can be used to specify the external interrupt for the <emphasis>extIntNum</emphasis> parameter:</para>
+<para><itemizedlist>
+<listitem><para><bold>GPIO_INT_XINT1</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT2</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT3</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT4</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT5</bold> </para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="322" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="322" bodyend="328"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1ga1f0b54ca259de950f23a795bb15e8794" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void GPIO_disableInterrupt</definition>
+        <argsstring>(GPIO_ExternalIntNum extIntNum)</argsstring>
+        <name>GPIO_disableInterrupt</name>
+        <param>
+          <type><ref refid="group__gpio__api_1gae7173ddc75484cf212af78426e76882a" kindref="member">GPIO_ExternalIntNum</ref></type>
+          <declname>extIntNum</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables the specified external interrupt.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>extIntNum</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the external interrupt.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables the indicated external interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt. Disabled sources have no effect on the processor.</para>
+<para>The following defines can be used to specify the external interrupt for the <emphasis>extIntNum</emphasis> parameter:</para>
+<para><itemizedlist>
+<listitem><para><bold>GPIO_INT_XINT1</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT2</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT3</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT4</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT5</bold> </para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="353" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="353" bodyend="359"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1gaef27047e923d4a3c1df1a2b50fad8383" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>static uint16_t GPIO_getInterruptCounter</definition>
+        <argsstring>(GPIO_ExternalIntNum extIntNum)</argsstring>
+        <name>GPIO_getInterruptCounter</name>
+        <param>
+          <type><ref refid="group__gpio__api_1gae7173ddc75484cf212af78426e76882a" kindref="member">GPIO_ExternalIntNum</ref></type>
+          <declname>extIntNum</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the value of the external interrupt counter.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>extIntNum</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the external interrupt.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+The following defines can be used to specify the external interrupt for the <emphasis>extIntNum</emphasis> parameter:</para>
+<para><itemizedlist>
+<listitem><para><bold>GPIO_INT_XINT1</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT2</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT3</bold> </para>
+</listitem></itemizedlist>
+</para>
+<para><bold>Note:</bold> The counter is clocked at the SYSCLKOUT rate.</para>
+<para><simplesect kind="return"><para>Returns external interrupt counter value. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="380" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="380" bodyend="388"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1ga34589426d39e585686fcb1b793b4fb18" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t GPIO_readPin</definition>
+        <argsstring>(uint32_t pin)</argsstring>
+        <name>GPIO_readPin</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>pin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reads the value present on the specified pin.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the identifying GPIO number of the pin.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+The value at the specified pin are read, as specified by <emphasis>pin</emphasis>. The value is returned for both input and output pins.</para>
+<para>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <emphasis>pin</emphasis>.</para>
+<para><simplesect kind="return"><para>Returns the value in the data register for the specified pin. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="406" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="406" bodyend="419"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1ga9ee82ba44c3f17c8fde9b2d42c6f11a4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t GPIO_readPinDataRegister</definition>
+        <argsstring>(uint32_t pin)</argsstring>
+        <name>GPIO_readPinDataRegister</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>pin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reads the data register value for specified pin.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the identifying GPIO number of the pin.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+The value available at the data register for the specified pin is read, as specified by <emphasis>pin</emphasis>. The value is returned for both input and output pins.</para>
+<para>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <emphasis>pin</emphasis>.</para>
+<para><simplesect kind="see"><para><ref refid="group__gpio__api_1ga34589426d39e585686fcb1b793b4fb18" kindref="member">GPIO_readPin()</ref></para>
+</simplesect>
+<simplesect kind="return"><para>Returns the value in the data register for the specified pin. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="439" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="439" bodyend="452"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1gab10f7a152de476c22496e94b6f80c6c3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void GPIO_writePin</definition>
+        <argsstring>(uint32_t pin, uint32_t outVal)</argsstring>
+        <name>GPIO_writePin</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>pin</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>outVal</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Writes a value to the specified pin.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the identifying GPIO number of the pin. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outVal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the value to write to the pin.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Writes the corresponding bit values to the output pin specified by <emphasis>pin</emphasis>. Writing to a pin configured as an input pin has no effect.</para>
+<para>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <emphasis>pin</emphasis>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="471" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="471" bodyend="494"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1ga9645bbc53c1dfe8616cabd34488f8b4f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void GPIO_writeODPin</definition>
+        <argsstring>(uint32_t pin, uint32_t outVal)</argsstring>
+        <name>GPIO_writeODPin</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>pin</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>outVal</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set a direction for the specified pin for Open Drain configuration.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the identifying GPIO number of the pin. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outVal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the direction of the pin.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Sets the direction of the output pin specified by <emphasis>pin</emphasis>. Writing to a pin configured as an input pin has no effect.</para>
+<para>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <emphasis>pin</emphasis>.</para>
+<para>Note : A high output is obtained, when the DIR register is written with a value 0. This function is to be called if the pin type is to be configured in Open Drain Mode. Please refer to TRM for more details <simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="517" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="517" bodyend="540"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1gae9a250b29dd561eb14c8448b446572a0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void GPIO_togglePin</definition>
+        <argsstring>(uint32_t pin)</argsstring>
+        <name>GPIO_togglePin</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>pin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Toggles the specified pin.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the identifying GPIO number of the pin.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Writes the corresponding bit values to the output pin specified by <emphasis>pin</emphasis>. Writing to a pin configured as an input pin has no effect.</para>
+<para>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <emphasis>pin</emphasis>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="558" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="558" bodyend="571"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1ga248b8f6bbaabb86f8626817bb8d892e7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t GPIO_readPortData</definition>
+        <argsstring>(GPIO_Port port)</argsstring>
+        <name>GPIO_readPortData</name>
+        <param>
+          <type><ref refid="group__gpio__api_1gaf164c756418dde00ac07fd47d0962150" kindref="member">GPIO_Port</ref></type>
+          <declname>port</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reads the data on the specified port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the GPIO port being accessed in the form of <bold>GPIO_PORT_X</bold> where X is the port letter.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the value available on pin for the specified port. Each bit of the the return value represents a pin on the port, where bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="586" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="586" bodyend="597"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1ga4c5df600aff832b90a0ae3855c631ae0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t GPIO_readPortDataRegister</definition>
+        <argsstring>(GPIO_Port port)</argsstring>
+        <name>GPIO_readPortDataRegister</name>
+        <param>
+          <type><ref refid="group__gpio__api_1gaf164c756418dde00ac07fd47d0962150" kindref="member">GPIO_Port</ref></type>
+          <declname>port</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reads the data written in GPIO Data Register.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the GPIO port being accessed in the form of <bold>GPIO_PORT_X</bold> where X is the port letter.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Reads the data written in GPIO Data Register for the specified port. In previous devices, read of GPIO data registers resulted in read of corespoinding pins. The function <bold><ref refid="group__gpio__api_1ga248b8f6bbaabb86f8626817bb8d892e7" kindref="member">GPIO_readPortData()</ref></bold> returns the value on pin.</para>
+<para><simplesect kind="see"><para><ref refid="group__gpio__api_1ga248b8f6bbaabb86f8626817bb8d892e7" kindref="member">GPIO_readPortData()</ref></para>
+</simplesect>
+<simplesect kind="return"><para>Returns the value in the data register for the specified port. Each bit of the the return value represents a pin on the port, where bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="619" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="619" bodyend="630"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1ga9ad3626ced10620acc6663792c1317be" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void GPIO_writePortData</definition>
+        <argsstring>(GPIO_Port port, uint32_t outVal)</argsstring>
+        <name>GPIO_writePortData</name>
+        <param>
+          <type><ref refid="group__gpio__api_1gaf164c756418dde00ac07fd47d0962150" kindref="member">GPIO_Port</ref></type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>outVal</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Writes a value to the specified port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the GPIO port being accessed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outVal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the value to write to the port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function writes the value <emphasis>outVal</emphasis> to the port specified by the <emphasis>port</emphasis> parameter which takes a value in the form of <bold>GPIO_PORT_X</bold> where X is the port letter. For example, use <bold>GPIO_PORT_A</bold> to affect port A (GPIOs 0-31).</para>
+<para>The <emphasis>outVal</emphasis> is a bit-packed value, where each bit represents a bit on a GPIO port. Bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="652" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="652" bodyend="663"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1ga9cb784265bd06b7cf62d3847e39b3eee" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void GPIO_setPortPins</definition>
+        <argsstring>(GPIO_Port port, uint32_t pinMask)</argsstring>
+        <name>GPIO_setPortPins</name>
+        <param>
+          <type><ref refid="group__gpio__api_1gaf164c756418dde00ac07fd47d0962150" kindref="member">GPIO_Port</ref></type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>pinMask</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets all of the specified pins on the specified port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the GPIO port being accessed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pinMask</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a mask of which of the 32 pins on the port are affected.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets all of the pins specified by the <emphasis>pinMask</emphasis> parameter on the port specified by the <emphasis>port</emphasis> parameter which takes a value in the form of <bold>GPIO_PORT_X</bold> where X is the port letter. For example, use <bold>GPIO_PORT_A</bold> to affect port A (GPIOs 0-31).</para>
+<para>The <emphasis>pinMask</emphasis> is a bit-packed value, where each bit that is set identifies the pin to be set. Bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="685" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="685" bodyend="696"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1gafa45dea38012153b735c99bce4f8c53d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void GPIO_clearPortPins</definition>
+        <argsstring>(GPIO_Port port, uint32_t pinMask)</argsstring>
+        <name>GPIO_clearPortPins</name>
+        <param>
+          <type><ref refid="group__gpio__api_1gaf164c756418dde00ac07fd47d0962150" kindref="member">GPIO_Port</ref></type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>pinMask</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clears all of the specified pins on the specified port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the GPIO port being accessed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pinMask</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a mask of which of the 32 pins on the port are affected.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function clears all of the pins specified by the <emphasis>pinMask</emphasis> parameter on the port specified by the <emphasis>port</emphasis> parameter which takes a value in the form of <bold>GPIO_PORT_X</bold> where X is the port letter. For example, use <bold>GPIO_PORT_A</bold> to affect port A (GPIOs 0-31).</para>
+<para>The <emphasis>pinMask</emphasis> is a bit-packed value, where each bit that is <bold>set</bold> identifies the pin to be cleared. Bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="718" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="718" bodyend="729"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1ga7d1b922486278b297bc6041b6fadf628" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void GPIO_togglePortPins</definition>
+        <argsstring>(GPIO_Port port, uint32_t pinMask)</argsstring>
+        <name>GPIO_togglePortPins</name>
+        <param>
+          <type><ref refid="group__gpio__api_1gaf164c756418dde00ac07fd47d0962150" kindref="member">GPIO_Port</ref></type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>pinMask</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Toggles all of the specified pins on the specified port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the GPIO port being accessed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pinMask</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a mask of which of the 32 pins on the port are affected.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function toggles all of the pins specified by the <emphasis>pinMask</emphasis> parameter on the port specified by the <emphasis>port</emphasis> parameter which takes a value in the form of <bold>GPIO_PORT_X</bold> where X is the port letter. For example, use <bold>GPIO_PORT_A</bold> to affect port A (GPIOs 0-31).</para>
+<para>The <emphasis>pinMask</emphasis> is a bit-packed value, where each bit that is set identifies the pin to be toggled. Bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="751" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="751" bodyend="762"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1gaef620fad94e137d0306b29e3dac98c6b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void GPIO_lockPortConfig</definition>
+        <argsstring>(GPIO_Port port, uint32_t pinMask)</argsstring>
+        <name>GPIO_lockPortConfig</name>
+        <param>
+          <type><ref refid="group__gpio__api_1gaf164c756418dde00ac07fd47d0962150" kindref="member">GPIO_Port</ref></type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>pinMask</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Locks the configuration of the specified pins on the specified port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the GPIO port being accessed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pinMask</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a mask of which of the 32 pins on the port are affected.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function locks the configuration registers of the pins specified by the <emphasis>pinMask</emphasis> parameter on the port specified by the <emphasis>port</emphasis> parameter which takes a value in the form of <bold>GPIO_PORT_X</bold> where X is the port letter. For example, use <bold>GPIO_PORT_A</bold> to affect port A (GPIOs 0-31).</para>
+<para>The <emphasis>pinMask</emphasis> is a bit-packed value, where each bit that is set identifies the pin to be locked. Bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, 0xFFFFFFFF represents all pins on that port, and so on.</para>
+<para>Note that this function is for locking the configuration of a pin such as the pin muxing, direction, open drain mode, and other settings. It does not affect the ability to change the value of the pin.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="788" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="788" bodyend="801"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1gaee90c22498ce3399f5d53105748fd387" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void GPIO_unlockPortConfig</definition>
+        <argsstring>(GPIO_Port port, uint32_t pinMask)</argsstring>
+        <name>GPIO_unlockPortConfig</name>
+        <param>
+          <type><ref refid="group__gpio__api_1gaf164c756418dde00ac07fd47d0962150" kindref="member">GPIO_Port</ref></type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>pinMask</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Unlocks the configuration of the specified pins on the specified port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the GPIO port being accessed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pinMask</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a mask of which of the 32 pins on the port are affected.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function unlocks the configuration registers of the pins specified by the <emphasis>pinMask</emphasis> parameter on the port specified by the <emphasis>port</emphasis> parameter which takes a value in the form of <bold>GPIO_PORT_X</bold> where X is the port letter. For example, use <bold>GPIO_PORT_A</bold> to affect port A (GPIOs 0-31).</para>
+<para>The <emphasis>pinMask</emphasis> is a bit-packed value, where each bit that is set identifies the pin to be unlocked. Bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, 0xFFFFFFFF represents all pins on that port, and so on.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="823" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="823" bodyend="836"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1ga0a7b820d93275fd2d2059dd08c9f6688" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void GPIO_commitPortConfig</definition>
+        <argsstring>(GPIO_Port port, uint32_t pinMask)</argsstring>
+        <name>GPIO_commitPortConfig</name>
+        <param>
+          <type><ref refid="group__gpio__api_1gaf164c756418dde00ac07fd47d0962150" kindref="member">GPIO_Port</ref></type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>pinMask</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Commits the lock configuration of the specified pins on the specified port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the GPIO port being accessed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pinMask</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a mask of which of the 32 pins on the port are affected.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function commits the lock configuration registers of the pins specified by the <emphasis>pinMask</emphasis> parameter on the port specified by the <emphasis>port</emphasis> parameter which takes a value in the form of <bold>GPIO_PORT_X</bold> where X is the port letter. For example, use <bold>GPIO_PORT_A</bold> to affect port A (GPIOs 0-31).</para>
+<para>The <emphasis>pinMask</emphasis> is a bit-packed value, where each bit that is set identifies the pin to be locked. Bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, 0xFFFFFFFF represents all pins on that port, and so on.</para>
+<para>Note that once this function is called, <ref refid="group__gpio__api_1gaef620fad94e137d0306b29e3dac98c6b" kindref="member">GPIO_lockPortConfig()</ref> and <ref refid="group__gpio__api_1gaee90c22498ce3399f5d53105748fd387" kindref="member">GPIO_unlockPortConfig()</ref> will no longer have any effect on the specified pins.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="862" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="862" bodyend="875"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1gab50248ff19d73a592046deac995d88fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GPIO_setDirectionMode</definition>
+        <argsstring>(uint32_t pin, GPIO_Direction pinIO)</argsstring>
+        <name>GPIO_setDirectionMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>pin</declname>
+        </param>
+        <param>
+          <type><ref refid="group__gpio__api_1ga0c1bff6c02d7155b78f07abd8c31722f" kindref="member">GPIO_Direction</ref></type>
+          <declname>pinIO</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the direction and mode of the specified pin.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the identifying GPIO number of the pin. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pinIO</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the pin direction mode.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the specified pin on the selected GPIO port as either input or output.</para>
+<para>The parameter <emphasis>pinIO</emphasis> is an enumerated data type that can be one of the following values:</para>
+<para><itemizedlist>
+<listitem><para><bold>GPIO_DIR_MODE_IN</bold> </para>
+</listitem><listitem><para><bold>GPIO_DIR_MODE_OUT</bold> </para>
+</listitem></itemizedlist>
+</para>
+<para>where <bold>GPIO_DIR_MODE_IN</bold> specifies that the pin is programmed as an input and <bold>GPIO_DIR_MODE_OUT</bold> specifies that the pin is programmed as an output.</para>
+<para>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <emphasis>pin</emphasis>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="903" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" declline="903" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1ga4bb8da3c129d7df873d871b1b0e6512d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__gpio__api_1ga0c1bff6c02d7155b78f07abd8c31722f" kindref="member">GPIO_Direction</ref></type>
+        <definition>GPIO_Direction GPIO_getDirectionMode</definition>
+        <argsstring>(uint32_t pin)</argsstring>
+        <name>GPIO_getDirectionMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>pin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the direction mode of a pin.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the identifying GPIO number of the pin.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function gets the direction mode for a specified pin. The pin can be configured as either an input or output The type of direction is returned as an enumerated data type.</para>
+<para><simplesect kind="return"><para>Returns one of the enumerated data types described for <ref refid="group__gpio__api_1gab50248ff19d73a592046deac995d88fb" kindref="member">GPIO_setDirectionMode()</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="920" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" declline="920" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1ga6af2e62018ca55a51bbd2d652f117c11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GPIO_setInterruptPin</definition>
+        <argsstring>(uint32_t pin, GPIO_ExternalIntNum extIntNum)</argsstring>
+        <name>GPIO_setInterruptPin</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>pin</declname>
+        </param>
+        <param>
+          <type><ref refid="group__gpio__api_1gae7173ddc75484cf212af78426e76882a" kindref="member">GPIO_ExternalIntNum</ref></type>
+          <declname>extIntNum</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the pin for the specified external interrupt.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the identifying GPIO number of the pin. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>extIntNum</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the external interrupt.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets which pin triggers the selected external interrupt.</para>
+<para>The following defines can be used to specify the external interrupt for the <emphasis>extIntNum</emphasis> parameter:</para>
+<para><itemizedlist>
+<listitem><para><bold>GPIO_INT_XINT1</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT2</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT3</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT4</bold> </para>
+</listitem><listitem><para><bold>GPIO_INT_XINT5</bold> </para>
+</listitem></itemizedlist>
+</para>
+<para>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <emphasis>pin</emphasis>.</para>
+<para><simplesect kind="see"><para><ref refid="group__xbar__api_1gaf58bb7588ce93e311ec81f5ad6c0dea9" kindref="member">XBAR_setInputPin()</ref></para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="949" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" declline="949" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1gad853021cf15a9a1d644abf83a589117d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GPIO_setPadConfig</definition>
+        <argsstring>(uint32_t pin, uint32_t pinType)</argsstring>
+        <name>GPIO_setPadConfig</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>pin</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>pinType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the pad configuration for the specified pin.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the identifying GPIO number of the pin. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pinType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the pin type.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the pin type for the specified pin. The parameter <emphasis>pinType</emphasis> can be the following values:</para>
+<para><itemizedlist>
+<listitem><para><bold>GPIO_PIN_TYPE_STD</bold> specifies a push-pull output or a floating input</para>
+</listitem><listitem><para><bold>GPIO_PIN_TYPE_PULLUP</bold> specifies the pull-up is enabled for an input</para>
+</listitem><listitem><para><bold>GPIO_PIN_TYPE_INVERT</bold> specifies inverted polarity on an input</para>
+</listitem></itemizedlist>
+</para>
+<para><bold>GPIO_PIN_TYPE_INVERT</bold> may be OR-ed with <bold>GPIO_PIN_TYPE_STD</bold> or <bold>GPIO_PIN_TYPE_PULLUP</bold>.</para>
+<para>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <emphasis>pin</emphasis>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="975" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" declline="975" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1ga984c91d94a8eb638f14a9f7a33f40575" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t GPIO_getPadConfig</definition>
+        <argsstring>(uint32_t pin)</argsstring>
+        <name>GPIO_getPadConfig</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>pin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the pad configuration for a pin.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the identifying GPIO number of the pin.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns the pin type for the specified pin. The value returned corresponds to the values used in <ref refid="group__gpio__api_1gad853021cf15a9a1d644abf83a589117d" kindref="member">GPIO_setPadConfig()</ref>.</para>
+<para><simplesect kind="return"><para>Returns a bit field of the values <bold>GPIO_PIN_TYPE_STD</bold>, <bold>GPIO_PIN_TYPE_PULLUP</bold>, and <bold>GPIO_PIN_TYPE_INVERT</bold>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="991" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" declline="991" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1ga1e9b26b531df3ab6a0bc874318b98a98" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GPIO_setQualificationMode</definition>
+        <argsstring>(uint32_t pin, GPIO_QualificationMode qualification)</argsstring>
+        <name>GPIO_setQualificationMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>pin</declname>
+        </param>
+        <param>
+          <type><ref refid="group__gpio__api_1gac70c13a371270f023e57973be7cbd526" kindref="member">GPIO_QualificationMode</ref></type>
+          <declname>qualification</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the qualification mode for the specified pin.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the identifying GPIO number of the pin. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>qualification</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the qualification mode of the pin.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the qualification mode for the specified pin. The parameter <emphasis>qualification</emphasis> can be one of the following values:<itemizedlist>
+<listitem><para><bold>GPIO_QUAL_SYNC</bold> </para>
+</listitem><listitem><para><bold>GPIO_QUAL_3SAMPLE</bold> </para>
+</listitem><listitem><para><bold>GPIO_QUAL_6SAMPLE</bold> </para>
+</listitem><listitem><para><bold>GPIO_QUAL_ASYNC</bold> </para>
+</listitem></itemizedlist>
+</para>
+<para>To set the qualification sampling period, use <ref refid="group__gpio__api_1ga10fb74569da5b5c14ed7b0e04af1514b" kindref="member">GPIO_setQualificationPeriod()</ref>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="1014" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" declline="1014" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1ga70b8cdc542a84a7ebb68e3ebf7a9304a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__gpio__api_1gac70c13a371270f023e57973be7cbd526" kindref="member">GPIO_QualificationMode</ref></type>
+        <definition>GPIO_QualificationMode GPIO_getQualificationMode</definition>
+        <argsstring>(uint32_t pin)</argsstring>
+        <name>GPIO_getQualificationMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>pin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the qualification type for the specified pin.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the identifying GPIO number of the pin.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the qualification mode in the form of one of the values <bold>GPIO_QUAL_SYNC</bold>, <bold>GPIO_QUAL_3SAMPLE</bold>, <bold>GPIO_QUAL_6SAMPLE</bold>, or <bold>GPIO_QUAL_ASYNC</bold>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="1028" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" declline="1028" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1ga10fb74569da5b5c14ed7b0e04af1514b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GPIO_setQualificationPeriod</definition>
+        <argsstring>(uint32_t pin, uint32_t divider)</argsstring>
+        <name>GPIO_setQualificationPeriod</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>pin</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>divider</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the qualification period for a set of pins</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the identifying GPIO number of the pin. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>divider</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the output drive strength.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the qualification period for a set of <bold>8</bold> <bold>pins</bold>, specified by the <emphasis>pin</emphasis> parameter. For instance, passing in 3 as the value of <emphasis>pin</emphasis> will set the qualification period for GPIO0 through GPIO7, and a value of 98 will set the qualification period for GPIO96 through GPIO103. This is because the register field that configures the divider is shared.</para>
+<para>To think of this in terms of an equation, configuring <emphasis>pin</emphasis> as <bold>n</bold> will configure GPIO (n &amp; ~(7)) through GPIO ((n &amp; ~(7)) + 7).</para>
+<para><emphasis>divider</emphasis> is the value by which the frequency of SYSCLKOUT is divided. It can be 1 or an even value between 2 and 510 inclusive.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="1053" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" declline="1053" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1ga36ff18f0a994cee136c665f72c324b5c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GPIO_setAnalogMode</definition>
+        <argsstring>(uint32_t pin, GPIO_AnalogMode mode)</argsstring>
+        <name>GPIO_setAnalogMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>pin</declname>
+        </param>
+        <param>
+          <type><ref refid="group__gpio__api_1ga5b59951f90496177d794c53ac93d26cb" kindref="member">GPIO_AnalogMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the analog mode of the specified pin.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the identifying GPIO number of the pin. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the selected analog mode.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the specified pin for either analog or digital mode. Not all GPIO pins have the ability to be switched to analog mode, so refer to the technical reference manual for details. This setting should be thought of as another level of muxing.</para>
+<para>The parameter <emphasis>mode</emphasis> is an enumerated data type that can be one of the following values:</para>
+<para><itemizedlist>
+<listitem><para><bold>GPIO_ANALOG_DISABLED</bold> - Pin is in digital mode</para>
+</listitem><listitem><para><bold>GPIO_ANALOG_ENABLED</bold> - Pin is in analog mode</para>
+</listitem></itemizedlist>
+</para>
+<para>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <emphasis>pin</emphasis>.</para>
+<para><bold>Note:</bold> The pin parameter is applicable for both AIO and GPIO because the GPAxMSEL.GPIOy register configures for both</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="1083" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" declline="1083" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__gpio__api_1ga639af291a607ed7694228fe0c4f2760e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GPIO_setPinConfig</definition>
+        <argsstring>(uint32_t pinConfig)</argsstring>
+        <name>GPIO_setPinConfig</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>pinConfig</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Configures the alternate function of a GPIO pin.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pinConfig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the pin configuration value, specified as only one of the <bold>GPIO_::_</bold>???? values.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the pin mux that selects the peripheral function associated with a particular GPIO pin. Only one peripheral function at a time can be associated with a GPIO pin, and each peripheral function should only be associated with a single GPIO pin at a time (despite the fact that many of them can be associated with more than one GPIO pin).</para>
+<para>The available mappings are supplied in <computeroutput>pin_map.h</computeroutput>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="1104" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" declline="1104" declcolumn="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__gpio__api_1ga554fffee9cfc1e0f88037897a34a06e0" prot="public" static="no">
+        <name>GPIO_CTRL_REGS_STEP</name>
+        <initializer>((GPIO_O_GPBCTRL - GPIO_O_GPACTRL) / 2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="80" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1gae902efec17fb8858cbcd574ca2992ad1" prot="public" static="no">
+        <name>GPIO_DATA_REGS_STEP</name>
+        <initializer>((GPIO_O_GPBDAT - GPIO_O_GPADAT) / 2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="81" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1ga1f82df22e7fda61515b9deb0dbb2093a" prot="public" static="no">
+        <name>GPIO_DATA_READ_REGS_STEP</name>
+        <initializer>((GPIO_O_GPBDAT_R - GPIO_O_GPADAT_R) / 2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="82" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1gabe3a9469628e8b747b4bf39468646ba3" prot="public" static="no">
+        <name>GPIO_GPxCTRL_INDEX</name>
+        <initializer>(GPIO_O_GPACTRL / 2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="84" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1ga35cb5ea30528967b469f120422d8cc4f" prot="public" static="no">
+        <name>GPIO_GPxQSEL_INDEX</name>
+        <initializer>(GPIO_O_GPAQSEL1 / 2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="85" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1ga222a5f21b25a6665055c5389dff12e9e" prot="public" static="no">
+        <name>GPIO_GPxMUX_INDEX</name>
+        <initializer>(GPIO_O_GPAMUX1 / 2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="86" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1ga9cd85854664d951727121f943b606310" prot="public" static="no">
+        <name>GPIO_GPxDIR_INDEX</name>
+        <initializer>(GPIO_O_GPADIR / 2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="87" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1ga39a2d8a8f4303ff86eeb9ffe1a98d719" prot="public" static="no">
+        <name>GPIO_GPxAMSEL_INDEX</name>
+        <initializer>(GPIO_O_GPAAMSEL / 2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="88" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1gaebd15a9f9d746eb7df981daef6a1d36f" prot="public" static="no">
+        <name>GPIO_GPxPUD_INDEX</name>
+        <initializer>(GPIO_O_GPAPUD / 2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="89" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1gaf627cdc23da0c9b3f478d2214ec0dde5" prot="public" static="no">
+        <name>GPIO_GPxINV_INDEX</name>
+        <initializer>(GPIO_O_GPAINV / 2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="90" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1ga38b3d1779067ec955fc0182571a5d867" prot="public" static="no">
+        <name>GPIO_GPxGMUX_INDEX</name>
+        <initializer>(GPIO_O_GPAGMUX1 / 2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="91" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1ga04ab6e6b8a503adcf626ef7578d960e6" prot="public" static="no">
+        <name>GPIO_GPxCSEL_INDEX</name>
+        <initializer>(GPIO_O_GPACSEL1 / 2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="92" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1ga65bb48b0336f4f8982e0d30e1278c016" prot="public" static="no">
+        <name>GPIO_GPxLOCK_INDEX</name>
+        <initializer>(GPIO_O_GPALOCK / 2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="93" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1ga2afc3226395bd4e92195edc43a1c8c98" prot="public" static="no">
+        <name>GPIO_GPxCR_INDEX</name>
+        <initializer>(GPIO_O_GPACR / 2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="94" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1gad5ad64e243ae4833ad830efad4022181" prot="public" static="no">
+        <name>GPIO_GPxDAT_INDEX</name>
+        <initializer>(GPIO_O_GPADAT / 2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="96" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1gad82d17aebb8d5a9ede5552605b61094f" prot="public" static="no">
+        <name>GPIO_GPxSET_INDEX</name>
+        <initializer>(GPIO_O_GPASET / 2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="97" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1ga6c300ad8c789c81a018d415a8b386877" prot="public" static="no">
+        <name>GPIO_GPxCLEAR_INDEX</name>
+        <initializer>(GPIO_O_GPACLEAR / 2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="98" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1ga90935cc23e2e0707c46d04cc6867733a" prot="public" static="no">
+        <name>GPIO_GPxTOGGLE_INDEX</name>
+        <initializer>(GPIO_O_GPATOGGLE / 2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="99" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1gacf8520c037e5d725bd8a06162b13e1ca" prot="public" static="no">
+        <name>GPIO_GPxDAT_R_INDEX</name>
+        <initializer>(GPIO_O_GPADAT_R / 2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="101" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1ga20da6278f667cd2d6737c17f49cad908" prot="public" static="no">
+        <name>GPIO_MUX_TO_GMUX</name>
+        <initializer>(GPIO_O_GPAGMUX1 - GPIO_O_GPAMUX1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="103" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1gafa6d2e3683888ad9a64a8a6ce8e2ccf6" prot="public" static="no">
+        <name>GPIO_PIN_TYPE_STD</name>
+        <initializer>0x0000U</initializer>
+        <briefdescription>
+<para>Push-pull output or floating input. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="112" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1ga38350dd6366b1642062208bcaf8e133a" prot="public" static="no">
+        <name>GPIO_PIN_TYPE_PULLUP</name>
+        <initializer>0x0001U</initializer>
+        <briefdescription>
+<para>Pull-up enable for input. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="113" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__gpio__api_1ga19e485baf2db852c7bbf06054fb9975d" prot="public" static="no">
+        <name>GPIO_PIN_TYPE_INVERT</name>
+        <initializer>0x0002U</initializer>
+        <briefdescription>
+<para>Invert polarity on input. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" line="114" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/gpio.h" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

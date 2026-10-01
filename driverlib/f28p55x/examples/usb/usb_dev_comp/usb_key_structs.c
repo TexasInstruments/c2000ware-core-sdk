@@ -1,5 +1,4 @@
 #include "usb_structs.h"
-
 //******************************************************************************
 //
 // The HID keyboard device initialization and customization structures.

@@ -33,7 +33,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -66,7 +66,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 //
 // Included Files
 //
@@ -78,7 +77,6 @@
 #include "uartstdio.h"
 #include "usb_hal.h"
 #include "usb_ex8_device_bulk_structs.h"
-
 //******************************************************************************
 //
 // The system tick rate expressed both as ticks per second and a millisecond
@@ -86,14 +84,12 @@
 //
 //******************************************************************************
 #define SYSTICKS_PER_SECOND     1000
-
 //******************************************************************************
 //
 // The global system tick counter.
 //
 //******************************************************************************
 volatile uint32_t g_ui32SysTickCount = 0;
-
 //******************************************************************************
 //
 // Variables tracking transmit and receive counts.
@@ -105,17 +101,14 @@ uint8_t buffer[256];
 uint8_t g_bConnected = 0;
 volatile uint32_t globalCounter = 0UL;
 volatile uint32_t idleCycles = 0UL;
-
 tUSBMode g_eCurrentUSBMode;   // The current USB operating mode - Host, Device
                               // or unknown.
-
 //******************************************************************************
 //
 // Global flag indicating that a USB configuration has been set.
 //
 //******************************************************************************
 static volatile bool g_bUSBConfigured = false;
-
 //******************************************************************************
 //
 // Interrupt handler for the system tick counter.
@@ -124,16 +117,13 @@ static volatile bool g_bUSBConfigured = false;
 __interrupt void
 SysTickIntHandler(void)
 {
-
     idleCycles = globalCounter * 100U;
     globalCounter = 0UL;
-
     //
     // Update our system tick counter.
     //
     g_ui32SysTickCount++;
 }
-
 //******************************************************************************
 // Receive new data and echo it back to the host.
 //
@@ -156,41 +146,34 @@ EchoNewDataToHost(tUSBDBulkDevice *psDevice, uint8_t *pcData,
     uint32_t ui32ReadIndex;
     uint32_t ui32WriteIndex;
     tUSBRingBufObject sTxRing;
-
     //
     // Get the current buffer information to allow us to write directly to the
     // transmit buffer (there is already have enough information from the
     // parameters to access the receive buffer directly).
     //
     USBBufferInfoGet(&g_sTxBuffer, &sTxRing);
-
     //
     // How much space is there in the transmit buffer?
     //
     ui32Space = USBBufferSpaceAvailable(&g_sTxBuffer);
-
     //
     // How many characters can be processed this time round?
     //
     ui32Loop = (ui32Space < ui32NumBytes) ? ui32Space : ui32NumBytes;
     ui32Count = ui32Loop;
-
     //
     // Update our receive counter.
     //
     g_ui32RxCount += ui32NumBytes;
-
     //
     // Dump a debug message.
     //
     UARTprintf("Received %d bytes\n", ui32NumBytes);
-
     //
     // Set up to process the characters by directly accessing the USB buffers.
     //
     ui32ReadIndex = (uint32_t)(pcData - g_pui8USBRxBuffer);
     ui32WriteIndex = sTxRing.ui32WriteIndex;
-
     //
     // Copy from the receive buffer to the transmit buffer converting character
     // case on the way.
@@ -232,7 +215,6 @@ EchoNewDataToHost(tUSBDBulkDevice *psDevice, uint8_t *pcData,
                                                g_pui8USBRxBuffer[ui32ReadIndex];
             }
         }
-
         //
         // Move to the next character taking care to adjust the pointer for
         // the buffer wrap if necessary.
@@ -243,20 +225,17 @@ EchoNewDataToHost(tUSBDBulkDevice *psDevice, uint8_t *pcData,
         ui32ReadIndex++;
         ui32ReadIndex = (ui32ReadIndex == BULK_BUFFER_SIZE) ? 0 : ui32ReadIndex;
     }
-
     //
     // The data has been processed in place so now send the processed data back
     // to the host.
     //
     USBBufferDataWritten(&g_sTxBuffer, ui32Count);
-
     //
     // Return the number of bytes processed to allow the bulk device driver to
     // update its read pointer appropriately.
     //
     return(ui32Count);
 }
-
 //*****************************************************************************
 //
 // Handles bulk driver notifications related to the transmit channel (data to
@@ -285,17 +264,14 @@ TxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
     if(ui32Event == USB_EVENT_TX_COMPLETE)
     {
         g_ui32TxCount += ui32MsgValue;
-
         uint32_t ui32Space = USBDBulkTxPacketAvailable(&g_sBulkDevice);
         if(ui32Space)
         {
             USBDBulkPacketWrite(&g_sBulkDevice, buffer, ui32Space, true);
         }
     }
-
     return(0);
 }
-
 //******************************************************************************
 //
 // Handles bulk driver notifications related to the receive channel (data from
@@ -329,18 +305,14 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
         {
             g_bUSBConfigured = true;
             UARTprintf("Host connected.\n");
-
             //
             // Flush our buffers.
             //
             USBBufferFlush(&g_sTxBuffer);
             USBBufferFlush(&g_sRxBuffer);
-
             g_bConnected = true;
-
             break;
         }
-
         //
         // The host has disconnected.
         //
@@ -351,26 +323,22 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
             g_bConnected = false;
             break;
         }
-
         //
         // A new packet has been received.
         //
         case USB_EVENT_RX_AVAILABLE:
         {
             tUSBDBulkDevice *psDevice;
-
             //
             // Get a pointer to our instance data from the callback data
             // parameter.
             //
             psDevice = (tUSBDBulkDevice *)pvCBData;
-
             //
             // Read the new packet and echo it back to the host.
             //
             return(EchoNewDataToHost(psDevice, pvMsgData, ui32MsgValue));
         }
-
         //
         // Ignore SUSPEND and RESUME for now.
         //
@@ -379,7 +347,6 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
         {
             break;
         }
-
         //
         // Ignore all other events and return 0.
         //
@@ -388,10 +355,8 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
             break;
         }
     }
-
     return(0);
 }
-
 //******************************************************************************
 // ModeCallback - USB Mode callback
 //
@@ -414,8 +379,6 @@ ModeCallback(uint32_t ui32Index, tUSBMode eMode)
     //
     g_eCurrentUSBMode = eMode;
 }
-
-
 //******************************************************************************
 //
 // This is the main application entry function.
@@ -429,32 +392,26 @@ main(void)
     volatile uint16_t firstPacket;
     unsigned long ui32Space;
     firstPacket = 1;
-
     for(index = 0; index < 256; index++)
     {
         buffer[index] = index;
     }
-
     //
     // Initialize device clock and peripherals
     //
     CM_init();
-
     //
     // Initialize the UART for console I/O.
     //
     UARTStdioConfig(UART0_BASE, 115200, UART_CLK_FREQ_USB);
-
     //
     // Register the interrupt handler, for USB.
     //
     Interrupt_registerHandler(INT_USB0, &CM_USB0DeviceIntHandler);
-
     //
     // Not configured initially.
     //
     g_bUSBConfigured = false;
-
     //
     // Set the system tick to fire 100 times per second.
     //
@@ -463,40 +420,33 @@ main(void)
     SYSTICK_setPeriod(120000000 / SYSTICKS_PER_SECOND);
     SYSTICK_enableInterrupt();
     SYSTICK_enableCounter();
-
     //
     // Register interrupt handlers in the RAM vector table
     //
     Interrupt_registerHandler(FAULT_SYSTICK, &SysTickIntHandler);
-
     //
     // Show the application name on the display and UART output.
     //
     UARTprintf("\nC2000 F2838x Series USB Throughput bulk device example\n");
     UARTprintf("---------------------------------\n\n");
-
     //
     // Initialize the transmit and receive buffers.
     //
     USBBufferInit(&g_sTxBuffer);
     USBBufferInit(&g_sRxBuffer);
-
     //
     // Set the USB stack mode to Device mode with VBUS monitoring.
     //
     USBStackModeSet(0, eUSBModeForceDevice, ModeCallback);
-
     //
     // Pass our device information to the USB library and place the device
     // on the bus.
     //
     USBDBulkInit(0, &g_sBulkDevice);
-
     //
     // Enable interrupts now that the application is ready to start.
     //
     Interrupt_enableInProcessor();
-
     //
     // Main application loop.
     //
@@ -513,7 +463,6 @@ main(void)
             if(firstPacket)
             {
                 ui32Space = USBDBulkTxPacketAvailable(&g_sBulkDevice);
-
                 if(ui32Space)
                 {
                     USBDBulkPacketWrite(&g_sBulkDevice, buffer, ui32Space,
@@ -523,7 +472,6 @@ main(void)
             }
         }
     }
-
     //
     // This is where USB interrupts will be taken.
     // Set up CPUTimer for 1ms with interrupt.
@@ -533,24 +481,20 @@ main(void)
     //
     while(1)
     {
-        
 		for(loopCount = 0; loopCount < 50; loopCount++)
 		{
 			__asm(" NOP");
 		}
-
         //
         // Loop iteration should be 100 cycles
         //
         globalCounter++;
-
 		for(loopCount = 0; loopCount < 40; loopCount++)
 		{
 			__asm(" NOP");
 		}
     }
 }
-
 //
 // End of file
 //

@@ -13,7 +13,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -46,8 +46,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
 //
 // Included Files
 //
@@ -55,9 +53,7 @@
 #include "device.h"
 #include "board.h"
 #include "c2000ware_libraries.h"
-
 #define USE_REAL_ADC_INPUT  0U
-
 uint16_t test_input[2048] = {
          45,      66,      71,      66,
          67,      81,      91,      84,
@@ -447,24 +443,19 @@ const float64_t test_golden[2050] = {
    2.940764547236L,    3.099524131860L,   -3.089787229238L,   -3.105574911369L,
   -2.972588116739L,    3.141592653590L,
 };
-
 uint16_t pass = 0U, fail = 0U;
 float64_t tolerance = 3.2e-7;
-
 volatile uint16_t flagInputReady = 0;
 volatile uint16_t sampleIndex = 0;
 uint32_t max_idx = 1;
-
 #if USE_REAL_ADC_INPUT == 1U
 #ifdef __cplusplus
 #pragma DATA_SECTION("FFT_buffer_1")
 #else
 #pragma DATA_SECTION(test_input, "FFT_buffer_1")
 #endif
-
 uint16_t test_input[4U*TEST_SIZE];
 #endif
-
 #ifdef __cplusplus
 #pragma DATA_SECTION("FFT_buffer_2")
 #else
@@ -473,11 +464,9 @@ uint16_t test_input[4U*TEST_SIZE];
 float64_t test_output[myRFFT0_RFFT_SIZE];
 float64_t test_magnitude_phase[(myRFFT0_RFFT_SIZE >> 1) + 1];
 float64_t twiddleFactors[myRFFT0_RFFT_SIZE];
-
 uint16_t *inADC = test_input;
 float64_t *inPtr = (float64_t *)test_input;
 float64_t *outPtr = test_output;
-
 //
 // Main
 //
@@ -492,18 +481,15 @@ void main(void)
     Interrupt_initVectorTable();
     Board_init();
     C2000Ware_libraries_init();
-
     // Locals
     int16_t i;
 #if USE_REAL_ADC_INPUT == 0U
     int16_t j;
     float64u_t out, gold, errld;
 #endif
-
 #if USE_REAL_ADC_INPUT == 1U
         float64_t max;
 #endif
-
 #if USE_REAL_ADC_INPUT == 1U
     while(1){
         while(flagInputReady == 0){};
@@ -526,7 +512,6 @@ void main(void)
             fail++;
         }
     }
-
 #endif
     flagInputReady = 0;
     CFFT_f64_setCurrInputPtr(myRFFT0_handle, CFFT_f64_getCurrOutputPtr(myRFFT0_handle));
@@ -543,7 +528,6 @@ void main(void)
               max_idx = i;
          }
     }
-
     if (max_idx == 51)
     {
        pass = 1;
@@ -555,7 +539,6 @@ void main(void)
        fail = 1;
     }
 #endif
-
 #if USE_REAL_ADC_INPUT == 0U
     for(i = (myRFFT0_RFFT_SIZE), j=0U; i <= (myRFFT0_RFFT_SIZE+(myRFFT0_RFFT_SIZE >> 1)); i++, j++)
     {
@@ -571,15 +554,12 @@ void main(void)
             fail++;
         }
     }
-
 #endif
 #if USE_REAL_ADC_INPUT == 1U
     }
 #endif
-
     while(1);
 }
-
 //
 // End of File
 //

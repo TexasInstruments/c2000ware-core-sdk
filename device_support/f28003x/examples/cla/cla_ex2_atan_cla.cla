@@ -38,16 +38,13 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "cla_ex2_atan_shared.h"
-
 //
 // Defines
 //
-
 //
 // Globals
 //
@@ -56,7 +53,6 @@
 // the CLA and the C28x CPU must be defined in the C (or C++) code, and not the
 // CLA code.  
 //
-
 //
 // Function Definitions
 //
@@ -111,27 +107,22 @@ __interrupt void Cla1Task1 ( void )
     float A0,A1,A2; //Table coefficients
     float *base;
     float result;
-
     //
     //Preprocessing
     //
     __mdebugstop();
     num = __mminf32(fabsf(fVal),1.0f);
     den = __mmaxf32(fabsf(fVal),1.0f);
-
     ratio = (num/den); //Expected the newton raphson algo for better
                        //accuracy on the divide
     uxTblIdx = ratio * TABLE_SIZE_M_1 * 3; //convert table index to u16-bits
     uxTblIdx = uxTblIdx * 3; //Table is ordered as 3 32-bit coefficients, the
                              //index points to these triplets, hence the *3*sizeof(float)
-
    base = &CLAatan2Table[uxTblIdx];
    A0 = *base++;
    A1 = *base++;
    A2 = *base;
-
    result = A0 + ratio*(A1 + A2*ratio);
-
    //
    //Post processing
    //
@@ -139,51 +130,33 @@ __interrupt void Cla1Task1 ( void )
    {
       result = PIBYTWO - result;
    }
-
    if(fVal < 0.0f)
    {
       result = -result;
    }
-
     fResult = result;
 }
-
 interrupt void Cla1Task2 ( void )
 {
-
 }
-
 interrupt void Cla1Task3 ( void )
 {
-
 }
-
 interrupt void Cla1Task4 ( void )
 {
-
 }
-
 interrupt void Cla1Task5 ( void )
 {
-
 }
-
 interrupt void Cla1Task6 ( void )
 {
-
 }
-
 interrupt void Cla1Task7 ( void )
 {
-
 }
-
 interrupt void Cla1Task8 ( void )
 {
-
 }
-
 //
 // End of file
 //
-

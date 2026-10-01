@@ -70,18 +70,15 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
 #define TARGET_ADDRESS   0x3C
-
 //
 // Globals
 //
@@ -89,20 +86,17 @@ uint16_t sData[2] = {0,0};                  // Send data buffer
 uint16_t rData[2] = {0,0};                  // Receive data buffer
 uint16_t rDataPoint = 0;                    // To keep track of where we are in the
                                             // data stream to check received data
-
 //
 // Function Prototypes
 //
 void initI2CFIFO(void);
 __interrupt void i2cFIFOISR(void);
-
 //
 // Main
 //
 void main(void)
 {
     uint16_t i;
-
     //
     // Initialize device clock and peripherals
     //
@@ -111,7 +105,6 @@ void main(void)
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize GPIOs DEVICE_GPIO_PIN_SDAA and DEVICE_GPIO_PIN_SCLA
     // for use as SDA A and SCL A respectively
@@ -119,11 +112,9 @@ void main(void)
     GPIO_setPinConfig(DEVICE_GPIO_CFG_SDAA);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_SDAA, GPIO_PIN_TYPE_PULLUP);
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_SDAA, GPIO_QUAL_ASYNC);
-
     GPIO_setPinConfig(DEVICE_GPIO_CFG_SCLA);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_SCLA, GPIO_PIN_TYPE_PULLUP);
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_SCLA, GPIO_QUAL_ASYNC);
-
     //
     // Initialize GPIOs DEVICE_GPIO_PIN_SDAB and DEVICE_GPIO_PIN_SCLB
     // for use as SDA B and SCL B respectively
@@ -131,25 +122,20 @@ void main(void)
     GPIO_setPinConfig(DEVICE_GPIO_CFG_SDAB);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_SDAB, GPIO_PIN_TYPE_PULLUP);
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_SDAB, GPIO_QUAL_ASYNC);
-
     GPIO_setPinConfig(DEVICE_GPIO_CFG_SCLB);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_SCLB, GPIO_PIN_TYPE_PULLUP);
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_SCLB, GPIO_QUAL_ASYNC);
-
     GPIO_setPadConfig(DEVICE_GPIO_PIN_LED1, GPIO_PIN_TYPE_STD);
     GPIO_setDirectionMode(DEVICE_GPIO_PIN_LED1, GPIO_DIR_MODE_OUT);
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Interrupts that are used in this example are re-mapped to ISR functions
     // found within this file.
@@ -160,7 +146,6 @@ void main(void)
     // Set I2C use, initializing it for FIFO mode
     //
     initI2CFIFO();
-
     //
     // Initialize the data buffers
     //
@@ -169,19 +154,16 @@ void main(void)
         sData[i] = i;
         rData[i]= 0;
     }
-
     //
     // Enable interrupts required for this example
     //
     Interrupt_enable(INT_I2CA_FIFO);
     Interrupt_enable(INT_I2CB_FIFO);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Loop forever. Suspend or place breakpoints to observe the buffers.
     //
@@ -192,9 +174,7 @@ void main(void)
      // The ISR will handle pushing/pulling data to/from the TX and
      // RX FIFOs resp.
     }
-
 }
-
 //
 // Function to configure I2C A in FIFO mode.
 //
@@ -205,24 +185,19 @@ void initI2CFIFO()
     //
     I2C_disableModule(I2CA_BASE);
     I2C_disableModule(I2CB_BASE);
-
     //
     // I2C configuration. Use a 400kHz I2CCLK with a 50% duty cycle.
     //
     I2C_initController(I2CA_BASE, DEVICE_SYSCLK_FREQ, 400000, I2C_DUTYCYCLE_50);
     I2C_setConfig(I2CA_BASE, I2C_CONTROLLER_SEND_MODE);
-
     I2C_setDataCount(I2CA_BASE, 2);
     I2C_setBitCount(I2CA_BASE, I2C_BITCOUNT_8);
-
     //
     // I2C target configuration
     //
     I2C_setConfig(I2CB_BASE, I2C_TARGET_RECEIVE_MODE);
-
     I2C_setDataCount(I2CB_BASE, 2);
     I2C_setBitCount(I2CB_BASE, I2C_BITCOUNT_8);
-
     //
     // Configure for external loopback
     //
@@ -230,44 +205,37 @@ void initI2CFIFO()
     I2C_setOwnAddress(I2CB_BASE, TARGET_ADDRESS);
     I2C_setEmulationMode(I2CA_BASE, I2C_EMULATION_FREE_RUN);
     I2C_setEmulationMode(I2CB_BASE, I2C_EMULATION_FREE_RUN);
-
     //
     // FIFO and interrupt configuration
     //
     I2C_enableFIFO(I2CA_BASE);
     I2C_clearInterruptStatus(I2CA_BASE, I2C_INT_TXFF);
-
     //
     // Transmit FIFO interrupt levels are set to generate an interrupt
     // when the 16 byte TX fifo contains 2 or lesser bytes of data.
     //
     I2C_setFIFOInterruptLevel(I2CA_BASE, I2C_FIFO_TX2, I2C_FIFO_RX2);
     I2C_enableInterrupt(I2CA_BASE, I2C_INT_TXFF | I2C_INT_STOP_CONDITION);
-
     I2C_enableFIFO(I2CB_BASE);
     I2C_clearInterruptStatus(I2CB_BASE, I2C_INT_RXFF);
-
     //
     // Receive FIFO interrupt levels are set to generate an interrupt
     // when the 16 byte RX fifo contains 2 or greater bytes of data.
     //
     I2C_setFIFOInterruptLevel(I2CB_BASE, I2C_FIFO_TX2, I2C_FIFO_RX2);
     I2C_enableInterrupt(I2CB_BASE, I2C_INT_RXFF | I2C_INT_STOP_CONDITION);
-
     //
     // Configuration complete. Enable the module.
     //
     I2C_enableModule(I2CA_BASE);
     I2C_enableModule(I2CB_BASE);
 }
-
 //
 // I2C TX and Receive FIFO ISR
 //
  __interrupt void i2cFIFOISR(void)
 {
     uint16_t i;
-
     //
     // If receive FIFO interrupt flag is set, read data
     //
@@ -277,7 +245,6 @@ void initI2CFIFO()
         {
             rData[i] = I2C_getData(I2CB_BASE);
         }
-
         //
         // Check received data
         //
@@ -291,18 +258,15 @@ void initI2CFIFO()
                 ESTOP0;
             }
         }
-
         //
         // Used to keep track of the last position in the receive
         // stream for error checking
         //
         rDataPoint = (rDataPoint + 1) & 0xFF;
-
         //
         // Turn On an LED to depict data transfer
         //
         GPIO_writePin(DEVICE_GPIO_PIN_LED1, 0);
-
         //
         // Clear interrupt flag
         //
@@ -317,12 +281,10 @@ void initI2CFIFO()
         {
             I2C_putData(I2CA_BASE, sData[i]);
         }
-
         //
         // Send the start condition
         //
         I2C_sendStartCondition(I2CA_BASE);
-
         //
         // Increment data for next cycle
         //
@@ -330,26 +292,20 @@ void initI2CFIFO()
         {
            sData[i] = (sData[i] + 1) & 0xFF;
         }
-
         //
         // Clear interrupt flag
         //
         I2C_clearInterruptStatus(I2CA_BASE, I2C_INT_TXFF);
-
         //
         // Turn Off an LED to depict data transfer
         //
         GPIO_writePin(DEVICE_GPIO_PIN_LED1, 1);
-
     }
-
     //
     // Issue ACK
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP8);
 }
-
 //
 // End of File
 //
-

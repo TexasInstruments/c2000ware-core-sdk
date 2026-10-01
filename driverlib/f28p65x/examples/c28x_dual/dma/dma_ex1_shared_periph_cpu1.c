@@ -30,7 +30,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -63,38 +63,30 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "ipc.h"
-
 //
 // Defines
 //
 //#define USE_DMA_INTERRUPT
-
 //
 // Globals
 //
 uint16_t newCMPValue;
 #pragma DATA_SECTION(newCMPValue, "ramgs1");
-
 //
 // Function Prototypes
 //
 void Example_deviceInit(void);
 void initEPWM1(void);
 void setupDMA(void);
-
 #ifdef USE_DMA_INTERRUPT
 __interrupt void dmaISR(void);
 #endif
-
-
 //
 // Main
 //
@@ -105,7 +97,6 @@ void main(void)
     // Give peripheral/RAM ownership to CPU2
     //
     Example_deviceInit();
-
     //
     // Assign RAMs and Flash banks to CPU2.
     // In the default CPU2 linker cmd files, GS4, FLASH_BANK3 and FLASH_BANK4
@@ -119,7 +110,6 @@ void main(void)
     MemCfg_setGSRAMControllerSel(MEMCFG_SECT_GS4, MEMCFG_GSRAMCONTROLLER_CPU2);
     SysCtl_allocateFlashBank(SYSCTL_FLASH_BANK3, SYSCTL_CPUSEL_CPU2);
     SysCtl_allocateFlashBank(SYSCTL_FLASH_BANK4, SYSCTL_CPUSEL_CPU2);
-
     //
     // Boot CPU2 core
     //
@@ -128,39 +118,32 @@ void main(void)
 #else
     Device_bootCPU2(BOOTMODE_BOOT_TO_M0RAM);
 #endif
-
     //
     // Initialize GPIO and configure the GPIOs 0 and 1 as ePWM outputs
     //
     Device_initGPIO();
-
     GPIO_setPadConfig(0, GPIO_PIN_TYPE_STD);
     GPIO_setPinConfig(GPIO_0_EPWM1_A);
     GPIO_setPadConfig(1, GPIO_PIN_TYPE_STD);
     GPIO_setPinConfig(GPIO_1_EPWM1_B);
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Configure ePWM1 and the DMA
     //
     initEPWM1();
     setupDMA();
-
     //
     // Send IPC to CPU2 telling it to proceed with configuring the SPI
     //
     IPC_setFlagLtoR(IPC_CPU1_L_CPU2_R, IPC_FLAG1);
-
     //
     // Enable DMA interrupt
     //
@@ -168,13 +151,11 @@ void main(void)
     Interrupt_enable(INT_DMA_CH5);
     Interrupt_register(INT_DMA_CH5, &dmaISR);
 #endif
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Loop indefinitely
     //
@@ -183,7 +164,6 @@ void main(void)
         NOP;
     }
 }
-
 //
 // Example_deviceInit function
 // This example uses custom Device_init function since CPU2 owns some of the
@@ -195,7 +175,6 @@ void Example_deviceInit(void)
     // Disable the watchdog
     //
     SysCtl_disableWatchdog();
-
 #ifdef _FLASH
     //
     // Copy time critical code and flash setup code to RAM. This includes the
@@ -205,25 +184,20 @@ void Example_deviceInit(void)
     // are created by the linker. Refer to the device .cmd file.
     //
     memcpy(&RamfuncsRunStart, &RamfuncsLoadStart, (size_t)&RamfuncsLoadSize);
-
     //
     // Call Flash Initialization to setup flash waitstates. This function must
     // reside in RAM.
     //
     Flash_initModule(FLASH0CTRL_BASE, FLASH0ECC_BASE, DEVICE_FLASH_WAITSTATES);
 #endif
-
     //
     // Set up PLL control and clock dividers
     //
     SysCtl_setClock(DEVICE_SETCLOCK_CFG);
-
     //
     // Make sure the LSPCLK divider is set to the default (divide by 4)
     //
     SysCtl_setLowSpeedClock(SYSCTL_LSPCLK_PRESCALE_4);
-
-
     // These asserts will check that the #defines for the clock rates in
     // device.h match the actual rates that have been configured. If they do
     // not match, check that the calculations of DEVICE_SYSCLK_FREQ,
@@ -232,18 +206,15 @@ void Example_deviceInit(void)
     //
     ASSERT(SysCtl_getClock(DEVICE_OSCSRC_FREQ) == DEVICE_SYSCLK_FREQ);
     ASSERT(SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ) == DEVICE_LSPCLK_FREQ);
-
     //
     // Give control of SPIA and GS1 to CPU2
     //
     SysCtl_selectCPUForPeripheralInstance(SYSCTL_CPUSEL6_SPI, SYSCTL_CPUSEL_CPU2);
     MemCfg_setGSRAMControllerSel(MEMCFG_SECT_GS1, MEMCFG_GSRAMCONTROLLER_CPU2);
-
     //
     // Send IPC flag to CPU2 signaling the completion of system initialization
     //
     IPC_setFlagLtoR(IPC_CPU1_L_CPU2_R, IPC_FLAG31);
-
     //
     // Turn on the required peripherals
     //
@@ -251,8 +222,6 @@ void Example_deviceInit(void)
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPWM1);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
 }
-
-
 //
 // initEPWM1 - Function to Initialize ePWM1
 //
@@ -262,7 +231,6 @@ void initEPWM1(void)
     // Disable sync (freeze clock to PWM as well)
     //
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Set-up TBCLK
     //
@@ -271,14 +239,12 @@ void initEPWM1(void)
     EPWM_setTimeBaseCounter(EPWM1_BASE, 0U);
     EPWM_setTimeBaseCounterMode(EPWM1_BASE, EPWM_COUNTER_MODE_UP_DOWN);
     EPWM_disablePhaseShiftLoad(EPWM1_BASE);
-
     //
     // Set ePWM clock pre-scaler
     //
     EPWM_setClockPrescaler(EPWM1_BASE,
                            EPWM_CLOCK_DIVIDER_4,
                            EPWM_HSCLOCK_DIVIDER_4);
-
     //
     // Set up shadowing
     //
@@ -288,12 +254,10 @@ void initEPWM1(void)
     EPWM_setCounterCompareShadowLoadMode(EPWM1_BASE,
                                          EPWM_COUNTER_COMPARE_B,
                                          EPWM_COMP_LOAD_ON_CNTR_ZERO);
-
     //
     // Setup compare
     //
     EPWM_setCounterCompareValue(EPWM1_BASE, EPWM_COUNTER_COMPARE_A, 3000U);
-
     //
     // Set actions
     //
@@ -313,28 +277,23 @@ void initEPWM1(void)
                                   EPWM_AQ_OUTPUT_B,
                                   EPWM_AQ_OUTPUT_HIGH,
                                   EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);
-
     //
     // Enable sync and clock to PWM
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
 }
-
 //
 // setupDMA - Function to Setup DMA
 //
 void setupDMA(void)
 {
     const void *destAddr, *srcAddr;
-
     //
     // Initialize DMA
     //
     DMA_initController();
-
     destAddr = (const void *)(EPWM1_BASE + EPWM_O_CMPA + 1);
     srcAddr = (const void *)&newCMPValue;
-
     //
     // Setup DMA to transfer a single 16-bit word. The DMA is setup to run
     // continuously so that an interrupt is not required to restart the RUN
@@ -350,10 +309,8 @@ void setupDMA(void)
     DMA_setInterruptMode(DMA_CH5_BASE, DMA_INT_AT_END);
     DMA_enableTrigger(DMA_CH5_BASE);
     DMA_enableInterrupt(DMA_CH5_BASE);
-
     DMA_startChannel(DMA_CH5_BASE);
 }
-
 //
 // dmaISR - DMA Interrupt Service Routine (uncomment to enable DMA ISR)
 //
@@ -363,7 +320,6 @@ __interrupt void dmaISR(void)
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
 }
 #endif
-
 //
 // End of File
 //

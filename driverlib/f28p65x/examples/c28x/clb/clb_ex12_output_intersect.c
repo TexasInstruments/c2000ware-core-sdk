@@ -22,7 +22,7 @@
 // $TI Release: $
 // 
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -55,38 +55,26 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
-
-
 #include "driverlib.h"
 #include "device.h"
 #include "clb_config.h"
 #include "clb.h"
 #include "board.h"
-
 __interrupt void clb1ISR(void);
-
-
 #define EPWM_TIMER_TBPRD    2000
-
 //
 // Function Prototypes
 //
 void initEPWM(uint32_t epwm_base);
 void initOff180EPWM(uint32_t epwm_base);
 uint16_t dutyValue = 0;
-
 void main(void)
 {
     Device_init();
     Device_initGPIO();
-
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
     Board_init();
-
     //
     // Disable sync(Freeze clock to PWM as well)
     //
@@ -100,30 +88,21 @@ void main(void)
     //
     // Enable sync and clock to PWM
     //
-
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     Interrupt_register(INT_CLB1, &clb1ISR);
     Interrupt_enable(INT_CLB1);
-
     //
     // Enabling CLB1
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB1);
-
     initTILE1(myTILE1_BASE);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
-
     CLB_clearInterruptTag(myTILE1_BASE);
-
     //EPWM1A is EPWM2A ANDED with EPWM3A
-
     for(;;)
     {
         SysCtl_delay(100000);
@@ -133,15 +112,11 @@ void main(void)
         EPWM_setCounterCompareValue(myEPWM2_BASE, EPWM_COUNTER_COMPARE_A, dutyValue);
     }
 }
-
-
 __interrupt void clb1ISR(void)
 {
-
     CLB_clearInterruptTag(myTILE1_BASE);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP5);
 }
-
 void initEPWM(uint32_t epwm_base)
 {
     //
@@ -150,7 +125,6 @@ void initEPWM(uint32_t epwm_base)
     EPWM_setTimeBasePeriod(epwm_base, EPWM_TIMER_TBPRD);
     EPWM_setPhaseShift(epwm_base, 0U);
     EPWM_setTimeBaseCounter(epwm_base, 0U);
-
     //
     // Set Compare values
     //
@@ -160,7 +134,6 @@ void initEPWM(uint32_t epwm_base)
     EPWM_setCounterCompareValue(epwm_base,
                                 EPWM_COUNTER_COMPARE_B,
                                 2*EPWM_TIMER_TBPRD/3);
-
     //
     // Set up counter mode
     //
@@ -169,7 +142,6 @@ void initEPWM(uint32_t epwm_base)
     EPWM_setClockPrescaler(epwm_base,
                            EPWM_CLOCK_DIVIDER_8,
                            EPWM_HSCLOCK_DIVIDER_1);
-
     //
     // Set up shadowing
     //
@@ -179,22 +151,17 @@ void initEPWM(uint32_t epwm_base)
     EPWM_setCounterCompareShadowLoadMode(epwm_base,
                                          EPWM_COUNTER_COMPARE_B,
                                          EPWM_COMP_LOAD_ON_CNTR_ZERO);
-
     //
     // Set actions
     //
-
     EPWM_setActionQualifierAction(epwm_base,
                                   EPWM_AQ_OUTPUT_A,
                                   EPWM_AQ_OUTPUT_HIGH,
                                   EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);
-
-
     EPWM_setActionQualifierAction(epwm_base,
                                   EPWM_AQ_OUTPUT_B,
                                   EPWM_AQ_OUTPUT_HIGH,
                                   EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);
-
     EPWM_setActionQualifierAction(epwm_base,
                                   EPWM_AQ_OUTPUT_A,
                                   EPWM_AQ_OUTPUT_LOW,
@@ -203,10 +170,7 @@ void initEPWM(uint32_t epwm_base)
                                   EPWM_AQ_OUTPUT_B,
                                   EPWM_AQ_OUTPUT_LOW,
                                   EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB);
-
 }
-
-
 void initOff180EPWM(uint32_t epwm_base)
 {
     //
@@ -216,7 +180,6 @@ void initOff180EPWM(uint32_t epwm_base)
     EPWM_setTimeBasePeriod(epwm_base, EPWM_TIMER_TBPRD);
     EPWM_setPhaseShift(epwm_base, EPWM_TIMER_TBPRD/2);
     EPWM_setTimeBaseCounter(epwm_base, EPWM_TIMER_TBPRD/2);
-
     //
     // Set Compare values
     //
@@ -226,7 +189,6 @@ void initOff180EPWM(uint32_t epwm_base)
     EPWM_setCounterCompareValue(epwm_base,
                                 EPWM_COUNTER_COMPARE_B,
                                 2*EPWM_TIMER_TBPRD/3);
-
     //
     // Set up counter mode
     //
@@ -235,7 +197,6 @@ void initOff180EPWM(uint32_t epwm_base)
     EPWM_setClockPrescaler(epwm_base,
                            EPWM_CLOCK_DIVIDER_8,
                            EPWM_HSCLOCK_DIVIDER_1);
-
     //
     // Set up shadowing
     //
@@ -245,7 +206,6 @@ void initOff180EPWM(uint32_t epwm_base)
     EPWM_setCounterCompareShadowLoadMode(epwm_base,
                                          EPWM_COUNTER_COMPARE_B,
                                          EPWM_COMP_LOAD_ON_CNTR_ZERO);
-
     //
     // Set actions
     //
@@ -265,5 +225,4 @@ void initOff180EPWM(uint32_t epwm_base)
                                   EPWM_AQ_OUTPUT_B,
                                   EPWM_AQ_OUTPUT_LOW,
                                   EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB);
-
 }

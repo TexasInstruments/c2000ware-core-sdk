@@ -1,11 +1,15 @@
-
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F280013x" --part "F280013x_64PM" --package "64PM" --context "system"
+ * @v2CliArgs --device "TMS320F2800137" --package "64PM" --context "system"
+ */
 /**
  * Import the modules used in this configuration.
  */
 const adc     = scripting.addModule("/driverlib/adc.js", {}, false);
 const adc1    = adc.addInstance();
 const asysctl = scripting.addModule("/driverlib/asysctl.js");
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -54,6 +58,5 @@ adc1.interrupt1SOCSource            = "ADC_SOC_NUMBER6";
 adc1.interrupt2SOCSource            = "ADC_SOC_NUMBER14";
 adc1.interrupt3SOCSource            = "ADC_SOC_NUMBER7";
 adc1.interrupt4SOCSource            = "ADC_SOC_NUMBER15";
-
 asysctl.analogReference         = "INTERNAL";
 asysctl.analogReferenceVoltage  = "1P65";

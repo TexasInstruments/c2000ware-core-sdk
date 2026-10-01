@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="interrupt__ex4__mcpwm__realtime__interrupt_8md" kind="file" language="Markdown">
+    <compoundname>interrupt_ex4_mcpwm_realtime_interrupt.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>MCPWM<sp/>Real-Time<sp/>Interrupt<sp/>example<sp/>{#EXAMPLES_DRIVERS_INTERRUPT_EX4_MCPWM_REALTIME_INTERRUPT}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>MCPWM<sp/>Real-Time<sp/>Interrupt<sp/>example&quot;</highlight></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>Interrupt,<sp/>MCPWM&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>This<sp/>example<sp/>configures<sp/>the<sp/>mcPWM1<sp/>Timer<sp/>and<sp/>increments<sp/>a<sp/>counter<sp/>each<sp/>time</highlight></codeline>
+<codeline><highlight class="normal"><sp/>the<sp/>ISR<sp/>is<sp/>executed.<sp/>mcPWM<sp/>interrupt<sp/>can<sp/>be<sp/>configured<sp/>as<sp/>time<sp/>critical</highlight></codeline>
+<codeline><highlight class="normal"><sp/>to<sp/>demonstrate<sp/>real-time<sp/>mode<sp/>functionality<sp/>and<sp/>real-time<sp/>interrupt</highlight></codeline>
+<codeline><highlight class="normal"><sp/>capability.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>The<sp/>example<sp/>uses<sp/>2<sp/>LEDs<sp/>-<sp/>LED1<sp/>is<sp/>toggled<sp/>in<sp/>the<sp/>main<sp/>loop<sp/>and<sp/>LED2<sp/>is</highlight></codeline>
+<codeline><highlight class="normal"><sp/>toggled<sp/>in<sp/>the<sp/>MCPWM<sp/>Timer<sp/>Interrupt.<sp/>FREE_SOFT<sp/>bits<sp/>and<sp/>DBGIER.INT3<sp/>bit</highlight></codeline>
+<codeline><highlight class="normal"><sp/>must<sp/>be<sp/>set<sp/>to<sp/>enable<sp/>mcPWM1<sp/>interrupt<sp/>to<sp/>be<sp/>time<sp/>critical<sp/>and<sp/>operational</highlight></codeline>
+<codeline><highlight class="normal"><sp/>in<sp/>real<sp/>time<sp/>mode<sp/>after<sp/>halt<sp/>command</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>How<sp/>to<sp/>run<sp/>the<sp/>example?</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>Add<sp/>the<sp/>watch<sp/>variables<sp/>as<sp/>mentioned<sp/>below<sp/>and<sp/>enable<sp/>Continuous<sp/>Refresh.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>Enable<sp/>real-time<sp/>mode<sp/>(Run-&gt;Advanced-&gt;Enable<sp/>Silicon<sp/>Real-time<sp/>Mode)</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>Initially,<sp/>the<sp/>DBGIER<sp/>register<sp/>is<sp/>set<sp/>to<sp/>0<sp/>and<sp/>the<sp/>MCPWM<sp/>emulation<sp/>mode</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>is<sp/>set<sp/>to<sp/>MCPWM_EMULATION_STOP_AFTER_NEXT_TB<sp/>(FREE_SOFT<sp/>=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>When<sp/>the<sp/>application<sp/>is<sp/>running,<sp/>you<sp/>will<sp/>find<sp/>both<sp/>LEDs<sp/>toggling<sp/>and</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>the<sp/>watch<sp/>variables<sp/>MCPwm1TimerIntCount,<sp/>MCPwm1Regs.TBCTR<sp/>getting<sp/>updated.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>When<sp/>the<sp/>application<sp/>is<sp/>halted,<sp/>both<sp/>LEDs<sp/>stop<sp/>toggling<sp/>and<sp/>the<sp/>watch</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>variables<sp/>remain<sp/>constant.<sp/>MCPWM<sp/>counter<sp/>is<sp/>stopped<sp/>on<sp/>debugger<sp/>halt.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>To<sp/>enable<sp/>MCPWM<sp/>counter<sp/>run<sp/>during<sp/>debugger<sp/>halt,<sp/>set<sp/>emulation<sp/>mode<sp/>as</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>MCPWM_EMULATION_FREE_RUN<sp/>(FREE_SOFT<sp/>=<sp/>2).<sp/>You<sp/>will<sp/>find<sp/>MCPwm1Regs.TBCTR</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>is<sp/>running,<sp/>but<sp/>MCPwm1TimerIntCount<sp/>remains<sp/>constant.<sp/>This<sp/>means,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>the<sp/>MCPWM<sp/>counter<sp/>is<sp/>running,<sp/>but<sp/>the<sp/>ISRs<sp/>are<sp/>not<sp/>getting<sp/>serviced.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>To<sp/>enable<sp/>real-time<sp/>interrupts,<sp/>set<sp/>DBGIER.INT3<sp/>=<sp/>1<sp/>(MCPWM1<sp/>interrupt<sp/>is</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>part<sp/>of<sp/>PIE<sp/>Group<sp/>3).<sp/>You<sp/>will<sp/>find<sp/>that<sp/>the<sp/>MCPwm1TimerIntCount<sp/>is</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>incrementing<sp/>and<sp/>the<sp/>LED<sp/>starts<sp/>toggling.<sp/>The<sp/>MCPWM<sp/>ISR<sp/>is<sp/>getting</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>serviced<sp/>even<sp/>during<sp/>a<sp/>debugger<sp/>halt.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>None</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Watch<sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>MCPwm1TimerIntCount<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>MCPWM1<sp/>ISR<sp/>counter</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>MCPwm1Regs.TBCTR.TBCTR<sp/><sp/><sp/><sp/><sp/>-<sp/>MCPWM1<sp/>Time<sp/>Base<sp/>counter</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>MCPwm1Regs.TBCTL.FREE_SOFT<sp/>-<sp/>Set<sp/>this<sp/>to<sp/>2<sp/>to<sp/>enable<sp/>free<sp/>run</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>DBGIER.INT3<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>Set<sp/>to<sp/>1<sp/>to<sp/>enable<sp/>real<sp/>time<sp/>interrupt</highlight></codeline>
+<codeline></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/interrupt_ex4_mcpwm_realtime_interrupt.md"/>
+  </compounddef>
+</doxygen>

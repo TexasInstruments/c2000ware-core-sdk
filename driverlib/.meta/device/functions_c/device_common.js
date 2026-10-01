@@ -1,4 +1,9 @@
 const device  = system.deviceData.device
+
+// Shared clocktree constants
+const clocktree_common    = system.getScript("/driverlib/.meta/clocktree/clocktree_common.js");
+const WD_SECCLK_devices   = clocktree_common.WD_SECCLK_devices;
+
 /////////////////////////////////////////////Device Specific Functions//////////////////////////
 // For a new device, you need to find out which functions are available for the device
 // and add it to the list.
@@ -121,7 +126,10 @@ const Enable_Unbounded_GPIO_Pullups_100PZ_176PTP_Type0						=["F2837xD", "F2837x
 const Enable_Unbounded_GPIO_Pullups_176PTP_Type0							=["F2838x"]
 
 // enable pullups for the unbonded GPIOs on the 48PT, 32RHB, 32VFC package.
-const Enable_Unbounded_GPIO_Pullups_48PT_32RHB_32VFC_Type0					=["F28E12x", "MCPC029"]
+const Enable_Unbounded_GPIO_Pullups_48PT_32RHB_32VFC_Type0					=["F28E12x"]
+
+//enable pullups for unbounded GPIOs for 48RGZ package
+const Enable_Unbounded_GPIO_Pullups_48RGZ_Type0					            =["MCPC029"]
 
 //
 // Available Configure_TMX_Analog_Trim
@@ -323,6 +331,7 @@ exports = {
 	Enable_Unbounded_GPIO_Pullups_100PZ_176PTP_Type0 : Enable_Unbounded_GPIO_Pullups_100PZ_176PTP_Type0,
 	Enable_Unbounded_GPIO_Pullups_176PTP_Type0 : Enable_Unbounded_GPIO_Pullups_176PTP_Type0,
 	Enable_Unbounded_GPIO_Pullups_48PT_32RHB_32VFC_Type0 : Enable_Unbounded_GPIO_Pullups_48PT_32RHB_32VFC_Type0,
+	Enable_Unbounded_GPIO_Pullups_48RGZ_Type0 : Enable_Unbounded_GPIO_Pullups_48RGZ_Type0,
 	Configure_TMX_Analog_Trim_Type0 : Configure_TMX_Analog_Trim_Type0,
 	Configure_TMX_Analog_Trim_Type1 : Configure_TMX_Analog_Trim_Type1,
 	Configure_TMX_Analog_Trim_Type2 : Configure_TMX_Analog_Trim_Type2,
@@ -352,6 +361,7 @@ exports = {
 	clocktree_Asserts_Type6 : clocktree_Asserts_Type6,
 	clocktree_Asserts_Type7 : clocktree_Asserts_Type7,
 	clocktree_Asserts_Type8 : clocktree_Asserts_Type8,
-	clocktree_Asserts_Type9 : clocktree_Asserts_Type9
+	clocktree_Asserts_Type9 : clocktree_Asserts_Type9,
+	WD_SECCLK_devices : WD_SECCLK_devices
 
 }

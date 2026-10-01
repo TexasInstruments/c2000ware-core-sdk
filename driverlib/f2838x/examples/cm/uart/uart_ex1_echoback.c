@@ -41,7 +41,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -74,71 +74,58 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include <stdint.h>
 #include <stdbool.h>
-
 #include "cm.h"
-
 //
 // Defines
 //
 #define NUM_UART_DATA    4
-
 //
 // Function Prototypes
 //
 __interrupt void UART_RX_IntHandler(void);
-
 //
 // Main
 //
 void main(void)
 {
-
     //
     // disable WD, enable peripheral clocks.
     //
     CM_init();
-
     //
     // Configure UART0 for echoback.Set up to transfer data at 115200 baud.
     //                                                        
     UART_setConfig(UART0_BASE,UART_CLK_FREQ , 115200,(UART_CONFIG_WLEN_8 | 
                    UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
-
     // 
     // Put a character to show start of example.  This will display on the
     // terminal.
     //
     UART_writeChar(UART0_BASE, '!');
-
     //
     // Enable the UART0 interrupt on the processor (NVIC).
     //
     UART_registerInterrupt(INT_UART0,UART_RX_IntHandler);
-
     //
     // FIFO enable
     //
     UART_enableFIFO(UART0_BASE);
-
     //
     // FIFO interrupt levels are set to generate an interrupt
     // when the TX FIFO is less than or equal to 7/8 empty and the
     // RX FIFO is greater than or equal to 1/8 full.
     //
     UART_setFIFOLevel(UART0_BASE, UART_FIFO_TX1_8, UART_FIFO_RX1_8);
-
     //
     // FIFO receive interrupt configuration
     //
     UART_clearInterruptStatus(UART0_BASE,UART_INT_RX | UART_INT_RT);   
     UART_enableInterrupt(UART0_BASE,UART_INT_RX);
-
     //
     // Loop forever echoing data through the UART.
     //
@@ -146,22 +133,17 @@ void main(void)
     {
     }
 }
-
-
 __interrupt void UART_RX_IntHandler(void)
 {
     uint32_t ui32Status;
-
     //
     // Get the interrupt status.
     //
     ui32Status = UART_getInterruptStatus(UART0_BASE, UART_RAW_INT);
-
     //
     // Clear the asserted interrupts.
     //
     UART_clearInterruptStatus(UART0_BASE, ui32Status);
-
     //
     // Loop while there are characters in the receive FIFO.
     //
@@ -174,8 +156,6 @@ __interrupt void UART_RX_IntHandler(void)
                                   UART_readCharNonBlocking(UART0_BASE));
     }
 }
-
 //
 // End of File
 //
-

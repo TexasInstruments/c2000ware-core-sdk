@@ -93,22 +93,18 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
 #define TARGET_ADDRESS   0x3C
-
 //
 // Globals
 //
-
 //
 // I2C data Globals
 //
@@ -122,7 +118,6 @@ uint16_t rDataPoint = 0;            // To keep track of where we are in the
 uint16_t sDatasciA[2];              // Send SCI-A data buffer
 uint16_t rDatasciA[2];              // Receive SCI-A data buffer
 uint16_t rDataPointA = 0;           // Used for checking the received SCI data
-
 //
 // SPI data Globals
 //
@@ -141,35 +136,29 @@ void initSCIAFIFO(void);
 void initSPIFIFO(void);
 __interrupt void spiTxFIFOISR(void);
 __interrupt void spiRxFIFOISR(void);
-
 //
 // Main
 //
 void main(void)
 {
     uint16_t i;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Interrupts that are used in this example are re-mapped to ISR functions
     // found within this file.
@@ -179,22 +168,18 @@ void main(void)
     Interrupt_register(INT_SCIA_TX, &sciaTXFIFOISR);
     Interrupt_register(INT_SPIA_TX, &spiTxFIFOISR);
     Interrupt_register(INT_SPIA_RX, &spiRxFIFOISR);
-
     //
     // Set I2C use, initializing it for FIFO mode
     //
     initI2CFIFO();
-
     //
     // Set SCI use, initializing it for FIFO mode
     //
     initSCIAFIFO();
-
     //
     // Set up SPI, initializing it for FIFO mode
     //
     initSPIFIFO();
-
     //
     // Initialize the I2C data buffers
     //
@@ -203,7 +188,6 @@ void main(void)
         sDatai2cA[i] = i;
         rDatai2cA[i]= 0;
     }
-
     //
     // Init the SCI send data.  After each transmission this data
     // will be updated for the next transmission
@@ -212,7 +196,6 @@ void main(void)
     {
         sDatasciA[i] = i;
     }
-
     //
     // Initialize the SPI data buffers
     //
@@ -221,7 +204,6 @@ void main(void)
         sDataspiA[i] = i;
         rDataspiA[i]= 0;
     }
-
     //
     // Enable interrupts required for this example
     //
@@ -230,13 +212,11 @@ void main(void)
     Interrupt_enable(INT_SCIA_TX);
     Interrupt_enable(INT_SPIA_TX);
     Interrupt_enable(INT_SPIA_RX);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Loop forever. Suspend or place breakpoints to observe the buffers.
     //
@@ -246,7 +226,6 @@ void main(void)
      // on the Interrupt levels configured for each of the modules.
     }
 }
-
 //
 // Function to configure I2C A in FIFO mode.
 //
@@ -256,7 +235,6 @@ void initI2CFIFO()
     // Must put I2C into reset before configuring it
     //
     I2C_disableModule(I2CA_BASE);
-
     //
     // I2C configuration. Use a 400kHz I2CCLK with a 50% duty cycle.
     //
@@ -264,7 +242,6 @@ void initI2CFIFO()
     I2C_setConfig(I2CA_BASE, I2C_CONTROLLER_SEND_MODE);
     I2C_setDataCount(I2CA_BASE, 2);
     I2C_setBitCount(I2CA_BASE, I2C_BITCOUNT_8);
-
     //
     // Configure for internal loopback mode
     //
@@ -272,13 +249,11 @@ void initI2CFIFO()
     I2C_setOwnAddress(I2CA_BASE, TARGET_ADDRESS);
     I2C_enableLoopback(I2CA_BASE);
     I2C_setEmulationMode(I2CA_BASE, I2C_EMULATION_STOP_SCL_LOW);
-
     //
     // FIFO and interrupt configuration
     //
     I2C_enableFIFO(I2CA_BASE);
     I2C_clearInterruptStatus(I2CA_BASE, I2C_INT_RXFF | I2C_INT_TXFF);
-
     //
     // Transmit FIFO interrupt levels are set to generate an interrupt
     // when the 16 byte TX fifo contains 2 or lesser bytes of data.
@@ -287,13 +262,11 @@ void initI2CFIFO()
     //
     I2C_setFIFOInterruptLevel(I2CA_BASE, I2C_FIFO_TX2, I2C_FIFO_RX2);
     I2C_enableInterrupt(I2CA_BASE, I2C_INT_RXFF | I2C_INT_TXFF);
-
     //
     // Configuration complete. Enable the module.
     //
     I2C_enableModule(I2CA_BASE);
 }
-
 //
 // I2C A Transmit & Receive FIFO ISR.
 // The ISR will handle pushing/pulling data to/from the TX and
@@ -302,7 +275,6 @@ void initI2CFIFO()
  __interrupt void i2cFIFOISR(void)
 {
     uint16_t i;
-
     //
     // If receive FIFO interrupt flag is set, read data
     //
@@ -312,7 +284,6 @@ void initI2CFIFO()
         {
             rDatai2cA[i] = I2C_getData(I2CA_BASE);
         }
-
         //
         // Check received data
         //
@@ -326,9 +297,7 @@ void initI2CFIFO()
                 ESTOP0;
             }
         }
-
         rDataPoint = (rDataPoint + 1) & 0xFF;
-
         //
         // Clear interrupt flag
         //
@@ -343,12 +312,10 @@ void initI2CFIFO()
         {
             I2C_putData(I2CA_BASE, sDatai2cA[i]);
         }
-
         //
         // Send the start condition
         //
         I2C_sendStartCondition(I2CA_BASE);
-
         //
         // Increment data for next cycle
         //
@@ -356,28 +323,23 @@ void initI2CFIFO()
         {
            sDatai2cA[i] = (sDatai2cA[i] + 1) & 0xFF;
         }
-
         //
         // Clear interrupt flag
         //
         I2C_clearInterruptStatus(I2CA_BASE, I2C_INT_TXFF);
     }
-
     //
     // Issue ACK
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP8);
 }
-
  //
  // sciaTXFIFOISR - SCIA Transmit FIFO ISR
  //
  __interrupt void sciaTXFIFOISR(void)
  {
      uint16_t i;
-
      SCI_writeCharArray(SCIA_BASE, sDatasciA, 2);
-
      //
      // Increment send data for next cycle
      //
@@ -385,24 +347,19 @@ void initI2CFIFO()
      {
          sDatasciA[i] = (sDatasciA[i] + 1) & 0x00FF;
      }
-
      SCI_clearInterruptStatus(SCIA_BASE, SCI_INT_TXFF);
-
      //
      // Issue PIE ACK
      //
      Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP9);
  }
-
  //
  // sciaRXFIFOISR - SCIA Receive FIFO ISR
  //
  __interrupt void sciaRXFIFOISR(void)
  {
      uint16_t i;
-
      SCI_readCharArray(SCIA_BASE, rDatasciA, 2);
-
      //
      // Check received data
      //
@@ -416,19 +373,14 @@ void initI2CFIFO()
              ESTOP0;
          }
      }
-
      rDataPointA = (rDataPointA + 1) & 0x00FF;
-
      SCI_clearOverflowStatus(SCIA_BASE);
-
      SCI_clearInterruptStatus(SCIA_BASE, SCI_INT_RXFF);
-
      //
      // Issue PIE ack
      //
      Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP9);
  }
-
  //
  // initSCIAFIFO - Configure SCIA FIFO
  //
@@ -444,13 +396,11 @@ void initI2CFIFO()
      SCI_enableLoopback(SCIA_BASE);
      SCI_resetChannels(SCIA_BASE);
      SCI_enableFIFO(SCIA_BASE);
-
      //
      // RX and TX FIFO Interrupts Enabled
      //
      SCI_enableInterrupt(SCIA_BASE, (SCI_INT_RXFF | SCI_INT_TXFF));
      SCI_disableInterrupt(SCIA_BASE, SCI_INT_RXERR);
-
      //
      // The transmit FIFO generates an interrupt when FIFO status
      // bits are less than or equal to 2 out of 16 words
@@ -459,11 +409,9 @@ void initI2CFIFO()
      //
      SCI_setFIFOInterruptLevel(SCIA_BASE, SCI_FIFO_TX2, SCI_FIFO_RX2);
      SCI_performSoftwareReset(SCIA_BASE);
-
      SCI_resetTxFIFO(SCIA_BASE);
      SCI_resetRxFIFO(SCIA_BASE);
  }
-
  //
  // Function to configure SPI A in FIFO mode.
  //
@@ -473,7 +421,6 @@ void initI2CFIFO()
      // Must put SPI into reset before configuring it
      //
      SPI_disableModule(SPIA_BASE);
-
      //
      // SPI configuration. Use a 500kHz SPICLK and 16-bit word size.
      //
@@ -481,7 +428,6 @@ void initI2CFIFO()
                    SPI_MODE_CONTROLLER, 500000, 16);
      SPI_enableLoopback(SPIA_BASE);
      SPI_setEmulationMode(SPIA_BASE, SPI_EMULATION_STOP_AFTER_TRANSMIT);
-
      //
      // FIFO and interrupt configuration
      //
@@ -489,20 +435,17 @@ void initI2CFIFO()
      SPI_clearInterruptStatus(SPIA_BASE, SPI_INT_RXFF | SPI_INT_TXFF);
      SPI_setFIFOInterruptLevel(SPIA_BASE, SPI_FIFO_TX2, SPI_FIFO_RX2);
      SPI_enableInterrupt(SPIA_BASE, SPI_INT_RXFF | SPI_INT_TXFF);
-
      //
      // Configuration complete. Enable the module.
      //
      SPI_enableModule(SPIA_BASE);
  }
-
  //
  // SPI A Transmit FIFO ISR
  //
  __interrupt void spiTxFIFOISR(void)
  {
      uint16_t i;
-
      //
      // Send data
      //
@@ -510,7 +453,6 @@ void initI2CFIFO()
      {
         SPI_writeDataNonBlocking(SPIA_BASE, sDataspiA[i]);
      }
-
      //
      // Increment data for next cycle
      //
@@ -518,21 +460,18 @@ void initI2CFIFO()
      {
         sDataspiA[i] = sDataspiA[i] + 1;
      }
-
      //
      // Clear interrupt flag and issue ACK
      //
      SPI_clearInterruptStatus(SPIA_BASE, SPI_INT_TXFF);
      Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP6);
  }
-
  //
  // SPI A Receive FIFO ISR
  //
   __interrupt void spiRxFIFOISR(void)
  {
      uint16_t i;
-
      //
      // Read data
      //
@@ -540,7 +479,6 @@ void initI2CFIFO()
      {
          rDataspiA[i] = SPI_readDataNonBlocking(SPIA_BASE);
      }
-
      //
      // Check received data
      //
@@ -552,17 +490,13 @@ void initI2CFIFO()
              ESTOP0;
          }
      }
-
      rDataPointspiA++;
-
      //
      // Clear interrupt flag and issue ACK
      //
      SPI_clearInterruptStatus(SPIA_BASE, SPI_INT_RXFF);
      Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP6);
  }
-
 //
 // End of File
 //
-

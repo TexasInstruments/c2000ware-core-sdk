@@ -11,7 +11,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -44,49 +44,33 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 #ifndef _CLA_EX5_ADCJUSTINTIME_SHARED_H_
 #define _CLA_EX5_ADCJUSTINTIME_SHARED_H_
-
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
 #define EPWM1_FREQ          1000000UL   // 1 MHz
-
 #define EPWM1_PERIOD        (uint16_t)(DEVICE_SYSCLK_FREQ / (EPWM1_FREQ))
-
 //
 // Globals
 //
 //Task 1 (C) Variables
-
 //Task 2 (C) Variables
-
 //Task 3 (C) Variables
-
 //Task 4 (C) Variables
-
 //Task 5 (C) Variables
-
 //Task 6 (C) Variables
-
 //Task 7 (C) Variables
-
 //Task 8 (C) Variables
-
 //Common (C) Variables
-
-
 //
 // Function Prototypes
 //
@@ -98,12 +82,10 @@ __attribute__((interrupt))  void Cla1Task5();
 __attribute__((interrupt))  void Cla1Task6();
 __attribute__((interrupt))  void Cla1Task7();
 __attribute__((interrupt))  void Cla1Task8();
-
 #ifdef __cplusplus
 }
 #endif // extern "C"
 #endif //_CLA_EX5_ADCJUSTINTIME_SHARED_H_
-
 //
 // End of File
 //

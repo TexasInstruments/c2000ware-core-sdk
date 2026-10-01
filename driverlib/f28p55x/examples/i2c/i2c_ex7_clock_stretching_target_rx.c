@@ -16,7 +16,7 @@
 //
 //
 //  
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -55,7 +55,6 @@
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Defines
 //
@@ -76,7 +75,6 @@ uint16_t status_check = 0x0000;
 uint16_t clk_status_check = 0x0000;
 volatile uint16_t int_isrc = 0x0000;
 uint16_t intSeq[11];
-
 volatile uint16_t waitForInt = 11;
 uint16_t ui32Index_1 = 0, ui32Index_12 = 0;
 volatile uint16_t I2C_Int = 1;
@@ -88,7 +86,6 @@ void Pinmux_init(void);
 void I2C_init(void);
 void INTERRUPT_init(void);
 __interrupt void INT_I2CB_ISR(void);
-
 //
 // Main
 //
@@ -103,37 +100,30 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Board initialization
     //
-
     Pinmux_init();
     INTERRUPT_init();
     I2C_init();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     while (I2C_Int)
     {
         if (waitForInt == 0)
@@ -158,7 +148,6 @@ void main(void)
     }
     EDIS;
 }
-
 //
 // I2C A Transmit & Receive FIFO ISR.
 //
@@ -179,17 +168,14 @@ __interrupt void INT_I2CB_ISR(void)
         break;
     case I2C_INTSRC_RX_DATA_RDY:
         rx_data_rdy_count++;
-
         // To check sequence of interrupt
         if (rx_data_rdy_count != eacs_count)
         {
             error++;
         }
-
         rxData = HWREGH(I2CB_BASE + I2C_O_DRR);
         pui32DataRx[ui32Index_12] = rxData;
         ui32Index_12++;
-
         break;
     case I2C_INTSRC_SCL_ECS:
         ecs_hit++;
@@ -197,7 +183,6 @@ __interrupt void INT_I2CB_ISR(void)
         if (clk_status_check == CLOCK_STRETCHING_MASK)
         {
             eacs_count++;
-
             HWREGH(I2CB_BASE + I2C_O_STR) |= CLOCK_STRETCHING_MASK;
         }
         else
@@ -224,14 +209,12 @@ __interrupt void INT_I2CB_ISR(void)
     Interrupt_disable(INT_I2CB);
     Interrupt_enable(INT_I2CB);
 }
-
 void Pinmux_init()
 {
     GPIO_setPinConfig(GPIO_230_I2CB_SDA);
     GPIO_setAnalogMode(I2CB_SDA_CURRENT, GPIO_ANALOG_DISABLED);
     GPIO_setPadConfig(I2CB_SDA_CURRENT, GPIO_PIN_TYPE_STD | GPIO_PIN_TYPE_PULLUP);
     GPIO_setQualificationMode(I2CB_SDA_CURRENT, GPIO_QUAL_ASYNC);
-
     GPIO_setPinConfig(GPIO_227_I2CB_SCL);
     GPIO_setAnalogMode(I2CB_SCL_CURRENT, GPIO_ANALOG_DISABLED);
     GPIO_setPadConfig(I2CB_SCL_CURRENT, GPIO_PIN_TYPE_STD | GPIO_PIN_TYPE_PULLUP);
@@ -241,15 +224,12 @@ void I2C_init()
 {
     I2C_disableModule(I2CB_BASE);
     I2C_configureModuleFrequency(I2CB_BASE, DEVICE_SYSCLK_FREQ);
-
     I2C_setOwnAddress(I2CB_BASE, TARGET_ADDRESS);
     I2C_setTargetAddress(I2CB_BASE, 0);
     I2C_enableExtendedAutomaticClkStretchingMode(I2CB_BASE);
-
     I2C_setBitCount(I2CB_BASE, I2C_BITCOUNT_8);
     I2C_setConfig(I2CB_BASE, I2C_TARGET_RECEIVE_MODE);
     I2C_disableFIFO(I2CB_BASE);
-
     I2C_setDataCount(I2CB_BASE, NUM_I2C_DATA);
     I2C_setAddressMode(I2CB_BASE, I2C_ADDR_MODE_7BITS);
     I2C_disableInterrupt(I2CB_BASE, I2C_INT_RXFF);
@@ -261,12 +241,10 @@ void I2C_init()
 }
 void INTERRUPT_init()
 {
-
     Interrupt_disable(INT_I2CB);
     Interrupt_register(INT_I2CB, &INT_I2CB_ISR);
     Interrupt_enable(INT_I2CB);
 }
-
 //
 // End of File
 //

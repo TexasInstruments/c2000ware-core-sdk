@@ -438,9 +438,9 @@ void InitSysPll(Uint16 clock_source, Uint16 imult, Uint32 refdiv, Uint32 odiv,
         }
 
         //
-        // Delay of at least 60 OSCCLK cycles
+        // Delay of at least 300 OSCCLK cycles
         //
-        asm(" RPT #60 || NOP");
+        SYSCTRL_CLKSRCCTL1_DELAY;
 
         EALLOW;
 

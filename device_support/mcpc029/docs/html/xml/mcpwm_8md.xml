@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="mcpwm_8md" kind="file" language="Markdown">
+    <compoundname>mcpwm.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>MCPWM<sp/>{#DRIVERS_MCPWM_PAGE}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>MCPWM<sp/>driver<sp/>provides<sp/>API<sp/>to<sp/>configure<sp/>the<sp/>MCPWM<sp/>module.</highlight></codeline>
+<codeline><highlight class="normal">Below<sp/>are<sp/>the<sp/>high<sp/>level<sp/>features<sp/>supported<sp/>by<sp/>the<sp/>MCPWM<sp/>driver.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Features<sp/>Supported</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>2<sp/>MCPWM<sp/>instances</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>MCPWM1<sp/>has<sp/>3<sp/>pairs<sp/>of<sp/>outputs<sp/>and<sp/>MCPWM3<sp/>has<sp/>1<sp/>pair<sp/>of<sp/>outputs</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Can<sp/>be<sp/>also<sp/>used<sp/>as<sp/>a<sp/>DAC<sp/>where<sp/>duty<sp/>cycle<sp/>is<sp/>equivalent<sp/>to<sp/>a<sp/>DAC<sp/>analog<sp/>value.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>SysConfig<sp/>Features</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@VAR_SYSCFG_USAGE_NOTE</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Timebase<sp/>Configurations<sp/>common<sp/>for<sp/>all<sp/>3<sp/>pairs<sp/>of<sp/>outputs</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Counter<sp/>Compare,<sp/>Action<sp/>Qualifier<sp/>for<sp/>each<sp/>pair<sp/>of<sp/>outputs</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Deadband<sp/>between<sp/>the<sp/>MCPWMs<sp/>common<sp/>to<sp/>the<sp/>3<sp/>pairs</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Trip<sp/>Zone<sp/>configurations<sp/>common<sp/>to<sp/>the<sp/>3<sp/>pairs.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Dedicated<sp/>MCPWM<sp/>cross<sp/>bar,<sp/>which<sp/>enables<sp/>selection<sp/>of<sp/>various<sp/>trigger<sp/>sources<sp/>into<sp/>any</highlight></codeline>
+<codeline><highlight class="normal">of<sp/>the<sp/>dedicated<sp/>MCPWM<sp/>trip<sp/>inputs.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Features<sp/>NOT<sp/>Supported</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">NA</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Important<sp/>Usage<sp/>Guidelines</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>Shadow<sp/>Registers<sp/>and<sp/>Active<sp/>registers<sp/>have<sp/>different<sp/>memories<sp/>unlike<sp/>EPWM.<sp/>If<sp/>Active<sp/>registers<sp/>are<sp/>to<sp/>be<sp/>used<sp/>directly,<sp/>make<sp/>sure<sp/>the<sp/>shadow<sp/>loads<sp/>are<sp/>disabled<sp/>from<sp/>both<sp/>local<sp/>and<sp/>global<sp/>strobes.<sp/>Else,<sp/>use<sp/>the<sp/>shadow<sp/>registers<sp/>for<sp/>the<sp/>updates<sp/>to<sp/>be<sp/>take<sp/>at<sp/>the<sp/>Timebase<sp/>Counter<sp/>equals<sp/>Zero<sp/>events<sp/>by<sp/>default.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Example<sp/>Usage</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Include<sp/>the<sp/>below<sp/>file<sp/>to<sp/>access<sp/>the<sp/>APIs</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;mcpwm.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>API</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>mcpwm_api</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/mcpwm.md"/>
+  </compounddef>
+</doxygen>

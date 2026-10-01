@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -3124,7 +3124,9 @@ extern uint16_t Ethernet_readPHYRegister(uint32_t base,
 extern void Ethernet_writePHYRegister(uint32_t base,
                                uint8_t regAddress,
                                uint16_t writeData);
-
+/* Applicable only on Clause 45 - Used to write Device Address*/
+extern void Ethernet_configureMMDAddress(uint32_t base,
+                                  uint8_t mmdAddr);
 //*************************************************************************
 //
 // Ethernet_setMACAddr

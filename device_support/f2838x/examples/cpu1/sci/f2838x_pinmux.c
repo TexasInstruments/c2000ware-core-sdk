@@ -45,10 +45,8 @@
 // To download C2000Ware:  http://www.ti.com/tool/C2000Ware
 //
 //*****************************************************************************
-
 #include "f28x_project.h"
 #include "f2838x_pinmux.h"
-
 //*****************************************************************************
 //
 // Configures the pin mux registers, using the generated register values.
@@ -66,9 +64,7 @@ GPIO_setPinMuxConfig(void)
     Uint32 lockValC;
     Uint32 lockValD;
     Uint32 lockValE;
-
     EALLOW;
-
     //
     // Save the current value of the GPIO lock registers
     //
@@ -77,7 +73,6 @@ GPIO_setPinMuxConfig(void)
     lockValC = GpioCtrlRegs.GPCLOCK.all;
     lockValD = GpioCtrlRegs.GPDLOCK.all;
     lockValE = GpioCtrlRegs.GPELOCK.all;
-
     //
     // Unlock the GPIO control registers
     //
@@ -86,7 +81,6 @@ GPIO_setPinMuxConfig(void)
     GpioCtrlRegs.GPCLOCK.all = 0x00000000;
     GpioCtrlRegs.GPDLOCK.all = 0x00000000;
     GpioCtrlRegs.GPELOCK.all = 0x00000000;
-
     //
     // Clear the mux register fields that are about to be changed
     //
@@ -108,7 +102,6 @@ GPIO_setPinMuxConfig(void)
     GpioCtrlRegs.GPDMUX2.all	&= ~GPDMUX2_MASK;
     GpioCtrlRegs.GPEGMUX1.all	&= ~GPEMUX1_MASK;
     GpioCtrlRegs.GPEMUX1.all	&= ~GPEMUX1_MASK;
-
     //
     // Write pin muxing to mux registers
     //
@@ -130,13 +123,11 @@ GPIO_setPinMuxConfig(void)
     GpioCtrlRegs.GPDMUX2.all	|=  GPDMUX2_VALUE;
     GpioCtrlRegs.GPEGMUX1.all	|=  GPEGMUX1_VALUE;
     GpioCtrlRegs.GPEMUX1.all	|=  GPEMUX1_VALUE;
-
     //
     // Write pin analog mode select to registers
     //
     GpioCtrlRegs.GPBAMSEL.all	&= ~GPBAMSEL_MASK;
     GpioCtrlRegs.GPBAMSEL.all	|= GPBAMSEL_VALUE;
-
     //
     // Restore GPIO lock register values
     //
@@ -145,6 +136,5 @@ GPIO_setPinMuxConfig(void)
     GpioCtrlRegs.GPCLOCK.all = lockValC;
     GpioCtrlRegs.GPDLOCK.all = lockValD;
     GpioCtrlRegs.GPELOCK.all = lockValE;
-
     EDIS;
 }

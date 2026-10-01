@@ -1,0 +1,1665 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="pga_8h" kind="file" language="C++">
+    <compoundname>pga.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes local="no">stdint.h</includes>
+    <includes local="yes">inc/hw_pga.h</includes>
+    <includes local="yes">inc/hw_memmap.h</includes>
+    <includes local="yes">inc/hw_types.h</includes>
+    <includes local="yes">cpu.h</includes>
+    <includes local="yes">debug.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+      <node id="7">
+        <label>cpu.h</label>
+      </node>
+      <node id="1">
+        <label>pga.h</label>
+        <link refid="pga_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>inc/hw_memmap.h</label>
+      </node>
+      <node id="4">
+        <label>inc/hw_pga.h</label>
+      </node>
+      <node id="8">
+        <label>debug.h</label>
+      </node>
+      <node id="6">
+        <label>inc/hw_types.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__pga__api_1ga514b75639106aa6179e982389ff0bc2d" prot="public" static="no">
+        <name>PGA_MMUX_NAKED_OPAMP</name>
+        <initializer><ref refid="group__pga__api_1gga60a73c488a3b1791ca061ad76911be2baef3d2badfb9af784a3112739900b4437" kindref="member">PGA_MMUX_STANDALONE_OPAMP</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="70" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__pga__api_1ga6534ba2411a3d0aab5a39354ce7eee3e" prot="public" static="no">
+        <name>PGA_MMUX_INVERTING_GAIN_NEG</name>
+        <initializer><ref refid="group__pga__api_1gga60a73c488a3b1791ca061ad76911be2bae6ab717d2bf0ad621825cc462d7568c0" kindref="member">PGA_MMUX_INVERTING_GAIN_INM1</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="71" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__pga__api_1ga3cdff931071a23c60c2714c317e3d2c5" prot="public" static="no">
+        <name>PGA_MMUX_INVERTING_GAIN_NEG_SHARED</name>
+        <initializer><ref refid="group__pga__api_1gga60a73c488a3b1791ca061ad76911be2ba8b988ab5b19ff1cba4ececa552973a3d" kindref="member">PGA_MMUX_INVERTING_GAIN_INM2</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="72" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__pga__api_1ga8ff63cae0277ff75de1053991bbad225" prot="public" static="no">
+        <name>PGA_REGISTER_PGACTL</name>
+        <initializer>PGA_LOCK_PGACTL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>PGA Register PGACTL </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="179" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__pga__api_1gadf5ee80aa455117460a047ea4fa4f60c" prot="public" static="no">
+        <name>PGA_REGISTER_MUXSEL</name>
+        <initializer>PGA_LOCK_MUXSEL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>PGA Register MUXSEL </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="182" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="182" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__pga__api_1ga93cd1c34e78bda74e03c553a22dc4136" prot="public" static="no">
+        <name>PGA_REGISTER_OFFSETTRIM</name>
+        <initializer>PGA_LOCK_OFFSETTRIM</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>PGA Register OFFSETTRIM </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="185" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="185" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="group__pga__api_1gaee02ca5cbf724e634d3dcd61a92694d7" prot="public" static="no" strong="no">
+        <type></type>
+        <name>PGA_GainValue</name>
+        <enumvalue id="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7a11e83a211ab6b9e4459e1c95e79855af" prot="public">
+          <name>PGA_GAIN_1</name>
+          <initializer>= 0x0U</initializer>
+          <briefdescription>
+<para>PGA gain value of 1. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7abfd3d40c901d15038c46808ef84a6fb1" prot="public">
+          <name>PGA_GAIN_2</name>
+          <initializer>= 0x20U</initializer>
+          <briefdescription>
+<para>PGA gain value of 2 or -1. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7a26603720747c0c969c378c1b07c36f3a" prot="public">
+          <name>PGA_GAIN_4</name>
+          <initializer>= 0x40U</initializer>
+          <briefdescription>
+<para>PGA gain value of 4 or -3. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7aee79072ef1a849c129a99af75d1794e3" prot="public">
+          <name>PGA_GAIN_8</name>
+          <initializer>= 0x60U</initializer>
+          <briefdescription>
+<para>PGA gain value of 8 or -7. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7a9c87473b5e2f3e84c29b48d7de9747cd" prot="public">
+          <name>PGA_GAIN_16</name>
+          <initializer>= 0x80U</initializer>
+          <briefdescription>
+<para>PGA gain value of 16 or -15. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7a5df0177d1bc8b51871a2bc69f044b2dd" prot="public">
+          <name>PGA_GAIN_32</name>
+          <initializer>= 0xA0U</initializer>
+          <briefdescription>
+<para>PGA gain value of 32 or -31. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7acfa35d78e90623687f18c2f2a82796f1" prot="public">
+          <name>PGA_GAIN_64</name>
+          <initializer>= 0xC0U</initializer>
+          <briefdescription>
+<para>PGA gain value of 64 or -63. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Values that can be passed to <ref refid="group__pga__api_1gaea45311ae41f305407968abf2cb4b031" kindref="member">PGA_setGain()</ref> as the <emphasis>gainValue</emphasis> parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="79" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="80" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__pga__api_1ga64e01690db09e9f1581993f67e470ae8" prot="public" static="no" strong="no">
+        <type></type>
+        <name>PGA_LowPassResistorValue</name>
+        <enumvalue id="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8a7feecd0c5fabb05bdb8a9d3fce5cf8b2" prot="public">
+          <name>PGA_LOW_PASS_FILTER_DISABLED</name>
+          <initializer>= 0U</initializer>
+          <briefdescription>
+<para>Low pass filter disabled (open circuit) </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8a2358741ba4bcd188be4ac31c56c8b19b" prot="public">
+          <name>PGA_LOW_PASS_FILTER_RESISTOR_50_OHM</name>
+          <initializer>= 2U</initializer>
+          <briefdescription>
+<para>Resistor value of 50 Ohm. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8ad009cc85d3f17ba134c8749d7ceffb90" prot="public">
+          <name>PGA_LOW_PASS_FILTER_RESISTOR_100_OHM</name>
+          <initializer>= 4U</initializer>
+          <briefdescription>
+<para>Resistor value of 100 Ohm. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8aae5f16c8f70a885cc84cac3eecfe6de0" prot="public">
+          <name>PGA_LOW_PASS_FILTER_RESISTOR_200_OHM</name>
+          <initializer>= 6U</initializer>
+          <briefdescription>
+<para>Resistor value of 200 Ohm. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8afd013b907dac91bbad9fdb919ad3f880" prot="public">
+          <name>PGA_LOW_PASS_FILTER_RESISTOR_400_OHM</name>
+          <initializer>= 8U</initializer>
+          <briefdescription>
+<para>Resistor value of 400 Ohm. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8a0dab967b9daf2b28af0e96603818254e" prot="public">
+          <name>PGA_LOW_PASS_FILTER_RESISTOR_800_OHM</name>
+          <initializer>= 10U</initializer>
+          <briefdescription>
+<para>Resistor value of 800 Ohm. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__pga__api_1ga38cd47e4b61250ace48cec41bf0b9415" kindref="member">PGA_setFilterResistor()</ref> as the <emphasis>resistorValue</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="96" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="97" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__pga__api_1gafd688cf439b297a418e5cd789ec564b6" prot="public" static="no" strong="no">
+        <type></type>
+        <name>PGA_PMUXInput</name>
+        <enumvalue id="group__pga__api_1ggafd688cf439b297a418e5cd789ec564b6a6d121b7ca56873e482506800e94c71a5" prot="public">
+          <name>PGA_PMUX_INP1</name>
+          <initializer>= 0x00U</initializer>
+          <briefdescription>
+<para>PGA_INP1 as non-inverting input. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1ggafd688cf439b297a418e5cd789ec564b6a21877c1feefd99a192547cdcc267028e" prot="public">
+          <name>PGA_PMUX_INP2</name>
+          <initializer>= 0x01U</initializer>
+          <briefdescription>
+<para>PGA_INP2 as non-inverting input. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1ggafd688cf439b297a418e5cd789ec564b6a0d42c6475ff2cca1da77790987bf02f7" prot="public">
+          <name>PGA_PMUX_INP3</name>
+          <initializer>= 0x02U</initializer>
+          <briefdescription>
+<para>PGA_INP3 as non-inverting input. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__pga__api_1gaf44a1edb4bd30b5fe334a143d27cb92a" kindref="member">PGA_selectPMUXInput()</ref> as the <emphasis>pmuxinput</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="118" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="119" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__pga__api_1gac73959f2a2354cc572d8ceb9f66d0760" prot="public" static="no" strong="no">
+        <type></type>
+        <name>PGA_NMUXInput</name>
+        <enumvalue id="group__pga__api_1ggac73959f2a2354cc572d8ceb9f66d0760afeb67d085de50a301113750c7e73c294" prot="public">
+          <name>PGA_NMUX_RTOP</name>
+          <initializer>= 0x00U</initializer>
+          <briefdescription>
+<para>RTOP as inverting input. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1ggac73959f2a2354cc572d8ceb9f66d0760ada5f0c925b7a3ca12632f422f1e36a5c" prot="public">
+          <name>PGA_NMUX_RTAP</name>
+          <initializer>= 0x01U</initializer>
+          <briefdescription>
+<para>RTAP as inverting input. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1ggac73959f2a2354cc572d8ceb9f66d0760a6f2993c652dbbacac68f311dbad338f1" prot="public">
+          <name>PGA_NMUX_INM1</name>
+          <initializer>= 0x02U</initializer>
+          <briefdescription>
+<para>PGA_INM1 as inverting input. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1ggac73959f2a2354cc572d8ceb9f66d0760a7f28dfa434e98c141dc6dca636d34847" prot="public">
+          <name>PGA_NMUX_INM2</name>
+          <initializer>= 0x03U</initializer>
+          <briefdescription>
+<para>PGA_INM2 as inverting input. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__pga__api_1gae3373d6eed71d1f3f5328cdad1ff7310" kindref="member">PGA_selectNMUXInput()</ref> as the <emphasis>nmuxinput</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="131" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="132" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__pga__api_1ga60a73c488a3b1791ca061ad76911be2b" prot="public" static="no" strong="no">
+        <type></type>
+        <name>PGA_MMUXInput</name>
+        <enumvalue id="group__pga__api_1gga60a73c488a3b1791ca061ad76911be2baef3d2badfb9af784a3112739900b4437" prot="public">
+          <name>PGA_MMUX_STANDALONE_OPAMP</name>
+          <initializer>= 0x00U</initializer>
+          <briefdescription>
+<para>Stand alone op-amp mode. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1gga60a73c488a3b1791ca061ad76911be2baf69d8576d058f2d3eec6fb767251c700" prot="public">
+          <name>PGA_MMUX_NON_INVERTING_GAIN_VSSA</name>
+          <initializer>= 0x01U</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>VSSA as MMUX input for Non-Inverting gain mode </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1gga60a73c488a3b1791ca061ad76911be2bae6ab717d2bf0ad621825cc462d7568c0" prot="public">
+          <name>PGA_MMUX_INVERTING_GAIN_INM1</name>
+          <initializer>= 0x02U</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>PGA_INM1 as MMUX input for Inverting gain mode </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1gga60a73c488a3b1791ca061ad76911be2ba8b988ab5b19ff1cba4ececa552973a3d" prot="public">
+          <name>PGA_MMUX_INVERTING_GAIN_INM2</name>
+          <initializer>= 0x03U</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>PGA_INM2 as MMUX input for Inverting gain mode </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__pga__api_1gab6fc42d3b0e10fcfd6375489f1115ab6" kindref="member">PGA_selectMMUXInput()</ref> as the <emphasis>mmuxinput</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="145" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="146" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__pga__api_1ga51ae2596f6eec6f61eed726d9f67d7cc" prot="public" static="no" strong="no">
+        <type></type>
+        <name>PGA_Chop</name>
+        <enumvalue id="group__pga__api_1gga51ae2596f6eec6f61eed726d9f67d7ccad6e52438ff8d77539599c88c1240d6bb" prot="public">
+          <name>PGA_CHOP_DISABLE</name>
+          <initializer>= 0x00U</initializer>
+          <briefdescription>
+<para>Chopping is disabled. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1gga51ae2596f6eec6f61eed726d9f67d7ccaedaa9a97f13d779b6967d527e64eb0f9" prot="public">
+          <name>PGA_CHOP_REGULAR_INTOSC</name>
+          <initializer>= 0x01U</initializer>
+          <briefdescription>
+<para>Regular chopping using INTOSC. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1gga51ae2596f6eec6f61eed726d9f67d7cca356105bc00825bbc2dcfecfba4bc9dab" prot="public">
+          <name>PGA_CHOP_ADC_ASSISTED_ADCSOC</name>
+          <initializer>= 0x02U</initializer>
+          <briefdescription>
+<para>ADC assisted chop using ADCSOC. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__pga__api_1gga51ae2596f6eec6f61eed726d9f67d7cca49fc198aa6062b64637b2c0b9fc7a65e" prot="public">
+          <name>PGA_CHOP_ADC_ASSISTED_EXTCTRL</name>
+          <initializer>= 0x03U</initializer>
+          <briefdescription>
+<para>PGA_CHOP_EXTCTRL. </para>
+          </briefdescription>
+          <detaileddescription>
+<para>ADC assisted chop using </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Values that can be passed to <ref refid="group__pga__api_1ga51ae2596f6eec6f61eed726d9f67d7cc" kindref="member">PGA_Chop()</ref> as the <emphasis>chop</emphasis> parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="161" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="162" bodyend="168"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__pga__api_1gaf9d4238d864c93525ae9bf33f9b33112" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void PGA_enable</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>PGA_enable</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables PGA.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the PGA module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables the PGA module.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="220" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="220" bodyend="230"/>
+      </memberdef>
+      <memberdef kind="function" id="group__pga__api_1ga378c56dc2f3ae636dbb925f905e9bd0e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void PGA_disable</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>PGA_disable</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables PGA.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the PGA module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables the PGA module.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="243" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="243" bodyend="253"/>
+      </memberdef>
+      <memberdef kind="function" id="group__pga__api_1gaea45311ae41f305407968abf2cb4b031" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void PGA_setGain</definition>
+        <argsstring>(uint32_t base, PGA_GainValue gainValue)</argsstring>
+        <name>PGA_setGain</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__pga__api_1gaee02ca5cbf724e634d3dcd61a92694d7" kindref="member">PGA_GainValue</ref></type>
+          <declname>gainValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets PGA gain value.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the PGA module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>gainValue</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the PGA gain value.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the PGA gain value.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="267" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="267" bodyend="279"/>
+      </memberdef>
+      <memberdef kind="function" id="group__pga__api_1ga38cd47e4b61250ace48cec41bf0b9415" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void PGA_setFilterResistor</definition>
+        <argsstring>(uint32_t base, PGA_LowPassResistorValue resistorValue)</argsstring>
+        <name>PGA_setFilterResistor</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__pga__api_1ga64e01690db09e9f1581993f67e470ae8" kindref="member">PGA_LowPassResistorValue</ref></type>
+          <declname>resistorValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets PGA output filter resistor value.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the PGA module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>resistorValue</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the PGA output resistor value.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the resistor value for the PGA output low pass RC filter. The resistance for the RC low pass filter is provided within the microprocessor and is determined by the value of resistorValue. The capacitor, however, has to be connected outside the microprocessor.</para>
+<para><bold>Note:</bold> Setting a value of PGA_LOW_PASS_FILTER_RESISTOR_0_OHM will disable the internal resistance value.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="299" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="299" bodyend="313"/>
+      </memberdef>
+      <memberdef kind="function" id="group__pga__api_1ga3ae36bf1e467d541945ab30a7da061f4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void PGA_enableOutput</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>PGA_enableOutput</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enable PGA output on the pin.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the PGA module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function send the PGA output to the pin.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="327" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="327" bodyend="334"/>
+      </memberdef>
+      <memberdef kind="function" id="group__pga__api_1ga288bd6d2b2cf7a69aaebd552847e20aa" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void PGA_disableOutput</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>PGA_disableOutput</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disable PGA output on the pin.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the PGA module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function prevents the PGA output to the pin.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="348" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="348" bodyend="356"/>
+      </memberdef>
+      <memberdef kind="function" id="group__pga__api_1ga238bdc322be87aa9251b657533ddeef3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void PGA_enableInternalGainOutput</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>PGA_enableInternalGainOutput</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enable PGA internal gain output on the pin.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the PGA module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function send the PGA internal gain output to the pin.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="370" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="370" bodyend="378"/>
+      </memberdef>
+      <memberdef kind="function" id="group__pga__api_1ga6c27696e695747587731e522b7a6b768" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void PGA_disableInternalGainOutput</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>PGA_disableInternalGainOutput</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disable PGA internal gain output on the pin.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the PGA module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function prevents the PGA internal gain output to the pin.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="392" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="392" bodyend="400"/>
+      </memberdef>
+      <memberdef kind="function" id="group__pga__api_1gaff3933d60a95426d528d0e11b894ce40" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void PGA_enableExternalChop</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>PGA_enableExternalChop</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enable external Chopping signal for PGA.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the PGA module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables the external chopping signal for PGA.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="413" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="413" bodyend="421"/>
+      </memberdef>
+      <memberdef kind="function" id="group__pga__api_1ga84b84d9dd219b564883ae83e1563730c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void PGA_disableExternalChop</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>PGA_disableExternalChop</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disable external Chopping signal for PGA.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the PGA module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables the external chopping signal for PGA.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="434" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="434" bodyend="442"/>
+      </memberdef>
+      <memberdef kind="function" id="group__pga__api_1gaf44a1edb4bd30b5fe334a143d27cb92a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void PGA_selectPMUXInput</definition>
+        <argsstring>(uint32_t base, PGA_PMUXInput pmuxinput)</argsstring>
+        <name>PGA_selectPMUXInput</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__pga__api_1gafd688cf439b297a418e5cd789ec564b6" kindref="member">PGA_PMUXInput</ref></type>
+          <declname>pmuxinput</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Selects PGA positive input Mux source.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the PGA module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pmuxinput</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is source of the Mux&apos;s positive input.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function selects the whether the positive input of the Mux will be connected with PGA_POS pin or VSSA by <emphasis>pmuxinput</emphasis>. Valid values for <emphasis>pmuxinput</emphasis> are:<itemizedlist>
+<listitem><para><emphasis>PGA_PMUX_POS</emphasis> - PGA_POS pin will be selected as non-inverting input.</para>
+</listitem><listitem><para><emphasis>PGA_PMUX_VSSA</emphasis> - Positive pin will be grounded or VSSA will be connected as non-inverting input.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="461" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="461" bodyend="470"/>
+      </memberdef>
+      <memberdef kind="function" id="group__pga__api_1gae3373d6eed71d1f3f5328cdad1ff7310" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void PGA_selectNMUXInput</definition>
+        <argsstring>(uint32_t base, PGA_NMUXInput nmuxinput)</argsstring>
+        <name>PGA_selectNMUXInput</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__pga__api_1gac73959f2a2354cc572d8ceb9f66d0760" kindref="member">PGA_NMUXInput</ref></type>
+          <declname>nmuxinput</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Selects PGA negative input Mux source.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the PGA module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nmuxinput</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is source of the Mux&apos;s negative input.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function selects the source for the negative input of the Mux by <emphasis>nmuxinput</emphasis>. Valid values for <emphasis>nmuxinput</emphasis> are:<itemizedlist>
+<listitem><para><emphasis>PGA_NMUX_RTOP</emphasis> - RTOP(inter gain resistor tap point) will be selected as inverting input</para>
+</listitem><listitem><para><emphasis>PGA_NMUX_RTAP</emphasis> - RTAP(pre gain resistor tap point) will be selected as inverting input</para>
+</listitem><listitem><para><emphasis>PGA_NMUX_NEG</emphasis> - PGA_NEG pin will be selected as inverting input.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="490" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="490" bodyend="500"/>
+      </memberdef>
+      <memberdef kind="function" id="group__pga__api_1gab6fc42d3b0e10fcfd6375489f1115ab6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void PGA_selectMMUXInput</definition>
+        <argsstring>(uint32_t base, PGA_MMUXInput mmuxinput)</argsstring>
+        <name>PGA_selectMMUXInput</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__pga__api_1ga60a73c488a3b1791ca061ad76911be2b" kindref="member">PGA_MMUXInput</ref></type>
+          <declname>mmuxinput</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Selects input source of the M-Mux.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the PGA module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mmuxinput</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is source of the Mux&apos;s negative input.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function selects the input source for the M-Mux by <emphasis>mmuxinput</emphasis>. Valid values for <emphasis>mmuxinput</emphasis> are:<itemizedlist>
+<listitem><para><emphasis>PGA_MMUX_NAKED_OPAMP</emphasis> - VSSA will be connected as M-Mux input source</para>
+</listitem><listitem><para><emphasis>PGA_MMUX_NON_INVERTING_GAIN_VSSA</emphasis> - VSSA_RESARRAY will be connected to M-Mux input for non-inverting gain settings</para>
+</listitem><listitem><para><emphasis>PGA_MMUX_INVERTING_GAIN_NEG</emphasis> - PGA_NEG pin will be connected as M-Mux input source for inverting gain settings</para>
+</listitem><listitem><para><emphasis>PGA_MMUX_INVERTING_GAIN_NEG_SHARED</emphasis> - PGA_NEG_SHARED will be connected as M-Mux input source for inverting gain settings</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="522" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="522" bodyend="532"/>
+      </memberdef>
+      <memberdef kind="function" id="group__pga__api_1ga8cc680f422fd7d8a5ec4025e648ac20f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void PGA_configurefeedbackOnPin</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>PGA_configurefeedbackOnPin</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Configures feedback to PGA negative input pin.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the PGA module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures feedback to PGA negative input pin and connects PGA_NEG and PGA inverting input.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="546" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="546" bodyend="554"/>
+      </memberdef>
+      <memberdef kind="function" id="group__pga__api_1ga77d53480733618217f30b4cbfda3166a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void PGA_chop</definition>
+        <argsstring>(uint32_t base, PGA_Chop chop)</argsstring>
+        <name>PGA_chop</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__pga__api_1ga51ae2596f6eec6f61eed726d9f67d7cc" kindref="member">PGA_Chop</ref></type>
+          <declname>chop</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Selects PGA chop mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the PGA module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>chop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the chop mode.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function selects the chopping mode to reduce the input offset to a very small number (~uV level).</para>
+<para><emphasis>chop</emphasis> is the chop mode to be selected. Valid values for this parameter can be referred from the enum <emphasis>PGA_Chop</emphasis>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="572" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="572" bodyend="581"/>
+      </memberdef>
+      <memberdef kind="function" id="group__pga__api_1ga771069dcfdf9c38f170f22d65badee31" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>static uint16_t PGA_getPGARevision</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>PGA_getPGARevision</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the PGA revision number.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the PGA module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns the PGA revision number.</para>
+<para><simplesect kind="return"><para>Returns PGA revision. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="594" column="24" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="594" bodyend="603"/>
+      </memberdef>
+      <memberdef kind="function" id="group__pga__api_1ga380b2004773df3d72b35c728dcb411cd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>static uint16_t PGA_getPGAType</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>PGA_getPGAType</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the PGA Type.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the PGA module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns the PGA Type number.</para>
+<para><simplesect kind="return"><para>Returns PGA type. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="616" column="24" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="616" bodyend="625"/>
+      </memberdef>
+      <memberdef kind="function" id="group__pga__api_1ga551ea1cea4dd63958068a7d88dce9985" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void PGA_lockRegisters</definition>
+        <argsstring>(uint32_t base, uint16_t registerType)</argsstring>
+        <name>PGA_lockRegisters</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>registerType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Locks PGA registers.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the PGA module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>registerType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the PGA register to be locked.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function locks the PGA registers specified by registerType. Valid values for registerType are: PGA_REGISTER_PGACTL, PGA_REGISTER_MUXSEL and PGA_REGISTER_OFFSETTRIM</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="641" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" bodystart="641" bodyend="653"/>
+      </memberdef>
+      <memberdef kind="function" id="group__pga__api_1ga7628602e396f6f4e3e49fc4ce2a921e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void PGA_setOffsetTrimNMOS</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>PGA_setOffsetTrimNMOS</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Configures the offset trim for NMOS pair of the desired PGA instance</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the PGA module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function loads the offset trims for NMOS pair of the desired PGA instance.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="668" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" declline="668" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__pga__api_1gaca874192d986e8fd00e32da874bbc73d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void PGA_setOffsetTrimPMOS</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>PGA_setOffsetTrimPMOS</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Configures the offset trim for PMOS pair of the desired PGA instance</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the PGA module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function loads the offset trims for PMOS pair of the desired PGA instance.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" line="683" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h" declline="683" declcolumn="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//###########################################################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>FILE:<sp/><sp/><sp/>pga.h</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>TITLE:<sp/><sp/>C28x<sp/>PGA<sp/>driver.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//###########################################################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>$Copyright:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(C)<sp/>2026<sp/>Texas<sp/>Instruments<sp/>Incorporated<sp/>-<sp/>http://www.ti.com/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Redistribution<sp/>and<sp/>use<sp/>in<sp/>source<sp/>and<sp/>binary<sp/>forms,<sp/>with<sp/>or<sp/>without<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>modification,<sp/>are<sp/>permitted<sp/>provided<sp/>that<sp/>the<sp/>following<sp/>conditions<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>are<sp/>met:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>Redistributions<sp/>of<sp/>source<sp/>code<sp/>must<sp/>retain<sp/>the<sp/>above<sp/>copyright<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>Redistributions<sp/>in<sp/>binary<sp/>form<sp/>must<sp/>reproduce<sp/>the<sp/>above<sp/>copyright</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer<sp/>in<sp/>the<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>documentation<sp/>and/or<sp/>other<sp/>materials<sp/>provided<sp/>with<sp/>the<sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>distribution.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>Neither<sp/>the<sp/>name<sp/>of<sp/>Texas<sp/>Instruments<sp/>Incorporated<sp/>nor<sp/>the<sp/>names<sp/>of</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>its<sp/>contributors<sp/>may<sp/>be<sp/>used<sp/>to<sp/>endorse<sp/>or<sp/>promote<sp/>products<sp/>derived</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>from<sp/>this<sp/>software<sp/>without<sp/>specific<sp/>prior<sp/>written<sp/>permission.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>THIS<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>BY<sp/>THE<sp/>COPYRIGHT<sp/>HOLDERS<sp/>AND<sp/>CONTRIBUTORS<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>ANY<sp/>EXPRESS<sp/>OR<sp/>IMPLIED<sp/>WARRANTIES,<sp/>INCLUDING,<sp/>BUT<sp/>NOT<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>LIMITED<sp/>TO,<sp/>THE<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS<sp/>FOR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>ARE<sp/>DISCLAIMED.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>COPYRIGHT<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>OWNER<sp/>OR<sp/>CONTRIBUTORS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>DIRECT,<sp/>INDIRECT,<sp/>INCIDENTAL,<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPECIAL,<sp/>EXEMPLARY,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>(INCLUDING,<sp/>BUT<sp/>NOT<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>LIMITED<sp/>TO,<sp/>PROCUREMENT<sp/>OF<sp/>SUBSTITUTE<sp/>GOODS<sp/>OR<sp/>SERVICES;<sp/>LOSS<sp/>OF<sp/>USE,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>DATA,<sp/>OR<sp/>PROFITS;<sp/>OR<sp/>BUSINESS<sp/>INTERRUPTION)<sp/>HOWEVER<sp/>CAUSED<sp/>AND<sp/>ON<sp/>ANY</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>THEORY<sp/>OF<sp/>LIABILITY,<sp/>WHETHER<sp/>IN<sp/>CONTRACT,<sp/>STRICT<sp/>LIABILITY,<sp/>OR<sp/>TORT<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/>(INCLUDING<sp/>NEGLIGENCE<sp/>OR<sp/>OTHERWISE)<sp/>ARISING<sp/>IN<sp/>ANY<sp/>WAY<sp/>OUT<sp/>OF<sp/>THE<sp/>USE<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>OF<sp/>THIS<sp/>SOFTWARE,<sp/>EVEN<sp/>IF<sp/>ADVISED<sp/>OF<sp/>THE<sp/>POSSIBILITY<sp/>OF<sp/>SUCH<sp/>DAMAGE.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">//<sp/>$</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//###########################################################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>PGA_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PGA_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>If<sp/>building<sp/>with<sp/>a<sp/>C++<sp/>compiler,<sp/>make<sp/>all<sp/>of<sp/>the<sp/>definitions<sp/>in<sp/>this<sp/>header</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>have<sp/>a<sp/>C<sp/>binding.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;inc/hw_pga.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;inc/hw_memmap.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;inc/hw_types.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cpu.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;debug.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="group__pga__api_1ga514b75639106aa6179e982389ff0bc2d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PGA_MMUX_NAKED_OPAMP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PGA_MMUX_STANDALONE_OPAMP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="group__pga__api_1ga6534ba2411a3d0aab5a39354ce7eee3e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PGA_MMUX_INVERTING_GAIN_NEG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PGA_MMUX_INVERTING_GAIN_INM1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="group__pga__api_1ga3cdff931071a23c60c2714c317e3d2c5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PGA_MMUX_INVERTING_GAIN_NEG_SHARED<sp/><sp/><sp/><sp/><sp/><sp/>PGA_MMUX_INVERTING_GAIN_INM2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="77"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="group__pga__api_1gaee02ca5cbf724e634d3dcd61a92694d7" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="81" refid="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7a11e83a211ab6b9e4459e1c95e79855af" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7a11e83a211ab6b9e4459e1c95e79855af" kindref="member">PGA_GAIN_1</ref><sp/>=<sp/>0x0U,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="82" refid="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7abfd3d40c901d15038c46808ef84a6fb1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7abfd3d40c901d15038c46808ef84a6fb1" kindref="member">PGA_GAIN_2</ref><sp/>=<sp/>0x20U,<sp/><sp/></highlight></codeline>
+<codeline lineno="83" refid="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7a26603720747c0c969c378c1b07c36f3a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7a26603720747c0c969c378c1b07c36f3a" kindref="member">PGA_GAIN_4</ref><sp/>=<sp/>0x40U,<sp/><sp/></highlight></codeline>
+<codeline lineno="84" refid="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7aee79072ef1a849c129a99af75d1794e3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7aee79072ef1a849c129a99af75d1794e3" kindref="member">PGA_GAIN_8</ref><sp/>=<sp/>0x60U,<sp/><sp/></highlight></codeline>
+<codeline lineno="85" refid="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7a9c87473b5e2f3e84c29b48d7de9747cd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7a9c87473b5e2f3e84c29b48d7de9747cd" kindref="member">PGA_GAIN_16</ref><sp/>=<sp/>0x80U,<sp/></highlight></codeline>
+<codeline lineno="86" refid="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7a5df0177d1bc8b51871a2bc69f044b2dd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7a5df0177d1bc8b51871a2bc69f044b2dd" kindref="member">PGA_GAIN_32</ref><sp/>=<sp/>0xA0U,<sp/></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7acfa35d78e90623687f18c2f2a82796f1" kindref="member">PGA_GAIN_64</ref><sp/>=<sp/>0xC0U<sp/><sp/></highlight></codeline>
+<codeline lineno="88" refid="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7acfa35d78e90623687f18c2f2a82796f1" refkind="member"><highlight class="normal">}<ref refid="group__pga__api_1gaee02ca5cbf724e634d3dcd61a92694d7" kindref="member">PGA_GainValue</ref>;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="94"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="group__pga__api_1ga64e01690db09e9f1581993f67e470ae8" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="99" refid="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8a7feecd0c5fabb05bdb8a9d3fce5cf8b2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8a7feecd0c5fabb05bdb8a9d3fce5cf8b2" kindref="member">PGA_LOW_PASS_FILTER_DISABLED</ref><sp/>=<sp/>0U,</highlight></codeline>
+<codeline lineno="101" refid="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8a2358741ba4bcd188be4ac31c56c8b19b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8a2358741ba4bcd188be4ac31c56c8b19b" kindref="member">PGA_LOW_PASS_FILTER_RESISTOR_50_OHM</ref><sp/>=<sp/>2U,</highlight></codeline>
+<codeline lineno="103" refid="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8ad009cc85d3f17ba134c8749d7ceffb90" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8ad009cc85d3f17ba134c8749d7ceffb90" kindref="member">PGA_LOW_PASS_FILTER_RESISTOR_100_OHM</ref><sp/>=<sp/>4U,</highlight></codeline>
+<codeline lineno="105" refid="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8aae5f16c8f70a885cc84cac3eecfe6de0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8aae5f16c8f70a885cc84cac3eecfe6de0" kindref="member">PGA_LOW_PASS_FILTER_RESISTOR_200_OHM</ref><sp/>=<sp/>6U,</highlight></codeline>
+<codeline lineno="107" refid="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8afd013b907dac91bbad9fdb919ad3f880" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8afd013b907dac91bbad9fdb919ad3f880" kindref="member">PGA_LOW_PASS_FILTER_RESISTOR_400_OHM</ref><sp/>=<sp/>8U,</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8a0dab967b9daf2b28af0e96603818254e" kindref="member">PGA_LOW_PASS_FILTER_RESISTOR_800_OHM</ref><sp/>=<sp/>10U</highlight></codeline>
+<codeline lineno="110" refid="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8a0dab967b9daf2b28af0e96603818254e" refkind="member"><highlight class="normal">}<ref refid="group__pga__api_1ga64e01690db09e9f1581993f67e470ae8" kindref="member">PGA_LowPassResistorValue</ref>;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="116"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="group__pga__api_1gafd688cf439b297a418e5cd789ec564b6" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="120" refid="group__pga__api_1ggafd688cf439b297a418e5cd789ec564b6a6d121b7ca56873e482506800e94c71a5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1ggafd688cf439b297a418e5cd789ec564b6a6d121b7ca56873e482506800e94c71a5" kindref="member">PGA_PMUX_INP1</ref><sp/><sp/>=<sp/>0x00U,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="121" refid="group__pga__api_1ggafd688cf439b297a418e5cd789ec564b6a21877c1feefd99a192547cdcc267028e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1ggafd688cf439b297a418e5cd789ec564b6a21877c1feefd99a192547cdcc267028e" kindref="member">PGA_PMUX_INP2</ref><sp/><sp/>=<sp/>0x01U,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1ggafd688cf439b297a418e5cd789ec564b6a0d42c6475ff2cca1da77790987bf02f7" kindref="member">PGA_PMUX_INP3</ref><sp/><sp/>=<sp/>0x02U<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="123" refid="group__pga__api_1ggafd688cf439b297a418e5cd789ec564b6a0d42c6475ff2cca1da77790987bf02f7" refkind="member"><highlight class="normal">}<ref refid="group__pga__api_1gafd688cf439b297a418e5cd789ec564b6" kindref="member">PGA_PMUXInput</ref>;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="129"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131" refid="group__pga__api_1gac73959f2a2354cc572d8ceb9f66d0760" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="133" refid="group__pga__api_1ggac73959f2a2354cc572d8ceb9f66d0760afeb67d085de50a301113750c7e73c294" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1ggac73959f2a2354cc572d8ceb9f66d0760afeb67d085de50a301113750c7e73c294" kindref="member">PGA_NMUX_RTOP</ref><sp/>=<sp/>0x00U,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="134" refid="group__pga__api_1ggac73959f2a2354cc572d8ceb9f66d0760ada5f0c925b7a3ca12632f422f1e36a5c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1ggac73959f2a2354cc572d8ceb9f66d0760ada5f0c925b7a3ca12632f422f1e36a5c" kindref="member">PGA_NMUX_RTAP</ref><sp/>=<sp/>0x01U,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="135" refid="group__pga__api_1ggac73959f2a2354cc572d8ceb9f66d0760a6f2993c652dbbacac68f311dbad338f1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1ggac73959f2a2354cc572d8ceb9f66d0760a6f2993c652dbbacac68f311dbad338f1" kindref="member">PGA_NMUX_INM1</ref><sp/>=<sp/>0x02U,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1ggac73959f2a2354cc572d8ceb9f66d0760a7f28dfa434e98c141dc6dca636d34847" kindref="member">PGA_NMUX_INM2</ref><sp/>=<sp/>0x03U<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="137" refid="group__pga__api_1ggac73959f2a2354cc572d8ceb9f66d0760a7f28dfa434e98c141dc6dca636d34847" refkind="member"><highlight class="normal">}<ref refid="group__pga__api_1gac73959f2a2354cc572d8ceb9f66d0760" kindref="member">PGA_NMUXInput</ref>;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="143"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145" refid="group__pga__api_1ga60a73c488a3b1791ca061ad76911be2b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="147" refid="group__pga__api_1gga60a73c488a3b1791ca061ad76911be2baef3d2badfb9af784a3112739900b4437" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1gga60a73c488a3b1791ca061ad76911be2baef3d2badfb9af784a3112739900b4437" kindref="member">PGA_MMUX_STANDALONE_OPAMP</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0x00U,<sp/></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1gga60a73c488a3b1791ca061ad76911be2baf69d8576d058f2d3eec6fb767251c700" kindref="member">PGA_MMUX_NON_INVERTING_GAIN_VSSA</ref><sp/><sp/><sp/>=<sp/>0x01U,<sp/></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1gga60a73c488a3b1791ca061ad76911be2bae6ab717d2bf0ad621825cc462d7568c0" kindref="member">PGA_MMUX_INVERTING_GAIN_INM1</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0x02U,<sp/></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1gga60a73c488a3b1791ca061ad76911be2ba8b988ab5b19ff1cba4ececa552973a3d" kindref="member">PGA_MMUX_INVERTING_GAIN_INM2</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0x03U<sp/><sp/></highlight></codeline>
+<codeline lineno="154" refid="group__pga__api_1gga60a73c488a3b1791ca061ad76911be2ba8b988ab5b19ff1cba4ececa552973a3d" refkind="member"><highlight class="normal">}<ref refid="group__pga__api_1ga60a73c488a3b1791ca061ad76911be2b" kindref="member">PGA_MMUXInput</ref>;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="159"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161" refid="group__pga__api_1ga51ae2596f6eec6f61eed726d9f67d7cc" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="163" refid="group__pga__api_1gga51ae2596f6eec6f61eed726d9f67d7ccad6e52438ff8d77539599c88c1240d6bb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1gga51ae2596f6eec6f61eed726d9f67d7ccad6e52438ff8d77539599c88c1240d6bb" kindref="member">PGA_CHOP_DISABLE</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0x00U,<sp/></highlight></codeline>
+<codeline lineno="164" refid="group__pga__api_1gga51ae2596f6eec6f61eed726d9f67d7ccaedaa9a97f13d779b6967d527e64eb0f9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1gga51ae2596f6eec6f61eed726d9f67d7ccaedaa9a97f13d779b6967d527e64eb0f9" kindref="member">PGA_CHOP_REGULAR_INTOSC</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0x01U,<sp/></highlight></codeline>
+<codeline lineno="165" refid="group__pga__api_1gga51ae2596f6eec6f61eed726d9f67d7cca356105bc00825bbc2dcfecfba4bc9dab" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1gga51ae2596f6eec6f61eed726d9f67d7cca356105bc00825bbc2dcfecfba4bc9dab" kindref="member">PGA_CHOP_ADC_ASSISTED_ADCSOC</ref><sp/><sp/><sp/><sp/>=<sp/>0x02U,<sp/></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1gga51ae2596f6eec6f61eed726d9f67d7cca49fc198aa6062b64637b2c0b9fc7a65e" kindref="member">PGA_CHOP_ADC_ASSISTED_EXTCTRL</ref><sp/><sp/><sp/>=<sp/>0x03U<sp/><sp/></highlight></codeline>
+<codeline lineno="168" refid="group__pga__api_1gga51ae2596f6eec6f61eed726d9f67d7cca49fc198aa6062b64637b2c0b9fc7a65e" refkind="member"><highlight class="normal">}<ref refid="group__pga__api_1ga51ae2596f6eec6f61eed726d9f67d7cc" kindref="member">PGA_Chop</ref>;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Values<sp/>that<sp/>can<sp/>be<sp/>passed<sp/>to<sp/>PGA_lockRegisters()<sp/>as<sp/>the<sp/>registerType</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight><highlight class="comment">//<sp/>parameter.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight></codeline>
+<codeline lineno="179" refid="group__pga__api_1ga8ff63cae0277ff75de1053991bbad225" refkind="member"><highlight class="comment"></highlight><highlight class="preprocessor">#define<sp/>PGA_REGISTER_PGACTL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PGA_LOCK_PGACTL</highlight></codeline>
+<codeline lineno="182" refid="group__pga__api_1gadf5ee80aa455117460a047ea4fa4f60c" refkind="member"><highlight class="preprocessor">#define<sp/>PGA_REGISTER_MUXSEL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PGA_LOCK_MUXSEL</highlight></codeline>
+<codeline lineno="185" refid="group__pga__api_1ga93cd1c34e78bda74e03c553a22dc4136" refkind="member"><highlight class="preprocessor">#define<sp/>PGA_REGISTER_OFFSETTRIM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PGA_LOCK_OFFSETTRIM</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="198"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>PGA_isBaseValid(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="202"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(base<sp/>==<sp/>PGA1_BASE)</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="206"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="218"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220" refid="group__pga__api_1gaf9d4238d864c93525ae9bf33f9b33112" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__pga__api_1gaf9d4238d864c93525ae9bf33f9b33112" kindref="member">PGA_enable</ref>(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="221"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/>ASSERT(PGA_isBaseValid(base));</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>PGAEN<sp/>bit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/>EALLOW;</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/>HWREG(base<sp/>+<sp/>PGA_O_CTL)<sp/>|=<sp/>(uint32_t)PGA_CTL_PGAEN;</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/>EDIS;</highlight></codeline>
+<codeline lineno="230"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="233"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="241"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="243" refid="group__pga__api_1ga378c56dc2f3ae636dbb925f905e9bd0e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__pga__api_1ga378c56dc2f3ae636dbb925f905e9bd0e" kindref="member">PGA_disable</ref>(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="244"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/>ASSERT(PGA_isBaseValid(base));</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"></highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Clear<sp/>PGAEN<sp/>bit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/>EALLOW;</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/>HWREG(base<sp/>+<sp/>PGA_O_CTL)<sp/>&amp;=<sp/>~((uint32_t)PGA_CTL_PGAEN);</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/>EDIS;</highlight></codeline>
+<codeline lineno="253"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="256"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="265"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="266"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="267" refid="group__pga__api_1gaea45311ae41f305407968abf2cb4b031" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__pga__api_1gaea45311ae41f305407968abf2cb4b031" kindref="member">PGA_setGain</ref>(uint32_t<sp/>base,<sp/><ref refid="group__pga__api_1gaee02ca5cbf724e634d3dcd61a92694d7" kindref="member">PGA_GainValue</ref><sp/>gainValue)</highlight></codeline>
+<codeline lineno="268"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(PGA_isBaseValid(base));</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"></highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Write<sp/>to<sp/>the<sp/>GAIN<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/>EALLOW;</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREG(base<sp/>+<sp/>PGA_O_CTL)<sp/>=<sp/>((HWREG(base<sp/>+<sp/>PGA_O_CTL)<sp/>&amp;</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>~((uint32_t)PGA_CTL_GAIN_M))<sp/>|</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(uint16_t)gainValue);</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/>EDIS;</highlight></codeline>
+<codeline lineno="279"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="297"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="298"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="299" refid="group__pga__api_1ga38cd47e4b61250ace48cec41bf0b9415" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__pga__api_1ga38cd47e4b61250ace48cec41bf0b9415" kindref="member">PGA_setFilterResistor</ref>(uint32_t<sp/>base,</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__pga__api_1ga64e01690db09e9f1581993f67e470ae8" kindref="member">PGA_LowPassResistorValue</ref><sp/>resistorValue)</highlight></codeline>
+<codeline lineno="301"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(PGA_isBaseValid(base));</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"></highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Write<sp/>to<sp/>the<sp/>FILTRESSEL<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/>EALLOW;</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>PGA_O_CTL)<sp/>=</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((HWREGH(base<sp/>+<sp/>PGA_O_CTL)<sp/>&amp;</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>~((uint16_t)PGA_CTL_FILT_RES_SEL_M))<sp/>|</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(uint16_t)resistorValue);</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/>EDIS;</highlight></codeline>
+<codeline lineno="313"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"></highlight></codeline>
+<codeline lineno="315"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="316"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="324"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="326"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="327" refid="group__pga__api_1ga3ae36bf1e467d541945ab30a7da061f4" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__pga__api_1ga3ae36bf1e467d541945ab30a7da061f4" kindref="member">PGA_enableOutput</ref>(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="328"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"></highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/>EALLOW;</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>PGA_O_CTL)<sp/>|=<sp/>(uint16_t)PGA_CTL_PGA_OUTENABLE;</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/>EDIS;</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"></highlight></codeline>
+<codeline lineno="334"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"></highlight></codeline>
+<codeline lineno="336"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="337"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="345"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="346"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="347"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="348" refid="group__pga__api_1ga288bd6d2b2cf7a69aaebd552847e20aa" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__pga__api_1ga288bd6d2b2cf7a69aaebd552847e20aa" kindref="member">PGA_disableOutput</ref>(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="349"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(PGA_isBaseValid(base));</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"></highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/>EALLOW;</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>PGA_O_CTL)<sp/>&amp;=<sp/>~((uint16_t)PGA_CTL_PGA_OUTENABLE);</highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/>EDIS;</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"></highlight></codeline>
+<codeline lineno="356"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"></highlight></codeline>
+<codeline lineno="358"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="359"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="367"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="368"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="369"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="370" refid="group__pga__api_1ga238bdc322be87aa9251b657533ddeef3" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__pga__api_1ga238bdc322be87aa9251b657533ddeef3" kindref="member">PGA_enableInternalGainOutput</ref>(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="371"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(PGA_isBaseValid(base));</highlight></codeline>
+<codeline lineno="373"><highlight class="normal"></highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/><sp/><sp/>EALLOW;</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>PGA_O_CTL)<sp/>|=<sp/>(uint16_t)PGA_CTL_PGA_OUTEN_INTGAIN;</highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/>EDIS;</highlight></codeline>
+<codeline lineno="377"><highlight class="normal"></highlight></codeline>
+<codeline lineno="378"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="379"><highlight class="normal"></highlight></codeline>
+<codeline lineno="380"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="381"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="389"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="390"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="391"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="392" refid="group__pga__api_1ga6c27696e695747587731e522b7a6b768" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__pga__api_1ga6c27696e695747587731e522b7a6b768" kindref="member">PGA_disableInternalGainOutput</ref>(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="393"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="394"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(PGA_isBaseValid(base));</highlight></codeline>
+<codeline lineno="395"><highlight class="normal"></highlight></codeline>
+<codeline lineno="396"><highlight class="normal"><sp/><sp/><sp/><sp/>EALLOW;</highlight></codeline>
+<codeline lineno="397"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>PGA_O_CTL)<sp/>&amp;=<sp/>~((uint16_t)PGA_CTL_PGA_OUTEN_INTGAIN);</highlight></codeline>
+<codeline lineno="398"><highlight class="normal"><sp/><sp/><sp/><sp/>EDIS;</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"></highlight></codeline>
+<codeline lineno="400"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="401"><highlight class="normal"></highlight></codeline>
+<codeline lineno="402"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="403"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="411"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="412"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="413" refid="group__pga__api_1gaff3933d60a95426d528d0e11b894ce40" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__pga__api_1gaff3933d60a95426d528d0e11b894ce40" kindref="member">PGA_enableExternalChop</ref>(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="414"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="415"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(PGA_isBaseValid(base));</highlight></codeline>
+<codeline lineno="416"><highlight class="normal"></highlight></codeline>
+<codeline lineno="417"><highlight class="normal"><sp/><sp/><sp/><sp/>EALLOW;</highlight></codeline>
+<codeline lineno="418"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>PGA_O_CTL)<sp/>|=<sp/>(uint16_t)PGA_CTL_CHOP_EXTCTRL;</highlight></codeline>
+<codeline lineno="419"><highlight class="normal"><sp/><sp/><sp/><sp/>EDIS;</highlight></codeline>
+<codeline lineno="420"><highlight class="normal"></highlight></codeline>
+<codeline lineno="421"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="422"><highlight class="normal"></highlight></codeline>
+<codeline lineno="423"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="424"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="432"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="433"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="434" refid="group__pga__api_1ga84b84d9dd219b564883ae83e1563730c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__pga__api_1ga84b84d9dd219b564883ae83e1563730c" kindref="member">PGA_disableExternalChop</ref>(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="435"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="436"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(PGA_isBaseValid(base));</highlight></codeline>
+<codeline lineno="437"><highlight class="normal"></highlight></codeline>
+<codeline lineno="438"><highlight class="normal"><sp/><sp/><sp/><sp/>EALLOW;</highlight></codeline>
+<codeline lineno="439"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>PGA_O_CTL)<sp/>&amp;=<sp/>~((uint16_t)PGA_CTL_CHOP_EXTCTRL);</highlight></codeline>
+<codeline lineno="440"><highlight class="normal"><sp/><sp/><sp/><sp/>EDIS;</highlight></codeline>
+<codeline lineno="441"><highlight class="normal"></highlight></codeline>
+<codeline lineno="442"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="443"><highlight class="normal"></highlight></codeline>
+<codeline lineno="444"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="445"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="459"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="460"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="461" refid="group__pga__api_1gaf44a1edb4bd30b5fe334a143d27cb92a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__pga__api_1gaf44a1edb4bd30b5fe334a143d27cb92a" kindref="member">PGA_selectPMUXInput</ref>(uint32_t<sp/>base,<sp/><ref refid="group__pga__api_1gafd688cf439b297a418e5cd789ec564b6" kindref="member">PGA_PMUXInput</ref><sp/>pmuxinput)</highlight></codeline>
+<codeline lineno="462"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="463"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(PGA_isBaseValid(base));</highlight></codeline>
+<codeline lineno="464"><highlight class="normal"></highlight></codeline>
+<codeline lineno="465"><highlight class="normal"><sp/><sp/><sp/><sp/>EALLOW;</highlight></codeline>
+<codeline lineno="466"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>PGA_O_MUXSEL)<sp/>=<sp/>(HWREGH(base<sp/>+<sp/>PGA_O_MUXSEL)<sp/>&amp;</highlight></codeline>
+<codeline lineno="467"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>~PGA_MUXSEL_PMUXSEL_M)<sp/>|<sp/>(uint16_t)pmuxinput;</highlight></codeline>
+<codeline lineno="468"><highlight class="normal"><sp/><sp/><sp/><sp/>EDIS;</highlight></codeline>
+<codeline lineno="469"><highlight class="normal"></highlight></codeline>
+<codeline lineno="470"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="471"><highlight class="normal"></highlight></codeline>
+<codeline lineno="472"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="473"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="488"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="489"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="490" refid="group__pga__api_1gae3373d6eed71d1f3f5328cdad1ff7310" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__pga__api_1gae3373d6eed71d1f3f5328cdad1ff7310" kindref="member">PGA_selectNMUXInput</ref>(uint32_t<sp/>base,<sp/><ref refid="group__pga__api_1gac73959f2a2354cc572d8ceb9f66d0760" kindref="member">PGA_NMUXInput</ref><sp/>nmuxinput)</highlight></codeline>
+<codeline lineno="491"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="492"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(PGA_isBaseValid(base));</highlight></codeline>
+<codeline lineno="493"><highlight class="normal"></highlight></codeline>
+<codeline lineno="494"><highlight class="normal"><sp/><sp/><sp/><sp/>EALLOW;</highlight></codeline>
+<codeline lineno="495"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>PGA_O_MUXSEL)<sp/>=</highlight></codeline>
+<codeline lineno="496"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(HWREGH(base<sp/>+<sp/>PGA_O_MUXSEL)<sp/>&amp;<sp/>~(PGA_MUXSEL_NMUXSEL_M))<sp/>|</highlight></codeline>
+<codeline lineno="497"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint16_t)nmuxinput<sp/>&lt;&lt;<sp/>PGA_MUXSEL_NMUXSEL_S);</highlight></codeline>
+<codeline lineno="498"><highlight class="normal"><sp/><sp/><sp/><sp/>EDIS;</highlight></codeline>
+<codeline lineno="499"><highlight class="normal"></highlight></codeline>
+<codeline lineno="500"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="501"><highlight class="normal"></highlight></codeline>
+<codeline lineno="502"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="503"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="520"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="521"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="522" refid="group__pga__api_1gab6fc42d3b0e10fcfd6375489f1115ab6" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__pga__api_1gab6fc42d3b0e10fcfd6375489f1115ab6" kindref="member">PGA_selectMMUXInput</ref>(uint32_t<sp/>base,<sp/><ref refid="group__pga__api_1ga60a73c488a3b1791ca061ad76911be2b" kindref="member">PGA_MMUXInput</ref><sp/>mmuxinput)</highlight></codeline>
+<codeline lineno="523"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="524"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(PGA_isBaseValid(base));</highlight></codeline>
+<codeline lineno="525"><highlight class="normal"></highlight></codeline>
+<codeline lineno="526"><highlight class="normal"><sp/><sp/><sp/><sp/>EALLOW;</highlight></codeline>
+<codeline lineno="527"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>PGA_O_MUXSEL)<sp/>=</highlight></codeline>
+<codeline lineno="528"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(HWREGH(base<sp/>+<sp/>PGA_O_MUXSEL)<sp/>&amp;<sp/>~(PGA_MUXSEL_MMUXSEL_M))<sp/>|</highlight></codeline>
+<codeline lineno="529"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint16_t)mmuxinput<sp/>&lt;&lt;<sp/>PGA_MUXSEL_MMUXSEL_S);</highlight></codeline>
+<codeline lineno="530"><highlight class="normal"><sp/><sp/><sp/><sp/>EDIS;</highlight></codeline>
+<codeline lineno="531"><highlight class="normal"></highlight></codeline>
+<codeline lineno="532"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="533"><highlight class="normal"></highlight></codeline>
+<codeline lineno="534"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="535"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="544"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="545"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="546" refid="group__pga__api_1ga8cc680f422fd7d8a5ec4025e648ac20f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__pga__api_1ga8cc680f422fd7d8a5ec4025e648ac20f" kindref="member">PGA_configurefeedbackOnPin</ref>(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="547"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="548"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(PGA_isBaseValid(base));</highlight></codeline>
+<codeline lineno="549"><highlight class="normal"></highlight></codeline>
+<codeline lineno="550"><highlight class="normal"><sp/><sp/><sp/><sp/>EALLOW;</highlight></codeline>
+<codeline lineno="551"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>PGA_O_MUXSEL)<sp/>|=<sp/>(uint16_t)PGA_MUXSEL_PGA_FBONPIN;</highlight></codeline>
+<codeline lineno="552"><highlight class="normal"><sp/><sp/><sp/><sp/>EDIS;</highlight></codeline>
+<codeline lineno="553"><highlight class="normal"></highlight></codeline>
+<codeline lineno="554"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="555"><highlight class="normal"></highlight></codeline>
+<codeline lineno="556"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="557"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="570"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="571"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="572" refid="group__pga__api_1ga77d53480733618217f30b4cbfda3166a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__pga__api_1ga77d53480733618217f30b4cbfda3166a" kindref="member">PGA_chop</ref>(uint32_t<sp/>base,<sp/><ref refid="group__pga__api_1ga51ae2596f6eec6f61eed726d9f67d7cc" kindref="member">PGA_Chop</ref><sp/>chop)</highlight></codeline>
+<codeline lineno="573"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="574"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(PGA_isBaseValid(base));</highlight></codeline>
+<codeline lineno="575"><highlight class="normal"></highlight></codeline>
+<codeline lineno="576"><highlight class="normal"><sp/><sp/><sp/><sp/>EALLOW;</highlight></codeline>
+<codeline lineno="577"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>PGA_O_MUXSEL)<sp/>=</highlight></codeline>
+<codeline lineno="578"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(HWREGH(base<sp/>+<sp/>PGA_O_MUXSEL)<sp/>&amp;<sp/>~(PGA_MUXSEL_PGA_CHOP_M))<sp/>|</highlight></codeline>
+<codeline lineno="579"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint16_t)chop<sp/>&lt;&lt;<sp/>PGA_MUXSEL_PGA_CHOP_S);</highlight></codeline>
+<codeline lineno="580"><highlight class="normal"><sp/><sp/><sp/><sp/>EDIS;</highlight></codeline>
+<codeline lineno="581"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="582"><highlight class="normal"></highlight></codeline>
+<codeline lineno="583"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="584"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="592"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="593"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="594" refid="group__pga__api_1ga771069dcfdf9c38f170f22d65badee31" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>uint16_t<sp/><ref refid="group__pga__api_1ga771069dcfdf9c38f170f22d65badee31" kindref="member">PGA_getPGARevision</ref>(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="595"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="596"><highlight class="normal"></highlight></codeline>
+<codeline lineno="597"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(PGA_isBaseValid(base));</highlight></codeline>
+<codeline lineno="598"><highlight class="normal"></highlight></codeline>
+<codeline lineno="599"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="600"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>return<sp/>PGA<sp/>revision<sp/>number</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="601"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="602"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">((uint16_t)(HWREGH(base<sp/>+<sp/>PGA_O_TYPE)<sp/>&amp;<sp/>PGA_TYPE_REV_M));</highlight></codeline>
+<codeline lineno="603"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="604"><highlight class="normal"></highlight></codeline>
+<codeline lineno="605"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="606"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="614"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="615"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="616" refid="group__pga__api_1ga380b2004773df3d72b35c728dcb411cd" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>uint16_t<sp/><ref refid="group__pga__api_1ga380b2004773df3d72b35c728dcb411cd" kindref="member">PGA_getPGAType</ref>(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="617"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="618"><highlight class="normal"></highlight></codeline>
+<codeline lineno="619"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(PGA_isBaseValid(base));</highlight></codeline>
+<codeline lineno="620"><highlight class="normal"></highlight></codeline>
+<codeline lineno="621"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="622"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>return<sp/>PGA<sp/>Type<sp/>number</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="623"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="624"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">((uint16_t)(HWREGH(base<sp/>+<sp/>PGA_O_TYPE)<sp/>&gt;&gt;<sp/>PGA_TYPE_TYPE_S));</highlight></codeline>
+<codeline lineno="625"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="626"><highlight class="normal"></highlight></codeline>
+<codeline lineno="627"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="628"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="639"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="640"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="641" refid="group__pga__api_1ga551ea1cea4dd63958068a7d88dce9985" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__pga__api_1ga551ea1cea4dd63958068a7d88dce9985" kindref="member">PGA_lockRegisters</ref>(uint32_t<sp/>base,<sp/>uint16_t<sp/>registerType)</highlight></codeline>
+<codeline lineno="642"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="643"><highlight class="normal"></highlight></codeline>
+<codeline lineno="644"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(PGA_isBaseValid(base));</highlight></codeline>
+<codeline lineno="645"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(registerType<sp/>&lt;<sp/>0xFU);</highlight></codeline>
+<codeline lineno="646"><highlight class="normal"></highlight></codeline>
+<codeline lineno="647"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="648"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Write<sp/>to<sp/>the<sp/>appropriate<sp/>bits<sp/>of<sp/>PGALOCK<sp/>register<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="649"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="650"><highlight class="normal"><sp/><sp/><sp/><sp/>EALLOW;</highlight></codeline>
+<codeline lineno="651"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>PGA_O_LOCK)<sp/>|=<sp/>registerType;</highlight></codeline>
+<codeline lineno="652"><highlight class="normal"><sp/><sp/><sp/><sp/>EDIS;</highlight></codeline>
+<codeline lineno="653"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="654"><highlight class="normal"></highlight></codeline>
+<codeline lineno="655"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="656"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="665"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="666"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="667"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="668" refid="group__pga__api_1ga7628602e396f6f4e3e49fc4ce2a921e5" refkind="member"><highlight class="normal"><ref refid="group__pga__api_1ga7628602e396f6f4e3e49fc4ce2a921e5" kindref="member">PGA_setOffsetTrimNMOS</ref>(uint32_t<sp/>base);</highlight></codeline>
+<codeline lineno="669"><highlight class="normal"></highlight></codeline>
+<codeline lineno="670"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="671"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="680"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="681"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="682"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="683" refid="group__pga__api_1gaca874192d986e8fd00e32da874bbc73d" refkind="member"><highlight class="normal"><ref refid="group__pga__api_1gaca874192d986e8fd00e32da874bbc73d" kindref="member">PGA_setOffsetTrimPMOS</ref>(uint32_t<sp/>base);</highlight></codeline>
+<codeline lineno="684"><highlight class="normal"></highlight></codeline>
+<codeline lineno="685"><highlight class="normal"></highlight></codeline>
+<codeline lineno="686"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="687"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="688"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Close<sp/>the<sp/>Doxygen<sp/>group.</highlight></codeline>
+<codeline lineno="690"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="691"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="692"><highlight class="normal"></highlight></codeline>
+<codeline lineno="693"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="694"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="695"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Mark<sp/>the<sp/>end<sp/>of<sp/>the<sp/>C<sp/>bindings<sp/>section<sp/>for<sp/>C++<sp/>compilers.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="696"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="697"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="698"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="699"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="700"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="701"><highlight class="normal"></highlight></codeline>
+<codeline lineno="702"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>PGA_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/pga.h"/>
+  </compounddef>
+</doxygen>

@@ -4,9 +4,7 @@
 #include "device.h"
 #include "board.h"
 #include "c2000ware_libraries.h"
-
 #define TEST_SIZE       (512U)
-
 float test_input[571] = {
     11.18400787690F,  9.47301312325F,  5.61745167014F,  0.65355955931F,
      3.00552485572F,  0.51964789491F, -0.75096684202F, -3.49179057553F,
@@ -288,7 +286,6 @@ uint16_t pass = 0U, fail = 0U;
 float32_t *filPtr = coeffs;
 float32_t *delPtr = delayLine;
 float tolerance = 1.0e-6;
-
 void main(void)
 {
     //
@@ -300,14 +297,12 @@ void main(void)
     Interrupt_initVectorTable();
     Board_init();
     C2000Ware_libraries_init();
-
     //
     // Variable initialization
     //
     uint16_t i;
     float32u_t in, out, gold, err;
     memcpy(&coeffs, &test_input[TEST_SIZE], (myFIR0_FIR_ORDER + 1U)*sizeof(float));
-
     //
     // Run and verify reults
     //
@@ -317,17 +312,14 @@ void main(void)
         out.f32  = FLT_MAX;
         FIR_f32_setInput(myFIR0_handle, in.f32);
         FIR_f32_setOutput(myFIR0_handle, out.f32);
-
         //
         // Run filter calculation
         //
         myFIR0_handle->calc(myFIR0_handle);
-
         out.f32 = FIR_f32_getOutput(myFIR0_handle);
         test_output[i] = out.f32;
         gold.f32 = test_golden[i];
         err.f32 = fabsf(out.f32 - gold.f32);
-
         if(err.f32 < tolerance)
         {
             pass++;
@@ -337,6 +329,5 @@ void main(void)
             fail++;
         }
     }
-
     while(1);
 }

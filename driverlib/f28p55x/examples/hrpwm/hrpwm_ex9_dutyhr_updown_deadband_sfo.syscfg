@@ -1,4 +1,10 @@
 /**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P55x" --part "F28P55x_128PDT" --package "128PDT" --context "system" 
+ * @v2CliArgs  --device "TMS320F28P550SJ" --package "128PDT" --variant "TMS320F28P550SJ9" --context "system"
+ */
+/**
  * Import the modules used in this configuration.
  */
 const epwm             = scripting.addModule("/driverlib/epwm.js", {}, false);
@@ -9,7 +15,6 @@ const inputxbar1       = inputxbar.addInstance();
 const inputxbar_input  = scripting.addModule("/driverlib/inputxbar_input.js");
 const inputxbar_input1 = inputxbar_input.addInstance();
 const inputxbar_input2 = inputxbar_input.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -40,7 +45,6 @@ epwm1.epwmDeadband_delayFED                                      = 10;
 epwm1.epwm.$assign                                               = "EPWM1";
 epwm1.epwm.epwm_aPin.$assign                                     = "GPIO0";
 epwm1.epwm.epwm_bPin.$assign                                     = "GPIO1";
-
 epwm2.$name                                                      = "myEPWM2";
 epwm2.epwmTimebase_period                                        = 100;
 epwm2.epwmTimebase_counterMode                                   = "EPWM_COUNTER_MODE_UP_DOWN";
@@ -68,15 +72,10 @@ epwm2.epwmDeadband_delayFED                                      = 10;
 epwm2.epwm.$assign                                               = "EPWM2";
 epwm2.epwm.epwm_aPin.$assign                                     = "GPIO2";
 epwm2.epwm.epwm_bPin.$assign                                     = "GPIO3";
-
-
 inputxbar1.$name = "myINPUTXBAR5";
-
-
 inputxbar_input1.inputxbarInput = "XBAR_INPUT5";
 inputxbar_input1.inputxbarGpio  = "GPIO40";
 inputxbar_input1.$name          = "myINPUTXBARINPUT5";
-
 inputxbar_input2.inputxbarInput = "XBAR_INPUT6";
 inputxbar_input2.inputxbarGpio  = "GPIO40";
 inputxbar_input2.$name          = "myINPUTXBARINPUT6";

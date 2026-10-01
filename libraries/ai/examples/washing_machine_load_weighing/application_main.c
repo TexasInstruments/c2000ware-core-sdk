@@ -58,21 +58,26 @@
 #include "feature_extract.h"
 #include "user_input_config.h"
 
+#if !defined(NO_FEATURE_EXTRACTION)
 #pragma DATA_SECTION(scratch_buffer, "FFT_buffer_1")
 float scratch_buffer[FE_FRAME_SIZE * 4];
+#endif
 
-// test case from test vector
-extern float raw_input_test[];
-extern float model_test_input[];
-extern model_output_t golden_output[];
+extern const float raw_input_test[];
+extern const model_output_t golden_output[];
 
-// NN model output
+#if !defined(NO_FEATURE_EXTRACTION)
+extern const float model_test_input[];
+#endif
+
 #define FAIL 0
 #define PASS 1
 int test_result = FAIL;
-#define TEST_FEATURE_EXTRACT
-
+#if !defined(NO_FEATURE_EXTRACTION)
 model_input_t model_input[1 * FE_STACKING_CHANNELS * FE_STACKING_FRAME_WIDTH * 1];
+#define TEST_FEATURE_EXTRACT
+#endif
+
 #if defined(TEST_FEATURE_EXTRACT)
 model_input_t test_feature_extraction[1 * FE_STACKING_CHANNELS * FE_STACKING_FRAME_WIDTH * 1];
 #endif
@@ -118,30 +123,40 @@ void main(void)
     feature_extraction fe;
     feature_extraction_handle fe_handle = &fe;
 
+#if !defined(NO_FEATURE_EXTRACTION)
     fe_handle->scratch_buffer = &scratch_buffer[0];
+#endif
     FE_allocFeatureExtract(fe_handle);
+#if !defined(NO_FEATURE_EXTRACTION)
     ASSERT(FE_FRAME_SIZE * 4 * sizeof(float) >= fe.size_required_by_library);
+#endif
 
+#if !defined(NO_FEATURE_EXTRACTION)
     fe_handle->input_buffer = &raw_input_test[0];
     fe_handle->history_buffer = &model_test_input[0];
+#endif
 
 #if defined(TEST_FEATURE_EXTRACT)
     fe_handle->output_buffer = &test_feature_extraction[0];
     fe_handle->test_feature_extraction = true;
     FE_initFeatureExtract(fe_handle);
 #endif
+
+#if !defined(NO_FEATURE_EXTRACTION)
     fe_handle->output_buffer = &model_input[0];
     fe_handle->test_feature_extraction = false;
     FE_initFeatureExtract(fe_handle);
-
     FE_runFeatureExtract(fe_handle);
-
+#endif
 #if defined(TEST_FEATURE_EXTRACT)
     error = FE_compareModelInput(test_feature_extraction, model_input);
     printf("Feature extraction mismatches %d\n", error);
 #endif
-
+#if !defined(NO_FEATURE_EXTRACTION)
     struct tvmgen_default_inputs inputs = {(void *)&model_input};
+#else
+    struct tvmgen_default_inputs inputs = {(void *)&raw_input_test};
+#endif
     struct tvmgen_default_outputs outputs = {(void *)&model_output};
 
     // if NPU hardware accelerator exists in current device and it is enabled

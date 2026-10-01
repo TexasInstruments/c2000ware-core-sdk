@@ -18,23 +18,19 @@
 //!  - GPIO0 - trigger source
 //
 //#############################################################################
-
 //
 // Included Files
 //
 #include "device.h"
 #include "board.h"
-
 //
 // Function prototypes
 //
 __interrupt void NMIISR(void);
-
 //
 // Globals
 //
 uint32_t nmiCount = 0;
-
 //
 // Main
 //
@@ -44,40 +40,32 @@ void main(void)
     // Initializes device clock and peripherals
     //
     Device_init();
-
     //
     // Board initialization
     //
     Board_init();
-
     //
     // Configures the GPIO pin as a push-pull output
     //
     Device_initGPIO();
-
     //
     // Initializes PIE and clears PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initializes the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     Interrupt_register(INT_NMI, &NMIISR);
     Interrupt_enable(INT_NMI);
-    
     EINT;
     ERTM;
-
     while(1)
     {
         // External trigger to GPIO
     }
 }
-
 __interrupt void NMIISR(void)
 {
     nmiCount++;

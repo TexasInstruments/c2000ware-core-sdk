@@ -1,4 +1,10 @@
 /**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P65x" --part "F28P65x_256ZEJ" --package "256ZEJ" --board "/boards/TMDSCNCD28P65X" --context "CPU1"
+ * @v2CliArgs --device "TMS320F28P650DK" --package "256ZEJ" --variant "TMS320F28P650DK9" --context "CPU1"
+ */
+/**
  * Import the modules used in this configuration.
  */
 const dma   = scripting.addModule("/driverlib/dma.js", {}, false);
@@ -6,7 +12,6 @@ const dma1  = dma.addInstance();
 const dma2  = dma.addInstance();
 const uart  = scripting.addModule("/driverlib/uart.js", {}, false);
 const uart1 = uart.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -27,7 +32,6 @@ dma1.transferSize           = 16;
 dma1.srcBurstStep           = 1;
 dma1.srcTransferStep        = 1;
 dma1.dmaInt.enableInterrupt = true;
-
 dma2.$name                  = "myDMA1";
 dma2.dmaBase                = "DMA_CH6_BASE";
 dma2.enableTriggers         = true;
@@ -45,7 +49,6 @@ dma2.transferSize           = 16;
 dma2.destBurstStep          = 1;
 dma2.destTransferStep       = 1;
 dma2.dmaInt.enableInterrupt = true;
-
 uart1.$name                   = "myUART0";
 uart1.loopback                = true;
 uart1.enInterrupt             = false;

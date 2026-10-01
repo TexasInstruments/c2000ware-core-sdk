@@ -55,24 +55,20 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Globals
 //
 uint32_t wakeCount;
 uint32_t loopCount;
-
 //
 // Function Prototypes
 //
 __interrupt void wakeupISR(void);
-
 //
 // Main
 //
@@ -82,64 +78,53 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Re-map watchdog wake interrupt signal to call the ISR function in this
     // example
     //
     Interrupt_register(INT_WAKE, &wakeupISR);
-
     //
     // Clear the counters
     //
     wakeCount = 0;
     loopCount = 0;
-
     //
     // Set the watchdog to generate an interrupt signal or a reset signal
     //
     SysCtl_setWatchdogMode(SYSCTL_WD_MODE_INTERRUPT);
     // SysCtl_setWatchdogMode(SYSCTL_WD_MODE_RESET);
-
     //
     // Enable the watchdog wake interrupt signal
     //
     Interrupt_enable(INT_WAKE);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Reset the watchdog counter
     //
     SysCtl_serviceWatchdog();
-
     //
     // Enable the watchdog
     //
     SysCtl_enableWatchdog();
-
     //
     // Loop Forever
     //
     for(;;)
     {
         loopCount++;
-
         //
         // Uncomment SysCtl_serviceWatchdog to just loop here.
         // Comment SysCtl_serviceWatchdog to have watchdog timeout and trigger
@@ -148,7 +133,6 @@ void main(void)
         // SysCtl_serviceWatchdog();
     }
 }
-
 //
 // Wakeup ISR - The interrupt service routine called when the watchdog
 //              triggers the wake interrupt signal
@@ -157,13 +141,11 @@ __interrupt void
 wakeupISR(void)
 {
     wakeCount++;
-
     //
     // Acknowledge this interrupt located in group 1
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP1);
 }
-
 //
 // End of File
 //

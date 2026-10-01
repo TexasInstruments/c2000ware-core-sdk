@@ -70,7 +70,6 @@
 //
 #include "board.h"
 #include "sfo_v8.h"
-
 //
 // Defines
 //
@@ -78,54 +77,44 @@
 #define LAST_EPWM_INDEX_FOR_EXAMPLE    5
 #define MIN_HRPWM_PRD_PERCENT   0.2
 #define EPWM_TIMER_TBPRD        20
-
 //
 // Globals
 //
-
 float32_t periodFine = MIN_HRPWM_PRD_PERCENT;
 uint16_t status;
-
 int MEP_ScaleFactor; // Global variable used by the SFO library
                      // Result can be used for all HRPWM channels
                      // This variable is also copied to HRMSTEP
                      // register by SFO() function.
-
 volatile uint32_t ePWM[] =
     {0, myEPWM1_BASE, myEPWM2_BASE, myEPWM3_BASE, myEPWM4_BASE};
 //
 // Function Prototypes
 //
 void error(void);
-
 //
 // Main
 //
 void main(void)
 {
     uint16_t i = 0;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Calling SFO() updates the HRMSTEP register with calibrated MEP_ScaleFactor.
     // HRMSTEP must be populated with a scale factor value prior to enabling
@@ -139,29 +128,23 @@ void main(void)
             error();   // SFO function returns 2 if an error occurs & # of MEP
         }              // steps/coarse step exceeds maximum of 255.
     }
-
     //
     // Disable sync(Freeze clock to PWM as well)
     //
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Initialize EPWM GPIOs and change XBAR inputs from using GPIO0
     //
     Board_init();
-
     //
     // Enable sync and clock to PWM
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
-
     for(;;)
     {
          //
@@ -176,7 +159,6 @@ void main(void)
                  uint32_t compCount = count;
                  HRPWM_setTimeBasePeriod(ePWM[i], compCount);
              }
-
              //
              // Call the scale factor optimizer lib function SFO()
              // periodically to track for any change due to temp/voltage.
@@ -188,7 +170,6 @@ void main(void)
              //
              status = SFO(); // in background, MEP calibration module
                              // continuously updates MEP_ScaleFactor
-
              if (status == SFO_ERROR)
              {
                  error();   // SFO function returns 2 if an error occurs & #
@@ -197,7 +178,6 @@ void main(void)
          }
      }
 }
-
 //
 // error - Halt debugger when called
 //

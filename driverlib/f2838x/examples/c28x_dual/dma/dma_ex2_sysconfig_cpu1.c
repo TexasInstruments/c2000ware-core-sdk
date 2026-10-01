@@ -20,7 +20,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -53,8 +53,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
 //
 // Included Files
 //
@@ -62,28 +60,22 @@
 #include "device.h"
 #include "ipc.h"
 #include "board.h"
-
 //
 // Defines
 //
 //#define USE_DMA_INTERRUPT
-
 //
 // Globals
 //
 uint16_t newCMPValue;
 #pragma DATA_SECTION(newCMPValue, "ramgs1");
-
 //
 // Function Prototypes
 //
 void setupDMA(void);
-
 #ifdef USE_DMA_INTERRUPT
 __interrupt void dmaISR(void);
 #endif
-
-
 //
 // Main
 //
@@ -95,43 +87,35 @@ void main(void)
     //
     //Example_deviceInit();
     Device_init();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Initialize SysConfig Settings
     //
     Board_init();
-
     //
     // Set IPC_FLAG31 from local CPU1 to remote CPU2
     //
     IPC_setFlagLtoR(IPC_CPU1_L_CPU2_R, IPC_FLAG31);
-
     //
     // Boot CPU2 core
     //
     Device_bootCPU2(BOOT_MODE_CPU2);
-
     //
     // Configure the DMA (mostly done in SysConfig)
     //
     setupDMA();
-
     //
     // Send IPC to CPU2 telling it to proceed with configuring the SPI
     //
     IPC_setFlagLtoR(IPC_CPU1_L_CPU2_R, IPC_FLAG1);
-
     //
     // Enable DMA interrupt
     //
@@ -139,13 +123,11 @@ void main(void)
     Interrupt_enable(INT_DMA_CH5);
     Interrupt_register(INT_DMA_CH5, &dmaISR);
 #endif
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Loop indefinitely
     //
@@ -154,7 +136,6 @@ void main(void)
         NOP;
     }
 }
-
 //
 // setupDMA - Function to Setup DMA
 //
@@ -166,18 +147,14 @@ void setupDMA(void)
     // bit. The DMA trigger is SPIA-FFTX. This is mostly done in SysConfig.
     //
     const void *destAddr, *srcAddr;
-
     //
     // Initialize DMA
     //
     //DMA_initController();
-
     destAddr = (const void *)(EPWM1_BASE + EPWM_O_CMPA + 1);
     srcAddr = (const void *)&newCMPValue;
-
     DMA_configAddresses(DMA_CH5_BASE, destAddr, srcAddr);
 }
-
 //
 // dmaISR - DMA Interrupt Service Routine (uncomment to enable DMA ISR)
 //
@@ -187,7 +164,6 @@ __interrupt void dmaISR(void)
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
 }
 #endif
-
 //
 // End of File
 //

@@ -25,17 +25,13 @@
 //!
 //
 //#############################################################################
-
 #include "cm.h"
 #include "stdlib.h"
-
 #pragma DATA_ALIGN(ucControlTable, 1024)
 UDMA_ControlTable ucControlTable[64];
-
 #define DATA_LENGTH			 	10
 #define HEADER_LENGTH 			10
 #define TOTAL_NO_OF_PACKETS		20
-
 //
 // Define a data packet struct that includes a header and data.
 //
@@ -44,36 +40,29 @@ typedef struct
     uint32_t header[HEADER_LENGTH];
     uint32_t data[DATA_LENGTH];
 }DataPacket_t;
-
 //
 // Create an array of data packet struct of length 5
 //
 DataPacket_t packets[TOTAL_NO_OF_PACKETS];
-
 //
 // Memory buffer where the uDMA copies the data
 //
 uint32_t consolidatedData[TOTAL_NO_OF_PACKETS * DATA_LENGTH];
-
 //
 // uDMA task list used for scatter gather mode
 //
 UDMA_ControlTable tasklist[TOTAL_NO_OF_PACKETS];
-
 uint32_t errCount;
-
 //
 // Main
 //
 void main(void)
 {
     uint32_t i,j;
-
     //
     // Enable peripheral clocks
     //
     CM_init();
-
     //
     // Initialize the data package with dummy data
     //
@@ -92,17 +81,14 @@ void main(void)
             packets[i].data[j]   =  (i * DATA_LENGTH) + j;
         }
     }
-
     //
     // Enable the uDMA controller.
     //
     UDMA_enable(UDMA_BASE);
-
     //
     // Point at the control table to use for channel control structures.
     //
     UDMA_setControlBase(UDMA_BASE, ucControlTable);
-
     //
     // Configure the task list
     // Each task is configured for transferring the data element of a single
@@ -122,16 +108,13 @@ void main(void)
                                &consolidatedData[i * DATA_LENGTH], // Dst Address
                                UDMA_ARB_8,                         // Arbitration
                                UDMA_MODE_MEM_SCATTER_GATHER);      // Transfer Mode
-
         memcpy(&tasklist[i], &task, sizeof(task));
     }
-
     //
     // Configure channel 0 for memory scatter gather mode. 
     //
     UDMA_setChannelScatterGatherMode(UDMA_BASE, UDMA_CHANNEL_30,
 									 TOTAL_NO_OF_PACKETS, tasklist, false);
-
     //
     // Now the software channel is primed to start a transfer.  The channel
     // must be enabled.  For software based transfers, a request must be
@@ -139,12 +122,10 @@ void main(void)
     //
     UDMA_enableChannel(UDMA_BASE, UDMA_CHANNEL_30);
     UDMA_requestSoftwareTransfer(UDMA_BASE, UDMA_CHANNEL_30);
-
     //
     // Wait until the transfer is complete
     //
     while(UDMA_isChannelEnabled(UDMA_BASE, UDMA_CHANNEL_30));
-
     //
     // Check the transferred data
     //

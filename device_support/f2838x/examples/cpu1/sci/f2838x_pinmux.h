@@ -57,7 +57,6 @@
 //  NOTE:  These GPIO control registers are only available on CPU1.
 //
 //*****************************************************************************
-
 //
 // Port A mux register values
 //
@@ -69,7 +68,6 @@
 #define GPAMUX2_VALUE		0x05000000
 #define GPAGMUX1_VALUE		0x00000000
 #define GPAGMUX2_VALUE		0x00000000
-
 //
 // Port B mux register values
 //
@@ -79,7 +77,6 @@
 #define GPBMUX2_VALUE		0x00000000
 #define GPBGMUX1_VALUE		0x00000000
 #define GPBGMUX2_VALUE		0x00000000
-
 //
 // Port C mux register values
 //
@@ -89,7 +86,6 @@
 #define GPCMUX2_VALUE		0x00000000
 #define GPCGMUX1_VALUE		0x00000000
 #define GPCGMUX2_VALUE		0x00000000
-
 //
 // Port D mux register values
 //
@@ -99,20 +95,17 @@
 #define GPDMUX2_VALUE		0x00000000
 #define GPDGMUX1_VALUE		0x00000000
 #define GPDGMUX2_VALUE		0x00000000
-
 //
 // Port E mux register values
 //
 #define GPEMUX1_MASK		0x00000000
 #define GPEMUX1_VALUE		0x00000000
 #define GPEGMUX1_VALUE		0x00000000
-
 //
 // Port B analog mode register values
 //
 #define GPBAMSEL_MASK		0x00000000
 #define GPBAMSEL_VALUE		0x00000000
-
 //*****************************************************************************
 //
 // Function prototype for function to write values above into their

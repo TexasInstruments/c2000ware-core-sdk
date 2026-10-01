@@ -1,8 +1,6 @@
-
 SECTIONS
 {
 #if defined (_FLASH)
-
     #if defined(__TI_EABI__)
     .delayFunc :> FLASH_BANK0_SEC1
                     LOAD_START(delayFuncStart),
@@ -12,9 +10,7 @@ SECTIONS
                     LOAD_START(_delayFuncStart),
                     LOAD_END(_delayFuncEnd)
     #endif
-
 #else
-
     #if defined(__TI_EABI__)
     .delayFunc :> RAMLS4567
                     LOAD_START(delayFuncStart),
@@ -24,6 +20,5 @@ SECTIONS
                     LOAD_START(_delayFuncStart),
                     LOAD_END(_delayFuncEnd)
     #endif
-
 #endif
 }

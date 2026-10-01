@@ -33,14 +33,10 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 #ifndef FSI_DAISY_OPTIMAL_DELAY_H_
 #define FSI_DAISY_OPTIMAL_DELAY_H_
-
 #include "device.h"
 #include "fsi_optimal_delay.h"
-
-
 //*****************************************************************************
 //
 //! \brief Forwards frames to next device in daisy-chain topology
@@ -61,7 +57,6 @@
 //*****************************************************************************
 void FSI_daisy_calibratePassThrough(uint32_t rxbase, uint32_t txbase,
                                    uint16_t txPrescalar, FSI_FrameTag CalibrateTag);
-
 //*****************************************************************************
 //
 //! \brief Sends data packet with tag to indicate completion of event
@@ -80,6 +75,4 @@ void FSI_daisy_calibratePassThrough(uint32_t rxbase, uint32_t txbase,
 //*****************************************************************************
 void FSI_signalNextCalibrate(uint32_t rxbase, uint32_t txbase,
                              uint16_t txPrescalar, FSI_FrameTag CalibrateTag);
-
-
 #endif /* FSI_DAISY_OPTIMAL_DELAY_H_ */

@@ -78,7 +78,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -111,26 +111,22 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
 #include "sfo_v8.h"
-
 //
 // Defines
 //
 #define PWM_CH              2   // # of PWM channels used in example
 #define HR_ENABLED          1   // 1 = HR behavior
                                 // 0 = non-HR behavior
-
 //
 // Globals
 //
 Uint16 UpdateFine, status;
 Uint16 temp_REM2 = 0, temp_PHS2, PhaseFine2;
-
 Uint32 CountUpdatefine = 0, CountUpdateMax = 0;
 Uint16 Period = 0, PeriodFine = 0, PeriodOdd = 0;
 Uint16 PeriodIncrement = 0, PeriodFineIncrement = 0;
@@ -139,15 +135,12 @@ Uint32 PeriodFine_temp = 0;
 Uint16 PWM1 = 1;
 Uint16 PWM2 = 2;
 Uint16 PeriodMax = 600, PeriodMin = 360;
-
 //
 // Array of pointers to EPwm register structures:
 // *ePWM[0] is defined as dummy value not used in the example
 //
 volatile struct EPWM_REGS *ePWM[PWM_CH + 1] = {0, &EPwm1Regs, &EPwm2Regs};
-
 int MEP_ScaleFactor;
-
 //
 // Function Prototypes
 //
@@ -156,7 +149,6 @@ void HRPWM2_Config(int);
 void FreqCtl_func(void);
 interrupt void PRDEQfix_ISR(void);
 void error(void);
-
 //
 // Main
 //
@@ -168,12 +160,10 @@ void main(void)
     // This example function is found in the f2838x_SysCtrl.c file.
     //
     InitSysCtrl();
-
     //
     // Disable CPU interrupts
     //
     DINT;
-
     //
     // Initialize the PIE control registers to their default state.
     // The default state is all PIE interrupts disabled and flags
@@ -181,13 +171,11 @@ void main(void)
     // This function is found in the f2838x_PieCtrl.c file.
     //
     InitPieCtrl();
-
     //
     // Disable CPU interrupts and clear all CPU interrupt flags
     //
     IER = 0x0000;
     IFR = 0x0000;
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
@@ -197,14 +185,12 @@ void main(void)
     // This function is found in f2838x_PieVect.c.
     //
     InitPieVectTable();
-
     //
     // Set address of ISR in PIE vector table
     //
     EALLOW;
     PieVectTable.EPWM1_INT = &PRDEQfix_ISR;
     EDIS;
-
     //
     // Calling SFO() updates the HRMSTEP register with calibrated
     // MEP_ScaleFactor. HRMSTEP must be populated with a scale factor value
@@ -222,11 +208,9 @@ void main(void)
             error();
         }
     }
-
     EALLOW;
     CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 0;
     EDIS;
-
     //
     // Init HRPWM1/HRPWM2
     //
@@ -234,13 +218,11 @@ void main(void)
     InitEPwm2Gpio();
     HRPWM1_Config(360);  // EPwm1 target, Period = 360
     HRPWM2_Config(360);  // EPwm2 target, Period = 360
-
     EALLOW;
     CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 1;  // Resync PWM timebase clock
     (*ePWM[PWM1]).GLDCTL2.bit.OSHTLD = 1;  // This should also write to
                                            // GLDCTL2 of PWM2
     EDIS;
-
     //
     // Configure ePWM1 to generate interrupts on period match
     //
@@ -248,21 +230,17 @@ void main(void)
     (*ePWM[PWM1]).ETSEL.bit.INTEN = 1;    // Enable peripheral interrupt
     (*ePWM[PWM1]).ETPS.bit.INTPRD = 1;    // Generate interrupt on every event
     PieCtrlRegs.PIEIER3.bit.INTx1 = 1;    // Enable ePWM1 interrupt in PIE
-
     IER |= 0x0004;                        // Enable core INT #3
     EINT;                                 // Clear global interrupt mask
-
     UpdateFine = 0;                       // Disable continuous updates
     Period = 360;
     PeriodFine = 0x0;
     CountUpdateMax = 0x0FFFF;
     CountUpdatefine = CountUpdateMax;
-
     //
     // Watch window variable to modify the rate of the frequency sweep
     //
     InputPeriodInc = 6553;
-
     for(;;)
     {
         while(UpdateFine == 0)
@@ -284,7 +262,6 @@ void main(void)
                         PeriodFine_temp = PeriodFine_temp - 0x10000;
                         Period = Period + 1;
                     }
-
                     //
                     // Period is odd - CMP is divide by 2 for 50% duty
                     //
@@ -296,9 +273,7 @@ void main(void)
                     {
                         PeriodOdd = 0;
                     }
-
                     PeriodFine = (Uint16) PeriodFine_temp;
-
                     //
                     // Update PWM values for non-zero increment
                     //
@@ -322,7 +297,6 @@ void main(void)
         }
     }
 }
-
 //
 // HRPWM1_Config - ePWM1 register configuration with HRPWM
 //                 ePWM1A toggle low/high with MEP control on Rising edge
@@ -330,12 +304,10 @@ void main(void)
 void HRPWM1_Config(PeriodConfig)
 {
     (*ePWM[PWM1]).TBCTL.bit.PRDLD = TB_SHADOW;  // Set shadow load
-
     //
     // PWM frequency = 1 / PeriodConfig
     //
     (*ePWM[PWM1]).TBPRD = PeriodConfig;
-
     //
     // Set duty 50% initially and initialize HRPWM extension
     //
@@ -345,55 +317,44 @@ void HRPWM1_Config(PeriodConfig)
     (*ePWM[PWM1]).CMPB.bit.CMPBHR = (1 << 8);
     (*ePWM[PWM1]).TBPHS.all = 0;
     (*ePWM[PWM1]).TBCTR = 0;
-
     (*ePWM[PWM1]).TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN;
     (*ePWM[PWM1]).TBCTL.bit.PHSEN = TB_DISABLE;   // ePWM1 is the Master
     (*ePWM[PWM1]).EPWMSYNCINSEL.all = SYNC_IN_SRC_DISABLE_ALL;
     (*ePWM[PWM1]).EPWMSYNCOUTEN.all = 2;          // syncout on ctr = zero
     (*ePWM[PWM1]).TBCTL.bit.HSPCLKDIV = TB_DIV1;
     (*ePWM[PWM1]).TBCTL.bit.CLKDIV = TB_DIV1;
-
     //
     // LOAD CMPA on CTR = ZERO_PRD
     //
     (*ePWM[PWM1]).CMPCTL.bit.LOADAMODE = CC_CTR_ZERO_PRD;
     (*ePWM[PWM1]).CMPCTL.bit.LOADBMODE = CC_CTR_ZERO_PRD;
-
     (*ePWM[PWM1]).CMPCTL.bit.SHDWAMODE = CC_SHADOW;
     (*ePWM[PWM1]).CMPCTL.bit.SHDWBMODE = CC_SHADOW;
-
     (*ePWM[PWM1]).AQCTLA.bit.CAU = AQ_SET;
     (*ePWM[PWM1]).AQCTLA.bit.CAD = AQ_CLEAR;
-
     EALLOW;
 #if HR_ENABLED
     (*ePWM[PWM1]).HRCNFG.all = 0x1353;
-
     //
     // Turn on high-resolution period control
     //
     (*ePWM[PWM1]).HRPCTL.bit.HRPE = 1;
-
     //
     // Synchronize high resolution phase to start HR period
     //
     (*ePWM[PWM1]).TBCTL.bit.SWFSYNC = 1;
 #endif
-
     (*ePWM[PWM1]).GLDCFG.bit.CMPA_CMPAHR = 1;
     (*ePWM[PWM1]).GLDCFG.bit.CMPB_CMPBHR = 1;
-
     //
     // Load on CTR = ZERO_PRD (2) / ZERO (1)
     //
     (*ePWM[PWM1]).GLDCTL.bit.GLDMODE = 2;
-
     //
     // One shot mode and global load enabled
     //
     (*ePWM[PWM1]).GLDCTL.bit.OSHTMODE = 1;
     (*ePWM[PWM1]).GLDCTL.bit.GLD = 1;
-
     //
     // Write to PWM1 GLDCTL2 will result in simultaneous write to PWM2 GLDCTL2
     //
@@ -410,15 +371,12 @@ void HRPWM1_Config(PeriodConfig)
     (*ePWM[PWM1]).DBREDHR.bit.DBREDHR = 0x0;
     (*ePWM[PWM1]).DBFED.bit.DBFED = 4;
     (*ePWM[PWM1]).DBFEDHR.bit.DBFEDHR = 0x0;
-
     (*ePWM[PWM1]).HRCNFG2.bit.EDGMODEDB = HR_BEP;    // DBREDHR and DBFEDHR
     (*ePWM[PWM1]).HRCNFG2.bit.CTLMODEDBRED = 0;      // Load on ZRO
     (*ePWM[PWM1]).HRCNFG2.bit.CTLMODEDBFED = 0;      // Load on ZRO
     (*ePWM[PWM1]).DBREDHR.bit.DBREDHR = (0 << 9);
-
     EDIS;
 }
-
 //
 // HRPWM2_Config - ePWM2 register configuration with HRPWM
 //                 ePWM2A toggle low/high with MEP control on Rising edge
@@ -426,12 +384,10 @@ void HRPWM1_Config(PeriodConfig)
 void HRPWM2_Config(PeriodConfig)
 {
     (*ePWM[PWM2]).TBCTL.bit.PRDLD = TB_SHADOW;  // Set shadow load
-
     //
     // PWM frequency = 1 / PeriodConfig
     //
     (*ePWM[PWM2]).TBPRD = PeriodConfig;
-
     //
     // Set duty 50% initially and initialize HRPWM extension
     //
@@ -441,14 +397,12 @@ void HRPWM2_Config(PeriodConfig)
     (*ePWM[PWM2]).CMPB.bit.CMPBHR = (1 << 8);
     (*ePWM[PWM2]).TBPHS.all = 0;
     (*ePWM[PWM2]).TBCTR = 0;
-
     (*ePWM[PWM2]).TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN;
     (*ePWM[PWM2]).TBCTL.bit.PHSEN = TB_DISABLE;   // ePWM1 is the Master
     (*ePWM[PWM2]).EPWMSYNCINSEL.all = SYNC_IN_SRC_SYNCOUT_EPWM1;
     (*ePWM[PWM2]).EPWMSYNCOUTEN.all = 1;          // syncout on ctr = zero
     (*ePWM[PWM2]).TBCTL.bit.HSPCLKDIV = TB_DIV1;
     (*ePWM[PWM2]).TBCTL.bit.CLKDIV = TB_DIV1;
-
     //
     // LOAD CMPA on CTR = 0
     //
@@ -456,42 +410,33 @@ void HRPWM2_Config(PeriodConfig)
     (*ePWM[PWM2]).CMPCTL.bit.LOADBMODE = CC_CTR_ZERO_PRD;
     (*ePWM[PWM2]).CMPCTL.bit.SHDWAMODE = CC_SHADOW;
     (*ePWM[PWM2]).CMPCTL.bit.SHDWBMODE = CC_SHADOW;
-
     (*ePWM[PWM2]).AQCTLA.bit.CAU = AQ_SET;
     (*ePWM[PWM2]).AQCTLA.bit.CAD = AQ_CLEAR;
-
     EALLOW;
 #if HR_ENABLED
     (*ePWM[PWM2]).HRCNFG.all = 0x1353;
-
     //
     // Turn on high-resolution period control
     //
     (*ePWM[PWM2]).HRPCTL.bit.HRPE = 1;
-
     //
     // Synchronize high resolution phase to start HR period
     //
     (*ePWM[PWM2]).TBCTL.bit.SWFSYNC = 1;
 #endif
-
     (*ePWM[PWM2]).TBCTL.bit.PHSDIR = 1;        // Count up after SYNC event
     (*ePWM[PWM2]).TBPHS.bit.TBPHS = 180;
-
     (*ePWM[PWM2]).GLDCFG.bit.CMPA_CMPAHR = 1;
     (*ePWM[PWM2]).GLDCFG.bit.CMPB_CMPBHR = 1;
-
     //
     // Load on CTR = ZERO_PRD (2) / ZERO (1)
     //
     (*ePWM[PWM2]).GLDCTL.bit.GLDMODE = 2;
-
     //
     // One shot mode and global load enabled
     //
     (*ePWM[PWM2]).GLDCTL.bit.OSHTMODE = 1;
     (*ePWM[PWM2]).GLDCTL.bit.GLD = 1;
-
     //
     // Write to PWM1 GLDCTL2 will result in simultaneous write to PWM2 GLDCTL2
     //
@@ -508,15 +453,12 @@ void HRPWM2_Config(PeriodConfig)
     (*ePWM[PWM2]).DBREDHR.bit.DBREDHR = 0x0;
     (*ePWM[PWM2]).DBFED.bit.DBFED = 4;
     (*ePWM[PWM2]).DBFEDHR.bit.DBFEDHR = 0x0;
-
     (*ePWM[PWM2]).HRCNFG2.bit.EDGMODEDB = HR_BEP;    // DBREDHR and DBFEDHR
     (*ePWM[PWM2]).HRCNFG2.bit.CTLMODEDBRED = 0;      // Load on ZRO
     (*ePWM[PWM2]).HRCNFG2.bit.CTLMODEDBFED = 0;      // Load on ZRO
     (*ePWM[PWM2]).DBREDHR.bit.DBREDHR = (0 << 9);
-
     EDIS;
 }
-
 //
 // FreqCtl_func - Frequency modulation & phase sync function
 // This function is called only if frequency sweep is enabled
@@ -540,14 +482,11 @@ void FreqCtl_func(void)
         (*ePWM[PWM1]).CMPB.bit.CMPBHR = PeriodFine >> 1;
         (*ePWM[PWM2]).CMPB.bit.CMPBHR = PeriodFine >> 1;
     }
-
     (*ePWM[PWM1]).CMPA.bit.CMPA = (Period >> 1) + 1;
     (*ePWM[PWM2]).CMPA.bit.CMPA = (Period >> 1) + 1;
     (*ePWM[PWM1]).CMPB.bit.CMPB = (Period >> 1) + 1;
     (*ePWM[PWM2]).CMPB.bit.CMPB = (Period >> 1) + 1;
-
     temp_PHS2 = (Period >> 1);
-
     switch(PeriodOdd)
     {
         case 1:
@@ -556,19 +495,16 @@ void FreqCtl_func(void)
             //
             PhaseFine2 =  0xFF - (PeriodFine >> 9) - 0x7F;
             break;
-
         default:
             PhaseFine2 =  0xFF - (PeriodFine >> 9);
             break;
     }
-
     //
     // No fractional phase shift to account for
     //
     temp_REM2 =  (Uint16) 0x100 + PhaseFine2;
     UpdateFine = 1;
 }
-
 //
 // PRDEQfix_ISR - ISR for Translator remainder calculations
 //
@@ -581,21 +517,17 @@ interrupt void PRDEQfix_ISR(void)
         // This should also write to GLDCTL2 of PWM2, PWM3 and PWM4
         //
         (*ePWM[PWM1]).GLDCTL2.bit.OSHTLD = 1;
-
         //
         // TBCTR phase load on SYNC (required for updown count HR control)
         //
         (*ePWM[PWM2]).TBCTL.bit.PHSEN = TB_ENABLE;
-
         //
         // Coarse phase offset relative to ePWM1
         //
         (*ePWM[PWM2]).TBPHS.bit.TBPHS = temp_PHS2;
         (*ePWM[PWM2]).TRREM.bit.TRREM = temp_REM2;
-
         (*ePWM[PWM2]).TBPRDHR = PeriodFine;
         (*ePWM[PWM2]).TBPRD = Period;
-
         (*ePWM[PWM1]).TBPRDHR = PeriodFine;
         (*ePWM[PWM1]).TBPRD = Period;
         (*ePWM[PWM1]).TRREM.bit.TRREM = 0x100;
@@ -605,7 +537,6 @@ interrupt void PRDEQfix_ISR(void)
     {
         (*ePWM[PWM2]).TBCTL.bit.PHSEN = TB_DISABLE;
     }
-
     //
     // Re-initialize for next PWM interrupt
     //
@@ -613,12 +544,10 @@ interrupt void PRDEQfix_ISR(void)
     (*ePWM[PWM1]).ETCLR.bit.INT = 1;            // Clear interrupt bit
     EDIS;
 }
-
 void error (void)
 {
     ESTOP0;                                     // Stop here and handle error
 }
-
 //
 // End of file
 //

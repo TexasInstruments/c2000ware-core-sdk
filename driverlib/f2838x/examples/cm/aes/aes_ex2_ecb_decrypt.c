@@ -23,7 +23,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -56,46 +56,38 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include <string.h>
 #include "driverlib_cm.h"
 #include "cm.h"
-
 //
 // Defines
 //
 #define TEST_PASS 0xABCDABCD
 #define TEST_FAIL 0xDEADDEAD
-
 //
 // Global Variables
 //
-
 //
 // The DMA control structure table.
 //
 #pragma DATA_ALIGN(ucControlTable, 1024)
 UDMA_ControlTable ucControlTable[64];
-
 //
 // Global error counter & status
 //
 uint16_t errCountGlobal = 0;
 uint32_t testStatusGlobal;
-
 //
 // Output plain-text array
 //
 uint32_t plainTextArray[16];
-
 //
 // Global interrupt status
 //
 static volatile uint32_t intStatus;
-
 //
 // The AES interrupt handler and interrupt flags.
 //
@@ -107,7 +99,6 @@ static volatile bool contextInDMADoneIntFlag;
 static volatile bool dataInDMADoneIntFlag;
 static volatile bool contextOutDMADoneIntFlag;
 static volatile bool dataOutDMADoneIntFlag;
-
 //
 // Structure for NIST AES ECB tests
 //
@@ -119,7 +110,6 @@ typedef struct
     uint32_t plainTextArray[16];
     uint32_t cipherTextArray[16];
 } testVectorECB;
-
 //
 // Test Cases from NIST ECB Revised Spec.
 //
@@ -141,7 +131,6 @@ testVectorECB testVectorECBArray[] =
                        0x7fcdb143, 0x23ce8e59, 0xe3001b88, 0x880603ed,
                        0x5e780c7b, 0x3fade827, 0x71202382, 0xd45d7204 }
  },
-
  //
  // Test Case #2 with 256 bit key
  //
@@ -160,21 +149,17 @@ testVectorECB testVectorECBArray[] =
                        0x7a4b3023, 0xfff3f939, 0x8f8d7d06, 0xc7ec249e }
  }
 };
-
 //
 // Function Prototypes
 //
 void performECBDecryption(AES_KeySize keySize, uint32_t *srcArray,
                      uint32_t *dstArray,   uint32_t *keyArray,
                      uint32_t dataLength, bool useDMA);
-
 uint32_t roundUpDataLength(uint32_t dataLength);
-
 //
 // ISR for AESINT.
 //
 __interrupt void localAESIntISR(void);
-
 //
 // Main
 //
@@ -185,35 +170,29 @@ void main(void)
     uint32_t *expPlainTextArray, *cipherTextArray;
     uint32_t vectorCnt;
     AES_KeySize keySize;
-
     //
     // Initialize device clock and peripherals
     //
     CM_init();
-
     //
     // Initialize local variables.
     //
     errCountLocal = 0;
-
     //
     // Enable AES interrupts.
     //
     Interrupt_enable(INT_AES);
     AES_registerInterrupt(INT_AES, localAESIntISR);
     Interrupt_enableInProcessor();
-
     //
     // Setup the control table.
     //
     UDMA_enable(UDMA_BASE);
     UDMA_setControlBase(UDMA_BASE, ucControlTable);
-
     //
     // Perform AES Soft Reset
     //
     AES_performSoftReset(AES_BASE);
-
     //
     // Loop through all the given vectors.
     //
@@ -229,7 +208,6 @@ void main(void)
         dataLength         = testVectorECBArray[vectorCnt].dataLength;
         expPlainTextArray     = testVectorECBArray[vectorCnt].plainTextArray;
         cipherTextArray = testVectorECBArray[vectorCnt].cipherTextArray;
-
         //
         // Clear the array containing the plain text.
         //
@@ -237,13 +215,11 @@ void main(void)
         {
             plainTextArray[cnt] = 0;
         }
-
         //
         // Perform decryption without DMA.
         //
         performECBDecryption(keySize, cipherTextArray, plainTextArray, keyArray,
                              dataLength, false);
-
         //
         // Check the results
         //
@@ -254,7 +230,6 @@ void main(void)
                 errCountLocal++;
             }
         }
-
         //
         // Update the global error counter.
         //
@@ -262,12 +237,10 @@ void main(void)
         {
             errCountGlobal++;
         }
-
         //
         // Clear the local error counter.
         //
         errCountLocal = 0;
-
         //
         // Clear the array containing the plain text.
         //
@@ -275,13 +248,11 @@ void main(void)
         {
             plainTextArray[cnt] = 0;
         }
-
         //
         // Perform decryption with DMA.
         //
         performECBDecryption(keySize, cipherTextArray, plainTextArray, keyArray,
                              dataLength, true);
-
         //
         // Check the results.
         //
@@ -292,7 +263,6 @@ void main(void)
                 errCountLocal++;
             }
         }
-
         //
         // Update the global error counter.
         //
@@ -300,18 +270,15 @@ void main(void)
         {
             errCountGlobal++;
         }
-
         //
         // Clear the local error counter.
         //
         errCountLocal = 0;
     }
-
     //
     // Clean up AES Data registers
     //
     AES_performSoftReset(AES_BASE);
-
     //
     // Update test status variable
     //
@@ -323,7 +290,6 @@ void main(void)
     {
         testStatusGlobal = TEST_FAIL;
     }
-
     //
     // Infinite Loop to keep the core running
     //
@@ -331,7 +297,6 @@ void main(void)
     {
     }
 }
-
 //
 // Perform an AES-ECB decryption operation.
 //
@@ -343,7 +308,6 @@ void performECBDecryption(AES_KeySize keySize, uint32_t *srcArray,
     // Perform a soft reset.
     //
     AES_performSoftReset(AES_BASE);
-
     //
     // Clear the interrupt flags.
     //
@@ -355,8 +319,6 @@ void performECBDecryption(AES_KeySize keySize, uint32_t *srcArray,
     dataInDMADoneIntFlag = false;
     contextOutDMADoneIntFlag = false;
     dataOutDMADoneIntFlag = false;
-
-
     //
     // Configure the AES module.
     //
@@ -366,12 +328,10 @@ void performECBDecryption(AES_KeySize keySize, uint32_t *srcArray,
     aesConfig.keySize = keySize;
     aesConfig.opMode = AES_OPMODE_ECB;
     AES_configureModule(AES_BASE, &aesConfig);
-
     //
     // Write the key.
     //
     AES_setKey1(AES_BASE, keyArray, keySize);
-
     //
     // Depending on the argument, perform the decryption
     // with or without uDMA.
@@ -384,7 +344,6 @@ void performECBDecryption(AES_KeySize keySize, uint32_t *srcArray,
         AES_disableInterrupt(AES_BASE, AESW_BASE, (AES_INT_CONTEXT_IN |
                              AES_INT_CONTEXT_OUT | AES_INT_DATA_IN    |
                              AES_INT_DATA_OUT));
-
         //
         // Enable DMA interrupts.
         //
@@ -392,50 +351,41 @@ void performECBDecryption(AES_KeySize keySize, uint32_t *srcArray,
                                                   AES_INT_DMA_DATA_IN     |
                                                   AES_INT_DMA_CONTEXT_OUT |
                                                   AES_INT_DMA_DATA_OUT));
-
         //
         // Setup the DMA module to copy data in.
         //
         UDMA_changeChannelMapping(UDMA_BASE, UDMA_CHANNEL_AES_DIN,
                                   UDMA_CH_MAPPING_0);
-
         UDMA_disableChannelAttribute(UDMA_BASE, UDMA_CHANNEL_AES_DIN,
                                      UDMA_CH_ATTR_ALL);
-
         UDMA_setChannelControlParams(UDMA_BASE, (UDMA_CHANNEL_AES_DIN     |
                                      UDMA_PRI_SELECT), (UDMA_SIZE_32      |
                                                         UDMA_SRC_INC_32   |
                                                         UDMA_DST_INC_NONE |
                                                         UDMA_ARB_4        |
                                                         UDMA_DST_PROT_PRIV));
-
         UDMA_setChannelTransferParams(UDMA_BASE, (UDMA_CHANNEL_AES_DIN     |
                           UDMA_PRI_SELECT), (void*)srcArray,
                           (void*)(AES_BASE + AES_O_DATA_IN_OUT_0),
                           UDMA_MODE_BASIC, roundUpDataLength(dataLength) / 4U);
-
         //
         // Setup the DMA module to copy the data out.
         //
        UDMA_changeChannelMapping(UDMA_BASE, UDMA_CHANNEL_AES_DOUT,
                                  UDMA_CH_MAPPING_0);
-
        UDMA_disableChannelAttribute(UDMA_BASE, UDMA_CHANNEL_AES_DOUT,
                                     UDMA_CH_ATTR_ALL);
-
        UDMA_setChannelControlParams(UDMA_BASE, (UDMA_CHANNEL_AES_DOUT    |
                                     UDMA_PRI_SELECT), (UDMA_SIZE_32      |
                                                        UDMA_SRC_INC_NONE |
                                                        UDMA_DST_INC_32   |
                                                        UDMA_ARB_4        |
                                                        UDMA_SRC_PROT_PRIV));
-
        UDMA_setChannelTransferParams(UDMA_BASE, (UDMA_CHANNEL_AES_DOUT |
                                  UDMA_PRI_SELECT),
                                  (void*)(AES_BASE + AES_O_DATA_IN_OUT_0),
                                  (void*)dstArray, UDMA_MODE_BASIC,
                                  roundUpDataLength(dataLength) / 4U);
-
        //
        // Enable the DMA channels to start the transfers.  This must be done after
        // writing the length to prevent data from copying before the context is
@@ -443,20 +393,17 @@ void performECBDecryption(AES_KeySize keySize, uint32_t *srcArray,
        //
        UDMA_enableChannel(UDMA_BASE, UDMA_CHANNEL_AES_DIN);
        UDMA_enableChannel(UDMA_BASE, UDMA_CHANNEL_AES_DOUT);
-
        //
        // Enable DMA requests
        //
        AES_enableDMARequest(AES_BASE,(AES_DMA_EN_DATA_IN |
                                       AES_DMA_EN_DATA_OUT));
-
         //
         // Wait for the data in DMA done interrupt.
         //
         while(!dataInDMADoneIntFlag)
         {
         }
-
         //
         // Wait for the data out DMA done interrupt.
         //
@@ -472,14 +419,12 @@ void performECBDecryption(AES_KeySize keySize, uint32_t *srcArray,
         AES_enableInterrupt(AES_BASE, AESW_BASE, (AES_INT_CONTEXT_IN |
                             AES_INT_CONTEXT_OUT | AES_INT_DATA_IN    |
                             AES_INT_DATA_OUT));
-
        //
        // Perform the decryption.
        //
        AES_processData(AES_BASE, srcArray, dstArray, dataLength);
    }
 }
-
 //
 // Round up length to nearest 16 byte boundary.  This is needed because all
 // four data registers must be written at once.  This is handled in the AES
@@ -488,7 +433,6 @@ void performECBDecryption(AES_KeySize keySize, uint32_t *srcArray,
 uint32_t roundUpDataLength(uint32_t dataLength)
 {
     uint32_t remainder;
-
     remainder = dataLength % 16;
     if(remainder == 0)
     {
@@ -499,7 +443,6 @@ uint32_t roundUpDataLength(uint32_t dataLength)
         return(dataLength + (16 - remainder));
     }
 }
-
 //
 // localAESIntISR - local AES Interrupt ISR
 //
@@ -509,7 +452,6 @@ void localAESIntISR(void)
     // Read the AES masked interrupt status.
     //
     intStatus = AES_getInterruptStatus(AES_BASE, AESW_BASE, false);
-
     //
     // Print a different message depending on the interrupt source.
     //
@@ -582,7 +524,6 @@ void localAESIntISR(void)
         dataOutDMADoneIntFlag = true;
     }
 }
-
 //
 // End of File
 //

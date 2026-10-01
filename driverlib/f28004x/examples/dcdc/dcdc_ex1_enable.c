@@ -55,14 +55,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Main
 //
@@ -72,45 +70,36 @@ void main(void)
     // Disable the watchdog timer
     //
     SysCtl_disableWatchdog();
-
     //
     // DC-DC initialization
     //
     DC_DC_init(); 
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure GPIO pins for CANTX/CANRX
     //
     Device_initGPIO();
-
     //
     // Board initialization
     //
     Board_init();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
-
     //
     // Loop Forever 
     //
@@ -124,7 +113,6 @@ void main(void)
         ESTOP0;
     }
 }
-
 //
 // End of File
 //

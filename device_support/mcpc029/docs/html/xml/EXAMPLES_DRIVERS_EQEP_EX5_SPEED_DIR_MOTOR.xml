@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_EQEP_EX5_SPEED_DIR_MOTOR" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_EQEP_EX5_SPEED_DIR_MOTOR</compoundname>
+    <title>EQEP Motor Speed and direction Calculation</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_EQEP_EX5_SPEED_DIR_MOTOR_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_eqep_ex5_speed_dir_motor"/></para>
+<sect1 id="EXAMPLES_DRIVERS_EQEP_EX5_SPEED_DIR_MOTOR_1autotoc_md242">
+<title>Introduction</title>
+<para>This example can be used to sense the speed and direction of motor using eQEP in quadrature encoder mode. ePWM1A (MCPWM1A in case of F28E12x and MCPC029) is configured to simulate motor encoder signals with frequency of 5 kHz on both A and B pins with 90 degree phase shift (so as to run this example without motor).EQEP unit timeout is set which will generate an interrupt every UNIT_PERIOD microseconds and speed calculation occurs continuously based on the direction of motor.</para>
+<para>The example does the below<itemizedlist>
+<listitem><para>PWM frequency is specified as 5000Hz.</para>
+</listitem><listitem><para>UNIT_PERIOD is specified as 10000 us.</para>
+</listitem><listitem><para>Simulated quadrature signal frequency is 20000Hz (4 * 5000).</para>
+</listitem><listitem><para>Encoder holes assumed as 1000.</para>
+</listitem><listitem><para>Thus Simulated motor speed is 300rpm (5000 * (60 / 1000)).</para>
+</listitem></itemizedlist>
+</para>
+<para>Watch Variables<itemizedlist>
+<listitem><para>freq : Simulated motor frequency measurement is obtained by counting the external input pulses for UNIT_PERIOD (unit timer set to 10 ms).</para>
+</listitem><listitem><para>speed : Measure motor speed in rpm</para>
+</listitem><listitem><para>dir : Indicates clockwise (1) or anticlockwise (-1)</para>
+</listitem><listitem><para>pass - If measured qudrature frequency matches with i.e. input quadrature frequency (4 * PWM frequency) then pass = 1 else fail = 1 (** only when &quot;MOTOR&quot; is commented out)</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_EQEP_EX5_SPEED_DIR_MOTOR_1autotoc_md243">
+<title>External Connections</title>
+<para>if motor encoder signals are simulated by MCPWM<itemizedlist>
+<listitem><para>Connect GPIO6/eQEP1A to GPIO0/MCPWM1A</para>
+</listitem><listitem><para>Connect GPIO7/eQEP1B to GPIO1/MCPWM1B</para>
+</listitem></itemizedlist>
+</para>
+<para>If actual motor is being used<itemizedlist>
+<listitem><para>Comment in &quot;MOTOR&quot; in includes</para>
+</listitem><listitem><para>Connect GPIO6/eQEP1A to encoder A output</para>
+</listitem><listitem><para>Connect GPIO7/eQEP1B to encoder B output</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_EQEP_EX5_SPEED_DIR_MOTOR_1autotoc_md244">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Using the watch variables, view the frequency, speed and direction calculated for the motor.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_EQEP_EX5_SPEED_DIR_MOTOR_1autotoc_md245">
+<title>See Also</title>
+<para><ref refid="DRIVERS_EQEP_PAGE" kindref="compound">EQEP</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/eqep_ex5_speed_dir_motor.md"/>
+  </compounddef>
+</doxygen>

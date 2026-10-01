@@ -5,8 +5,8 @@
 // Description: Initialization routines for the CLA FFT library examples
 //
 //#############################################################################
-// $TI Release: CLA Math Library 4.06.00.00 $
-// $Release Date: May 20, 2026 $
+// $TI Release: CLA Math Library 4.07.00.00 $
+// $Release Date: Sep 29, 2026 $
 // $Copyright: Copyright (C) 2026 Texas Instruments Incorporated -
 //             http://www.ti.com/ ALL RIGHTS RESERVED $
 //#############################################################################

@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="driverlib__usage_8md" kind="file" language="Markdown">
+    <compoundname>driverlib_usage.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/><sp/>Driverlib<sp/>Usage<sp/>{#DRIVERLIB_USAGE}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">To<sp/>develop<sp/>with<sp/>the<sp/>peripheral<sp/>driver<sp/>library<sp/>more<sp/>efficiently,<sp/>Code<sp/>Composer</highlight></codeline>
+<codeline><highlight class="normal">Studio<sp/>(CCS)<sp/>offers<sp/>several<sp/>project<sp/>and<sp/>workspace<sp/>features<sp/>that<sp/>can<sp/>help<sp/>maximize</highlight></codeline>
+<codeline><highlight class="normal">development<sp/>time<sp/>and<sp/>device<sp/>application<sp/>execution.<sp/>As<sp/>previously<sp/>discussed<sp/>in<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">programming<sp/>model<sp/>chapter,<sp/>there<sp/>are<sp/>advantages<sp/>and<sp/>disadvantages<sp/>to<sp/>each<sp/>programming</highlight></codeline>
+<codeline><highlight class="normal">model.<sp/>This<sp/>chapter<sp/>will<sp/>explain<sp/>optimization<sp/>tips<sp/>that<sp/>should<sp/>be<sp/>used<sp/>in<sp/>conjuction</highlight></codeline>
+<codeline><highlight class="normal">with<sp/>the<sp/>APIs<sp/>provided<sp/>by<sp/>the<sp/>peripheral<sp/>driver<sp/>library<sp/>to<sp/>overcome<sp/>and<sp/>minimize</highlight></codeline>
+<codeline><highlight class="normal">those<sp/>disadvantages.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Code<sp/>Composer<sp/>Studio<sp/>Tips</highlight></codeline>
+<codeline><highlight class="normal">--------------------------</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>section<sp/>will<sp/>detail<sp/>some<sp/>Code<sp/>Composer<sp/>Studio<sp/>(CCS)<sp/>tips<sp/>that<sp/>can<sp/>be<sp/>used</highlight></codeline>
+<codeline><highlight class="normal">to<sp/>help<sp/>effectively<sp/>use<sp/>the<sp/>driver<sp/>library<sp/>during<sp/>development.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">In<sp/>CCS,<sp/>the<sp/>Content<sp/>Assist<sp/>feature<sp/>can<sp/>be<sp/>used<sp/>to<sp/>offer<sp/>suggestions<sp/>for<sp/>completing</highlight></codeline>
+<codeline><highlight class="normal">function<sp/>and<sp/>parameter<sp/>names.<sp/>This<sp/>feature<sp/>may<sp/>be<sp/>auto-activated<sp/>while<sp/>typing<sp/>or</highlight></codeline>
+<codeline><highlight class="normal">it<sp/>can<sp/>be<sp/>activated<sp/>by<sp/>hitting<sp/>Ctrl+Space.<sp/>To<sp/>get<sp/>the<sp/>desired<sp/>preferences,<sp/>adjust</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>settings<sp/>under<sp/>C/C++<sp/>-&gt;<sp/>Editor<sp/>-&gt;<sp/>Content<sp/>Assist.<sp/>The<sp/>figure<sp/>below<sp/>shows</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>Content<sp/>Assist<sp/>in<sp/>use.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\imageStyle{ccs_content_assist.jpg,=100x20}</highlight></codeline>
+<codeline><highlight class="normal">\image<sp/>html<sp/>ccs_content_assist.jpg<sp/>&quot;CCS<sp/>Content<sp/>Assist<sp/>feature&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">If<sp/>you<sp/>can\&apos;t<sp/>tell<sp/>what<sp/>an<sp/>appropriate<sp/>parameter<sp/>is<sp/>just<sp/>from<sp/>looking<sp/>at<sp/>the<sp/>function</highlight></codeline>
+<codeline><highlight class="normal">prototype<sp/>and<sp/>the<sp/>Content<sp/>Assist<sp/>list,<sp/>hover<sp/>over<sp/>the<sp/>function<sp/>to<sp/>view<sp/>its<sp/>description.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">CCS<sp/>Outline<sp/>View</highlight></codeline>
+<codeline><highlight class="normal">-------------------------</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">With<sp/>a<sp/>driver<sp/>header<sp/>file<sp/>open,<sp/>it<sp/>is<sp/>useful<sp/>to<sp/>take<sp/>advantage<sp/>of<sp/>the<sp/>CCS<sp/>Outline</highlight></codeline>
+<codeline><highlight class="normal">view<sp/>to<sp/>get<sp/>a<sp/>complete<sp/>list<sp/>of<sp/>functions,<sp/>enumerations,<sp/>and<sp/>macros.<sp/>The<sp/>Outline</highlight></codeline>
+<codeline><highlight class="normal">view<sp/>can<sp/>be<sp/>opened<sp/>by<sp/>selecting<sp/>Window<sp/>-&gt;<sp/>Show<sp/>view<sp/>-&gt;<sp/>Outline.<sp/>The<sp/>figure</highlight></codeline>
+<codeline><highlight class="normal">below<sp/>shows<sp/>the<sp/>outline<sp/>view<sp/>in<sp/>use.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\imageStyle{ccs_outline_view.jpg,=100x20}</highlight></codeline>
+<codeline><highlight class="normal">\image<sp/>html<sp/>ccs_outline_view.jpg<sp/>&quot;CCS<sp/>Outline<sp/>View<sp/>feature&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Similarly,<sp/>you<sp/>can<sp/>split<sp/>screen<sp/>between<sp/>application<sp/>code<sp/>and<sp/>the<sp/>API<sp/>Reference<sp/>Guide</highlight></codeline>
+<codeline><highlight class="normal">in<sp/>the<sp/>Resource<sp/>Explorer.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Additionally,<sp/>the<sp/>function<sp/>prototype<sp/>in<sp/>a<sp/>driver<sp/>header<sp/>file<sp/>can<sp/>be<sp/>viewed<sp/>by</highlight></codeline>
+<codeline><highlight class="normal">holding<sp/>Ctrl<sp/>and<sp/>clicking<sp/>on<sp/>the<sp/>function<sp/>name<sp/>in<sp/>the<sp/>application<sp/>code.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">For<sp/>more<sp/>information<sp/>on<sp/>any<sp/>of<sp/>the<sp/>tips<sp/>provided,<sp/>refer<sp/>to<sp/>the<sp/>CCS<sp/>Online<sp/>Help</highlight></codeline>
+<codeline><highlight class="normal">section<sp/>for<sp/>details<sp/>(CCS<sp/>menu<sp/>Help<sp/>-&gt;<sp/>Help<sp/>Contents<sp/>and<sp/>search<sp/>for<sp/>Content<sp/>Assist).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ASSERT<sp/>Macro</highlight></codeline>
+<codeline><highlight class="normal">-------------------------</highlight></codeline>
+<codeline><highlight class="normal">An<sp/>ASSERT<sp/>macro<sp/>is<sp/>defined<sp/>in<sp/>the<sp/>&lt;tt&gt;driverlib/debug.h&lt;/tt&gt;<sp/>file<sp/>as<sp/>a<sp/>method<sp/>of</highlight></codeline>
+<codeline><highlight class="normal">checking<sp/>the<sp/>validity<sp/>of<sp/>function<sp/>arguments<sp/>and<sp/>other<sp/>error<sp/>conditions.<sp/>When</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>symbol<sp/>DEBUG<sp/>is<sp/>defined,<sp/>ASSERT(&lt;i&gt;expr&lt;/i&gt;)<sp/>will<sp/>call<sp/>a<sp/>user-defined<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">function<sp/>__error__()<sp/>when<sp/>Boolean<sp/>expression<sp/>&lt;i&gt;expr&lt;/i&gt;<sp/>is<sp/>evaluated<sp/>to<sp/>false.</highlight></codeline>
+<codeline><highlight class="normal">To<sp/>use<sp/>the<sp/>macro,<sp/>an<sp/>application<sp/>must<sp/>provide<sp/>an<sp/>__error__()<sp/>function<sp/>with<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">following<sp/>prototype:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">void<sp/>__error__(char<sp/>*filename,<sp/>uint32_t<sp/>line);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>&lt;i&gt;filename&lt;/i&gt;<sp/>and<sp/>&lt;i&gt;line&lt;/i&gt;<sp/>parameters<sp/>indicate<sp/>which<sp/>ASSERT<sp/>resulted<sp/>in</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>error<sp/>condition.<sp/>It<sp/>is<sp/>up<sp/>to<sp/>the<sp/>application<sp/>to<sp/>decide<sp/>what<sp/>action<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">__error__()<sp/>function<sp/>should<sp/>take<sp/>to<sp/>report<sp/>the<sp/>error.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>default<sp/>Debug<sp/>build<sp/>configuration<sp/>for<sp/>the<sp/>driverlib.lib<sp/>project<sp/>and<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">Driverlib<sp/>example<sp/>projects<sp/>have<sp/>turned<sp/>on<sp/>ASSERT<sp/>by<sp/>putting<sp/>DEBUG<sp/>in<sp/>the<sp/>projects\&apos;</highlight></codeline>
+<codeline><highlight class="normal">predefined<sp/>symbols.<sp/>Removing<sp/>the<sp/>DEBUG<sp/>symbol<sp/>from<sp/>the<sp/>projects<sp/>will<sp/>cause<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">ASSERT<sp/>macro<sp/>to<sp/>compile<sp/>to<sp/>nothing,<sp/>meaning<sp/>it<sp/>will<sp/>add<sp/>no<sp/>code<sp/>size<sp/>or<sp/>cycles</highlight></codeline>
+<codeline><highlight class="normal">to<sp/>the<sp/>application<sp/>when<sp/>it<sp/>is<sp/>turned<sp/>off.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Driver<sp/>Library<sp/>Optimization</highlight></codeline>
+<codeline><highlight class="normal">----------------------------</highlight></codeline>
+<codeline><highlight class="normal">When<sp/>using<sp/>the<sp/>software<sp/>driver<sp/>programming<sp/>model<sp/>it<sp/>is<sp/>important<sp/>to<sp/>note<sp/>that<sp/>there</highlight></codeline>
+<codeline><highlight class="normal">is<sp/>a<sp/>price<sp/>to<sp/>abstraction<sp/>and<sp/>making<sp/>functions<sp/>generic.<sp/>Some<sp/>of<sp/>the<sp/>drawbacks</highlight></codeline>
+<codeline><highlight class="normal">include<sp/>the<sp/>overhead<sp/>time<sp/>of<sp/>the<sp/>function<sp/>call<sp/>and<sp/>the<sp/>calculation<sp/>time<sp/>required</highlight></codeline>
+<codeline><highlight class="normal">to<sp/>access<sp/>a<sp/>specific<sp/>register<sp/>offset<sp/>or<sp/>bit<sp/>field<sp/>within<sp/>the<sp/>register.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">To<sp/>help<sp/>overcome<sp/>these<sp/>shortcomings,<sp/>it<sp/>is<sp/>important<sp/>to<sp/>consider<sp/>the<sp/>use<sp/>of</highlight></codeline>
+<codeline><highlight class="normal">inline<sp/>functions.<sp/>Using<sp/>inline<sp/>functions<sp/>eliminates<sp/>the<sp/>need<sp/>for<sp/>function<sp/>calls</highlight></codeline>
+<codeline><highlight class="normal">since<sp/>the<sp/>function<sp/>is<sp/>essentially<sp/>treated<sp/>like<sp/>a<sp/>macro.<sp/>If<sp/>constants<sp/>are<sp/>being</highlight></codeline>
+<codeline><highlight class="normal">passed<sp/>into<sp/>the<sp/>function&apos;s<sp/>parameters,<sp/>much<sp/>of<sp/>its<sp/>code<sp/>may<sp/>be<sp/>evaluated<sp/>at<sp/>compile</highlight></codeline>
+<codeline><highlight class="normal">time.<sp/>In<sp/>order<sp/>to<sp/>utilize<sp/>inline<sp/>functions<sp/>you<sp/>must<sp/>turn<sp/>on<sp/>optimization<sp/>for<sp/>it</highlight></codeline>
+<codeline><highlight class="normal">to<sp/>take<sp/>effect.<sp/>If<sp/>optimization<sp/>is<sp/>desired<sp/>without<sp/>the<sp/>use<sp/>of<sp/>inline<sp/>functions,</highlight></codeline>
+<codeline><highlight class="normal">use<sp/>the<sp/>--no_inling<sp/>(-pi)<sp/>option.<sp/>This<sp/>option<sp/>can<sp/>be<sp/>set<sp/>in<sp/>the<sp/>CCS<sp/>project<sp/>properties</highlight></codeline>
+<codeline><highlight class="normal">under<sp/>Build<sp/>-&gt;<sp/>C2000<sp/>Compiler<sp/>-&gt;<sp/>Advanced<sp/>Options<sp/>-&gt;<sp/>Language<sp/>Options.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">There<sp/>are<sp/>two<sp/>types<sp/>of<sp/>APIs<sp/>available<sp/>in<sp/>a<sp/>typical<sp/>peripheral<sp/>driver<sp/>file<sp/>namely<sp/>static</highlight></codeline>
+<codeline><highlight class="normal">inline<sp/>APIs<sp/>(defined<sp/>in<sp/>*.h<sp/>files)<sp/>and<sp/>non-static<sp/>non-inline<sp/>APIs<sp/>(defined<sp/>in<sp/>*.c<sp/>files).</highlight></codeline>
+<codeline><highlight class="normal">For<sp/>best<sp/>performance,<sp/>static<sp/>inline<sp/>APIs<sp/>available<sp/>in<sp/>driverlib<sp/>are<sp/>expected<sp/>to<sp/>be<sp/>inlined</highlight></codeline>
+<codeline><highlight class="normal">in<sp/>the<sp/>application.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Static<sp/>inline<sp/>APIs<sp/>defined<sp/>in<sp/>the<sp/>driverlib<sp/>are<sp/>compiled<sp/>with<sp/>the<sp/>application<sp/>code<sp/>and</highlight></codeline>
+<codeline><highlight class="normal">would<sp/>be<sp/>part<sp/>of<sp/>application<sp/>binary<sp/>while<sp/>non-static<sp/>non-inline<sp/>APIs<sp/>would<sp/>be<sp/>part<sp/>of</highlight></codeline>
+<codeline><highlight class="normal">driverlib.lib<sp/>provided<sp/>under<sp/>C2000Ware.<sp/>C2000Ware<sp/>provides<sp/>debug<sp/>and<sp/>release<sp/>libraries</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>device<sp/>specific<sp/>peripheral<sp/>drivers.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>debug<sp/>library<sp/>is<sp/>to<sp/>be<sp/>used<sp/>while<sp/>debugging<sp/>the<sp/>application<sp/>code<sp/>as<sp/>it<sp/>is<sp/>compiled<sp/>with</highlight></codeline>
+<codeline><highlight class="normal">DEBUG<sp/>symbol<sp/>to<sp/>verify<sp/>input<sp/>parameters<sp/>through<sp/>ASSERT<sp/>macro.<sp/>The<sp/>debug<sp/>library<sp/>is<sp/>built</highlight></codeline>
+<codeline><highlight class="normal">with<sp/>option<sp/>opt<sp/>=<sp/>Ooff<sp/>to<sp/>enable<sp/>efficient<sp/>debugging<sp/>while<sp/>keeping<sp/>the<sp/>code<sp/>size<sp/>small.<sp/>The</highlight></codeline>
+<codeline><highlight class="normal">release<sp/>library<sp/>is<sp/>compiled<sp/>with<sp/>option<sp/>opt<sp/>=<sp/>O2<sp/>and<sp/>hence<sp/>expand<sp/>calls<sp/>to<sp/>APIs<sp/>declared</highlight></codeline>
+<codeline><highlight class="normal">inline<sp/>along<sp/>with<sp/>other<sp/>optimizations<sp/>resulting<sp/>in<sp/>improved<sp/>code<sp/>performance.<sp/>The<sp/>DEBUG</highlight></codeline>
+<codeline><highlight class="normal">symbol<sp/>is<sp/>not<sp/>used<sp/>while<sp/>compiling<sp/>the<sp/>release<sp/>library<sp/>thereby<sp/>removing<sp/>ASSERT<sp/>macro</highlight></codeline>
+<codeline><highlight class="normal">resulting<sp/>in<sp/>smaller<sp/>code<sp/>size.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Most<sp/>of<sp/>the<sp/>APIs<sp/>are<sp/>declared<sp/>as<sp/>static<sp/>inline<sp/>in<sp/>the<sp/>driverlib<sp/>and<sp/>therefore<sp/>are<sp/>compiled</highlight></codeline>
+<codeline><highlight class="normal">with<sp/>application<sp/>code<sp/>in<sp/>case<sp/>the<sp/>API<sp/>is<sp/>being<sp/>used<sp/>by<sp/>the<sp/>application.<sp/>Hence<sp/>the<sp/>performance</highlight></codeline>
+<codeline><highlight class="normal">of<sp/>static<sp/>inline<sp/>APIs<sp/>would<sp/>depend<sp/>on<sp/>the<sp/>application<sp/>project<sp/>optimization<sp/>level.<sp/>With</highlight></codeline>
+<codeline><highlight class="normal">optimization<sp/>level<sp/>Ooff,<sp/>the<sp/>static<sp/>inline<sp/>driverlib<sp/>APIs<sp/>would<sp/>be<sp/>part<sp/>of<sp/>application</highlight></codeline>
+<codeline><highlight class="normal">code<sp/>memory<sp/>section<sp/>and<sp/>a<sp/>function<sp/>call<sp/>would<sp/>be<sp/>made<sp/>for<sp/>each<sp/>call.<sp/>This<sp/>option<sp/>should<sp/>only</highlight></codeline>
+<codeline><highlight class="normal">be<sp/>used<sp/>while<sp/>debugging<sp/>the<sp/>project.<sp/>Use<sp/>optimization<sp/>level<sp/>equal<sp/>to<sp/>or<sp/>above<sp/>O0<sp/>in<sp/>application</highlight></codeline>
+<codeline><highlight class="normal">project<sp/>to<sp/>expand<sp/>the<sp/>static<sp/>inline<sp/>driverlib<sp/>APIs.<sp/>Refer<sp/>to<sp/>respective<sp/>compiler<sp/>guide<sp/>for<sp/>more</highlight></codeline>
+<codeline><highlight class="normal">details<sp/>on<sp/>different<sp/>optimization<sp/>levels<sp/>available<sp/>to<sp/>achieve<sp/>required<sp/>performance.</highlight></codeline>
+<codeline><highlight class="normal">Refer<sp/>to<sp/>compiler<sp/>guide<sp/>for<sp/>more<sp/>details<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">different<sp/>optimization<sp/>levels<sp/>available<sp/>to<sp/>achieve<sp/>required<sp/>performance.</highlight></codeline>
+<codeline><highlight class="normal">http://www.ti.com/lit/ug/spru514r/spru514r.pdf</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">In<sp/>addition<sp/>to<sp/>inline<sp/>functions,<sp/>using<sp/>the<sp/>&quot;generating<sp/>function<sp/>subsection&quot;<sp/>compiler</highlight></codeline>
+<codeline><highlight class="normal">option(--gen_func_subsections=on,<sp/>-mo)<sp/>is<sp/>important.<sp/>By<sp/>default,<sp/>the<sp/>library<sp/>project</highlight></codeline>
+<codeline><highlight class="normal">provided<sp/>with<sp/>the<sp/>peripheral<sp/>driver<sp/>library<sp/>project<sp/>has<sp/>this<sp/>option<sp/>turned<sp/>on.</highlight></codeline>
+<codeline><highlight class="normal">When<sp/>this<sp/>option<sp/>is<sp/>selected,<sp/>the<sp/>compiler<sp/>places<sp/>each<sp/>driver<sp/>library<sp/>function</highlight></codeline>
+<codeline><highlight class="normal">into<sp/>its<sp/>own<sp/>subsection.<sp/>This<sp/>allows<sp/>only<sp/>the<sp/>functions<sp/>that<sp/>are<sp/>referenced<sp/>in</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>application<sp/>to<sp/>be<sp/>linked<sp/>into<sp/>the<sp/>final<sp/>executable.<sp/>This<sp/>can<sp/>result<sp/>in<sp/>an</highlight></codeline>
+<codeline><highlight class="normal">overall<sp/>code<sp/>size<sp/>reduction.<sp/>This<sp/>compiler<sp/>option<sp/>can<sp/>be<sp/>set<sp/>by<sp/>accessing<sp/>the<sp/>CCS</highlight></codeline>
+<codeline><highlight class="normal">project<sp/>properties<sp/>under<sp/>Build<sp/>-&gt;<sp/>C2000<sp/>Compiler<sp/>-&gt;<sp/>Advanced<sp/>Options<sp/>-&gt;</highlight></codeline>
+<codeline><highlight class="normal">Runtime<sp/>Model<sp/>Options.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>optimization<sp/>options<sp/>can<sp/>be<sp/>found<sp/>in<sp/>the<sp/>CCS<sp/>project<sp/>properties<sp/>which<sp/>is</highlight></codeline>
+<codeline><highlight class="normal">accessed<sp/>by<sp/>right-clicking<sp/>on<sp/>the<sp/>project<sp/>in<sp/>the<sp/>project<sp/>explorer<sp/>and<sp/>selecting</highlight></codeline>
+<codeline><highlight class="normal">properties.<sp/>In<sp/>the<sp/>resulting<sp/>window,<sp/>the<sp/>optimization<sp/>settings<sp/>are</highlight></codeline>
+<codeline><highlight class="normal">found<sp/>in<sp/>Build<sp/>-&gt;<sp/>C2000<sp/>Compiler<sp/>-&gt;<sp/>Optimization.</highlight></codeline>
+<codeline></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/device/common_c28x/driverlib_usage.md"/>
+  </compounddef>
+</doxygen>

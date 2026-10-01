@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_UART_ECHOBACK" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_UART_ECHOBACK</compoundname>
+    <title>UART Echoback</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_UART_ECHOBACK_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_uart_echoback"/></para>
+<sect1 id="EXAMPLES_DRIVERS_UART_ECHOBACK_1autotoc_md485">
+<title>Introduction</title>
+<para>This test receives and echo-backs data through the UART A port.</para>
+<para>A terminal such as &apos;Putty&apos; can be used to view the data from the UART and to send information to the UART. Characters received by the UART port are sent back to the host.</para>
+<para><simplesect kind="note"><para>Avoid keeping the memory browser open while the execution is in progress.</para>
+</simplesect>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_UART_ECHOBACK_1autotoc_md486">
+<title>Watch  Variables</title>
+<para><itemizedlist>
+<listitem><para>None</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_UART_ECHOBACK_1autotoc_md487">
+<title>External Connections</title>
+<para>Connect the UARTA port to a PC via a transceiver and cable.<itemizedlist>
+<listitem><para>GPIO32 - UARTA RX (Connect to Pin3, PC-TX, of serial DB9 cable)</para>
+</listitem><listitem><para>GPIO43 - UARTA TX (Connect to Pin2, PC-RX, of serial DB9 cable)</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_UART_ECHOBACK_1autotoc_md488">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Open a COM port with the following settings using a terminal:<itemizedlist>
+<listitem><para>Find correct COM port</para>
+</listitem><listitem><para>Bits per second = 115200</para>
+</listitem><listitem><para>Data Bits = 8</para>
+</listitem><listitem><para>Parity = None</para>
+</listitem><listitem><para>Stop Bits = 1</para>
+</listitem><listitem><para>Hardware Control = None</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>The program will print out a greeting and then ask you to enter a character which it will echo back to the terminal.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_UART_ECHOBACK_1autotoc_md489">
+<title>See Also</title>
+<para><ref refid="DRIVERS_UART_PAGE" kindref="compound">UART</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/uart_echoback.md"/>
+  </compounddef>
+</doxygen>

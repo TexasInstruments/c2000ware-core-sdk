@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="uart__loopback__dma_8md" kind="file" language="Markdown">
+    <compoundname>uart_loopback_dma.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>UART<sp/>Internal<sp/>Loopback<sp/>with<sp/>DMA<sp/>{#EXAMPLES_DRIVERS_UART_LOOPBACK_DMA}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>Internal<sp/>loopback<sp/>testing<sp/>with<sp/>DMA<sp/>operated<sp/>FIFOs&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>UART,<sp/>DMA,<sp/>RTDMA&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x</highlight></codeline>
+<codeline><highlight class="normal">##<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>program<sp/>uses<sp/>the<sp/>internal<sp/>loopback<sp/>test<sp/>mode<sp/>of<sp/>the<sp/>UART<sp/>module.<sp/>Both</highlight></codeline>
+<codeline><highlight class="normal">DMA<sp/>interrupts<sp/>and<sp/>UART<sp/>FIFOs<sp/>are<sp/>used.<sp/>When<sp/>the<sp/>UART<sp/>transmit<sp/>FIFO<sp/>has</highlight></codeline>
+<codeline><highlight class="normal">enough<sp/>space<sp/>(as<sp/>indicated<sp/>by<sp/>its<sp/>FIFO<sp/>level<sp/>interrupt<sp/>signal),<sp/>the<sp/>DMA</highlight></codeline>
+<codeline><highlight class="normal">will<sp/>transfer<sp/>data<sp/>from<sp/>global<sp/>variable<sp/>sData<sp/>into<sp/>the<sp/>FIFO.<sp/>This<sp/>will<sp/>be</highlight></codeline>
+<codeline><highlight class="normal">transmitted<sp/>to<sp/>the<sp/>receive<sp/>FIFO<sp/>via<sp/>the<sp/>internal<sp/>loopback.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">When<sp/>enough<sp/>data<sp/>has<sp/>been<sp/>placed<sp/>in<sp/>the<sp/>receive<sp/>FIFO<sp/>(as<sp/>indicated<sp/>by<sp/>its</highlight></codeline>
+<codeline><highlight class="normal">FIFO<sp/>level<sp/>interrupt<sp/>signal),<sp/>the<sp/>DMA<sp/>will<sp/>transfer<sp/>the<sp/>data<sp/>from<sp/>the<sp/>FIFO</highlight></codeline>
+<codeline><highlight class="normal">into<sp/>global<sp/>variable<sp/>rData.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">When<sp/>all<sp/>data<sp/>has<sp/>been<sp/>placed<sp/>into<sp/>rData,<sp/>a<sp/>check<sp/>of<sp/>the<sp/>validity<sp/>of<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>will<sp/>be<sp/>performed<sp/>in<sp/>one<sp/>of<sp/>the<sp/>DMA<sp/>channels&apos;<sp/>ISRs.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">&lt;!--<sp/></highlight></codeline>
+<codeline><highlight class="normal">\imageStyle{am263_adc_burst_mode_oversampling.png,width:50%}</highlight></codeline>
+<codeline><highlight class="normal">\image<sp/>html<sp/>am263_adc_burst_mode_oversampling.png<sp/>&quot;Module<sp/>Block<sp/>diagram&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>--&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\note<sp/>Avoid<sp/>keeping<sp/>the<sp/>memory<sp/>browser<sp/>open<sp/>while<sp/>the<sp/>execution<sp/>is<sp/>in<sp/>progress.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Watch<sp/><sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>sData<sp/>:<sp/>Data<sp/>to<sp/>send</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>rData<sp/>:<sp/>Received<sp/>data</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>None</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Once<sp/>DMA<sp/>operations<sp/>are<sp/>complete<sp/>and<sp/>program<sp/>hits<sp/>ESTOP,<sp/>inspect<sp/>received<sp/>data</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x</highlight></codeline>
+<codeline><highlight class="normal">##<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>program<sp/>uses<sp/>the<sp/>internal<sp/>loopback<sp/>test<sp/>mode<sp/>of<sp/>the<sp/>UART<sp/>module.<sp/>Two</highlight></codeline>
+<codeline><highlight class="normal">DMA<sp/>interrupts<sp/>and<sp/>both<sp/>of<sp/>the<sp/>UART<sp/>FIFOs<sp/>are<sp/>used.<sp/>Both<sp/>DMA<sp/>channels<sp/>are</highlight></codeline>
+<codeline><highlight class="normal">configured<sp/>to<sp/>transfer<sp/>BUFFER_SIZE<sp/>words<sp/>with<sp/>each<sp/>burst<sp/>being</highlight></codeline>
+<codeline><highlight class="normal">UART_BUFFER_SIZE<sp/>words.<sp/>The<sp/>configurations<sp/>for<sp/>the<sp/>UART<sp/>module<sp/>and<sp/>both<sp/>DMA</highlight></codeline>
+<codeline><highlight class="normal">modules<sp/>are<sp/>done<sp/>in<sp/>the<sp/>Sysconfig<sp/>file.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\note<sp/>Only<sp/>the<sp/>lower<sp/>8<sp/>bits<sp/>of<sp/>each<sp/>word<sp/>will<sp/>be<sp/>transmitted<sp/>and<sp/>received</highlight></codeline>
+<codeline><highlight class="normal">by<sp/>the<sp/>UART<sp/>since<sp/>the<sp/>UART<sp/>data<sp/>register<sp/>only<sp/>has<sp/>an<sp/>8-bit<sp/>data<sp/>field.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">When<sp/>the<sp/>UART<sp/>transmit<sp/>FIFO<sp/>has<sp/>enough<sp/>space<sp/>(UART_BUFFER_SIZE<sp/>bytes</highlight></codeline>
+<codeline><highlight class="normal">empty),<sp/>the<sp/>TX<sp/>DMA<sp/>will<sp/>transfer<sp/>data<sp/>from<sp/>the<sp/>txData<sp/>buffer<sp/>in<sp/>GSRAM</highlight></codeline>
+<codeline><highlight class="normal">memory<sp/>into<sp/>the<sp/>transmit<sp/>FIFO<sp/>by<sp/>writing<sp/>to<sp/>the<sp/>UART<sp/>data<sp/>register.<sp/>The</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>in<sp/>the<sp/>transmit<sp/>FIFO<sp/>will<sp/>then<sp/>be<sp/>transmitted<sp/>to<sp/>the<sp/>receive<sp/>FIFO<sp/>via</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>internal<sp/>loopback.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">When<sp/>enough<sp/>data<sp/>has<sp/>been<sp/>placed<sp/>in<sp/>the<sp/>receive<sp/>FIFO<sp/>(UART_BUFFER_SIZE<sp/>data</highlight></codeline>
+<codeline><highlight class="normal">bytes<sp/>full),<sp/>the<sp/>RX<sp/>DMA<sp/>will<sp/>transfer<sp/>the<sp/>data<sp/>from<sp/>the<sp/>receive<sp/>FIFO<sp/>into</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>rxData<sp/>buffer<sp/>in<sp/>GSRAM<sp/>memory<sp/>by<sp/>reading<sp/>the<sp/>UART<sp/>data<sp/>register.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\note<sp/>This<sp/>example<sp/>implements<sp/>the<sp/>UART<sp/>FIFO<sp/>Buffers<sp/>in<sp/>NON<sp/>Fine-Grained</highlight></codeline>
+<codeline><highlight class="normal">mode</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">When<sp/>BUFFER_SIZE<sp/>words<sp/>have<sp/>been<sp/>placed<sp/>into<sp/>rxData,<sp/>a<sp/>check<sp/>of<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">validity<sp/>of<sp/>the<sp/>data<sp/>will<sp/>be<sp/>performed<sp/>and<sp/>the<sp/>errCount<sp/>variable<sp/>will</highlight></codeline>
+<codeline><highlight class="normal">indicate<sp/>the<sp/>amount<sp/>of<sp/>data<sp/>mismatches<sp/>between<sp/>txData<sp/>and<sp/>rxData.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\note<sp/>Avoid<sp/>keeping<sp/>the<sp/>memory<sp/>browser<sp/>open<sp/>while<sp/>the<sp/>execution<sp/>is<sp/>in<sp/>progress.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Watch<sp/><sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>txData<sp/><sp/><sp/>:<sp/>Data<sp/>transmitted</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>rxData<sp/><sp/><sp/>:<sp/>Data<sp/>received</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>errCount<sp/>:<sp/>Error<sp/>count</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">For<sp/>external<sp/>loopback,<sp/>uncheck<sp/>&quot;Enable<sp/>Loopback<sp/>Mode&quot;<sp/>in<sp/>Sysconfig<sp/>myUART0<sp/>instance,<sp/>and<sp/>connect<sp/>UARTA_TX<sp/>and<sp/>UARTA_RX<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>UARTA_TX<sp/>is<sp/>on<sp/>GPIO43</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>UARTA_RX<sp/>is<sp/>on<sp/>GPIO32</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Set<sp/>BUFFER_SIZE<sp/>to<sp/>desired<sp/>words<sp/>of<sp/>data<sp/>to<sp/>transfer.<sp/>This<sp/>value<sp/>must<sp/>be</highlight></codeline>
+<codeline><highlight class="normal">even<sp/>numbered.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Set<sp/>UART_BUFFER_SIZE<sp/>to<sp/>2,<sp/>4,<sp/>8,<sp/>12<sp/>or<sp/>14.<sp/>This<sp/>value<sp/>must<sp/>divide</highlight></codeline>
+<codeline><highlight class="normal">evenly<sp/>into<sp/>the<sp/>chosen<sp/>BUFFER_SIZE.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Change<sp/>&quot;Burst<sp/>Size&quot;<sp/>and<sp/>&quot;Transfer<sp/>Size&quot;<sp/>settings<sp/>in<sp/>Sysconfig<sp/>(for<sp/>both</highlight></codeline>
+<codeline><highlight class="normal">myDMA0<sp/>and<sp/>myDMA1)<sp/>to<sp/>reflect<sp/>these<sp/>values.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>Burst<sp/>Size<sp/>=<sp/>UART_BUFFER_SIZE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>Transfer<sp/>Size<sp/>=<sp/>BUFFER_SIZE<sp/>/<sp/>UART_BUFFER_SIZE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>To<sp/>use<sp/>32-bit<sp/>words<sp/>instead<sp/>of<sp/>16-bit<sp/>words,<sp/>change:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>txData<sp/>and<sp/>rxData<sp/>data<sp/>types<sp/>to<sp/>uint32_t.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>&quot;Databus<sp/>Width&quot;<sp/>setting<sp/>in<sp/>Sysconfig<sp/>(for<sp/>both<sp/>myDMA0<sp/>and<sp/>myDMA1)<sp/>to<sp/>&quot;DMA</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>transfers<sp/>32<sp/>bits<sp/>at<sp/>a<sp/>time.&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>DMA0<sp/>&quot;Source<sp/>Address<sp/>Burst<sp/>Step&quot;<sp/>and<sp/>&quot;Source<sp/>Address<sp/>Transfer<sp/>Step&quot;<sp/>in</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Sysconfig<sp/>to<sp/>2.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>DMA1<sp/>&quot;Destination<sp/>Address<sp/>Burst<sp/>Step&quot;<sp/>and<sp/>&quot;Destination<sp/>Address<sp/>Transfer</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Step&quot;<sp/>in<sp/>Sysconfig<sp/>to<sp/>2.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Once<sp/>DMA<sp/>operations<sp/>are<sp/>complete<sp/>and<sp/>program<sp/>hits<sp/>ESTOP,<sp/>inspect<sp/>received<sp/>data</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_UART_PAGE</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/uart_loopback_dma.md"/>
+  </compounddef>
+</doxygen>

@@ -1,10 +1,9 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --device "F28P55x" --package "100PZ" --part "F28P55x_100PZ" --context "system" --product "C2000WARE"
- * @versions {"tool":"1.20.0+3514"}
+ * @cliArgs --device "F28P55x" --part "F28P55x_128PDT" --package "128PDT" --context "system" 
+ * @v2CliArgs  --device "TMS320F28P550SJ" --package "128PDT" --variant "TMS320F28P550SJ9" --context "system"
  */
-
 /**
  * Import the modules used in this configuration.
  */
@@ -22,7 +21,6 @@ const logger4        = logger.addInstance();
 const CMD            = scripting.addModule("/utilities/cmd_tool/cmd_syscfg/source/CMD");
 const CMD1           = CMD.addInstance();
 const CMD2           = CMD.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -35,35 +33,29 @@ cputimer1.emulationMode             = "CPUTIMER_EMULATIONMODE_STOPATZERO";
 cputimer1.timerInt.$name            = "control_Isr";
 cputimer1.timerInt.interruptHandler = "control_Isr";
 cputimer1.timerInt.enableInterrupt  = true;
-
 controller1.controllerChoice = "PI";
 controller1.$name            = "myController0";
 controller1.Kp               = "2.5f";
 controller1.Ki               = "0.01f";
 controller1.Umax             = "2.0f";
 controller1.Umin             = "-2.0f";
-
 logger1.$name     = "rkLog";
 logger1.arrEn     = false;
 logger1.linkerVal = "LoggerDataSection";
 logger1.logSize   = 800;
-
 logger2.arrEn     = false;
 logger2.$name     = "ykLog";
 logger2.linkerVal = "LoggerDataSection";
 logger2.logSize   = 800;
-
 logger3.arrEn     = false;
 logger3.$name     = "ctlLog";
 logger3.linkerVal = "LoggerDataSection";
 logger3.logSize   = 800;
-
 logger4.$name     = "outLog";
 logger4.fillEn    = true;
 logger4.linkerEn  = true;
 logger4.linkerVal = "LoggerDataSection";
 logger4.logSize   = 800;
-
 CMD1.$name                        = "generic_ram_lnk";
 CMD1.sectionMemory_const          = ["RAMLS5","RAMLS6"];
 CMD1.sectionMemory_ramfunc        = ["RAMM0"];
@@ -80,7 +72,6 @@ CMD1.userSection[0].$name         = "LoggerDataSection";
 CMD1.userSection[0].sectionMemory = ["RAMGS3"];
 CMD1.userSection[1].sectionMemory = ["RAMM0"];
 CMD1.userSection[1].$name         = "dclfuncs";
-
 CMD2.$name                         = "generic_flash_lnk";
 CMD2.sectionAlignEnable_ramfunc          = true;
 CMD2.sectionAlignEnable_text             = true;

@@ -1,0 +1,2505 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="group__sci__api" kind="group">
+    <compoundname>sci_api</compoundname>
+    <title>SCI</title>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="group__sci__api_1ga061845fa0af9c0b8b6072d973091b497" prot="public" static="no" strong="no">
+        <type></type>
+        <name>SCI_ParityType</name>
+        <enumvalue id="group__sci__api_1gga061845fa0af9c0b8b6072d973091b497a3b63ffa711fe21b1e789bea06ab841f6" prot="public">
+          <name>SCI_CONFIG_PAR_NONE</name>
+          <initializer>= 0x0000U</initializer>
+          <briefdescription>
+<para>No parity. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga061845fa0af9c0b8b6072d973091b497a5898c0082fa887334fbec9df985215c5" prot="public">
+          <name>SCI_CONFIG_PAR_EVEN</name>
+          <initializer>= 0x0060U</initializer>
+          <briefdescription>
+<para>Even parity. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga061845fa0af9c0b8b6072d973091b497aaa2a106064c58ffc63472445919399db" prot="public">
+          <name>SCI_CONFIG_PAR_ODD</name>
+          <initializer>= 0x0020U</initializer>
+          <briefdescription>
+<para>Odd parity. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be used with <ref refid="group__sci__api_1gac4ba73ec9b9f7ca901cc037c6c336d7b" kindref="member">SCI_setParityMode()</ref> and <ref refid="group__sci__api_1gaed55fde63548d54b186a151f76a0ea5a" kindref="member">SCI_getParityMode()</ref> to describe the parity of the SCI communication. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="114" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="115" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__sci__api_1ga6fba1f1d41dff0562830f10f597b665f" prot="public" static="no" strong="no">
+        <type></type>
+        <name>SCI_TxFIFOLevel</name>
+        <enumvalue id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fad28054d31b4b804cb2f58f5e62f5a0aa" prot="public">
+          <name>SCI_FIFO_TX0</name>
+          <initializer>= 0x0000U</initializer>
+          <briefdescription>
+<para>Transmit interrupt empty. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa979d82a81780204d6d3a8c1ee3898e1a" prot="public">
+          <name>SCI_FIFO_TX1</name>
+          <initializer>= 0x0001U</initializer>
+          <briefdescription>
+<para>Transmit interrupt 1/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa644feb6574fe2479c7f516fd67a1ee55" prot="public">
+          <name>SCI_FIFO_TX2</name>
+          <initializer>= 0x0002U</initializer>
+          <briefdescription>
+<para>Transmit interrupt 2/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fab1c4df7f4095324fc0496f62c22588c5" prot="public">
+          <name>SCI_FIFO_TX3</name>
+          <initializer>= 0x0003U</initializer>
+          <briefdescription>
+<para>Transmit interrupt 3/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa7a9c0f68f164a0971fb428bf74ce88b7" prot="public">
+          <name>SCI_FIFO_TX4</name>
+          <initializer>= 0x0004U</initializer>
+          <briefdescription>
+<para>Transmit interrupt 4/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa526b5b3f34646a60397bca56a3a01bcb" prot="public">
+          <name>SCI_FIFO_TX5</name>
+          <initializer>= 0x0005U</initializer>
+          <briefdescription>
+<para>Transmit interrupt 5/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa06a33e4bf00089166614645ff547b806" prot="public">
+          <name>SCI_FIFO_TX6</name>
+          <initializer>= 0x0006U</initializer>
+          <briefdescription>
+<para>Transmit interrupt 6/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa71a259192c9457e0f7251a962253592e" prot="public">
+          <name>SCI_FIFO_TX7</name>
+          <initializer>= 0x0007U</initializer>
+          <briefdescription>
+<para>Transmit interrupt 7/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa3ca314bde9e4b18dca8fb695cd7ef0b4" prot="public">
+          <name>SCI_FIFO_TX8</name>
+          <initializer>= 0x0008U</initializer>
+          <briefdescription>
+<para>Transmit interrupt 8/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa779ffc123441fa04cbf2187ad2480549" prot="public">
+          <name>SCI_FIFO_TX9</name>
+          <initializer>= 0x0009U</initializer>
+          <briefdescription>
+<para>Transmit interrupt 9/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa6dc634d9bccd492088b82aa1b0b83057" prot="public">
+          <name>SCI_FIFO_TX10</name>
+          <initializer>= 0x000AU</initializer>
+          <briefdescription>
+<para>Transmit interrupt 10/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa6a5d6bc33004c3318d2dcd81651ed76f" prot="public">
+          <name>SCI_FIFO_TX11</name>
+          <initializer>= 0x000BU</initializer>
+          <briefdescription>
+<para>Transmit interrupt 11/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa1442b372de19b8e118d2661f2063daac" prot="public">
+          <name>SCI_FIFO_TX12</name>
+          <initializer>= 0x000CU</initializer>
+          <briefdescription>
+<para>Transmit interrupt 12/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa6dd64df775f3a88e5699e0a3802893cf" prot="public">
+          <name>SCI_FIFO_TX13</name>
+          <initializer>= 0x000DU</initializer>
+          <briefdescription>
+<para>Transmit interrupt 13/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa20701a33cdffd293872847e58f8d8d1b" prot="public">
+          <name>SCI_FIFO_TX14</name>
+          <initializer>= 0x000EU</initializer>
+          <briefdescription>
+<para>Transmit interrupt 14/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa57bfafbefbe1f916de168970923a71ce" prot="public">
+          <name>SCI_FIFO_TX15</name>
+          <initializer>= 0x000FU</initializer>
+          <briefdescription>
+<para>Transmit interrupt 15/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665faca14492b1643c751986e78b1b80d72ef" prot="public">
+          <name>SCI_FIFO_TX16</name>
+          <initializer>= 0x0010U</initializer>
+          <briefdescription>
+<para>Transmit interrupt full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__sci__api_1ga85013f693224da42aec7fc76f7b16b2c" kindref="member">SCI_setFIFOInterruptLevel()</ref> as the txLevel parameter and returned by SCI_getFIFOInteruptLevel() and <ref refid="group__sci__api_1ga4e6cc8b077c1d5bc1ef523c416c403f4" kindref="member">SCI_getTxFIFOStatus()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="128" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="129" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__sci__api_1ga4484ef93f7f2c5b3661390e9447f2617" prot="public" static="no" strong="no">
+        <type></type>
+        <name>SCI_RxFIFOLevel</name>
+        <enumvalue id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617adc5c97483710210e8a8b73747d01c4c7" prot="public">
+          <name>SCI_FIFO_RX0</name>
+          <initializer>= 0x0000U</initializer>
+          <briefdescription>
+<para>Receive interrupt empty. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a954c2ed201f794a8f2675c33cdd5a045" prot="public">
+          <name>SCI_FIFO_RX1</name>
+          <initializer>= 0x0001U</initializer>
+          <briefdescription>
+<para>Receive interrupt 1/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617aee6ee16632db82e8cc96883b1da58604" prot="public">
+          <name>SCI_FIFO_RX2</name>
+          <initializer>= 0x0002U</initializer>
+          <briefdescription>
+<para>Receive interrupt 2/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a0a5779a184a99f10ff056615a7d90956" prot="public">
+          <name>SCI_FIFO_RX3</name>
+          <initializer>= 0x0003U</initializer>
+          <briefdescription>
+<para>Receive interrupt 3/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a689295885aa686ce1215abbc50cc456f" prot="public">
+          <name>SCI_FIFO_RX4</name>
+          <initializer>= 0x0004U</initializer>
+          <briefdescription>
+<para>Receive interrupt 4/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a6e2746e20285ecf719491179f3ccf9fa" prot="public">
+          <name>SCI_FIFO_RX5</name>
+          <initializer>= 0x0005U</initializer>
+          <briefdescription>
+<para>Receive interrupt 5/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617af90bb8d99ce3fc4489603039dffdc464" prot="public">
+          <name>SCI_FIFO_RX6</name>
+          <initializer>= 0x0006U</initializer>
+          <briefdescription>
+<para>Receive interrupt 6/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a277fed0b23063bff4876ea9e74cf302f" prot="public">
+          <name>SCI_FIFO_RX7</name>
+          <initializer>= 0x0007U</initializer>
+          <briefdescription>
+<para>Receive interrupt 7/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a5afb04202443817cf4ec5f604d5a8f3c" prot="public">
+          <name>SCI_FIFO_RX8</name>
+          <initializer>= 0x0008U</initializer>
+          <briefdescription>
+<para>Receive interrupt 8/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617aa45e39964023f548dadb524f2aec95c4" prot="public">
+          <name>SCI_FIFO_RX9</name>
+          <initializer>= 0x0009U</initializer>
+          <briefdescription>
+<para>Receive interrupt 9/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617abee18ff8402622167559d17cb390d41f" prot="public">
+          <name>SCI_FIFO_RX10</name>
+          <initializer>= 0x000AU</initializer>
+          <briefdescription>
+<para>Receive interrupt 10/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a8711a92f14527be4b8a6b89619e499e7" prot="public">
+          <name>SCI_FIFO_RX11</name>
+          <initializer>= 0x000BU</initializer>
+          <briefdescription>
+<para>Receive interrupt 11/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a3bd4632ab6c92afd3087b10f98d7f40a" prot="public">
+          <name>SCI_FIFO_RX12</name>
+          <initializer>= 0x000CU</initializer>
+          <briefdescription>
+<para>Receive interrupt 12/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617aca8a8b68d08f7a8cea7de20866ceccd2" prot="public">
+          <name>SCI_FIFO_RX13</name>
+          <initializer>= 0x000DU</initializer>
+          <briefdescription>
+<para>Receive interrupt 13/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a5fe5e251a22e89fb8ebdb9b4fbbe481b" prot="public">
+          <name>SCI_FIFO_RX14</name>
+          <initializer>= 0x000EU</initializer>
+          <briefdescription>
+<para>Receive interrupt 14/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a849605d47c2f70c8b6196510ad48689f" prot="public">
+          <name>SCI_FIFO_RX15</name>
+          <initializer>= 0x000FU</initializer>
+          <briefdescription>
+<para>Receive interrupt 15/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a3283d0484336c2d4d8c0482d6c0e034b" prot="public">
+          <name>SCI_FIFO_RX16</name>
+          <initializer>= 0x0010U</initializer>
+          <briefdescription>
+<para>Receive interrupt full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__sci__api_1ga85013f693224da42aec7fc76f7b16b2c" kindref="member">SCI_setFIFOInterruptLevel()</ref> as the rxLevel parameter and returned by <ref refid="group__sci__api_1gab3f62d057b08525634b52de2ddeed38b" kindref="member">SCI_getFIFOInterruptLevel()</ref> and <ref refid="group__sci__api_1ga508c75cffba2883fe6b925debfb952c3" kindref="member">SCI_getRxFIFOStatus()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="156" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="157" bodyend="175"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__sci__api_1gac4ba73ec9b9f7ca901cc037c6c336d7b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_setParityMode</definition>
+        <argsstring>(uint32_t base, SCI_ParityType parity)</argsstring>
+        <name>SCI_setParityMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__sci__api_1ga061845fa0af9c0b8b6072d973091b497" kindref="member">SCI_ParityType</ref></type>
+          <declname>parity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the type of parity.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>parity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the type of parity to use.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Sets the type of parity to use for transmitting and expect when receiving. The <emphasis>parity</emphasis> parameter must be one of the following: <bold>SCI_CONFIG_PAR_NONE</bold>, <bold>SCI_CONFIG_PAR_EVEN</bold>, <bold>SCI_CONFIG_PAR_ODD</bold>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="235" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="235" bodyend="247"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gaed55fde63548d54b186a151f76a0ea5a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="group__sci__api_1ga061845fa0af9c0b8b6072d973091b497" kindref="member">SCI_ParityType</ref></type>
+        <definition>static SCI_ParityType SCI_getParityMode</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_getParityMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the type of parity currently being used.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function gets the type of parity used for transmitting data and expected when receiving data.</para>
+<para><simplesect kind="return"><para>Returns the current parity settings, specified as one of the following: <bold>SCI_CONFIG_PAR_NONE</bold>, <bold>SCI_CONFIG_PAR_EVEN</bold>, <bold>SCI_CONFIG_PAR_ODD</bold>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="264" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="264" bodyend="279"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga0c9144f86f6bc605cd23d9fdf0cecda4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_setAddrMultiProcessorMode</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_setAddrMultiProcessorMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the multiprocessor protocol to address-bit mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the multi-processor protocol to address-bit mode.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="293" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="293" bodyend="304"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga546268bb163766e345fdda2fe3046b76" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_setIdleMultiProcessorMode</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_setIdleMultiProcessorMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the multiprocessor protocol to idle-line mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the multi-processor protocol to idle-line protocol.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="318" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="318" bodyend="329"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga0c3c8975d3dd838b3b65285cd819bfe9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_lockAutobaud</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_lockAutobaud</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Locks Autobaud.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function performs an autobaud lock for the SCI.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="343" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="343" bodyend="375"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga85013f693224da42aec7fc76f7b16b2c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_setFIFOInterruptLevel</definition>
+        <argsstring>(uint32_t base, SCI_TxFIFOLevel txLevel, SCI_RxFIFOLevel rxLevel)</argsstring>
+        <name>SCI_setFIFOInterruptLevel</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__sci__api_1ga6fba1f1d41dff0562830f10f597b665f" kindref="member">SCI_TxFIFOLevel</ref></type>
+          <declname>txLevel</declname>
+        </param>
+        <param>
+          <type><ref refid="group__sci__api_1ga4484ef93f7f2c5b3661390e9447f2617" kindref="member">SCI_RxFIFOLevel</ref></type>
+          <declname>rxLevel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the FIFO interrupt level at which interrupts are generated.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txLevel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the transmit FIFO interrupt level, specified as one of the following: <bold>SCI_FIFO_TX0</bold>, <bold>SCI_FIFO_TX1</bold>, <bold>SCI_FIFO_TX2</bold>, . . . or <bold>SCI_FIFO_TX16</bold>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rxLevel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the receive FIFO interrupt level, specified as one of the following <bold>SCI_FIFO_RX0</bold>, <bold>SCI_FIFO_RX1</bold>, <bold>SCI_FIFO_RX2</bold>, ... or <bold>SCI_FIFO_RX16</bold>.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the FIFO level at which transmit and receive interrupts are generated.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="397" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="397" bodyend="412"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gab3f62d057b08525634b52de2ddeed38b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_getFIFOInterruptLevel</definition>
+        <argsstring>(uint32_t base, SCI_TxFIFOLevel *txLevel, SCI_RxFIFOLevel *rxLevel)</argsstring>
+        <name>SCI_getFIFOInterruptLevel</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__sci__api_1ga6fba1f1d41dff0562830f10f597b665f" kindref="member">SCI_TxFIFOLevel</ref> *</type>
+          <declname>txLevel</declname>
+        </param>
+        <param>
+          <type><ref refid="group__sci__api_1ga4484ef93f7f2c5b3661390e9447f2617" kindref="member">SCI_RxFIFOLevel</ref> *</type>
+          <declname>rxLevel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the FIFO interrupt level at which interrupts are generated.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txLevel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a pointer to storage for the transmit FIFO interrupt level, returned as one of the following: <bold>SCI_FIFO_TX0</bold>, <bold>SCI_FIFO_TX1</bold>, <bold>SCI_FIFO_TX2</bold>, ... or <bold>SCI_FIFO_TX16</bold>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rxLevel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a pointer to storage for the receive FIFO interrupt level, returned as one of the following: <bold>SCI_FIFO_RX0</bold>, <bold>SCI_FIFO_RX1</bold>, <bold>SCI_FIFO_RX2</bold>, ... or <bold>SCI_FIFO_RX16</bold>.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function gets the FIFO level at which transmit and receive interrupts are generated.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="433" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="433" bodyend="449"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga0bba17633f300f0db562531a2bb29a00" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_getConfig</definition>
+        <argsstring>(uint32_t base, uint32_t lspclkHz, uint32_t *baud, uint32_t *config)</argsstring>
+        <name>SCI_getConfig</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>lspclkHz</declname>
+        </param>
+        <param>
+          <type>uint32_t *</type>
+          <declname>baud</declname>
+        </param>
+        <param>
+          <type>uint32_t *</type>
+          <declname>config</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the current configuration of a SCI.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lspclkHz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the rate of the clock supplied to the SCI module. This is the LSPCLK. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>baud</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a pointer to storage for the baud rate. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>config</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a pointer to storage for the data format.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+The baud rate and data format for the SCI is determined, given an explicitly provided peripheral clock (hence the ExpClk suffix). The returned baud rate is the actual baud rate; it may not be the exact baud rate requested or an `<lsquo/>official<rsquo/>&apos; baud rate. The data format returned in <emphasis>config</emphasis> is enumerated the same as the <emphasis>config</emphasis> parameter of <ref refid="group__sci__api_1gaf90d3bd5f5234a9af9ce56914b954235" kindref="member">SCI_setConfig()</ref>.</para>
+<para>The peripheral clock is the low speed peripheral clock. This will be the value returned by SysCtl_getLowSeedClock(), or it can be explicitly hard coded if it is constant and known (to save the code/execution overhead of a call to <ref refid="group__sysctl__api_1ga70606ae075b1e015e3a63f8e83320321" kindref="member">SysCtl_getLowSpeedClock()</ref>).</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="477" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="477" bodyend="498"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga9be05e003f6cf09737349245e2f7ca90" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_enableModule</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_enableModule</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables transmitting and receiving.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Enables SCI by taking SCI out of the software reset. Sets the TXENA, and RXENA bits which enables transmit and receive.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="513" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="513" bodyend="525"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gac59d41324cbad25e42021e2046eadcd7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_disableModule</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_disableModule</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables transmitting and receiving.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Clears the SCIEN, TXE, and RXE bits. The user should ensure that all the data has been sent before disable the module during transmission.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="540" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="540" bodyend="556"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga1dd9bb1543f008ea8be6f79236c92dbb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_enableTxModule</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_enableTxModule</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables transmitting.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Enables SCI by taking SCI out of the software reset. Sets the TXENA bit which enables transmit.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="571" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="571" bodyend="582"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gaae2fbd7254ab6b55fe2d0544394eafbd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_disableTxModule</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_disableTxModule</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables transmitting.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Disables SCI by taking SCI out of the software reset. Clears the TXENA bit which disables transmit.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="597" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="597" bodyend="608"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gac5073444bcde67212d9749da81f219aa" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_enableRxModule</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_enableRxModule</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables receiving.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Enables SCI by taking SCI out of the software reset. Sets the RXENA bit which enables receive.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="623" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="623" bodyend="634"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga3bd842e55a2d7a6d88f7ca2f467a8853" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_disableRxModule</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_disableRxModule</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables receiving.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Disables SCI by taking SCI out of the software reset. Clears the RXENA bit which disables receive.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="649" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="649" bodyend="660"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga8bb07d0fd9bbbff44821f6da893bb6ca" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_enableSleepMode</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_enableSleepMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables Sleep Mode</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Enables the sleep mode in SCI by setting the SLEEP bit in SCICTL1 register</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="674" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="674" bodyend="685"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gaddc41247edc8c6a298177ab0e70c04c1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_disableSleepMode</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_disableSleepMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables Sleep Mode</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Disables the sleep mode in SCI by clearing the SLEEP bit in SCICTL1 register</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="699" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="699" bodyend="710"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga310280f30775b4666f0ff244fb1e4116" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_enableFIFO</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_enableFIFO</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables the transmit and receive FIFOs.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This functions enables the transmit and receive FIFOs in the SCI.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="724" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="724" bodyend="737"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga44c4983a36789febfd60f4f21ed0ef51" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_disableFIFO</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_disableFIFO</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables the transmit and receive FIFOs.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This functions disables the transmit and receive FIFOs in the SCI.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="751" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="751" bodyend="762"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga0e9a3714ed3064df9bcbe56121953dfc" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool SCI_isFIFOEnabled</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_isFIFOEnabled</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Determines if the FIFO enhancement is enabled.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns a flag indicating whether or not the FIFO enhancement is enabled.</para>
+<para><simplesect kind="return"><para>Returns <bold>true</bold> if the FIFO enhancement is enabled or <bold>false</bold> if the FIFO enhancement is disabled. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="778" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="778" bodyend="790"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gad3d079fef552bbcbeb7e7d532b5cb64b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_resetRxFIFO</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_resetRxFIFO</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Resets the receive FIFO.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This functions resets the receive FIFO of the SCI.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="804" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="804" bodyend="816"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gaff5c21ec6720284d88a15c511337c215" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_resetTxFIFO</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_resetTxFIFO</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Resets the transmit FIFO.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This functions resets the transmit FIFO of the SCI.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="830" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="830" bodyend="842"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga1aa027d0a63848a281f84024f420a9a1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_resetChannels</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_resetChannels</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Resets the SCI Transmit and Receive Channels</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This functions resets transmit and receive channels in the SCI.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="856" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="856" bodyend="868"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gab65c8520f5244e1997b3ceaa5d0796b6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool SCI_isDataAvailableNonFIFO</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_isDataAvailableNonFIFO</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Determines if there are any characters in the receive buffer when the FIFO enhancement is not enabled.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns a flag indicating whether or not there is data available in the receive buffer.</para>
+<para><simplesect kind="return"><para>Returns <bold>true</bold> if there is data in the receive buffer or <bold>false</bold> if there is no data in the receive buffer. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="885" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="885" bodyend="897"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gad4d95de59d61c89f01bfade7b2a94f5f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool SCI_isSpaceAvailableNonFIFO</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_isSpaceAvailableNonFIFO</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Determines if there is any space in the transmit buffer when the FIFO enhancement is not enabled.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns a flag indicating whether or not there is space available in the transmit buffer when not using the FIFO enhancement.</para>
+<para><simplesect kind="return"><para>Returns <bold>true</bold> if there is space available in the transmit buffer or <bold>false</bold> if there is no space available in the transmit buffer. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="914" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="914" bodyend="926"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga4e6cc8b077c1d5bc1ef523c416c403f4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="group__sci__api_1ga6fba1f1d41dff0562830f10f597b665f" kindref="member">SCI_TxFIFOLevel</ref></type>
+        <definition>static SCI_TxFIFOLevel SCI_getTxFIFOStatus</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_getTxFIFOStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the transmit FIFO status</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This functions gets the current number of words in the transmit FIFO.</para>
+<para><simplesect kind="return"><para>Returns the current number of words in the transmit FIFO specified as one of the following: <bold>SCI_FIFO_TX0</bold>, <bold>SCI_FIFO_TX1</bold>, <bold>SCI_FIFO_TX2</bold>, <bold>SCI_FIFO_TX3</bold> <bold>SCI_FIFO_TX4</bold>, ..., or <bold>SCI_FIFO_TX16</bold> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="943" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="943" bodyend="955"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga508c75cffba2883fe6b925debfb952c3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="group__sci__api_1ga4484ef93f7f2c5b3661390e9447f2617" kindref="member">SCI_RxFIFOLevel</ref></type>
+        <definition>static SCI_RxFIFOLevel SCI_getRxFIFOStatus</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_getRxFIFOStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the receive FIFO status</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This functions gets the current number of words in the receive FIFO.</para>
+<para><simplesect kind="return"><para>Returns the current number of words in the receive FIFO specified as one of the following: <bold>SCI_FIFO_RX0</bold>, <bold>SCI_FIFO_RX1</bold>, <bold>SCI_FIFO_RX2</bold>, <bold>SCI_FIFO_RX3</bold> <bold>SCI_FIFO_RX4</bold>, ..., or <bold>SCI_FIFO_RX16</bold> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="972" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="972" bodyend="984"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gaffd040a634046e966411b3706df59c59" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool SCI_isTransmitterBusy</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_isTransmitterBusy</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Determines whether the SCI transmitter is busy or not.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Allows the caller to determine whether all transmitted bytes have cleared the transmitter hardware when the FIFO is not enabled. When the FIFO is enabled, this function allows the caller to determine whether there is any data in the FIFO.</para>
+<para>Without the FIFO enabled, if <bold>false</bold> is returned, the transmit buffer and shift registers are empty and the transmitter is not busy. With the FIFO enabled, if <bold>false</bold> is returned, the FIFO is empty. This does not necessarily mean that the transmitter is not busy. The empty FIFO does not reflect the status of the transmitter shift register. The FIFO may be empty while the transmitter is still transmitting data.</para>
+<para><simplesect kind="return"><para>Returns <bold>true</bold> if the SCI is transmitting or <bold>false</bold> if transmissions are complete. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1009" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="1009" bodyend="1036"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gac345f0ffdcd6af84784f3899fc53eee2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_writeCharBlockingFIFO</definition>
+        <argsstring>(uint32_t base, uint16_t data)</argsstring>
+        <name>SCI_writeCharBlockingFIFO</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Waits to send a character from the specified port when the FIFO enhancement is enabled.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the character to be transmitted.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Sends the character <emphasis>data</emphasis> to the transmit buffer for the specified port. If there is no space available in the transmit FIFO, this function waits until there is space available before returning. <emphasis>data</emphasis> is a uint16_t but only 8 bits are written to the SCI port. SCI only transmits 8 bit characters.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1056" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="1056" bodyend="1074"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga108ee60c802a2479b38b26afba87e2de" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_writeCharBlockingNonFIFO</definition>
+        <argsstring>(uint32_t base, uint16_t data)</argsstring>
+        <name>SCI_writeCharBlockingNonFIFO</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Waits to send a character from the specified port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the character to be transmitted.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Sends the character <emphasis>data</emphasis> to the transmit buffer for the specified port. If there is no space available in the transmit buffer, or the transmit FIFO if it is enabled, this function waits until there is space available before returning. <emphasis>data</emphasis> is a uint16_t but only 8 bits are written to the SCI port. SCI only transmits 8 bit characters.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1093" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="1093" bodyend="1111"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gaca2384b5e33beb850a34ca359442c4af" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_writeCharNonBlocking</definition>
+        <argsstring>(uint32_t base, uint16_t data)</argsstring>
+        <name>SCI_writeCharNonBlocking</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sends a character to the specified port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the character to be transmitted.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Writes the character <emphasis>data</emphasis> to the transmit buffer for the specified port. This function does not block and only writes to the transmit buffer. The user should use <ref refid="group__sci__api_1gad4d95de59d61c89f01bfade7b2a94f5f" kindref="member">SCI_isSpaceAvailableNonFIFO()</ref> or <ref refid="group__sci__api_1ga4e6cc8b077c1d5bc1ef523c416c403f4" kindref="member">SCI_getTxFIFOStatus()</ref> to determine if the transmit buffer or FIFO have space available. <emphasis>data</emphasis> is a uint16_t but only 8 bits are written to the SCI port. SCI only transmits 8 bit characters.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1131" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="1131" bodyend="1142"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gaaa0ea4bd7501eaaddf5a094495f74ffa" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>static uint16_t SCI_getRxStatus</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_getRxStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets current receiver status flags.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns the current receiver status flags. The returned error flags are equivalent to the error bits returned via the previous reading or receiving of a character with the exception that the overrun error is set immediately the overrun occurs rather than when a character is next read.</para>
+<para><simplesect kind="return"><para>Returns a bitwise OR combination of the receiver status flags, <bold>SCI_RXSTATUS_WAKE</bold>, <bold>SCI_RXSTATUS_PARITY</bold>, <bold>SCI_RXSTATUS_OVERRUN</bold>, <bold>SCI_RXSTATUS_FRAMING</bold>, <bold>SCI_RXSTATUS_BREAK</bold>, <bold>SCI_RXSTATUS_READY</bold>, and <bold>SCI_RXSTATUS_ERROR</bold>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1163" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="1163" bodyend="1174"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga653cd2c0117234643127b1cd782e7986" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>static uint16_t SCI_readCharBlockingFIFO</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_readCharBlockingFIFO</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Waits for a character from the specified port when the FIFO enhancement is enabled.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Gets a character from the receive FIFO for the specified port. If there are no characters available, this function waits until a character is received before returning. Returns immediately in case of Error.</para>
+<para><simplesect kind="return"><para>Returns the character read from the specified port as <emphasis>uint16_t</emphasis> or 0x0 in case of Error. The application must use <ref refid="group__sci__api_1gaaa0ea4bd7501eaaddf5a094495f74ffa" kindref="member">SCI_getRxStatus()</ref> API to check if some error occurred before consuming the data </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1194" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="1194" bodyend="1219"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga8a1cb29f22a34246d30b43a62cae4bac" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>static uint16_t SCI_readCharBlockingNonFIFO</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_readCharBlockingNonFIFO</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Waits for a character from the specified port when the FIFO enhancement is not enabled.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Gets a character from the receive buffer for the specified port. If there is no characters available, this function waits until a character is received before returning.</para>
+<para><simplesect kind="return"><para>Returns the character read from the specified port as <emphasis>uint16_t</emphasis>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1236" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="1236" bodyend="1254"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gac0597164632bc6745b30a60b8f65ef35" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>static uint16_t SCI_readCharNonBlocking</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_readCharNonBlocking</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Receives a character from the specified port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Gets a character from the receive buffer for the specified port. This function does not block and only reads the receive buffer. The user should use <ref refid="group__sci__api_1gab65c8520f5244e1997b3ceaa5d0796b6" kindref="member">SCI_isDataAvailableNonFIFO()</ref> or <ref refid="group__sci__api_1ga508c75cffba2883fe6b925debfb952c3" kindref="member">SCI_getRxFIFOStatus()</ref> to determine if the receive buffer or FIFO have data available.</para>
+<para><simplesect kind="return"><para>Returns <emphasis>uin16_t</emphasis> which is read from the receive buffer. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1271" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="1271" bodyend="1282"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gafc0fa4ea7eefa99dbd0f534e128ba98d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_performSoftwareReset</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_performSoftwareReset</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Performs a software reset of the SCI and Clears all reported receiver status flags.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function performs a software reset of the SCI port. It affects the operating flags of the SCI, but it neither affects the configuration bits nor restores the reset values.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1299" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="1299" bodyend="1311"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gad1bd0298389bf01486614d1d1f637cff" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_enableLoopback</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_enableLoopback</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables Loop Back Test Mode</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Enables the loop back test mode where the Tx pin is internally connected to the Rx pin.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1326" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="1326" bodyend="1337"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga6d5db9b4a29bf94df710fc63c2a78890" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_disableLoopback</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_disableLoopback</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables Loop Back Test Mode</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Disables the loop back test mode where the Tx pin is no longer internally connected to the Rx pin.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1352" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="1352" bodyend="1363"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga08fe17d985e7b64a1a15c0bdd5924176" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool SCI_getOverflowStatus</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_getOverflowStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the receive FIFO Overflow flag status</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This functions gets the receive FIFO overflow flag status.</para>
+<para><simplesect kind="return"><para>Returns <bold>true</bold> if overflow has occurred, else returned <bold>false</bold> if an overflow hasn&apos;t occurred. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1378" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="1378" bodyend="1389"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gaa26cf4400102fb416b75aff5d95c1fdf" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SCI_clearOverflowStatus</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_clearOverflowStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clear the receive FIFO Overflow flag status</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This functions clears the receive FIFO overflow flag status.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1403" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="1403" bodyend="1414"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gaf90d3bd5f5234a9af9ce56914b954235" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SCI_setConfig</definition>
+        <argsstring>(uint32_t base, uint32_t lspclkHz, uint32_t baud, uint32_t config)</argsstring>
+        <name>SCI_setConfig</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>lspclkHz</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>baud</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>config</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the configuration of a SCI.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lspclkHz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the rate of the clock supplied to the SCI module. This is the LSPCLK. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>baud</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the desired baud rate. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>config</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the data format for the port (number of data bits, number of stop bits, and parity).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the SCI for operation in the specified data format. The baud rate is provided in the <emphasis>baud</emphasis> parameter and the data format in the <emphasis>config</emphasis> parameter.</para>
+<para>The <emphasis>config</emphasis> parameter is the bitwise OR of three values: the number of data bits, the number of stop bits, and the parity. <bold>SCI_CONFIG_WLEN_8</bold>, <bold>SCI_CONFIG_WLEN_7</bold>, <bold>SCI_CONFIG_WLEN_6</bold>, <bold>SCI_CONFIG_WLEN_5</bold>, <bold>SCI_CONFIG_WLEN_4</bold>, <bold>SCI_CONFIG_WLEN_3</bold>, <bold>SCI_CONFIG_WLEN_2</bold>, and <bold>SCI_CONFIG_WLEN_1</bold>. Select from eight to one data bits per byte (respectively). <bold>SCI_CONFIG_STOP_ONE</bold> and <bold>SCI_CONFIG_STOP_TWO</bold> select one or two stop bits (respectively). <bold>SCI_CONFIG_PAR_NONE</bold>, <bold>SCI_CONFIG_PAR_EVEN</bold>, <bold>SCI_CONFIG_PAR_ODD</bold>, select the parity mode (no parity bit, even parity bit, odd parity bit respectively).</para>
+<para>The peripheral clock is the low speed peripheral clock. This will be the value returned by <ref refid="group__sysctl__api_1ga70606ae075b1e015e3a63f8e83320321" kindref="member">SysCtl_getLowSpeedClock()</ref>, or it can be explicitly hard coded if it is constant and known (to save the code/execution overhead of a call to <ref refid="group__sysctl__api_1ga70606ae075b1e015e3a63f8e83320321" kindref="member">SysCtl_getLowSpeedClock()</ref>).</para>
+<para>A baud rate divider (BRR) is used in this function to calculate the baud rate. The value of BRR is calculated in float and type casted as int to be fed in the <bold>SCIHBAUD</bold> and <bold>SCILBAUD</bold> registers. This conversion brings an error in the calculated baud rate and the requested. Error will be significant when operating at higher baud rates. The error is due to lower BRR integer value granularity at higher baud rates.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1458" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" declline="1458" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga9f13d61c0e51cacf1e760e52b50d1b2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SCI_writeCharArray</definition>
+        <argsstring>(uint32_t base, const uint16_t *const array, uint16_t length)</argsstring>
+        <name>SCI_writeCharArray</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>const uint16_t *const</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Waits to send an array of characters from the specified port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the address of the array of characters to be transmitted. It is pointer to the array of characters to be transmitted. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the length of the array, or number of characters in the array to be transmitted.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Sends the number of characters specified by <emphasis>length</emphasis>, starting at the address <emphasis>array</emphasis>, out of the transmit buffer for the specified port. If there is no space available in the transmit buffer, or the transmit FIFO if it is enabled, this function waits until there is space available and <emphasis>length</emphasis> number of characters are transmitted before returning. <emphasis>array</emphasis> is a pointer to uint16_ts but only the least significant 8 bits are written to the SCI port. SCI only transmits 8 bit characters.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1483" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" declline="1483" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga779ef3fcf95ab9d4d8dafd572adbf3a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SCI_readCharArray</definition>
+        <argsstring>(uint32_t base, uint16_t *const array, uint16_t length)</argsstring>
+        <name>SCI_readCharArray</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t *const</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Waits to receive an array of characters from the specified port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the address of the array of characters to be received. It is a pointer to the array of characters to be received. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the length of the array, or number of characters in the array to be received.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Receives an array of characters from the receive buffer for the specified port, and stores them as an array of characters starting at address <emphasis>array</emphasis>. This function waits until the <emphasis>length</emphasis> number of characters are received before returning.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1505" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" declline="1505" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gacc2edba175e067861397accef2cd4010" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SCI_enableInterrupt</definition>
+        <argsstring>(uint32_t base, uint32_t intFlags)</argsstring>
+        <name>SCI_enableInterrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>intFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables individual SCI interrupt sources.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the bit mask of the interrupt sources to be enabled.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Enables the indicated SCI interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt; disabled sources have no effect on the processor.</para>
+<para>The <emphasis>intFlags</emphasis> parameter is the bitwise OR of any of the following:</para>
+<para><itemizedlist>
+<listitem><para><bold>SCI_INT_RXERR</bold> - RXERR Interrupt</para>
+</listitem><listitem><para><bold>SCI_INT_RXRDY_BRKDT</bold> - RXRDY/BRKDT Interrupt</para>
+</listitem><listitem><para><bold>SCI_INT_TXRDY</bold> - TXRDY Interrupt</para>
+</listitem><listitem><para><bold>SCI_INT_TXFF</bold> - TX FIFO Level Interrupt</para>
+</listitem><listitem><para><bold>SCI_INT_RXFF</bold> - RX FIFO Level Interrupt</para>
+</listitem><listitem><para><bold>SCI_INT_FE</bold> - Frame Error</para>
+</listitem><listitem><para><bold>SCI_INT_OE</bold> - Overrun Error</para>
+</listitem><listitem><para><bold>SCI_INT_PE</bold> - Parity Error</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1533" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" declline="1533" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gafe077d1f9438fad6700548afe02e8a25" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SCI_disableInterrupt</definition>
+        <argsstring>(uint32_t base, uint32_t intFlags)</argsstring>
+        <name>SCI_disableInterrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>intFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables individual SCI interrupt sources.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the bit mask of the interrupt sources to be disabled.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Disables the indicated SCI interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt; disabled sources have no effect on the processor.</para>
+<para>The <emphasis>intFlags</emphasis> parameter has the same definition as the <emphasis>intFlags</emphasis> parameter to <ref refid="group__sci__api_1gacc2edba175e067861397accef2cd4010" kindref="member">SCI_enableInterrupt()</ref>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1553" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" declline="1553" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gad5ce839c53219d33b5777b045ae1888c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t SCI_getInterruptStatus</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_getInterruptStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the current interrupt status.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the current interrupt status, enumerated as a bit field of values described in <ref refid="group__sci__api_1gacc2edba175e067861397accef2cd4010" kindref="member">SCI_enableInterrupt()</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1566" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" declline="1566" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gaeefbe3bdb0502a0c86923e8da13b74a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SCI_clearInterruptStatus</definition>
+        <argsstring>(uint32_t base, uint32_t intFlags)</argsstring>
+        <name>SCI_clearInterruptStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>intFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clears SCI interrupt sources.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a bit mask of the interrupt sources to be cleared.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+The specified SCI interrupt sources are cleared, so that they no longer assert. This function must be called in the interrupt handler to keep the interrupt from being recognized again immediately upon exit.</para>
+<para>The <emphasis>intFlags</emphasis> parameter has the same definition as the <emphasis>intFlags</emphasis> parameter to <ref refid="group__sci__api_1gacc2edba175e067861397accef2cd4010" kindref="member">SCI_enableInterrupt()</ref>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1586" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" declline="1586" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1gafaf7c602b55b339735f3c0c06506d55d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SCI_setBaud</definition>
+        <argsstring>(uint32_t base, uint32_t lspclkHz, uint32_t baud)</argsstring>
+        <name>SCI_setBaud</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>lspclkHz</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>baud</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets SCI Baud rate.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lspclkHz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the rate of the clock supplied to the SCI module. This is the LSPCLK. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>baud</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the desired baud rate.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the SCI for operation in the specified baud rate The baud rate is provided in the <emphasis>baud</emphasis> parameter.</para>
+<para>The peripheral clock is the low speed peripheral clock. This will be the value returned by <ref refid="group__sysctl__api_1ga70606ae075b1e015e3a63f8e83320321" kindref="member">SysCtl_getLowSpeedClock()</ref></para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1607" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" declline="1607" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__sci__api_1ga6d8885ca0a064e063367cf8aa3c9ac5a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SCI_setWakeFlag</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SCI_setWakeFlag</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the SCI TXWAKE flag</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SCI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the TXWAKE flag bit to indicate that the next frame is an address frame. TXWAKE bit controls selection of data-transmit feature based on which mode is selected from idle-line and address-bit.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="1624" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" declline="1624" declcolumn="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__sci__api_1ga1345b5490e4e4047989eafddc952568b" prot="public" static="no">
+        <name>SCI_INT_RXERR</name>
+        <initializer>0x01U</initializer>
+        <briefdescription>
+<para>RXERR interrupt. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="76" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1gae946bde032d17d6790c2f187f3f9c16b" prot="public" static="no">
+        <name>SCI_INT_RXRDY_BRKDT</name>
+        <initializer>0x02U</initializer>
+        <briefdescription>
+<para>RXRDY interrupt. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="77" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1ga0f4d49ce0bec628e4c86083498193d1c" prot="public" static="no">
+        <name>SCI_INT_TXRDY</name>
+        <initializer>0x04U</initializer>
+        <briefdescription>
+<para>TXRDY interrupt. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="78" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1ga1d2030b63fd355404bc2eba35ef6c9af" prot="public" static="no">
+        <name>SCI_INT_TXFF</name>
+        <initializer>0x08U</initializer>
+        <briefdescription>
+<para>TX FIFO level interrupt. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="79" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1ga2a12a68d8ca0d77826b44f75dbf7daa7" prot="public" static="no">
+        <name>SCI_INT_RXFF</name>
+        <initializer>0x10U</initializer>
+        <briefdescription>
+<para>RX FIFO level interrupt. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="80" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1ga6ec97594cfe13d807f0fc67b35154e77" prot="public" static="no">
+        <name>SCI_INT_FE</name>
+        <initializer>0x20U</initializer>
+        <briefdescription>
+<para>Frame Error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="81" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1ga177b491004b1692e618b512c3cab3f73" prot="public" static="no">
+        <name>SCI_INT_OE</name>
+        <initializer>0x40U</initializer>
+        <briefdescription>
+<para>Overrun Error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="82" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1ga524c9a45f1c6acbde5f6a2a54f1088af" prot="public" static="no">
+        <name>SCI_INT_PE</name>
+        <initializer>0x80U</initializer>
+        <briefdescription>
+<para>Parity Error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="83" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1ga4855556cc261ac07ccabfe3a53bd290a" prot="public" static="no">
+        <name>SCI_CONFIG_WLEN_MASK</name>
+        <initializer>0x0007U</initializer>
+        <briefdescription>
+<para>Mask for extracting word length. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="94" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1ga11ed925d81d838218960da1cf3d1e9cd" prot="public" static="no">
+        <name>SCI_CONFIG_WLEN_8</name>
+        <initializer>0x0007U</initializer>
+        <briefdescription>
+<para>8 bit data </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="95" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1ga0598ca502672659bd74da8b54ea58390" prot="public" static="no">
+        <name>SCI_CONFIG_WLEN_7</name>
+        <initializer>0x0006U</initializer>
+        <briefdescription>
+<para>7 bit data </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="96" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1gaf9f1704b82abbb7c6facb6e541a825e1" prot="public" static="no">
+        <name>SCI_CONFIG_WLEN_6</name>
+        <initializer>0x0005U</initializer>
+        <briefdescription>
+<para>6 bit data </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="97" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1gae2e8bc8edc8b1ddc872022b542c60466" prot="public" static="no">
+        <name>SCI_CONFIG_WLEN_5</name>
+        <initializer>0x0004U</initializer>
+        <briefdescription>
+<para>5 bit data </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="98" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1gaeaf7c4dbbfef9bd81d119e24c9a0bc16" prot="public" static="no">
+        <name>SCI_CONFIG_WLEN_4</name>
+        <initializer>0x0003U</initializer>
+        <briefdescription>
+<para>4 bit data </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="99" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1gaf76a7eceaaec23b0c43ee48d77b25e38" prot="public" static="no">
+        <name>SCI_CONFIG_WLEN_3</name>
+        <initializer>0x0002U</initializer>
+        <briefdescription>
+<para>3 bit data </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="100" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1gabe8e4240709846d599247a36794ff75f" prot="public" static="no">
+        <name>SCI_CONFIG_WLEN_2</name>
+        <initializer>0x0001U</initializer>
+        <briefdescription>
+<para>2 bit data </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="101" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1ga34e403a2d1df6520406fd121d60501e9" prot="public" static="no">
+        <name>SCI_CONFIG_WLEN_1</name>
+        <initializer>0x0000U</initializer>
+        <briefdescription>
+<para>1 bit data </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="102" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1ga43bbb169f8d7e1c48b58b54516c6eb3b" prot="public" static="no">
+        <name>SCI_CONFIG_STOP_MASK</name>
+        <initializer>0x0080U</initializer>
+        <briefdescription>
+<para>Mask for extracting stop bits. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="103" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1ga4a6032341796e3cffe28e1190e582c77" prot="public" static="no">
+        <name>SCI_CONFIG_STOP_ONE</name>
+        <initializer>0x0000U</initializer>
+        <briefdescription>
+<para>One stop bit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="104" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1ga747ddcee7a0baeee2984f52696a21af9" prot="public" static="no">
+        <name>SCI_CONFIG_STOP_TWO</name>
+        <initializer>0x0080U</initializer>
+        <briefdescription>
+<para>Two stop bits. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="105" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1gaed297004266768363f1cc9302ec5954a" prot="public" static="no">
+        <name>SCI_CONFIG_PAR_MASK</name>
+        <initializer>0x0060U</initializer>
+        <briefdescription>
+<para>Parity Mask. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="106" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1gad32185ba65a4326c8b9a77a917c4d0d8" prot="public" static="no">
+        <name>SCI_RXSTATUS_WAKE</name>
+        <initializer>0x0002U</initializer>
+        <briefdescription>
+<para>Receiver wake up detect. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="183" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="183" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1gad2fb4f025ee62c0f685c5d93e65e944c" prot="public" static="no">
+        <name>SCI_RXSTATUS_PARITY</name>
+        <initializer>0x0004U</initializer>
+        <briefdescription>
+<para>Parity error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="184" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="184" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1gae7b02a6b5ec9d2be3342bbc0fa1192ab" prot="public" static="no">
+        <name>SCI_RXSTATUS_OVERRUN</name>
+        <initializer>0x0008U</initializer>
+        <briefdescription>
+<para>Overrun error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="185" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="185" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1gaa4edf471267d7ea36b804c02275afc1a" prot="public" static="no">
+        <name>SCI_RXSTATUS_FRAMING</name>
+        <initializer>0x0010U</initializer>
+        <briefdescription>
+<para>Framing error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="186" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="186" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1ga8c18d6bc6033a63028787faa2001035c" prot="public" static="no">
+        <name>SCI_RXSTATUS_BREAK</name>
+        <initializer>0x0020U</initializer>
+        <briefdescription>
+<para>Break detect. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="187" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="187" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1ga6f30ec3629d3cbb94c439985632ea959" prot="public" static="no">
+        <name>SCI_RXSTATUS_READY</name>
+        <initializer>0x0040U</initializer>
+        <briefdescription>
+<para>Receiver ready. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="188" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="188" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__sci__api_1gaedd2ffc6a19dc28bdeb039e64042cc5b" prot="public" static="no">
+        <name>SCI_RXSTATUS_ERROR</name>
+        <initializer>0x0080U</initializer>
+        <briefdescription>
+<para>Receiver error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" line="189" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/sci.h" bodystart="189" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

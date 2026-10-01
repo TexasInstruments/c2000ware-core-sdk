@@ -516,6 +516,14 @@ function onValidate(inst, validation)
 
     var duplicatesResult = Common.findDuplicates(usedDMAInsts)
 
+    if (inst.srcAddressInputMode == INPUT_MODE_MANUAL)
+    {
+        validation.logInfo("DMA has only GSRAM access, so source address must be located in GSRAM",inst, "srcAddressManual");
+    }
+        if (inst.destAddressInputMode == INPUT_MODE_MANUAL)
+    {
+        validation.logInfo("DMA has only GSRAM access, so destination address must be located in GSRAM",inst, "destAddressManual");
+    }
     if (duplicatesResult.duplicates.length != 0)
     {
         var allDuplicates = "";

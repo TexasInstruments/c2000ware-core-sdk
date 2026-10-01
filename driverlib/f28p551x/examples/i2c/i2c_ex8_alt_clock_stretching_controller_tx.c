@@ -66,7 +66,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -74,88 +73,69 @@
 #include "device.h"
 #include "board.h"
 #include "c2000ware_libraries.h"
-
 //
 // Defines
 //
 #define TOT_NUM_I2C_DATA 18
-
 //
 // Globals
 //
 uint16_t txDataIndex = 0;
-
 //
 // Function Prototypes
 //
 __interrupt void INT_myI2C0_ISR(void);
-
-
 //
 // Main
 //
 void main(void)
 {
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull-ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // PinMux and Peripheral Initialization
     //
     Board_init();
-
     //
     // C2000Ware Library initialization
     //
     C2000Ware_libraries_init();
-
-
     //
     // Enable Global Interrupt (INTM) and real time interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Enable START and STOP condition. STOP condition will send when after
     // 18 data bytes have transmitted.
     //
     I2C_sendStartCondition(myI2C0_BASE);
-
     I2C_sendStopCondition(myI2C0_BASE);
-
     //
     // Loop forever.
     //
     while(1)
     {
-
     }
 }
-
 //
 // I2C A Transmit & Receive ISR - used for transmits and error checking
 //
-
 __interrupt void INT_myI2C0_ISR(void)
 {
     //
@@ -184,7 +164,6 @@ __interrupt void INT_myI2C0_ISR(void)
         //
         I2C_clearStatus(myI2C0_BASE, I2C_STS_NO_ACK);
         I2C_sendStopCondition(myI2C0_BASE);
-
         ESTOP0;
         break;
     }

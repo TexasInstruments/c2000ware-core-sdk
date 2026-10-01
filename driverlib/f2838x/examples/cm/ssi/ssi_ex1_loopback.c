@@ -30,7 +30,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -63,41 +63,32 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 #include "cm.h"
-
 uint32_t txData[4], rxData[4];
 uint8_t  errCount = 0xFF;
-
 void ssiISR(void);
-
 //
 // Main
 //
 void main(void)
 {
     uint8_t i;
-
     //
     // Enable clocks
     //
     CM_init();
-
     //
     // Configure SSI in master mode, baud rate = 62500, dataWidth = 12
     //
     SSI_setConfig(SSI0_BASE, CM_CLK_FREQ, SSI_FRF_TI, SSI_MODE_MASTER, 625000, 12);
-
     //
     // Enable the SSI0 module.
     //
     SSI_enableModule(SSI0_BASE);
-
     //
     // Enable loopback mode
     //
     SSI_enableLoopback(SSI0_BASE);
-
     //
     // Read any residual data from the SSI port.  This makes sure the receive
     // FIFOs are empty, so we don't read any unwanted junk.  This is done here
@@ -110,13 +101,11 @@ void main(void)
     while(SSI_readDataNonBlocking(SSI0_BASE, rxData))
     {
     }
-
     //
     // Enable Rx interrupt
     //
     SSI_registerInterrupt(INT_SSI0, ssiISR);
     SSI_enableInterrupt(SSI0_BASE, SSI_INT_RXFF);
-
     //
     // Initialize the data to send.
     //
@@ -124,7 +113,6 @@ void main(void)
     txData[1] = 0x555;
     txData[2] = 0x333;
     txData[3] = 0xCCC;
-
     //
     // Send data.
     //
@@ -132,24 +120,19 @@ void main(void)
     {
         SSI_writeData(SSI0_BASE, txData[i]);
     }
-
     //
     // Loop forever. Optional
     //
     while(1);
 }
-
 void ssiISR(void)
 {
     uint8_t i;
-
     errCount = 0;
-
     //
     // Clear the SSI Rx interrupt flag
     //
     SSI_clearInterruptStatus(SSI0_BASE, SSI_INT_RXFF);
-
     for(i = 0; i < 4; i++)
     {
         //
@@ -157,12 +140,10 @@ void ssiISR(void)
         // will wait until there is data in the receive FIFO before returning.
         //
         SSI_readData(SSI0_BASE, &rxData[i]);
-
         //
         // Mask off the unwanted bits (Datawidth = 12)
         //
         rxData[i] = rxData[i] & 0xFFF;
-
         //
         // Check the received data
         //

@@ -114,8 +114,6 @@
 #include "IQmathLib.h"
 #include "eqep_ex2_calculation.h"
 #include "board.h"
-
-
 //
 // Defines
 //
@@ -124,7 +122,6 @@
                                             // (300 rpm)
 #define PRD_VAL   (TB_CLK / (PWM_CLK * 2))  // Calculate value period value
                                             // for up-down count mode
-
 // .9999 / 4000 converted to IQ26 fixed point format
 #define MECH_SCALER     16776
 // 2 pole pairs in this example
@@ -135,14 +132,11 @@
 #define SPEED_SCALER    ((((uint64_t)32 * DEVICE_SYSCLK_FREQ / 64) * 60) / (24000000))
 // Base/max rpm is 6000rpm
 #define BASE_RPM        6000
-
-
 //
 // Function Prototypes
 //
 void initEPWM(void);
 __interrupt void epwmISR(void);
-
 //
 // Globals
 //
@@ -157,7 +151,6 @@ PosSpeed_Object posSpeed =
     BASE_RPM,       // baseRPM
     0, 0, 0, 0      // Initialize outputs to zero
 };
-
 uint16_t interruptCount = 0;
 //
 // Main
@@ -168,30 +161,25 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Board Initialization
     // Setup eQEP1, configuring the unit timer and quadrature capture units
     // Initialize GPIOs for use as EQEP1A, EQEP1B, and EQEP1I
     //
     Board_init();
-
     //
     // On controlCARD, Initialize GPIO0 to ePWM1A, GPIO1 to ePWM1B, and GPIO4 
     // as an output. (On LaunchPad, use GPIO10 on ePWM6A, GPIO11 on ePWM6B, and 
@@ -201,32 +189,26 @@ void main(void)
     //
     GPIO_setPinConfig(DEVICE_GPIO_CFG_EPWMxA);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_EPWMxA, GPIO_PIN_TYPE_STD);
-
     GPIO_setPinConfig(DEVICE_GPIO_CFG_EPWMxB);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_EPWMxB, GPIO_PIN_TYPE_STD);
-    
     //
     // Interrupts that are used in this example are re-mapped to ISR functions
     // found within this file.
     //
     Interrupt_register(DEVICE_PERIPHERAL_INT_EPWM, &epwmISR);
-
     //
     // Setup ePWM1 to generate a 5 kHz signal to be an input to the eQEP
     //
     initEPWM();
-
     //
     // Enable interrupts required for this example
     //
     Interrupt_enable(DEVICE_PERIPHERAL_INT_EPWM);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Loop indefinitely
     //
@@ -235,7 +217,6 @@ void main(void)
         ;
     }
 }
-
 //
 // Function to configure ePWM1 to generate a 5 kHz signal.
 //
@@ -245,13 +226,11 @@ void initEPWM(void)
     // Disable the ePWM time base clock before configuring the module
     //
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Set phase shift to 0 and clear the time base counter
     //
     EPWM_setPhaseShift(DEVICE_PERIPHERAL_BASE_EPWM, 0);
     EPWM_setTimeBaseCounter(DEVICE_PERIPHERAL_BASE_EPWM, 0);
-
     //
     // Disable the shadow load; the load will be immediate instead
     //
@@ -259,7 +238,6 @@ void initEPWM(void)
                                              EPWM_COUNTER_COMPARE_A);
     EPWM_disableCounterCompareShadowLoadMode(DEVICE_PERIPHERAL_BASE_EPWM,
                                              EPWM_COUNTER_COMPARE_B);
-
     //
     // Set the compare A value to half the period value, compare B to 0
     //
@@ -267,7 +245,6 @@ void initEPWM(void)
                                 EPWM_COUNTER_COMPARE_A, PRD_VAL/2);
     EPWM_setCounterCompareValue(DEVICE_PERIPHERAL_BASE_EPWM, 
                                 EPWM_COUNTER_COMPARE_B, 0);
-
     //
     // Set action qualifier behavior on compare A events
     // - EPWM1A --> 1 when CTR = CMPA and increasing
@@ -279,7 +256,6 @@ void initEPWM(void)
     EPWM_setActionQualifierAction(DEVICE_PERIPHERAL_BASE_EPWM, EPWM_AQ_OUTPUT_A,
                                   EPWM_AQ_OUTPUT_LOW,
                                   EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);
-
     //
     // Set action qualifier behavior on compare B events
     // - EPWM1B --> 1 when CTR = PRD and increasing
@@ -291,56 +267,45 @@ void initEPWM(void)
     EPWM_setActionQualifierAction(DEVICE_PERIPHERAL_BASE_EPWM, EPWM_AQ_OUTPUT_B,
                                   EPWM_AQ_OUTPUT_LOW,
                                   EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);
-
     //
     // Enable interrupt when the counter is equal to PRD
     //
     EPWM_setInterruptSource(DEVICE_PERIPHERAL_BASE_EPWM, EPWM_INT_TBCTR_PERIOD);
     EPWM_enableInterrupt(DEVICE_PERIPHERAL_BASE_EPWM);
-
     //
     // Interrupt on first event
     //
     EPWM_setInterruptEventCount(DEVICE_PERIPHERAL_BASE_EPWM, 1);
-
     //
     // Set the time base clock prescaler to /1
     //
     EPWM_setClockPrescaler(DEVICE_PERIPHERAL_BASE_EPWM, EPWM_CLOCK_DIVIDER_1,
                            EPWM_HSCLOCK_DIVIDER_1);
-
     //
     // Set the period value; don't shadow the register
     //
     EPWM_setPeriodLoadMode(DEVICE_PERIPHERAL_BASE_EPWM, EPWM_PERIOD_DIRECT_LOAD);
     EPWM_setTimeBasePeriod(DEVICE_PERIPHERAL_BASE_EPWM, PRD_VAL);
-
     //
     // Put the time base counter into up-down count mode
     //
     EPWM_setTimeBaseCounterMode(DEVICE_PERIPHERAL_BASE_EPWM,  
                                 EPWM_COUNTER_MODE_UP_DOWN);
-
-
     //
     // Sync the ePWM time base clock
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
 }
-
 //
 // ePWM1 ISR--interrupts once every 4 QCLK counts (one period)
 //
  __interrupt void epwmISR(void)
 {
     uint16_t i;
-
     //
     // Position speed and measurement
     //
     PosSpeed_calculate(&posSpeed);
-
-
     //
     // Control loop for position control and speed control
     //
@@ -357,7 +322,6 @@ void initEPWM(void)
         }
         GPIO_writePin(DEVICE_GPIO_PIN_IOINDEX, 0);
     }
-
     //
     // Clear interrupt flag and issue ACK
     //

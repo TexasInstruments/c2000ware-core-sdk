@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -41,17 +41,14 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 #ifndef USB_EX8_DESCRIPTORS_H
 #define USB_EX8_DESCRIPTORS_H
-
 //
 // Globals
 //
 extern uint32_t const g_ui32ReportDescriptorSize;
 extern uint8_t const g_pucReportDescriptor[];
 extern tDeviceInfo g_sMouseDeviceInfo;
-
 //
 // Function Prototypes
 //
@@ -62,9 +59,7 @@ extern void ConfigurationChange(uint32_t ui32Index, uint32_t ui32Info);
 extern void EP1Handler(uint32_t ui32Index, uint32_t ui32Status);
 extern void HandleReset(uint32_t ui32Index);
 extern void HandleDisconnect(uint32_t ui32Index);
-
 #endif // USB_EX8_DESCRIPTORS_H
-
 //
 // End of file
 //

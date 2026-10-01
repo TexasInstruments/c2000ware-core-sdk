@@ -72,12 +72,10 @@
 #include <math.h>
 #include <signalsight/signalsight.h>
 #include "board.h"
-
 //
 // Globals used to simulate variable changes
 //
 int dataIndex = 0;
-
 #define SAMPLE_RESOLUTION 200
 float sine1Snapshot[SAMPLE_RESOLUTION] = {0};
 float square1Snapshot[SAMPLE_RESOLUTION] = {0};
@@ -85,7 +83,6 @@ float triangle1Snapshot[SAMPLE_RESOLUTION] = {0};
 float sine2Snapshot[SAMPLE_RESOLUTION] = {0};
 float square2Snapshot[SAMPLE_RESOLUTION] = {0};
 float triangle2Snapshot[SAMPLE_RESOLUTION] = {0};
-
 //
 // Example Streaming Global Variables - must be float type
 //
@@ -95,9 +92,7 @@ float triangleWave1 = 0.25;
 float sineWave2 = 0.0;
 float squareWave2 = 2.5;
 float triangleWave2 = 1.5;
-
 __interrupt void cpuTimer1ISR(void);
-
 //
 // Main
 //
@@ -107,46 +102,38 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull-ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // PinMux and Peripheral Initialization
     //
     Board_init();
-
     //
     // Initialize Signal Sight tool state
     //
     SIGNALSIGHT_init();
-
     //
     // Set up arrays of fake data for demo
     //
     float twoPi = 6.283185307f;
     int i;
     for(i = 0; i < SAMPLE_RESOLUTION; i++){
-
         //
         // Sine waves
         //
         sine1Snapshot[i] = sinf((i)*twoPi/SAMPLE_RESOLUTION)*3.0f;
         sine2Snapshot[i] = sinf((i)*twoPi/SAMPLE_RESOLUTION)*6.0f + 1.0f;
-
         //
         // Triangle waves
         //
@@ -161,13 +148,11 @@ void main(void)
         else if(i == ((SAMPLE_RESOLUTION-1)/2)){
             triangle1Snapshot[i] = triangle1Snapshot[i-1] + 0.01f;
             triangle2Snapshot[i] = 0.0f;
-
         }
         else{
             triangle1Snapshot[i] = triangle1Snapshot[i-1] + 0.01f;
             triangle2Snapshot[i] = triangle2Snapshot[i-1] + 0.04f;
         } 
-
         //
         // Square waves
         //
@@ -190,18 +175,15 @@ void main(void)
             }
         }
     }
-
     //
     // Enable Global Interrupt (INTM) and real time interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Start the CPU timer to beging getting periodic interrupts
     //
     CPUTimer_startTimer(myCPUTIMER0_BASE);
-
     while(1)
     {
         //
@@ -210,7 +192,6 @@ void main(void)
         SIGNALSIGHT_sendPlotData();
     }
 }
-
 //
 // cpuTimer1ISR - CpuTimer1  ISR every 1 ms
 //
@@ -226,7 +207,6 @@ cpuTimer1ISR(void)
     sineWave2 = sine2Snapshot[dataIndex];
     squareWave2 = square2Snapshot[dataIndex];
     triangleWave2 = triangle2Snapshot[dataIndex];
-
     //
     // Increment or wrap index for next sample
     //
@@ -236,18 +216,15 @@ cpuTimer1ISR(void)
     else{
         dataIndex++;
     }
-
     //
     // Sample current values of the streaming variables and write them to a
     // temporary buffer
     //
     SIGNALSIGHT_capturePlotData();
-
     //
     // Acknowledge the CPU Timer interrupt
     //
     Interrupt_clearACKGroup(INT_myCPUTIMER0_INTERRUPT_ACK_GROUP);
-
 }
 //
 // End of File

@@ -1,0 +1,2221 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="group__ecap__api" kind="group">
+    <compoundname>ecap_api</compoundname>
+    <title>eCAP</title>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="group__ecap__api_1gafe3cbee44a90b3d086cbfa77675c88ba" prot="public" static="no" strong="no">
+        <type></type>
+        <name>ECAP_EmulationMode</name>
+        <enumvalue id="group__ecap__api_1ggafe3cbee44a90b3d086cbfa77675c88baafa030aadfc125a617876900be11c60cd" prot="public">
+          <name>ECAP_EMULATION_STOP</name>
+          <initializer>= 0x0U</initializer>
+          <briefdescription>
+<para>TSCTR is stopped on emulation suspension. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1ggafe3cbee44a90b3d086cbfa77675c88baab8e16593de14416f5bd645fd6c1a1f33" prot="public">
+          <name>ECAP_EMULATION_RUN_TO_ZERO</name>
+          <initializer>= 0x1U</initializer>
+          <briefdescription>
+<para>TSCTR runs until 0 before stopping on emulation suspension. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1ggafe3cbee44a90b3d086cbfa77675c88baa015989a4413d8ea4543039b2a7a96385" prot="public">
+          <name>ECAP_EMULATION_FREE_RUN</name>
+          <initializer>= 0x2U</initializer>
+          <briefdescription>
+<para>TSCTR is not affected by emulation suspension. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__ecap__api_1gacda7e8d137a05f23fd285ac655d493c5" kindref="member">ECAP_setEmulationMode()</ref> as the <emphasis>mode</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="118" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="119" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__ecap__api_1gadec1bfe3dcb4cb346ba3149d0c359e7e" prot="public" static="no" strong="no">
+        <type></type>
+        <name>ECAP_CaptureMode</name>
+        <enumvalue id="group__ecap__api_1ggadec1bfe3dcb4cb346ba3149d0c359e7ea6bb93ba6f860cdbbc41224625f397437" prot="public">
+          <name>ECAP_CONTINUOUS_CAPTURE_MODE</name>
+          <initializer>= 0U</initializer>
+          <briefdescription>
+<para>eCAP operates in continuous capture mode </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1ggadec1bfe3dcb4cb346ba3149d0c359e7ea495cd7bc64dbd6551aa1a31e5f94ebe8" prot="public">
+          <name>ECAP_ONE_SHOT_CAPTURE_MODE</name>
+          <initializer>= 1U</initializer>
+          <briefdescription>
+<para>eCAP operates in one shot capture mode </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__ecap__api_1gac5994e5867e046e98be8261c9a91b238" kindref="member">ECAP_setCaptureMode()</ref> as the <emphasis>mode</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="134" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="135" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__ecap__api_1gaf84d48584bb1432ede6c502395f538f1" prot="public" static="no" strong="no">
+        <type></type>
+        <name>ECAP_Events</name>
+        <enumvalue id="group__ecap__api_1ggaf84d48584bb1432ede6c502395f538f1aa67bf52eb0e219210fa41cec5b509090" prot="public">
+          <name>ECAP_EVENT_1</name>
+          <initializer>= 0U</initializer>
+          <briefdescription>
+<para>eCAP event 1 </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1ggaf84d48584bb1432ede6c502395f538f1a79cf74a41e6285a917868b0456b6222a" prot="public">
+          <name>ECAP_EVENT_2</name>
+          <initializer>= 1U</initializer>
+          <briefdescription>
+<para>eCAP event 2 </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1ggaf84d48584bb1432ede6c502395f538f1a1f0adb6a52104b1f5eba37ed33ad46ff" prot="public">
+          <name>ECAP_EVENT_3</name>
+          <initializer>= 2U</initializer>
+          <briefdescription>
+<para>eCAP event 3 </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1ggaf84d48584bb1432ede6c502395f538f1a275a95809a4915aad084e29ef73b6fc5" prot="public">
+          <name>ECAP_EVENT_4</name>
+          <initializer>= 3U</initializer>
+          <briefdescription>
+<para>eCAP event 4 </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__ecap__api_1ga8cbaa5b5427c96adea11f5ddd9e4b788" kindref="member">ECAP_setEventPolarity()</ref>,<ref refid="group__ecap__api_1gac5994e5867e046e98be8261c9a91b238" kindref="member">ECAP_setCaptureMode()</ref>, <ref refid="group__ecap__api_1ga9a08b2c9d3f2ac7c82df651897740bd6" kindref="member">ECAP_enableCounterResetOnEvent()</ref>,<ref refid="group__ecap__api_1ga841281e729c8e70f9fcd76b1c3ce2529" kindref="member">ECAP_disableCounterResetOnEvent()</ref>, <ref refid="group__ecap__api_1gad97295535b95e152c80b4caec1e2a9c2" kindref="member">ECAP_getEventTimeStamp()</ref>,<ref refid="group__ecap__api_1gae9e23314acfa413a8f92aa68849dd150" kindref="member">ECAP_setDMASource()</ref> as the <emphasis>event</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="149" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="150" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__ecap__api_1ga3b974cda173284f4c703b9faaf81903b" prot="public" static="no" strong="no">
+        <type></type>
+        <name>ECAP_SyncOutMode</name>
+        <enumvalue id="group__ecap__api_1gga3b974cda173284f4c703b9faaf81903ba07b50a4703932e30ce3c5aeb10c9f4bd" prot="public">
+          <name>ECAP_SYNC_OUT_SYNCI</name>
+          <initializer>= 0x00U</initializer>
+          <briefdescription>
+<para>sync out on the sync in signal and software force </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga3b974cda173284f4c703b9faaf81903bad358b137c3f24f0d0534c9bcdf2a7801" prot="public">
+          <name>ECAP_SYNC_OUT_COUNTER_PRD</name>
+          <initializer>= 0x40U</initializer>
+          <briefdescription>
+<para>sync out on counter equals period </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga3b974cda173284f4c703b9faaf81903ba274c19a1e77b373d0ebe9b8ea7fb7818" prot="public">
+          <name>ECAP_SYNC_OUT_DISABLED</name>
+          <initializer>= 0x80U</initializer>
+          <briefdescription>
+<para>Disable sync out signal. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__ecap__api_1gae51b45d2b52d8a559d3354793df14e27" kindref="member">ECAP_setSyncOutMode()</ref> as the <emphasis>mode</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="163" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="164" bodyend="171"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__ecap__api_1ga721df1b285568425f14b777252fa3ef4" prot="public" static="no" strong="no">
+        <type></type>
+        <name>ECAP_APWMPolarity</name>
+        <enumvalue id="group__ecap__api_1gga721df1b285568425f14b777252fa3ef4a18b250bbf0df88c15efc75dcfdabef0e" prot="public">
+          <name>ECAP_APWM_ACTIVE_HIGH</name>
+          <initializer>= 0x000</initializer>
+          <briefdescription>
+<para>APWM is active high. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga721df1b285568425f14b777252fa3ef4ae3ed35eb413cd08d74ea4bb52d41f4f9" prot="public">
+          <name>ECAP_APWM_ACTIVE_LOW</name>
+          <initializer>= 0x400</initializer>
+          <briefdescription>
+<para>APWM is active low. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__ecap__api_1ga5bbc4002878cfa92058d76580f49f6b5" kindref="member">ECAP_setAPWMPolarity()</ref> as the <emphasis>polarity</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="179" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="180" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__ecap__api_1ga74157b9f7ea65fa58756b73d7b94c859" prot="public" static="no" strong="no">
+        <type></type>
+        <name>ECAP_EventPolarity</name>
+        <enumvalue id="group__ecap__api_1gga74157b9f7ea65fa58756b73d7b94c859a1b770e0d2568f86a3ef19d27b74f83c5" prot="public">
+          <name>ECAP_EVNT_RISING_EDGE</name>
+          <initializer>= 0U</initializer>
+          <briefdescription>
+<para>Rising edge polarity. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga74157b9f7ea65fa58756b73d7b94c859a1bf60bd8868be3c2b4ecb3c4f08cbda1" prot="public">
+          <name>ECAP_EVNT_FALLING_EDGE</name>
+          <initializer>= 1U</initializer>
+          <briefdescription>
+<para>Falling edge polarity. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__ecap__api_1ga8cbaa5b5427c96adea11f5ddd9e4b788" kindref="member">ECAP_setEventPolarity()</ref> as the <emphasis>polarity</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="191" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="192" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__ecap__api_1ga50d62d237fd7f51387dd4a5dea22a0fe" prot="public" static="no" strong="no">
+        <type></type>
+        <name>ECAP_InputCaptureSignals</name>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea173917b303cbe6a007a0c35c46e83a36" prot="public">
+          <name>ECAP_INPUT_INPUTXBAR1</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0feae416c0da747040166132307015e11cfb" prot="public">
+          <name>ECAP_INPUT_INPUTXBAR2</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>GPIO Input Crossbar output signal-1. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0feae0420765d6b543f611afda1455dbd68d" prot="public">
+          <name>ECAP_INPUT_INPUTXBAR3</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+<para>GPIO Input Crossbar output signal-2. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea0e85f5a0d9eafb1144fe3d3f88a9de58" prot="public">
+          <name>ECAP_INPUT_INPUTXBAR4</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+<para>GPIO Input Crossbar output signal-3. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea5483a6df5744789a533f012505de3116" prot="public">
+          <name>ECAP_INPUT_INPUTXBAR5</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+<para>GPIO Input Crossbar output signal-4. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea7eb9ef4b42168608c90d91780f7ff79b" prot="public">
+          <name>ECAP_INPUT_INPUTXBAR6</name>
+          <initializer>= 5</initializer>
+          <briefdescription>
+<para>GPIO Input Crossbar output signal-5. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0feafa9d96c20bfb5b58318916d89603c30b" prot="public">
+          <name>ECAP_INPUT_INPUTXBAR7</name>
+          <initializer>= 6</initializer>
+          <briefdescription>
+<para>GPIO Input Crossbar output signal-6. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0feaa49b4c5e5b08d04ea2c12fdddd4fb84a" prot="public">
+          <name>ECAP_INPUT_INPUTXBAR8</name>
+          <initializer>= 7</initializer>
+          <briefdescription>
+<para>GPIO Input Crossbar output signal-7. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea303d4dec3848c334e43c3bc3d49456e5" prot="public">
+          <name>ECAP_INPUT_INPUTXBAR9</name>
+          <initializer>= 8</initializer>
+          <briefdescription>
+<para>GPIO Input Crossbar output signal-8. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea72252e7d515f81f072a195eb8e8f204b" prot="public">
+          <name>ECAP_INPUT_INPUTXBAR10</name>
+          <initializer>= 9</initializer>
+          <briefdescription>
+<para>GPIO Input Crossbar output signal-9. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0feaf834afadb67fee0eb7ad779ec92e06f1" prot="public">
+          <name>ECAP_INPUT_INPUTXBAR11</name>
+          <initializer>= 10</initializer>
+          <briefdescription>
+<para>GPIO Input Crossbar output signal-10. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea2b61ab6cf1bdf58ae4cb6ea18bad5ed7" prot="public">
+          <name>ECAP_INPUT_INPUTXBAR12</name>
+          <initializer>= 11</initializer>
+          <briefdescription>
+<para>GPIO Input Crossbar output signal-11. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea2bc27b21006f86571394e126eae44aa5" prot="public">
+          <name>ECAP_INPUT_INPUTXBAR13</name>
+          <initializer>= 12</initializer>
+          <briefdescription>
+<para>GPIO Input Crossbar output signal-12. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0feaf31d010b306c0de2bf451a68620c718e" prot="public">
+          <name>ECAP_INPUT_INPUTXBAR14</name>
+          <initializer>= 13</initializer>
+          <briefdescription>
+<para>GPIO Input Crossbar output signal-13. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea2d86c8df4e07a6029b3574baa122d6f1" prot="public">
+          <name>ECAP_INPUT_INPUTXBAR15</name>
+          <initializer>= 14</initializer>
+          <briefdescription>
+<para>GPIO Input Crossbar output signal-14. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea473bcc77e9e5fe81f18ccc61f9b03f5b" prot="public">
+          <name>ECAP_INPUT_INPUTXBAR16</name>
+          <initializer>= 15</initializer>
+          <briefdescription>
+<para>GPIO Input Crossbar output signal-15. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea94a3c1ecb3845a755f7ffd05e773ca7d" prot="public">
+          <name>ECAP_INPUT_OUTPUTXBAR1</name>
+          <initializer>= 17</initializer>
+          <briefdescription>
+<para>GPIO Input Crossbar output signal-16. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea133164321497668c01200255547b3e52" prot="public">
+          <name>ECAP_INPUT_OUTPUTXBAR2</name>
+          <initializer>= 18</initializer>
+          <briefdescription>
+<para>Output Xbar Output-1. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0feab2cd37754a7ad7cd646edd8fd365cdbe" prot="public">
+          <name>ECAP_INPUT_OUTPUTXBAR3</name>
+          <initializer>= 19</initializer>
+          <briefdescription>
+<para>Output Xbar Output-2. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0feaa9d1e9bddb853bd44c3be6996b57b367" prot="public">
+          <name>ECAP_INPUT_OUTPUTXBAR4</name>
+          <initializer>= 20</initializer>
+          <briefdescription>
+<para>Output Xbar Output-3. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea7c7b91d169bc993f168ffd04da160e47" prot="public">
+          <name>ECAP_INPUT_OUTPUTXBAR5</name>
+          <initializer>= 21</initializer>
+          <briefdescription>
+<para>Output Xbar Output-4. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0feab73b262d9d2a7c17bdba14278ba1e1ac" prot="public">
+          <name>ECAP_INPUT_OUTPUTXBAR6</name>
+          <initializer>= 22</initializer>
+          <briefdescription>
+<para>Output Xbar Output-5. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0feaf0a4c0aef90bd143679e88c82f910d43" prot="public">
+          <name>ECAP_INPUT_OUTPUTXBAR7</name>
+          <initializer>= 23</initializer>
+          <briefdescription>
+<para>Output Xbar Output-6. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0feaec125fa3aa38469f6b9fdf5898041670" prot="public">
+          <name>ECAP_INPUT_OUTPUTXBAR8</name>
+          <initializer>= 24</initializer>
+          <briefdescription>
+<para>Output Xbar Output-7. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea73c48e2ce9e8de0f92285b24bdc97bd9" prot="public">
+          <name>ECAP_INPUT_ADC_A_EVENT4</name>
+          <initializer>= 25</initializer>
+          <briefdescription>
+<para>Output Xbar Output-8. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea7a1bbd9e36a1be9a655b70ad7f9d5368" prot="public">
+          <name>ECAP_INPUT_ADC_A_EVENT3</name>
+          <initializer>= 26</initializer>
+          <briefdescription>
+<para>ADCA Event4. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea5964cf2518ed3b10d9a5d666368e0050" prot="public">
+          <name>ECAP_INPUT_ADC_A_EVENT2</name>
+          <initializer>= 27</initializer>
+          <briefdescription>
+<para>ADCA Event3. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea3de8f7815d2940f3d69a054317f7c424" prot="public">
+          <name>ECAP_INPUT_CMPSS1_CTRIP_LOW</name>
+          <initializer>= 31</initializer>
+          <briefdescription>
+<para>ADCA Event2. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea9ae7c4ee0587e33a8a978df74b0411a4" prot="public">
+          <name>ECAP_INPUT_CMPSS2_CTRIP_LOW</name>
+          <initializer>= 32</initializer>
+          <briefdescription>
+<para>Compare Subsystem-1 Low Trip. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea5630c428b93428b2c459224b907c85e1" prot="public">
+          <name>ECAP_INPUT_CMPSS3_CTRIP_LOW</name>
+          <initializer>= 33</initializer>
+          <briefdescription>
+<para>Compare Subsystem-2 Low Trip. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea3539dd6f12b6b4facf720ea60db12427" prot="public">
+          <name>ECAP_INPUT_CMPSS1_CTRIP_HIGH</name>
+          <initializer>= 35</initializer>
+          <briefdescription>
+<para>Compare Subsystem-3 Low Trip. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea1d80684b7da94a0d1c77329d893acf8f" prot="public">
+          <name>ECAP_INPUT_CMPSS2_CTRIP_HIGH</name>
+          <initializer>= 36</initializer>
+          <briefdescription>
+<para>Compare Subsystem-1 High Trip. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fead45cfcd488d2f56a79394a5430cad525" prot="public">
+          <name>ECAP_INPUT_CMPSS3_CTRIP_HIGH</name>
+          <initializer>= 37</initializer>
+          <briefdescription>
+<para>Compare Subsystem-2 High Trip. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea11a13a912468375e911ccfa1bddaf146" prot="public">
+          <name>ECAP_INPUT_CMPSS1_CTRIP_HIGH_OR_LOW</name>
+          <initializer>= 43</initializer>
+          <briefdescription>
+<para>Compare Subsystem-3 High Trip. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea7f0a0a95daceda361ebb9526d774eba5" prot="public">
+          <name>ECAP_INPUT_CMPSS2_CTRIP_HIGH_OR_LOW</name>
+          <initializer>= 44</initializer>
+          <briefdescription>
+<para>Compare Subsystem-1 High Trip or Low Trip. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga50d62d237fd7f51387dd4a5dea22a0fea9f8cc0837122b5d2ce037df91e511a69" prot="public">
+          <name>ECAP_INPUT_CMPSS3_CTRIP_HIGH_OR_LOW</name>
+          <initializer>= 45</initializer>
+          <briefdescription>
+<para>Compare Subsystem-1 High Trip or Low Trip. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__ecap__api_1ga2fc7bd03e9215936f7ad1769e28d8de7" kindref="member">ECAP_selectECAPInput()</ref> as the <emphasis>input</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="203" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="204" bodyend="241"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__ecap__api_1ga3c4c87e55a04a252c25cffff2af2f2e0" prot="public" static="no" strong="no">
+        <type></type>
+        <name>ECAP_SyncInPulseSource</name>
+        <enumvalue id="group__ecap__api_1gga3c4c87e55a04a252c25cffff2af2f2e0a0134a31cc99fd6b95a8f7d6ee49b9a75" prot="public">
+          <name>ECAP_SYNC_IN_PULSE_SRC_DISABLE</name>
+          <initializer>= 0x0</initializer>
+          <briefdescription>
+<para>Disable Sync-in. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga3c4c87e55a04a252c25cffff2af2f2e0a72c0edf2e03d91ba61cc1508daac6202" prot="public">
+          <name>ECAP_SYNC_IN_PULSE_SRC_INPUTXBAR_OUT5</name>
+          <initializer>= 0x1</initializer>
+          <briefdescription>
+<para>Sync-in source is Input Xbar 5 sync-out signal. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga3c4c87e55a04a252c25cffff2af2f2e0a5df192acae562c8d67d1d0e172f55070" prot="public">
+          <name>ECAP_SYNC_IN_PULSE_SRC_INPUTXBAR_OUT6</name>
+          <initializer>= 0x2</initializer>
+          <briefdescription>
+<para>Sync-in source is Input Xbar 6 sync-out signal. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga3c4c87e55a04a252c25cffff2af2f2e0a7baf2275bbd61669e9c67037f707a809" prot="public">
+          <name>ECAP_SYNC_IN_PULSE_SRC_SYNCOUT_ECAP1</name>
+          <initializer>= 0x3</initializer>
+          <briefdescription>
+<para>Sync-in source is ECAP1 sync-out signal. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga3c4c87e55a04a252c25cffff2af2f2e0a0ef5b01d986a7dd85f965c10e9114c04" prot="public">
+          <name>ECAP_SYNC_IN_PULSE_SRC_SYNCOUT_MCPWM1</name>
+          <initializer>= 0x5</initializer>
+          <briefdescription>
+<para>Sync-in source is PWM1 sync-out signal. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__ecap__api_1gga3c4c87e55a04a252c25cffff2af2f2e0a3c8c6288b7af98ee59d54ce55c8a0c9d" prot="public">
+          <name>ECAP_SYNC_IN_PULSE_SRC_SYNCOUT_MCPWM3</name>
+          <initializer>= 0x7</initializer>
+          <briefdescription>
+<para>Sync-in source is PWM 3 sync-out signal. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__ecap__api_1ga5d4f65479bbc2791cb83d4f519040828" kindref="member">ECAP_setSyncInPulseSource()</ref> as the <emphasis>mode</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="249" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="250" bodyend="263"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__ecap__api_1ga62ecef786efdba670057287f06961b16" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_setEventPrescaler</definition>
+        <argsstring>(uint32_t base, uint16_t preScalerValue)</argsstring>
+        <name>ECAP_setEventPrescaler</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>preScalerValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the input prescaler.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>preScalerValue</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the pre scaler value for ECAP input</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function divides the ECAP input scaler. The pre scale value is doubled inside the module. For example a preScalerValue of 5 will divide the scaler by 10. Use a value of 1 to divide the pre scaler by 1. The <emphasis>preScalerValue</emphasis> should be less than <bold>ECAP_MAX_PRESCALER_VALUE</bold>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="302" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="302" bodyend="318"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1ga8cbaa5b5427c96adea11f5ddd9e4b788" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_setEventPolarity</definition>
+        <argsstring>(uint32_t base, ECAP_Events event, ECAP_EventPolarity polarity)</argsstring>
+        <name>ECAP_setEventPolarity</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__ecap__api_1gaf84d48584bb1432ede6c502395f538f1" kindref="member">ECAP_Events</ref></type>
+          <declname>event</declname>
+        </param>
+        <param>
+          <type><ref refid="group__ecap__api_1ga74157b9f7ea65fa58756b73d7b94c859" kindref="member">ECAP_EventPolarity</ref></type>
+          <declname>polarity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the Capture event polarity.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>event</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the event number. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>polarity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the polarity of the event.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the polarity of a given event. The value of event is between <bold>ECAP_EVENT_1</bold> and <bold>ECAP_EVENT_4</bold> inclusive corresponding to the four available events.For each event the polarity value determines the edge on which the capture is activated. For a rising edge use a polarity value of <bold>ECAP_EVNT_RISING_EDGE</bold> and for a falling edge use a polarity of <bold>ECAP_EVNT_FALLING_EDGE</bold>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="338" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="338" bodyend="358"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1gac5994e5867e046e98be8261c9a91b238" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_setCaptureMode</definition>
+        <argsstring>(uint32_t base, ECAP_CaptureMode mode, ECAP_Events event)</argsstring>
+        <name>ECAP_setCaptureMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__ecap__api_1gadec1bfe3dcb4cb346ba3149d0c359e7e" kindref="member">ECAP_CaptureMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type><ref refid="group__ecap__api_1gaf84d48584bb1432ede6c502395f538f1" kindref="member">ECAP_Events</ref></type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the capture mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the capture mode. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>event</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the event number at which the counter stops or wraps.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the eCAP module to a continuous or one-shot mode. The value of mode should be either <bold>ECAP_CONTINUOUS_CAPTURE_MODE</bold> or <bold>ECAP_ONE_SHOT_CAPTURE_MODE</bold> corresponding to continuous or one-shot mode respectively.</para>
+<para>The value of event determines the event number at which the counter stops (in one-shot mode) or the counter wraps (in continuous mode). The value of event should be between <bold>ECAP_EVENT_1</bold> and <bold>ECAP_EVENT_4</bold> corresponding to the valid event numbers.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="381" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="381" bodyend="403"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1gaaa5cd279370b0cbc35b5979c0a3f81d0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_reArm</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>ECAP_reArm</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Re-arms the eCAP module.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function re-arms the eCAP module.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="416" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="416" bodyend="427"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1ga7345bdf60bc4ced84edbd01c36ac1528" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_enableInterrupt</definition>
+        <argsstring>(uint32_t base, uint16_t intFlags)</argsstring>
+        <name>ECAP_enableInterrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>intFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables interrupt source.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the interrupt source to be enabled.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets and enables eCAP interrupt source. The following are valid interrupt sources.<itemizedlist>
+<listitem><para>ECAP_ISR_SOURCE_CAPTURE_EVENT_1 - Event 1 generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_CAPTURE_EVENT_2 - Event 2 generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_CAPTURE_EVENT_3 - Event 3 generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_CAPTURE_EVENT_4 - Event 4 generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_COUNTER_OVERFLOW - Counter overflow generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_COUNTER_PERIOD - Counter equal period generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_COUNTER_COMPARE - Counter equal compare generates interrupt</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="451" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="451" bodyend="471"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1ga5799120e3442c2a696672715c61b2780" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_disableInterrupt</definition>
+        <argsstring>(uint32_t base, uint16_t intFlags)</argsstring>
+        <name>ECAP_disableInterrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>intFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables interrupt source.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the interrupt source to be disabled.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function clears and disables eCAP interrupt source. The following are valid interrupt sources.<itemizedlist>
+<listitem><para>ECAP_ISR_SOURCE_CAPTURE_EVENT_1 - Event 1 generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_CAPTURE_EVENT_2 - Event 2 generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_CAPTURE_EVENT_3 - Event 3 generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_CAPTURE_EVENT_4 - Event 4 generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_COUNTER_OVERFLOW - Counter overflow generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_COUNTER_PERIOD - Counter equal period generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_COUNTER_COMPARE - Counter equal compare generates interrupt</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="495" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="495" bodyend="515"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1ga6ca1a51fa56640b8e9a5450b61b4119f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>static uint16_t ECAP_getInterruptSource</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>ECAP_getInterruptSource</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the interrupt flag.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns the eCAP interrupt flag. The following are valid interrupt sources corresponding to the eCAP interrupt flag.</para>
+<para><simplesect kind="return"><para>Returns the eCAP interrupt that has occurred. The following are valid return values.<itemizedlist>
+<listitem><para>ECAP_ISR_SOURCE_CAPTURE_EVENT_1 - Event 1 generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_CAPTURE_EVENT_2 - Event 2 generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_CAPTURE_EVENT_3 - Event 3 generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_CAPTURE_EVENT_4 - Event 4 generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_COUNTER_OVERFLOW - Counter overflow generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_COUNTER_PERIOD - Counter equal period generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_COUNTER_COMPARE - Counter equal compare generates interrupt</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+<simplesect kind="note"><para>- User can check if a combination of various interrupts have occurred by ORing the above return values. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="542" column="24" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="542" bodyend="550"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1gaef1cb19e30bf402f0d7e6ad59164ccda" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ECAP_getGlobalInterruptStatus</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>ECAP_getGlobalInterruptStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the Global interrupt flag.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns the eCAP Global interrupt flag.</para>
+<para><simplesect kind="return"><para>Returns true if there is a global eCAP interrupt, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="563" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="563" bodyend="571"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1ga6df979b146722014392716f435c9e318" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_clearInterrupt</definition>
+        <argsstring>(uint32_t base, uint16_t intFlags)</argsstring>
+        <name>ECAP_clearInterrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>intFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clears interrupt flag.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the interrupt source.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function clears eCAP interrupt flags. The following are valid interrupt sources.<itemizedlist>
+<listitem><para>ECAP_ISR_SOURCE_CAPTURE_EVENT_1 - Event 1 generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_CAPTURE_EVENT_2 - Event 2 generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_CAPTURE_EVENT_3 - Event 3 generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_CAPTURE_EVENT_4 - Event 4 generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_COUNTER_OVERFLOW - Counter overflow generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_COUNTER_PERIOD - Counter equal period generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_COUNTER_COMPARE - Counter equal compare generates interrupt</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="595" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="595" bodyend="611"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1ga71ada92fd0a3060cf416b5669f2867b5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_clearGlobalInterrupt</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>ECAP_clearGlobalInterrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clears global interrupt flag</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function clears the global interrupt bit.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="624" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="624" bodyend="632"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1ga8fb5bbc7c8090c1782c0c12c3b0136a5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_forceInterrupt</definition>
+        <argsstring>(uint32_t base, uint16_t intFlags)</argsstring>
+        <name>ECAP_forceInterrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>intFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Forces interrupt source.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the interrupt source.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function forces and enables eCAP interrupt source. The following are valid interrupt sources.<itemizedlist>
+<listitem><para>ECAP_ISR_SOURCE_CAPTURE_EVENT_1 - Event 1 generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_CAPTURE_EVENT_2 - Event 2 generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_CAPTURE_EVENT_3 - Event 3 generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_CAPTURE_EVENT_4 - Event 4 generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_COUNTER_OVERFLOW - Counter overflow generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_COUNTER_PERIOD - Counter equal period generates interrupt</para>
+</listitem><listitem><para>ECAP_ISR_SOURCE_COUNTER_COMPARE - Counter equal compare generates interrupt</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="656" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="656" bodyend="675"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1gaf3255e38df7900eebd3775fcb0a3b13c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_enableCaptureMode</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>ECAP_enableCaptureMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets eCAP in Capture mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the eCAP module to operate in Capture mode.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="688" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="688" bodyend="699"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1ga886af56dcea5014903cc2adb12661006" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_enableAPWMMode</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>ECAP_enableAPWMMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets eCAP in APWM mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the eCAP module to operate in APWM mode.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="712" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="712" bodyend="723"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1ga9a08b2c9d3f2ac7c82df651897740bd6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_enableCounterResetOnEvent</definition>
+        <argsstring>(uint32_t base, ECAP_Events event)</argsstring>
+        <name>ECAP_enableCounterResetOnEvent</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__ecap__api_1gaf84d48584bb1432ede6c502395f538f1" kindref="member">ECAP_Events</ref></type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables counter reset on an event.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>event</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the event number the time base gets reset.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables the base timer, TSCTR, to be reset on capture event provided by the variable event. Valid inputs for event are <bold>ECAP_EVENT_1</bold> to <bold>ECAP_EVENT_4</bold>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="739" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="739" bodyend="751"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1ga841281e729c8e70f9fcd76b1c3ce2529" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_disableCounterResetOnEvent</definition>
+        <argsstring>(uint32_t base, ECAP_Events event)</argsstring>
+        <name>ECAP_disableCounterResetOnEvent</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__ecap__api_1gaf84d48584bb1432ede6c502395f538f1" kindref="member">ECAP_Events</ref></type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables counter reset on events.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>event</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the event number the time base gets reset.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables the base timer, TSCTR, from being reset on capture event provided by the variable event. Valid inputs for event are <bold>ECAP_EVENT_1</bold> to <bold>ECAP_EVENT_4</bold>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="767" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="767" bodyend="779"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1gaf6c0a363eebd8790068f8b85feb92a11" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_enableTimeStampCapture</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>ECAP_enableTimeStampCapture</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables time stamp capture.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables time stamp count to be captured</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="792" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="792" bodyend="803"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1ga6f2fd96fa823096442f64d0e99e30c20" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_disableTimeStampCapture</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>ECAP_disableTimeStampCapture</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables time stamp capture.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables time stamp count to be captured</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="816" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="816" bodyend="827"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1gac746b5c6a5780223c7061334b8131efc" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_setPhaseShiftCount</definition>
+        <argsstring>(uint32_t base, uint32_t shiftCount)</argsstring>
+        <name>ECAP_setPhaseShiftCount</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>shiftCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets a phase shift value count.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shiftCount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the phase shift value.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function writes a phase shift value to be loaded into the main time stamp counter.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="842" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="842" bodyend="850"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1ga5d4f65479bbc2791cb83d4f519040828" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_setSyncInPulseSource</definition>
+        <argsstring>(uint32_t base, ECAP_SyncInPulseSource source)</argsstring>
+        <name>ECAP_setSyncInPulseSource</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__ecap__api_1ga3c4c87e55a04a252c25cffff2af2f2e0" kindref="member">ECAP_SyncInPulseSource</ref></type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set up the source for sync-in pulse.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>source</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the sync-in pulse source.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function set the sync out pulse mode. Valid values for mode are:<itemizedlist>
+<listitem><para>ECAP_SYNC_IN_PULSE_SRC_SYNCOUT_MCPWMx - sync-in pulse source can be any of the MCPWMx sync-out signal</para>
+</listitem><listitem><para>ECAP_SYNC_IN_PULSE_SRC_SYNCOUT_ECAPx - sync-in pulse source can be selected as any of the ECAPx sync-out signal</para>
+</listitem><listitem><para>ECAP_SYNC_IN_PULSE_SRC_INPUTXBAR_OUT5-6 - sync-in pulse source can be selected as any of the Input xbar out5-6 signal</para>
+</listitem><listitem><para>ECAP_SYNC_IN_PULSE_SRC_DISABLE - sync-in pulse is disabled for the ECAP module</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="877" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="877" bodyend="891"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1ga713d19d4f76ad7f7b18137c1f9ed9475" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_enableLoadCounter</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>ECAP_enableLoadCounter</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enable counter loading with phase shift value.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables loading of the counter with the value present in the phase shift counter as defined by the <ref refid="group__ecap__api_1gac746b5c6a5780223c7061334b8131efc" kindref="member">ECAP_setPhaseShiftCount()</ref> function.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="905" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="905" bodyend="917"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1gaca86dba3054e00d662a13e9c1f49a2d2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_disableLoadCounter</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>ECAP_disableLoadCounter</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disable counter loading with phase shift value.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables loading of the counter with the value present in the phase shift counter as defined by the <ref refid="group__ecap__api_1gac746b5c6a5780223c7061334b8131efc" kindref="member">ECAP_setPhaseShiftCount()</ref> function.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="931" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="931" bodyend="943"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1ga4009fdcbdcca5750fdb1d57650a54a77" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_loadCounter</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>ECAP_loadCounter</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Load time stamp counter</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function forces the value in the phase shift counter register to be loaded into Time stamp counter register. Make sure to enable loading of Time stamp counter by calling <ref refid="group__ecap__api_1ga713d19d4f76ad7f7b18137c1f9ed9475" kindref="member">ECAP_enableLoadCounter()</ref> function before calling this function.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="959" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="959" bodyend="970"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1gae51b45d2b52d8a559d3354793df14e27" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_setSyncOutMode</definition>
+        <argsstring>(uint32_t base, ECAP_SyncOutMode mode)</argsstring>
+        <name>ECAP_setSyncOutMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__ecap__api_1ga3b974cda173284f4c703b9faaf81903b" kindref="member">ECAP_SyncOutMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Configures Sync out signal mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the sync out mode.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the sync out mode. Valid parameters for mode are:<itemizedlist>
+<listitem><para>ECAP_SYNC_OUT_SYNCI - Trigger sync out on sync-in event.</para>
+</listitem><listitem><para>ECAP_SYNC_OUT_COUNTER_PRD - Trigger sync out when counter equals period.</para>
+</listitem><listitem><para>ECAP_SYNC_OUT_DISABLED - Disable sync out.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="987" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="987" bodyend="1001"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1ga30dc80033512b249ddaf41aa65f5f2e6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_stopCounter</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>ECAP_stopCounter</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Stops Time stamp counter.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function stops the time stamp counter.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="1014" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="1014" bodyend="1025"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1gaa76a546e94b7af20769b5a2018703acc" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_startCounter</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>ECAP_startCounter</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Starts Time stamp counter.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function starts the time stamp counter.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="1038" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="1038" bodyend="1049"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1ga5bbc4002878cfa92058d76580f49f6b5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_setAPWMPolarity</definition>
+        <argsstring>(uint32_t base, ECAP_APWMPolarity polarity)</argsstring>
+        <name>ECAP_setAPWMPolarity</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__ecap__api_1ga721df1b285568425f14b777252fa3ef4" kindref="member">ECAP_APWMPolarity</ref></type>
+          <declname>polarity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set eCAP APWM polarity.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>polarity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the polarity of APWM</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the polarity of the eCAP in APWM mode. Valid inputs for polarity are:<itemizedlist>
+<listitem><para>ECAP_APWM_ACTIVE_HIGH - For active high.</para>
+</listitem><listitem><para>ECAP_APWM_ACTIVE_LOW - For active low.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="1066" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="1066" bodyend="1076"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1ga91e6196b4970568f9f205c0b4f6c1f8b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_setAPWMPeriod</definition>
+        <argsstring>(uint32_t base, uint32_t periodCount)</argsstring>
+        <name>ECAP_setAPWMPeriod</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>periodCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set eCAP APWM period.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>periodCount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the period count for APWM.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the period count of the APWM waveform. periodCount takes the actual count which is written to the register. The user is responsible for converting the desired frequency or time into the period count.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="1093" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="1093" bodyend="1101"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1ga559342b88e57b3850c5857b098545f8d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_setAPWMCompare</definition>
+        <argsstring>(uint32_t base, uint32_t compareCount)</argsstring>
+        <name>ECAP_setAPWMCompare</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>compareCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set eCAP APWM on or off time count.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>compareCount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the on or off count for APWM.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the on or off time count of the APWM waveform depending on the polarity of the output. If the output , as set by <ref refid="group__ecap__api_1ga5bbc4002878cfa92058d76580f49f6b5" kindref="member">ECAP_setAPWMPolarity()</ref>, is active high then compareCount determines the on time. If the output is active low then compareCount determines the off time. compareCount takes the actual count which is written to the register. The user is responsible for converting the desired frequency or time into the appropriate count value.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="1121" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="1121" bodyend="1129"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1gaff8992e974b399555a00f9d333f99c07" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_setAPWMShadowPeriod</definition>
+        <argsstring>(uint32_t base, uint32_t periodCount)</argsstring>
+        <name>ECAP_setAPWMShadowPeriod</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>periodCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Load eCAP APWM shadow period.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>periodCount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the shadow period count for APWM.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the shadow period count of the APWM waveform. periodCount takes the actual count which is written to the register. The user is responsible for converting the desired frequency or time into the period count.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="1146" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="1146" bodyend="1155"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1ga3c43b08f620a2650e7a6d5e819c57bda" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_setAPWMShadowCompare</definition>
+        <argsstring>(uint32_t base, uint32_t compareCount)</argsstring>
+        <name>ECAP_setAPWMShadowCompare</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>compareCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set eCAP APWM shadow on or off time count.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>compareCount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the on or off count for APWM.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the shadow on or off time count of the APWM waveform depending on the polarity of the output. If the output , as set by <ref refid="group__ecap__api_1ga5bbc4002878cfa92058d76580f49f6b5" kindref="member">ECAP_setAPWMPolarity()</ref> , is active high then compareCount determines the on time. If the output is active low then compareCount determines the off time. compareCount takes the actual count which is written to the register. The user is responsible for converting the desired frequency or time into the appropriate count value.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="1175" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="1175" bodyend="1184"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1gacce7a668617181453944a47e64c4ab60" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t ECAP_getTimeBaseCounter</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>ECAP_getTimeBaseCounter</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the time base counter value.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns the time base counter value.</para>
+<para><simplesect kind="return"><para>Returns the time base counter value. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="1197" column="24" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="1197" bodyend="1205"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1gad97295535b95e152c80b4caec1e2a9c2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t ECAP_getEventTimeStamp</definition>
+        <argsstring>(uint32_t base, ECAP_Events event)</argsstring>
+        <name>ECAP_getEventTimeStamp</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__ecap__api_1gaf84d48584bb1432ede6c502395f538f1" kindref="member">ECAP_Events</ref></type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns event time stamp.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>event</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the event number.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns the current time stamp count of the given event. Valid values for event are <bold>ECAP_EVENT_1</bold> to <bold>ECAP_EVENT_4</bold>.</para>
+<para><simplesect kind="return"><para>Event time stamp value or 0 if <emphasis>event</emphasis> is invalid. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="1220" column="24" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="1220" bodyend="1270"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1ga2fc7bd03e9215936f7ad1769e28d8de7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_selectECAPInput</definition>
+        <argsstring>(uint32_t base, ECAP_InputCaptureSignals input)</argsstring>
+        <name>ECAP_selectECAPInput</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__ecap__api_1ga50d62d237fd7f51387dd4a5dea22a0fe" kindref="member">ECAP_InputCaptureSignals</ref></type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Select eCAP input.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the eCAP input signal.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function selects the eCAP input signal.</para>
+<para>Please refer to the <ref refid="group__ecap__api_1ga50d62d237fd7f51387dd4a5dea22a0fe" kindref="member">ECAP_InputCaptureSignals</ref> Enum for the valid values to be passed to <emphasis>input</emphasis> parameter.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="1287" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="1287" bodyend="1301"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1ga3dad2f6c4fbfac01e2f7e8606654b63f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_resetCounters</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>ECAP_resetCounters</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Resets eCAP counters and flags.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function resets the main counter (TSCTR register), event filter, modulo counter, capture events and counter overflow flags</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="1315" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="1315" bodyend="1326"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1gae9e23314acfa413a8f92aa68849dd150" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ECAP_setDMASource</definition>
+        <argsstring>(uint32_t base, ECAP_Events event)</argsstring>
+        <name>ECAP_setDMASource</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__ecap__api_1gaf84d48584bb1432ede6c502395f538f1" kindref="member">ECAP_Events</ref></type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the eCAP DMA source.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>event</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the eCAP event for the DMA</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the eCAP event source for the DMA trigger. Valid values for <emphasis>event</emphasis> are <bold>ECAP_EVENT_1</bold> to <bold>ECAP_EVENT_4</bold>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="1341" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="1341" bodyend="1354"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1gaa12a67944c2b31064cb3601873a669cd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="group__ecap__api_1gaf84d48584bb1432ede6c502395f538f1" kindref="member">ECAP_Events</ref></type>
+        <definition>static ECAP_Events ECAP_getModuloCounterStatus</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>ECAP_getModuloCounterStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Return the Modulo counter status.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns the modulo counter status, indicating which register gets loaded on the next capture event.</para>
+<para><simplesect kind="return"><para>Returns an <bold>ECAP_EVENT_n</bold> value indicating that CAPn is the register to be loaded on the next event. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="1369" column="27" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="1369" bodyend="1383"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ecap__api_1gacda7e8d137a05f23fd285ac655d493c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ECAP_setEmulationMode</definition>
+        <argsstring>(uint32_t base, ECAP_EmulationMode mode)</argsstring>
+        <name>ECAP_setEmulationMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__ecap__api_1gafe3cbee44a90b3d086cbfa77675c88ba" kindref="member">ECAP_EmulationMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Configures emulation mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the ECAP module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the emulation mode.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the eCAP counter, TSCTR, to the desired emulation mode when emulation suspension occurs. Valid inputs for mode are:<itemizedlist>
+<listitem><para>ECAP_EMULATION_STOP - Counter is stopped immediately.</para>
+</listitem><listitem><para>ECAP_EMULATION_RUN_TO_ZERO - Counter runs till it reaches 0.</para>
+</listitem><listitem><para>ECAP_EMULATION_FREE_RUN - Counter is not affected.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="1401" column="13" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" declline="1401" declcolumn="13"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__ecap__api_1ga020e31c9d1c25171cb6f74b8fa7eafa2" prot="public" static="no">
+        <name>ECAP_MAX_PRESCALER_VALUE</name>
+        <initializer>32U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="81" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__ecap__api_1ga48c07a9bdb706ea86d09027024daf532" prot="public" static="no">
+        <name>ECAP_ISR_SOURCE_CAPTURE_EVENT_1</name>
+        <initializer>0x2U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Event 1 ISR source </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="92" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__ecap__api_1gaf7f231cbd40d909ce2a2347533cf3625" prot="public" static="no">
+        <name>ECAP_ISR_SOURCE_CAPTURE_EVENT_2</name>
+        <initializer>0x4U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Event 2 ISR source </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="95" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__ecap__api_1ga81f1fee3d3f5ac946361094cd5fa221d" prot="public" static="no">
+        <name>ECAP_ISR_SOURCE_CAPTURE_EVENT_3</name>
+        <initializer>0x8U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Event 3 ISR source </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="98" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__ecap__api_1ga18116b7d4b675d31ccaa89ab65dc6e13" prot="public" static="no">
+        <name>ECAP_ISR_SOURCE_CAPTURE_EVENT_4</name>
+        <initializer>0x10U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Event 4 ISR source </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="101" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__ecap__api_1gac41d1a3aa7f926374903c0801d183d6f" prot="public" static="no">
+        <name>ECAP_ISR_SOURCE_COUNTER_OVERFLOW</name>
+        <initializer>0x20U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Counter overflow ISR source </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="104" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__ecap__api_1ga1fbe7c38c371e96adc06ffecbd448958" prot="public" static="no">
+        <name>ECAP_ISR_SOURCE_COUNTER_PERIOD</name>
+        <initializer>0x40U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Counter equals period ISR source </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="107" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__ecap__api_1gabead4b701c7a637dec72d535ae770f56" prot="public" static="no">
+        <name>ECAP_ISR_SOURCE_COUNTER_COMPARE</name>
+        <initializer>0x80U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Counter equals compare ISR source </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" line="110" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/ecap.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

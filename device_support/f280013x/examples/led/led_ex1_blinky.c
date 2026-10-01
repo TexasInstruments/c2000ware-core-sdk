@@ -51,17 +51,14 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Defines
 //
 #define DEVICE_GPIO_PIN_LED1    24
-
 //
 // Main
 //
@@ -71,14 +68,12 @@ void main(void)
     // Initialize device clock and peripherals
     //
     InitSysCtrl();
-
     //
     // Initialize GPIO and configure the GPIO pin as a push-pull output
     //
     InitGpio();
     GPIO_SetupPinMux(DEVICE_GPIO_PIN_LED1, GPIO_MUX_CPU1, 0);
     GPIO_SetupPinOptions(DEVICE_GPIO_PIN_LED1, GPIO_OUTPUT, GPIO_PUSHPULL);
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts. 
     //
@@ -86,19 +81,16 @@ void main(void)
     InitPieCtrl();
     IER = 0x0000;
     IFR = 0x0000;
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     InitPieVectTable();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Loop Forever
     //
@@ -108,24 +100,20 @@ void main(void)
         // Turn on LED
         //
         GPIO_WritePin(DEVICE_GPIO_PIN_LED1, 0);
-
         //
         // Delay for a bit.
         //
         DELAY_US(500000);
-
         //
         // Turn off LED
         //
         GPIO_WritePin(DEVICE_GPIO_PIN_LED1, 1);
-
         //
         // Delay for a bit.
         //
         DELAY_US(500000);
     }
 }
-
 //
 // End of File
 //

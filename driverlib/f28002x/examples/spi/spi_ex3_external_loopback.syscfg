@@ -1,10 +1,9 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --device "F28002x" --package "80QFP" --part "F28002x_80QFP" --context "system" --product "C2000WARE@5.02.00.00"
- * @versions {"tool":"1.0.0+dev"}
+ * @cliArgs --device "F28002x" --part "F28002x_80QFP" --package "80QFP" --context "system" 
+ * @v2CliArgs --device "TMS320F280025C" --package "80QFP" --context "system"
  */
-
 /**
  * Import the modules used in this configuration.
  */
@@ -16,7 +15,6 @@ const CMD2           = CMD.addInstance();
 const spi  = scripting.addModule("/driverlib/spi.js", {}, false);
 const spi1 = spi.addInstance();
 const spi2 = spi.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -30,7 +28,6 @@ spi1.spi.spi_picoPin.$assign = "GPIO8";
 spi1.spi.spi_pociPin.$assign = "GPIO10";
 spi1.spi.spi_clkPin.$assign  = "GPIO9";
 spi1.spi.spi_ptePin.$assign  = "GPIO11";
-
 spi2.$name                   = "SPIB_controller";
 spi2.mode                    = "SPI_MODE_CONTROLLER";
 spi2.emulationMode           = "SPI_EMULATION_FREE_RUN";
@@ -42,10 +39,8 @@ spi2.spi.spi_picoPin.$assign = "GPIO40";
 spi2.spi.spi_pociPin.$assign = "GPIO41";
 spi2.spi.spi_clkPin.$assign  = "GPIO22";
 spi2.spi.spi_ptePin.$assign  = "GPIO23";
-
 CMD1.$name                    = "generic_ram_lnk";
 CMD2.$name                    = "generic_flash_lnk";
-
 CMD1.sectionMemory_text       = ["RAMGS0","RAMLS4","RAMLS5","RAMLS6","RAMLS7"];
 CMD1.sectionMemory_ramfunc    = ["RAMM0"];
 CMD1.sectionMemory_cinit      = ["RAMM0"];
@@ -56,7 +51,6 @@ CMD1.sectionMemory_const      = ["RAMLS4"];
 CMD1.sectionMemory_data       = ["RAMLS4"];
 CMD1.sectionMemory_switch     = ["RAMM0"];
 CMD1.sectionMemory_sysmem     = ["RAMLS4"];
-
 CMD2.sectionAlignEnable_ramfunc    = true;
 CMD2.sectionAlignEnable_text       = true;
 CMD2.sectionAlignEnable_binit      = true;

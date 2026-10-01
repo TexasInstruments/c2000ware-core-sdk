@@ -1,4 +1,10 @@
 /**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F2838x" --part "F2838x_337bga" --package "337bga" --context "CPU1" 
+ * @v2CliArgs --device "TMS320F28388D" --package "337bga" --context "CPU1"
+ */
+/**
  * Import the modules used in this configuration.
  */
 const epwm             = scripting.addModule("/driverlib/epwm.js", {}, false);
@@ -11,7 +17,6 @@ const inputxbar1       = inputxbar.addInstance();
 const inputxbar_input  = scripting.addModule("/driverlib/inputxbar_input.js");
 const inputxbar_input1 = inputxbar_input.addInstance();
 const inputxbar_input2 = inputxbar_input.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -42,7 +47,6 @@ epwm1.epwmDeadband_delayFED                                      = 10;
 epwm1.epwm.$assign                                               = "EPWM1";
 epwm1.epwm.epwmaPin.$assign                                      = "GPIO0";
 epwm1.epwm.epwmbPin.$assign                                      = "GPIO1";
-
 epwm2.$name                                                      = "myEPWM2";
 epwm2.epwmTimebase_period                                        = 100;
 epwm2.epwmTimebase_counterMode                                   = "EPWM_COUNTER_MODE_UP_DOWN";
@@ -70,7 +74,6 @@ epwm2.epwmDeadband_delayFED                                      = 10;
 epwm2.epwm.$assign                                               = "EPWM2";
 epwm2.epwm.epwmaPin.$assign                                      = "GPIO2";
 epwm2.epwm.epwmbPin.$assign                                      = "GPIO3";
-
 epwm3.$name                                                      = "myEPWM3";
 epwm3.epwmTimebase_period                                        = 100;
 epwm3.epwmTimebase_counterMode                                   = "EPWM_COUNTER_MODE_UP_DOWN";
@@ -98,7 +101,6 @@ epwm3.epwmDeadband_delayFED                                      = 10;
 epwm3.epwm.$assign                                               = "EPWM3";
 epwm3.epwm.epwmaPin.$assign                                      = "GPIO4";
 epwm3.epwm.epwmbPin.$assign                                      = "GPIO5";
-
 epwm4.$name                                                      = "myEPWM4";
 epwm4.epwmTimebase_period                                        = 100;
 epwm4.epwmTimebase_counterMode                                   = "EPWM_COUNTER_MODE_UP_DOWN";
@@ -126,13 +128,10 @@ epwm4.epwmDeadband_delayFED                                      = 10;
 epwm4.epwm.$assign                                               = "EPWM4";
 epwm4.epwm.epwmaPin.$assign                                      = "GPIO6";
 epwm4.epwm.epwmbPin.$assign                                      = "GPIO7";
-
 inputxbar1.$name = "myINPUTXBAR5";
-
 inputxbar_input1.inputxbarInput = "XBAR_INPUT5";
 inputxbar_input1.inputxbarGpio  = "GPIO56";
 inputxbar_input1.$name          = "myINPUTXBARINPUT5";
-
 inputxbar_input2.inputxbarInput = "XBAR_INPUT6";
 inputxbar_input2.inputxbarGpio  = "GPIO56";
 inputxbar_input2.$name          = "myINPUTXBARINPUT6";

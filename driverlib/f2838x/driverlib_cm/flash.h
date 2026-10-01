@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -283,6 +283,10 @@ Flash_setWaitstates(uint32_t ctrlBase, uint16_t waitstates)
     //
     // Write flash read wait-state amount to appropriate register.
     //
+    HWREG(ctrlBase + FLASH_O_FRDCNTL) =
+        (HWREG(ctrlBase + FLASH_O_FRDCNTL) &
+         ~(uint32_t)FLASH_FRDCNTL_RWAIT_M) |
+         ((uint32_t)waitstates << FLASH_FRDCNTL_RWAIT_S);
 }
 
 //*****************************************************************************

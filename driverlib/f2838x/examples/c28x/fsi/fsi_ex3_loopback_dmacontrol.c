@@ -52,7 +52,7 @@
 //
 // 
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -85,19 +85,16 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Defines
 //
 #define TOTAL_WORDS_IN_TRANSFER (myDMA0_TRANSFERSIZE * myFSIRX0_nWords)
-
 //
 // GSRAM data buffers
 //
@@ -105,7 +102,6 @@ uint16_t gs0Data[0x800];
 uint16_t gs1Data[0x800];
 uint16_t gs2Data[0x800];
 uint16_t gs3Data[0x800];
-
 //
 // FSI Tx/Rx Frame tag User Data register address, used by DMA channels to
 // write (and trigger transfer) and read User data respectively
@@ -114,12 +110,10 @@ const void *txFrameTagAddr = (const void *)(myFSITX0_BASE +
                                             FSI_O_TX_FRAME_TAG_UDATA);
 const void *rxFrameTagAddr = (const void *)(myFSIRX0_BASE +
                                             FSI_O_RX_FRAME_TAG_UDATA);
-
 //
 // Map the TX frame data buffer to DMA accessible global shared memory.
 //
 #pragma DATA_SECTION(gs0Data, "ramgs0");
-
 //
 // Map the TX data frame tag and User data buffer to DMA accessible global
 // shared memory.
@@ -141,23 +135,19 @@ const void *gs0Addr = (const void *)gs0Data;
 const void *gs1Addr = (const void *)gs1Data;
 const void *gs2Addr = (const void *)gs2Data;
 const void *gs3Addr = (const void *)gs3Data;
-
 //
 // Globals, User can modify these parameters as per use case
 //
-
 // Boolean flag to enable/disable Rx Frame Watchdog
 // If changed to false: take out FSI_RX_EVT_FRAME_WD_TIMEOUT interrupt setting
 // in FSIRX Sysconfig
 bool isRxFrameWdEnable = true;
-
 //
 // This value can be anything suitable to generate a single interrupt event,
 // lower values may lead WD to trigger another event even before handler of 1st
 // one is not completed
 //
 uint32_t rxFrameWdRefCntr = 0x1000000;
-
 //
 // Globals, these are not config parameters, user are not required to edit them
 //
@@ -169,14 +159,12 @@ uint32_t dmaIntr1 = 0, dmaIntr2 = 0;
 uint32_t countDMAtransfers = 0U;
 volatile uint16_t i = 0, *txTempData16 = 0, *rxTempData16 = 0;
 uint32_t dmaTxIntCnt = 0, dmaRxIntCnt = 0; //TODO, may remove it, just for DEBUG
-
 //
 // Function Prototypes
 //
 static inline void compare16(uint16_t val1, uint16_t val2);
 __interrupt void fsitxdma_isr(void);
 __interrupt void fsirxdma_isr(void);
-
 //
 // InitFrameTagAndData - Initializes GS0/GS1 memories to populate tag and data
 //                       for frame transfers
@@ -185,14 +173,12 @@ void InitFrameTagAndData(void)
 {
     unsigned int i;
     uint16_t *temp;
-
     temp = (uint16_t *)gs0Addr;
     for(i = 0; i < TOTAL_WORDS_IN_TRANSFER; i++)
     {
         *temp = i;
         temp++;
     }
-
     temp = (uint16_t *)gs1Addr;
     for(i = FSI_FRAME_TAG0; i < FSI_FRAME_TAG15; i++)
     {
@@ -203,7 +189,6 @@ void InitFrameTagAndData(void)
         temp++;
     }
 }
-
 //
 // Main
 //
@@ -213,34 +198,28 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Assigning base addresses of Tx/Rx data buffer to globals
     //
     txBufAddr = (const void *)(myFSITX0_BASE + FSI_O_TX_BUF_BASE(0));
     rxBufAddr = (const void *)(myFSIRX0_BASE + FSI_O_RX_BUF_BASE(0));
-
     //
     // Call Sysconfig configured code.
     //
     Board_init();
-
     //
     // Flush Sequence before and after releasing Rx core reset, ensures flushing
     // of Rx data/clock lines and prepares it for reception.
@@ -250,13 +229,11 @@ void main(void)
     DEVICE_DELAY_US(1);
     FSI_clearRxModuleReset(myFSIRX0_BASE, FSI_RX_MAIN_CORE_RESET);
     FSI_executeTxFlushSequence(myFSITX0_BASE, myFSITX0_PRESCALER_VAL);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM).
     //
     EINT;
     ERTM;
-
     if(isRxFrameWdEnable)
     {
         //
@@ -267,23 +244,18 @@ void main(void)
         FSI_clearRxModuleReset(myFSIRX0_BASE, FSI_RX_FRAME_WD_CNT_RESET);
         FSI_enableRxFrameWatchdog(myFSIRX0_BASE, rxFrameWdRefCntr);
     }
-
     FSI_enableTxDMAEvent(myFSITX0_BASE);
     FSI_enableRxDMAEvent(myFSIRX0_BASE);
-
     InitFrameTagAndData();
-
     //
     // Start RX channels
     //
     DMA_startChannel(DMA_CH3_BASE);
     DMA_startChannel(DMA_CH4_BASE);
-
     DMA_startChannel(DMA_CH1_BASE);
     DMA_forceTrigger(DMA_CH1_BASE);
     DMA_startChannel(DMA_CH2_BASE);
     DMA_forceTrigger(DMA_CH2_BASE);
-
     while(1)
     {
         //
@@ -291,17 +263,14 @@ void main(void)
         //
         while(dmaIntr1 == 0U);
         dmaIntr1 = 0;
-
         while(dmaIntr2 == 0U);
         dmaIntr2 = 0;
-
         //
         // Starting location is after one word as extra write to marker
         // location will lead to 1st comparison fail.
         //
         txTempData16 = ((uint16_t *)gs0Addr) + 1;
         rxTempData16 = ((uint16_t *)gs2Addr) + 1;
-
         //
         // verify transfers
         //
@@ -311,7 +280,6 @@ void main(void)
             txTempData16++;
             rxTempData16++;
         }
-
         countDMAtransfers++;
         //
         // Just changing the 1st entry in Tx buffer Source GS0 location as a
@@ -321,8 +289,6 @@ void main(void)
         *((uint16_t *)gs0Addr) = (uint16_t )countDMAtransfers;
     }
 }
-
-
 //
 // fsitxdma_isr - FSI Tx DMA ISR
 //
@@ -332,7 +298,6 @@ interrupt void fsitxdma_isr(void)
     dmaTxIntCnt++;
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
 }
-
 //
 // fsirxdma_isr - FSI Rx DMA ISR
 //
@@ -342,7 +307,6 @@ interrupt void fsirxdma_isr(void)
     dmaRxIntCnt++;
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
 }
-
 //
 // compare16 - Compares two 16 bit values and increments global error flag by 1
 //             for mismatch
@@ -354,7 +318,6 @@ static inline void compare16(uint16_t val1, uint16_t val2)
         error++;
     }
 }
-
 //
 // End of File
 //

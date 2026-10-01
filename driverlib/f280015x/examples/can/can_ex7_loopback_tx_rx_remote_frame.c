@@ -66,91 +66,75 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Defines
 //
 #define MSG_DATA_LENGTH    2
-
 //
 // Globals
 //
 volatile unsigned long msgCount = 0;
-
 //
 // Main
 //
 void main(void)
 {
     uint16_t rxMsgData[8];
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure GPIO pins for CANTX/CANRX
     //
     Device_initGPIO();
-
     //
     // Board initialization
     //
     Board_init();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Start CAN module operations
     //
     CAN_startModule(myCAN0_BASE);
-
     //
     // Setup receive buffers
     //
     *(uint16_t *)rxMsgData = 0;
-
     while((HWREGH(myCAN0_BASE + CAN_O_IF1CMD) & CAN_IF1CMD_BUSY) ==
           CAN_IF1CMD_BUSY)
     {
     }
-
     //
     // Write to IF1DATA & IF1DATB registers send buffer
     //
     HWREG_BP(myCAN0_BASE + CAN_O_IF1DATA)  =  0x76543210UL;
     HWREG_BP(myCAN0_BASE + CAN_O_IF1DATB)  =  0xFEDCBA98UL;
-
     //
     // Transfer to MBX RAM (refer to IFxCMD bit field for explanation).
     // Configuring message object 2 to respond to a remote frame with
     // a data length 8 bytes.
     //
     HWREG_BP(myCAN0_BASE + CAN_O_IF1CMD)  =  0x00830002UL;
-
     //
     // Wait for busy bit to clear
     //
@@ -167,12 +151,10 @@ void main(void)
         // Send CAN remote request frame from message object 3
         //
         CAN_sendRemoteRequestMessage(myCAN0_BASE, 3);
-
         //
         // Delay before receiving the data
         //
         DEVICE_DELAY_US(1000000);
-
         //
         // Read CAN message object 1 and check for new data
         // received by the response to the remote request from
@@ -195,7 +177,6 @@ void main(void)
         }
     }
 }
-
 //
 // End of File
 //

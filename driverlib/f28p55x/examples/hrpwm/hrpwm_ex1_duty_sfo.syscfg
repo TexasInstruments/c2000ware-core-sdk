@@ -1,4 +1,10 @@
 /**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P55x" --part "F28P55x_128PDT" --package "128PDT" --context "system" 
+ * @v2CliArgs  --device "TMS320F28P550SJ" --package "128PDT" --variant "TMS320F28P550SJ9" --context "system"
+ */
+/**
  * Import the modules used in this configuration.
  */
 const epwm       = scripting.addModule("/driverlib/epwm.js", {}, false);
@@ -6,7 +12,6 @@ const epwm1      = epwm.addInstance();
 const epwm2      = epwm.addInstance();
 const inputxbar  = scripting.addModule("/driverlib/inputxbar.js", {}, false);
 const inputxbar1 = inputxbar.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -28,7 +33,6 @@ epwm1.hrpwm_cmpbHR                                             = 50;
 epwm1.epwm.$assign                                             = "EPWM1";
 epwm1.epwm.epwm_aPin.$assign                                      = "GPIO0";
 epwm1.epwm.epwm_bPin.$assign                                      = "GPIO1";
-
 epwm2.$name                                                    = "myEPWM2";
 epwm2.epwmTimebase_emulationMode                               = "EPWM_EMULATION_FREE_RUN";
 epwm2.epwmTimebase_period                                      = 100;
@@ -47,9 +51,6 @@ epwm2.epwmTimebase_hsClockDiv                                  = "EPWM_HSCLOCK_D
 epwm2.epwm.$assign                                             = "EPWM2";
 epwm2.epwm.epwm_aPin.$assign                                      = "GPIO2";
 epwm2.epwm.epwm_bPin.$assign                                      = "GPIO3";
-
-
-
 inputxbar1.$name          = "myINPUTXBAR5";
 inputxbar1.inputsUsed     = ["inputxbar5Gpio","inputxbar6Gpio"];
 inputxbar1.inputxbar5Gpio = "GPIO40";

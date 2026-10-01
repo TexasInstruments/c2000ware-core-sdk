@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="i2c__ex1__controller_8md" kind="file" language="Markdown">
+    <compoundname>i2c_ex1_controller.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>I2C<sp/>Controller<sp/>Mode{#EXAMPLES_I2C_EX1_CONTROLLER}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>I2C<sp/>Controller<sp/>Bitfield<sp/>Example&quot;</highlight></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>I2C&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>program<sp/>demonstrates<sp/>how<sp/>to<sp/>use<sp/>the<sp/>I2CA<sp/>module<sp/>in<sp/>controller<sp/>configuration<sp/>on<sp/>a<sp/>Texas<sp/>Instruments<sp/>C2000<sp/>microcontroller.<sp/>The<sp/>example<sp/>uses<sp/>polling<sp/>and<sp/>does<sp/>not<sp/>utilize<sp/>interrupts<sp/>or<sp/>FIFO.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Requirements</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Requirement<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Description<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|--------------------------------------|-----------------------------------------------------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**Two<sp/>Control<sp/>Cards**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>One<sp/>configured<sp/>as<sp/>Controller<sp/>and<sp/>the<sp/>other<sp/>as<sp/>Target.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**Controller<sp/>Binary**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Runs<sp/>the<sp/>binary<sp/>generated<sp/>from<sp/>`i2c_ex1_controller.projectspec`.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**Target<sp/>Binary**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Runs<sp/>the<sp/>binary<sp/>generated<sp/>from<sp/>`i2c_ex1_target.projectspec`.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>External<sp/>connections<sp/>between<sp/>Control<sp/>Cards<sp/>:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Signal<sp/>|<sp/>I2CA<sp/>on<sp/>Board<sp/>1<sp/>|<sp/>I2CA<sp/>on<sp/>Board<sp/>2<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|--------|-----------------|-----------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>SCL<sp/><sp/><sp/><sp/>|<sp/>GPIO_PIN_SCLA<sp/><sp/><sp/>|<sp/>GPIO_PIN_SCLA<sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>SDA<sp/><sp/><sp/><sp/>|<sp/>GPIO_PIN_SDAA<sp/><sp/><sp/>|<sp/>GPIO_PIN_SDAA<sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>GND<sp/><sp/><sp/><sp/>|<sp/>GND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>GND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Examples</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Example<sp/>No.<sp/>|<sp/>Description<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|-------------|-----------------------------------------------------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>**Controller<sp/>Transmitter<sp/>and<sp/>Target<sp/>Receiver**:<sp/>Controller<sp/>writes<sp/>two<sp/>bytes<sp/>to<sp/>the<sp/>target.<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>**Controller<sp/>Receiver<sp/>and<sp/>Target<sp/>Transmitter**:<sp/>Controller<sp/>reads<sp/>two<sp/>bytes<sp/>from<sp/>the<sp/>target.<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>3<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>**Controller<sp/>Transmitter<sp/>followed<sp/>by<sp/>Controller<sp/>Receiver**:<sp/>Controller<sp/>writes<sp/>two<sp/>bytes<sp/>to<sp/>the<sp/>target<sp/>and<sp/>then<sp/>reads<sp/>two<sp/>bytes.<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>4<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>**Controller<sp/>Receiver<sp/>followed<sp/>by<sp/>Controller<sp/>Transmitter**:<sp/>Controller<sp/>reads<sp/>two<sp/>bytes<sp/>from<sp/>the<sp/>target<sp/>and<sp/>then<sp/>writes<sp/>two<sp/>bytes.<sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\note</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>I2C<sp/>clock<sp/>is<sp/>configured<sp/>for<sp/>400kHz<sp/>with<sp/>a<sp/>50%<sp/>duty<sp/>cycle.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Watch<sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`I2CA_TXdata`:<sp/>Transmit<sp/>buffer<sp/>for<sp/>I2C.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`I2CA_RXdata`:<sp/>Receive<sp/>buffer<sp/>for<sp/>I2C.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Functions</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Function<sp/>Signature<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Description<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|-----------------------------------------------------------------------------------|-----------------------------------------------------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`void<sp/>I2CController_Init(uint16_t<sp/>I2CTarget_OwnAddress,<sp/>uint16_t<sp/>I2CTarget_Address)`<sp/>|<sp/>Initializes<sp/>the<sp/>I2CA<sp/>module<sp/>as<sp/>a<sp/>controller.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`void<sp/>I2CWrite(uint16_t<sp/>targetAddr,<sp/>uint16_t<sp/>byteCount,<sp/>bool<sp/>sendStopCondition)`<sp/><sp/><sp/>|<sp/>Sends<sp/>data<sp/>over<sp/>I2C<sp/>as<sp/>a<sp/>controller<sp/>transmitter.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`uint16_t<sp/>I2CRead(uint16_t<sp/>targetAddr,<sp/>uint16_t<sp/>byteCount,<sp/>bool<sp/>sendStopCondition)`|<sp/>Reads<sp/>data<sp/>over<sp/>I2C<sp/>as<sp/>a<sp/>controller<sp/>receiver.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Globals</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Variable<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Description<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|-----------------------------------|---------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`uint16_t<sp/>I2C_TXdata[MAX_BUFFER_SIZE]`<sp/>|<sp/>Buffer<sp/>for<sp/>transmitting<sp/>data.<sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`uint16_t<sp/>I2C_RXdata[MAX_BUFFER_SIZE]`<sp/>|<sp/>Buffer<sp/>for<sp/>receiving<sp/>data.<sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\note</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>program<sp/>uses<sp/>polling<sp/>to<sp/>check<sp/>the<sp/>status<sp/>of<sp/>I2C<sp/>operations.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>`ESTOP0`<sp/>instruction<sp/>is<sp/>used<sp/>to<sp/>halt<sp/>the<sp/>program<sp/>for<sp/>debugging<sp/>purposes.</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\note</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>When<sp/>running<sp/>in<sp/>flash<sp/>configuration,<sp/>it<sp/>is<sp/>recommended<sp/>to<sp/>reset<sp/>and<sp/>restart<sp/>after<sp/>loading<sp/>the<sp/>example<sp/>to<sp/>remove<sp/>any<sp/>stale<sp/>flags<sp/>or<sp/>states.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_I2C_PAGE</highlight></codeline>
+<codeline></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/i2c_ex1_controller.md"/>
+  </compounddef>
+</doxygen>

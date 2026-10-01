@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -41,10 +41,8 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 #ifndef USB_EX3_DEVICE_KEYBOARD_STRUCTS_H
 #define USB_EX3_DEVICE_KEYBOARD_STRUCTS_H
-
 #include "cm.h"
 #include "usblib.h"
 #include "usbhid.h"
@@ -52,13 +50,10 @@
 #include "device/usbdevice.h"
 #include "device/usbdhid.h"
 #include "device/usbdhidkeyb.h"
-
 //
 // Globals
 //
 extern tUSBDHIDKeyboardDevice g_sKeyboardDevice;
-
 extern uint32_t KeyboardHandler(void *pvCBData, uint32_t ulEvent,
                                 uint32_t ulMsgData, void *pvMsgData);
-
 #endif // USB_EX3_DEVICE_KEYBOARD_STRUCTS_H

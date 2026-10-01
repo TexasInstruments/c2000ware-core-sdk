@@ -3,11 +3,14 @@
 var SingleCore_SYSPLL 		= system.getTemplate('./singleCore_SYSPLL.xdt');
 var SingleCore_AUXPLL		= system.getTemplate('./singleCore_AUXPLL.xdt');
 var SingleCore_domain		= system.getTemplate('./singleCore_domain.xdt');
+var SingleCore_WD			= system.getTemplate('./singleCore_WD.xdt');
 
 let clocktree_common   = system.getScript("../clocktree_common.js");
 
 const PLL_type1 = clocktree_common.PLL_type1;
 const PLL_type2 = clocktree_common.PLL_type2;
+const PLL_type3 = clocktree_common.PLL_type3;
+const WD_SECCLK_devices = clocktree_common.WD_SECCLK_devices;
 
 const AUXPLL_Support = clocktree_common.AUXPLL_Support;
 const EPWM_div_support = clocktree_common.EPWM_div_support;
@@ -21,6 +24,11 @@ const device  = clocktree_common.device;
 	% if(AUXPLL_Support.includes(device))
 	% {
 `SingleCore_AUXPLL()`
+	% }
+	%
+	% if(WD_SECCLK_devices.includes(device))
+	% {
+`SingleCore_WD()`
 	% }
 	%
 `SingleCore_domain()`

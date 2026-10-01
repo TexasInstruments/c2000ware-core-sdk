@@ -1,8 +1,8 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --device "F28P55x" --package "128PDT" --part "F28P55x_128PDT" --context "system" --product "C2000WARE@5.02.00.00"
- * @versions {"tool":"1.18.0+dev"}
+ * @cliArgs --device "F28P55x" --part "F28P55x_128PDT" --package "128PDT" --context "system" 
+ * @v2CliArgs  --device "TMS320F28P550SJ" --package "128PDT" --variant "TMS320F28P550SJ9" --context "system"
  */
 /**
  * Import the modules used in this configuration.
@@ -14,11 +14,9 @@ const CMD1           = CMD.addInstance();
 const CMD2           = CMD.addInstance();
 const fsitx          = scripting.addModule("/driverlib/fsitx.js", {}, false);
 const fsitx1         = fsitx.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
-
 fsitx1.$name                     = "myFSITX0";
 fsitx1.clkPres                   = 8;
 fsitx1.frameType                 = "FSI_FRAME_TYPE_NWORD_DATA";
@@ -28,15 +26,11 @@ fsitx1.useInterrupts             = ["FSI_INT1"];
 fsitx1.enabledINT1Interrupts     = ["FSI_TX_EVT_FRAME_DONE"];
 fsitx1.registerInterruptLine1    = true;
 fsitx1.fsiTxInt1.enableInterrupt = true;
-
-
-
 /**
  * Write custom configuration values to the imported modules.
  */
 CMD1.$name                    = "generic_ram_lnk";
 CMD2.$name                    = "generic_flash_lnk";
-
 CMD1.sectionMemory_text       = ["RAMLS0","RAMLS1","RAMLS2","RAMLS3","RAMLS8"];
 CMD1.sectionMemory_bss        = ["RAMLS5"];
 CMD1.sectionMemory_const      = ["RAMLS5","RAMLS6"];
@@ -47,7 +41,6 @@ CMD1.sectionMemory_stack      = ["RAMM1"];
 CMD1.sectionMemory_init_array = ["RAMM0"];
 CMD1.sectionMemory_switch     = ["RAMM0"];
 CMD1.sectionMemory_sysmem     = ["RAMLS4"];
-
 CMD2.sectionAlignEnable_ramfunc    = true;
 CMD2.sectionAlignEnable_text       = true;
 CMD2.sectionAlignEnable_binit      = true;
@@ -72,5 +65,3 @@ CMD2.sectionMemory_ovly            = ["FLASH_BANK0"];
 CMD2.sectionRunFromDifferentAddr_ramfunc = true;
 CMD2.sectionRun_ramfunc                  = ["RAMLS0"];
 CMD2.sectionBinit_ramfunc                = false;
-
-

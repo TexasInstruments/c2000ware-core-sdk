@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -39,19 +39,15 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 #ifndef _FPU_VECTOR_H_
 #define _FPU_VECTOR_H_
-
 #include "fpu_types.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 //-----------------------------------------------------------------------------
 // Definitions and Prototypes
 //-----------------------------------------------------------------------------
-
 #ifdef _TMS320C28XX_TMU0__
     #define abs_SP_CV  abs_SP_CV_TMU0
     #define iabs_SP_CV iabs_SP_CV_TMU0
@@ -59,7 +55,6 @@ extern "C" {
     #define abs_SP_CV  abs_SP_CV
     #define iabs_SP_CV iabs_SP_CV
 #endif //_TMS320C28XX_TMU0__
-
 // \brief Absolute Value of a Complex Vector.
 //
 // This module computes the absolute value of a complex vector. If N is even,
@@ -70,7 +65,6 @@ extern "C" {
 // \param N length of the x and y vectors
 //
 extern void abs_SP_CV(volatile float *y, volatile const complex_float *x, const uint16_t N);
-
 // \brief Absolute Value of an Even Length Complex Vector.
 //
 // This module computes the absolute value of an even length complex vector.
@@ -81,7 +75,6 @@ extern void abs_SP_CV(volatile float *y, volatile const complex_float *x, const 
 // \attention N must be even
 //
 extern void abs_SP_CV_2(volatile float *y, volatile const complex_float *x, const uint16_t N);
-
 // \brief Absolute Value of a Complex Vector (TMU0).
 //
 // This module computes the absolute value of a complex vector. It uses
@@ -97,7 +90,6 @@ extern void abs_SP_CV_2(volatile float *y, volatile const complex_float *x, cons
 //  function.
 //
 extern void abs_SP_CV_TMU0(volatile float *y, volatile const complex_float *x, const uint16_t N);
-
 // \brief Addition (Element-Wise) of a Complex Scalar to a Complex Vector.
 //
 // This module adds a complex scalar element-wise to a complex vector.
@@ -109,7 +101,6 @@ extern void abs_SP_CV_TMU0(volatile float *y, volatile const complex_float *x, c
 // \param N length of the x and y vectors
 //
 extern void add_SP_CSxCV(volatile complex_float *y, volatile const complex_float *x, const complex_float c, const uint16_t N);
-
 // \brief Addition of Two Complex Vectors.
 //
 // This module adds two complex vectors.
@@ -121,7 +112,6 @@ extern void add_SP_CSxCV(volatile complex_float *y, volatile const complex_float
 // \param N length of the w, x and y vectors
 //
 extern void add_SP_CVxCV(volatile complex_float *y, volatile const complex_float *w, volatile const complex_float *x, const uint16_t N);
-
 // \brief Inverse Absolute Value of a Complex Vector.
 //
 // This module computes the inverse absolute value of a complex vector.
@@ -132,7 +122,6 @@ extern void add_SP_CVxCV(volatile complex_float *y, volatile const complex_float
 // \attention N must be at least 2
 //
 extern void iabs_SP_CV(volatile float *y, volatile const complex_float *x, const uint16_t N);
-
 // \brief Inverse Absolute Value of an Even Length Complex Vector.
 //
 // This module calculates the inverse absolute value of an even
@@ -144,7 +133,6 @@ extern void iabs_SP_CV(volatile float *y, volatile const complex_float *x, const
 // \attention N must be even
 //
 extern void iabs_SP_CV_2(volatile float *y, volatile const complex_float *x, const uint16_t N);
-
 // \brief Inverse Absolute Value of a Complex Vector (TMU0).
 //
 // This module computes the inverse absolute value of a complex vector.
@@ -161,7 +149,6 @@ extern void iabs_SP_CV_2(volatile float *y, volatile const complex_float *x, con
 // function.
 //
 extern void iabs_SP_CV_TMU0(volatile float *y, volatile const complex_float *x, const uint16_t N);
-
 // \brief Index of Maximum Value of an Even Length Real Array.
 //
 // \param x pointer to the input vector
@@ -173,7 +160,6 @@ extern void iabs_SP_CV_TMU0(volatile float *y, volatile const complex_float *x, 
 // value)
 //
 extern uint16_t maxidx_SP_RV_2(volatile float *x, uint16_t N);
-
 // \brief Mean of Real and Imaginary Parts of a Complex Vector.
 //
 // This module calculates the mean of real and imaginary parts of a
@@ -185,7 +171,6 @@ extern uint16_t maxidx_SP_RV_2(volatile float *x, uint16_t N);
 // \attention N must be even and a minimum of 4
 //
 extern complex_float mean_SP_CV_2(volatile const complex_float *x, const uint16_t N);
-
 // \brief Median of a Real Valued Array of Floats (Preserved Inputs).
 //
 // This module computes the median of a real valued array of
@@ -209,7 +194,6 @@ extern complex_float mean_SP_CV_2(volatile const complex_float *x, const uint16_
 // For input data above 22 bits address, use median_noreorder_SP_RV_far instead.
 //
 extern float median_noreorder_SP_RV(const float *x, uint16_t N);
-
 // \brief Median of a Real Valued Array of Floats (Preserved Inputs).
 //
 // This module computes the median of a real valued array of
@@ -231,7 +215,6 @@ extern float median_noreorder_SP_RV(const float *x, uint16_t N);
 // For input data at or below 22 bits address, use median_noreorder_SP_RV instead for possible better performance.
 //
 extern float median_noreorder_SP_RV_far(volatile const float *x, uint16_t N);
-
 // \brief Median of a real array of floats.
 //
 // This module computes the median of a real array of floats.
@@ -250,7 +233,6 @@ extern float median_noreorder_SP_RV_far(volatile const float *x, uint16_t N);
 // For input data above 22 bits address, use median_SP_RV_far instead.
 //
 extern float median_SP_RV(float *x, uint16_t N);
-
 // \brief Median of a real array of floats.
 //
 // This module computes the median of a real array of floats.
@@ -269,7 +251,6 @@ extern float median_SP_RV(float *x, uint16_t N);
 // For input data at or below 22 bits address, use median_SP_RV instead for possible better performance.
 //
 extern float median_SP_RV_far(volatile float *x, uint16_t N);
-
 // \brief Optimized Memory Copy.
 //
 // \param src pointer to the source buffer
@@ -281,7 +262,6 @@ extern float median_SP_RV_far(volatile float *x, uint16_t N);
 // For input data above 22 bits address, use memcpy_fast_far instead.
 //
 extern void memcpy_fast(void *dst, const void *src, uint16_t N);
-
 // \brief Optimized Memory Copy for far memory (above 22 bits).
 //
 // \param src pointer to the source buffer
@@ -293,7 +273,6 @@ extern void memcpy_fast(void *dst, const void *src, uint16_t N);
 // For input data at or below 22 bits address, use memcpy_fast instead for better performance.
 //
 extern void memcpy_fast_far(volatile void *dst, volatile const void *src, uint16_t N);
-
 // \brief Optimized Memory Set.
 //
 // \param dst pointer to the destination buffer
@@ -303,7 +282,6 @@ extern void memcpy_fast_far(volatile void *dst, volatile const void *src, uint16
 // \attention This function is not interruptible
 //
 extern void memset_fast(volatile void *dst, int16_t value, uint16_t N);
-
 // \brief Complex Multiply of Two Floating Point Numbers.
 //
 // This module multiplies two floating point complex values.
@@ -314,7 +292,6 @@ extern void memset_fast(volatile void *dst, int16_t value, uint16_t N);
 // \return complex product of the first and second complex input
 //
 extern complex_float mpy_SP_CSxCS(complex_float w, complex_float x);
-
 // \brief Complex Multiply of Two Complex Vectors.
 //
 // This module performs complex multiplication on two input complex vectors.
@@ -326,7 +303,6 @@ extern complex_float mpy_SP_CSxCS(complex_float w, complex_float x);
 // \param N length of the w, x and y vectors
 //
 extern void mpy_SP_CVxCV(volatile complex_float *y, volatile const complex_float *w, volatile const complex_float *x, const uint16_t N);
-
 // \brief Multiplication of a Complex Vector and the Complex Conjugate of another Vector.
 //
 // This module multiplies a complex vector (w) and the complex conjugate of another complex vector (x).
@@ -340,7 +316,6 @@ extern void mpy_SP_CVxCV(volatile complex_float *y, volatile const complex_float
 // \param N length of the w, x and y vectors
 //
 extern void mpy_SP_CVxCVC(volatile complex_float *y, volatile const complex_float *w, volatile const complex_float *x, const uint16_t N);
-
 // \brief Multiplication of a Real scalar and a Real Vector.
 //
 // This module multiplies a real scalar and a real vector.
@@ -352,7 +327,6 @@ extern void mpy_SP_CVxCVC(volatile complex_float *y, volatile const complex_floa
 // \attention N must be even and a minimum of 4.
 //
 extern void mpy_SP_RSxRV_2(volatile float *y, volatile const float *x, const float c, const uint16_t N);
-
 // \brief Multiplication of a Real Scalar, a Real Vector, and another Real Vector.
 //
 // This module multiplies a real scalar with a real vector and another real vector.
@@ -365,7 +339,6 @@ extern void mpy_SP_RSxRV_2(volatile float *y, volatile const float *x, const flo
 // \attention N must be even and a minimum of 4.
 //
 extern void mpy_SP_RSxRVxRV_2(volatile float *y, volatile const float *w, volatile const float *x, const float c, const uint16_t N);
-
 // \brief Multiplication of a Real Vector and a Complex Vector.
 //
 // This module multiplies a real vector and a complex vector.
@@ -378,7 +351,6 @@ extern void mpy_SP_RSxRVxRV_2(volatile float *y, volatile const float *w, volati
 // \attention N must be at least 2
 //
 extern void mpy_SP_RVxCV(volatile complex_float *y, volatile const complex_float *w, volatile const float *x, const uint16_t N);
-
 // \brief Multiplication of a Real Vector and a Real Vector.
 //
 // This module multiplies two real vectors.
@@ -390,7 +362,6 @@ extern void mpy_SP_RVxCV(volatile complex_float *y, volatile const complex_float
 // \attention N must be even and a minimum of 4.
 //
 extern void mpy_SP_RVxRV_2(volatile float *y, volatile const float *w, volatile const float *x, const uint16_t N);
-
 // \brief Sort an Array of Floats.
 //
 // This module sorts an array of floats. This function is a partially optimized
@@ -402,7 +373,6 @@ extern void mpy_SP_RVxRV_2(volatile float *y, volatile const float *w, volatile 
 // For input data above 22 bits address, use qsort_SP_RV_far instead.
 //
 extern void qsort_SP_RV(void *x, uint16_t N);
-
 // \brief Sort an Array of Floats.
 //
 // This module sorts an array of floats. This function is a partially optimized
@@ -414,7 +384,6 @@ extern void qsort_SP_RV(void *x, uint16_t N);
 // For input data at or below 22 bits address, use qsort_SP_RV instead for possible better performance.
 //
 extern void qsort_SP_RV_far(volatile void *x, uint16_t N);
-
 // \brief Rounding (Unbiased) of a Floating Point Scalar.
 //
 // numerical examples:
@@ -428,7 +397,6 @@ extern void qsort_SP_RV_far(volatile void *x, uint16_t N);
 // \return rounded
 //
 extern float rnd_SP_RS(float x);
-
 // \brief Subtraction of a Complex Scalar from a Complex Vector.
 //
 // This module subtracts a complex scalar from a complex vector.
@@ -441,7 +409,6 @@ extern float rnd_SP_RS(float x);
 // \attention N must be at least 2
 //
 extern void sub_SP_CSxCV(volatile complex_float *y,volatile const complex_float *x, const complex_float c, const uint16_t N);
-
 // \brief Subtraction of a Complex Vector and another Complex Vector.
 //
 // This module subtracts a complex vector from another complex vector.
@@ -454,14 +421,10 @@ extern void sub_SP_CSxCV(volatile complex_float *y,volatile const complex_float 
 // \attention N must be at least 2
 //
 extern void sub_SP_CVxCV(volatile complex_float *y, volatile const complex_float *w, volatile const complex_float *x, const uint16_t N);
-
 #ifdef __cplusplus
 }
 #endif /* extern "C" */
-
 #endif   // - end of _FPU_VECTOR_H_
-
 //===========================================================================
 // End of file.
 //===========================================================================
-

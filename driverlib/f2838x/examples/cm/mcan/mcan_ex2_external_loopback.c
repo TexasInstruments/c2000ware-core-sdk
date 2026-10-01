@@ -45,7 +45,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -78,20 +78,17 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Include Files
 //
 #include "cm.h"
 #include "inc/stw_types.h"
 #include "inc/stw_dataTypes.h"
-
 //
 // Select one of the Modes.
 //
 #define TRANSMIT
 //#define RECEIVE
-
 //
 // Defines.
 //
@@ -115,12 +112,10 @@
 #define MCAN_RX_BUFF_START_ADDR       (948U)
 #define MCAN_EXT_ID_AND_MASK          (0x1FFFFFFFU)
 #define MCAN_TS_PRESCALAR             (0xB0)
-
 #define MCAN_TX_BUFF_ELEM_SIZE       (MCAN_ELEM_SIZE_64Bytes)
 #define MCAN_RX_BUFF_ELEM_SIZE       (MCAN_ELEM_SIZE_64Bytes)
 #define MCAN_RX_FIFO0_ELEM_SIZE      (MCAN_ELEM_SIZE_64Bytes)
 #define MCAN_RX_FIFO1_ELEM_SIZE      (MCAN_ELEM_SIZE_64Bytes)
-
 //
 // Global Variables.
 //
@@ -131,8 +126,6 @@ int32_t     error = 0;
 MCAN_TxBufElement txMsg[NUM_OF_MSG];
 MCAN_RxBufElement rxMsg[NUM_OF_MSG], rxMsg1;
 int32_t loopCnt = 0U;
-
-
 //
 // Function Prototype.
 //
@@ -140,7 +133,6 @@ static void MCANConfig(void);
 static void MCANIntrConfig(void);
 static void MCANIntr0ISR(void);
 static void MCANIntr1ISR(void);
-
 void main()
 {
 #ifdef RECEIVE
@@ -150,22 +142,18 @@ void main()
     uint32_t numOfMsg = NUM_OF_MSG;
     volatile uint32_t mode = 0U;
     uint32_t dataBytes = 8;
-    
     //
     // Switching on the peripheral.
     //
     CM_init();
-
     //
     // Reset the peripheral.
     //
     SysCtl_resetPeripheral(SYSCTL_PERIPH_RES_MCAN_A);
-
     //
     // CrossBar and ISR Configuration.
     //
     MCANIntrConfig();
-    
     //
     // Initialize message to transmit.
     //
@@ -206,54 +194,45 @@ void main()
             rxMsg[loopCnt].data[i]  = 0;
         }
     }
-
     //
     // Configure the MCAN Module.
     //
     MCANConfig();
-    
 #ifdef TRANSMIT
     //
     // This is transmitter side application.
     //
-     
     // 
     // Enable Interrupts.
     //
     MCAN_enableIntr(MCAN0_BASE, MCAN_INTR_MASK_ALL,1);
     MCAN_enableIntr(MCAN0_BASE, MCAN_INTR_SRC_RES_ADDR_ACCESS|
                     MCAN_INTR_SRC_TIMESTAMP_WRAPAROUND,0);
-    
     //
     // Select Interrupt Line.
     //
     MCAN_selectIntrLine(MCAN0_BASE, MCAN_INTR_MASK_ALL,
                         MCAN_INTR_LINE_NUM_0);
-    
     //
     // Enable Interrupt Line.
     //
     MCAN_enableIntrLine(MCAN0_BASE, MCAN_INTR_LINE_NUM_0, 1U);
-    
     //
     // Enable Transmission interrupt.
     //
     for(loopCnt = 0U ; loopCnt < numOfMsg ; loopCnt++)
     {
         MCAN_txBufTransIntrEnable(MCAN0_BASE, loopCnt,1);
-    
         //
         // Write message to Message RAM.
         //
         MCAN_writeMsgRam(MCAN0_BASE, MCAN_MEM_TYPE_BUF, loopCnt,
                          &txMsg[loopCnt]);
     }
-    
     //
     // Add request for all transmission.
     //
     HWREG(MCAN0_BASE + MCAN_TXBAR) = 0x000003FF;
-                
     //
     // Wait till the flag becomes zero and all the messages are transmitted.
     //
@@ -265,14 +244,12 @@ void main()
     //
     // This is receiver side application.
     // 
-
     //
     // Enable Interrupts.
     //
     MCAN_enableIntr(MCAN0_BASE, MCAN_INTR_MASK_ALL,1);
     MCAN_enableIntr(MCAN0_BASE, MCAN_INTR_SRC_RES_ADDR_ACCESS|
                     MCAN_INTR_SRC_TIMESTAMP_WRAPAROUND,0);
-    
     //
     // Select Interrupt Line.
     //
@@ -282,14 +259,12 @@ void main()
     // Enable Interrupt Line.
     //
     MCAN_enableIntrLine(MCAN0_BASE, MCAN_INTR_LINE_NUM_1, 1U);
-    
     //
     // Wait till the interrupt flag becomes zero.
     //
     while(isrIntr1Flag)
     {
     }
-
     for(loopCnt = 0U ; loopCnt < numOfMsg;loopCnt++)
     {
         MCAN_readMsgRam(MCAN0_BASE, MCAN_MEM_TYPE_FIFO, 0U,
@@ -298,10 +273,8 @@ void main()
                             loopCnt);
         rxMsg[loopCnt] = rxMsg1;
     }
-                
     for(loopCnt = 0U ; loopCnt < numOfMsg ; loopCnt++)
     {
-
         if (rxMsg[loopCnt].id  != txMsg[loopCnt].id)
         {
             error++;
@@ -330,7 +303,6 @@ void main()
         {
             error++;
         }
-        
         if (loopCnt > 0)
         {
             if (rxMsg[loopCnt].rxts > rxMsg[loopCnt-1].rxts)
@@ -341,7 +313,6 @@ void main()
                 error++;
             }
         }
-
         for (dataCnt = 0U ; dataCnt < dataBytes ; dataCnt++)
         {
             if (rxMsg[loopCnt].data[dataCnt]!=
@@ -359,13 +330,11 @@ void main()
         //
         __asm("   bkpt #0");
     }
-    
     //
     // Stop Application.
     //
     __asm("   bkpt #0");
 }
-
 static void MCANIntrConfig(void)
 {
     Interrupt_registerHandler(INT_MCANSS_0,&MCANIntr0ISR);
@@ -383,7 +352,6 @@ static void MCANConfig(void)
     MCAN_StdMsgIDFilterElement stdFiltelem;
     MCAN_ExtMsgIDFilterElement extFiltelem;
     MCAN_BitTimingParams       bitTimes;
-
     //
     // Initialize MCAN Init parameters.
     //
@@ -402,13 +370,11 @@ static void MCANConfig(void)
                                          // enabled.
     initParams.wdcPreload        = 0xFFU; // Start value of the Message RAM
                                           // Watchdog Counter preload.
- 
     //
     // Transmitter Delay Compensation parameters.
     //
     initParams.tdcConfig.tdcf    = 0xAU;
     initParams.tdcConfig.tdco    = 0x6U;
-    
     //
     // Initialize MCAN Config parameters.
     // 
@@ -427,7 +393,6 @@ static void MCANConfig(void)
                                            // 11-bit standard IDs.
     configParams.filterConfig.anfe = 0x1U; // Accept in Rx FIFO 1.
     configParams.filterConfig.anfs = 0x1U; // Accept in Rx FIFO 1.
-
     //
     // Initialize Message RAM Sections Configuration Parameters
     //
@@ -475,7 +440,6 @@ static void MCANConfig(void)
     // Rx FIFO0 Element Size.
     msgRAMConfigParams.rxFIFO1ElemSize      = MCAN_ELEM_SIZE_64BYTES;
     // Rx FIFO1 Element Size.
-    
     //
     // Initialize Tx Buffer Configuration parameters.
     //
@@ -484,7 +448,6 @@ static void MCANConfig(void)
     stdFiltelem.sfec               = 0x7U; // Store into Rx Buffer or as
                            // debug message, configuration of SFT[1:0] ignored.
     stdFiltelem.sft                = 0x0U; // Range filter from SFID1 to SFID2.
-    
     //
     // Initialize Tx Buffer Configuration parameters.
     //
@@ -494,7 +457,6 @@ static void MCANConfig(void)
     extFiltelem.efid1 |= 0xFFU;
     extFiltelem.efec   = 0x6U;
     extFiltelem.eft    = 0x0U;
-
     //
     // Initialize bit timings.
     //
@@ -506,98 +468,78 @@ static void MCANConfig(void)
     bitTimes.dataTimeSeg1       = 0x1U; // Data Time segment before sample point.
     bitTimes.dataTimeSeg2       = 0x1U; // Data Time segment after sample point.
     bitTimes.dataSynchJumpWidth = 0x0U; // Data (Re)Synchronization Jump Width.
-
     //
     // Get MCANSS Revision ID
     //
     MCAN_getRevisionId(MCAN0_BASE, &revId);
-    
     //
     // Wait for memory initialization to happen.
     //
     while(FALSE == MCAN_isMemInitDone(MCAN0_BASE))
     {
     }
-    
     //
     // Put MCAN in SW initialization mode.
     //
     MCAN_setOpMode(MCAN0_BASE, MCAN_OPERATION_MODE_SW_INIT);
-    
     //
     // Wait till MCAN is not initialized.
     //
     while (MCAN_OPERATION_MODE_SW_INIT != MCAN_getOpMode(MCAN0_BASE))
     {}
-   
     //
     // Initialize MCAN module.
     //
     MCAN_init(MCAN0_BASE, &initParams);
-    
     //
     // Configure MCAN module.
     //
     MCAN_config(MCAN0_BASE, &configParams);
- 
     //
     // Disable external timeStamp overflow interrupt.
     //
     MCAN_extTSEnableIntr(MCAN0_BASE,1);
-
     //
     // Configure TimeStamp Counter.
     //
     MCAN_extTSCounterConfig(MCAN0_BASE, MCAN_TS_PRESCALAR);
-
     //
     // Configure Bit timings.
     //
     MCAN_setBitTime(MCAN0_BASE, &bitTimes);
-    
     //
     // Set Extended ID Mask.
     //
     MCAN_setExtIDAndMask(MCAN0_BASE, MCAN_EXT_ID_AND_MASK);
-    
     //
     // Configure Message RAM Sections
     //
     MCAN_msgRAMConfig(MCAN0_BASE, &msgRAMConfigParams);
-    
     //
     // Configure Standard ID filter element
     //
     MCAN_addStdMsgIDFilter(MCAN0_BASE, 0U, &stdFiltelem);
-    
     //
     // Configure Extended ID filter element
     //
     MCAN_addExtMsgIDFilter(MCAN0_BASE, 0U, &extFiltelem);
-
     //
     // Enable external counter.
     //
     MCAN_extTSCounterEnable(MCAN0_BASE, 1U);
-
     //
     // Take MCAN out of the SW initialization mode
     //
     MCAN_setOpMode(MCAN0_BASE, MCAN_OPERATION_MODE_NORMAL);
-    
     while (MCAN_OPERATION_MODE_NORMAL != MCAN_getOpMode(MCAN0_BASE))
     {
-        
     }
 }
-
 static void MCANIntr0ISR(void)
 {
     uint32_t intrStatus;
-
     intrStatus = MCAN_getIntrStatus(MCAN0_BASE);
     MCAN_clearIntrStatus(MCAN0_BASE, intrStatus);
-    
     if (MCAN_INTR_SRC_TRANS_COMPLETE == (intrStatus &
          MCAN_INTR_SRC_TRANS_COMPLETE))
     {
@@ -613,13 +555,10 @@ static void MCANIntr0ISR(void)
         //
         __asm("   bkpt #0");
     }
-
 }
-
 static void MCANIntr1ISR(void)
 {
     uint32_t intrStatus;
-
     intrStatus = MCAN_getIntrStatus(MCAN0_BASE);
     MCAN_clearIntrStatus(MCAN0_BASE, intrStatus);
     if(MCAN_INTR_SRC_RX_FIFO1_NEW_MSG ==

@@ -1,8 +1,8 @@
 let Common   = system.getScript("/driverlib/Common.js");
 let Pinmux   = system.getScript("/driverlib/pinmux.js");
 
-let device_driverlib_peripheral = 
-    system.getScript("/driverlib/device_driverlib_peripherals/" + 
+let device_driverlib_peripheral =
+    system.getScript("/driverlib/device_driverlib_peripherals/" +
         Common.getDeviceName().toLowerCase() + "_cla.js");
 let device_driverlib_memmap =
     system.getScript("/driverlib/device_driverlib_peripherals/" +
@@ -25,9 +25,9 @@ CLA_INSTANCE.push({
     name : "CLA1_BASE",
     displayName : "CLA1"
 })
- 
+
 /*
- * 
+ *
  * CLA instance selection UI
  *
  */
@@ -59,9 +59,9 @@ device_driverlib_peripheral.CLA_TaskNumber.
         clatask_group_config = clatask_group_config.concat([
             {
                 name            : "enable_"+element.name,
-                displayName     : "Enable " + element.displayName,
+                displayName     : "Config " + element.displayName,
                 default         : true,
-                onChange        : onChangeEnableClaTask
+                onChange        : onChangeConfigClaTask
             }
         ]);
     });
@@ -72,9 +72,14 @@ device_driverlib_peripheral.CLA_TaskNumber.
     {
         var clataskindex = element.name[element.name.length-1];
         var clataskname = element.name;
-    
+
         var clatask_config = [];
         clatask_config = clatask_config.concat([
+            {
+                name        : "enableTask_"+clataskname,
+                displayName : "Enable " + element.displayName,
+                default     : true,
+            },
             {
                 name        : "mvect_"+clataskname,
                 displayName : "Interrupt Vector",
@@ -93,7 +98,7 @@ device_driverlib_peripheral.CLA_TaskNumber.
                 options     : device_driverlib_peripheral.CLA_Trigger
             },
         ]);
-    
+
         clatask_group_config = clatask_group_config.concat([
             {
                 name            : "group_"+clataskname,
@@ -102,7 +107,7 @@ device_driverlib_peripheral.CLA_TaskNumber.
                 longDescription : "",
                 config          : clatask_config
             }
-        ]);        
+        ]);
     });
 
 
@@ -133,7 +138,7 @@ config = config.concat([
 /*
  *
  * CLA memory allocation UI
- * 
+ *
  */
 var LSRAM_list = [];
 device_driverlib_memcfg.MEMCFG_SECT.
@@ -149,7 +154,7 @@ device_driverlib_memcfg.MEMCFG_SECT.
 /*
  *
  * CLA task CPU interrupt configuration UI
- * 
+ *
  */
 
 // Generate CPU interrupt configuration UI
@@ -180,9 +185,9 @@ config = config.concat([
 /*
  *
  * Callback function for enable task
- * 
+ *
  */
-function onChangeEnableClaTask(inst, ui) {
+function onChangeConfigClaTask(inst, ui) {
     //console.log("Changed enable checkbox");
     //console.log(inst);
     //console.log(ui);
@@ -193,6 +198,7 @@ function onChangeEnableClaTask(inst, ui) {
         // Task enabled, show configuration UI
         if (inst["enable_"+element.name])
         {
+            ui["enableTask_"+element.name].hidden = false;
             ui["mvect_"+element.name].hidden = false;
             ui["name_"+element.name].hidden = false;
             ui["trigger_"+element.name].hidden = false;
@@ -203,6 +209,7 @@ function onChangeEnableClaTask(inst, ui) {
         }
         else  // Hide configuration UI
         {
+            ui["enableTask_"+element.name].hidden = true;
             ui["mvect_"+element.name].hidden = true;
             ui["name_"+element.name].hidden = true;
             ui["trigger_"+element.name].hidden = true;
@@ -217,7 +224,7 @@ function onChangeEnableClaTask(inst, ui) {
 /*
  *
  * Validate configuration
- * 
+ *
  */
 function onValidate(inst, validation) {
 
@@ -238,11 +245,11 @@ function onValidate(inst, validation) {
         var allDuplicates = "";
         for (var duplicateNamesIndex in duplicatesResult.duplicates)
         {
-            allDuplicates = allDuplicates + Common.stringOrEmpty(allDuplicates, ", ") 
+            allDuplicates = allDuplicates + Common.stringOrEmpty(allDuplicates, ", ")
                             + duplicatesResult.duplicates[duplicateNamesIndex];
         }
         validation.logError(
-            "The CLA Instance used. Duplicates: " + allDuplicates, 
+            "The CLA Instance used. Duplicates: " + allDuplicates,
             inst, "claBase");
     }
 }
@@ -251,7 +258,7 @@ function onValidate(inst, validation) {
 /*
  *
  * Add MemCfg dependency
- * 
+ *
  */
 var claStatic = {
     name: "claGlobal",
@@ -262,7 +269,7 @@ var claStatic = {
 /*
  *
  * CLA module
- * 
+ *
  */
 var claModule = {
     peripheralName: "CLA",

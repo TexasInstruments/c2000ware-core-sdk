@@ -30,41 +30,34 @@
 //!  None
 //
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Global Variables
 //
-
 //
 // Start and end address of the function delayFunction.
 // This value comes from the linker command file.
 //
 extern uint32_t delayFuncStart, delayFuncEnd;
-
 //
 // The variables used in the function which are monitored by bus comparators
 // 3 and 4.
 //
 volatile uint32_t startCount = 0;
 volatile uint32_t endCount = 0;
-
 //
 // Watch variables with the number of CPU cycles elapsed.
 //
 volatile uint32_t cycles_Function = 0;
 volatile uint32_t cycles_Data = 0;
-
 //
 // Function Prototypes
 //
 void delayFunction(uint16_t);
-
 //
 // Main
 //
@@ -72,23 +65,19 @@ void main(void)
 {
     uint16_t i;
     ERAD_Profile_Params params;
-
     //
     // Initializes device clock and peripherals
     //
     Device_init();
-
     //
     // Configures the GPIO pin as a push-pull output
     //
     Device_initGPIO();
-
     //
     // Initializes the ERAD module with the owner set as
     // the APPLICATION
     //
     ERAD_initModule(ERAD_OWNER_APPLICATION);
-
     //
     // Parameters for profiling function.
     // The PC value is being monitored here.
@@ -99,12 +88,10 @@ void main(void)
     params.busComp_base1 = ERAD_HWBP1_BASE;
     params.busComp_base2 = ERAD_HWBP2_BASE;
     params.counter_base  = ERAD_COUNTER1_BASE;
-
     //
     // Configuring the required ERAD submodules
     //
     ERAD_profile(params);
-
     //
     // Parameters for profiling the time between the accesses
     // to startCount and endCount variables.
@@ -116,19 +103,16 @@ void main(void)
     params.busComp_base1 = ERAD_HWBP3_BASE;
     params.busComp_base2 = ERAD_HWBP4_BASE;
     params.counter_base  = ERAD_COUNTER2_BASE;
-
     //
     // Configuring the required ERAD submodules
     //
     ERAD_profile(params);
-
     //
     // Loop to call the delay function repeatedly with different delays
     //
     for(i=0; i<10; i++)
     {
         delayFunction(i % 5);
-
         //
         // View these two variables in CCS view
         // Note that calling the function ERAD_getCurrentValue here will
@@ -136,20 +120,16 @@ void main(void)
         //
         cycles_Function = ERAD_getMaxCount(ERAD_COUNTER1_BASE);
         cycles_Data     = ERAD_getMaxCount(ERAD_COUNTER2_BASE);
-
         ESTOP0;
-
         //
         // Uncomment the code below to clear the maximum count
         //
         // ERAD_setMaxCount(ERAD_COUNTER1_BASE, 0);
         // ERAD_setMaxCount(ERAD_COUNTER2_BASE, 0);
     }
-
     ESTOP0;
     while(1);
 }
-
 //
 // delay function
 //
@@ -157,19 +137,9 @@ void main(void)
 void delayFunction(uint16_t delay)
 {
     startCount++;
-
-    uint16_t i=0;
-    for (; i<delay; i++)
-    {
-        NOP;
-        NOP;
-        NOP;
-        NOP;
-    }
-
+    SysCtl_delay(delay);
     endCount++;
 }
-
 //
 // End of File
 //

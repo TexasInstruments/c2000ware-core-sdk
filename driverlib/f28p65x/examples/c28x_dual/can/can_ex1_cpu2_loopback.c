@@ -67,27 +67,23 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
 #define MSG_DATA_LENGTH    2
 #define TX_MSG_OBJ_ID      1
 #define RX_MSG_OBJ_ID      2
-
 //
 // Globals
 //
 volatile unsigned long msgCount = 0;
 uint16_t txMsgData[2];
 uint16_t rxMsgData[2];
-
 //
 // Main
 //
@@ -97,12 +93,10 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize the CAN controller
     //
     CAN_initModule(CANA_BASE);
-
     //
     // Set up the CAN bus bit rate to 500kHz
     // Refer to the Driver Library User Guide for information on how to set
@@ -110,29 +104,24 @@ void main(void)
     // for more information about the CAN module clocking.
     //
     CAN_setBitRate(CANA_BASE, DEVICE_SYSCLK_FREQ, 500000, 20);
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Enable CAN test mode with external loopback
     //
     CAN_enableTestMode(CANA_BASE, CAN_TEST_EXL);
-
     //
     // Initialize the transmit message object used for sending CAN messages.
     // Message Object Parameters:
@@ -147,7 +136,6 @@ void main(void)
     CAN_setupMessageObject(CANA_BASE, TX_MSG_OBJ_ID, 0x1, CAN_MSG_FRAME_STD,
                            CAN_MSG_OBJ_TYPE_TX, 0, CAN_MSG_OBJ_TX_INT_ENABLE,
                            MSG_DATA_LENGTH);
-
     //
     // Initialize the receive message object used for receiving CAN messages.
     // Message Object Parameters:
@@ -163,18 +151,15 @@ void main(void)
     CAN_setupMessageObject(CANA_BASE, RX_MSG_OBJ_ID, 0x1, CAN_MSG_FRAME_STD,
                            CAN_MSG_OBJ_TYPE_RX, 0, CAN_MSG_OBJ_RX_INT_ENABLE,
                            MSG_DATA_LENGTH);
-
     //
     // Initialize the transmit message object data buffer to be sent
     //
     txMsgData[0] = 0x12;
     txMsgData[1] = 0x34;
-
     //
     // Start CAN module operations
     //
     CAN_startModule(CANA_BASE);
-
     //
     // Loop Forever - Send and Receive data continuously
     //
@@ -184,12 +169,10 @@ void main(void)
         // Send CAN message data from message object 1
         //
         CAN_sendMessage(CANA_BASE, 1, MSG_DATA_LENGTH, txMsgData);
-
         //
         // Delay before receiving the data
         //
         DEVICE_DELAY_US(500000);
-
         //
         // Read CAN message object 2 and check for new data
         //
@@ -219,13 +202,11 @@ void main(void)
             //
             asm(" ESTOP0");
         }
-
         //
         // Increment the value in the transmitted message data.
         //
         txMsgData[0] += 0x01;
         txMsgData[1] += 0x01;
-
         //
         // Reset data if exceeds a byte
         //
@@ -239,7 +220,6 @@ void main(void)
         }
     }
 }
-
 //
 // End of File
 //

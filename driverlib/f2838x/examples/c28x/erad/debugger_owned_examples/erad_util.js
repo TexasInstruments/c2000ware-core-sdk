@@ -5,7 +5,6 @@ importPackage(Packages.javax.xml.parsers)
 importPackage(Packages.java.lang)
 importPackage(Packages.java.util)
 importPackage(Packages.java.io)
-
 function getFuncAddressXML(funcName)
 {
     //
@@ -16,32 +15,25 @@ function getFuncAddressXML(funcName)
     // make sure that each of these variables is set accordingly prior to
     // running the example program
     //
-
     print("....Looking for the XML file....");
     if (typeof PROJ_NAME == 'undefined')
     {
         print("\nERROR: Please set PROJ_NAME to the name of the" +
               " CCS project\n");
     }
-
     if (typeof PROJ_WKSPC_LOC == 'undefined')
     {
         print("\nERROR: Please set PROJ_WKSPC_LOC to the correct" +
               " CCS workspace path\n");
     }
-
     if (typeof PROJ_CONFIG == 'undefined')
     {
         print("\nERROR: Please set PROJ_CONFIG to the name of the" +
               " active configuration\n");
     }
-
     var xmlFileName = PROJ_WKSPC_LOC + "\\" + PROJ_NAME + "\\" + PROJ_CONFIG +
                  "\\" + PROJ_NAME + "_linkinfo.xml";
-
     print("....XML file: " + xmlFileName);
-
-
     var xmlFile = new File(xmlFileName);
     var dbFactory = DocumentBuilderFactory.newInstance();
     var dBuilder = dbFactory.newDocumentBuilder();
@@ -52,14 +44,10 @@ function getFuncAddressXML(funcName)
     */
     var nodeList = xmlDom.getElementsByTagName("object_component");
     var length = nodeList.getLength();
-
     print("Number of nodes: " + nodeList.getLength() + " with name: " + nodeList.item(0).getNodeName() );
-
     var myFuncStart, myFuncLength, myFuncEnd;
-
     for(var index = 0; index < length; index++)
     {
-
         var myName = nodeList.item(index).getElementsByTagName("name");
         /*
         print("Node " + index + ": " + myName.item(0).firstChild.nodeValue);

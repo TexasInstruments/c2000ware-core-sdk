@@ -1,0 +1,1335 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="drv8329_8h" kind="file" language="C++">
+    <compoundname>drv8329.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes local="no">stdint.h</includes>
+    <includes local="yes">inc/hw_types.h</includes>
+    <includes local="yes">hw_drv8329.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+      <node id="5">
+        <label>hw_drv8329.h</label>
+      </node>
+      <node id="1">
+        <label>drv8329.h</label>
+        <link refid="drv8329_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>inc/hw_types.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="unionDRV8329__FAULT__STATUS__T" prot="public">DRV8329_FAULT_STATUS_T</innerclass>
+    <innerclass refid="structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt" prot="public">DRV8329_FAULT_STATUS_T::gateDrvFlt</innerclass>
+    <innerclass refid="unionDRV8329__CFG1__T" prot="public">DRV8329_CFG1_T</innerclass>
+    <innerclass refid="structDRV8329__CFG1__T_1_1drv8329Cfg1" prot="public">DRV8329_CFG1_T::drv8329Cfg1</innerclass>
+    <innerclass refid="structDRV8329__CONFIG__T" prot="public">DRV8329_CONFIG_T</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__drv8329__api_1gab01c96534e6cdc0d8c0d1ca51de06920" prot="public" static="no">
+        <name>DRV8329_CTRL1_REG_DEFAULT_CONFIG</name>
+        <initializer>0x00</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="67" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__drv8329__api_1gaed3c82e42ad488f3e152a19ea05f23f2" prot="public" static="no">
+        <name>DRV8329_CTRL2_REG_DEFAULT_CONFIG</name>
+        <initializer>0x00</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="68" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__drv8329__api_1gafc7b14508f71cf8c00976874993c7c8b" prot="public" static="no">
+        <name>DRV8329_CTRL1_REG_DEFAULT_MASK</name>
+        <initializer>0xFE</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="70" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__drv8329__api_1ga7bdb55cdaca1941b4fe3bc07cc21ed78" prot="public" static="no">
+        <name>DRV8329_CTRL2_REG_DEFAULT_MASK</name>
+        <initializer>0x78</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="71" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__drv8329__api_1ga269d234c3d5b556f8e04a47cb0bf5b52" prot="public" static="no">
+        <name>DRV8329_FAULT_STATUS_MASK</name>
+        <initializer>0xFF000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="108" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__drv8329__api_1gab959a0652e6f0e43aae793d709327413" prot="public" static="no">
+        <name>DRV8329_FAULT_STATUS_DEFAULT</name>
+        <initializer>0x80000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="109" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__drv8329__api_1ga443b5eb5f3707c7c7011f2606c4e48f6" prot="public" static="no">
+        <name>DRV8329_FAULT_STATUS_PWR_ON</name>
+        <initializer>0x80000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="111" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__drv8329__api_1ga13d250f2439a2c915837c254b3d5db3b" prot="public" static="no">
+        <name>DRV8329_FAULT_STATUS_OTS</name>
+        <initializer>0x40000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="112" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__drv8329__api_1ga22f23f19f1159584c04a79716cf76b51" prot="public" static="no">
+        <name>DRV8329_FAULT_STATUS_OCP_VDS</name>
+        <initializer>0x20000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="113" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__drv8329__api_1ga56daa50e2417871ff7a04af293bc26c6" prot="public" static="no">
+        <name>DRV8329_FAULT_STATUS_OCP_SNS</name>
+        <initializer>0x10000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="114" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__drv8329__api_1ga8a6a7e23df5d18c778ef78f1b3d49639" prot="public" static="no">
+        <name>DRV8329_FAULT_STATUS_BST_UV</name>
+        <initializer>0x08000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="115" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__drv8329__api_1ga262978f45057e55e3e4e13e02e56a661" prot="public" static="no">
+        <name>DRV8329_FAULT_STATUS_GVDD_UV</name>
+        <initializer>0x04000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="116" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__drv8329__api_1gac5b7f01955908f192783ac6df5d0fe87" prot="public" static="no">
+        <name>DRV8329_FAULT_STATUS_DRVOFF</name>
+        <initializer>0x02000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="117" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__drv8329__api_1gac310a14bb192d4fafb0da99bf7793935" prot="public" static="no">
+        <name>DRV8329_FAULT_STATUS_FAULT_COMMON</name>
+        <initializer>0x01000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="118" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__drv8329__api_1ga0b2058c7a0df585232a85c51d0859508" prot="public" static="no">
+        <name>GD1_CTRL1_MASK</name>
+        <initializer>0x0000007F</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="152" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__drv8329__api_1ga4d38d75069c82ac768cc4e78380b198d" prot="public" static="no">
+        <name>GD1_CTRL1_SHIFT</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="153" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__drv8329__api_1ga331b8e80a7aa7b4528fb303a7e6de7f8" prot="public" static="no">
+        <name>GD1_CTRL2_MASK</name>
+        <initializer>0x00000078</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="155" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__drv8329__api_1ga8025269a6abe34140f739101018a1b30" prot="public" static="no">
+        <name>GD1_CTRL2_SHIFT</name>
+        <initializer>7</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="156" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="group__drv8329__api_1ga98e46e4a9e7bce6f515ef6dda7278435" prot="public" static="no" strong="no">
+        <type></type>
+        <name>DRV8329_VdsLevel</name>
+        <enumvalue id="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a0bcca634d8ef34cc0b6662dcf9bc8121" prot="public">
+          <name>DRV8329_VDSLVL_0_06V</name>
+          <initializer>= 0x00U</initializer>
+          <briefdescription>
+<para>VDS threshold = 0.06V. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435ae4d2c6255b59296fef6ee9f81c447bd8" prot="public">
+          <name>DRV8329_VDSLVL_0_12V</name>
+          <initializer>= 0x01U</initializer>
+          <briefdescription>
+<para>VDS threshold = 0.12V. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a1c4be924314bccd19b48af68798a47e0" prot="public">
+          <name>DRV8329_VDSLVL_0_18V</name>
+          <initializer>= 0x02U</initializer>
+          <briefdescription>
+<para>VDS threshold = 0.18V. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a297414ffe685dc1175b7369f32a159e3" prot="public">
+          <name>DRV8329_VDSLVL_0_24V</name>
+          <initializer>= 0x03U</initializer>
+          <briefdescription>
+<para>VDS threshold = 0.24V. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a3069f36c83ef0e599aa245662aaa1ba4" prot="public">
+          <name>DRV8329_VDSLVL_0_30V</name>
+          <initializer>= 0x04U</initializer>
+          <briefdescription>
+<para>VDS threshold = 0.3V. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a075205ba532b393e5b1dec70a52987f4" prot="public">
+          <name>DRV8329_VDSLVL_0_36V</name>
+          <initializer>= 0x05U</initializer>
+          <briefdescription>
+<para>VDS threshold = 0.36V. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a73134a1223621b35001f68cf64416314" prot="public">
+          <name>DRV8329_VDSLVL_0_42V</name>
+          <initializer>= 0x06U</initializer>
+          <briefdescription>
+<para>VDS threshold = 0.42V. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a9e2cbb91e62d59a752a3b985a4651c95" prot="public">
+          <name>DRV8329_VDSLVL_0_48V</name>
+          <initializer>= 0x07U</initializer>
+          <briefdescription>
+<para>VDS threshold = 0.48V. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a405fbf8c0bf894e99ffd8a4c086f69d8" prot="public">
+          <name>DRV8329_VDSLVL_0_60V</name>
+          <initializer>= 0x08U</initializer>
+          <briefdescription>
+<para>VDS threshold = 0.6V. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a6a7f2dd6612d844fc3b8bc730918ea91" prot="public">
+          <name>DRV8329_VDSLVL_0_80V</name>
+          <initializer>= 0x09U</initializer>
+          <briefdescription>
+<para>VDS threshold = 0.8V. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a336d1b4cb2389ecaf30b7252d8b36177" prot="public">
+          <name>DRV8329_VDSLVL_1_00V</name>
+          <initializer>= 0x0AU</initializer>
+          <briefdescription>
+<para>VDS threshold = 1.0V. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a6a1a36b4d973ea25bb3b51f803393b8e" prot="public">
+          <name>DRV8329_VDSLVL_1_20V</name>
+          <initializer>= 0x0BU</initializer>
+          <briefdescription>
+<para>VDS threshold = 1.2V. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435ac67d1a09f2c224395127b97297f3c760" prot="public">
+          <name>DRV8329_VDSLVL_1_40V</name>
+          <initializer>= 0x0CU</initializer>
+          <briefdescription>
+<para>VDS threshold = 1.4V. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a5f4d2ed95be1c2434e1d80df8fe2f058" prot="public">
+          <name>DRV8329_VDSLVL_1_60V</name>
+          <initializer>= 0x0DU</initializer>
+          <briefdescription>
+<para>VDS threshold = 1.6V. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a28b4da3374a1ea6aac7950d0aabe5e69" prot="public">
+          <name>DRV8329_VDSLVL_1_80V</name>
+          <initializer>= 0x0EU</initializer>
+          <briefdescription>
+<para>VDS threshold = 1.8V. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a315bba5169c258b5864b06103fb4e0df" prot="public">
+          <name>DRV8329_VDSLVL_2_00V</name>
+          <initializer>= 0x0FU</initializer>
+          <briefdescription>
+<para>VDS threshold = 2.0V. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__drv8329__api_1gac02c7822c4b4955b7546033fe62c6d85" kindref="member">DRV8329_setVdsLevel()</ref> as the <emphasis>level</emphasis> parameter. These values set the MOSFET VDS overcurrent monitor threshold voltage. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="251" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" bodystart="252" bodyend="269"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__drv8329__api_1ga97ebf8fb9c730af3ad30f6aa0aa4d420" prot="public" static="no" strong="no">
+        <type></type>
+        <name>DRV8329_OtsRecoveryMode</name>
+        <enumvalue id="group__drv8329__api_1gga97ebf8fb9c730af3ad30f6aa0aa4d420a9bfafcab867dfe0e4ef7d0ff4d98b335" prot="public">
+          <name>DRV8329_OTS_LATCH_FAULT</name>
+          <initializer>= 0x00</initializer>
+          <briefdescription>
+<para>Latch fault on OTS. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__drv8329__api_1gga97ebf8fb9c730af3ad30f6aa0aa4d420af3c47640e870c4db0d145d3448b97686" prot="public">
+          <name>DRV8329_OTS_AUTO_RECOVER</name>
+          <initializer>= 0x20</initializer>
+          <briefdescription>
+<para>Enable OTS Auto-Recovery. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__drv8329__api_1ga2c7a357a378f425abd3a83f15a489c71" kindref="member">DRV8329_setOtsRecoveryMode()</ref> as the <emphasis>option</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="277" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" bodystart="278" bodyend="281"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__drv8329__api_1ga789d55b5e94a261537af31fcb664b132" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DRV8329_clearFaults</definition>
+        <argsstring>(void)</argsstring>
+        <name>DRV8329_clearFaults</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clear DRV8329 faults</para>
+<para>This function clears the latched faults in the DRV8329</para>
+<para>DRV_ClearFaults() maps directly to this function</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="300" column="6" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" declline="300" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__drv8329__api_1ga75826cb25b4962fa4c9f80f62c144b20" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DRV8329_disableDrv</definition>
+        <argsstring>(void)</argsstring>
+        <name>DRV8329_disableDrv</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disable all DRV8329 Gate Driver Outputs</para>
+<para>This function disables all the DRV8329 outputs (GHx and GLx)</para>
+<para>DRV_DisableDrv() maps directly to this function</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="313" column="6" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" declline="313" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__drv8329__api_1ga4901b7c06d39f86a4144edebf889556d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DRV8329_enableDrv</definition>
+        <argsstring>(void)</argsstring>
+        <name>DRV8329_enableDrv</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enable all DRV8329 Gate Driver Outputs</para>
+<para>This function enables all the DRV8329 outputs (GHx and GLx)</para>
+<para>DRV_EnableDrv() maps directly to this function</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="326" column="6" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" declline="326" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__drv8329__api_1ga688d831561dbbed86ed1d1027daa07ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DRV8329_disableSnsFault</definition>
+        <argsstring>(void)</argsstring>
+        <name>DRV8329_disableSnsFault</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disable VSENSE Overcurrent Protection fault detection</para>
+<para>This function disables the RSHUNT OCP fault detection</para>
+<para>DRV_DisableSnsFault() maps directly to this function</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="339" column="6" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" declline="339" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__drv8329__api_1gab2dd4994ca1e3056a88fb591f31caa01" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DRV8329_enableSnsFault</definition>
+        <argsstring>(void)</argsstring>
+        <name>DRV8329_enableSnsFault</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enable VSENSE Overcurrent Protection fault detection</para>
+<para>This function enables the RSHUNT OCP fault detection</para>
+<para>DRV_EnableSnsFault() maps directly to this function</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="352" column="6" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" declline="352" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__drv8329__api_1ga2cee858ac2e1a81151a4d83d7caa8f11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DRV8329_disableVdsFault</definition>
+        <argsstring>(void)</argsstring>
+        <name>DRV8329_disableVdsFault</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disable VDS Overcurrent Protection fault detection</para>
+<para>This function disables the VDS OCP fault detection</para>
+<para>DRV_DisableVdsFault() maps directly to this function</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="365" column="6" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" declline="365" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__drv8329__api_1gae07782dcd3f397f0697ace752f4dc70d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DRV8329_enableVdsFault</definition>
+        <argsstring>(void)</argsstring>
+        <name>DRV8329_enableVdsFault</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enable VDS Overcurrent Protection fault detection</para>
+<para>This function enables the VDS OCP fault detection</para>
+<para>DRV_EnableVdsFault() maps directly to this function</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="378" column="6" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" declline="378" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__drv8329__api_1gaabb8e0028bc2ee4b9333be9f7efb3601" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DRV8329_disableBstFault</definition>
+        <argsstring>(void)</argsstring>
+        <name>DRV8329_disableBstFault</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disable Bootstrap (BST) Undervoltage fault detection</para>
+<para>This function disables the BST fault detection</para>
+<para>DRV_DisableBstFault() maps directly to this function</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="391" column="6" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" declline="391" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__drv8329__api_1gaffe66fb5610bee84408349d6eba2c615" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DRV8329_enableBstFault</definition>
+        <argsstring>(void)</argsstring>
+        <name>DRV8329_enableBstFault</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enable Bootstrap (BST) Undervoltage fault detection</para>
+<para>This function enables the BST fault detection</para>
+<para>DRV_EnableBstFault() maps directly to this function</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="404" column="6" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" declline="404" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__drv8329__api_1ga12c3380b42d553e4970a24968d5ed4f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DRV8329_disableTcp</definition>
+        <argsstring>(void)</argsstring>
+        <name>DRV8329_disableTcp</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disable Trickle Charge Pump (TCP)</para>
+<para>This function disables the TCP for all high-side outputs</para>
+<para>DRV_DisableTcp() maps directly to this function</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="416" column="6" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" declline="416" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__drv8329__api_1ga787bab99a789aacf076a912bcdddfbba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DRV8329_enableTcp</definition>
+        <argsstring>(void)</argsstring>
+        <name>DRV8329_enableTcp</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enable Trickle Charge Pump (TCP)</para>
+<para>This function enables the TCP for all high-side outputs</para>
+<para>DRV_EnableTcp() maps directly to this function</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="428" column="6" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" declline="428" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__drv8329__api_1ga2c7a357a378f425abd3a83f15a489c71" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DRV8329_setOtsRecoveryMode</definition>
+        <argsstring>(DRV8329_OtsRecoveryMode option)</argsstring>
+        <name>DRV8329_setOtsRecoveryMode</name>
+        <param>
+          <type><ref refid="group__drv8329__api_1ga97ebf8fb9c730af3ad30f6aa0aa4d420" kindref="member">DRV8329_OtsRecoveryMode</ref></type>
+          <declname>option</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set Thermal Shutdown (OTS) Auto-Recovery option</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>option</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the OTS recovery option to set (DRV8329_OtsRecoveryMode)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the OTS auto-recovery behavior to either latch the fault or enable auto-recovery</para>
+<para>DRV_SetOtsRecoveryMode() maps directly to this function</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="444" column="6" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" declline="444" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__drv8329__api_1gae9a258fa193c33555bdd16b767924fcf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DRV8329_disableVdsLevelSelectionThroughSpi</definition>
+        <argsstring>(void)</argsstring>
+        <name>DRV8329_disableVdsLevelSelectionThroughSpi</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disable VDS Level Selection through SPI</para>
+<para>This function disables SPI writes to SEL_VDSLVL bits</para>
+<para>DRV_DisableVdsLevelSelection() maps directly to this function</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="456" column="6" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" declline="456" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__drv8329__api_1ga234a0fceba98caea3039531fb6d768cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DRV8329_enableVdsLevelSelectionThroughSpi</definition>
+        <argsstring>(void)</argsstring>
+        <name>DRV8329_enableVdsLevelSelectionThroughSpi</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enable VDS Level Selection through SPI</para>
+<para>This function enables SPI writes to SEL_VDSLVL bits.</para>
+<para>DRV_EnableVdsLevelSelection() maps directly to this function</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="468" column="6" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" declline="468" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__drv8329__api_1gac02c7822c4b4955b7546033fe62c6d85" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DRV8329_setVdsLevel</definition>
+        <argsstring>(DRV8329_VdsLevel level)</argsstring>
+        <name>DRV8329_setVdsLevel</name>
+        <param>
+          <type><ref refid="group__drv8329__api_1ga98e46e4a9e7bce6f515ef6dda7278435" kindref="member">DRV8329_VdsLevel</ref></type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the VDS Overcurrent Detection Threshold</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>level</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the VDSLVL value to set (DRV8329_VdsLevel)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the threshold for VDS overcurrent detection. Ensure DRV8329_enableVdsLevelSelectionThroughSpi has been called prior to using this function to allow SPI writes to the SEL_VDSLVL bits</para>
+<para>DRV_SetVdsLevel() maps directly to this function</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="485" column="6" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" declline="485" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__drv8329__api_1ga17f3157d9174b07068f752c7b995db28" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DRV8329_configureParams</definition>
+        <argsstring>(DRV8329_CONFIG_T *config)</argsstring>
+        <name>DRV8329_configureParams</name>
+        <param>
+          <type><ref refid="structDRV8329__CONFIG__T" kindref="compound">DRV8329_CONFIG_T</ref> *</type>
+          <declname>config</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Update DRV8329 parameters</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>config</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a pointer to the DRV8329 Register configuration structure</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function updates the DRV8329 register settings based on the provided configurations and updates fault status flags</para>
+<para>DRV_ConfigureParams() maps directly to this function</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="501" column="6" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" declline="501" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__drv8329__api_1ga8957b6dd04b0dd406ced32fcb279840b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DRV8329_configureParamsDefault</definition>
+        <argsstring>(void)</argsstring>
+        <name>DRV8329_configureParamsDefault</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Update DRV8329 with default settings</para>
+<para>This function configures all DRV8329 CTRLx registers with their default values as defined by the DRV8329_CTRLx_REG_DEFAULT_CONFIG constants</para>
+<para>DRV_ConfigureParamsDefault() maps directly to this function</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="515" column="6" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" declline="515" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__drv8329__api_1ga2c95eaba27b79da7598e7cf761bae63f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DRV8329_resetFaultStatus</definition>
+        <argsstring>(void)</argsstring>
+        <name>DRV8329_resetFaultStatus</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reset DRV8329 fault status</para>
+<para>This function clears the DRV8329 faults, and resets the fault report and action registers to their default values</para>
+<para>DRV_ResetFaultStatus() maps directly to this function</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="529" column="6" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" declline="529" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__drv8329__api_1ga6ae73a9695f229c40d378c914500e669" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t DRV8329_getFaultStatus</definition>
+        <argsstring>(void)</argsstring>
+        <name>DRV8329_getFaultStatus</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Read DRV8329 fault status</para>
+<para>This function reads the fault status from the DRV8329_STATUS register and returns the fault status as a 32-bit value with appropriate fault bits set</para>
+<para>DRV_GetFaultStatus() maps directly to this function</para>
+<para><simplesect kind="return"><para>Returns the fault status with fault bits set in position 31:24 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="544" column="10" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" declline="544" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group__drv8329__api_1gaf238170cb5e8a674d9914ffd5e260a82" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DRV8329_getAllRegisters</definition>
+        <argsstring>(uint16_t *registerArray)</argsstring>
+        <name>DRV8329_getAllRegisters</name>
+        <param>
+          <type>uint16_t *</type>
+          <declname>registerArray</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Read all DRV8329 registers into array</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>registerArray</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a pointer to the array where register values will be stored</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function reads the values of STATUS, CTRL1, and CTRL2 registers into the provided array</para>
+<para>DRV_GetAllRegisters() maps directly to this function</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" line="561" column="6" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h" declline="561" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//#############################################################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>FILE:<sp/><sp/><sp/>drv8329.h</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>TITLE:<sp/><sp/>Drivers<sp/>for<sp/>DRV8329<sp/>with<sp/>generic<sp/>communication<sp/>interface</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//#############################################################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>$Copyright:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(C)<sp/>2026<sp/>Texas<sp/>Instruments<sp/>Incorporated<sp/>-<sp/>http://www.ti.com/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Redistribution<sp/>and<sp/>use<sp/>in<sp/>source<sp/>and<sp/>binary<sp/>forms,<sp/>with<sp/>or<sp/>without<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>modification,<sp/>are<sp/>permitted<sp/>provided<sp/>that<sp/>the<sp/>following<sp/>conditions<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>are<sp/>met:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>Redistributions<sp/>of<sp/>source<sp/>code<sp/>must<sp/>retain<sp/>the<sp/>above<sp/>copyright<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>Redistributions<sp/>in<sp/>binary<sp/>form<sp/>must<sp/>reproduce<sp/>the<sp/>above<sp/>copyright</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer<sp/>in<sp/>the<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>documentation<sp/>and/or<sp/>other<sp/>materials<sp/>provided<sp/>with<sp/>the<sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>distribution.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>Neither<sp/>the<sp/>name<sp/>of<sp/>Texas<sp/>Instruments<sp/>Incorporated<sp/>nor<sp/>the<sp/>names<sp/>of</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>its<sp/>contributors<sp/>may<sp/>be<sp/>used<sp/>to<sp/>endorse<sp/>or<sp/>promote<sp/>products<sp/>derived</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>from<sp/>this<sp/>software<sp/>without<sp/>specific<sp/>prior<sp/>written<sp/>permission.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>THIS<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>BY<sp/>THE<sp/>COPYRIGHT<sp/>HOLDERS<sp/>AND<sp/>CONTRIBUTORS<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>ANY<sp/>EXPRESS<sp/>OR<sp/>IMPLIED<sp/>WARRANTIES,<sp/>INCLUDING,<sp/>BUT<sp/>NOT<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>LIMITED<sp/>TO,<sp/>THE<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS<sp/>FOR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>ARE<sp/>DISCLAIMED.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>COPYRIGHT<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>OWNER<sp/>OR<sp/>CONTRIBUTORS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>DIRECT,<sp/>INDIRECT,<sp/>INCIDENTAL,<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPECIAL,<sp/>EXEMPLARY,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>(INCLUDING,<sp/>BUT<sp/>NOT<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>LIMITED<sp/>TO,<sp/>PROCUREMENT<sp/>OF<sp/>SUBSTITUTE<sp/>GOODS<sp/>OR<sp/>SERVICES;<sp/>LOSS<sp/>OF<sp/>USE,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>DATA,<sp/>OR<sp/>PROFITS;<sp/>OR<sp/>BUSINESS<sp/>INTERRUPTION)<sp/>HOWEVER<sp/>CAUSED<sp/>AND<sp/>ON<sp/>ANY</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>THEORY<sp/>OF<sp/>LIABILITY,<sp/>WHETHER<sp/>IN<sp/>CONTRACT,<sp/>STRICT<sp/>LIABILITY,<sp/>OR<sp/>TORT<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/>(INCLUDING<sp/>NEGLIGENCE<sp/>OR<sp/>OTHERWISE)<sp/>ARISING<sp/>IN<sp/>ANY<sp/>WAY<sp/>OUT<sp/>OF<sp/>THE<sp/>USE<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>OF<sp/>THIS<sp/>SOFTWARE,<sp/>EVEN<sp/>IF<sp/>ADVISED<sp/>OF<sp/>THE<sp/>POSSIBILITY<sp/>OF<sp/>SUCH<sp/>DAMAGE.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">//<sp/>$</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//#############################################################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>DRV8329_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DRV8329_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;inc/hw_types.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;hw_drv8329.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Defines<sp/>for<sp/>IC_CTRL<sp/>register<sp/>default<sp/>config<sp/>values<sp/>and<sp/>masks</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="group__drv8329__api_1gab01c96534e6cdc0d8c0d1ca51de06920" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DRV8329_CTRL1_REG_DEFAULT_CONFIG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x00</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="group__drv8329__api_1gaed3c82e42ad488f3e152a19ea05f23f2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DRV8329_CTRL2_REG_DEFAULT_CONFIG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x00</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="group__drv8329__api_1gafc7b14508f71cf8c00976874993c7c8b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DRV8329_CTRL1_REG_DEFAULT_MASK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0xFE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="group__drv8329__api_1ga7bdb55cdaca1941b4fe3bc07cc21ed78" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DRV8329_CTRL2_REG_DEFAULT_MASK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x78</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="comment">//<sp/>GATE<sp/>DRIVER<sp/>FAULT<sp/>REPORT<sp/>Bit<sp/>positions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="comment">//<sp/>PWR_ON<sp/>|<sp/>OTS_FAULT<sp/>|<sp/>OCP_VDS_FAULT<sp/>|<sp/>OCP_SNS_FAULT<sp/>|<sp/>BST_UV_FAULT<sp/>|<sp/>GVDD_UV_FLT<sp/>|<sp/>DRVOFF<sp/>|<sp/>FAULT<sp/>|</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">//<sp/>RSVD<sp/><sp/><sp/>|<sp/>RSVD<sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>RSVD<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>RSVD<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>RSVD<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>RSVD<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>RSVD<sp/><sp/><sp/>|<sp/>RSVD<sp/><sp/>|</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="comment">//<sp/>RSVD<sp/><sp/><sp/>|<sp/>RSVD<sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>RSVD<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>RSVD<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>RSVD<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>RSVD<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>RSVD<sp/><sp/><sp/>|<sp/>RSVD<sp/><sp/>|</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="comment">//<sp/>RSVD<sp/><sp/><sp/>|<sp/>RSVD<sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>RSVD<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>RSVD<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>RSVD<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>RSVD<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>RSVD<sp/><sp/><sp/>|<sp/>RSVD<sp/><sp/>|</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="unionDRV8329__FAULT__STATUS__T" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">union</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="85" refid="structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt" kindref="compound">gateDrvFlt</ref></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t</highlight></codeline>
+<codeline lineno="88" refid="structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt_1ad9707f427d77e49562ace07b2d8b28dd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt_1ad9707f427d77e49562ace07b2d8b28dd" kindref="member">rsvd1</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:24,</highlight></codeline>
+<codeline lineno="89" refid="structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt_1a905f2c3bc176555d969030de1a7ba606" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt_1a905f2c3bc176555d969030de1a7ba606" kindref="member">fault_common</ref>:1,</highlight></codeline>
+<codeline lineno="90" refid="structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt_1a6b047b2bcebe37107ff597d425c0f778" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt_1a6b047b2bcebe37107ff597d425c0f778" kindref="member">drvoff</ref><sp/><sp/><sp/><sp/><sp/><sp/>:1,</highlight></codeline>
+<codeline lineno="91" refid="structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt_1ad3a80c65ae6aa0538177dbe4c28c9867" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt_1ad3a80c65ae6aa0538177dbe4c28c9867" kindref="member">gvdd_uv_flt</ref><sp/>:1,</highlight></codeline>
+<codeline lineno="92" refid="structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt_1ad60774152613045bf0ca4f2449af5b61" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt_1ad60774152613045bf0ca4f2449af5b61" kindref="member">bst_uv_flt</ref><sp/><sp/>:1,</highlight></codeline>
+<codeline lineno="93" refid="structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt_1a43ccb88356d37639585a3a7931fa72cc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt_1a43ccb88356d37639585a3a7931fa72cc" kindref="member">ocp_sns_flt</ref><sp/>:1,</highlight></codeline>
+<codeline lineno="94" refid="structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt_1ae32f3b068252bc749119510fbde56eb6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt_1ae32f3b068252bc749119510fbde56eb6" kindref="member">ocp_vds_flt</ref><sp/>:1,</highlight></codeline>
+<codeline lineno="95" refid="structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt_1a50076161c4a1b6f58aaea842c13a4705" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt_1a50076161c4a1b6f58aaea842c13a4705" kindref="member">ots_flt</ref><sp/><sp/><sp/><sp/><sp/>:1,</highlight></codeline>
+<codeline lineno="96" refid="structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt_1ade5e240dd8eb513927b8260328208003" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structDRV8329__FAULT__STATUS__T_1_1gateDrvFlt_1ade5e240dd8eb513927b8260328208003" kindref="member">pwr_on</ref><sp/><sp/><sp/><sp/><sp/><sp/>:1;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="unionDRV8329__FAULT__STATUS__T_1a3ada916d3689643b806de2043f1e53a1" refkind="member"><highlight class="normal"><sp/><sp/><sp/>}b;</highlight></codeline>
+<codeline lineno="99" refid="unionDRV8329__FAULT__STATUS__T_1ab4096071f19aec3a9ffe6b255c6e3efc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="unionDRV8329__FAULT__STATUS__T_1ab4096071f19aec3a9ffe6b255c6e3efc" kindref="member">w</ref>;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal">}<sp/><ref refid="unionDRV8329__FAULT__STATUS__T" kindref="compound">DRV8329_FAULT_STATUS_T</ref>;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="comment">//<sp/>GATE<sp/>DRIVER<sp/>FAULT<sp/>REPORT<sp/>Bit<sp/>Positions,<sp/>Masks<sp/>&amp;<sp/>Initialization<sp/>Values</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108" refid="group__drv8329__api_1ga269d234c3d5b556f8e04a47cb0bf5b52" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DRV8329_FAULT_STATUS_MASK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0xFF000000</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109" refid="group__drv8329__api_1gab959a0652e6f0e43aae793d709327413" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DRV8329_FAULT_STATUS_DEFAULT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x80000000</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111" refid="group__drv8329__api_1ga443b5eb5f3707c7c7011f2606c4e48f6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DRV8329_FAULT_STATUS_PWR_ON<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x80000000</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112" refid="group__drv8329__api_1ga13d250f2439a2c915837c254b3d5db3b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DRV8329_FAULT_STATUS_OTS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x40000000</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113" refid="group__drv8329__api_1ga22f23f19f1159584c04a79716cf76b51" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DRV8329_FAULT_STATUS_OCP_VDS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x20000000</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114" refid="group__drv8329__api_1ga56daa50e2417871ff7a04af293bc26c6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DRV8329_FAULT_STATUS_OCP_SNS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x10000000</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115" refid="group__drv8329__api_1ga8a6a7e23df5d18c778ef78f1b3d49639" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DRV8329_FAULT_STATUS_BST_UV<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x08000000</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116" refid="group__drv8329__api_1ga262978f45057e55e3e4e13e02e56a661" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DRV8329_FAULT_STATUS_GVDD_UV<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x04000000</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117" refid="group__drv8329__api_1gac5b7f01955908f192783ac6df5d0fe87" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DRV8329_FAULT_STATUS_DRVOFF<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x02000000</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="group__drv8329__api_1gac310a14bb192d4fafb0da99bf7793935" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DRV8329_FAULT_STATUS_FAULT_COMMON<sp/><sp/><sp/>0x01000000</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="comment">//<sp/>DRV8329<sp/>Configuration<sp/>Register<sp/>Set<sp/>1<sp/>-<sp/>Bit<sp/>Positions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Covers<sp/>Registers<sp/>CTRL1<sp/>and<sp/>CTRL2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126" refid="unionDRV8329__CFG1__T" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">union</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="128" refid="structDRV8329__CFG1__T_1_1drv8329Cfg1" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structDRV8329__CFG1__T_1_1drv8329Cfg1" kindref="compound">drv8329Cfg1</ref></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t</highlight></codeline>
+<codeline lineno="131" refid="structDRV8329__CFG1__T_1_1drv8329Cfg1_1a0c8505e415586ab8b864513dc8573c83" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structDRV8329__CFG1__T_1_1drv8329Cfg1_1a0c8505e415586ab8b864513dc8573c83" kindref="member">selVdsLvl</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>4,</highlight></codeline>
+<codeline lineno="132" refid="structDRV8329__CFG1__T_1_1drv8329Cfg1_1af7097bff10cd9b7a344edce3bd0c87be" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structDRV8329__CFG1__T_1_1drv8329Cfg1_1af7097bff10cd9b7a344edce3bd0c87be" kindref="member">selVdsSpi</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1,</highlight></codeline>
+<codeline lineno="133" refid="structDRV8329__CFG1__T_1_1drv8329Cfg1_1a32f614ef9e9a14cb491d3c1d08073e5e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structDRV8329__CFG1__T_1_1drv8329Cfg1_1a32f614ef9e9a14cb491d3c1d08073e5e" kindref="member">disVdsFlt</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1,</highlight></codeline>
+<codeline lineno="134" refid="structDRV8329__CFG1__T_1_1drv8329Cfg1_1ad664275a7f1b2cf3628085e2dfcf1f2f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structDRV8329__CFG1__T_1_1drv8329Cfg1_1ad664275a7f1b2cf3628085e2dfcf1f2f" kindref="member">disSnsFlt</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1,</highlight></codeline>
+<codeline lineno="135" refid="structDRV8329__CFG1__T_1_1drv8329Cfg1_1adcf1f5358aad9a7ca5cae53a14542709" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structDRV8329__CFG1__T_1_1drv8329Cfg1_1adcf1f5358aad9a7ca5cae53a14542709" kindref="member">disDrv</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1,</highlight></codeline>
+<codeline lineno="136" refid="structDRV8329__CFG1__T_1_1drv8329Cfg1_1ae62c95f7ac61c9c23c2f8cbf6ebae74d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structDRV8329__CFG1__T_1_1drv8329Cfg1_1ae62c95f7ac61c9c23c2f8cbf6ebae74d" kindref="member">disTcp</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1,</highlight></codeline>
+<codeline lineno="137" refid="structDRV8329__CFG1__T_1_1drv8329Cfg1_1aa781107b7b793bfb88f17467c84c3a65" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structDRV8329__CFG1__T_1_1drv8329Cfg1_1aa781107b7b793bfb88f17467c84c3a65" kindref="member">otsAutoRecover</ref><sp/><sp/>:<sp/>1,</highlight></codeline>
+<codeline lineno="138" refid="structDRV8329__CFG1__T_1_1drv8329Cfg1_1a32ec4cec79eca44f0b3b3818ed9a3862" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structDRV8329__CFG1__T_1_1drv8329Cfg1_1a32ec4cec79eca44f0b3b3818ed9a3862" kindref="member">disBstFlt</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1,</highlight></codeline>
+<codeline lineno="139" refid="structDRV8329__CFG1__T_1_1drv8329Cfg1_1aef3271c01056ac145c012ab3b7f3bbcf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structDRV8329__CFG1__T_1_1drv8329Cfg1_1aef3271c01056ac145c012ab3b7f3bbcf" kindref="member">rsvd1</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>20,</highlight></codeline>
+<codeline lineno="140" refid="structDRV8329__CFG1__T_1_1drv8329Cfg1_1add31b72aa8411ec1fd41032fde3ffe86" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structDRV8329__CFG1__T_1_1drv8329Cfg1_1add31b72aa8411ec1fd41032fde3ffe86" kindref="member">parity</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="141" refid="unionDRV8329__CFG1__T_1a564d60d4f260d6713efd39076d106d88" refkind="member"><highlight class="normal"><sp/><sp/><sp/>}b;</highlight></codeline>
+<codeline lineno="142" refid="unionDRV8329__CFG1__T_1a73a3e17caf8a0b66564a18e4214e2527" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="unionDRV8329__CFG1__T_1a73a3e17caf8a0b66564a18e4214e2527" kindref="member">w</ref>;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal">}<sp/><ref refid="unionDRV8329__CFG1__T" kindref="compound">DRV8329_CFG1_T</ref>;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight><highlight class="comment">//<sp/>DRV8329<sp/>Configuration<sp/>Register<sp/>Set<sp/>1<sp/>-<sp/><sp/>Bit<sp/>Positions<sp/>&amp;<sp/>Masks</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Covers<sp/>Registers<sp/>CTRL1<sp/>and<sp/>CTRL2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152" refid="group__drv8329__api_1ga0b2058c7a0df585232a85c51d0859508" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GD1_CTRL1_MASK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x0000007F</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153" refid="group__drv8329__api_1ga4d38d75069c82ac768cc4e78380b198d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GD1_CTRL1_SHIFT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155" refid="group__drv8329__api_1ga331b8e80a7aa7b4528fb303a7e6de7f8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GD1_CTRL2_MASK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x00000078</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156" refid="group__drv8329__api_1ga8025269a6abe34140f739101018a1b30" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GD1_CTRL2_SHIFT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>7</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight><highlight class="comment">//<sp/>DRV8329<sp/>Register<sp/>Configuration</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163" refid="structDRV8329__CONFIG__T" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">drv8329Configuration</highlight></codeline>
+<codeline lineno="164"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="165" refid="structDRV8329__CONFIG__T_1ac6b30dc85b75801146e503385562b950" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="unionDRV8329__CFG1__T" kindref="compound">DRV8329_CFG1_T</ref><sp/><sp/><sp/><sp/><ref refid="structDRV8329__CONFIG__T_1ac6b30dc85b75801146e503385562b950" kindref="member">gateDrvCfg1</ref>;</highlight></codeline>
+<codeline lineno="166"><highlight class="normal">}<sp/><ref refid="structDRV8329__CONFIG__T" kindref="compound">DRV8329_CONFIG_T</ref>;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight><highlight class="comment">//<sp/>DRV8329<sp/>STATUS<sp/>Register</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">union</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">drv8329StatusReg</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fault<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>drvoff<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gvdd_uv_flt<sp/><sp/><sp/><sp/><sp/>:<sp/>1,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bst_uv_flt<sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ocp_sns_flt<sp/><sp/><sp/><sp/><sp/>:<sp/>1,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ocp_vds_flt<sp/><sp/><sp/><sp/><sp/>:<sp/>1,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ots_flt<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pwr_on<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rsvd<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>8;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>b;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/>w;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal">}<sp/>DRV8329_STATUS_REG_T;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight><highlight class="comment">//<sp/>DRV8329<sp/>CTRL1<sp/>Register</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">union</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">drv8329Ctrl1Reg</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rsvd1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sel_vdslvl<sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>4,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sel_vds_spi<sp/><sp/><sp/><sp/><sp/>:<sp/>1,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dis_vds_flt<sp/><sp/><sp/><sp/><sp/>:<sp/>1,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dis_sns_flt<sp/><sp/><sp/><sp/><sp/>:<sp/>1,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rsvd2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>8;</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>b;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/>w;</highlight></codeline>
+<codeline lineno="210"><highlight class="normal">}<sp/>DRV8329_CTRL1_REG_T;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"></highlight><highlight class="comment">//<sp/>DRV8329<sp/>CTRL2<sp/>Register</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">union</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">drv8329Ctrl2Reg</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rsvd1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>3,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dis_drv<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dis_tcp<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ots_auto_recover:<sp/>1,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dis_bst_flt<sp/><sp/><sp/><sp/><sp/>:<sp/>1,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rsvd2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>9;</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>b;</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/>w;</highlight></codeline>
+<codeline lineno="230"><highlight class="normal">}<sp/>DRV8329_CTRL2_REG_T;</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="233"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight><highlight class="comment">//<sp/>DRV8329<sp/>Register<sp/>Readback<sp/>Data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">drv8329Registers</highlight></codeline>
+<codeline lineno="238"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/>DRV8329_STATUS_REG_T<sp/><sp/>status;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/>DRV8329_CTRL1_REG_T<sp/><sp/><sp/>ctrl1;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/>DRV8329_CTRL2_REG_T<sp/><sp/><sp/>ctrl2;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="242"><highlight class="normal">}<sp/>DRV8329_REGS_T;</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"></highlight></codeline>
+<codeline lineno="245"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="249"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="250"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="251" refid="group__drv8329__api_1ga98e46e4a9e7bce6f515ef6dda7278435" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="252"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="253" refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a0bcca634d8ef34cc0b6662dcf9bc8121" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a0bcca634d8ef34cc0b6662dcf9bc8121" kindref="member">DRV8329_VDSLVL_0_06V</ref><sp/>=<sp/>0x00U,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="254" refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435ae4d2c6255b59296fef6ee9f81c447bd8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435ae4d2c6255b59296fef6ee9f81c447bd8" kindref="member">DRV8329_VDSLVL_0_12V</ref><sp/>=<sp/>0x01U,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="255" refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a1c4be924314bccd19b48af68798a47e0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a1c4be924314bccd19b48af68798a47e0" kindref="member">DRV8329_VDSLVL_0_18V</ref><sp/>=<sp/>0x02U,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="256" refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a297414ffe685dc1175b7369f32a159e3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a297414ffe685dc1175b7369f32a159e3" kindref="member">DRV8329_VDSLVL_0_24V</ref><sp/>=<sp/>0x03U,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="257" refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a3069f36c83ef0e599aa245662aaa1ba4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a3069f36c83ef0e599aa245662aaa1ba4" kindref="member">DRV8329_VDSLVL_0_30V</ref><sp/>=<sp/>0x04U,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="258" refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a075205ba532b393e5b1dec70a52987f4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a075205ba532b393e5b1dec70a52987f4" kindref="member">DRV8329_VDSLVL_0_36V</ref><sp/>=<sp/>0x05U,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="259" refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a73134a1223621b35001f68cf64416314" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a73134a1223621b35001f68cf64416314" kindref="member">DRV8329_VDSLVL_0_42V</ref><sp/>=<sp/>0x06U,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="260" refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a9e2cbb91e62d59a752a3b985a4651c95" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a9e2cbb91e62d59a752a3b985a4651c95" kindref="member">DRV8329_VDSLVL_0_48V</ref><sp/>=<sp/>0x07U,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="261" refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a405fbf8c0bf894e99ffd8a4c086f69d8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a405fbf8c0bf894e99ffd8a4c086f69d8" kindref="member">DRV8329_VDSLVL_0_60V</ref><sp/>=<sp/>0x08U,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="262" refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a6a7f2dd6612d844fc3b8bc730918ea91" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a6a7f2dd6612d844fc3b8bc730918ea91" kindref="member">DRV8329_VDSLVL_0_80V</ref><sp/>=<sp/>0x09U,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="263" refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a336d1b4cb2389ecaf30b7252d8b36177" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a336d1b4cb2389ecaf30b7252d8b36177" kindref="member">DRV8329_VDSLVL_1_00V</ref><sp/>=<sp/>0x0AU,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="264" refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a6a1a36b4d973ea25bb3b51f803393b8e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a6a1a36b4d973ea25bb3b51f803393b8e" kindref="member">DRV8329_VDSLVL_1_20V</ref><sp/>=<sp/>0x0BU,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="265" refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435ac67d1a09f2c224395127b97297f3c760" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435ac67d1a09f2c224395127b97297f3c760" kindref="member">DRV8329_VDSLVL_1_40V</ref><sp/>=<sp/>0x0CU,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="266" refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a5f4d2ed95be1c2434e1d80df8fe2f058" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a5f4d2ed95be1c2434e1d80df8fe2f058" kindref="member">DRV8329_VDSLVL_1_60V</ref><sp/>=<sp/>0x0DU,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="267" refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a28b4da3374a1ea6aac7950d0aabe5e69" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a28b4da3374a1ea6aac7950d0aabe5e69" kindref="member">DRV8329_VDSLVL_1_80V</ref><sp/>=<sp/>0x0EU,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a315bba5169c258b5864b06103fb4e0df" kindref="member">DRV8329_VDSLVL_2_00V</ref><sp/>=<sp/>0x0FU<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="269" refid="group__drv8329__api_1gga98e46e4a9e7bce6f515ef6dda7278435a315bba5169c258b5864b06103fb4e0df" refkind="member"><highlight class="normal">}<sp/><ref refid="group__drv8329__api_1ga98e46e4a9e7bce6f515ef6dda7278435" kindref="member">DRV8329_VdsLevel</ref>;</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"></highlight></codeline>
+<codeline lineno="271"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="272"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="275"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="277" refid="group__drv8329__api_1ga97ebf8fb9c730af3ad30f6aa0aa4d420" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="278"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="279" refid="group__drv8329__api_1gga97ebf8fb9c730af3ad30f6aa0aa4d420a9bfafcab867dfe0e4ef7d0ff4d98b335" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__drv8329__api_1gga97ebf8fb9c730af3ad30f6aa0aa4d420a9bfafcab867dfe0e4ef7d0ff4d98b335" kindref="member">DRV8329_OTS_LATCH_FAULT</ref><sp/><sp/><sp/><sp/><sp/>=<sp/>0x00,<sp/></highlight></codeline>
+<codeline lineno="280" refid="group__drv8329__api_1gga97ebf8fb9c730af3ad30f6aa0aa4d420af3c47640e870c4db0d145d3448b97686" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__drv8329__api_1gga97ebf8fb9c730af3ad30f6aa0aa4d420af3c47640e870c4db0d145d3448b97686" kindref="member">DRV8329_OTS_AUTO_RECOVER</ref><sp/><sp/><sp/><sp/>=<sp/>0x20,<sp/></highlight></codeline>
+<codeline lineno="281"><highlight class="normal">}<sp/><ref refid="group__drv8329__api_1ga97ebf8fb9c730af3ad30f6aa0aa4d420" kindref="member">DRV8329_OtsRecoveryMode</ref>;</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"></highlight></codeline>
+<codeline lineno="283"><highlight class="normal"></highlight></codeline>
+<codeline lineno="284"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="286"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Prototypes<sp/>for<sp/>the<sp/>APIs.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="289"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="290"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="298"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="299"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="300" refid="group__drv8329__api_1ga789d55b5e94a261537af31fcb664b132" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__drv8329__api_1ga789d55b5e94a261537af31fcb664b132" kindref="member">DRV8329_clearFaults</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"></highlight></codeline>
+<codeline lineno="302"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="303"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="311"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="312"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="313" refid="group__drv8329__api_1ga75826cb25b4962fa4c9f80f62c144b20" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__drv8329__api_1ga75826cb25b4962fa4c9f80f62c144b20" kindref="member">DRV8329_disableDrv</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"></highlight></codeline>
+<codeline lineno="315"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="316"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="324"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="326" refid="group__drv8329__api_1ga4901b7c06d39f86a4144edebf889556d" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__drv8329__api_1ga4901b7c06d39f86a4144edebf889556d" kindref="member">DRV8329_enableDrv</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"></highlight></codeline>
+<codeline lineno="328"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="329"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="337"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="338"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="339" refid="group__drv8329__api_1ga688d831561dbbed86ed1d1027daa07ad" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__drv8329__api_1ga688d831561dbbed86ed1d1027daa07ad" kindref="member">DRV8329_disableSnsFault</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"></highlight></codeline>
+<codeline lineno="341"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="342"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="350"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="351"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="352" refid="group__drv8329__api_1gab2dd4994ca1e3056a88fb591f31caa01" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__drv8329__api_1gab2dd4994ca1e3056a88fb591f31caa01" kindref="member">DRV8329_enableSnsFault</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"></highlight></codeline>
+<codeline lineno="354"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="355"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="363"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="364"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="365" refid="group__drv8329__api_1ga2cee858ac2e1a81151a4d83d7caa8f11" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__drv8329__api_1ga2cee858ac2e1a81151a4d83d7caa8f11" kindref="member">DRV8329_disableVdsFault</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"></highlight></codeline>
+<codeline lineno="367"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="368"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="376"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="377"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="378" refid="group__drv8329__api_1gae07782dcd3f397f0697ace752f4dc70d" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__drv8329__api_1gae07782dcd3f397f0697ace752f4dc70d" kindref="member">DRV8329_enableVdsFault</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="379"><highlight class="normal"></highlight></codeline>
+<codeline lineno="380"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="381"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="389"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="390"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="391" refid="group__drv8329__api_1gaabb8e0028bc2ee4b9333be9f7efb3601" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__drv8329__api_1gaabb8e0028bc2ee4b9333be9f7efb3601" kindref="member">DRV8329_disableBstFault</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="392"><highlight class="normal"></highlight></codeline>
+<codeline lineno="393"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="394"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="402"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="403"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="404" refid="group__drv8329__api_1gaffe66fb5610bee84408349d6eba2c615" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__drv8329__api_1gaffe66fb5610bee84408349d6eba2c615" kindref="member">DRV8329_enableBstFault</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="405"><highlight class="normal"></highlight></codeline>
+<codeline lineno="406"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="407"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="415"><highlight class="comment"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="416" refid="group__drv8329__api_1ga12c3380b42d553e4970a24968d5ed4f4" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__drv8329__api_1ga12c3380b42d553e4970a24968d5ed4f4" kindref="member">DRV8329_disableTcp</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="417"><highlight class="normal"></highlight></codeline>
+<codeline lineno="418"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="419"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="427"><highlight class="comment"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="428" refid="group__drv8329__api_1ga787bab99a789aacf076a912bcdddfbba" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__drv8329__api_1ga787bab99a789aacf076a912bcdddfbba" kindref="member">DRV8329_enableTcp</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="429"><highlight class="normal"></highlight></codeline>
+<codeline lineno="430"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="431"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="442"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="443"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="444" refid="group__drv8329__api_1ga2c7a357a378f425abd3a83f15a489c71" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__drv8329__api_1ga2c7a357a378f425abd3a83f15a489c71" kindref="member">DRV8329_setOtsRecoveryMode</ref>(<ref refid="group__drv8329__api_1ga97ebf8fb9c730af3ad30f6aa0aa4d420" kindref="member">DRV8329_OtsRecoveryMode</ref><sp/>option);</highlight></codeline>
+<codeline lineno="445"><highlight class="normal"></highlight></codeline>
+<codeline lineno="446"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="447"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="455"><highlight class="comment"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="456" refid="group__drv8329__api_1gae9a258fa193c33555bdd16b767924fcf" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__drv8329__api_1gae9a258fa193c33555bdd16b767924fcf" kindref="member">DRV8329_disableVdsLevelSelectionThroughSpi</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="457"><highlight class="normal"></highlight></codeline>
+<codeline lineno="458"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="459"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="467"><highlight class="comment"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="468" refid="group__drv8329__api_1ga234a0fceba98caea3039531fb6d768cf" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__drv8329__api_1ga234a0fceba98caea3039531fb6d768cf" kindref="member">DRV8329_enableVdsLevelSelectionThroughSpi</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="469"><highlight class="normal"></highlight></codeline>
+<codeline lineno="470"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="471"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="483"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="484"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="485" refid="group__drv8329__api_1gac02c7822c4b4955b7546033fe62c6d85" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__drv8329__api_1gac02c7822c4b4955b7546033fe62c6d85" kindref="member">DRV8329_setVdsLevel</ref>(<ref refid="group__drv8329__api_1ga98e46e4a9e7bce6f515ef6dda7278435" kindref="member">DRV8329_VdsLevel</ref><sp/>level);</highlight></codeline>
+<codeline lineno="486"><highlight class="normal"></highlight></codeline>
+<codeline lineno="487"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="488"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="499"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="500"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="501" refid="group__drv8329__api_1ga17f3157d9174b07068f752c7b995db28" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__drv8329__api_1ga17f3157d9174b07068f752c7b995db28" kindref="member">DRV8329_configureParams</ref>(<ref refid="structDRV8329__CONFIG__T" kindref="compound">DRV8329_CONFIG_T</ref><sp/>*config);</highlight></codeline>
+<codeline lineno="502"><highlight class="normal"></highlight></codeline>
+<codeline lineno="503"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="504"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="513"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="514"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="515" refid="group__drv8329__api_1ga8957b6dd04b0dd406ced32fcb279840b" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__drv8329__api_1ga8957b6dd04b0dd406ced32fcb279840b" kindref="member">DRV8329_configureParamsDefault</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="516"><highlight class="normal"></highlight></codeline>
+<codeline lineno="517"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="518"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="527"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="528"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="529" refid="group__drv8329__api_1ga2c95eaba27b79da7598e7cf761bae63f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__drv8329__api_1ga2c95eaba27b79da7598e7cf761bae63f" kindref="member">DRV8329_resetFaultStatus</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="530"><highlight class="normal"></highlight></codeline>
+<codeline lineno="531"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="532"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="542"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="543"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="544" refid="group__drv8329__api_1ga6ae73a9695f229c40d378c914500e669" refkind="member"><highlight class="normal">uint32_t<sp/><ref refid="group__drv8329__api_1ga6ae73a9695f229c40d378c914500e669" kindref="member">DRV8329_getFaultStatus</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="545"><highlight class="normal"></highlight></codeline>
+<codeline lineno="546"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="547"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="559"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="560"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="561" refid="group__drv8329__api_1gaf238170cb5e8a674d9914ffd5e260a82" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__drv8329__api_1gaf238170cb5e8a674d9914ffd5e260a82" kindref="member">DRV8329_getAllRegisters</ref>(uint16_t*<sp/>registerArray);</highlight></codeline>
+<codeline lineno="562"><highlight class="normal"></highlight></codeline>
+<codeline lineno="563"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="564"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="565"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="575"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="576"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="577"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>DRV8329_readbackRegisters(DRV8329_REGS_T<sp/>*pRegs);</highlight></codeline>
+<codeline lineno="578"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="579"><highlight class="normal"></highlight></codeline>
+<codeline lineno="580"><highlight class="normal"></highlight></codeline>
+<codeline lineno="581"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="582"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="583"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Close<sp/>the<sp/>Doxygen<sp/>group.</highlight></codeline>
+<codeline lineno="585"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="586"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="587"><highlight class="normal"></highlight></codeline>
+<codeline lineno="588"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="589"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="590"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>extern<sp/>&quot;C&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="591"><highlight class="normal"></highlight></codeline>
+<codeline lineno="592"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>end<sp/>of<sp/>DRV8329_H<sp/>definition</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329.h"/>
+  </compounddef>
+</doxygen>

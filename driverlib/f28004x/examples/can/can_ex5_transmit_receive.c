@@ -39,18 +39,15 @@
 //!
 //
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Comment to Make the CAN Controller work as a Receiver.
 //
 #define TRANSMIT
-
 //
 // Defines
 //
@@ -61,7 +58,6 @@
 #endif
 #define MSG_DATA_LENGTH  4
 #define MSGCOUNT        10
-
 //
 // Globals
 //
@@ -75,12 +71,10 @@ uint16_t rxMsgData[4];
 #endif
 volatile unsigned long i;
 volatile uint32_t errorFlag = 0;
-
 //
 // Function Prototypes
 //
 __interrupt void canaISR(void);
-
 //
 // Main
 //
@@ -90,7 +84,6 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure GPIO pins for CANTX/CANRX
     // on module A.
@@ -98,12 +91,10 @@ void main(void)
     Device_initGPIO();
     GPIO_setPinConfig(DEVICE_GPIO_CFG_CANRXA);
     GPIO_setPinConfig(DEVICE_GPIO_CFG_CANTXA);
-
     //
     // Initialize the CAN controllers
     //
     CAN_initModule(CANA_BASE);
-
     //
     // Set up the CAN bus bit rate to 500kHz for each module
     // Refer to the Driver Library User Guide for information on how to set
@@ -111,44 +102,36 @@ void main(void)
     // for more information about the CAN module clocking.
     //
     CAN_setBitRate(CANA_BASE, DEVICE_SYSCLK_FREQ, 500000, 20);
-
     //
     // Enable interrupts on the CAN A peripheral.
     //
     CAN_enableInterrupt(CANA_BASE, CAN_INT_IE0 | CAN_INT_ERROR |
                         CAN_INT_STATUS);
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Interrupts that are used in this example are re-mapped to
     // ISR functions found within this file.
     // This registers the interrupt handler in PIE vector table.
     //
     Interrupt_register(INT_CANA0,&canaISR);
-
     //
     // Enable the CAN-A interrupt signal
     //
     Interrupt_enable(INT_CANA0);
-
     CAN_enableGlobalInterrupt(CANA_BASE, CAN_GLOBAL_INT_CANINT0);
-
 #ifdef TRANSMIT
     //
     // Initialize the transmit message object used for sending CAN messages.
@@ -190,12 +173,10 @@ void main(void)
                            CAN_MSG_FRAME_EXT, CAN_MSG_OBJ_TYPE_RX, 0,
                            CAN_MSG_OBJ_RX_INT_ENABLE, MSG_DATA_LENGTH);
 #endif
-
     //
     // Start CAN module A operations
     //
     CAN_startModule(CANA_BASE);
-
 #ifdef TRANSMIT
     //
     // Transmit messages from CAN-A.
@@ -209,18 +190,15 @@ void main(void)
         {
             asm("   ESTOP0");
         }
-
         //
         // Transmit the message.
         //
         CAN_sendMessage(CANA_BASE, TX_MSG_OBJ_ID, MSG_DATA_LENGTH,
                         txMsgData);
-
         //
         // Delay 0.25 second before continuing
         //
         DEVICE_DELAY_US(250000);
-
         while(txMsgSuccessful);
         //
         // Increment the value in the transmitted message data.
@@ -229,7 +207,6 @@ void main(void)
         txMsgData[1] += 0x01;
         txMsgData[2] += 0x01;
         txMsgData[3] += 0x01;
-
         //
         // Reset data if exceeds a byte
         //
@@ -249,7 +226,6 @@ void main(void)
         {
             txMsgData[3] = 0;
         }
-
         //
         // Update the flag for next message.
         //
@@ -263,13 +239,11 @@ void main(void)
     {
     }
 #endif
-
     //
     // Stop application after completion.
     //
     asm("   ESTOP0");
 }
-
 //
 // CAN A ISR - The interrupt service routine called when a CAN interrupt is
 //             triggered on CAN module A.
@@ -278,12 +252,10 @@ __interrupt void
 canaISR(void)
 {
     uint32_t status;
-
     //
     // Read the CAN-B interrupt status to find the cause of the interrupt
     //
     status = CAN_getInterruptCause(CANA_BASE);
-
     //
     // If the cause is a controller status interrupt, then get the status
     //
@@ -297,7 +269,6 @@ canaISR(void)
         // The act of reading this status will clear the interrupt.
         //
         status = CAN_getStatus(CANA_BASE);
-
         //
         // Check to see if an error occurred.
         //
@@ -324,19 +295,16 @@ canaISR(void)
         // message object interrupt.
         //
         CAN_clearInterruptStatus(CANA_BASE, TX_MSG_OBJ_ID);
-
         //
         // Increment a counter to keep track of how many messages have been
         // transmitted. In a real application this could be used to set flags to
         // indicate when a message is transmitted.
         //
         txMsgCount++;
-
         //
         // Since the message was transmitted, clear any error flags.
         //
         errorFlag = 0;
-
         //
         // Clear the message transmitted successful Flag.
         //
@@ -349,19 +317,16 @@ canaISR(void)
         // Get the received message
         //
         CAN_readMessage(CANA_BASE, RX_MSG_OBJ_ID, rxMsgData);
-
         //
         // Getting to this point means that the RX interrupt occurred on
         // message object 1, and the message RX is complete.  Clear the
         // message object interrupt.
         //
         CAN_clearInterruptStatus(CANA_BASE, RX_MSG_OBJ_ID);
-
         //
         // Decrement the counter after a message has been received.
         //
         rxMsgCount--;
-
         //
         // Since the message was received, clear any error flags.
         //
@@ -377,18 +342,15 @@ canaISR(void)
         // Spurious interrupt handling can go here.
         //
     }
-
     //
     // Clear the global interrupt flag for the CAN interrupt line
     //
     CAN_clearGlobalInterruptStatus(CANA_BASE, CAN_GLOBAL_INT_CANINT0);
-
     //
     // Acknowledge this interrupt located in group 9
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP9);
 }
-
 //
 // End of File
 //

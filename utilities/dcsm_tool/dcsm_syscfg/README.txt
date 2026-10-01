@@ -2,6 +2,9 @@ This folder contains the backend of the DCSM Tool (SysCofig GUI and Code Generat
 
 To use the DCSM tool please refer to the device specific examples in:
 
+MCPC029:[C2000Ware]\driverlib\mcpc029\examples\dcsm
+F28E12x:[C2000Ware]\driverlib\f28e12x\\examples\dcsm
+F28E12x:[C2000Ware]\driverlib\f28p551x\\examples\dcsm
 F28P55x:[C2000Ware]\driverlib\f28p55x\examples\dcsm
 F28P65x:[C2000Ware]\driverlib\f28p65x\examples\c28x\dcsm
 F280015x:[C2000Ware]\driverlib\f280013x\examples\dcsm
@@ -13,4 +16,3 @@ F2807x:[C2000Ware]\driverlib\f2807x\examples\cpu1\dcsm
 F2837xD: [C2000Ware]\driverlib\f2837xd\examples\cpu1\dcsm
 F2837xS:[C2000Ware]\driverlib\f2837xs\examples\cpu1\dcsm
 F2838x:[C2000Ware]\driverlib\f2838x\examples\c28x\dcsm
-

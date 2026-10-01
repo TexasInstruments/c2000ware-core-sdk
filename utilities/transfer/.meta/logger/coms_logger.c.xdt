@@ -89,12 +89,12 @@ volatile uint16_t comsLinkRXData [`comsloggerInst.packetLength`] = {0};
 #define `comsLinkBufferModule.$name`_BUFFER_SIZE `comsLinkBufferModule.bufferSize`
 #define `comsLinkBufferModule.$name`_ELEMENT_SIZE `comsLinkBufferModule.elemPerBuffEntry`
 
-uint16_t `comsLinkBufferModule.$name`_buffer[`comsLinkBufferModule.$name`_BUFFER_SIZE][`comsLinkBufferModule.$name`_ELEMENT_SIZE] = {0};
+uint16_t `comsLinkBufferModule.$name`_buffer[`comsLinkBufferModule.$name`_BUFFER_SIZE][`comsLinkBufferModule.$name`_ELEMENT_SIZE];
 TransferRingBuffer `comsLinkBufferModule.$name`;
 TransferRingBuffer_Handle `comsLinkBufferModule.$name`_Handle = &`comsLinkBufferModule.$name`;
 
 % if (comsloggerInst["comsLink"] == "fsi") {
-uint16_t `comsLinkBufferModule.$name`_tagUdata_buffer[`comsLinkBufferModule.$name`_BUFFER_SIZE][1] = {0};
+uint16_t `comsLinkBufferModule.$name`_tagUdata_buffer[`comsLinkBufferModule.$name`_BUFFER_SIZE][1];
 TransferRingBuffer `comsLinkBufferModule.$name`_tagUdata;
 TransferRingBuffer_Handle `comsLinkBufferModule.$name`_tagUdata_Handle = &`comsLinkBufferModule.$name`_tagUdata;
 % }
@@ -180,13 +180,22 @@ void `comsLinkModule.$name`_deinit()
 
 void COMSLOG_init()
 {
+    uint16_t initI = 0;
+    uint16_t initJ = 0;
     //
     // Initialize the HW module (The functions below are also called in Board_init)
     //
 % if (!transferCommon.isC2000()){
     `comsLinkModule.$name`_init();
 % }
-
+    for (initI = 0; initI < `comsLinkBufferModule.$name`_BUFFER_SIZE; initI++)
+    {
+        for (initJ = 0; initJ < `comsLinkBufferModule.$name`_ELEMENT_SIZE; initJ++)
+        {
+            `comsLinkBufferModule.$name`_buffer[initI][initJ] = 0;
+        }
+    }
+    
     TransferRingBuffer_init(
         `comsLinkBufferModule.$name`_Handle, 
         (char**)`comsLinkBufferModule.$name`_buffer, 
@@ -194,6 +203,14 @@ void COMSLOG_init()
         sizeof(`comsLinkBufferModule.$name`_buffer[0]));
 
 % if (comsloggerInst["comsLink"] == "fsi") {
+    for (initI = 0; initI < `comsLinkBufferModule.$name`_BUFFER_SIZE; initI++)
+    {
+        for (initJ = 0; initJ < `comsLinkBufferModule.$name`_ELEMENT_SIZE; initJ++)
+        {
+            `comsLinkBufferModule.$name`_tagUdata_buffer[initI][initJ] = 0;
+        }
+    }
+    
     TransferRingBuffer_init(
         `comsLinkBufferModule.$name`_tagUdata_Handle, 
         (char**)`comsLinkBufferModule.$name`_tagUdata_buffer, 

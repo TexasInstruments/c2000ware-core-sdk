@@ -44,7 +44,7 @@
 // $TI Release: $
 // 
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -77,39 +77,32 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Define key word to start test
 //
 #define STARTTESTWORD   0xacedbabe
-
 //
 // Define to select wait delay.
 //
 #define MCBSP_CYCLE_NOP0(n)  __asm(" RPT #(" #n ") || NOP")
 #define MCBSP_CYCLE_NOP(n)   MCBSP_CYCLE_NOP0(n)
-
 // ISRs
 __interrupt void localMcbspTxIntISR(void);
 __interrupt void localMcbspRxIntISR(void);
-
 // Local function declarations
 void enableMcbspTdm(void);
-
 uint32_t errCountGlobal   = 0;
 uint32_t txData = 0x80000000;
 uint32_t rxData;
 uint32_t testData = 0x80000000;
 uint16_t testWordDetected = 0;
 uint16_t testStartCountdown = 0;
-
 //
 // Main
 //
@@ -117,27 +110,20 @@ void main(void)
 {
     Device_init();
     Device_initGPIO();
-
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
     Board_init();
-
     //
     // Enable Global Interrupt (INTM) and real-time interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Start TDM test stream
     //
     enableMcbspTdm();
-
     while(1){}
-
 }
-
 //
 // Enable McBSP TDM - This function enables McBSP TX, RX, and frame sync generation.
 // NOTE: Stream starts immediately after calling this function.
@@ -147,26 +133,22 @@ void enableMcbspTdm()
     //
     // McBSP configuration done in syscfg as part of Board_init().
     //
-
     //
     // Wait for CPU cycles equivalent to 2 SRG cycles-init delay.
     // Total cycles required = 2*(SYSCLK/LSPCLK). In this example
     // LSPCLK = SYSCLK/4.
     //
     MCBSP_CYCLE_NOP(8);
-
     //
     // Enable Sample rate generator and wait for at least 2 CLKG clock cycles.
     //
     McBSP_enableSampleRateGenerator(myMCBSP0_BASE);
-
     //
     // Wait for CPU cycles equivalent to 2 CLKG cycles-init delay.
     // Total cycles required = 2*(SYSCLK/(LSPCLK/(1+CLKGDV_VAL))). In this
     // example LSPCLK = SYSCLK/4 and CLKGDV_VAL = 1.
     //
     MCBSP_CYCLE_NOP(16);
-
     //
     // Release Rx, Tx from reset.
     //
@@ -174,7 +156,6 @@ void enableMcbspTdm()
     McBSP_enableTransmitter(myMCBSP0_BASE);
     McBSP_enableFrameSyncLogic(myMCBSP0_BASE);
 }
-
 //
 // Local McBSP Tx INTA ISR - ISR for McBSP Tx interrupt.
 //
@@ -190,7 +171,6 @@ __interrupt void localMcbspTxIntISR(void)
             McBSP_write32bitData(MCBSPA_BASE, STARTTESTWORD);
         else
             McBSP_write32bitData(MCBSPA_BASE, 0x00000000);
-
         testStartCountdown++;
     }
     else
@@ -198,20 +178,17 @@ __interrupt void localMcbspTxIntISR(void)
         McBSP_write32bitData(MCBSPA_BASE, txData);
         txData = txData + 1;
     }
-
     //
     // Acknowledge the interrupt to receive more interrupts.
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP6);
 }
-
 //
 // Local McBSP Rx INTA ISR - ISR for McBSP Rx interrupt.
 //
 __interrupt void localMcbspRxIntISR(void)
 {
     rxData = McBSP_read32bitData(MCBSPA_BASE);
-
     if(testWordDetected)
     {
         if(rxData != testData)
@@ -226,14 +203,11 @@ __interrupt void localMcbspRxIntISR(void)
         if(rxData == STARTTESTWORD)
             testWordDetected = 1;
     }
-
     //
     // Acknowledge the interrupt to receive more interrupts.
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP6);
 }
-
-
 //
 // End of File
 //

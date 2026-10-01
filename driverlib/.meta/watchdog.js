@@ -1,6 +1,9 @@
 let Common   = system.getScript("/driverlib/Common.js");
 let Pinmux   = system.getScript("/driverlib/pinmux.js");
 
+let clockTree = Common.getClockTree();
+let useSecClk = ["F28E12x", "MCPC029"].includes(Common.getDeviceName());
+
 let device_driverlib_peripheral =
     system.getScript("/driverlib/device_driverlib_peripherals/" +
         Common.getDeviceName().toLowerCase() + "_sysctl.js");
@@ -61,7 +64,7 @@ function onchangeWDMode(inst, ui)
 
 function onchangewdpredivider(inst, ui)
 {
-   var calcwdtimeresults = calcwdtime(inst.wdPredivider,inst.wdPrescalar);
+   var calcwdtimeresults = calcwdtime(inst.wdInputFreq * 1e6, inst.wdPredivider, inst.wdPrescalar);
 
    inst.wdClock = calcwdtimeresults.wdclock;
    inst.wdTime = calcwdtimeresults.wdtime;
@@ -73,9 +76,7 @@ function onchangewdprescalar(inst, ui)
    if(inst.wdPredivider)
    {
 
-//   calcwdtime(inst.wdPredivider,inst.wdPrescalar);
-
-   var calcwdtimeresults = calcwdtime(inst.wdPredivider,inst.wdPrescalar);
+   var calcwdtimeresults = calcwdtime(inst.wdInputFreq * 1e6, inst.wdPredivider, inst.wdPrescalar);
 
    inst.wdClock = calcwdtimeresults.wdclock;
    inst.wdTime = calcwdtimeresults.wdtime;
@@ -83,9 +84,7 @@ function onchangewdprescalar(inst, ui)
    }
    else
    {
-//	calcwdtime(inst.wdPredivider,inst.wdPrescalar);
-
-   var calcwdtimeresults = calcwdtime('SYSCTL_WD_PREDIV_512',inst.wdPrescalar);
+   var calcwdtimeresults = calcwdtime(inst.wdInputFreq * 1e6, 'SYSCTL_WD_PREDIV_512', inst.wdPrescalar);
 
    inst.wdClock = calcwdtimeresults.wdclock;
    inst.wdTime = calcwdtimeresults.wdtime;
@@ -93,9 +92,9 @@ function onchangewdprescalar(inst, ui)
    }
 }
 
-function calcwdtime(predivide, prescale)
+function calcwdtime(inputFreqHz, predivide, prescale)
 {
- var localwdclock
+ var localwdclock;
  var predivsubstr;
  var prescalesubstr;
  var intprediv;
@@ -118,7 +117,7 @@ function calcwdtime(predivide, prescale)
    intprescale = parseFloat(prescalesubstr);
 
 
- localwdclock = 10000000.0/intprediv;
+ localwdclock = inputFreqHz/intprediv;
  localwdclock = (localwdclock/intprescale)/1000.0 ;
  localwdtime = (1/localwdclock) * 256.0;
  localwdpulse = (1/localwdclock) * 512.0;
@@ -155,9 +154,32 @@ let config = [
         default     : 'SYSCTL_WD_MODE_RESET',
         options     : device_driverlib_peripheral.SysCtl_WDMode
     },
+    {
+        name        : "wdInputFreq",
+        displayName : "WD Input Clock (MHz)",
+        description : useSecClk
+            ? "Secondary clock (SECCLK) input to the watchdog predivider. " +
+              "Source is selected by SECCLKSRCSEL: WROSCBY8 (~5.625 MHz) or SYSOSCBY4 (8 MHz)."
+            : "Internal oscillator 1 (INTOSC1) input to the watchdog predivider. Fixed at 10 MHz.",
+        hidden      : false,
+        readOnly    : true,
+        default     : 10.0,
+        getValue    : (inst) => {
+            let ct = Common.getClockTree();
+            if (useSecClk) {
+                if (ct) {
+                    try { return ct["SECCLK"].in; } catch(e) {}
+                }
+                // SDK default is WROSCDIV8
+                return 5.625;
+            }
+            // INTOSC1 is always 10 MHz on all other devices
+            return 10.0;
+        }
+    },
 ];
 
-if (["F2838x", "F28004x" ,"F28003x", "F28002x", "F280013x", "F280015x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName()))
+if (["F2838x", "F28004x" ,"F28003x", "F28002x", "F280013x", "F280015x", "F28P55x","F28P551x","F28P65x","F28E12x", "MCPC029"].includes(Common.getDeviceName()))
 {
 
     config = config.concat([
@@ -190,6 +212,10 @@ config = config.concat([
         hidden      : false,
 		readOnly    : true,
         default     : 19.53125,
+        getValue    : (inst) => {
+            let prediv = inst.wdPredivider || 'SYSCTL_WD_PREDIV_512';
+            return calcwdtime(inst.wdInputFreq * 1e6, prediv, inst.wdPrescalar).wdclock;
+        }
 
 	},
 	{
@@ -199,6 +225,10 @@ config = config.concat([
         hidden      : false,
 		readOnly    : true,
         default     : 13.1072,
+        getValue    : (inst) => {
+            let prediv = inst.wdPredivider || 'SYSCTL_WD_PREDIV_512';
+            return calcwdtime(inst.wdInputFreq * 1e6, prediv, inst.wdPrescalar).wdtime;
+        }
 
 	},
 	{
@@ -208,6 +238,10 @@ config = config.concat([
         hidden      : false,
 		readOnly    : true,
         default     : 26.2144,
+        getValue    : (inst) => {
+            let prediv = inst.wdPredivider || 'SYSCTL_WD_PREDIV_512';
+            return calcwdtime(inst.wdInputFreq * 1e6, prediv, inst.wdPrescalar).wdpulse;
+        }
 
 	},
     {

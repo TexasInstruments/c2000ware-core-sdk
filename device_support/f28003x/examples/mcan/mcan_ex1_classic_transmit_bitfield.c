@@ -61,12 +61,10 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Include Files
 //
 #include "f28x_project.h"
-
 //
 // Defines.
 //
@@ -74,7 +72,6 @@
 //  Write HW register
 //
 #define HW_WR_REG32(reg, val)               (*((volatile uint32_t *)(reg)) = val)
-
 //
 // MCAN config defines
 //
@@ -121,12 +118,10 @@
 #define BF_MCANSS_TX_BUFFER_ELEM_EFC_SHIFT  (23U)
 #define BF_MCANSS_TX_BUFFER_ELEM_MM_SHIFT   (24U)
 #define BF_MCAN_PAYLOAD                     (8U) // 8 Bytes max payload
-
 //
 //  MCAN RAM base address
 //
 #define MCANA_MSG_RAM_BASE                  (0x00058000U)
-
 //
 // Global Variables.
 //
@@ -136,12 +131,10 @@
 uint16_t txMsg[BF_MCAN_PAYLOAD];
 static uint32_t objSize[8]      = {4, 5, 6, 7, 8, 10, 14, 18};
 static uint32_t dataSize[16]    = {0,  1,  2,  3,  4,  5,  6,  7, 8, 8, 8, 8, 8, 8, 8, 8};
-
 //
 // Function Prototype.
 //
 static void MCANConfig(void);
-
 void main()
 {
     uint32_t cnt            = 0U;
@@ -152,12 +145,10 @@ void main()
     uint32_t regVal         = 0U;
     uint32_t payloadSize    = 0U;
     uint32_t dataCnt        = 0U;
-
     //
     // Initialize device clock and peripherals
     //
     InitSysCtrl();
-
     //
     // Initialize GPIO and configure GPIO pins
     //
@@ -165,27 +156,22 @@ void main()
     // Initialize GPIO
     //
     InitGpio();
-
     //
     // Configure the divisor for the MCAN bit-clock
     //
     ClkCfgRegs.AUXCLKDIVSEL.bit.MCANCLKDIV = 2U;
-
     //
     // Configuring the GPIOs for MCAN.
     //
     GPIO_SetupPinMux(4U, GPIO_MUX_CPU1, 0x03U);//TX
     GPIO_SetupPinMux(5U, GPIO_MUX_CPU1, 0x05U);//RX
-
     //
     // Configure the MCAN Module.
     //
     MCANConfig();
-
     //***************************************************************
     //  Write to message RAM
     //***************************************************************
-
     for(cnt = 0U;cnt < dataSize[BF_MCAN_MSG_DLC];cnt++)
     {
         txMsg[cnt] = cnt;
@@ -245,11 +231,9 @@ void main()
                    ((uint32_t)txMsg[dataCnt + 3U] << 24U));
         HW_WR_REG32(MCANA_MSG_RAM_BASE + elemAddr, regVal);
     }
-
     //***************************************************************
     //  Transmit TX buffer
     //***************************************************************
-
     while(1)
     {
         //
@@ -257,10 +241,8 @@ void main()
         //
         regVal  = McanaRegs.MCAN_TXBAR.all;
         regVal |= (1U << txBufId);
-
         McanaRegs.MCAN_CCCR.bit.CCE = 0U;
         McanaRegs.MCAN_TXBAR.all    = regVal;
-
         //
         //  Wait for all message transmission
         //
@@ -270,7 +252,6 @@ void main()
         }
     }
 }
-
 static void MCANConfig(void)
 {
     //
@@ -280,12 +261,10 @@ static void MCANConfig(void)
     {
         ;
     }
-
     //
     // Put MCAN in SW initialization mode.
     //
     McanaRegs.MCAN_CCCR.bit.INIT = 1U;
-
     //
     // Wait till MCAN is not initialized.
     //
@@ -293,23 +272,19 @@ static void MCANConfig(void)
     {
         ;
     }
-
     //***************************************************************
     // MCAN init
     //***************************************************************
-
     //
     //  Configure MCAN wakeup and clock stop controls
     //
     McanaSsRegs.MCANSS_CTRL.bit.WAKEUPREQEN     = BF_MCAN_WAKEUPREQEN;
     McanaSsRegs.MCANSS_CTRL.bit.AUTOWAKEUP      = BF_MCAN_AUTOWAKEUP;
     McanaSsRegs.MCANSS_CTRL.bit.DBGSUSP_FREE    = BF_MCAN_DBGSUSP_FREE;
-
     //
     //  Unlock write protected registers
     //
     McanaRegs.MCAN_CCCR.bit.CCE     = 1U;
-
     //
     //  Configure MCAN mode(FD vs Classic CAN operation) and controls
     //
@@ -319,7 +294,6 @@ static void MCANConfig(void)
     McanaRegs.MCAN_CCCR.bit.EFBI    = BF_MCAN_EFBI;
     McanaRegs.MCAN_CCCR.bit.PXHD    = BF_MCAN_PXHD;
     McanaRegs.MCAN_CCCR.bit.DAR     = BF_MCAN_DAR;
-
     //
     //  Configure Transceiver Delay Compensation
     //
@@ -327,11 +301,9 @@ static void MCANConfig(void)
     McanaRegs.MCAN_TDCR.bit.TDCO    = BF_MCAN_TDCO;
     McanaRegs.MCAN_RWD.bit.WDC      = BF_MCAN_WDC;
     McanaRegs.MCAN_DBTP.bit.TDC     = BF_MCAN_TDC;
-
     //***************************************************************
     // MCAN timing configuration
     //***************************************************************
-
     //
     // Configure Bit timings.
     //
@@ -342,22 +314,18 @@ static void MCANConfig(void)
     McanaRegs.MCAN_NBTP.bit.NTSEG2  = BF_MCAN_NBTP_NTSEG2;
     McanaRegs.MCAN_NBTP.bit.NTSEG1  = BF_MCAN_NBTP_NTSEG1;
     McanaRegs.MCAN_NBTP.bit.NBRP    = BF_MCAN_NBTP_NBRP;
-
     //
     //  Data bit timing - NOT required for Classic CAN
     //
-
     //***************************************************************
     // Configure Message RAM Sections
     //***************************************************************
-
     //
     //  Configure Tx Event FIFO
     //
     McanaRegs.MCAN_TXEFC.bit.EFSA   = 0U;
     McanaRegs.MCAN_TXEFC.bit.EFS    = 0U;
     McanaRegs.MCAN_TXEFC.bit.EFWM   = 0U;
-
     //
     //  Configure Tx Buffer
     //
@@ -366,20 +334,16 @@ static void MCANConfig(void)
     McanaRegs.MCAN_TXBC.bit.TFQS    = 0U;
     McanaRegs.MCAN_TXBC.bit.TFQM    = 0U;
     McanaRegs.MCAN_TXESC.bit.TBDS   = BF_MCAN_TXBUF_ELEM_SIZE;
-
     //
     //  Lock write protected registers
     //
     McanaRegs.MCAN_CCCR.bit.CCE     = 0U;
-
     //
     // Take MCAN out of the SW initialization mode
     //
     McanaRegs.MCAN_CCCR.bit.INIT    = 0U;
-
     while(0U != McanaRegs.MCAN_CCCR.bit.INIT)
     {
         ;
     }
-
 }

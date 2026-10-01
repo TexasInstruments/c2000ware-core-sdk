@@ -20,47 +20,38 @@
 // http://software-dl.ti.com/ccs/esd/documents/users_guide/sdto_dss_handbook.html
 //
 //#############################################################################
-
 //
 // Import the DSS packages
 //
 importPackage(Packages.com.ti.debug.engine.scripting)
 importPackage(Packages.com.ti.ccstudio.scripting.environment)
 importPackage(Packages.java.lang)
-
 //
 // Load pre-defined macros for register addresses
 //
 load(PROJ_WKSPC_LOC + "\\" + PROJ_NAME + "\\erad.js")
-
 //
 // Create our scripting environment object. This is the main entry point into
 // any script and the factory for creating other scriptable servers and sessions
 //
 var script = ScriptingEnvironment.instance();
-
 script.traceSetConsoleLevel(TraceLevel.ALL)
-
 //
 // Create a debug server
 //
 var ds = script.getServer( "DebugServer.1" );
-
 //
 // Open a debug session
 //
 debugSession = ds.openSession( "*", "C28xx_CPU1" );
-
 //
 // Variables for data read/write sizes
 //
 var DATA_SIZE_16 = 16;
 var DATA_SIZE_32 = 32;
-
 //*****************************************************************************
 // Example: Stack Overflow
 //*****************************************************************************
-
 //
 // Set owner as debugger
 //
@@ -68,7 +59,6 @@ debugSession.memory.writeData(Memory.Page.DATA,
                               EradGlobalRegs + GLBL_OWNER,
                               OWNER_DEBUGGER,
                               DATA_SIZE_16);
-
 //
 // Ensure that HWBP_1 is in idle mode (bits 15:12 are set to 0)
 //
@@ -76,11 +66,9 @@ var hwbp1Status =
     debugSession.memory.readData(Memory.Page.DATA,
                                  EradHWBP1Regs + HWBP_STATUS,
                                  DATA_SIZE_16);
-
 if(0 == (hwbp1Status &  0xF000))
 {
     print("\nProfile Setup\n");
-
     //
     // Reset HWBP_1
     //
@@ -88,17 +76,14 @@ if(0 == (hwbp1Status &  0xF000))
                                   EradHWBP1Regs + HWBP_CLEAR,
                                   0x1,
                                   DATA_SIZE_16);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradHWBP1Regs + HWBP_CNTL,
                                   0x0,
                                   DATA_SIZE_16);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradHWBP1Regs + HWBP_REF,
                                   0x0,
                                   DATA_SIZE_32);
-
     //
     // Grab maximum value for stack
     //
@@ -111,7 +96,6 @@ if(0 == (hwbp1Status &  0xF000))
     	var stackEnd = debugSession.expression.evaluate("__TI_STACK_END");
     }
     print("\nSP END: " + stackEnd.toString(16) + "\n");
-
     //
     // Set HWBP_REF to be stackEnd + 1 for HWBP_1
     //
@@ -119,7 +103,6 @@ if(0 == (hwbp1Status &  0xF000))
                                   EradHWBP1Regs + HWBP_REF,
                                   stackEnd + 1,
                                   DATA_SIZE_32);
-
     //
     // Clear mask value
     //
@@ -127,7 +110,6 @@ if(0 == (hwbp1Status &  0xF000))
                                   EradHWBP1Regs + HWBP_MASK,
                                   0x0,
                                   DATA_SIZE_32);
-
     //
     // Set CPU to halt when write to address greater than value in HWBP_REF
     // occurs
@@ -144,7 +126,6 @@ if(0 == (hwbp1Status &  0xF000))
                                   EradHWBP1Regs + HWBP_CNTL,
                                   0x24,
                                   DATA_SIZE_16);
-
     //
     // Enable HWBP_1. Update GLBL_ENABLE register with value 0x1
     //
@@ -158,14 +139,11 @@ if(0 == (hwbp1Status &  0xF000))
                                   EradGlobalRegs + GLBL_ENABLE,
                                   enableHWBP,
                                   DATA_SIZE_16);
-
     //
     // Loop until Stack Overflow occurs
     //
     print("\nProfile Started. CPU will halt on stack overflow.\n");
-
     var coreRan = 0;
-
     while(1)
     {
         //
@@ -179,29 +157,24 @@ if(0 == (hwbp1Status &  0xF000))
             debugSession.memory.readData(Memory.Page.DATA,
                                          EradHWBP1Regs + HWBP_STATUS,
                                          DATA_SIZE_16);
-
         if(bp_status & 0x1 == 1)
         {
             print("\nSTACK OVERFLOW detected. Halting CPU.\n");
             break;
         }
-
         //
         // Halt script if CPU is halted
         //
         var halted = debugSession.target.isHalted();
-
         if(!halted)
         {
             coreRan = 1;
         }
-
         if(coreRan && halted)
         {
             break;
         }
     }
-
     //
     // Disable HWBP_1
     //
@@ -209,14 +182,11 @@ if(0 == (hwbp1Status &  0xF000))
                                               EradGlobalRegs +
                                               GLBL_ENABLE,
                                               DATA_SIZE_16);
-
     enableHWBP = enableHWBP & (~enableBits);
-
     debugSession.memory.writeData(Memory.Page.DATA,
                                   EradGlobalRegs + GLBL_ENABLE,
                                   enableHWBP,
                                   DATA_SIZE_16);
-
     //
     // Reset HWBP_1
     //
@@ -224,15 +194,12 @@ if(0 == (hwbp1Status &  0xF000))
                                   EradHWBP1Regs + HWBP_CLEAR,
                                   0x1,
                                   DATA_SIZE_16);
-
-
     print("\nProfile stopped\n");
 }
 else
 {
     print("\nFAILED. HWBP_1 is not in idle state\n");
 }
-
 //
 // End of File
 //

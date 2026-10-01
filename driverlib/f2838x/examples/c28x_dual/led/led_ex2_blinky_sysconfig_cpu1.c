@@ -21,7 +21,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -54,7 +54,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -63,7 +62,6 @@
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Main
 //
@@ -73,46 +71,36 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Boot CPU2 core
     //
-
     Device_bootCPU2(BOOT_MODE_CPU2);
-
-
     //
     // Initialize GPIO and configure the GPIO pin as a push-pull output
     //
     Device_initGPIO();
-
     //
     // Initialize settings from SysConfig
     //
     Board_init();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Sync CPUs so the blinking starts at the same time, though the LEDs toggle at different frequency
     //
     IPC_sync(IPC_CPU1_L_CPU2_R, IPC_SYNC);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Loop Forever
     //
@@ -122,24 +110,20 @@ void main(void)
         // Turn on LED
         //
         GPIO_writePin(CPU1_LED, 0);
-
         //
         // Delay for a bit.
         //
         DEVICE_DELAY_US(500000);
-
         //
         // Turn off LED
         //
         GPIO_writePin(CPU1_LED, 1);
-
         //
         // Delay for a bit.
         //
         DEVICE_DELAY_US(500000);
     }
 }
-
 //
 // End of File
 //

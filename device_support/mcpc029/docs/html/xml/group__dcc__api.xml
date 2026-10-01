@@ -1,0 +1,1412 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="group__dcc__api" kind="group">
+    <compoundname>dcc_api</compoundname>
+    <title>DCC</title>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="group__dcc__api_1ga37644cf23d308e62324dc2f6604c83b5" prot="public" static="no" strong="no">
+        <type></type>
+        <name>DCC_SingleShotMode</name>
+        <enumvalue id="group__dcc__api_1gga37644cf23d308e62324dc2f6604c83b5af65e48e40c28ea85ba3b6e2fc78a11d4" prot="public">
+          <name>DCC_MODE_COUNTER_ZERO</name>
+          <initializer>= 0xA00U</initializer>
+          <briefdescription>
+<para>Use to stop counting when counter0 and valid0 both reach zero. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcc__api_1gga37644cf23d308e62324dc2f6604c83b5ab05ee1f72ec325ff02f75c59ebe0d789" prot="public">
+          <name>DCC_MODE_COUNTER_ONE</name>
+          <initializer>= 0xB00U</initializer>
+          <briefdescription>
+<para>Use to stop counting when counter1 reaches zero. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The following are defines for the mode parameter of the <ref refid="group__dcc__api_1gaca9622ea524157a486431ade82b9f925" kindref="member">DCC_enableSingleShotMode()</ref> function. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="118" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="119" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__dcc__api_1ga7add4a61bd1021a4544f99b59180c076" prot="public" static="no" strong="no">
+        <type></type>
+        <name>DCC_Count1ClockSource</name>
+        <enumvalue id="group__dcc__api_1gga7add4a61bd1021a4544f99b59180c076a65d1c31103cfcbe9da1db49a5e7b8efc" prot="public">
+          <name>DCC_COUNT1SRC_PLL</name>
+          <initializer>= 0X0U</initializer>
+          <briefdescription>
+<para>PLLRAWCLK Clock Out Source. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcc__api_1gga7add4a61bd1021a4544f99b59180c076aee1c510fdf85d715ea361a78e645470c" prot="public">
+          <name>DCC_COUNT1SRC_WROSCDIV8</name>
+          <initializer>= 0x2U</initializer>
+          <briefdescription>
+<para>Wide Range Oscillator (WROSC) output clock after the fixed BY8 divider. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcc__api_1gga7add4a61bd1021a4544f99b59180c076aaabe3369d80aac66a8af2390de2a1e60" prot="public">
+          <name>DCC_COUNT1SRC_SYSOSCDIV4</name>
+          <initializer>= 0x3U</initializer>
+          <briefdescription>
+<para>SYSOSC output clock after the fixed BY4 divider. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcc__api_1gga7add4a61bd1021a4544f99b59180c076a61d7b0f279103e3c0999e39ca4347f73" prot="public">
+          <name>DCC_COUNT1SRC_SYSCLK</name>
+          <initializer>= 0x6U</initializer>
+          <briefdescription>
+<para>SYSCLK (System Clock) Source. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcc__api_1gga7add4a61bd1021a4544f99b59180c076aac4db1120e78eb67cd0be3703e46aaf2" prot="public">
+          <name>DCC_COUNT1SRC_XBAR_IN15</name>
+          <initializer>= 0x9U</initializer>
+          <briefdescription>
+<para>Input Crossbar Clock Source. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcc__api_1gga7add4a61bd1021a4544f99b59180c076a7830cf952fd5de743857e5293d55745e" prot="public">
+          <name>DCC_COUNT1SRC_AUXCLKIN</name>
+          <initializer>= 0xAU</initializer>
+          <briefdescription>
+<para>AUXCLKIN (Auxiliary Clock) Source. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcc__api_1gga7add4a61bd1021a4544f99b59180c076a244bd2733e51d1b97bf2474f094b300d" prot="public">
+          <name>DCC_COUNT1SRC_MCPWM</name>
+          <initializer>= 0xBU</initializer>
+          <briefdescription>
+<para>MCPWM Clock Source. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcc__api_1gga7add4a61bd1021a4544f99b59180c076ae9ed75b664aafb4bab22ec9f43d8b2c4" prot="public">
+          <name>DCC_COUNT1SRC_LSPCLK</name>
+          <initializer>= 0xCU</initializer>
+          <briefdescription>
+<para>LSP Clock Source. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcc__api_1gga7add4a61bd1021a4544f99b59180c076a77cd3be86e7f672aa6600beec468de3f" prot="public">
+          <name>DCC_COUNT1SRC_ADCCLK</name>
+          <initializer>= 0xDU</initializer>
+          <briefdescription>
+<para>ADC Clock Source. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcc__api_1gga7add4a61bd1021a4544f99b59180c076ad906f548bd30b7095633c49a6227779c" prot="public">
+          <name>DCC_COUNT1SRC_WDCLK</name>
+          <initializer>= 0xEU</initializer>
+          <briefdescription>
+<para>Watch Dog Clock Source. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcc__api_1gga7add4a61bd1021a4544f99b59180c076a41c9d6803f1403ca5e238894feac9555" prot="public">
+          <name>DCC_COUNT1SRC_NW_FCLK</name>
+          <initializer>= 0x17U</initializer>
+          <briefdescription>
+<para>from Flash Wrapper(NW) </para>
+          </briefdescription>
+          <detaileddescription>
+<para>FCLK (divided clock) output </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcc__api_1gga7add4a61bd1021a4544f99b59180c076a0de7ae648b4eff16ab1d4eb7032a8db4" prot="public">
+          <name>DCC_COUNT1SRC_XBAR1_IN11</name>
+          <initializer>= 0x18U</initializer>
+          <briefdescription>
+<para>Input Crossbar1 Clock Source. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcc__api_1gga7add4a61bd1021a4544f99b59180c076a11e47f65006cfae9c2aa2799588e63e5" prot="public">
+          <name>DCC_COUNT1SRC_XBAR1_IN12</name>
+          <initializer>= 0x19U</initializer>
+          <briefdescription>
+<para>Input Crossbar1 Clock Source. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The following are defines for the source parameter of the <ref refid="group__dcc__api_1ga160cec37375b01f3dc09a1396dc071eb" kindref="member">DCC_setCounter1ClkSource()</ref> function. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="134" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="135" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__dcc__api_1ga882339b23939a26439e16b9361080ea3" prot="public" static="no" strong="no">
+        <type></type>
+        <name>DCC_Count0ClockSource</name>
+        <enumvalue id="group__dcc__api_1gga882339b23939a26439e16b9361080ea3a79419651bfcdd2f55618b1b218f298b3" prot="public">
+          <name>DCC_COUNT0SRC_XTAL</name>
+          <initializer>= 0x0U</initializer>
+          <briefdescription>
+<para>XTAL Clock Source. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcc__api_1gga882339b23939a26439e16b9361080ea3a90a52c17ba3f04524982358bf2cc5850" prot="public">
+          <name>DCC_COUNT0SRC_WROSCDIV8</name>
+          <initializer>= 0x1U</initializer>
+          <briefdescription>
+<para>Wide Range Oscillator (WROSC) OUTPUT CLOCK AFTER THE FIXED BY-8 DIVIDER. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcc__api_1gga882339b23939a26439e16b9361080ea3a9d0cb1f6ad1d059581962afe9461e0be" prot="public">
+          <name>DCC_COUNT0SRC_SYSOSCDIV4</name>
+          <initializer>= 0x2U</initializer>
+          <briefdescription>
+<para>SYSOSC output clock after the fixed BY4 divider. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcc__api_1gga882339b23939a26439e16b9361080ea3a82d6b6e825b04a37c4306443759d797c" prot="public">
+          <name>DCC_COUNT0SRC_TCK</name>
+          <initializer>= 0x4U</initializer>
+          <briefdescription>
+<para>Preliminary Clock Source. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcc__api_1gga882339b23939a26439e16b9361080ea3ad81b9f3c221540cdcf4d0ac2039144da" prot="public">
+          <name>DCC_COUNT0SRC_SYSCLK</name>
+          <initializer>= 0x5U</initializer>
+          <briefdescription>
+<para>System Clock Source. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcc__api_1gga882339b23939a26439e16b9361080ea3a371e57a41c15462d93c4cd457e6ab413" prot="public">
+          <name>DCC_COUNT0SRC_AUXCLK</name>
+          <initializer>= 0x8U</initializer>
+          <briefdescription>
+<para>AUX Clock Source. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__dcc__api_1gga882339b23939a26439e16b9361080ea3a9c00b93008473a6b1a906a98871ab31c" prot="public">
+          <name>DCC_COUNT0SRC_XBAR</name>
+          <initializer>= 0xCU</initializer>
+          <briefdescription>
+<para>Input XBAR Clock Source. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The following are defines for the source parameter of the <ref refid="group__dcc__api_1ga1b2acdeb98d5ce042cd8e867276ec59e" kindref="member">DCC_setCounter0ClkSource()</ref> function. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="158" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="159" bodyend="167"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__dcc__api_1ga4856bb4dd7be9a92bf347aa46ccb48f3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DCC_enableModule</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DCC_enableModule</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables the DCC module.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function starts the DCC counter operation.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="209" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="209" bodyend="225"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1ga7789fd5c1952044b1cec6fdffc467473" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DCC_disableModule</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DCC_disableModule</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disable the DCC module.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function stops the DCC counter operation.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="239" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="239" bodyend="255"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1gace0792dfcd8667a45dcc6762d52f14ee" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DCC_enableErrorSignal</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DCC_enableErrorSignal</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enable DCC Error Signal</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables the error signal interrupt.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="269" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="269" bodyend="286"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1gafecc8e4c9691e996491d00b814d828b3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DCC_enableDoneSignal</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DCC_enableDoneSignal</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enable DCC Done Signal</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables the done signal interrupt.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="300" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="300" bodyend="317"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1ga9c5ad523ddb73d90bae09d225485bfe3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DCC_disableErrorSignal</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DCC_disableErrorSignal</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disable DCC Error Signal</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables the error signal interrupt.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="331" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="331" bodyend="348"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1ga372d9f87583a12129564806f155f3811" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DCC_disableDoneSignal</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DCC_disableDoneSignal</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disable DCC Done Signal</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables the done signal interrupt.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="362" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="362" bodyend="379"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1gaca9622ea524157a486431ade82b9f925" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DCC_enableSingleShotMode</definition>
+        <argsstring>(uint32_t base, DCC_SingleShotMode mode)</argsstring>
+        <name>DCC_enableSingleShotMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__dcc__api_1ga37644cf23d308e62324dc2f6604c83b5" kindref="member">DCC_SingleShotMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enable DCC Single-Shot Mode</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the selected Single-Shot operation mode</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables the single-shot mode and sets the operation mode.</para>
+<para>The <emphasis>mode</emphasis> parameter can have one of two values:<itemizedlist>
+<listitem><para><bold>DCC_MODE_COUNTER_ZERO</bold> - Stops counting when counter0 and valid0 both reach zero</para>
+</listitem><listitem><para><bold>DCC_MODE_COUNTER_ONE</bold> - Stops counting when counter1 reaches zero</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="399" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="399" bodyend="429"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1ga7fb7843bec8a2059311331a09d1cc360" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DCC_disableSingleShotMode</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DCC_disableSingleShotMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disable DCC Single-Shot Mode</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables the DCC Single-Shot operation mode</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="443" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="443" bodyend="460"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1gafac2fc09894e43928b814e8dd830fc14" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool DCC_getErrorStatus</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DCC_getErrorStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get Error Flag Status</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function gets the error flag status.</para>
+<para><simplesect kind="return"><para>Returns <bold>true</bold> if an error has occurred, <bold>false</bold> if no errors have occurred. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="475" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="475" bodyend="487"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1gaeefddaf0b46e5c99e3dc43ebae12ac8c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool DCC_getSingleShotStatus</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DCC_getSingleShotStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get Single-Shot Done Flag Status</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function gets the single-shot done flag status.</para>
+<para><simplesect kind="return"><para>Returns <bold>true</bold> if single-shot mode has completed, <bold>false</bold> if single-shot mode has not completed. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="502" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="502" bodyend="514"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1gaca66a598c255a41717bcace3dc3700f6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DCC_clearErrorFlag</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DCC_clearErrorFlag</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clear Error Status Flag</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function clears the DCC error status flag.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="528" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="528" bodyend="543"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1ga701b2b19be81e3ef6869e529948fc036" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DCC_clearDoneFlag</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DCC_clearDoneFlag</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clear Single-Shot Done Status Flag</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function clears the DCC single-shot done status flag.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="557" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="557" bodyend="572"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1ga1530f9ab9d44ed0589fb8bb996ad6090" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t DCC_getCounter0Value</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DCC_getCounter0Value</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get Current Value of Counter 0</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function gets current value of counter 0.</para>
+<para><simplesect kind="note"><para>Reads of the counter value may not be exact since the read operation is synchronized to the vbus clock.</para>
+</simplesect>
+<simplesect kind="return"><para>Returns the current value of counter 0. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="589" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="589" bodyend="600"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1ga39e7b7928b9d0caa57f50d7b43de20d8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>static uint16_t DCC_getValidCounter0Value</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DCC_getValidCounter0Value</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get Current Value of the Valid Duration Counter for Counter 0</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function gets current value of the valid duration counter for counter 0.</para>
+<para><simplesect kind="note"><para>Reads of the counter value may not be exact since the read operation is synchronized to the vbus clock.</para>
+</simplesect>
+<simplesect kind="return"><para>Returns the current value of the valid duration counter. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="618" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="618" bodyend="629"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1ga6f00fd2b233f5af7577450a52c35ac31" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t DCC_getCounter1Value</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DCC_getCounter1Value</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get Current Value of Counter 1</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function gets current value of counter 1.</para>
+<para><simplesect kind="note"><para>Reads of the counter value may not be exact since the read operation is synchronized to the vbus clock.</para>
+</simplesect>
+<simplesect kind="return"><para>Returns the current value of counter 1. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="646" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="646" bodyend="657"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1ga160cec37375b01f3dc09a1396dc071eb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DCC_setCounter1ClkSource</definition>
+        <argsstring>(uint32_t base, DCC_Count1ClockSource source)</argsstring>
+        <name>DCC_setCounter1ClkSource</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__dcc__api_1ga7add4a61bd1021a4544f99b59180c076" kindref="member">DCC_Count1ClockSource</ref></type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set Counter 1 Clock Source</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>source</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the selected clock source for counter 1</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the counter 1 clock source.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="672" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="672" bodyend="693"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1ga1b2acdeb98d5ce042cd8e867276ec59e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DCC_setCounter0ClkSource</definition>
+        <argsstring>(uint32_t base, DCC_Count0ClockSource source)</argsstring>
+        <name>DCC_setCounter0ClkSource</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__dcc__api_1ga882339b23939a26439e16b9361080ea3" kindref="member">DCC_Count0ClockSource</ref></type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set Counter 0 Clock Source</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>source</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the selected clock source for counter 0</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the counter 0 clock source.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="708" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="708" bodyend="729"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1ga31ada622995e50157b2d0ddd2ee05c1d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>static uint16_t DCC_getCounter1ClkSource</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DCC_getCounter1ClkSource</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get Counter 1 Clock Source</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function gets the counter 1 clock source.</para>
+<para><simplesect kind="return"><para>Returns Counter 1 clock source from the enum DCC_Count1ClockSource </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="743" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="743" bodyend="754"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1ga95d9ad7033905001d1d3aa5dcff024d0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>static uint16_t DCC_getCounter0ClkSource</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>DCC_getCounter0ClkSource</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get Counter 0 Clock Source</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function gets the counter 0 clock source.</para>
+<para><simplesect kind="return"><para>Returns Counter 0 clock source from the enum DCC_Count0ClockSource </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="768" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="768" bodyend="779"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1ga3ae107141988aad7b1ed0f9b376c25eb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void DCC_setCounterSeeds</definition>
+        <argsstring>(uint32_t base, uint32_t counter0, uint32_t validCounter0, uint32_t counter1)</argsstring>
+        <name>DCC_setCounterSeeds</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>counter0</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>validCounter0</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>counter1</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the seed values</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>counter0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>sets the seed value that gets loaded into Counter 0 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>validCounter0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>sets the seed value that gets loaded into the valid duration counter for Counter 0 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>counter1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>sets the seed value that gets loaded into Counter 1</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the seed values for Counter 0, Valid Duration Counter 0, and Counter 1.</para>
+<para><simplesect kind="note"><para><orderedlist>
+<listitem><para>Operating DCC with &apos;0&apos; set as the seed value for Counter 0, Valid Duration Counter 0, and/or Counter 1 will result in undefined operation.</para>
+</listitem><listitem><para>The Valid Duration Counter 0 is designed to be at least four cycles wide and shouldn&apos;t be programmed with a value less than &apos;4&apos;.</para>
+</listitem></orderedlist>
+</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="806" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="806" bodyend="846"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1ga337c8343635bbae9e6f52f382c7f6f10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool DCC_verifyClockFrequency</definition>
+        <argsstring>(uint32_t base, DCC_Count1ClockSource clock1, float32_t freq1, DCC_Count0ClockSource clock0, float32_t freq0, float32_t tolerance, float32_t freqerr, float32_t freq_sysclk)</argsstring>
+        <name>DCC_verifyClockFrequency</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__dcc__api_1ga7add4a61bd1021a4544f99b59180c076" kindref="member">DCC_Count1ClockSource</ref></type>
+          <declname>clock1</declname>
+        </param>
+        <param>
+          <type>float32_t</type>
+          <declname>freq1</declname>
+        </param>
+        <param>
+          <type><ref refid="group__dcc__api_1ga882339b23939a26439e16b9361080ea3" kindref="member">DCC_Count0ClockSource</ref></type>
+          <declname>clock0</declname>
+        </param>
+        <param>
+          <type>float32_t</type>
+          <declname>freq0</declname>
+        </param>
+        <param>
+          <type>float32_t</type>
+          <declname>tolerance</declname>
+        </param>
+        <param>
+          <type>float32_t</type>
+          <declname>freqerr</declname>
+        </param>
+        <param>
+          <type>float32_t</type>
+          <declname>freq_sysclk</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Verify the frequency of a clock source using a reference clock</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>clock1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the clock source to be verified </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>freq1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the frequency of the clock source to be verified </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>clock0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the reference clock </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>freq0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the frequency of the reference clock </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tolerance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC error tolerance in percentage </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>freqerr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the allowable Frequency Tolerance in percentage </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>freq_sysclk</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the frequency of the system clock</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function verifies the frequency of the specified clock using a reference clock.</para>
+<para><simplesect kind="note"><para>Make sure that the frequency of all the clocks are in the same unit</para>
+</simplesect>
+<simplesect kind="return"><para>Returns <bold>true</bold> if the actual frequency of clock1 is matching freq1, <bold>false</bold> otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="872" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" declline="872" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1gadc29cccc1525f8029b83b9d2ffeba37e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float32_t</type>
+        <definition>float32_t DCC_measureClockFrequency</definition>
+        <argsstring>(uint32_t base, DCC_Count1ClockSource clock1, DCC_Count0ClockSource clock0, float32_t freq0, float32_t tolerance, float32_t freqerr, float32_t freq_sysclk)</argsstring>
+        <name>DCC_measureClockFrequency</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__dcc__api_1ga7add4a61bd1021a4544f99b59180c076" kindref="member">DCC_Count1ClockSource</ref></type>
+          <declname>clock1</declname>
+        </param>
+        <param>
+          <type><ref refid="group__dcc__api_1ga882339b23939a26439e16b9361080ea3" kindref="member">DCC_Count0ClockSource</ref></type>
+          <declname>clock0</declname>
+        </param>
+        <param>
+          <type>float32_t</type>
+          <declname>freq0</declname>
+        </param>
+        <param>
+          <type>float32_t</type>
+          <declname>tolerance</declname>
+        </param>
+        <param>
+          <type>float32_t</type>
+          <declname>freqerr</declname>
+        </param>
+        <param>
+          <type>float32_t</type>
+          <declname>freq_sysclk</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Measure the frequency of a clock source using a reference clock</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>clock1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the clock source to be measured </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>clock0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the reference clock </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>freq0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the frequency of the reference clock </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tolerance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC error tolerance in percentage </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>freqerr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the allowable Frequency Tolerance in percentage </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>freq_sysclk</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the frequency of the system clock</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function measures the frequency of the specified clock using a reference clock.</para>
+<para><simplesect kind="note"><para>Make sure that the frequency of all the clocks are in the same unit</para>
+</simplesect>
+<simplesect kind="return"><para>Measured clock frequency </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="902" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" declline="902" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dcc__api_1ga9d0cea773d6d05b71b5eb1d9ff56e05a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DCC_continuousMonitor</definition>
+        <argsstring>(uint32_t base, DCC_Count1ClockSource clock1, float32_t freq1, DCC_Count0ClockSource clock0, float32_t freq0, float32_t tolerance, float32_t freqerr, float32_t freq_sysclk)</argsstring>
+        <name>DCC_continuousMonitor</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__dcc__api_1ga7add4a61bd1021a4544f99b59180c076" kindref="member">DCC_Count1ClockSource</ref></type>
+          <declname>clock1</declname>
+        </param>
+        <param>
+          <type>float32_t</type>
+          <declname>freq1</declname>
+        </param>
+        <param>
+          <type><ref refid="group__dcc__api_1ga882339b23939a26439e16b9361080ea3" kindref="member">DCC_Count0ClockSource</ref></type>
+          <declname>clock0</declname>
+        </param>
+        <param>
+          <type>float32_t</type>
+          <declname>freq0</declname>
+        </param>
+        <param>
+          <type>float32_t</type>
+          <declname>tolerance</declname>
+        </param>
+        <param>
+          <type>float32_t</type>
+          <declname>freqerr</declname>
+        </param>
+        <param>
+          <type>float32_t</type>
+          <declname>freq_sysclk</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Continuously monitor the frequency of a clock source using a reference clock</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC module base address </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>clock1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the clock source to be verified </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>freq1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the frequency of the clock source to be verified </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>clock0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the reference clock </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>freq0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the frequency of the reference clock </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tolerance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the DCC error tolerance in percentage </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>freqerr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the allowable Frequency Tolerance in percentage </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>freq_sysclk</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the frequency of the system clock</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function continuously monitors the frequency of the specified clock using a reference clock. An error signal is generated if the frequency ratio is altered.</para>
+<para><simplesect kind="note"><para>Make sure that the frequency of all the clocks are in the same unit</para>
+</simplesect>
+<simplesect kind="note"><para>This function does not enable the DCC interrupt. The user application must enable it to trigger an intetrupt when an error is detected.</para>
+</simplesect>
+<simplesect kind="return"><para>Returns None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="936" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" declline="936" declcolumn="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__dcc__api_1gacfd369897cfaeb43936234ba5e5bb4f7" prot="public" static="no">
+        <name>DCC_VALIDSEED_MIN</name>
+        <initializer>4U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="73" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcc__api_1ga87167c5a5647aedfd18d43cd931e0bbc" prot="public" static="no">
+        <name>DCC_VALIDSEED_MAX</name>
+        <initializer>0xFFFFU</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="74" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcc__api_1gaa678f03d89e6a52268d31967d01a139f" prot="public" static="no">
+        <name>DCC_COUNTSEED_MIN</name>
+        <initializer>1U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="79" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcc__api_1gabc92c04a8fac330b0f3b9c45bbcea69c" prot="public" static="no">
+        <name>DCC_COUNTSEED_MAX</name>
+        <initializer>0xFFFFFU</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="80" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcc__api_1ga3e9ced5544839e5ed4cf2c8a67eff2b8" prot="public" static="no">
+        <name>DCC_ENABLE_VALUE</name>
+        <initializer>(0xAU)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="85" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcc__api_1gafe9e789efdc5a4ce115468a357777c51" prot="public" static="no">
+        <name>DCC_DISABLE_VALUE</name>
+        <initializer>(0x5U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="90" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcc__api_1ga2dc51e817daa922e4289a063eeea429e" prot="public" static="no">
+        <name>DCC_REG_WORD_MASK</name>
+        <initializer>(0xFFFFU)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="95" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcc__api_1gad27a12e55ea17ee190edb88361d2621f" prot="public" static="no">
+        <name>DCC_REG_BYTE_MASK</name>
+        <initializer>(0x7FU)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="100" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcc__api_1ga37977e9876124524a35a4b5234f0a02e" prot="public" static="no">
+        <name>DCC_SEED_REG_MASK</name>
+        <initializer>(0xFFF0U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="105" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__dcc__api_1ga1c684be5c2839b57917a3a36e00dd64e" prot="public" static="no">
+        <name>DCC_SEED_CNT_MASK</name>
+        <initializer>(0xF0000U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" line="110" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/dcc.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

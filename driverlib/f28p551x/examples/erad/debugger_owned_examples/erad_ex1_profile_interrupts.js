@@ -14,9 +14,7 @@
 // https://software-dl.ti.com/ccs/esd/documents/users_guide_ccs_20.0.0/index_debug-scripting.html
 //
 //#############################################################################
-
 const ERAD = require("./erad.js");
-
 let {
     ERAD_GLOBAL_BASE,
     ERAD_Global_Regs_Offset,
@@ -26,52 +24,42 @@ let {
     ERAD_CTM_Regs_Offset,
     ERAD_Owner
 } = ERAD;
-
 //
 // Launch a scripting session
 //
 const { initScripting } = require(require.resolve("scripting",  {paths: [process.cwd()] }));
 const ds = initScripting();
 const debugSession = ds.openSession("C28xx_CPU1");
-
 //
 // Variables for data read/write sizes
 //
 var DATA_SIZE_16 = 16;
 var DATA_SIZE_32 = 32;
-
 //*****************************************************************************
 // Example: Profile Interrupts
 //*****************************************************************************
-
 //
 // Set owner as debugger
 //
 debugSession.memory.write(ERAD_GLOBAL_BASE + ERAD_Global_Regs_Offset.GLBL_OWNER,
                           ERAD_Owner.ERAD_OWNER_DEBUGGER,
                           DATA_SIZE_16);
-
 //
 // Ensure that counters 1-4 are in idle mode (bits 15:12 are set to 0)
 //
 var counter1Status =
     Number(debugSession.memory.readOne(ERAD_COUNTER_BASE[0] + ERAD_CTM_Regs_Offset.CTM_STATUS,
                                  DATA_SIZE_16));
-
 var counter2Status =
     Number(debugSession.memory.readOne(ERAD_COUNTER_BASE[1] + ERAD_CTM_Regs_Offset.CTM_STATUS,
                                  DATA_SIZE_16));
-
 var counter3Status =
     Number(debugSession.memory.readOne(ERAD_COUNTER_BASE[2] + ERAD_CTM_Regs_Offset.CTM_STATUS,
                                  DATA_SIZE_16));
-
 var counter4Status =
     Number(debugSession.memory.readOne(ERAD_COUNTER_BASE[3] + ERAD_CTM_Regs_Offset.CTM_STATUS,
                                  DATA_SIZE_16));
-
 var CTM_STATUS_M = 0xF000;
-
 if((0 == (counter1Status & CTM_STATUS_M)) &&
    (0 == (counter2Status & CTM_STATUS_M)) &&
    (0 == (counter3Status & CTM_STATUS_M)) &&
@@ -83,28 +71,23 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
     debugSession.memory.write(ERAD_HWBP_BASE[0] + ERAD_HWBP_Regs_Offset.HWBP_CLEAR,
                                   0x1,
                                   DATA_SIZE_16);
-
     debugSession.memory.write(ERAD_HWBP_BASE[1] + ERAD_HWBP_Regs_Offset.HWBP_CLEAR,
                                   0x1,
                                   DATA_SIZE_16);
-
     //
     // Get the start and end addresses of the Timer 2 ISR
     //
     var startTimer2ISR = Number(debugSession.expressions.evaluate("funcStart"));
     var endTimer2ISR = Number(debugSession.expressions.evaluate("funcEnd")) - 1;
-
     //
     // Set two hardware breakpoints at the start and end of cpuTimer2ISR
     //
     debugSession.memory.write(ERAD_HWBP_BASE[0] + ERAD_HWBP_Regs_Offset.HWBP_REF,
                                   startTimer2ISR,
                                   DATA_SIZE_32);
-
     debugSession.memory.write(ERAD_HWBP_BASE[1] + ERAD_HWBP_Regs_Offset.HWBP_REF,
                                   endTimer2ISR,
                                   DATA_SIZE_32);
-
     //
     // Set HWBP_1 and HWBP_2 to generate an event on PC match
     // RESERVED  = (0 <<  0) | -> RESERVED
@@ -120,32 +103,27 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
     debugSession.memory.write(ERAD_HWBP_BASE[0] + ERAD_HWBP_Regs_Offset.HWBP_CNTL,
                                   0x0002,
                                   DATA_SIZE_16);
-
     debugSession.memory.write(ERAD_HWBP_BASE[1] + ERAD_HWBP_Regs_Offset.HWBP_CNTL,
                                   0x0002,
                                   DATA_SIZE_16);
-
     //
     // Reset Counters 1-4 globally
     //
     debugSession.memory.write(ERAD_GLOBAL_BASE + ERAD_Global_Regs_Offset.GLBL_CTM_RESET,
                                   0xF,
                                   DATA_SIZE_16);
-
     //
     // Clear CTM_COUNT
     //
     debugSession.memory.write(ERAD_COUNTER_BASE[0] + ERAD_CTM_Regs_Offset.CTM_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     //
     // Clear CTM_MAX_COUNT
     //
     debugSession.memory.write(ERAD_COUNTER_BASE[0] + ERAD_CTM_Regs_Offset.CTM_MAX_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     //
     // Clear EVENT_FIRED and OVERFLOW sticky bits
     // EVENT_CLEAR    = (1 << 0) | -> Clear EVENT_FIRED sticky bit in CTM_STATUS
@@ -155,14 +133,12 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
     debugSession.memory.write(ERAD_COUNTER_BASE[0] + ERAD_CTM_Regs_Offset.CTM_CLEAR,
                                   0x3,
                                   DATA_SIZE_16);
-
     //
     // Clear CTM_REF
     //
     debugSession.memory.write(ERAD_COUNTER_BASE[0] + ERAD_CTM_Regs_Offset.CTM_REF,
                                   0x0,
                                   DATA_SIZE_32);
-
     //
     // Configure CTM_1 to count cpuTimer2ISR execution cycles
     // Configure CTM_1 to be in start-stop mode
@@ -197,26 +173,21 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
     debugSession.memory.write(ERAD_COUNTER_BASE[0] + ERAD_CTM_Regs_Offset.CTM_INPUT_SEL_2,
                                   (0x1),
                                   DATA_SIZE_16);
-
     debugSession.memory.write(ERAD_COUNTER_BASE[0] + ERAD_CTM_Regs_Offset.CTM_CNTL,
                                   0x004,
                                   DATA_SIZE_16);
-
     //
     // Clear CTM_COUNT, CTM_MAX_COUNT, CTM_STATUS sticky bits
     //
     debugSession.memory.write(ERAD_COUNTER_BASE[1] + ERAD_CTM_Regs_Offset.CTM_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.write(ERAD_COUNTER_BASE[1] + ERAD_CTM_Regs_Offset.CTM_MAX_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.write(ERAD_COUNTER_BASE[1] + ERAD_CTM_Regs_Offset.CTM_CLEAR,
                                   0x3,
                                   DATA_SIZE_16);
-
     //
     // Configure CTM_2 to count number of times system event TIMER2_TINT2 occurs
     // Configure CTM_2 to be in rising-edge count mode
@@ -230,7 +201,6 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
     debugSession.memory.write(ERAD_COUNTER_BASE[1] + ERAD_CTM_Regs_Offset.CTM_INPUT_SEL_2,
                                   0x0000,
                                   DATA_SIZE_16);
-
     //
     // Configure CTM_2 to be in rising-edge count mode
     //
@@ -247,15 +217,12 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
     debugSession.memory.write(ERAD_COUNTER_BASE[2] + ERAD_CTM_Regs_Offset.CTM_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.write(ERAD_COUNTER_BASE[2] + ERAD_CTM_Regs_Offset.CTM_MAX_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.write(ERAD_COUNTER_BASE[2] + ERAD_CTM_Regs_Offset.CTM_CLEAR,
                                   0x3,
                                   DATA_SIZE_16);
-
     //
     // Configure CTM_3 to count number of times cputTimer2ISR executes
     // CNT_INP_SEL = 0 ( Use HWBP_1 as count event )
@@ -263,7 +230,6 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
     debugSession.memory.write(ERAD_COUNTER_BASE[2] + ERAD_CTM_Regs_Offset.CTM_INPUT_SEL,
                                   0x0000,
                                   DATA_SIZE_16);
-
     //
     // Configure CTM_3 to be in rising-edge count mode
     //
@@ -274,22 +240,18 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
     debugSession.memory.write(ERAD_COUNTER_BASE[2] + ERAD_CTM_Regs_Offset.CTM_CNTL,
                                   0x0808,
                                   DATA_SIZE_16);
-
     //
     // Clear CTM_COUNT, CTM_MAX_COUNT, CTM_STATUS sticky bits
     //
     debugSession.memory.write(ERAD_COUNTER_BASE[3] + ERAD_CTM_Regs_Offset.CTM_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.write(ERAD_COUNTER_BASE[3] + ERAD_CTM_Regs_Offset.CTM_MAX_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.write(ERAD_COUNTER_BASE[3] + ERAD_CTM_Regs_Offset.CTM_CLEAR,
                                   0x3,
                                   DATA_SIZE_16);
-
     //
     // Configure CTM_4 to grab latency from TIMER2_TINT2 to cpuTimer2ISR
     // execution
@@ -306,7 +268,6 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
     debugSession.memory.write(ERAD_COUNTER_BASE[3] + ERAD_CTM_Regs_Offset.CTM_INPUT_SEL_2,
                                   0x0,
                                   DATA_SIZE_16);
-
     //
     // Configure CTM_4 to be in start-stop mode
     //
@@ -329,57 +290,45 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
     debugSession.memory.write(ERAD_GLOBAL_BASE + ERAD_Global_Regs_Offset.GLBL_ENABLE,
                                   enableCounter,
                                   DATA_SIZE_16);
-
     console.log("\nCounter Started\n");
-
     var coreRan = 0;
-
     while(1)
     {
         var cycleCount =
             debugSession.memory.readOne (ERAD_COUNTER_BASE[0] + ERAD_CTM_Regs_Offset.CTM_COUNT,
                                          DATA_SIZE_32);
-
         var cycleMax =
             debugSession.memory.readOne (ERAD_COUNTER_BASE[0] +
                                          ERAD_CTM_Regs_Offset.CTM_MAX_COUNT,
                                          DATA_SIZE_32);
-
         var intEventCount =
             debugSession.memory.readOne (ERAD_COUNTER_BASE[1] + ERAD_CTM_Regs_Offset.CTM_COUNT,
                                          DATA_SIZE_32);
-
         var isrExecCount =
             debugSession.memory.readOne (ERAD_COUNTER_BASE[2] + ERAD_CTM_Regs_Offset.CTM_COUNT,
                                          DATA_SIZE_32);
-
         var isrDelayCycleMax =
             debugSession.memory.readOne (ERAD_COUNTER_BASE[3] +
                                          ERAD_CTM_Regs_Offset.CTM_MAX_COUNT,
                                          DATA_SIZE_32);
-
         console.log("Current ISR Cycle Count = " + cycleCount.toString() +
               "\t Max ISR Cycle Count = " + cycleMax.toString() +
               "\t Int Occurence Count = " + intEventCount.toString() +
               "\t ISR Execution Count = " + isrExecCount.toString() +
               "\t ISR Delay Cycle Count = " + isrDelayCycleMax.toString());
-
         //
         // Halt script if CPU is halted
         //
         var halted = debugSession.target.isHalted();
-
         if(!halted)
         {
             coreRan = 1;
         }
-
         if(coreRan && halted)
         {
             break;
         }
     }
-
     //
     // Disable  HWBP_1-2 and CTM_1-4
     //
@@ -390,76 +339,60 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
     debugSession.memory.write(ERAD_GLOBAL_BASE + ERAD_Global_Regs_Offset.GLBL_ENABLE,
                                   enableCounter,
                                   DATA_SIZE_16);
-
     //
     // Reset CTM_1-4 values
     //
     debugSession.memory.write(ERAD_COUNTER_BASE[0] + ERAD_CTM_Regs_Offset.CTM_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.write(ERAD_COUNTER_BASE[0] + ERAD_CTM_Regs_Offset.CTM_MAX_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.write(ERAD_COUNTER_BASE[0] + ERAD_CTM_Regs_Offset.CTM_CLEAR,
                                   0x3,
                                   DATA_SIZE_32);
-
     debugSession.memory.write(ERAD_COUNTER_BASE[1] + ERAD_CTM_Regs_Offset.CTM_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.write(ERAD_COUNTER_BASE[1] + ERAD_CTM_Regs_Offset.CTM_MAX_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.write(ERAD_COUNTER_BASE[1] + ERAD_CTM_Regs_Offset.CTM_CLEAR,
                                   0x3,
                                   DATA_SIZE_32);
-
     debugSession.memory.write(ERAD_COUNTER_BASE[2] + ERAD_CTM_Regs_Offset.CTM_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.write(ERAD_COUNTER_BASE[2] + ERAD_CTM_Regs_Offset.CTM_MAX_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.write(ERAD_COUNTER_BASE[2] + ERAD_CTM_Regs_Offset.CTM_CLEAR,
                                   0x3,
                                   DATA_SIZE_32);
-
     debugSession.memory.write(ERAD_COUNTER_BASE[3] + ERAD_CTM_Regs_Offset.CTM_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.write(ERAD_COUNTER_BASE[3] + ERAD_CTM_Regs_Offset.CTM_MAX_COUNT,
                                   0x0,
                                   DATA_SIZE_32);
-
     debugSession.memory.write(ERAD_COUNTER_BASE[3] + ERAD_CTM_Regs_Offset.CTM_CLEAR,
                                   0x3,
                                   DATA_SIZE_32);
-
     //
     // Reset HWBP_1-2
     //
     debugSession.memory.write(ERAD_HWBP_BASE[0] + ERAD_HWBP_Regs_Offset.HWBP_CLEAR,
                                   0x1,
                                   DATA_SIZE_16);
-
     debugSession.memory.write(ERAD_HWBP_BASE[1] + ERAD_HWBP_Regs_Offset.HWBP_CLEAR,
                                   0x1,
                                   DATA_SIZE_16);
-
     console.log("\nCounter Stopped\n");
 }
 else
 {
     console.log("Failed\n");
 }
-
 //
 // End of File
 //

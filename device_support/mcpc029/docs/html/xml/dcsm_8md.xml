@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dcsm_8md" kind="file" language="Markdown">
+    <compoundname>dcsm.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>DCSM<sp/>{#DRIVERS_DCSM_PAGE}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>DCSM<sp/>driver<sp/>provides<sp/>API<sp/>to<sp/>configure<sp/>the<sp/>DCSM<sp/>module.</highlight></codeline>
+<codeline><highlight class="normal">In<sp/>order<sp/>to<sp/>configure<sp/>the<sp/>Dual<sp/>Code<sp/>Security<sp/>Module,<sp/>the<sp/>user<sp/>must<sp/>program<sp/>the<sp/>Linkpointer<sp/>in<sp/>DCSM<sp/>OTP<sp/>as<sp/>well<sp/>as<sp/>the<sp/>security<sp/>configuration<sp/>registers<sp/>of<sp/>the<sp/>Zone<sp/>Select<sp/>Blocks<sp/>in<sp/>DCSM<sp/>OTP.<sp/>It<sp/>prevents<sp/>access<sp/>and<sp/>visibility<sp/>to<sp/>on-chip<sp/>secure<sp/>memories<sp/>(and<sp/>other<sp/>secure<sp/>resources)<sp/>by<sp/>unauthorized<sp/>persons.<sp/>Since<sp/>there<sp/>are<sp/>two<sp/>independent<sp/>zones,<sp/>two<sp/>developers<sp/>can<sp/>program<sp/>proprietary<sp/>code<sp/>on<sp/>the<sp/>same<sp/>device<sp/>while<sp/>protecting<sp/>the<sp/>confidentiality<sp/>of<sp/>their<sp/>code<sp/>from<sp/>both<sp/>each<sp/>other<sp/>and<sp/>potential<sp/>hackers.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Features<sp/>Supported</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Provides<sp/>functions<sp/>which<sp/>secure<sp/>and<sp/>unsecure<sp/>each<sp/>zone<sp/>and<sp/>return<sp/>the<sp/>ownership,<sp/>security<sp/>status,<sp/>EXEONLY<sp/>status<sp/>of<sp/>specific<sp/>RAM<sp/>modules<sp/>or<sp/>Flash<sp/>sectors.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>security<sp/>module<sp/>restricts<sp/>the<sp/>CPU<sp/>access<sp/>to<sp/>on-chip<sp/>secure<sp/>memory<sp/>and<sp/>resources<sp/>without<sp/>interrupting<sp/>or<sp/>stalling<sp/>CPU<sp/>execution</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>security<sp/>of<sp/>each<sp/>zone<sp/>is<sp/>provided<sp/>by<sp/>their<sp/>own<sp/>128-bit<sp/>(four<sp/>32-bit<sp/>words)<sp/>password<sp/>(CSM<sp/>password).<sp/>The<sp/>password<sp/>for<sp/>each<sp/>zone<sp/>is<sp/>stored<sp/>as<sp/>user<sp/>OTP.</highlight></codeline>
+<codeline><highlight class="normal">##<sp/>SysConfig<sp/>Features</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@VAR_SYSCFG_USAGE_NOTE</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>DCSM<sp/>tool<sp/>generates<sp/>dcsm.asm<sp/>(containing<sp/>the<sp/>linkpointer)<sp/>and<sp/>dcsm.cmd</highlight></codeline>
+<codeline><highlight class="normal">(containing<sp/>the<sp/>memory<sp/>addresses<sp/>and<sp/>sections<sp/>that<sp/>references<sp/>the<sp/>contents<sp/>in<sp/></highlight></codeline>
+<codeline><highlight class="normal">dcsm.asm<sp/>file)<sp/>file.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Features<sp/>NOT<sp/>Supported</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">NA</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Example<sp/>Usage</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Include<sp/>the<sp/>below<sp/>file<sp/>to<sp/>access<sp/>the<sp/>APIs</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;dcsm.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>API</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>dcsm_api</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/dcsm.md"/>
+  </compounddef>
+</doxygen>

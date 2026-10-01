@@ -180,6 +180,48 @@ extern "C" {
 #define MCAN_STDFILTEC_RXBUFF                           (7U)
 /**< Store in RX Buffer */
 
+//*****************************************************************************
+//
+// These macro definitions are used to specify Standard Filter Types to
+// set the sft values of the struct MCAN_StdMsgIDFilterElement
+// used as a parameter in the function MCAN_addStdMsgIDFilter()
+//
+//*****************************************************************************
+
+#define MCAN_EXTFILT_RANGE                             (0U)
+/**< Range Filter from EFID1 to EFID2 */
+#define MCAN_EXTFILT_DUAL                              (1U)
+/**< Dual ID Filter for EFID1 or EFID2 */
+#define MCAN_EXTFILT_CLASSIC                           (2U)
+/**< Classic Filter: EFID1 = filter, EFID2 = mask */
+#define MCAN_EXTFILT_RANGE_NO_XIDAM                    (3U)
+/**< Range Filter with no XIDAM Mask */
+
+//*****************************************************************************
+//
+// These macro definitions are used to specify Standard Filter Element
+// Configurations to set the sfec values of the struct MCAN_StdMsgIDFilterElement
+// used as a parameter in the function MCAN_addStdMsgIDFilter()
+//
+//*****************************************************************************
+
+#define MCAN_EXTFILTEC_DISABLE                          (0U)
+/**< Filter Element Disabled */
+#define MCAN_EXTFILTEC_FIFO0                            (1U)
+/**< Store in RX FIFO 0 if filter matches */
+#define MCAN_EXTFILTEC_FIFO1                            (2U)
+/**< Store in RX FIFO 1 if filter matches */
+#define MCAN_EXTFILTEC_REJECT                           (3U)
+/**< Reject ID if filter matches */
+#define MCAN_EXTFILTEC_PRI                              (4U)
+/**< Set priority if filter matches */
+#define MCAN_EXTFILTEC_PRI_FIFO0                        (5U)
+/**< Set priority and store in RX FIFO 0 if filter matches */
+#define MCAN_EXTFILTEC_PRI_FIFO1                        (6U)
+/**< Set priority and store in RX FIFO 1 if filter matches */
+#define MCAN_EXTFILTEC_RXBUFF                           (7U)
+/**< Store in RX Buffer */
+
 /* ========================================================================== */
 /*                         Structures and Enums                               */
 /* ========================================================================== */

@@ -16,7 +16,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -49,19 +49,16 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Interrupt Handler
 //
 __interrupt void gpioInterruptHandler(void);
-
 //
 // Main
 //
@@ -71,53 +68,41 @@ void main(void)
     // Initializes system control, device clock, and peripherals
     //
     Device_init();
-
     //
     // Initializes PIE and clear PIE registers. Disables CPU interrupts.
     // and clear all CPU interrupt flags.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Board Initialization
     //
     Board_init();
-
     GPIO_setInterruptType(GPIO_INT_XINT1, GPIO_INT_TYPE_FALLING_EDGE);
     GPIO_setInterruptPin(myGPIOInputInterrupt0, GPIO_INT_XINT1);
     GPIO_enableInterrupt(GPIO_INT_XINT1);
-
     Interrupt_register(INT_XINT1, &gpioInterruptHandler);
     Interrupt_enable(INT_XINT1);
-
     //
     // Enables CPU interrupts
     //
     Interrupt_enableGlobal();
-
     //
     // Loop.
     //
     for(;;)
     {
-
     }
 }
-
 __interrupt void gpioInterruptHandler(void)
 {
     GPIO_togglePin(myGPIOOutput0);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP1);
 }
-
-
 //
 // End of File
 //
-

@@ -23,7 +23,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -56,51 +56,42 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include <stdint.h>
 #include <stdbool.h>
-
 #include "sysctl.h"
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Globals
 //
 volatile uint32_t nmiflagstatus = 0, nmisdflagstatus = 0;
 volatile uint16_t nmi_isr_called = 0, nmi_isr_count = 0;
-
 //
 // Function Prototypes
 //
 interrupt void nmi_isr(void);
-
 void main(void)
 {
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize Settings from SysConfig
     //
     Board_init();
-
     //
     // Boot CPU2 core
     //
     Device_bootCPU2(BOOT_MODE_CPU2);
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR)
@@ -108,26 +99,22 @@ void main(void)
     Interrupt_initVectorTable();
     SysCtl_clearAllNMIFlags();
     Interrupt_register(INT_NMI, &nmi_isr);
-
     //
     // Enabling the NMI global interrupt
     //
     SysCtl_enableNMIGlobalInterrupt();
     Interrupt_enable(INT_NMI);
-
     //
     // Enable Global Interrupt (INTM) and Real Time interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     while(1)
     {
         //
         // Wait for the NMI ISR
         //
         while(nmi_isr_called != 1);
-
         //
         // Check the NMI flag
         //
@@ -138,30 +125,22 @@ void main(void)
             //
             ESTOP0;
         }
-
         nmi_isr_called = 0;
         nmi_isr_count++;
     }
 }
-
-
-
-
 interrupt void nmi_isr(void)
 {
     nmi_isr_called = 1;
-
     //
     // Read the NMI flags and NMI shadow flags
     //
     nmiflagstatus = SysCtl_getNMIFlagStatus();
     nmisdflagstatus = SysCtl_getNMIShadowFlagStatus();
-
     //
     // Clear all the NMI flags
     //
     SysCtl_clearAllNMIFlags();
-
     //
     // If the NMI is caused due to CPU2 watchdog reset, boot the CPU2 core
     //

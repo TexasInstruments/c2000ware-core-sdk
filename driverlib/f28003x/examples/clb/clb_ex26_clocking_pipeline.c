@@ -16,7 +16,7 @@
 //!
 //
 //#############################################################################
-// $TI Release: F28003x Support Library v26.01.00.00 $
+// $TI Release: F28003x Support Library v26.02.00.00 $
 // 
 // $Copyright:
 // Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
@@ -50,8 +50,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
 //
 // Included Files
 //
@@ -59,7 +57,6 @@
 #include "device.h"
 #include "board.h"
 #include "clb_config.h"
-
 //
 // Main
 //
@@ -69,21 +66,15 @@ void main(void)
     // The counter value for a CLB without PIPELINE Mode Enabled
     //
     uint32_t counterValueWithoutPipelineMode = 0;
-
     //
     // The counter value for a CLB with PIPELINE Mode Enabled
     //
     uint32_t counterValueWitPipelineMode = 0;
-
     Device_init();
     Device_initGPIO();
-
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
-
     Board_init();
-
     //
     // The tile configuration is:
     // TILE1:
@@ -96,7 +87,6 @@ void main(void)
     // With PIPELINE enabled, counter will use previous counter value
     //
     initTILE1(myCLBForTILE1_BASE);
-
     //
     // The tile configuration is:
     // TILE2:
@@ -105,46 +95,35 @@ void main(void)
     // With PIPELINE enabled, counter will use current counter value
     //
     initTILE2(myCLBForTILE2_BASE);
-
     CLB_enableCLB(myCLBForTILE1_BASE);
     CLB_enableCLB(myCLBForTILE2_BASE);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     DEVICE_DELAY_US(1000000);
-
     counterValueWithoutPipelineMode = CLB_getRegister(myCLBForTILE2_BASE, CLB_REG_CTR_C2);
     counterValueWitPipelineMode = CLB_getRegister(myCLBForTILE1_BASE, CLB_REG_CTR_C2);
-
     if (counterValueWithoutPipelineMode != counterValueWitPipelineMode + 1)
     {
         ESTOP0;
-
         //
         // Error with pipeline, the value should be 1 less
         //
         while(1);
     }
-
     //
     // Success
     //
     ESTOP0;
-
     //
     // Keep running and view CLB OUTPUT XBAR GPIO
     //
     while(1)
     {
-
     }
 }
-
-
 //
 // End of File
 //

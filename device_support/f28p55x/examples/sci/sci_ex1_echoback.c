@@ -38,7 +38,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -71,23 +71,19 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Defines
 //
 // Define AUTOBAUD to use the autobaud lock feature
 //#define AUTOBAUD
-
 //
 // Globals
 //
 uint16_t loopCounter = 0;
-
 //
 // Function Prototypes
 //
@@ -95,7 +91,6 @@ void initSCIAEchoback(void);
 void transmitSCIAChar(uint16_t a);
 void transmitSCIAMessage(unsigned char * msg);
 void initSCIAFIFO(void);
-
 //
 // Main
 //
@@ -103,17 +98,14 @@ void main(void)
 {
     uint16_t ReceivedChar;
     unsigned char *msg;
-
     //
     // Initialize device clock and peripherals
     //
     InitSysCtrl();
-
     //
     // Initialize GPIO
     //
     InitGpio();
-
     //
     // For this example, only init the pins for the SCI-A port.
     // GPIO_SetupPinMux() - Sets the GPxMUX1/2 and GPyMUX1/2 register bits
@@ -123,71 +115,56 @@ void main(void)
     GPIO_SetupPinOptions(28, GPIO_INPUT, GPIO_PUSHPULL);
     GPIO_SetupPinMux(29, GPIO_MUX_CPU1, 1);
     GPIO_SetupPinOptions(29, GPIO_OUTPUT, GPIO_ASYNC);
-
     //
     // Disable CPU interrupts
     //
     DINT;
-
     //
     // Initialize the PIE control registers to their default state.
     // The default state is all PIE interrupts disabled and flags
     // are cleared.
     //
     InitPieCtrl();
-
     //
     // Disable CPU interrupts and clear all CPU interrupt flags
     //
     IER = 0x0000;
     IFR = 0x0000;
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR)
     //
     InitPieVectTable();
-
     loopCounter = 0;
-
     initSCIAFIFO();                         // Initialize the SCI FIFO
     initSCIAEchoback();                     // Initialize SCI for echoback
-
     msg = "\r\n\n\nHello World!\0";
     transmitSCIAMessage(msg);
-
     msg = "\r\nYou will enter a character, and the DSP will echo it back! \n\0";
     transmitSCIAMessage(msg);
-
     for(;;)
     {
         msg = "\r\nEnter a character: \0";
         transmitSCIAMessage(msg);
-
         //
         // Wait for character
         //
         while(SciaRegs.SCIFFRX.bit.RXFFST == 0)
         {
-
         } // wait for empty state
-
         //
         // Get character
         //
         ReceivedChar = SciaRegs.SCIRXBUF.all;
-
         //
         // Echo character back
         //
         msg = "  You sent: \0";
         transmitSCIAMessage(msg);
         transmitSCIAChar(ReceivedChar);
-
         loopCounter++;
     }
 }
-
 //
 //  initSCIAEchoback - Initialize SCI-A for echoback
 //
@@ -205,17 +182,14 @@ void initSCIAEchoback(void)
     SciaRegs.SCICTL2.all = 0x0003;
     SciaRegs.SCICTL2.bit.TXINTENA = 1;
     SciaRegs.SCICTL2.bit.RXBKINTENA = 1;
-
     //
     // SCIA at 9600 baud
     // @LSPCLK = 37.5 MHz (150 MHz SYSCLK) HBAUD = 0x01 and LBAUD = 0xE7.
     //
     SciaRegs.SCIHBAUD.all = 0x0001;
     SciaRegs.SCILBAUD.all = 0x00E7;
-
     SciaRegs.SCICTL1.all = 0x0023;          // Relinquish SCI from Reset
 }
-
 //
 // transmitSCIAChar - Transmit a character from the SCI
 //
@@ -223,11 +197,9 @@ void transmitSCIAChar(uint16_t a)
 {
     while (SciaRegs.SCIFFTX.bit.TXFFST != 0)
     {
-
     }
     SciaRegs.SCITXBUF.all = a;
 }
-
 //
 // transmitSCIAMessage - Transmit message via SCIA
 //
@@ -241,7 +213,6 @@ void transmitSCIAMessage(unsigned char * msg)
         i++;
     }
 }
-
 //
 // initSCIAFIFO - Initialize the SCI FIFO
 //
@@ -251,7 +222,6 @@ void initSCIAFIFO(void)
     SciaRegs.SCIFFRX.all = 0x2044;
     SciaRegs.SCIFFCT.all = 0x0;
 }
-
 //
 // End of file
 //

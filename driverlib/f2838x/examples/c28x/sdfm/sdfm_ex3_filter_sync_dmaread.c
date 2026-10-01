@@ -53,7 +53,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -86,14 +86,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include <stdio.h>
-
 //
 // Defines
 //
@@ -101,7 +99,6 @@
 #define SDFM_PIN_MUX_OPTION1                      1
 #define SDFM_PIN_MUX_OPTION2                      2
 #define SDFM_PIN_MUX_OPTION3                      3
-
 //
 // Globals
 //
@@ -114,16 +111,13 @@ int16_t  filter4Result[MAX_SAMPLES];
 #pragma DATA_SECTION(filter2Result, "Filter2_RegsFile");
 #pragma DATA_SECTION(filter3Result, "Filter3_RegsFile");
 #pragma DATA_SECTION(filter4Result, "Filter4_RegsFile");
-
 // Pointers for DMA source & destination addresses
 int16_t *dma1SrcAddr, *dma1DestAddr;
 int16_t *dma2SrcAddr, *dma2DestAddr;
 int16_t *dma3SrcAddr, *dma3DestAddr;
 int16_t *dma4SrcAddr, *dma4DestAddr;
-
 // Variable to update DMA transfer status
 volatile uint16_t dmaDone = 0;
-
 //
 // Function Prototypes
 //
@@ -137,7 +131,6 @@ void configureSDFMPins(uint16_t sdfmPinOption);
 void setPinConfig1(void);
 void setPinConfig2(void);
 void setPinConfig3(void);
-
 //
 // Main
 //
@@ -145,28 +138,23 @@ void main(void)
 {
     uint16_t  pinMuxOption;
     uint16_t  hlt, llt;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Setup GPIO by disabling pin locks and enabling pullups
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Interrupts that are used in this example are re-mapped to
     // ISR functions found within this file.
@@ -176,7 +164,6 @@ void main(void)
     Interrupt_register(INT_DMA_CH2, dmaCh2ISR);
     Interrupt_register(INT_DMA_CH3, dmaCh3ISR);
     Interrupt_register(INT_DMA_CH4, dmaCh4ISR);
-
     //
     // Enable DMA INTn in the PIE: Group 7 __interrupt 1-6
     //
@@ -184,29 +171,23 @@ void main(void)
     Interrupt_enable(INT_DMA_CH2);
     Interrupt_enable(INT_DMA_CH3);
     Interrupt_enable(INT_DMA_CH4);
-
     //
     // Configure DMA for the transfer
     //
     initializeDMA();
     configureDMAChannels();
-
     //
     // Configure SDFM type to 0 and see if data ack generated SDINT.
     //
     SysCtl_configureType(SYSCTL_SDFMTYPE, 0, 1);
-
 #ifdef CPU1
     pinMuxOption = SDFM_PIN_MUX_OPTION1;
-
     //
     // Configure GPIO pins as SDFM pins
     //
     configureSDFMPins(pinMuxOption);
 #endif
-
     sdfmInstance = SDFM1_BASE;
-
     //
     // Input Control Unit
     //
@@ -214,22 +195,17 @@ void main(void)
     //
     SDFM_setupModulatorClock(sdfmInstance, SDFM_FILTER_1,
                              SDFM_MODULATOR_CLK_EQUAL_DATA_RATE);
-
     SDFM_setupModulatorClock(sdfmInstance, SDFM_FILTER_2,
                              SDFM_MODULATOR_CLK_EQUAL_DATA_RATE);
-
     SDFM_setupModulatorClock(sdfmInstance, SDFM_FILTER_3,
                              SDFM_MODULATOR_CLK_EQUAL_DATA_RATE);
-
     SDFM_setupModulatorClock(sdfmInstance, SDFM_FILTER_4,
                              SDFM_MODULATOR_CLK_EQUAL_DATA_RATE);
-
     //
     // Comparator Module
     //
     hlt = 0x7FFF;  // Over value threshold settings
     llt = 0x0000;  // Under value threshold settings
-
     //
     // Configure Comparator module's comparator filter type and comparator's OSR
     // value, higher threshold, lower threshold
@@ -246,7 +222,6 @@ void main(void)
     SDFM_configComparator(sdfmInstance,
         (SDFM_FILTER_4 | SDFM_FILTER_SINC_3 | SDFM_SET_OSR(32)),
         (SDFM_THRESHOLD(hlt,llt)), 0);
-
     //
     // Data filter Module
     //
@@ -256,26 +231,21 @@ void main(void)
     SDFM_configDataFilter(sdfmInstance, (SDFM_FILTER_1 | SDFM_FILTER_SINC_3 |
            SDFM_SET_OSR(256)), (SDFM_DATA_FORMAT_16_BIT | SDFM_FILTER_ENABLE |
            SDFM_SHIFT_VALUE(0x000A)));
-
     SDFM_configDataFilter(sdfmInstance, (SDFM_FILTER_2 | SDFM_FILTER_SINC_3 |
            SDFM_SET_OSR(256)), (SDFM_DATA_FORMAT_16_BIT | SDFM_FILTER_ENABLE |
            SDFM_SHIFT_VALUE(0x000A)));
-
     SDFM_configDataFilter(sdfmInstance, (SDFM_FILTER_3 | SDFM_FILTER_SINC_3 |
            SDFM_SET_OSR(256)), (SDFM_DATA_FORMAT_16_BIT | SDFM_FILTER_ENABLE |
            SDFM_SHIFT_VALUE(0x000A)));
-
     SDFM_configDataFilter(sdfmInstance, (SDFM_FILTER_4 | SDFM_FILTER_SINC_3 |
            SDFM_SET_OSR(256)), (SDFM_DATA_FORMAT_16_BIT | SDFM_FILTER_ENABLE |
            SDFM_SHIFT_VALUE(0x000A)));
-
     //
     // Enable Master filter bit: Unless this bit is set none of the filter
     // modules can be enabled. All the filter modules are synchronized when
     // master filter bit is enabled after individual filter modules are enabled.
     //
     SDFM_enableMainFilter(sdfmInstance);
-
     //
     // PWM11.CMPC, PWM11.CMPD signals can synchronize SDFM1 filters and
     // PWM12.CMPC and PWM12.CMPD signals can synchronize SDFM2 filters. This
@@ -285,7 +255,6 @@ void main(void)
     SDFM_disableExternalReset(sdfmInstance, SDFM_FILTER_2);
     SDFM_disableExternalReset(sdfmInstance, SDFM_FILTER_3);
     SDFM_disableExternalReset(sdfmInstance, SDFM_FILTER_4);
-
     //
     // Enable interrupts
     //
@@ -298,57 +267,45 @@ void main(void)
     SDFM_enableInterrupt(sdfmInstance, SDFM_FILTER_1,
             (SDFM_MODULATOR_FAILURE_INTERRUPT |
              SDFM_DATA_FILTER_ACKNOWLEDGE_INTERRUPT));
-
     SDFM_enableInterrupt(sdfmInstance, SDFM_FILTER_2,
             (SDFM_MODULATOR_FAILURE_INTERRUPT |
              SDFM_DATA_FILTER_ACKNOWLEDGE_INTERRUPT));
-
     SDFM_enableInterrupt(sdfmInstance, SDFM_FILTER_3,
             (SDFM_MODULATOR_FAILURE_INTERRUPT |
              SDFM_DATA_FILTER_ACKNOWLEDGE_INTERRUPT));
-
     SDFM_enableInterrupt(sdfmInstance, SDFM_FILTER_4,
             (SDFM_MODULATOR_FAILURE_INTERRUPT |
              SDFM_DATA_FILTER_ACKNOWLEDGE_INTERRUPT));
-
     SDFM_disableInterrupt(sdfmInstance, SDFM_FILTER_1,
             (SDFM_HIGH_LEVEL_THRESHOLD_INTERRUPT |
              SDFM_LOW_LEVEL_THRESHOLD_INTERRUPT));
-
     SDFM_disableInterrupt(sdfmInstance, SDFM_FILTER_2,
             (SDFM_HIGH_LEVEL_THRESHOLD_INTERRUPT |
              SDFM_LOW_LEVEL_THRESHOLD_INTERRUPT));
-
     SDFM_disableInterrupt(sdfmInstance, SDFM_FILTER_3,
             (SDFM_HIGH_LEVEL_THRESHOLD_INTERRUPT |
              SDFM_LOW_LEVEL_THRESHOLD_INTERRUPT));
-
     SDFM_disableInterrupt(sdfmInstance, SDFM_FILTER_4,
             (SDFM_HIGH_LEVEL_THRESHOLD_INTERRUPT |
              SDFM_LOW_LEVEL_THRESHOLD_INTERRUPT));
-
     //
     // Enable master interrupt so that any of the filter interrupts can trigger
     // by SDFM interrupt to CPU
     //
     SDFM_enableMainInterrupt(sdfmInstance);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     while(1);
 }
-
 //
 // configureSDFMPins - Configure SDFM GPIOs
 //
 void configureSDFMPins(uint16_t sdfmPinOption)
 {
     uint16_t pin;
-
     switch (sdfmPinOption)
     {
         case SDFM_PIN_MUX_OPTION1:
@@ -361,7 +318,6 @@ void configureSDFMPins(uint16_t sdfmPinOption)
             }
             setPinConfig1();
             break;
-
         case SDFM_PIN_MUX_OPTION2:
             for(pin = 48; pin <= 63; pin++)
             {
@@ -372,7 +328,6 @@ void configureSDFMPins(uint16_t sdfmPinOption)
             }
             setPinConfig2();
             break;
-
         case SDFM_PIN_MUX_OPTION3:
             for(pin = 122; pin <= 137; pin++)
             {
@@ -385,7 +340,6 @@ void configureSDFMPins(uint16_t sdfmPinOption)
             break;
     }
 }
-
 //
 // setPinConfig1 - sets the pin configuration for pins 16-21
 //
@@ -408,7 +362,6 @@ void setPinConfig1()
     GPIO_setPinConfig(GPIO_30_SD2_D4);
     GPIO_setPinConfig(GPIO_31_SD2_C4);
 }
-
 //
 // setPinConfig2 - sets the pin configuration for
 // pins 48-63
@@ -432,7 +385,6 @@ void setPinConfig2()
     GPIO_setPinConfig(GPIO_62_SD2_D4);
     GPIO_setPinConfig(GPIO_63_SD2_C4);
 }
-
 //
 // setPinConfig3 - sets the pin configuration for pins 122-137
 //
@@ -455,7 +407,6 @@ void setPinConfig3()
     GPIO_setPinConfig(GPIO_136_SD2_D4);
     GPIO_setPinConfig(GPIO_137_SD2_C4);
 }
-
 //
 // dmaCh1ISR - DMA Channel 1 ISR
 //
@@ -465,7 +416,6 @@ __interrupt void dmaCh1ISR(void)
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
     ESTOP0;
 }
-
 //
 // dmaCh2ISR - DMA Channel 2 ISR
 //
@@ -475,7 +425,6 @@ __interrupt void dmaCh2ISR(void)
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
     ESTOP0;
 }
-
 //
 // dmaCh3ISR - DMA Channel 3 ISR
 //
@@ -485,7 +434,6 @@ __interrupt void dmaCh3ISR(void)
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
     ESTOP0;
 }
-
 //
 // dmaCh4ISR - DMA Channel 4 ISR
 //
@@ -495,7 +443,6 @@ __interrupt void dmaCh4ISR(void)
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
     ESTOP0;
 }
-
 //
 // initializeDMA - Initialize DMA through hard reset
 //
@@ -505,13 +452,11 @@ void initializeDMA(void)
     // Perform a hard reset on DMA
     //
     DMA_initController();
-
     //
     // Allow DMA to run free on emulation suspend
     //
     DMA_setEmulationMode(DMA_EMULATION_FREE_RUN);
 }
-
 //
 // configureDMAChannels - Configure DMA channels 1,2,3, and 4
 //
@@ -528,18 +473,15 @@ void configureDMAChannels(void)
     dma3DestAddr = &filter3Result[0];
     dma4SrcAddr = (int16_t *)(0x5E47);
     dma4DestAddr = &filter4Result[0];
-
     DMA_configAddresses(DMA_CH1_BASE, dma1DestAddr, dma1SrcAddr);
     DMA_configAddresses(DMA_CH2_BASE, dma2DestAddr, dma2SrcAddr);
     DMA_configAddresses(DMA_CH3_BASE, dma3DestAddr, dma3SrcAddr);
     DMA_configAddresses(DMA_CH4_BASE, dma4DestAddr, dma4SrcAddr);
-
     //
     // Set up to use 16-bit data size
     // Pointers are based on 16-bit words
     // Increment by 1 (16 16-bit words)
     //
-
     //
     // BURST size = 1 | Source step size = 0 | Dest step size += 1
     //
@@ -547,7 +489,6 @@ void configureDMAChannels(void)
     DMA_configBurst(DMA_CH2_BASE, 1, 0, 1);
     DMA_configBurst(DMA_CH3_BASE, 1, 0, 1);
     DMA_configBurst(DMA_CH4_BASE, 1, 0, 1);
-
     //
     // Transfer size = 0x400 | Source step size = 0 | Dest step size += 1
     //
@@ -555,7 +496,6 @@ void configureDMAChannels(void)
     DMA_configTransfer(DMA_CH2_BASE, 0x400, 0, 1);
     DMA_configTransfer(DMA_CH3_BASE, 0x400, 0, 1);
     DMA_configTransfer(DMA_CH4_BASE, 0x400, 0, 1);
-
     //
     // Configure wrap for DMA channels 1-4
     //
@@ -563,51 +503,41 @@ void configureDMAChannels(void)
     DMA_configWrap(DMA_CH2_BASE, 0xFFFF, 0, 0xFFFF, 0);
     DMA_configWrap(DMA_CH3_BASE, 0xFFFF, 0, 0xFFFF, 0);
     DMA_configWrap(DMA_CH4_BASE, 0xFFFF, 0, 0xFFFF, 0);
-
     //
     // Configure mode for DMA channels 1-4
     //
-
     // DMA channel 1
     DMA_configMode(DMA_CH1_BASE, DMA_TRIGGER_SDFM1FLT1,
                (DMA_CFG_ONESHOT_DISABLE | DMA_CFG_CONTINUOUS_DISABLE |
                 DMA_CFG_SIZE_16BIT));
-
     DMA_enableTrigger(DMA_CH1_BASE);
     DMA_disableOverrunInterrupt(DMA_CH1_BASE);
     DMA_setInterruptMode(DMA_CH1_BASE, DMA_INT_AT_END);
     DMA_enableInterrupt(DMA_CH1_BASE);
-
     // DMA channel 2
     DMA_configMode(DMA_CH2_BASE, DMA_TRIGGER_SDFM1FLT1,
                (DMA_CFG_ONESHOT_DISABLE | DMA_CFG_CONTINUOUS_DISABLE |
                 DMA_CFG_SIZE_16BIT));
-
     DMA_enableTrigger(DMA_CH2_BASE);
     DMA_disableOverrunInterrupt(DMA_CH2_BASE);
     DMA_setInterruptMode(DMA_CH2_BASE, DMA_INT_AT_END);
     DMA_enableInterrupt(DMA_CH2_BASE);
-
     // DMA channel 3
     DMA_configMode(DMA_CH3_BASE, DMA_TRIGGER_SDFM1FLT1,
                (DMA_CFG_ONESHOT_DISABLE | DMA_CFG_CONTINUOUS_DISABLE |
                 DMA_CFG_SIZE_16BIT));
-
     DMA_enableTrigger(DMA_CH3_BASE);
     DMA_disableOverrunInterrupt(DMA_CH3_BASE);
     DMA_setInterruptMode(DMA_CH3_BASE, DMA_INT_AT_END);
     DMA_enableInterrupt(DMA_CH3_BASE);
-
     // DMA channel 4
     DMA_configMode(DMA_CH4_BASE, DMA_TRIGGER_SDFM1FLT1,
                (DMA_CFG_ONESHOT_DISABLE | DMA_CFG_CONTINUOUS_DISABLE |
                 DMA_CFG_SIZE_16BIT));
-
     DMA_enableTrigger(DMA_CH4_BASE);
     DMA_disableOverrunInterrupt(DMA_CH4_BASE);
     DMA_setInterruptMode(DMA_CH4_BASE, DMA_INT_AT_END);
     DMA_enableInterrupt(DMA_CH4_BASE);
-
     //
     // Start DMA channels
     //
@@ -616,7 +546,6 @@ void configureDMAChannels(void)
     DMA_startChannel(DMA_CH3_BASE);
     DMA_startChannel(DMA_CH4_BASE);
 }
-
 //
 // End of file
 //

@@ -4,7 +4,9 @@ MEMORY
    BEGIN            : origin = 0x000000, length = 0x000002
    BOOT_RSVD        : origin = 0x000002, length = 0x000126     /* Part of M0, BOOT rom will use this for stack */
    RAMM0            : origin = 0x000128, length = 0x0002D8
-   RAMM1            : origin = 0x000400, length = 0x000400
+   RAMM1            : origin = 0x000400, length = 0x0003F8
+// RAMM1_RSVD       : origin = 0x000007F8, length = 0x00000008 /* Reserve and do not use for code as per the errata advisory "Memory: Prefetching Beyond Valid Memory" */
+
    
    RAMLS0           : origin = 0x008000, length = 0x000800
    RAMLS1           : origin = 0x008800, length = 0x000800
@@ -67,7 +69,7 @@ SECTIONS
    ramgs1 : > RAMGS1
    ramgs2 : > RAMGS2
 
-    .TI.ramfunc : {} > RAMM1
+    .TI.ramfunc : {} >> RAMM0 | RAMM1
 
    // CLA Sections
    /* CLA specific sections */

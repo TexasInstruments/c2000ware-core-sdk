@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -41,13 +41,9 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
-
 #ifndef C28X_CORE_REGISTERS_H
 #define C28X_CORE_REGISTERS_H
-
 #include <stdint.h>
-
 //
 // Refer to the .asm file for comments
 //
@@ -57,11 +53,7 @@ uint32_t __get_PC(void);
 uint32_t __get_Aux(uint16_t auxNum);
 uint16_t __get_Status0(void);
 uint16_t __get_Status1(void);
-
 #endif  // end of C28X_CORE_REGISTERS_H definition
-
 //
 // End of file.
 //
-
-

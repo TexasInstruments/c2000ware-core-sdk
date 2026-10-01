@@ -52,7 +52,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -85,14 +85,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include <sdfm_ex1_filter_cla_sync_shared_cpu2.h>
 #include "f2838x_sdfm_drivers.h"
 #include "f2838x_struct.h"
-
 //
 // Macro definitions
 //
@@ -101,38 +99,32 @@
 #define SDFM_PIN_MUX_OPTION2      2
 #define SDFM_PIN_MUX_OPTION3      3
 #define WAITSTEP                  asm(" RPT #255 || NOP")
-
 //
 // Global variables
 //
 Uint16 gPeripheralNumber;
-
 //
 // Function prototypes
 //
 void Cla_initMemoryMap(void);
 void CLA_initCpu2Cla(void);
-
 //
 // Main
 //
 int main(void)
 {
     Uint16  HLT, LLT;
-
     //
     // Initialize System Control:
     // PLL, WatchDog, enable Peripheral Clocks
     // This example function is found in the f2838x_sysctrl.c file.
     //
     InitSysCtrl();
-
     //
     // Clear all __interrupts and initialize PIE vector table:
     // Disable CPU __interrupts
     //
     DINT;
-
     //
     // Initialize PIE control registers to their default state.
     // The default state is all PIE __interrupts disabled and flags
@@ -140,13 +132,11 @@ int main(void)
     // This function is found in the f2838x_piectrl.c file.
     //
     InitPieCtrl();
-
     //
     // Disable CPU __interrupts and clear all CPU __interrupt flags:
     //
     IER = 0x0000;
     IFR = 0x0000;
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
@@ -156,55 +146,43 @@ int main(void)
     // This function is found in f2838x_sysctrl.c.
     //
     InitPieVectTable();
-
     //
     // Enable CPU INT11 which is connected to CLA
     //
     IER |= M_INT11;
-
     EINT;
-
     //
     // Configure the CLA memory spaces
     //
     Cla_initMemoryMap();
-
     //
     // Configure the CLA task vectors for CPU2
     //
     CLA_initCpu2Cla();
-
     Cla1ForceTask8andWait();
     WAITSTEP;
-
     EALLOW;
-
 //    //
 //    // Trigger Source for TASK1 of CLA1 = SDFM1. Uncomment if SDFM1 is
 //    // connected to CPU2.
 //    //
 //    DmaClaSrcSelRegs.CLA1TASKSRCSEL1.bit.TASK1=CLA_TRIG_SD1INT;
-
     //
     // Trigger Source for TASK2 of CLA1 = SDFM2
     //
     DmaClaSrcSelRegs.CLA1TASKSRCSEL1.bit.TASK2=CLA_TRIG_SD2INT;
-
     //
     // Lock CLA1TASKSRCSEL1 register
     //
     DmaClaSrcSelRegs.CLA1TASKSRCSELLOCK.bit.CLA1TASKSRCSEL1=1;
     EDIS;
-
     //
     // Select SDFM2
     //
     gPeripheralNumber = SDFM2;
-
     //
     // Input Control Module
     //
-
     //
     //Configure Input Control Mode: Modulator Clock rate = Modulator data rate
     //
@@ -212,13 +190,11 @@ int main(void)
     Sdfm_configureInputCtrl(gPeripheralNumber, FILTER2, MODE_0);
     Sdfm_configureInputCtrl(gPeripheralNumber, FILTER3, MODE_0);
     Sdfm_configureInputCtrl(gPeripheralNumber, FILTER4, MODE_0);
-
     //
     // Comparator Module
     //
     HLT = 0x7FFF;    //Over value threshold settings
     LLT = 0x0000;    //Under value threshold settings
-
     //
     // Configure Comparator module's comparator filter type and comparator's OSR
     // value, higher threshold, lower threshold
@@ -231,11 +207,9 @@ int main(void)
                              HLT, LLT);
     Sdfm_configureComparator(gPeripheralNumber, FILTER4, SINC3, OSR_32,
                              HLT, LLT);
-
     //
     // Data filter Module
     //
-
     //
     // Configure Data filter modules filter type, OSR value and
     // enable / disable data filter
@@ -248,7 +222,6 @@ int main(void)
                               OSR_256, DATA_16_BIT, SHIFT_10_BITS);
     Sdfm_configureData_filter(gPeripheralNumber, FILTER4, FILTER_ENABLE, SINC3,
                               OSR_256, DATA_16_BIT, SHIFT_10_BITS);
-
     //
     // Enable Master filter bit: Unless this bit is set none of the filter modules
     // can be enabled.
@@ -256,7 +229,6 @@ int main(void)
     // after individual filter modules are enabled.
     //
     Sdfm_enableMFE(gPeripheralNumber);
-
     //
     // PWM11.CMPC, PWM11.CMPD signals can synchronize SDFM1 filters and
     // PWM12.CMPC and PWM12.CMPD signals can synchronize SDFM2 filters. This
@@ -266,11 +238,9 @@ int main(void)
                                 FILTER_2_EXT_RESET_DISABLE,
                                 FILTER_3_EXT_RESET_DISABLE,
                                 FILTER_4_EXT_RESET_DISABLE);
-
     //
     // Enable interrupts
     //
-
     //
     // Following SDFM interrupts can be enabled / disabled using this function.
     //  Enable / disable comparator high threshold
@@ -286,38 +256,32 @@ int main(void)
                             IEL_DISABLE, MFIE_ENABLE, AE_ENABLE);
     Sdfm_configureInterrupt(gPeripheralNumber, FILTER4, IEH_DISABLE,
                             IEL_DISABLE, MFIE_ENABLE, AE_ENABLE);
-
     //
     // Enable master interrupt so that any of the filter interrupts can trigger
     // SDFM interrupt to CPU
     //
     Sdfm_enableMIE(gPeripheralNumber);
-
     //
     // Wait for an interrupt
     //
     while(1);
 }
-
 //
 // Cla_initMemoryMap - Initialize CLA memory
 //
 void Cla_initMemoryMap(void)
 {
     EALLOW;
-
     //
     // Initialize and wait for CLA1ToCPUMsgRAM
     //
     MemCfgRegs.MSGxINIT.bit.INIT_CLA1TOCPU = 1;
     while(MemCfgRegs.MSGxINITDONE.bit.INITDONE_CLA1TOCPU != 1){};
-
     //
     // Initialize and wait for CPUToCLA1MsgRAM
     //
     MemCfgRegs.MSGxINIT.bit.INIT_CPUTOCLA1 = 1;
     while(MemCfgRegs.MSGxINITDONE.bit.INITDONE_CPUTOCLA1 != 1){};
-
     //
     // Copy the program and constants from FLASH to RAM before configuring
     // the CLA
@@ -328,7 +292,6 @@ void Cla_initMemoryMap(void)
     memcpy((uint32_t *)&Cla1ConstRunStart, (uint32_t *)&Cla1ConstLoadStart,
         (uint32_t)&Cla1ConstLoadSize );
 #endif //defined(_FLASH)
-
     //
     // Select LS0 and LS1 RAM to be data RAM for the CLA and LS5 to be
     // programming space for the CLA as per linker cmd file used in this
@@ -338,15 +301,12 @@ void Cla_initMemoryMap(void)
     MemCfgRegs.LSxMSEL.bit.MSEL_LS0 = 1; //LS0RAM is shared between CPU and CLA
     MemCfgRegs.LSxCLAPGM.bit.CLAPGM_LS0 = 0; // LS0RAM is configured as
                                              // data memory
-
     MemCfgRegs.LSxMSEL.bit.MSEL_LS1 = 1; //LS1RAM is shared between CPU and CLA
     MemCfgRegs.LSxCLAPGM.bit.CLAPGM_LS1 = 0; // LS1RAM is configured as
                                              // data memory
-
     MemCfgRegs.LSxMSEL.bit.MSEL_LS5 = 1; //LS5RAM is shared between CPU and CLA
     MemCfgRegs.LSxCLAPGM.bit.CLAPGM_LS5 = 1; // LS5RAM is configured as
                                              // program memory
-
     //
     // Filter1 and Filter2 data memory is mapped to LS6 RAM in linker cmd file
     // used in this example. This configuration should be updated as per the
@@ -355,7 +315,6 @@ void Cla_initMemoryMap(void)
     MemCfgRegs.LSxMSEL.bit.MSEL_LS6 = 1; //LS6RAM is shared between CPU and CLA
     MemCfgRegs.LSxCLAPGM.bit.CLAPGM_LS6 = 0; // LS6RAM is configured as
                                              // data memory
-
     //
     // Filter3 and Filter4 data memory is mapped to LS7 RAM in linker cmd file
     // used in this example. This configuration should be updated as per the
@@ -364,10 +323,8 @@ void Cla_initMemoryMap(void)
     MemCfgRegs.LSxMSEL.bit.MSEL_LS7 = 1; //LS7RAM is shared between CPU and CLA
     MemCfgRegs.LSxCLAPGM.bit.CLAPGM_LS7 = 0; // LS7RAM is configured as
                                              // data memory
-
     EDIS;
 }
-
 //
 // CLA_initCpu2Cla - Initialize CLA task vectors and end of task interrupts
 //
@@ -381,7 +338,6 @@ void CLA_initCpu2Cla(void)
     Cla1Regs.MVECT1 = (Uint16)(&Cla1Task1);
     Cla1Regs.MVECT2 = (Uint16)(&Cla1Task2);
     Cla1Regs.MVECT8 = (Uint16)(&Cla1Task8);
-
     //
     // Enable IACK instruction to start a task on CLA
     // and for all  the CLA tasks
@@ -389,7 +345,6 @@ void CLA_initCpu2Cla(void)
     asm("   RPT #3 || NOP");
     Cla1Regs.MCTL.bit.IACKE = 1;
     Cla1Regs.MIER.all = 0x0083;
-
     //
     // Enable CLA interrupts at the group and subgroup levels
     //
@@ -401,7 +356,6 @@ void CLA_initCpu2Cla(void)
     PieVectTable.CLA1_6_INT = &cla1Isr6;
     PieVectTable.CLA1_7_INT = &cla1Isr7;
     PieVectTable.CLA1_8_INT = &cla1Isr8;
-
     //
     // Enable CLA interrupts at the group and subgroup levels
     //
@@ -411,7 +365,6 @@ void CLA_initCpu2Cla(void)
     ERTM;   // Enable Global realtime interrupt DBGM
     EDIS;
 }
-
 //
 // cla1Isr1 - CLA1 ISR 1
 //
@@ -420,7 +373,6 @@ interrupt void cla1Isr1 ()
      asm(" ESTOP0");
      PieCtrlRegs.PIEACK.all = M_INT11;
 }
-
 //
 // cla1Isr2 - CLA1 ISR 2
 //
@@ -429,7 +381,6 @@ interrupt void cla1Isr2 ()
      asm(" ESTOP0");
      PieCtrlRegs.PIEACK.all = M_INT11;
 }
-
 //
 // cla1Isr3 - CLA1 ISR 3
 //
@@ -437,7 +388,6 @@ interrupt void cla1Isr3 ()
 {
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr4 - CLA1 ISR 4
 //
@@ -445,7 +395,6 @@ interrupt void cla1Isr4 ()
 {
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr5 - CLA1 ISR 5
 //
@@ -453,7 +402,6 @@ interrupt void cla1Isr5 ()
 {
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr6 - CLA1 ISR 6
 //
@@ -461,7 +409,6 @@ interrupt void cla1Isr6 ()
 {
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr7 - CLA1 ISR 7
 //
@@ -469,7 +416,6 @@ interrupt void cla1Isr7 ()
 {
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr8 - CLA1 ISR 8
 //
@@ -478,7 +424,6 @@ interrupt void cla1Isr8 ()
     // asm(" ESTOP0");
     PieCtrlRegs.PIEACK.all = M_INT11;
 }
-
 //
 // End of file
 //

@@ -26,7 +26,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -60,27 +60,23 @@
 // $
 //#############################################################################
 //
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Globals
 //
 uint16_t adcAResult0; 
 uint16_t adcAResult1;
 uint16_t adcAResult2;
-
 //
 // Function Prototypes
 //
 void initEPWM();
 __interrupt void adcA1ISR(void);
-
 //
 // Main
 //
@@ -90,23 +86,19 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Set up ADCs:
     // Signal Mode           : single-ended
@@ -122,24 +114,20 @@ void main(void)
     // averaged together for oversampled channel A2 result
     //
     Board_init();
-
     //
     // Initialize PWM
     //
     initEPWM();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Start ePWM1, enabling SOCA and putting the counter in up-count mode
     //
     EPWM_enableADCTrigger(EPWM1_BASE, EPWM_SOC_A);
     EPWM_setTimeBaseCounterMode(EPWM1_BASE, EPWM_COUNTER_MODE_UP);
-
     //
     // Take conversions indefinitely in loop
     //
@@ -152,7 +140,6 @@ void main(void)
     }
     while(1);
 }
-
 //
 // Function to configure ePWM1 to generate the SOC.
 //
@@ -162,13 +149,11 @@ void initEPWM(void)
     // Disable SOCA
     //
     EPWM_disableADCTrigger(EPWM1_BASE, EPWM_SOC_A);
-
     //
     // Configure the SOC to occur on the first up-count event
     //
     EPWM_setADCTriggerSource(EPWM1_BASE, EPWM_SOC_A, EPWM_SOC_TBCTR_U_CMPA);
     EPWM_setADCTriggerEventPrescale(EPWM1_BASE, EPWM_SOC_A, 1);
-
     //
     // Set the compare A value to 1000 and the period to 1999
     // Assuming ePWM clock is 100MHz, this would give 50kHz sampling
@@ -178,20 +163,17 @@ void initEPWM(void)
     //
     EPWM_setCounterCompareValue(EPWM1_BASE, EPWM_COUNTER_COMPARE_A, 1000);
     EPWM_setTimeBasePeriod(EPWM1_BASE, 1999);
-
     //
     // Set the local ePWM module clock divider to /1
     //
     EPWM_setClockPrescaler(EPWM1_BASE,
                            EPWM_CLOCK_DIVIDER_1,
                            EPWM_HSCLOCK_DIVIDER_1);
-
     //
     // Freeze the counter
     //
     EPWM_setTimeBaseCounterMode(EPWM1_BASE, EPWM_COUNTER_MODE_STOP_FREEZE);
 }
-
 //
 // adcA1ISR - ADC A Interrupt 1 ISR
 //
@@ -202,21 +184,20 @@ __interrupt void adcA1ISR(void)
     //
     adcAResult0 = ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER0);
     adcAResult1 = ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER1);
-
     //
-    // Average the 4 oversampled A2 results together
+    // Sum the 4 oversampled A2 results together
+    // Note: result is multiplied up by the oversampling factor (4x).
+    // Include this at the system level when using the result.
     //
-    adcAResult2 = 
+    adcAResult2 =
         (ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER2) +
         ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER3) +
         ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER4) +
-        ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER5)) >> 2;
-
+        ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER5));
     //
     // Clear the interrupt flag
     //
     ADC_clearInterruptStatus(ADCA_BASE, ADC_INT_NUMBER1);
-
     //
     // Check if overflow has occurred
     //
@@ -225,13 +206,11 @@ __interrupt void adcA1ISR(void)
         ADC_clearInterruptOverflowStatus(ADCA_BASE, ADC_INT_NUMBER1);
         ADC_clearInterruptStatus(ADCA_BASE, ADC_INT_NUMBER1);
     }
-
     //
     // Acknowledge the interrupt
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP1);
 }
-
 //
 // End of file
 //

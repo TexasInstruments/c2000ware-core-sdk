@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_UART_LOOPBACK_DMA" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_UART_LOOPBACK_DMA</compoundname>
+    <title>UART Internal Loopback with DMA</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_UART_LOOPBACK_DMA_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_uart_loopback_dma"/></para>
+<sect1 id="EXAMPLES_DRIVERS_UART_LOOPBACK_DMA_1autotoc_md495">
+<title>Introduction</title>
+<para>This program uses the internal loopback test mode of the UART module. Two DMA interrupts and both of the UART FIFOs are used. Both DMA channels are configured to transfer BUFFER_SIZE words with each burst being UART_BUFFER_SIZE words. The configurations for the UART module and both DMA modules are done in the Sysconfig file.</para>
+<para><simplesect kind="note"><para>Only the lower 8 bits of each word will be transmitted and received by the UART since the UART data register only has an 8-bit data field.</para>
+</simplesect>
+When the UART transmit FIFO has enough space (UART_BUFFER_SIZE bytes empty), the TX DMA will transfer data from the txData buffer in GSRAM memory into the transmit FIFO by writing to the UART data register. The data in the transmit FIFO will then be transmitted to the receive FIFO via the internal loopback.</para>
+<para>When enough data has been placed in the receive FIFO (UART_BUFFER_SIZE data bytes full), the RX DMA will transfer the data from the receive FIFO into the rxData buffer in GSRAM memory by reading the UART data register.</para>
+<para><simplesect kind="note"><para>This example implements the UART FIFO Buffers in NON Fine-Grained mode</para>
+</simplesect>
+When BUFFER_SIZE words have been placed into rxData, a check of the validity of the data will be performed and the errCount variable will indicate the amount of data mismatches between txData and rxData.</para>
+<para><simplesect kind="note"><para>Avoid keeping the memory browser open while the execution is in progress.</para>
+</simplesect>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_UART_LOOPBACK_DMA_1autotoc_md496">
+<title>Watch  Variables</title>
+<para><itemizedlist>
+<listitem><para>txData : Data transmitted</para>
+</listitem><listitem><para>rxData : Data received</para>
+</listitem><listitem><para>errCount : Error count</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_UART_LOOPBACK_DMA_1autotoc_md497">
+<title>External Connections</title>
+<para>For external loopback, uncheck &quot;Enable Loopback Mode&quot; in Sysconfig myUART0 instance, and connect UARTA_TX and UARTA_RX<itemizedlist>
+<listitem><para>UARTA_TX is on GPIO43</para>
+</listitem><listitem><para>UARTA_RX is on GPIO32</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_UART_LOOPBACK_DMA_1autotoc_md498">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Set BUFFER_SIZE to desired words of data to transfer. This value must be even numbered.</para>
+</listitem><listitem><para>Set UART_BUFFER_SIZE to 2, 4, 8, 12 or 14. This value must divide evenly into the chosen BUFFER_SIZE.</para>
+</listitem><listitem><para>Change &quot;Burst Size&quot; and &quot;Transfer Size&quot; settings in Sysconfig (for both myDMA0 and myDMA1) to reflect these values.<itemizedlist>
+<listitem><para>Burst Size = UART_BUFFER_SIZE</para>
+</listitem><listitem><para>Transfer Size = BUFFER_SIZE / UART_BUFFER_SIZE</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>To use 32-bit words instead of 16-bit words, change:<itemizedlist>
+<listitem><para>txData and rxData data types to uint32_t.</para>
+</listitem><listitem><para>&quot;Databus Width&quot; setting in Sysconfig (for both myDMA0 and myDMA1) to &quot;DMA
+    transfers 32 bits at a time.&quot;</para>
+</listitem><listitem><para>DMA0 &quot;Source Address Burst Step&quot; and &quot;Source Address Transfer Step&quot; in Sysconfig to 2.</para>
+</listitem><listitem><para>DMA1 &quot;Destination Address Burst Step&quot; and &quot;Destination Address Transfer
+    Step&quot; in Sysconfig to 2.</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Once DMA operations are complete and program hits ESTOP, inspect received data</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_UART_LOOPBACK_DMA_1autotoc_md499">
+<title>See Also</title>
+<para><ref refid="DRIVERS_UART_PAGE" kindref="compound">UART</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/uart_loopback_dma.md"/>
+  </compounddef>
+</doxygen>

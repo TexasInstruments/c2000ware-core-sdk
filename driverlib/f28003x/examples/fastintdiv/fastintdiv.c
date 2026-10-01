@@ -43,8 +43,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
 //
 // Included Files
 //
@@ -52,7 +50,6 @@
 #include "device.h"
 #include "board.h"
 #include "c2000ware_libraries.h"
-
 //
 // Main
 //
@@ -66,7 +63,6 @@ void main(void)
     Interrupt_initModule();
     Interrupt_initVectorTable();
 	Board_init();
-
     int16_t num0 = 20000;
     int16_t den0 = -501;
     int32_t num1 = 2000000000;
@@ -75,7 +71,6 @@ void main(void)
     uint32_t den2 = 501;
     int32_t num3 = 2000000000;
     int16_t den3 = -501;
-
 	//
 	// Return type is ldiv_t:
 	//
@@ -95,14 +90,12 @@ void main(void)
     result0 = FID_COMP_I16_BY_I16_E(num0, den0);//(quotient, remainder) = (-39, 461)
     result0 = FID_COMP_I32_BY_I32_E(num1, den1);//(quotient, remainder) = (-3992015, 485)
     result0 = FID_COMP_I32_BY_I16_E(num3, den3);//(quotient, remainder) = (-3992015, 485)
-
     uint16_t num4 = 30000;
     uint16_t den4 = 503;
     uint32_t num5 = 3000000000;
     uint32_t den5 = 50000003;
     uint32_t num6 = 3000000000;
     uint16_t den6 = 503;
-
     //
     // Return type is __uldiv_t:
     //
@@ -114,14 +107,12 @@ void main(void)
     __uldiv_t result1 = FID_COMP_U16_BY_U16_T(num4, den4);//(quotient, remainder) = (59, 323)
     result1 = FID_COMP_U32_BY_U32_T(num5, den5);//(quotient, remainder) = (59, 49999823)
     result1 = FID_COMP_U32_BY_U16_T(num6, den6);//(quotient, remainder) = (5964214, 358)
-
     int64_t num7 = -2000000000000000000;
     int64_t den7 = 500000001;
     int64_t num8 = -2000000000000000000;
     uint64_t den8 = 500000001;
     int64_t num9 = -2000000000000000000;
     uint32_t den9 = 500000001;
-
     //
     // Return type is lldiv_t:
     //
@@ -137,10 +128,8 @@ void main(void)
     result2 = FID_COMP_I64_BY_U64_M(num8, den8);//(quotient, remainder) = (-3999999993, 499999993)
     result2 = FID_COMP_I64_BY_I64_E(num7, den7);//(quotient, remainder) = (-3999999993, 499999993)
     result2 = FID_COMP_I64_BY_U64_E(num8, den8);//(quotient, remainder) = (-3999999993, 499999993)
-
     uint64_t num10 = 18000000000000000000;
     uint64_t den10 = 5000000000001;
-
     //
     // Return type is __ulldiv_t:
     //
@@ -150,12 +139,10 @@ void main(void)
     // } __ulldiv_t;
     //
     __ulldiv_t result3 = FID_COMP_U64_BY_U64_T(num10, den10);//(quotient, remainder) = (3599999, 4999996400001)
-
     int64_t num11 = -2000000000000000000;
     int32_t den11 = -2000000003;
     int64_t num12 = -2000000000000000000;
     uint32_t den12 = 2000000003;
-
     //
     // Return type is __llldiv_t:
     //
@@ -169,10 +156,8 @@ void main(void)
     result4 = FID_COMP_I64_BY_U32_M(num12, den12);//(quotient, remainder) = (-999999999, 999999997)
     result4 = FID_COMP_I64_BY_I32_E(num11, den11);//(quotient, remainder) = (999999999, 999999997)
     result4 = FID_COMP_I64_BY_U32_E(num12, den12);//(quotient, remainder) = (-999999999, 999999997)
-
     uint64_t num13 = 18000000000000000000;
     uint32_t den13 = 3000000001;
-
     //
     // Return type is __ullldiv_t:
     //
@@ -182,10 +167,8 @@ void main(void)
     // } __ullldiv_t;
     //
     __ullldiv_t result5 = FID_COMP_U64_BY_U32_T(num13, den13);//(quotient, remainder) = (5999999998, 2)
-
     while(1);
 }
-
 //
 // End of File
 //

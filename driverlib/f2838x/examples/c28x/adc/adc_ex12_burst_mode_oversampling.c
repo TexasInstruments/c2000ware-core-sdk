@@ -23,7 +23,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -56,14 +56,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Macros and Enumerations
 //
@@ -76,7 +74,6 @@ typedef enum
     X8_Oversampling = 3,    //!< 8X oversampling
     X16_Oversampling = 4,   //!< 16X oversampling
 } Oversampling_Amount;
-
 //
 // Global Variables
 //
@@ -85,12 +82,10 @@ uint16_t numBins = 8192;
 volatile uint16_t nloops = 0;
 volatile uint16_t *lv_results;
 Oversampling_Amount ovrsmplAmt = Baseline;
-
 //
 // Functions
 //
 __interrupt void INT_myADC0_1_ISR(void);
-
 //
 // Main
 //
@@ -100,23 +95,19 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Set up ADCs:
     // Signal Mode           : single-ended
@@ -129,12 +120,10 @@ void main(void)
     // converted and configure the S+H duration
     //
     Board_init();
-
     //
     // Initialize memory address for results table
     //
     lv_results = (uint16_t*)0xC000;
-
     //
     // Debug Timing of ePWM and SOC conversions
     //
@@ -146,16 +135,13 @@ void main(void)
     GPIO_setDirectionMode(7, GPIO_DIR_MODE_OUT);
     GPIO_writePin(0,0);
 #endif
-
     //
     // Enable Global Interrupt (INTM) and real time interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     while(1);
 }
-
 //
 // INT_myADC0_1_ISR - ADC A Interrupt Burst Mode ISR
 // Interrupt performs oversampling calculation based on oversampling factor
@@ -166,14 +152,12 @@ __interrupt void INT_myADC0_1_ISR(void)
     // Clear the interrupt flag
     //
     ADC_clearInterruptStatus(myADC0_BASE, ADC_INT_NUMBER1);
-
     //
     // Debug Timing of ePWM and SOC conversions
     //
 #if(DO_TOGGLE == 1)
     GPIO_togglePin(myGPIO0);
 #endif
-
     //
     // Accumulate SOC results (store only 1 value per burst)
     //
@@ -225,7 +209,6 @@ __interrupt void INT_myADC0_1_ISR(void)
         lv_results[nloops] = acc;
         nloops++;
     }
-
     //
     // Check if overflow has occurred
     //
@@ -234,7 +217,6 @@ __interrupt void INT_myADC0_1_ISR(void)
         ADC_clearInterruptOverflowStatus(myADC0_BASE, ADC_INT_NUMBER1);
         ADC_clearInterruptStatus(myADC0_BASE, ADC_INT_NUMBER1);
     }
-
     //
     // Check if all results are stored
     //
@@ -246,20 +228,17 @@ __interrupt void INT_myADC0_1_ISR(void)
         ADC_disableInterrupt(myADC0_BASE, ADC_INT_NUMBER1);
         ESTOP0;
     }
-
     //
     // Debug Timing of ePWM and SOC conversions
     //
 #if(DO_TOGGLE == 1)
     GPIO_togglePin(myGPIO0);
 #endif
-
     //
     // Acknowledge the interrupt
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP1);
 }
-
 //
 // End of file
 //

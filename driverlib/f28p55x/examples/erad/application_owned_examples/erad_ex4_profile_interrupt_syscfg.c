@@ -47,51 +47,41 @@
 //!
 //
 //##############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Globals
 //
-
 //
 // Threshold for COUNTER1 to generate interrupt
 // Interrupt is invoked if the ISR takes more than 500 cycles to complete
 //
 const uint16_t threshold = 500;
-
 //
 // Variable accessed at the end of the ISR. We are interested in measuring the
 // time between the start if ISR to the write to this variable
 //
 uint64_t cpuTimer1IntCount;
-
 //
 // Time taken by ISR to complete
 //
 uint32_t time_isr = 0;
-
 //
 // Number of interrupts generated
 //
 uint32_t number_of_interrupts = 0;
-
 //
 // Number of times the ISR actually gets executed
 //
 uint32_t number_of_executions = 0;
-
 //
 // Time elapsed between the interrupt and the execution of the ISR
 //
 uint32_t time_bw_int_ex = 0;
-
-
 //
 // Function Prototypes
 //
@@ -99,18 +89,15 @@ interrupt void cpuTimer1ISR(void) __attribute__((ramfunc));
 interrupt void RTOSISR(void) __attribute__((ramfunc));
 void initCPUTimers(void);
 void configCPUTimer(uint32_t, float, float);
-
 //
 // Globals
 //
 void *addr_cpuTimer1ISR      = (void *)&cpuTimer1ISR;
 void *addr_cpuTimer1IntCount = (void *)&cpuTimer1IntCount;
-
 //
 // Variable to show RTOS interrupt was invoked
 //
 bool RTOSintCount = 0;
-
 //
 // Main
 //
@@ -120,50 +107,41 @@ void main(void)
     // Initializes device clock and peripherals
     //
     Device_init();
-
     //
     // Configures the GPIO pin as a push-pull output
     //
     Device_initGPIO();
-
     //
     // Board initialization
     //
     Board_init();
-
     //
     // Initializes PIE and clears PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initializes the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // ISR for CPU Timer interrupt
     //
     Interrupt_register(INT_TIMER1, &cpuTimer1ISR);
-
     //
     // ISRs for RTOS interrupt
     //
     Interrupt_register(INT_RTOS, &RTOSISR);
     Interrupt_enableInCPU(INTERRUPT_CPU_RTOSINT);
-
     //
     // Initializes the Device Peripheral. For this example, only initialize the
     // Cpu Timer.
     //
     initCPUTimers();
-
     //
     // Configure CPU-Timer 1 to interrupt every 20000 cycles
     //
     configCPUTimer(CPUTIMER1_BASE, DEVICE_SYSCLK_FREQ, 200);
-
     //
     // To ensure precise timing, use write-only instructions to write to the
     // entire register. Therefore, if any of the configuration bits are changed
@@ -171,23 +149,19 @@ void main(void)
     // be updated.
     //
     CPUTimer_enableInterrupt(CPUTIMER1_BASE);
-
     //
     // Enables CPU int13 which is connected to CPU-Timer 1
     //
     Interrupt_enable(INT_TIMER1);
-
     //
     // Starts CPU-Timer 1
     //
     CPUTimer_startTimer(CPUTIMER1_BASE);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // IDLE loop. Just sit and loop forever (optional)
     //
@@ -195,7 +169,6 @@ void main(void)
     {
     }
 }
-
 //
 // initCPUTimers - This function initializes all three CPU timers
 // to a known state.
@@ -207,28 +180,23 @@ initCPUTimers(void)
     // Make sure timer is stopped
     //
     CPUTimer_stopTimer(CPUTIMER1_BASE);
-
     //
     // Initialize timer period to maximum
     //
     CPUTimer_setPeriod(CPUTIMER1_BASE, 0xFFFFFFFF);
-
     //
     // Initialize pre-scale counter to divide by 1 (SYSCLKOUT)
     //
     CPUTimer_setPreScaler(CPUTIMER1_BASE, 0);
-
     //
     // Reload all counter register with period value
     //
     CPUTimer_reloadTimerCounter(CPUTIMER1_BASE);
-
     //
     // Reset interrupt counter
     //
     cpuTimer1IntCount = 0;
 }
-
 //
 // configCPUTimer - This function initializes the selected timer to the
 // period specified by the "Freq" and "Period" parameters. The "Freq" is
@@ -239,18 +207,15 @@ void
 configCPUTimer(uint32_t cpuTimer, float freq, float period)
 {
     uint32_t temp;
-
     //
     // Initialize timer period:
     //
     temp = (uint32_t) (freq / 1000000 * period);
     CPUTimer_setPeriod(cpuTimer, temp - 1);
-
     //
     // Set pre-scale counter to divide by 1 (SYSCLKOUT):
     //
     CPUTimer_setPreScaler(cpuTimer, 0);
-
     //
     // Initializes timer control register. The timer is stopped, reloaded,
     // free run disabled, and interrupt enabled.
@@ -261,13 +226,11 @@ configCPUTimer(uint32_t cpuTimer, float freq, float period)
     CPUTimer_setEmulationMode(cpuTimer,
               CPUTIMER_EMULATIONMODE_STOPAFTERNEXTDECREMENT);
     CPUTimer_enableInterrupt(cpuTimer);
-
     //
     // Resets interrupt counters for the cpuTimer
     //
     cpuTimer1IntCount = 0;
 }
-
 //
 // cpuTimer1ISR - Counter for CpuTimer2
 //
@@ -279,7 +242,6 @@ cpuTimer1ISR(void)
     // not optimized out by the compiler.
     //
     volatile uint32_t output;
-
     //
     // Simulate a task that can take some time to complete. Loop a "random"
     // number of times and store values to a location.
@@ -289,13 +251,11 @@ cpuTimer1ISR(void)
     {
         output = i;
     }
-
     //
     // The CPU acknowledges the interrupt. We are interested in the ISR
     // until here. Rest is to display the results.
     //
     cpuTimer1IntCount++;
-
     //
     // Get all the required values
     //
@@ -305,10 +265,8 @@ cpuTimer1ISR(void)
     time_bw_int_ex       = ERAD_getMaxCount(ERAD_COUNTER4_BASE);
     ERAD_setMaxCount(ERAD_COUNTER1_BASE, 0);
     ERAD_setMaxCount(ERAD_COUNTER4_BASE, 0);
-
     ESTOP0;
 }
-
 //
 // ISR to be executed if counter generates RTOS interrupt
 //
@@ -321,8 +279,6 @@ RTOSISR(void)
     RTOSintCount++;
     ESTOP0;
 }
-
-
 //
 // End of File
 //

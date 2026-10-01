@@ -20,7 +20,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -53,12 +53,10 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 #define TEST_PASS            0xABCDABCD
 #define TEST_FAIL            0xDEADDEAD
 #define ASRAM_CS2_START_ADDR 0x100000
@@ -77,19 +75,16 @@
 #define STROBE_SEL           0            // Disable Strobe Mode.
 #define WAIT_POLAR_INV       0
 #define WAIT_COUNT           0
-
 //
 // Globals
 //
 Uint16  ErrCount = 0;
 Uint32  TEST_STATUS;
 int i;
-
 //
 // Function Prototypes
 //
 extern void setup_emif1_pinmux_async_16bit(Uint16);
-
 //
 // mem_read_write - This function performs simple read/write word accesses
 //                  to memory.
@@ -101,12 +96,10 @@ mem_read_write(Uint32 start_addr, Uint32 mem_size)
     unsigned long mem_wds;
     long *XMEM_ps;
     unsigned int i;
-
     //
     //Write data
     //
     XMEM_ps = (long *)start_addr;
-
     //
     //Fill memory
     //
@@ -116,7 +109,6 @@ mem_read_write(Uint32 start_addr, Uint32 mem_size)
         *XMEM_ps++ = mem_wds;
         mem_wds += 0x11111111;
     }
-
     //
     //Verify memory
     //
@@ -134,7 +126,6 @@ mem_read_write(Uint32 start_addr, Uint32 mem_size)
     }
     return(0);
 }
-
 //
 //  mem_data_walk - This function performs a walking 0 & 1 on data lines for
 //                  SRAM RD & WR
@@ -149,9 +140,7 @@ mem_data_walk(Uint32 start_addr, Uint32 mem_size)
     int m;
     unsigned long  *XM_p;
     unsigned long  *XMEM_p;
-
     XM_p = (unsigned long *)start_addr;
-
     for (i=0; i < mem_size; i=i+64)
     {
         for (m=0; m < 2; m++)
@@ -173,7 +162,6 @@ mem_data_walk(Uint32 start_addr, Uint32 mem_size)
                 }
                 sram_wd   = sram_wd<<1;
             }
-
             //
             //Read loop
             //
@@ -198,7 +186,6 @@ mem_data_walk(Uint32 start_addr, Uint32 mem_size)
     }
     return(0);
 }
-
 //
 // mem_addr_walk - This function performs a toggle on each address bit.
 //
@@ -211,9 +198,7 @@ mem_addr_walk(Uint32 start_addr, Uint32 addr_size)
     unsigned long xshift;
     unsigned long  *XM_p;
     unsigned long  *XMEM_p;
-
     XM_p = (unsigned long *)start_addr;
-
     //
     //Write loop
     //
@@ -225,7 +210,6 @@ mem_addr_walk(Uint32 start_addr, Uint32 addr_size)
         *XMEM_p = sram_wd++;
         xshift = xshift<<1;
     }
-
     //
     //Read loop
     //
@@ -240,13 +224,11 @@ mem_addr_walk(Uint32 start_addr, Uint32 addr_size)
        {
            return(1);
        }
-
        xshift = xshift<<1;
        sram_wd++;
     }
     return(0);
 }
-
 //
 // mem_data_size - This function performs different data type
 //                (HALFWORD/WORD) access.
@@ -259,22 +241,18 @@ mem_data_size(Uint32 start_addr, Uint32 size_to_check)
     unsigned short mem_wds;
     unsigned long  mem_wdl;
     int i;
-
     short *XMEM_ps;
     long  *XMEM_pl;
-
     //
     //Write data short
     //
     XMEM_ps = (short *)start_addr;
     mem_wds = 0x0605;
-
     for (i=0; i < 2; i++)
     {
         *XMEM_ps++ = mem_wds;
         mem_wds += 0x0202;
     }
-
     //
     //Write data long
     //
@@ -285,7 +263,6 @@ mem_data_size(Uint32 start_addr, Uint32 size_to_check)
         *XMEM_pl++ = mem_wdl;
         mem_wdl += 0x04040404;
     }
-
     //
     //Read data short
     //
@@ -301,7 +278,6 @@ mem_data_size(Uint32 start_addr, Uint32 size_to_check)
         XMEM_ps++;
         mem_wds += 0x0202;
     }
-
     //
     //Read data long
     //
@@ -319,7 +295,6 @@ mem_data_size(Uint32 start_addr, Uint32 size_to_check)
     }
     return(0);
 }
-
 //
 // Main
 //
@@ -327,14 +302,11 @@ void main(void)
 {
     char ErrCount_local;
     TEST_STATUS = TEST_FAIL;
-
 //
 // Initialize system control
 //
     InitSysCtrl();
-
     DINT;
-
 //
 //  Initialize the PIE control registers to their default state.
 //  The default state is all PIE interrupts disabled and flags
@@ -342,7 +314,6 @@ void main(void)
 //  This function is found in the f2838x_piectrl.c file.
 //
     InitPieCtrl();
-
 //
 // Disable CPU interrupts and clear all CPU interrupt flags:
 //
@@ -350,7 +321,6 @@ void main(void)
     IER = 0x0000;
     IFR = 0x0000;
     EDIS;
-
 //
 // Initialize the PIE vector table with pointers to the shell Interrupt
 // GService Routines (ISR).
@@ -360,14 +330,12 @@ void main(void)
 // This function is found in f2838x_pievect.c.
 //
    InitPieVectTable();
-
 //
 //Configure to run EMIF1 on full Rate (EMIF1CLK = CPU1SYSCLK)
 //
   EALLOW;
   ClkCfgRegs.PERCLKDIVSEL.bit.EMIF1CLKDIV = 0x0;
   EDIS;
-
   EALLOW;
 //
 // Grab EMIF1 For CPU1
@@ -377,7 +345,6 @@ void main(void)
   {
       ErrCount++;
   }
-
 //
 //Disable Access Protection (CPU_FETCH/CPU_WR/DMA_WR)
 //
@@ -386,7 +353,6 @@ void main(void)
   {
       ErrCount++;
   }
-
 //
 // Commit the configuration related to protection. Till this bit remains set
 // content of EMIF1ACCPROT0 register can't be changed.
@@ -396,7 +362,6 @@ void main(void)
   {
      ErrCount++;
   }
-
 //
 // Lock the configuration so that EMIF1COMMIT register can't be
 // changed any more.
@@ -406,14 +371,11 @@ void main(void)
   {
       ErrCount++;
   }
-
   EDIS;
-
 //
 //Configure GPIO pins for EMIF1
 //
   setup_emif1_pinmux_async_16bit(0);
-
 //
 //Configure the access timing for CS2 space
 //
@@ -438,39 +400,32 @@ void main(void)
                                  EMIF_ASYNC_SS_DISABLE    // Strobe Select Mode
                                                           // Disable.
                                 );
-
 //
 //Check basic RD/WR access to CS2 space
 //
   ErrCount_local = mem_read_write(ASRAM_CS2_START_ADDR, ASRAM_CS2_SIZE);
   ErrCount = ErrCount + ErrCount_local;
-
 //
 //Address walk checks (Tested for Memory with address width of 16bit)
 //
   ErrCount_local = mem_addr_walk(ASRAM_CS2_START_ADDR, 16);
   ErrCount = ErrCount + ErrCount_local;
-
 //
 //Data walk checks
 //
   ErrCount_local = mem_data_walk(ASRAM_CS2_START_ADDR, ASRAM_CS2_SIZE);
   ErrCount = ErrCount + ErrCount_local;
-
 //
 //Data size checks
 //
   ErrCount_local = mem_data_size(ASRAM_CS2_START_ADDR, 4);
   ErrCount = ErrCount + ErrCount_local;
-
   if (ErrCount == 0x0)
   {
       TEST_STATUS = TEST_PASS;
   }
-
   while (1);
 }
-
 //
 // End of file
 //

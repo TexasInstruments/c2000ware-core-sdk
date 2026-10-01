@@ -609,8 +609,9 @@ LIN_generateParityID(uint16_t identifier)
     //
     p0 = ((identifier & LIN_ID0) ^ ((identifier & LIN_ID1) >> 1U) ^
           ((identifier & LIN_ID2) >> 2U) ^ ((identifier & LIN_ID4) >> 4U));
-    p1 = !(((identifier & LIN_ID1) >> 1U) ^ ((identifier & LIN_ID3) >> 3U) ^
-           ((identifier & LIN_ID4) >> 4U) ^ ((identifier & LIN_ID5) >> 5U));
+    p1 = (((identifier & LIN_ID1) >> 1U) ^ ((identifier & LIN_ID3) >> 3U) ^
+          ((identifier & LIN_ID4) >> 4U) ^ ((identifier & LIN_ID5) >> 5U)) ^ 
+          1U;
     parityIdentifier = identifier | ((p0 << 6U) | (p1 << 7U));
 
     return(parityIdentifier);

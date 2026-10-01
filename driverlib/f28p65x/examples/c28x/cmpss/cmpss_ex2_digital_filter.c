@@ -19,7 +19,6 @@
 //!
 //! When a high input(higher than VDD/2) is provided to CMPIN1P,
 //!     - GPIO14 output turns high
-
 //!
 //! \b External \b Connections \n
 //!  - Give input on CMPIN1P (HSEC Pin 15)
@@ -33,7 +32,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -66,14 +65,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Main
 //
@@ -83,23 +80,19 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Board initialization
     // - Configure GPIO14 to output CTRIPOUT1H (routed through XBAROUTPUT3)
@@ -116,18 +109,15 @@ void main(void)
     //   the filter output.
     //
     Board_init();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Loop indefinitely
     //
     while(1)
     {
-
     }
 }

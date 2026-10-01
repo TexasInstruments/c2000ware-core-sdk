@@ -59,11 +59,9 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 //
 // Included Files
 //
-
 #include "scistdio.h"
 #include "usb_structs.h"
 #include "usblib.h"
@@ -76,13 +74,10 @@
 #include "usb_cdc.h"
 #include "usb_hid_custom.h"
 //#include "usb_key.h"
-
-
 // Interrupt Settings for INT_myUSB0
 // ISR need to be defined for the registered interrupts
 #define INT_myUSB0 INT_USBA
 #define INT_myUSB0_INTERRUPT_ACK_GROUP INTERRUPT_ACK_GROUP9
-
 //*****************************************************************************
 //
 // USB Configurations
@@ -97,7 +92,6 @@
                                       SYSCTL_IMULT(12) | SYSCTL_SYSDIV(4))
 #define myUSB0_BASE USB0_BASE
 void myUSB0_init();
-
 //*****************************************************************************
 //
 // Board Configurations
@@ -108,17 +102,12 @@ void    INTERRUPT_init();
 void    USB_init();
 void    PinMux_init();
 void USBLib_init();
-
-
-
-
 void INT_myUSB0_ISR(void);
 //******************************************************************************
 //
 // Configuration and tuning parameters.
 //
 //******************************************************************************
-
 //******************************************************************************
 //
 // This is the main application entry function.
@@ -131,35 +120,29 @@ main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure GPIO pins for USB.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Initialize the transmit and receive buffers.
     //
     USBBufferInit(&g_sTxBuffer);
     USBBufferInit(&g_sRxBuffer);
-
     //
     // Register the interrupt handler, returning an error if an error occurs.
     //
     //Interrupt_register(INT_USBA, &INT_myUSB0_ISR);
     //Interrupt_register(INT_myUSB0, &INT_myUSB0_ISR);
-
     //
     // Set the clocking to run from the PLL at 60MHz
     //
@@ -170,45 +153,34 @@ main(void)
     USB_init();
     INTERRUPT_init();
     EDIS;
-
     USBLib_init();
-
     USBDCDCCompositeInit(0, &g_sCDCDevice, &g_psCompDevices[0]);
     USBDHIDCustomCompositeInit(0, &g_sCustomDevice, &g_psCompDevices[1]);
-
     USBDCompositeInit(0, &g_sCompDevice, DESCRIPTOR_DATA_SIZE,
                       g_pui8DescriptorData);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Configure the required pins for USB operation.
     //
     USBGPIOEnable();
-
-
     //
     // Not configured initially.
     //
     g_bUSBConfigured = false;
-
     //
     // Configure the SCI for debug output.
     //
     ConfigureSCI();
-
     //
     // Set the default SCI configuration.
     //
     SCI_setConfig(SCIA_BASE, SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ),
                   DEFAULT_BIT_RATE, DEFAULT_SCI_CONFIG);
-
     SCI_setFIFOInterruptLevel(SCIA_BASE,SCI_FIFO_TX8, SCI_FIFO_RX8);
-
     //
     // Configure and enable SCI interrupts.
     //
@@ -217,37 +189,30 @@ main(void)
                                     SCI_INT_TXRDY));
     Interrupt_register(INT_SCIA_TX, &USBSCITXIntHandler);
     Interrupt_register(INT_SCIA_RX, &USBSCIRXIntHandler);
-
     usb_hid_custom_sim_init();
-
     //
     // Clear our local byte counters.
     //
-
     usb_hid_custom_sim_start();
     //
     // Enable interrupts now that the application is ready to start.
     //
     Interrupt_enable(INT_SCIA_RX);
     Interrupt_enableGlobal();
-
     //
     // Main application loop.
     //
     SCIprintf("\nC2000 F2838x Series USB Composite device example\n");
     SCIprintf("---------------------------------\n\n");
-
     while(1)
     {
         //
         // If it is time to move the mouse then do so.
         //
         usb_hid_custom_sim_handler();
-
         //usb_cdc_sim_handler();
     }
 }
-
 //******************************************************************************
 //
 //! Device interrupt service routine wrapper to make ISR compatible with
@@ -260,8 +225,6 @@ INT_myUSB0_ISR(void)
     USB0DeviceIntHandler();
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP9);
 }
-
-
 //*****************************************************************************
 //
 // PINMUX Configurations
@@ -272,20 +235,16 @@ void PinMux_init()
     //
     // PinMux for modules assigned to CPU1
     //
-
     // USB pinmux
     GPIO_setAnalogMode(23, GPIO_ANALOG_ENABLED);
     GPIO_setAnalogMode(41, GPIO_ANALOG_ENABLED);
-
 }
-
 //*****************************************************************************
 //
 // INTERRUPT Configurations
 //
 //*****************************************************************************
 void INTERRUPT_init(){
-
     // Interrupt Settings for INT_myUSB0
     // ISR need to be defined for the registered interrupts
     Interrupt_register(INT_myUSB0, &INT_myUSB0_ISR);
@@ -302,14 +261,12 @@ void USB_init(){
     //
     SysCtl_setUSBClockDivider(SYSCTL_USBCLK_DIV_5);
 }
-
 void USBLib_init(){
     //
     // Set the USB stack mode to Device mode with VBUS monitoring.
     //
     USBStackModeSet(0, eUSBModeForceDevice, 0);
 }
-
 //
 // End of file
 //

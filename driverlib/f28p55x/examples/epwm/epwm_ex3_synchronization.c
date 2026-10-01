@@ -30,7 +30,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -63,20 +63,16 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
-
 __interrupt void epwm1ISR(void);
 __interrupt void epwm2ISR(void);
 __interrupt void epwm3ISR(void);
 __interrupt void epwm4ISR(void);
-
 //
 // Main
 //
@@ -86,23 +82,19 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Assign the interrupt service routines to ePWM interrupts
     //
@@ -110,28 +102,22 @@ void main(void)
     Interrupt_register(INT_EPWM2, &epwm2ISR);
     Interrupt_register(INT_EPWM3, &epwm3ISR);
     Interrupt_register(INT_EPWM4, &epwm4ISR);
-
-
     // Disable sync(Freeze clock to PWM as well). GTBCLKSYNC is applicable
     // only for multiple core devices. Uncomment the below statement if
     // applicable.
     //
     // SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_GTBCLKSYNC);
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
-
     // Configure GPIO0/1 , GPIO2/3 and GPIO4/5 and GPIO6/7 as
     // ePWM1A/1B, ePWM2A/2B, ePWM3A/3B, ePWM4A/4B pins respectively
     // Configure EPWM Modules
     // 
     Board_init();
-
     //
     // Enable sync and clock to PWM
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Enable ePWM interrupts
     //
@@ -139,22 +125,18 @@ void main(void)
     Interrupt_enable(INT_EPWM2);
     Interrupt_enable(INT_EPWM3);
     Interrupt_enable(INT_EPWM4);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // IDLE loop. Just sit and loop forever (optional):
     //
     for(;;)
     {
-
     }
 }
-
 //
 // epwm1ISR - ePWM 1 ISR
 //
@@ -164,13 +146,11 @@ __interrupt void epwm1ISR(void)
     // Clear INT flag for this timer
     //
     EPWM_clearEventTriggerInterruptFlag(myEPWM1_BASE);
-
     //
     // Acknowledge interrupt group
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP3);
 }
-
 //
 // epwm2ISR - ePWM 2 ISR
 //
@@ -180,13 +160,11 @@ __interrupt void epwm2ISR(void)
     // Clear INT flag for this timer
     //
     EPWM_clearEventTriggerInterruptFlag(myEPWM2_BASE);
-
     //
     // Acknowledge interrupt group
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP3);
 }
-
 //
 // epwm3ISR - ePWM 3 ISR
 //
@@ -196,13 +174,11 @@ __interrupt void epwm3ISR(void)
     // Clear INT flag for this timer
     //
     EPWM_clearEventTriggerInterruptFlag(myEPWM3_BASE);
-
     //
     // Acknowledge interrupt group
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP3);
 }
-
 //
 // epwm4ISR - ePWM 4 ISR
 //
@@ -212,11 +188,8 @@ __interrupt void epwm4ISR(void)
     // Clear INT flag for this timer
     //
     EPWM_clearEventTriggerInterruptFlag(myEPWM4_BASE);
-
     //
     // Acknowledge interrupt group
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP3);
 }
-
-

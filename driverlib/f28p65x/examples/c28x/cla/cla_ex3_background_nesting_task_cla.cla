@@ -7,12 +7,11 @@
 // Task 1 turns on and turns off D1 every 0.5 seconds
 // Background task turns on and turns off D2 every 2 seconds
 // due to the nesting time of task 1, maybe longer for real period.
-
 //#############################################################################
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -45,7 +44,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -53,7 +51,6 @@
 #include "device.h"
 #include "cla_ex3_background_nesting_task_shared.h"
 #include "driverlib.h"
-
 //-----------------------------------------------------------------------------
 //
 // Task 1
@@ -65,7 +62,6 @@ __attribute__((interrupt)) void Cla1Task1 ( void )
     // Turn on LED1
     //
     GPIO_writePin(DEVICE_GPIO_PIN_LED1, 0);
-
     //__mdebugstop();
     int32_t i;
     for(i = 250000; i>=0; i--)
@@ -81,18 +77,15 @@ __attribute__((interrupt)) void Cla1Task1 ( void )
         __asm(" MNOP");
         __asm(" MNOP");
     }
-
     //
     // Turn off LED1
     //
     GPIO_writePin(DEVICE_GPIO_PIN_LED1, 1);
-
     //
     // Clear EPWM interrupt flag
     //
     EPWM_clearEventTriggerInterruptFlag(EPWM1_BASE);
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 2 - Title Here
@@ -102,9 +95,7 @@ __attribute__((interrupt)) void Cla1Task1 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task2 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 3 - Title Here
@@ -114,9 +105,7 @@ __attribute__((interrupt))  void Cla1Task2 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task3 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 4 - Title Here
@@ -126,9 +115,7 @@ __attribute__((interrupt))  void Cla1Task3 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task4 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 5 - Title Here
@@ -138,9 +125,7 @@ __attribute__((interrupt))  void Cla1Task4 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task5 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 6 - Title Here
@@ -150,9 +135,7 @@ __attribute__((interrupt))  void Cla1Task5 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task6 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 7 - One Time Initialization Task
@@ -163,9 +146,7 @@ __attribute__((interrupt))  void Cla1Task6 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task7 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Background Task
@@ -177,10 +158,8 @@ __attribute__((interrupt("background")))  void Cla1BackgroundTask ( void )
     // Turn on LED2
     //
     GPIO_writePin(DEVICE_GPIO_PIN_LED2, 0);
-
     __mdebugstop();
     int32_t i;
-
     for(i = 2000000; i>=0; i--)
     {
         __asm(" MNOP");
@@ -194,13 +173,11 @@ __attribute__((interrupt("background")))  void Cla1BackgroundTask ( void )
         __asm(" MNOP");
         __asm(" MNOP");
     }
-
     //
     // Turn off LED2
     //
     GPIO_writePin(DEVICE_GPIO_PIN_LED2, 1);
 }
-
 //
 // End of File
 //

@@ -24,7 +24,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -57,7 +57,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -71,72 +70,58 @@ float e[8] = {
                    1243.43, -4399.24, -23.392, 0.0213,
                    -2093, 238.4993, -2390.300, 329.401
             };
-
 //
 // Main
 //
 void main(void)
 {
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull-ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // PinMux and Peripheral Initialization
     //
     Board_init();
-
     //
     // C2000Ware Library initialization
     //
     C2000Ware_libraries_init();
-
     //
     // Logging Inits
     //
     RTLOG_init();
-
     //
     // Start the high priority ISR
     //
     CPUTimer_startTimer(myTimer1s_BASE);
-
     //
     // Enable Global Interrupt (INTM) and real time interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     while(1)
     {
-
     }
 }
-
 volatile uint16_t toggle = 0;
 interrupt void INT_myTimer1s_ISR(void){
     uint32_t b = 6798004;
     float c = -189.4934;
     uint16_t d[2] = {19872, 290};
-
     if (toggle == 0)
     {
         RTLOG_writeLog_0(a, b, c, d);
@@ -145,9 +130,7 @@ interrupt void INT_myTimer1s_ISR(void){
         RTLOG_writeLog_1(e);
     }
     toggle ^= 1;
-
 }
-
 //
 // End of File
 //

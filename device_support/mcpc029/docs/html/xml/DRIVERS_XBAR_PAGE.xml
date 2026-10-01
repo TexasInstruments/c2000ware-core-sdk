@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="DRIVERS_XBAR_PAGE" kind="page">
+    <compoundname>DRIVERS_XBAR_PAGE</compoundname>
+    <title>XBAR</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="DRIVERS_XBAR_PAGE_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_components_drivers_xbar"/></para>
+<para>The XBAR driver provides API to configure the various X-BARs such as Input X-BAR, Output X-BAR, PWM X-BAR.</para>
+<para>Below are the high level features supported by the XBAR driver.</para>
+<sect1 id="DRIVERS_XBAR_PAGE_1autotoc_md116">
+<title>Features Supported</title>
+<para><itemizedlist>
+<listitem><para>Input X-BAR routes signals from any GPIO to many different IP blocks such as the ADC, mcPWM, and external interrupts.</para>
+</listitem><listitem><para>PWM X-BAR has 8 outputs that are routed to PWM modules for actions such as tripzones and syncing.</para>
+</listitem><listitem><para>GPIO Output X-BAR takes signals from inside the device and brings them out to a GPIO.</para>
+</listitem><listitem><para>The Output X-BAR, PWM X-BAR allows the selection of a single input or a logical-OR of many inputs.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_XBAR_PAGE_1autotoc_md117">
+<title>SysConfig Features</title>
+<para><simplesect kind="note"><para>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</para>
+</simplesect>
+<itemizedlist>
+<listitem><para>Selection of any GPIO as the input source of selected Input X-BAR.</para>
+</listitem><listitem><para>Selection of source signals for each of the Output X-BAR, PWM X-BAR outputs.</para>
+</listitem><listitem><para>Configuration to invert the XBAR output for Output X-BAR, PWM X-BAR</para>
+</listitem><listitem><para>Configurations to latch the Output X-BAR output, select the latched signal or stretch the output.</para>
+</listitem><listitem><para>Option to lock the configurations.</para>
+</listitem><listitem><para>Configuration of Output X-BAR and ePWM X-BAR events in Error Signaling Module.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_XBAR_PAGE_1autotoc_md118">
+<title>Features NOT Supported</title>
+<para>NA</para>
+</sect1>
+<sect1 id="DRIVERS_XBAR_PAGE_1autotoc_md119">
+<title>Example Usage</title>
+<para>Include the below file to access the APIs #include &lt;<ref refid="xbar_8h" kindref="compound">xbar.h</ref>&gt;</para>
+</sect1>
+<sect1 id="DRIVERS_XBAR_PAGE_1autotoc_md120">
+<title>API</title>
+<para><ref refid="group__xbar__api" kindref="compound">XBAR</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/xbar.md"/>
+  </compounddef>
+</doxygen>

@@ -33,7 +33,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -66,17 +66,14 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib_cm.h"
 #include "cm.h"
-
 //
 // Defines
 //
-
 #define ETHERNET_NO_OF_RX_PACKETS   1U
 //
 //Change this define for changing Packet buffer length
@@ -84,14 +81,11 @@
 #define ETHERNET_MAX_PACKET_LENGTH 1538U
 uint8_t Ethernet_rxBuffer[ETHERNET_NO_OF_RX_PACKETS *
                           ETHERNET_MAX_PACKET_LENGTH];
-
 //
 // Globals
 //
 #define PACKET_LENGTH 1508
 uint8_t pData[PACKET_LENGTH];
-
-
 //
 // Main
 //
@@ -105,12 +99,10 @@ void main(void)
     Ethernet_VlanConfig vLANConfig;
     Ethernet_VLAN_Perfect_FilterParams vlanPerfectFilterParams;
     Ethernet_Handle emac_handle;
-
     //
     // Initialize device clock and peripherals
     //
     CM_init();
-
     //
     //Select the MII interface of the module
     //
@@ -125,6 +117,8 @@ void main(void)
     initInterfaceConfig.ptrPlatformInterruptEnable = &Platform_enableInterrupt;
     initInterfaceConfig.ptrPlatformPeripheralEnable = &Platform_enablePeripheral;
     initInterfaceConfig.ptrPlatformPeripheralReset = &Platform_resetPeripheral;
+    initInterfaceConfig.ptrCoreInterruptDisable = &Interrupt_disableInProcessor;
+    initInterfaceConfig.ptrCoreInterruptEnable = &Interrupt_enableInProcessor;
     //
     //Assign the peripheral number at the SoC
     //
@@ -137,14 +131,11 @@ void main(void)
     initInterfaceConfig.interruptNum[2] = INT_EMAC_TX1;
     initInterfaceConfig.interruptNum[3] = INT_EMAC_RX0;
     initInterfaceConfig.interruptNum[4] = INT_EMAC_RX1;
-
     pInitCfg = Ethernet_initInterface(initInterfaceConfig);
-
     //
     // Get an initial configuration of known good parameters
     //
     Ethernet_getInitConfig(pInitCfg);
-
     //
     //Configure the Loopback mode
     //
@@ -167,7 +158,6 @@ void main(void)
     //Hence using a dummy value of 1
     //
     Ethernet_getHandle((Ethernet_Handle)1,pInitCfg , &emac_handle);
-
     //
     //Do global Interrupt Enable
     //
@@ -197,19 +187,15 @@ void main(void)
     //
     Ethernet_setConfig(emac_handle,ETHERNET_SET_CONFIG_VLAN_TX_OUTER,
                        &vLANConfig,sizeof(vLANConfig));
-
     //
     //Make the Queues to assign based on dynamic Queues
     //Hence the DMA channels will be selected as programmed in the VLAN Filter
     //This is needed for any Dynamic Queue handling based on incoming parameter
     //
-
     Ethernet_setDMARxQueueMode(EMAC_BASE, ETHERNET_RX_DMA_QUEUE_DYNAMIC, \
                                    ETHERNET_QUEUE_0, ETHERNET_CHANNEL_1);
     Ethernet_setDMARxQueueMode(EMAC_BASE, ETHERNET_RX_DMA_QUEUE_DYNAMIC, \
                                    ETHERNET_QUEUE_1, ETHERNET_CHANNEL_1);
-
-
     //
     //Now Set up the VLAN Filter Parameters
     //
@@ -227,10 +213,8 @@ void main(void)
     vlanPerfectFilterParams.vlanType = ETHERNET_VLAN_TYPE_C;
     //Check only OuterVLAN
     vlanPerfectFilterParams.innerVLANEnabled = ETHERNET_VLAN_RX_FILTER_INNER_VLAN_DISABLED;
-
     Ethernet_setConfig(emac_handle,ETHERNET_SET_CONFIG_FILTER_VLAN_PERFECT,
                         &vlanPerfectFilterParams,sizeof(vlanPerfectFilterParams));
-
     //
     //Form the Packet in Memory
     //
@@ -243,7 +227,6 @@ void main(void)
         else
             HWREG((uint32_t *)pData +i) = 0xFFFFFFFF;
     }
-
     //
     //Prepare a Packet Descriptor structure to send a packet
     //This contains a single buffer packet
@@ -262,36 +245,28 @@ void main(void)
     //Use ETHERNET_PKT_FLAG_CRC_PAD_DIS to disable CRC and Disable padding
     //Use ETHERNET_PKT_FLAG_CRC_REPL_NO_PAD to replace CRC and disable padding
     //
-
     pktDesc.flags = (ETHERNET_PKT_FLAG_SOP | ETHERNET_PKT_FLAG_EOP |
                      ETHERNET_PKT_FLAG_SA_INS );
     pktDesc.pktChannel = ETHERNET_DMA_CHANNEL_NUM_0;
     pktDesc.pktLength = PACKET_LENGTH;
     pktDesc.validLength = PACKET_LENGTH;
     pktDesc.numPktFrags = 1;
-
     //
     //Send the packet prepared
     //
     Ethernet_sendPacket(emac_handle,&pktDesc);
-
     //
     //Delay for the MAC to send the packet on the wire and receive it
     //
     SysCtl_delay(3000);
-
     //
     //Read the statistics of the Module
     //
     Ethernet_getStatistics(emac_handle, &stats);
-
     //
     //Check if a packet has been received
     //The packet should have come through Receive DMA Channel 1
     //
     if(!stats.rxUnicastPacketsGood)
          __asm("   bkpt #0");
-
 }
-
-

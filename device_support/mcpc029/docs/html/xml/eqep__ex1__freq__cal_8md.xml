@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="eqep__ex1__freq__cal_8md" kind="file" language="Markdown">
+    <compoundname>eqep_ex1_freq_cal.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>EQEP<sp/>Frequency<sp/>Measurement<sp/>{#EXAMPLES_DRIVERS_EQEP_EX1_FREQ_CAL}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>will<sp/>calculate<sp/>the<sp/>frequency<sp/>of<sp/>an<sp/>input<sp/>signal<sp/>using<sp/>the<sp/>eQEP<sp/>module.<sp/>EPWM1A<sp/>(MCPWM1A<sp/>in<sp/>case<sp/>of<sp/>F28E12x<sp/>and<sp/>MCPC029)<sp/>is<sp/>configured<sp/>to<sp/>generate<sp/>this<sp/>input<sp/>signal<sp/>with<sp/>a<sp/>frequency<sp/>of<sp/>5<sp/>kHz.<sp/>It<sp/>will<sp/>interrupt<sp/>once<sp/>every<sp/>period<sp/>and<sp/>call<sp/>the<sp/>frequency<sp/>calculation<sp/>function.<sp/>This<sp/>example<sp/>uses<sp/>the<sp/>IQMath<sp/>library<sp/>to<sp/>simplify<sp/>high-precision<sp/>calculations.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">In<sp/>addition<sp/>to<sp/>the<sp/>main<sp/>example<sp/>file,<sp/>the<sp/>following<sp/>files<sp/>must<sp/>be<sp/>included<sp/>in<sp/>this<sp/>project:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>eqep_ex1_calculation.c<sp/>-<sp/>contains<sp/>frequency<sp/>calculation<sp/>function</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>eqep_ex1_calculation.h<sp/>-<sp/>includes<sp/>initialization<sp/>values<sp/>for<sp/>frequency<sp/>structure</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>configuration<sp/>for<sp/>this<sp/>example<sp/>is<sp/>as<sp/>follows</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Maximum<sp/>frequency<sp/>is<sp/>configured<sp/>to<sp/>10KHz<sp/>(baseFreq)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Minimum<sp/>frequency<sp/>is<sp/>assumed<sp/>at<sp/>50Hz<sp/>for<sp/>capture<sp/>pre-scalar<sp/>selection</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">SPEED_FR:<sp/>High<sp/>Frequency<sp/>Measurement<sp/>is<sp/>obtained<sp/>by<sp/>counting<sp/>the<sp/>external<sp/>input<sp/>pulses<sp/>for<sp/>10ms<sp/>(unit<sp/>timer<sp/>set<sp/>to<sp/>100Hz).</highlight></codeline>
+<codeline><highlight class="normal">SPEED_FR<sp/>=<sp/>\frac{Count\<sp/>Delta}{10ms}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">SPEED_PR:<sp/>Low<sp/>Frequency<sp/>Measurement<sp/>is<sp/>obtained<sp/>by<sp/>measuring<sp/>time<sp/>period<sp/>of<sp/>input<sp/>edges.<sp/>Time<sp/>measurement<sp/>is<sp/>averaged<sp/>over<sp/>64<sp/>edges<sp/>for<sp/>better<sp/>results<sp/>and<sp/>the<sp/>capture<sp/>unit<sp/>performs<sp/>the<sp/>time<sp/>measurement<sp/>using<sp/>pre-scaled<sp/>SYSCLK.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Note<sp/>that<sp/>the<sp/>pre-scaler<sp/>for<sp/>capture<sp/>unit<sp/>clock<sp/>is<sp/>selected<sp/>such<sp/>that<sp/>the<sp/>capture<sp/>timer<sp/>does<sp/>not<sp/>overflow<sp/>at<sp/>the<sp/>required<sp/>minimum<sp/>frequency.<sp/>This<sp/>example<sp/>runs<sp/>indefinitely<sp/>until<sp/>the<sp/>user<sp/>stops<sp/>it.<sp/>For<sp/>more<sp/>information<sp/>about<sp/>the<sp/>frequency<sp/>calculation<sp/>see<sp/>the<sp/>comments<sp/>at<sp/>the<sp/>beginning<sp/>of<sp/>eqep_ex1_calculation.c<sp/>and<sp/>the<sp/>XLS<sp/>file<sp/>provided<sp/>with<sp/>the<sp/>project,<sp/>eqep_ex1_calculation.xls.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Watch<sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>freq.freqHzFR<sp/>-<sp/>Frequency<sp/>measurement<sp/>using<sp/>position<sp/>counter/unit<sp/>time<sp/>out</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>freq.freqHzPR<sp/>-<sp/>Frequency<sp/>measurement<sp/>using<sp/>capture<sp/>unit</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>GPIO6/eQEP1A<sp/>to<sp/>GPIO0/MCPWM1A</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28P55x<sp/>||<sp/>F28P551x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>GPIO20/eQEP1A<sp/>to<sp/>GPIO0/ePWM1A</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Using<sp/>the<sp/>watch<sp/>variables,<sp/>view<sp/>the<sp/>position<sp/>and<sp/>speed<sp/>calculated<sp/>for<sp/>the<sp/>motor.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_EQEP_PAGE</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/eqep_ex1_freq_cal.md"/>
+  </compounddef>
+</doxygen>

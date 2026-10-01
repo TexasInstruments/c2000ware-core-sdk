@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="lpm__ex3_8md" kind="file" language="Markdown">
+    <compoundname>lpm_ex3.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Device<sp/>Standby<sp/>Mode<sp/>and<sp/>Wakeup<sp/>using<sp/>GPIO<sp/>{#EXAMPLES_DRIVERS_LPM_EX3}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>Device<sp/>Standby<sp/>Mode<sp/>and<sp/>Wakeup<sp/>using<sp/>GPIO&quot;</highlight></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>LPM,<sp/>Standby,<sp/>Wakeup&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>This<sp/>example<sp/>puts<sp/>the<sp/>device<sp/>into<sp/>STANDBY<sp/>mode.<sp/>If<sp/>the<sp/>lowest<sp/>possible</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>current<sp/>consumption<sp/>in<sp/>STANDBY<sp/>mode<sp/>is<sp/>desired,<sp/>the<sp/>JTAG<sp/>connector<sp/>must</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>be<sp/>removed<sp/>from<sp/>the<sp/>device<sp/>board<sp/>while<sp/>the<sp/>device<sp/>is<sp/>in<sp/>STANDBY<sp/>mode.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>This<sp/>example<sp/>puts<sp/>the<sp/>device<sp/>into<sp/>STANDBY<sp/>mode<sp/>and<sp/>then<sp/>wakes<sp/>up<sp/>the<sp/>device</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>from<sp/>STANDBY<sp/>using<sp/>an<sp/>LPM<sp/>wakeup<sp/>pin.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>The<sp/>pin<sp/>GPIO0<sp/>is<sp/>configured<sp/>as<sp/>the<sp/>LPM<sp/>wakeup<sp/>pin<sp/>to<sp/>trigger<sp/>a<sp/>WAKEINT</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>interrupt<sp/>upon<sp/>detection<sp/>of<sp/>a<sp/>low<sp/>pulse.<sp/>Initially,<sp/>pull<sp/>GPIO0<sp/>high</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>externally.<sp/>To<sp/>wake<sp/>device<sp/>from<sp/>STANDBY<sp/>mode,<sp/>pull<sp/>GPIO0<sp/>low<sp/>for<sp/>at<sp/>least</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>(2+QUALSTDBY),<sp/>OSCLKS,<sp/>then<sp/>pull<sp/>it<sp/>high<sp/>again.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>The<sp/>example<sp/>then<sp/>wakes<sp/>up<sp/>the<sp/>device<sp/>from<sp/>STANDBY<sp/>using<sp/>GPIO0.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>GPIO0<sp/>wakes<sp/>the<sp/>device<sp/>from<sp/>STANDBY<sp/>mode<sp/>when<sp/>a<sp/>low<sp/>pulse</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>(signal<sp/>goes<sp/>high-&gt;low-&gt;high)is<sp/>detected<sp/>on<sp/>the<sp/>pin.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>This<sp/>pin<sp/>must<sp/>be<sp/>pulsed<sp/>by<sp/>an<sp/>external<sp/>agent<sp/>for<sp/>wakeup.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>GPIO1<sp/>is<sp/>pulled<sp/>high<sp/>before<sp/>entering<sp/>the<sp/>STANDBY<sp/>mode<sp/>and<sp/>is<sp/>pulled<sp/>low</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>when<sp/>in<sp/>the<sp/>wakeup<sp/>ISR.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>External<sp/>Connections<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>GPIO0<sp/>needs<sp/>to<sp/>be<sp/>pulled<sp/>low<sp/>to<sp/>wake<sp/>up<sp/>the<sp/>device.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>On<sp/>device<sp/>wakeup,<sp/>the<sp/>GPIO1<sp/>will<sp/>be<sp/>low<sp/>and<sp/>LED1<sp/>will<sp/>start<sp/>blinking</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/lpm_ex3.md"/>
+  </compounddef>
+</doxygen>

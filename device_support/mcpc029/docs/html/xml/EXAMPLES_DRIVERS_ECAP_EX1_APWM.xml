@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_ECAP_EX1_APWM" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_ECAP_EX1_APWM</compoundname>
+    <title>ECAP APWM Mode</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_ECAP_EX1_APWM_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_ecap_ex1_apwm"/></para>
+<sect1 id="EXAMPLES_DRIVERS_ECAP_EX1_APWM_1autotoc_md215">
+<title>Introduction</title>
+<para>This program sets up the eCAP module in APWM mode. The PWM waveform will come out on GPIO5. The frequency of PWM is configured to vary between 10Hz and 20Hz using the shadow registers to load the next period/compare values.</para>
+<para>Watch Variables<itemizedlist>
+<listitem><para>Observe the waveform on GPIO5.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_ECAP_EX1_APWM_1autotoc_md216">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>None.</para>
+</listitem></itemizedlist>
+</para>
+<sect2 id="EXAMPLES_DRIVERS_ECAP_EX1_APWM_1autotoc_md217">
+<title>Implementation Comparison</title>
+<para><table rows="5" cols="3"><row>
+<entry thead="yes"><para>Aspect   </para>
+</entry><entry thead="yes"><para>Driverlib Implementation   </para>
+</entry><entry thead="yes"><para>Bitfield Implementation    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Source File   </para>
+</entry><entry thead="no"><para>ecap_ex1_apwm.c (driverlib)   </para>
+</entry><entry thead="no"><para>ecap_ex1_apwm.c (examples_bitfield)    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Configuration Method   </para>
+</entry><entry thead="no"><para>Driverlib API calls   </para>
+</entry><entry thead="no"><para>Direct register access    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Hardware Abstraction   </para>
+</entry><entry thead="no"><para>Medium (driverlib)   </para>
+</entry><entry thead="no"><para>None (direct hardware)    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>PWM Genearion   </para>
+</entry><entry thead="no"><para>API-based configuration   </para>
+</entry><entry thead="no"><para>Direct register configuration   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_ECAP_EX1_APWM_1autotoc_md218">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Observe the required waveform on the GPIO mentioned in watch variables.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_ECAP_EX1_APWM_1autotoc_md219">
+<title>See Also</title>
+<para><ref refid="DRIVERS_ECAP_PAGE" kindref="compound">ECAP</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/ecap_ex1_apwm.md"/>
+  </compounddef>
+</doxygen>

@@ -30,7 +30,6 @@
 //!  None
 //
 //#############################################################################
-
 //
 // Included Files
 //
@@ -40,7 +39,6 @@
 //
 // Global Variables
 //
-
 //
 // Start and end address of the function delayFunction.
 // This value comes from the linker command file.
@@ -48,7 +46,6 @@
 extern uint32_t delayFuncStart, delayFuncEnd;
 void *addr_delayFuncStart = (void *)&delayFuncStart;
 void *addr_delayFuncEnd   = (void *)((uint32_t)&delayFuncEnd - 1);
-
 //
 // The variables used in the function which are monitored by bus comparators
 // 3 and 4.
@@ -57,47 +54,39 @@ volatile uint32_t startCount = 0;
 volatile uint32_t endCount = 0;
 void *addr_startCount = (void *)&startCount;
 void *addr_endCount   = (void *)&endCount;
-
 //
 // Watch variables with the number of CPU cycles elapsed.
 //
 volatile uint32_t cycles_Function = 0;
 volatile uint32_t cycles_Data = 0;
-
 //
 // Function Prototypes
 //
 void delayFunction(uint16_t);
-
 //
 // Main
 //
 void main(void)
 {
     int i;
-
     //
     // Initializes device clock and peripherals
     //
     Device_init();
-
     //
     // Configures the GPIO pin as a push-pull output
     //
     Device_initGPIO();
-
     //
     // Board initialization
     //
     Board_init();
-
     //
     // Loop to call the delay function repeatedly with different delays
     //
     for(i=0; i<10; i++)
     {
         delayFunction(i % 5);
-
         //
         // View these two variables in CCS view
         // Note that calling the function ERAD_getCurrentValue here will
@@ -105,20 +94,16 @@ void main(void)
         //
         cycles_Function = ERAD_getMaxCount(ERAD_COUNTER1_BASE);
         cycles_Data     = ERAD_getMaxCount(ERAD_COUNTER2_BASE);
-
         ESTOP0;
-
         //
         // Uncomment the code below to clear the maximum count
         //
         // ERAD_setMaxCount(ERAD_COUNTER1_BASE, 0);
         // ERAD_setMaxCount(ERAD_COUNTER2_BASE, 0);
     }
-
     ESTOP0;
     while(1);
 }
-
 //
 // delay function
 //
@@ -126,19 +111,9 @@ void main(void)
 void delayFunction(uint16_t delay)
 {
     startCount++;
-
-    uint16_t i=0;
-    for (; i<delay; i++)
-    {
-        NOP;
-        NOP;
-        NOP;
-        NOP;
-    }
-
+    SysCtl_delay(delay);
     endCount++;
 }
-
 //
 // End of File
 //

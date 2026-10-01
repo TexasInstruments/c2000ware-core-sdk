@@ -67,19 +67,16 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Function Prototypes
 //
 void initEPWM(void);
-
 //
 // Main
 //
@@ -89,28 +86,23 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Set up ePWM7 to take CTRIPH as TRIP4 for its DC trip input
     //
     initEPWM();
-
     //
     // Board Initialization
     // - Configure GPIO4 to output CTRIPOUT1H (routed through XBAROUTPUT3)
@@ -124,8 +116,6 @@ void main(void)
     //   the asynchronous comparator output.
     //
     Board_init();
-
-
     //
     // Configure GPIO13 to output CTRIPH (routed through ePWM TRIP4 and ePWM7)
     //
@@ -134,13 +124,11 @@ void main(void)
     // Configure GPIO13 as digital pins
     //
     GPIO_setAnalogMode(13U, GPIO_ANALOG_DISABLED);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Loop indefinitely
     //
@@ -159,7 +147,6 @@ void main(void)
             {
                 ;
             }
-
             //
             // Clear trip flags
             //
@@ -168,7 +155,6 @@ void main(void)
         }
     }
 }
-
 //
 // initEPWM - Function to configure ePWM7 and the ePWM X-BAR to take CTRIPH as
 //            the DC trip input
@@ -179,24 +165,20 @@ void initEPWM(void)
     // Disable the ePWM time base clock before configuring the module
     //
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Set the time base clock prescalers to /1
     //
     EPWM_setClockPrescaler(EPWM7_BASE, EPWM_CLOCK_DIVIDER_1,
                            EPWM_HSCLOCK_DIVIDER_1);
-
     //
     // Initializing dummy values for ePWM counter and period
     //
     EPWM_setTimeBaseCounter(EPWM7_BASE, 0);
     EPWM_setTimeBasePeriod(EPWM7_BASE, 0xFFFF);
-
     //
     // Set-up compare
     //
     EPWM_setCounterCompareValue(EPWM7_BASE, EPWM_COUNTER_COMPARE_B, 0x8000);
-
     //
     // Set actions
     //
@@ -204,38 +186,31 @@ void initEPWM(void)
                                   EPWM_AQ_OUTPUT_B,
                                   EPWM_AQ_OUTPUT_HIGH,
                                   EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB);
-
     EPWM_setActionQualifierAction(EPWM7_BASE,
                                   EPWM_AQ_OUTPUT_B,
                                   EPWM_AQ_OUTPUT_LOW,
                                   EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);
-
     //
     // Configure ePWM7B to output high on TZB TRIP
-
     //
     EPWM_setTripZoneAction(EPWM7_BASE, EPWM_TZ_ACTION_EVENT_TZB,
                            EPWM_TZ_ACTION_HIGH);
-
     //
     // Trigger event when DCBH is high
     //
     EPWM_setTripZoneDigitalCompareEventCondition(EPWM7_BASE,
                                                  EPWM_TZ_DC_OUTPUT_B1,
                                                  EPWM_TZ_EVENT_DCXH_HIGH);
-
     //
     // Configure DCBH to use TRIP4 as an input
     //
     EPWM_enableDigitalCompareTripCombinationInput(EPWM7_BASE,
                                                   EPWM_DC_COMBINATIONAL_TRIPIN4,
                                                   EPWM_DC_TYPE_DCBH);
-
     //
     // Enable DCB as OST
     //
     EPWM_enableTripZoneSignals(EPWM7_BASE, EPWM_TZ_SIGNAL_DCBEVT1);
-
     //
     // Configure the DCB path to be unfiltered and asynchronous
     //
@@ -243,29 +218,22 @@ void initEPWM(void)
                                       EPWM_DC_MODULE_B,
                                       EPWM_DC_EVENT_1,
                                       EPWM_DC_EVENT_SOURCE_ORIG_SIGNAL);
-
     //
     // Sync the ePWM time base clock
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Configure TRIP4 to be CTRIP1H using the ePWM X-BAR
     //
     XBAR_setEPWMMuxConfig(XBAR_TRIP4, XBAR_EPWM_MUX00_CMPSS1_CTRIPH);
     XBAR_enableEPWMMux(XBAR_TRIP4, XBAR_MUX00);
-
-
     //
     // Clear trip flags
     //
     EPWM_clearTripZoneFlag(EPWM7_BASE, EPWM_TZ_INTERRUPT |
                            EPWM_TZ_FLAG_OST);
-
     //
     // Put the time base counter into up-count mode
     //
     EPWM_setTimeBaseCounterMode(EPWM7_BASE, EPWM_COUNTER_MODE_UP);
 }
-
-

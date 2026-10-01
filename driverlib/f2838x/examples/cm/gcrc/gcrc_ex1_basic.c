@@ -23,7 +23,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -56,12 +56,9 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 #include "cm.h"
-
 #pragma DATA_ALIGN(gData, 32)
 uint8_t gData[] = {0x8a, 0xf6, 0x1e, 0x6d, 0x8d};
-
 //
 // Main
 //
@@ -72,13 +69,10 @@ void main(void)
 	uint32_t    crcResult1  = 0;
 	uint32_t    crcResult2  = 0;
     uint32_t    crcGolden   = 0x52d24341;
-	
     //
     // disable WD, enable peripheral clocks.
     //
     CM_init();
-	
-	
 	//
 	// GCRC configurations
 	//
@@ -89,7 +83,6 @@ void main(void)
     uint32_t    dataType    = GCRC_DATATYPE_8BIT;
     bool        bitRev      = false;
     uint32_t    dataMask    = 0;
-	
 	//
 	// Configure the GCRC module
 	//
@@ -98,17 +91,13 @@ void main(void)
     GCRC_setDataEndianness(GCRC_BASE, endianness);
     GCRC_setDataMask(GCRC_BASE, dataMask);
     GCRC_enableBitReverse(GCRC_BASE, bitRev);
-	
-	
 	/////////////////////////////////////////////////////////////////
 	// Method 1 - Providing data to the CRC engine as 8-bit writes //
 	/////////////////////////////////////////////////////////////////
-	
 	//
 	// Set Seed value
 	//
     GCRC_setSeedValue(GCRC_BASE, seed);
-
 	//
 	// Write data to the CRC engine
 	//
@@ -116,41 +105,31 @@ void main(void)
     {
         GCRC_writeData(GCRC_BASE, data[i], dataType);
     }
-	
 	//
 	// Read the CRC result
 	//
 	crcResult1 = GCRC_readResult(GCRC_BASE);
-	
-
-	
 	//////////////////////////////////////////////////////////////////////////////////////
 	// Method 2 (optimal) - Providing data to the CRC engine as 32-bit and 8-bit writes //
 	//////////////////////////////////////////////////////////////////////////////////////
-	
 	//
 	// The 4 bytes aligned to a 32-bit address can be combined and provided
 	// to the engine as a single 32-bit data
 	//
-	
 	//
 	// Set Seed value
 	//
     GCRC_setSeedValue(GCRC_BASE, seed);
-
 	//
 	// Write data to the CRC engine. 
 	// gData is aligned to a 32-bit address
 	//
     GCRC_writeData(GCRC_BASE, *(uint32_t *)gData, GCRC_DATATYPE_32BIT);
     GCRC_writeData(GCRC_BASE, gData[4], GCRC_DATATYPE_8BIT);
-    
 	//
 	// Read the CRC result
 	//
 	crcResult2 = GCRC_readResult(GCRC_BASE);
-
-	
 	//
 	// Check for computed crc values
 	//
@@ -161,7 +140,6 @@ void main(void)
 	    //
 	    __asm(" bkpt #0");
 	}
-	
     //
     // Loop indefinitely (optional)
     //

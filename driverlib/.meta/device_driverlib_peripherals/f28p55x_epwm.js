@@ -142,13 +142,13 @@ let EPWM_ActionQualifierOutputEvent = [
 ]
 let EPWM_ActionQualifierOutput = [
 	{ name: "EPWM_AQ_OUTPUT_NO_CHANGE", displayName: "No change in the output pins" },
-	{ name: "EPWM_AQ_OUTPUT_LOW", displayName: "Set output pins to low" },
+	{ name: "EPWM_AQ_OUTPUT_LOW", displayName: "Set output pins to Low" },
 	{ name: "EPWM_AQ_OUTPUT_HIGH", displayName: "Set output pins to High" },
 	{ name: "EPWM_AQ_OUTPUT_TOGGLE", displayName: "Toggle the output pins" },
 ]
 let EPWM_ActionQualifierSWOutput = [
 	{ name: "EPWM_AQ_SW_DISABLED", displayName: "Software forcing disabled" },
-	{ name: "EPWM_AQ_SW_OUTPUT_LOW", displayName: "Set output pins to low" },
+	{ name: "EPWM_AQ_SW_OUTPUT_LOW", displayName: "Set output pins to Low" },
 	{ name: "EPWM_AQ_SW_OUTPUT_HIGH", displayName: "Set output pins to High" },
 ]
 let EPWM_ActionQualifierEventAction = [

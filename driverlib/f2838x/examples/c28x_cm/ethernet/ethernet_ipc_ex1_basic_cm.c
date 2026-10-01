@@ -28,7 +28,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -61,35 +61,26 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "driverlib_cm.h"
-
 //
 // Defines
 //
 #define IPC_CMD_READ_MEM   0x1001
 #define IPC_CMD_RESP       0x2001
-
 #define TEST_PASS          0x5555
 #define TEST_FAIL          0xAAAA
-
 //
 // Defines
 //
 #define PACKET_LENGTH 132
-
-
 #define ETHERNET_NO_OF_RX_PACKETS   1U
 //
 //Change this define for changing Packet buffer length
 //
 #define ETHERNET_MAX_PACKET_LENGTH 1538U
-
-
-
 //
 // Globals
 //
@@ -100,7 +91,6 @@ Ethernet_Handle emac_handle;
 Ethernet_Pkt_Desc pktDesc;
 extern uint32_t Ethernet_rxInterruptCount;
 bool status = false;
-
 //
 // IPC ISR for Flag 0.
 // C28x core sends data without message queue using Flag 0
@@ -108,14 +98,11 @@ bool status = false;
 void IPC_ISR0()
 {
     uint32_t command, addr, data;
-
-
     //
     // Read the command
     //
     IPC_readCommand(IPC_CM_L_CPU1_R, IPC_FLAG0, IPC_ADDR_CORRECTION_ENABLE,
                     &command, &addr, &data);
-
     if(command == IPC_CMD_READ_MEM)
     {
         status = true;
@@ -133,13 +120,10 @@ void IPC_ISR0()
         Ethernet_sendPacket(emac_handle,&pktDesc);
     }
 }
-
-
 void main(void)
 {
     Ethernet_InitInterfaceConfig initInterfaceConfig;
     Ethernet_InitConfig *pInitCfg;
-
     //
     //Select the MII interface of the module
     //
@@ -166,19 +150,15 @@ void main(void)
     initInterfaceConfig.interruptNum[2] = INT_EMAC_TX1;
     initInterfaceConfig.interruptNum[3] = INT_EMAC_RX0;
     initInterfaceConfig.interruptNum[4] = INT_EMAC_RX1;
-
     pInitCfg = Ethernet_initInterface(initInterfaceConfig);
-
     //
     // Get an initial configuration of known good parameters
     //
     Ethernet_getInitConfig(pInitCfg);
-
     //
     //Configure the Loopback mode
     //
     pInitCfg->loopbackMode = ETHERNET_MAC_CONFIGURATION_LM_LOOPBACK_ENABLED;
-    
     //
     //Assign the callbacks for Getting packet buffer when needed
     //Releasing the TxPacketBuffer on Transmit interrupt callbacks
@@ -192,7 +172,6 @@ void main(void)
     //Packets. This should be accessible by the Ethernet DMA
     //
     pInitCfg->rxBuffer = Ethernet_rxBuffer;
-
     //
     //The Application handle is not used by this application
     //Hence using a dummy value of 1
@@ -212,45 +191,36 @@ void main(void)
     //
     Interrupt_enable(INT_EMAC_TX0);
     Interrupt_enable(INT_EMAC_RX0);
-
     //
     //Prepare a Packet Descriptor structure to send a packet
     //This contains a single buffer packet
     //The Source address shall be inserted by the MAC
     //Packet CRC is auto computed by the module and appended in the packet
     //
-
     pktDesc.dataOffset = 0;
     pktDesc.nextPacketDesc = 0;
     pktDesc.flags = ETHERNET_PKT_FLAG_SOP |ETHERNET_PKT_FLAG_EOP|ETHERNET_PKT_FLAG_SA_INS;
     pktDesc.pktChannel = ETHERNET_DMA_CHANNEL_NUM_0;
-
     pktDesc.numPktFrags = 1;
-
     //
     // Clear any IPC flags if set already
     //
     IPC_clearFlagLtoR(IPC_CM_L_CPU1_R, IPC_FLAG_ALL);
-
     //
     // Enable IPC interrupts
     //
     IPC_registerInterrupt(IPC_CM_L_CPU1_R, IPC_INT0, IPC_ISR0);
-
     //
     // Synchronize both the cores.
     //
     IPC_sync(IPC_CM_L_CPU1_R, IPC_FLAG31);
-
     //
     //At this point the C28x core shall send IPC command
     //which triggers the IPC ISR where the packet is sent
     //With internal loopback the packet is looped back
     //Wait for the packet to be received
     //
-
     while(0 == Ethernet_rxInterruptCount);
-
     //
     //The control data to C28x side can be picked up from Ethernet buffer and
     //Passed to Ethernet
@@ -265,14 +235,11 @@ void main(void)
     {
         IPC_sendResponse(IPC_CM_L_CPU1_R, TEST_FAIL);
     }
-
     //
     // Acknowledge the flag
     //
     IPC_ackFlagRtoL(IPC_CM_L_CPU1_R, IPC_FLAG0);
-
     __asm("   bkpt #0");
-
  }
 //
 // End of File

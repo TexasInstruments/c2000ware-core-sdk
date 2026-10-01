@@ -35,7 +35,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -68,24 +68,20 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "device.h"
 #include "driverlib.h"
-
 //
 // Defines
 //
 #define TEST_PASS 0xABCDABCD
 #define TEST_FAIL 0xDEADDEAD
-
 //
 // Considering 32-bit word. Total 0x800 memory locations read/written.
 //
 #define MEM_BUFFER_SIZE 0x400
-
 //
 // Globals
 //
@@ -94,20 +90,17 @@ uint32_t testStatusGlobal;
 volatile uint32_t initData = 0;
 volatile uint32_t *destDMA;
 volatile uint32_t *srcDMA;
-
 //
 // Buffer in local memory.
 //
 uint32_t localSrcRAMBuf[MEM_BUFFER_SIZE];
 uint32_t localDstRAMBuf[MEM_BUFFER_SIZE];
-
 //
 // Buffer in far memory.
 //
 __attribute__((far)) volatile uint32_t extSDRAMBuf[MEM_BUFFER_SIZE];
 #pragma DATA_SECTION(localSrcRAMBuf, "ramgs0");
 #pragma DATA_SECTION(localDstRAMBuf, "ramgs1");
-
 //
 // Function Prototypes
 //
@@ -115,7 +108,6 @@ extern void setupEMIF1PinmuxSync16Bit(void);
 void clearDestDataBuffer(uint32_t memSize);
 void configDMAChannel1(void);
 void configDMAChannel2(void);
-
 //
 // Main
 //
@@ -124,70 +116,57 @@ void main(void)
     uint16_t i;
     EMIF_SyncConfig sdConfig;
     EMIF_SyncTimingParams tParam;
-
     testStatusGlobal = TEST_FAIL;
-
     //
     // Initialize device clock and peripherals.
     //
     Device_init();
-
     //
     // Disable all the interrupts.
     //
     DINT;
-
     //
     // Setup GPIO by disabling pin locks and enabling pullups.
     //
     Device_initGPIO();
-
     //
     // This function initializes the PIE control registers. After globally
     // disabling interrupts and enabling the PIE, it clears all of the PIE
     // interrupt enable bits and interrupt flags.
     //
     Interrupt_initModule();
-
     //
     // Initializes the PIE vector table by setting all vectors to a default
     // handler function.
     //
     Interrupt_initVectorTable();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM).
     //
     EINT;
     ERTM;
-
     //
     // Configure to run EMIF1 on half Rate (EMIF1CLK = CPU1SYSCLK/2).
     //
     SysCtl_setEMIF1ClockDivider(SYSCTL_EMIF1CLK_DIV_2);
-
     //
     // Grab EMIF1 For CPU1.
     //
     EMIF_selectController(EMIF1CONFIG_BASE, EMIF_CONTROLLER_CPU1_G);
-
     //
     // Disable Access Protection (CPU_FETCH/CPU_WR/DMA_WR).
     //
     EMIF_setAccessProtection(EMIF1CONFIG_BASE, 0x0);
-
     //
     // Commit the configuration related to protection. Till this bit remains
     // set content of EMIF1ACCPROT0 register can't be changed.
     //
     EMIF_commitAccessConfig(EMIF1CONFIG_BASE);
-
     //
     // Lock the configuration so that EMIF1COMMIT register can't be changed
     // any more.
     //
     EMIF_lockAccessConfig(EMIF1CONFIG_BASE);
-
     //
     // Initialize source buffer for DMA transfer.
     //
@@ -197,30 +176,25 @@ void main(void)
         initData = initData + 0x11111111;
         localSrcRAMBuf[i] = initData;
     }
-
     //
     // Initialize DMA.
     //
     DMA_initController();
-
     //
     // Configure channel 1 for writing into external memory & channel 2 for
     // reading from the external memory.
     //
     configDMAChannel1();
     configDMAChannel2();
-
     //
     // Start DMA channels 1 & 2.
     //
     DMA_startChannel(DMA_CH1_BASE);
     DMA_startChannel(DMA_CH2_BASE);
-
     //
     // Configure GPIO pins for EMIF1.
     //
     setupEMIF1PinmuxSync16Bit();
-
     //
     // Configure SDRAM control registers. Needs to be
     // programmed based on SDRAM Data-Sheet. For this example:
@@ -237,19 +211,16 @@ void main(void)
     tParam.tRc  = 0x6U;
     tParam.tRrd = 0x1U;
     EMIF_setSyncTimingParams(EMIF1_BASE, &tParam);
-
     //
     // Configure Self Refresh exit timing.
     // Txsr = 70ns = 0x7.
     //
     EMIF_setSyncSelfRefreshExitTmng(EMIF1_BASE, 0x7U);
-
     //
     // Configure Refresh Rate.
     // Tref = 64ms for 8192 ROW, RR = 64000*100(Tfrq)/8192 = 781.25 (0x30E).
     //
     EMIF_setSyncRefreshRate(EMIF1_BASE, 781);
-
     //
     // Configure SDRAM parameters. PAGESIZE=2 (1024 elements per ROW),
     // IBANK = 2 (4 BANK), CL = 3, NM = 1 (16bit).
@@ -259,19 +230,16 @@ void main(void)
     sdConfig.narrowMode = EMIF_SYNC_NARROW_MODE_TRUE;
     sdConfig.pageSize = EMIF_SYNC_COLUMN_WIDTH_10;
     EMIF_setSyncMemoryConfig(EMIF1_BASE, &sdConfig);
-
     //
     // Adding some delay.
     //
     for(i = 0; i < 123; i++)
     {
     }
-
     //
     // Clear destination data buffers.
     //
     clearDestDataBuffer(MEM_BUFFER_SIZE);
-
     //
     // Write to External Memory(16-bit).
     //
@@ -280,7 +248,6 @@ void main(void)
     while((HWREGH(DMA_CH1_BASE + DMA_O_CONTROL) &
            DMA_CONTROL_TRANSFERSTS) != 0x0U);
     EDIS;
-
     //
     // Read from External Memory(32-bit).
     //
@@ -289,7 +256,6 @@ void main(void)
     while((HWREGH(DMA_CH2_BASE + DMA_O_CONTROL) &
            DMA_CONTROL_TRANSFERSTS) != 0x0U);
     EDIS;
-
     //
     // Compare source & destination local buffer data.
     //
@@ -300,14 +266,12 @@ void main(void)
             errCountGlobal++;
         }
     }
-
     if(errCountGlobal == 0x0)
     {
         testStatusGlobal = TEST_PASS;
     }
     while(1);
 }
-
 //
 // Clear Dest Data Buffer - This function clears the destination memory
 // location of size memSize.
@@ -316,7 +280,6 @@ void clearDestDataBuffer(uint32_t memSize)
 {
     uint32_t i;
     uint32_t memWdl = 0x0;
-
     //
     // Clear far memory buffer.
     //
@@ -324,7 +287,6 @@ void clearDestDataBuffer(uint32_t memSize)
     {
         __addr32_write_uint32((uint32_t)(extSDRAMBuf + (i*2)), 0x0);
     }
-
     //
     // Clear local memory buffer.
     //
@@ -333,7 +295,6 @@ void clearDestDataBuffer(uint32_t memSize)
         localDstRAMBuf[i] = memWdl;
     }
 }
-
 //
 // Configure DMA Channel 1 - This function configures the DMA channel 1 for
 // writing to external SDRAM memory.
@@ -349,31 +310,26 @@ void configDMAChannel1()
     DMA_configBurst(DMA_CH1_BASE, 32U, 1U, 1U);
     DMA_configTransfer(DMA_CH1_BASE, ((MEM_BUFFER_SIZE * 2) / 32), 1, 1);
     DMA_configWrap(DMA_CH1_BASE, 0x10000U, 0, 0x10000U, 0);
-
     //
     // Configure DMA trigger source as software, enable oneshot, disable
     // continuous mode, data size of DMA transfer to 16 bits.
     //
     DMA_configMode(DMA_CH1_BASE, DMA_TRIGGER_SOFTWARE, (DMA_CFG_ONESHOT_ENABLE
                    | DMA_CFG_CONTINUOUS_DISABLE | DMA_CFG_SIZE_16BIT));
-
     //
     // Enable selected peripheral trigger to start a DMA transfer on DMA
     // channel 1.
     //
     DMA_enableTrigger(DMA_CH1_BASE);
-
     //
     // Clear any spurious Peripheral interrupts flags.
     //
     DMA_clearTriggerFlag(DMA_CH1_BASE);
-
     //
     // Clear any spurious sync error flags.
     //
     DMA_clearErrorFlag(DMA_CH1_BASE);
 }
-
 //
 // Configure DMA Channel 2-This function configures the DMA channel 2 for
 // reading from external SDRAM memory.
@@ -389,31 +345,26 @@ void configDMAChannel2()
     DMA_configBurst(DMA_CH2_BASE, 32U, 2U, 2U);
     DMA_configTransfer(DMA_CH2_BASE, ((MEM_BUFFER_SIZE * 2) / 32), 2, 2);
     DMA_configWrap(DMA_CH2_BASE, 0x10000U, 0, 0x10000U, 0);
-
     //
     // Configure DMA trigger source as software, enable oneshot, disable
     // continuous mode, data size of DMA transfer to 16 bits.
     //
     DMA_configMode(DMA_CH2_BASE, DMA_TRIGGER_SOFTWARE, (DMA_CFG_ONESHOT_ENABLE
                    | DMA_CFG_CONTINUOUS_DISABLE | DMA_CFG_SIZE_32BIT));
-
     //
     // Enable selected peripheral trigger to start a DMA transfer on DMA
     // channel 2.
     //
     DMA_enableTrigger(DMA_CH2_BASE);
-
     //
     // Clear any spurious Peripheral interrupts flags.
     //
     DMA_clearTriggerFlag(DMA_CH2_BASE);
-
     //
     // Clear any spurious sync error flags.
     //
     DMA_clearErrorFlag(DMA_CH2_BASE);
 }
-
 //
 // End of File
 //

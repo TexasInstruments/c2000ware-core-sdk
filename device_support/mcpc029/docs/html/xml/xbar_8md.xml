@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="xbar_8md" kind="file" language="Markdown">
+    <compoundname>xbar.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>XBAR<sp/>{#DRIVERS_XBAR_PAGE}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x</highlight></codeline>
+<codeline><highlight class="normal">The<sp/>XBAR<sp/>driver<sp/>provides<sp/>API<sp/>to<sp/>configure<sp/>the<sp/>various<sp/>X-BARs<sp/>such<sp/>as<sp/>Input<sp/>X-BAR,<sp/>Output<sp/>X-BAR,<sp/>CLB<sp/>X-BAR,<sp/>ePWM<sp/>X-BAR,<sp/>MINDB<sp/>X-BAR<sp/>and<sp/>ICL<sp/>X-BAR.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x</highlight></codeline>
+<codeline><highlight class="normal">The<sp/>XBAR<sp/>driver<sp/>provides<sp/>API<sp/>to<sp/>configure<sp/>the<sp/>various<sp/>X-BARs<sp/>such<sp/>as<sp/>Input<sp/>X-BAR,<sp/>Output<sp/>X-BAR,<sp/>PWM<sp/>X-BAR.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">Below<sp/>are<sp/>the<sp/>high<sp/>level<sp/>features<sp/>supported<sp/>by<sp/>the<sp/>XBAR<sp/>driver.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Features<sp/>Supported</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Input<sp/>X-BAR<sp/>routes<sp/>signals<sp/>from<sp/>any<sp/>GPIO<sp/>to<sp/>many<sp/>different<sp/>IP<sp/>blocks<sp/>such<sp/>as<sp/>the<sp/>ADC,<sp/>eCAP,<sp/>ePWM,<sp/>and<sp/>external<sp/>interrupts.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>ePWM<sp/>X-BAR<sp/>has<sp/>16<sp/>outputs<sp/>that<sp/>are<sp/>routed<sp/>to<sp/>ePWM<sp/>modules<sp/>for<sp/>actions<sp/>such<sp/>as<sp/>tripzones<sp/>and<sp/>syncing.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>Illegal<sp/>Combo<sp/>Logic<sp/>(ICL)<sp/>X-BAR<sp/>and<sp/>Minimum<sp/>Dead-band<sp/>(MINDB)<sp/>X-BAR<sp/>routes<sp/>various<sp/>EPWM<sp/>signals<sp/>and<sp/>CLB<sp/>outputs<sp/>to<sp/>the<sp/>Minimum<sp/>Dead-band<sp/>and<sp/>Illegal<sp/>Combination<sp/>Logic<sp/>sub-module<sp/>of<sp/>the<sp/>EPWM.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>CLB<sp/>X-BAR<sp/>has<sp/>eight<sp/>outputs<sp/>that<sp/>are<sp/>routed<sp/>to<sp/>each<sp/>CLB<sp/>module.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>GPIO<sp/>Output<sp/>X-BAR<sp/>takes<sp/>signals<sp/>from<sp/>inside<sp/>the<sp/>device<sp/>and<sp/>brings<sp/>them<sp/>out<sp/>to<sp/>a<sp/>GPIO.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>Output<sp/>X-BAR,<sp/>CLB<sp/>X-BAR,<sp/>ePWM<sp/>X-BAR,<sp/>MINDB<sp/>X-BAR<sp/>and<sp/>ICL<sp/>X-BAR<sp/>allows<sp/>the<sp/>selection<sp/>of<sp/>a<sp/>single<sp/>input<sp/>or<sp/>a<sp/>logical-OR<sp/>of<sp/>many<sp/>inputs.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Input<sp/>X-BAR<sp/>routes<sp/>signals<sp/>from<sp/>any<sp/>GPIO<sp/>to<sp/>many<sp/>different<sp/>IP<sp/>blocks<sp/>such<sp/>as<sp/>the<sp/>ADC,<sp/>mcPWM,<sp/>and<sp/>external<sp/>interrupts.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>PWM<sp/>X-BAR<sp/>has<sp/>8<sp/>outputs<sp/>that<sp/>are<sp/>routed<sp/>to<sp/>PWM<sp/>modules<sp/>for<sp/>actions<sp/>such<sp/>as<sp/>tripzones<sp/>and<sp/>syncing.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>GPIO<sp/>Output<sp/>X-BAR<sp/>takes<sp/>signals<sp/>from<sp/>inside<sp/>the<sp/>device<sp/>and<sp/>brings<sp/>them<sp/>out<sp/>to<sp/>a<sp/>GPIO.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>Output<sp/>X-BAR,<sp/>PWM<sp/>X-BAR<sp/>allows<sp/>the<sp/>selection<sp/>of<sp/>a<sp/>single<sp/>input<sp/>or<sp/>a<sp/>logical-OR<sp/>of<sp/>many<sp/>inputs.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">##<sp/>SysConfig<sp/>Features</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@VAR_SYSCFG_USAGE_NOTE</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Selection<sp/>of<sp/>any<sp/>GPIO<sp/>as<sp/>the<sp/>input<sp/>source<sp/>of<sp/>selected<sp/>Input<sp/>X-BAR.</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Selection<sp/>of<sp/>source<sp/>signals<sp/>for<sp/>each<sp/>of<sp/>the<sp/>Output<sp/>X-BAR,<sp/>CLB<sp/>X-BAR,<sp/>ePWM<sp/>X-BAR,<sp/>MINDB<sp/>X-BAR<sp/>and<sp/>ICL<sp/>X-BAR<sp/>outputs.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Configuration<sp/>to<sp/>invert<sp/>the<sp/>XBAR<sp/>output<sp/>for<sp/>Output<sp/>X-BAR,<sp/>CLB<sp/>X-BAR,<sp/>ePWM<sp/>X-BAR,<sp/>MINDB<sp/>X-BAR<sp/>and<sp/>ICL<sp/>X-BAR.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Selection<sp/>of<sp/>source<sp/>signals<sp/>for<sp/>each<sp/>of<sp/>the<sp/>Output<sp/>X-BAR,<sp/>PWM<sp/>X-BAR<sp/>outputs.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Configuration<sp/>to<sp/>invert<sp/>the<sp/>XBAR<sp/>output<sp/>for<sp/>Output<sp/>X-BAR,<sp/>PWM<sp/>X-BAR</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Configurations<sp/>to<sp/>latch<sp/>the<sp/>Output<sp/>X-BAR<sp/>output,<sp/>select<sp/>the<sp/>latched<sp/>signal<sp/>or<sp/>stretch<sp/>the<sp/>output.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Option<sp/>to<sp/>lock<sp/>the<sp/>configurations.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Configuration<sp/>of<sp/>Output<sp/>X-BAR<sp/>and<sp/>ePWM<sp/>X-BAR<sp/>events<sp/>in<sp/>Error<sp/>Signaling<sp/>Module.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Features<sp/>NOT<sp/>Supported</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">NA</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Example<sp/>Usage</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Include<sp/>the<sp/>below<sp/>file<sp/>to<sp/>access<sp/>the<sp/>APIs</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;xbar.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>API</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>xbar_api</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/xbar.md"/>
+  </compounddef>
+</doxygen>

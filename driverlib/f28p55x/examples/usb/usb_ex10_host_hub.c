@@ -36,7 +36,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -69,7 +69,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 //
 // Included Files
 //
@@ -85,28 +84,24 @@
 #include "scistdio.h"
 #include "ustdlib.h"
 #include "usb_ex10_host_hub.h"
-
 //*****************************************************************************
 //
 // The size of the host controller's memory pool in bytes.
 //
 //*****************************************************************************
 #define HCD_MEMORY_SIZE         128
-
 //*****************************************************************************
 //
 // The memory pool to provide to the Host controller driver.
 //
 //*****************************************************************************
 uint8_t g_pui8HCDPool[HCD_MEMORY_SIZE * MAX_USB_DEVICES];
-
 //*****************************************************************************
 //
 // Declare the USB Events driver interface.
 //
 //*****************************************************************************
 DECLARE_EVENT_DRIVER(g_sUSBEventDriver, 0, 0, USBHCDEvents);
-
 //*****************************************************************************
 //
 // The global that holds all of the host drivers in use in the application.
@@ -120,14 +115,12 @@ static tUSBHostClassDriver const * const g_ppHostClassDrivers[] =
     &g_sUSBHubClassDriver,
     &g_sUSBEventDriver
 };
-
 //*****************************************************************************
 //
 // The current USB operating mode - Host, Device or unknown.
 //
 //*****************************************************************************
 tUSBMode g_eCurrentUSBMode;
-
 //*****************************************************************************
 //
 // This global holds the number of class drivers in the g_ppHostClassDrivers
@@ -136,14 +129,12 @@ tUSBMode g_eCurrentUSBMode;
 //*****************************************************************************
 static const uint32_t g_ui32NumHostClassDrivers =
                   sizeof(g_ppHostClassDrivers) / sizeof(tUSBHostClassDriver *);
-
 //*****************************************************************************
 //
 // Status bar boxes for hub ports.
 //
 //*****************************************************************************
 #define NUM_HUB_STATUS          4
-
 //*****************************************************************************
 //
 // Structure for Hub Status.
@@ -155,14 +146,12 @@ struct
     // Holds if there is a device connected to this port.
     //
     bool bConnected;
-
     //
     // The instance data for the device if bConnected is true.
     //
     uint32_t ui32Instance;
 }
 g_psHubStatus[NUM_HUB_STATUS];
-
 //******************************************************************************
 //
 // Configure the SCI and its pins.  This must be called before SCIprintf().
@@ -179,7 +168,6 @@ ConfigureSCI(void)
     GPIO_setDirectionMode(28, GPIO_DIR_MODE_IN);
     GPIO_setPadConfig(28, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(28, GPIO_QUAL_ASYNC);
-
     //
     // GPIO29 is the SCI Tx pin.
     //
@@ -188,15 +176,12 @@ ConfigureSCI(void)
     GPIO_setDirectionMode(29, GPIO_DIR_MODE_OUT);
     GPIO_setPadConfig(29, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(29, GPIO_QUAL_ASYNC);
-
     //
     // Initialize the SCI for console I/O.
     //
     SCIStdioConfig(SCIA_BASE, 115200,
                    SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ));
-
 }
-
 //*****************************************************************************
 //
 // This function updates the status area of the screen.  It uses the current
@@ -206,15 +191,12 @@ ConfigureSCI(void)
 void
 UpdateStatus(uint32_t ui32Port)
 {
-
     uint8_t ui8DevClass, ui8DevProtocol;
-
     if(g_psHubStatus[ui32Port].bConnected)
     {
         ui8DevClass = USBHCDDevClass(g_psHubStatus[ui32Port].ui32Instance, 0);
         ui8DevProtocol = USBHCDDevProtocol(
                                     g_psHubStatus[ui32Port].ui32Instance, 0);
-
         if(ui8DevClass == USB_CLASS_HID)
         {
             if(ui8DevProtocol == USB_HID_PROTOCOL_MOUSE)
@@ -270,7 +252,6 @@ UpdateStatus(uint32_t ui32Port)
         ui8DevClass = USBHCDDevClass(g_psHubStatus[ui32Port].ui32Instance, 0);
         ui8DevProtocol = USBHCDDevProtocol(
                                      g_psHubStatus[ui32Port].ui32Instance, 0);
-
         if(ui8DevClass == USB_CLASS_HID)
         {
             if(ui8DevProtocol == USB_HID_PROTOCOL_MOUSE)
@@ -322,7 +303,6 @@ UpdateStatus(uint32_t ui32Port)
         }
     }
 }
-
 //*****************************************************************************
 //
 // This is the generic callback from host stack.
@@ -343,23 +323,19 @@ USBHCDEvents(void *pvData)
 {
     tEventInfo *pEventInfo;
     uint8_t ui8Port;
-
     //
     // Cast this pointer to its actual type.
     //
     pEventInfo = (tEventInfo *)pvData;
-
     //
     // Get the hub port number that the device is connected to.
     //
     ui8Port = USBHCDDevHubPort(pEventInfo->ui32Instance);
-
     switch(pEventInfo->ui32Event)
     {
         case USB_EVENT_UNKNOWN_CONNECTED:
         case USB_EVENT_CONNECTED:
         {
-
             //
             // If this is the hub then ignore this connection.
             //
@@ -371,7 +347,6 @@ USBHCDEvents(void *pvData)
                 SCIprintf("\nUSB Hub is connected\n");
                 break;
             }
-
             //
             // If this is not a direct connection, then the hub is on
             // port 0 so the index should be moved down from 1-4 to 0-3.
@@ -380,21 +355,17 @@ USBHCDEvents(void *pvData)
             {
                 ui8Port--;
             }
-
             //
             // Save the device instance data.
             //
             g_psHubStatus[ui8Port].ui32Instance = pEventInfo->ui32Instance;
             g_psHubStatus[ui8Port].bConnected = true;
-
             //
             // Update the port status for the new device.
             //
             UpdateStatus(ui8Port);
-
             break;
         }
-
         //
         // A device has been unplugged.
         //
@@ -411,7 +382,6 @@ USBHCDEvents(void *pvData)
                 SCIprintf("\nUSB Hub is Disconnected\n");
                 break;
             }
-
             //
             // If this is not a direct connection, then the hub is on
             // port 0 so the index should be moved down from 1-4 to 0-3.
@@ -420,18 +390,15 @@ USBHCDEvents(void *pvData)
             {
                 ui8Port--;
             }
-
             //
             // Device is no longer connected.
             //
             g_psHubStatus[ui8Port].ui32Instance = 0;
             g_psHubStatus[ui8Port].bConnected = false;
-
             //
             // Update the port status for the new device.
             //
             UpdateStatus(ui8Port);
-
             break;
         }
         default:
@@ -440,7 +407,6 @@ USBHCDEvents(void *pvData)
         }
     }
 }
-
 //*****************************************************************************
 //
 // This is the callback from the USB HUB mouse handler.
@@ -462,7 +428,6 @@ HubCallback(tHubInstance *psHubInstance, uint32_t ui32Event,
             uint32_t ui32MsgParam, void *pvMsgData)
 {
 }
-
 //*****************************************************************************
 //
 // The main application loop.
@@ -472,12 +437,10 @@ int
 main(void)
 {
     uint32_t i32Idx;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure GPIO pins for USB.
     //
@@ -486,45 +449,36 @@ main(void)
     // Set the clocking to run from the PLL at 50MHz
     //
 	SysCtl_setUSBClockDivider(SYSCTL_USBCLK_DIV_6);
-	
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Configure the required pins for USB operation.
     //
     USBGPIOEnable();
-
     //
     // Register the interrupt handler for USB Interrupts.
     //
     Interrupt_register(INT_USBA, &f28x_USB0OTGModeIntHandler);
-
     //
     // Enable Interrupts
     //
     Interrupt_enableGlobal();
-
     //
     // Configure SCIA for debug output.
     //
     ConfigureSCI();
-
     //
     // Initialize the hub port status.
     //
@@ -533,42 +487,34 @@ main(void)
         g_psHubStatus[i32Idx].bConnected = false;
         g_psHubStatus[i32Idx].ui32Instance = 0;
     }
-
     //
     // Open the Mouse and Keyboard Interface.
     //
     MouseOpen();
     KeyboardOpen();
-
     //
     // Initialize the USB stack mode and pass in a mode callback.
     //
     USBStackModeSet(0, eUSBModeForceHost, 0);
-
     //
     // Register the host class drivers.
     //
     USBHCDRegisterDrivers(0, g_ppHostClassDrivers, g_ui32NumHostClassDrivers);
-
     //
     // Open a hub instance and provide it with the memory required to hold
     // configuration descriptors for each attached device.
     //
     USBHHubOpen(HubCallback);
-
     //
     // Initialize the power configuration. This sets the power enable signal
     // to be active high and does not enable the power fault.
     //
     USBHCDPowerConfigInit(0, USBHCD_VBUS_AUTO_HIGH | USBHCD_VBUS_FILTER);
-
     //
     // Initialize the USB controller for Host mode.
     //
     USBHCDInit(0, g_pui8HCDPool, sizeof(g_pui8HCDPool));
-
     SCIprintf("USB Host Hub Example\n");
-
     //
     // The main loop for the application.
     //
@@ -578,12 +524,10 @@ main(void)
             // Call the USB library to let non-interrupt code run.
             //
             USBHCDMain();
-
             //
             // Call the keyboard main routine.
             //
             KeyboardMain();
-
             //
             // Call the Mouse main routine.
             //

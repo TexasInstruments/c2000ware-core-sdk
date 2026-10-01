@@ -186,6 +186,11 @@ extern "C"
 #endif
 
 //
+// Set Watchdog Clock Source to WROSCDIV8 by default
+//
+#define DEVICE_WATCHDOG_CLK_SRC       SYSCTL_SECCLKSRC_WROSCDIV8
+
+//
 // 40MHz LSPCLK frequency based on the above DEVICE_SYSCLK_FREQ and a default
 // low speed peripheral clock divider of 4. Update the code below if a
 // different LSPCLK divider is used!

@@ -63,7 +63,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -104,8 +104,6 @@
 #include "IQmathLib.h"
 #include "eqep_ex2_calculation.h"
 #include "board.h"
-
-
 //
 // Defines
 //
@@ -114,7 +112,6 @@
                                             // (300 rpm)
 #define PRD_VAL   (TB_CLK / (PWM_CLK * 2))  // Calculate value period value
                                             // for up-down count mode
-
 // .9999 / 4000 converted to IQ26 fixed point format
 #define MECH_SCALER     16776
 // 2 pole pairs in this example
@@ -125,14 +122,11 @@
 #define SPEED_SCALER    ((((uint64_t)32 * DEVICE_SYSCLK_FREQ / 64) * 60) / (24000000))
 // Base/max rpm is 6000rpm
 #define BASE_RPM        6000
-
-
 //
 // Function Prototypes
 //
 void initEPWM(void);
 __interrupt void epwmISR(void);
-
 //
 // Globals
 //
@@ -147,7 +141,6 @@ PosSpeed_Object posSpeed =
     BASE_RPM,       // baseRPM
     0, 0, 0, 0      // Initialize outputs to zero
 };
-
 uint16_t interruptCount = 0;
 uint32_t count =0;  // counter to check measurement gets saturated
 uint32_t pass=0, fail =0; // Pass or fail indicator
@@ -160,30 +153,25 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Board Initialization
     // Setup eQEP1, configuring the unit timer and quadrature capture units
     // Initialize GPIOs for use as EQEP1A, EQEP1B, and EQEP1I
     //
     Board_init();
-
     //
     // Initialize GPIO0 to ePWM1A, GPIO1 to ePWM1B, and GPIO4 as an output.
     // They will be used to simulate incoming eQEP Phase A, Phase B, and Index
@@ -191,32 +179,26 @@ void main(void)
     //
     GPIO_setPinConfig(GPIO_0_EPWM1A);
     GPIO_setPadConfig(0, GPIO_PIN_TYPE_STD);
-
     GPIO_setPinConfig(GPIO_1_EPWM1B);
     GPIO_setPadConfig(1, GPIO_PIN_TYPE_STD);
-    
     //
     // Interrupts that are used in this example are re-mapped to ISR functions
     // found within this file.
     //
     Interrupt_register(INT_EPWM1, &epwmISR);
-
     //
     // Setup ePWM1 to generate a 5 kHz signal to be an input to the eQEP
     //
     initEPWM();
-
     //
     // Enable interrupts required for this example
     //
     Interrupt_enable(INT_EPWM1);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Loop indefinitely
     //
@@ -225,7 +207,6 @@ void main(void)
         ;
     }
 }
-
 //
 // Function to configure ePWM1 to generate a 5 kHz signal.
 //
@@ -235,13 +216,11 @@ void initEPWM(void)
     // Disable the ePWM time base clock before configuring the module
     //
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Set phase shift to 0 and clear the time base counter
     //
     EPWM_setPhaseShift(EPWM1_BASE, 0);
     EPWM_setTimeBaseCounter(EPWM1_BASE, 0);
-
     //
     // Disable the shadow load; the load will be immediate instead
     //
@@ -249,13 +228,11 @@ void initEPWM(void)
                                              EPWM_COUNTER_COMPARE_A);
     EPWM_disableCounterCompareShadowLoadMode(EPWM1_BASE,
                                              EPWM_COUNTER_COMPARE_B);
-
     //
     // Set the compare A value to half the period value, compare B to 0
     //
     EPWM_setCounterCompareValue(EPWM1_BASE, EPWM_COUNTER_COMPARE_A, PRD_VAL/2);
     EPWM_setCounterCompareValue(EPWM1_BASE, EPWM_COUNTER_COMPARE_B, 0);
-
     //
     // Set action qualifier behavior on compare A events
     // - EPWM1A --> 1 when CTR = CMPA and increasing
@@ -267,7 +244,6 @@ void initEPWM(void)
     EPWM_setActionQualifierAction(EPWM1_BASE, EPWM_AQ_OUTPUT_A,
                                   EPWM_AQ_OUTPUT_LOW,
                                   EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);
-
     //
     // Set action qualifier behavior on compare B events
     // - EPWM1B --> 1 when CTR = PRD and increasing
@@ -279,53 +255,44 @@ void initEPWM(void)
     EPWM_setActionQualifierAction(EPWM1_BASE, EPWM_AQ_OUTPUT_B,
                                   EPWM_AQ_OUTPUT_LOW,
                                   EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);
-
     //
     // Enable interrupt when the counter is equal to PRD
     //
     EPWM_setInterruptSource(EPWM1_BASE, EPWM_INT_TBCTR_PERIOD);
     EPWM_enableInterrupt(EPWM1_BASE);
-
     //
     // Interrupt on first event
     //
     EPWM_setInterruptEventCount(EPWM1_BASE, 1);
-
     //
     // Set the time base clock prescaler to /1
     //
     EPWM_setClockPrescaler(EPWM1_BASE, EPWM_CLOCK_DIVIDER_1,
                            EPWM_HSCLOCK_DIVIDER_1);
-
     //
     // Set the period value; don't shadow the register
     //
     EPWM_setPeriodLoadMode(EPWM1_BASE, EPWM_PERIOD_DIRECT_LOAD);
     EPWM_setTimeBasePeriod(EPWM1_BASE, PRD_VAL);
-
     //
     // Put the time base counter into up-down count mode
     //
     EPWM_setTimeBaseCounterMode(EPWM1_BASE, EPWM_COUNTER_MODE_UP_DOWN);
-
     //
     // Sync the ePWM time base clock
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
 }
-
 //
 // ePWM1 ISR--interrupts once every 4 QCLK counts (one period)
 //
  __interrupt void epwmISR(void)
 {
     uint16_t i;
-
     //
     // Position speed and measurement
     //
     PosSpeed_calculate(&posSpeed, &count);
-
     //
     // Comparing the eQEP measured frequency with the ePWM frequency
     // After count becomes 3 , eQEP measurement gets saturated and if
@@ -341,7 +308,6 @@ void initEPWM(void)
             fail = 1; pass = 0;
         }
        }
-
     //
     // Control loop for position control and speed control
     //
@@ -358,7 +324,6 @@ void initEPWM(void)
         }
         GPIO_writePin(2, 0);
     }
-
     //
     // Clear interrupt flag and issue ACK
     //

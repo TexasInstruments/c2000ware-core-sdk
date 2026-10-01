@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -122,6 +122,10 @@ a single CPU should be defined."
 //
 // FSI
 //
+#define DEVICE_GPIO_PIN_FSI_TXCLK       27U  // GPIO number for FSI TXCLK
+#define DEVICE_GPIO_PIN_FSI_TX0         26U  // GPIO number for FSI TX0
+#define DEVICE_GPIO_PIN_FSI_TX1         25U  // GPIO number for FSI TX1
+
 #define DEVICE_GPIO_PIN_FSI_RXCLKA      9U  // GPIO number for FSI RXCLKA
 #define DEVICE_GPIO_PIN_FSI_RX0A        8U  // GPIO number for FSI RX0A
 #define DEVICE_GPIO_PIN_FSI_RX1A        10U  // GPIO number for FSI RX1A

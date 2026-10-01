@@ -1,14 +1,29 @@
 let Common   = system.getScript("/driverlib/Common.js");
 
+let codestartbranch_asm_path=""
+let driverlib_h_path=""
+if ((system.getProducts()[0].name.includes("C2000MCSDK")) || (system.getProducts()[0].name.includes("C2000MDPSDK")))
+{
+    codestartbranch_asm_path = "../c2000ware/device_support/${DEVICE_NAME}/common/source/${DEVICE_NAME}_codestartbranch.asm"
+    driverlib_h_path="../c2000ware/device_support/${DEVICE_NAME}/common/include/driverlib.h"
+} 
+else
+{ 
+    codestartbranch_asm_path = "../device_support/${DEVICE_NAME}/common/source/${DEVICE_NAME}_codestartbranch.asm"
+     driverlib_h_path="../device_support/${DEVICE_NAME}/common/include/driverlib.h"
+}
+
+
+
 var references = [
     {
         name: "codestartbranch_asm",
-        path: "../device_support/${DEVICE_NAME}/common/source/${DEVICE_NAME}_codestartbranch.asm",
+        path: codestartbranch_asm_path,
         alwaysInclude: false,
     },
     {
         name: "driverlib_h",
-        path: "../device_support/${DEVICE_NAME}/common/include/driverlib.h",
+        path: driverlib_h_path,
         alwaysInclude: false,
     },
 ]

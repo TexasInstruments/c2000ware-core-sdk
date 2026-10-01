@@ -31,7 +31,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -64,72 +64,59 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Defines
 //
 #define IPC_CMD_READ_MEM   0x1001
 #define IPC_CMD_RESP       0x2001
-
 #define TEST_PASS          0x5555
 #define TEST_FAIL          0xAAAA
-
 //
 // Main
 //
 void main(void)
 {
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Initialize SysConfig Settings
     //
     Board_init();
-
     //
     // Clear any IPC flags if set already
     //
     IPC_clearFlagLtoR(IPC_CPU2_L_CPU1_R, IPC_FLAG_ALL);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Synchronize both the cores.
     //
     IPC_sync(IPC_CPU2_L_CPU1_R, SYNC_FLAG);
-
     //
     // Loop forever. Wait for IPC interrupt
     //
     while(1);
 }
-
 //
 // IPC ISR for Flag 0.
 // C28x core sends data without message queue using Flag 0
@@ -139,17 +126,14 @@ __interrupt void IPC_ISR0()
     int i;
     uint32_t command, addr, data;
     bool status = false;
-
     //
     // Read the command
     //
     IPC_readCommand(IPC_CPU2_L_CPU1_R, IPC_FLAG0, IPC_ADDR_CORRECTION_ENABLE,
                     &command, &addr, &data);
-
     if(command == IPC_CMD_READ_MEM)
     {
         status = true;
-
         //
         // Read and compare data
         //
@@ -159,7 +143,6 @@ __interrupt void IPC_ISR0()
                 status = false;
         }
     }
-
     //
     // Send response to C28x core
     //
@@ -171,12 +154,10 @@ __interrupt void IPC_ISR0()
     {
         IPC_sendResponse(IPC_CPU2_L_CPU1_R, TEST_FAIL);
     }
-
     //
     // Acknowledge the flag
     //
     IPC_ackFlagRtoL(IPC_CPU2_L_CPU1_R, IPC_FLAG0);
-
     //
     // Acknowledge the PIE interrupt.
     //

@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_DCC_EX2_SINGLE_SHOT_MEASUREMENT" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_DCC_EX2_SINGLE_SHOT_MEASUREMENT</compoundname>
+    <title>DCC Single shot Clock measurement</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_DCC_EX2_SINGLE_SHOT_MEASUREMENT_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_dcc_ex2_single_shot_measurement"/></para>
+<sect1 id="EXAMPLES_DRIVERS_DCC_EX2_SINGLE_SHOT_MEASUREMENT_1autotoc_md171">
+<title>Introduction</title>
+<para>This program demonstrates the use of the Dual-Clock Comparator (DCC) module to perform a single-shot measurement of the SYSOSCDIV4 clock frequency using the XTAL clock as a reference</para>
+<sect3 id="EXAMPLES_DRIVERS_DCC_EX2_SINGLE_SHOT_MEASUREMENT_1autotoc_md172">
+<title>Details</title>
+<para>The DCC module is configured to measure the frequency of the SYSOSCDIV4 clock (Fclk1) using the XTAL clock (Fclk0) as a reference. The reference clock frequency is set to 20 MHz, and the measured clock frequency is expected to be approximately <bold>8 Hz</bold>. The program sets an initial seed value for the DCC counters and verifies the measured frequency against an expected range.</para>
+<para><table rows="6" cols="2"><row>
+<entry thead="yes"><para><bold>Parameter</bold>   </para>
+</entry><entry thead="yes"><para><bold>Value</bold>    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Reference Clock (Fclk0):</bold>   </para>
+</entry><entry thead="no"><para>XTAL (20 MHz)    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Measured Clock (Fclk1):</bold>   </para>
+</entry><entry thead="no"><para>SYSOSCDIV4    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Tolerance:</bold>   </para>
+</entry><entry thead="no"><para>1%    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Allowable Frequency Tolerance:</bold>   </para>
+</entry><entry thead="no"><para>0% (can be updated based on XTAL error)    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>System Clock Frequency:</bold>   </para>
+</entry><entry thead="no"><para>160 MHz   </para>
+</entry></row>
+</table>
+</para>
+<para>The result of the measurement is stored in the <computeroutput>result</computeroutput> variable, which indicates whether the measurement was successful (PASS) or not (FAIL). The measured frequency is stored in the <computeroutput>meas_freq1</computeroutput> variable.</para>
+</sect3>
+<sect3 id="EXAMPLES_DRIVERS_DCC_EX2_SINGLE_SHOT_MEASUREMENT_1autotoc_md173">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>None</para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+<sect3 id="EXAMPLES_DRIVERS_DCC_EX2_SINGLE_SHOT_MEASUREMENT_1autotoc_md174">
+<title>Watch Variables</title>
+<para><table rows="3" cols="2"><row>
+<entry thead="yes"><para><bold>Variable</bold>   </para>
+</entry><entry thead="yes"><para><bold>Description</bold>    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>result</computeroutput>   </para>
+</entry><entry thead="no"><para>Status of the SYSOSCDIV4 clock measurement (PASS or FAIL).    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>meas_freq1</computeroutput>   </para>
+</entry><entry thead="no"><para>Measured clock frequency of SYSOSCDIV4.   </para>
+</entry></row>
+</table>
+</para>
+</sect3>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_DCC_EX2_SINGLE_SHOT_MEASUREMENT_1autotoc_md175">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Using the watch variables, view the Clock monitoring status and the counter values when the error is generated.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para><itemizedlist>
+<listitem><para>When running in flash configuration, it is recommended to reset and restart after loading the example to remove any stale flags or states.</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_DCC_EX2_SINGLE_SHOT_MEASUREMENT_1autotoc_md176">
+<title>See Also</title>
+<para><ref refid="DRIVERS_DCC_PAGE" kindref="compound">DCC</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/dcc_ex2_single_shot_measurement.md"/>
+  </compounddef>
+</doxygen>

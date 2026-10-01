@@ -37,7 +37,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -70,69 +70,55 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Globals
 //
 uint16_t sData[128];                // Send data buffer
 uint16_t rData[128];                // Receive data buffer
-
 const void *destAddr = (const void *)rData;
 const void *srcAddr = (const void *)sData;
-
 // Place buffers in GSRAM
 #pragma DATA_SECTION(sData, "DMA_TX_SECTION");
 #pragma DATA_SECTION(rData, "DMA_RX_SECTION");
-
 volatile uint16_t done = 0;         // Flag to set when all data transferred
-
 //
 // Function Prototypes
 //
 __interrupt void INT_mySPI0_RX_DMA_ISR(void);
 __interrupt void INT_mySPI0_TX_DMA_ISR(void);
-
 //
 // Main
 //
 void main(void)
 {
     uint16_t i;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Board initialization from SysConfig
     //
     Board_init();
-
-
     //
     // Initialize the data buffers
     //
@@ -141,30 +127,25 @@ void main(void)
         sData[i] = i;
         rData[i]= 0;
     }
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Start the DMA channels
     //
     DMA_startChannel(mySPI0_TX_DMA_BASE);
     DMA_startChannel(mySPI0_RX_DMA_BASE);
-
     //
     // Wait until the DMA transfer is complete
     //
     while(!done);
-
     //
     // When the DMA transfer is complete the program will stop here
     //
     ESTOP0;
 }
-
 //
 // DMA Tx Channel ISR
 //
@@ -174,17 +155,14 @@ __interrupt void INT_mySPI0_TX_DMA_ISR(void)
     Interrupt_clearACKGroup(INT_mySPI0_TX_DMA_INTERRUPT_ACK_GROUP);
     return;
 }
-
 //
 // DMA Rx Channel ISR
 //
  __interrupt void INT_mySPI0_RX_DMA_ISR(void)
 {
     uint16_t i;
-
     DMA_stopChannel(mySPI0_RX_DMA_BASE);
     Interrupt_clearACKGroup(INT_mySPI0_RX_DMA_INTERRUPT_ACK_GROUP);
-
     //
     // Check for data integrity
     //
@@ -196,7 +174,6 @@ __interrupt void INT_mySPI0_TX_DMA_ISR(void)
             ESTOP0;
         }
     }
-
     done = 1;
     return;
 }

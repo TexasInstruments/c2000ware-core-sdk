@@ -61,7 +61,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Include Files
 //
@@ -70,7 +69,6 @@
 #include "inc/stw_types.h"
 #include "inc/stw_dataTypes.h"
 #include <string.h>
-
 //
 // Defines.
 //
@@ -87,7 +85,6 @@
 #define MCAN_TX_FQ_SIZE                 (0U)
 #define MCAN_TX_BUFF_ELEM_SIZE          (MCAN_ELEM_SIZE_8BYTES)
 #define MCAN_TX_EVENT_SIZE              (0U)
-
 //
 //  Defining Starting Addresses for Message RAM Sections,
 //  (Calculated from Macros based on User defined configuration above)
@@ -99,37 +96,29 @@
 #define MCAN_RX_BUFF_START_ADDR         (MCAN_FIFO_1_START_ADDR + (MCAN_getMsgObjSize(MCAN_FIFO_1_ELEM_SIZE) * 4U * MCAN_FIFO_1_NUM))
 #define MCAN_TX_BUFF_START_ADDR         (MCAN_RX_BUFF_START_ADDR + (MCAN_getMsgObjSize(MCAN_RX_BUFF_ELEM_SIZE) * 4U * MCAN_RX_BUFF_NUM))
 #define MCAN_TX_EVENT_START_ADDR        (MCAN_TX_BUFF_START_ADDR + (MCAN_getMsgObjSize(MCAN_TX_BUFF_ELEM_SIZE) * 4U * (MCAN_TX_BUFF_SIZE + MCAN_TX_FQ_SIZE)))
-
-
 //
 // Global Variables.
 //
 int32_t     error = 0;
 MCAN_TxBufElement txMsg[NUM_OF_MSG];
 int32_t loopCnt = 0U;
-
 //
 // Function Prototype.
 //
 static void MCANConfig(void);
-
 void main()
 {
     int i = 0;
     volatile uint32_t mode = 0U;
     uint32_t dataBytes = 8;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure GPIO pins for CANTX/CANRX
     //
     Device_initGPIO();
-
-
     //
     // Configure the divisor for the MCAN bit-clock
     //
@@ -139,7 +128,6 @@ void main()
     //
     GPIO_setPinConfig(DEVICE_GPIO_CFG_MCANRXA);
     GPIO_setPinConfig(DEVICE_GPIO_CFG_MCANTXA);
-
     //
     // Initialize message to transmit.
     //
@@ -158,25 +146,21 @@ void main()
         txMsg[loopCnt].data[i]  = txMsg[loopCnt].data[i-1] + 1;
     }
     i = 0;
-
     //
     // Configure the MCAN Module.
     //
     MCANConfig();
-
     //
     // Write message to Message RAM.
     //
     MCAN_writeMsgRam(MCANA_DRIVER_BASE, MCAN_MEM_TYPE_BUF, loopCnt,
                      &txMsg[loopCnt]);
-
     while(1)
     {
         //
         // Add request for all transmission.
         //
         MCAN_txBufAddReq(MCANA_DRIVER_BASE, 0U);
-
         //
         // Wait till all the messages are transmitted.
         //
@@ -184,33 +168,28 @@ void main()
         {
         }
     }
-
     //
     // Stop Application.
     //
     asm("   ESTOP0");
 }
-
 static void MCANConfig(void)
 {
     MCAN_InitParams initParams;
     MCAN_MsgRAMConfigParams    msgRAMConfigParams;
     MCAN_BitTimingParams       bitTimes;
-
     //
     //  Initializing all structs to zero to prevent stray values
     //
     memset(&initParams, 0, sizeof(initParams));
     memset(&msgRAMConfigParams, 0, sizeof(msgRAMConfigParams));
     memset(&bitTimes, 0, sizeof(bitTimes));
-
     //
     // Initialize MCAN Init parameters.
     //
     initParams.fdMode            = 0x0U; // FD operation disabled.
     initParams.brsEnable         = 0x0U; // Bit rate switching for
                                          // transmissions disabled.
-
     //
     // Initialize Message RAM Sections Configuration Parameters
     //
@@ -221,8 +200,6 @@ static void MCANConfig(void)
     msgRAMConfigParams.txBufMode            = 0U;
     msgRAMConfigParams.txBufElemSize        = MCAN_TX_BUFF_ELEM_SIZE;
     // Tx Buffer Element Size.
-
-
     bitTimes.nomRatePrescalar   = 0x1U; // Nominal Baud Rate Pre-scaler
     bitTimes.nomTimeSeg1        = 0x9U; // Nominal Time segment before SP
     bitTimes.nomTimeSeg2        = 0x8U; // Nominal Time segment after SP
@@ -233,40 +210,32 @@ static void MCANConfig(void)
     while(FALSE == MCAN_isMemInitDone(MCANA_DRIVER_BASE))
     {
     }
-
     //
     // Put MCAN in SW initialization mode.
     //
     MCAN_setOpMode(MCANA_DRIVER_BASE, MCAN_OPERATION_MODE_SW_INIT);
-
     //
     // Wait till MCAN is not initialized.
     //
     while (MCAN_OPERATION_MODE_SW_INIT != MCAN_getOpMode(MCANA_DRIVER_BASE))
     {}
-
     //
     // Initialize MCAN module.
     //
     MCAN_init(MCANA_DRIVER_BASE, &initParams);
-
     //
     // Configure Bit timings.
     //
     MCAN_setBitTime(MCANA_DRIVER_BASE, &bitTimes);
-
     //
     // Configure Message RAM Sections
     //
     MCAN_msgRAMConfig(MCANA_DRIVER_BASE, &msgRAMConfigParams);
-
     //
     // Take MCAN out of the SW initialization mode
     //
     MCAN_setOpMode(MCANA_DRIVER_BASE, MCAN_OPERATION_MODE_NORMAL);
-
     while (MCAN_OPERATION_MODE_NORMAL != MCAN_getOpMode(MCANA_DRIVER_BASE))
     {
-
     }
 }

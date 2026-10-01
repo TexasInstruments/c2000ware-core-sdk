@@ -63,7 +63,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -96,30 +96,25 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
 #include "sfo_v8.h"
-
 //
 // Defines
 //
 #define PWM_CH            9        // # of PWM channels + 1
 #define STATUS_SUCCESS    1
 #define STATUS_FAIL       0
-
 //
 // Globals
 //
 Uint16 UpdateFine, PeriodFine, status;
-
 int MEP_ScaleFactor; // Global variable used by the SFO library
                      // Result can be used for all HRPWM channels
                      // This variable is also copied to HRMSTEP
                      // register by SFO(0) function.
-
 //
 // Array of pointers to EPwm register structures:
 // *ePWM[0] is defined as dummy value not used in the example
@@ -127,56 +122,45 @@ int MEP_ScaleFactor; // Global variable used by the SFO library
 volatile struct EPWM_REGS *ePWM[PWM_CH] = {0, &EPwm1Regs, &EPwm2Regs,
                                            &EPwm3Regs, &EPwm4Regs, &EPwm5Regs,
                                            &EPwm6Regs, &EPwm7Regs, &EPwm8Regs};
-
 //
 // Function Prototypes
 //
 void HRPWM_Config(int);
 void error(void);
-
 //
 // Main
 //
 void main(void)
 {
     int i;
-
     EALLOW; // This is needed to write to EALLOW protected registers
-
     //
     // Initialize System Control for Control and Analog Subsystems
     // Enable Peripheral Clocks
     // This example function is found in the f2838x_sysctrl.c file.
     //
     InitSysCtrl();
-
     EDIS;
-
     //
     // EPWM1A and EPWM1B through all PWMS
     //
     InitEPwmGpio();
-
     DINT; // Disable CPU interrupts
-
     //
     // Initialize PIE control registers to their default state.
     // The default state is all PIE interrupts disabled and flags
     // are cleared.
     //
-
     //
     // This function is found in the f2838x_piectrl.c file.
     //
     InitPieCtrl();
-
     //
     // Disable CPU interrupts and clear all CPU interrupt flags:
     //
     EALLOW;
     IER = 0x0000;
     IFR = 0x0000;
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
@@ -186,20 +170,17 @@ void main(void)
     // This function is found in f2838x_pievect.c.
     //
     InitPieVectTable();
-
     //
     // Initialize system variables, enable HRPWM
     //
     UpdateFine = 1;
     PeriodFine = 0;
     status = SFO_INCOMPLETE;
-
     //
     // Enable global Interrupts and higher priority real-time debug events:
     //
     EINT;   // Enable Global interrupt INTM
     ERTM;   // Enable Global realtime interrupt DBGM
-
     //
     // Calling SFO() updates the HRMSTEP register with calibrated
     // MEP_ScaleFactor. HRMSTEP must be populated with a scale factor
@@ -213,7 +194,6 @@ void main(void)
             error();    // SFO function returns 2 if an error occurs & # of MEP
         }               // steps/coarse step exceeds maximum of 255.
     }
-
     //
     // ePWM and HRPWM register initialization
     //
@@ -259,7 +239,6 @@ void main(void)
                     (*ePWM[i]).TBPRDHR = 0;
                 }
             }
-
             //
             // Call the scale factor optimizer lib function SFO(0)
             // periodically to track for any change due to temp/voltage.
@@ -270,7 +249,6 @@ void main(void)
             //
             status = SFO(); // in background, MEP calibration module
                             // continuously updates MEP_ScaleFactor
-
             if(status == SFO_ERROR)
             {
                 error();   // SFO function returns 2 if an error occurs & # of
@@ -278,7 +256,6 @@ void main(void)
         } // end PeriodFine for loop
     } // end infinite for loop
 }
-
 //
 // HRPWM_Config - Configures all ePWM channels and sets up HRPWM
 //                on ePWMxA channels &  ePWMxB channels
@@ -286,7 +263,6 @@ void main(void)
 void HRPWM_Config(period)
 {
     Uint16 j;
-
     //
     // ePWM channel register configuration with HRPWM
     // ePWMxA toggle low/high with MEP control on Rising edge
@@ -294,7 +270,6 @@ void HRPWM_Config(period)
     EALLOW;
     CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 0;   // Disable TBCLK within the EPWM
     EDIS;
-
     for(j = 1;j < PWM_CH;j++)
     {
         (*ePWM[j]).TBCTL.bit.PRDLD = TB_SHADOW;  // set Shadow load
@@ -305,7 +280,6 @@ void HRPWM_Config(period)
         (*ePWM[j]).CMPB.all |= 1;
         (*ePWM[j]).TBPHS.all = 0;
         (*ePWM[j]).TBCTR = 0;
-
         (*ePWM[j]).TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN; // Select up-down
                                                         // count mode
         (*ePWM[j]).EPWMSYNCINSEL.all = SYNC_IN_SRC_DISABLE_ALL;
@@ -313,17 +287,14 @@ void HRPWM_Config(period)
         (*ePWM[j]).TBCTL.bit.HSPCLKDIV = TB_DIV1;
         (*ePWM[j]).TBCTL.bit.CLKDIV = TB_DIV1;          // TBCLK = SYSCLKOUT
         (*ePWM[j]).TBCTL.bit.FREE_SOFT = 11;
-
         (*ePWM[j]).CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;  // LOAD CMPA on CTR = 0
         (*ePWM[j]).CMPCTL.bit.LOADBMODE = CC_CTR_ZERO;
         (*ePWM[j]).CMPCTL.bit.SHDWAMODE = CC_SHADOW;
         (*ePWM[j]).CMPCTL.bit.SHDWBMODE = CC_SHADOW;
-
         (*ePWM[j]).AQCTLA.bit.CAU = AQ_SET;             // PWM toggle high/low
         (*ePWM[j]).AQCTLA.bit.CAD = AQ_CLEAR;
         (*ePWM[j]).AQCTLB.bit.CBU = AQ_SET;             // PWM toggle high/low
         (*ePWM[j]).AQCTLB.bit.CBD = AQ_CLEAR;
-
         EALLOW;
         (*ePWM[j]).HRCNFG.all = 0x0;
         (*ePWM[j]).HRCNFG.bit.EDGMODE = HR_BEP;          // MEP control on
@@ -340,13 +311,11 @@ void HRPWM_Config(period)
                                                          // and CTR = TBPRD
         (*ePWM[j]).HRCNFG.bit.AUTOCONV = 1;        // Enable autoconversion for
                                                    // HR period
-
         (*ePWM[j]).HRPCTL.bit.TBPHSHRLOADE = 1;    // Enable TBPHSHR sync
                                                    // (required for updwn
                                                    //  count HR control)
         (*ePWM[j]).HRPCTL.bit.HRPE = 1;            // Turn on high-resolution
                                                    // period control.
-
         CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 1;      // Enable TBCLK within
                                                    // the EPWM
         (*ePWM[j]).TBCTL.bit.SWFSYNC = 1;          // Synchronize high
@@ -355,7 +324,6 @@ void HRPWM_Config(period)
         EDIS;
     }
 }
-
 //
 // error - Halt debugger when error occurs
 //
@@ -363,7 +331,6 @@ void error (void)
 {
     ESTOP0;         // Stop here and handle error
 }
-
 //
 // End of file
 //

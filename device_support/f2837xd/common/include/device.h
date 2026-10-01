@@ -104,7 +104,9 @@ a single CPU should be defined."
 #define DEVICE_GPIO_CFG_CANTXA      GPIO_31_CANTXA  // "pinConfig" for CANA TX
 #define DEVICE_GPIO_CFG_CANRXB      GPIO_10_CANRXB  // "pinConfig" for CANB RX
 #define DEVICE_GPIO_CFG_CANTXB      GPIO_8_CANTXB   // "pinConfig" for CANB TX
+#endif
 
+#ifdef _LAUNCHXL_F28379D
 //I2CA GPIO pins
 #define DEVICE_GPIO_PIN_SDAA    104
 #define DEVICE_GPIO_PIN_SCLA    105
@@ -119,6 +121,21 @@ a single CPU should be defined."
 
 #define DEVICE_GPIO_CFG_SDAB GPIO_40_SDAB
 #define DEVICE_GPIO_CFG_SCLB GPIO_41_SCLB
+#else
+//I2CA GPIO pins
+#define DEVICE_GPIO_PIN_SDAA    32
+#define DEVICE_GPIO_PIN_SCLA    33
+
+#define DEVICE_GPIO_CFG_SDAA GPIO_32_SDAA
+#define DEVICE_GPIO_CFG_SCLA GPIO_33_SCLA
+
+
+//I2CB GPIO pins
+#define DEVICE_GPIO_PIN_SDAB    2
+#define DEVICE_GPIO_PIN_SCLB    3
+
+#define DEVICE_GPIO_CFG_SDAB GPIO_2_SDAB
+#define DEVICE_GPIO_CFG_SCLB GPIO_3_SCLB
 
 #endif
 

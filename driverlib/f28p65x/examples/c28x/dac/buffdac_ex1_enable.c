@@ -24,7 +24,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -57,19 +57,16 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Globals
 //
 uint16_t dacVal = 2048;
-
 //
 // Main
 //
@@ -79,24 +76,20 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Board initialization
     // Configure DAC - Setup the reference voltage and output value for the DAC
     //
     Board_init();
-
     //
     // Continuously set the DAC output value
     //
@@ -106,7 +99,6 @@ void main(void)
         DEVICE_DELAY_US(2);
     }
 }
-
 //
 // End of File
 //

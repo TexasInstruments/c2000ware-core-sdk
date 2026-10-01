@@ -41,14 +41,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include <stdint.h>
 #include "f28004x_device.h"
 #include "fsi_ex2_loopback_clacontrol_cla_shared.h"
-
 //-----------------------------------------------------------------------------
 //
 // Task 1 - Title Here
@@ -58,9 +56,7 @@
 //-----------------------------------------------------------------------------
 __attribute__((interrupt)) void Cla1Task1 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 2 - Title Here
@@ -70,9 +66,7 @@ __attribute__((interrupt)) void Cla1Task1 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task2 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 3 - Title Here
@@ -82,9 +76,7 @@ __attribute__((interrupt))  void Cla1Task2 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task3 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 4 - Title Here
@@ -94,9 +86,7 @@ __attribute__((interrupt))  void Cla1Task3 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task4 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 5 - Title Here
@@ -106,9 +96,7 @@ __attribute__((interrupt))  void Cla1Task4 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task5 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 6 - Title Here
@@ -118,9 +106,7 @@ __attribute__((interrupt))  void Cla1Task5 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task6 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 7 - Title Here
@@ -130,9 +116,7 @@ __attribute__((interrupt))  void Cla1Task6 ( void )
 //-----------------------------------------------------------------------------
 __attribute__((interrupt))  void Cla1Task7 ( void )
 {
-
 }
-
 //-----------------------------------------------------------------------------
 //
 // Task 8 - Infinite loop to trigger FSI data transfers iteratively
@@ -152,13 +136,11 @@ __attribute__((interrupt("background")))  void Cla1Task8()
         // Trigger Data Frame Transfer
         //
         FsiTxaRegs.TX_FRAME_CTRL.bit.START = 1;
-
         //
         // Wait till frame done event is received by both Tx/Rx modules
         //
         while(fsiTxInt1Received != 1U);
         while(fsiRxInt1Received != 1U);
-
         //
         // Re-initialize flags and buffer pointer before next transmission
         //
@@ -166,7 +148,6 @@ __attribute__((interrupt("background")))  void Cla1Task8()
         fsiRxInt1Received = 0U;
     }
 }
-
 //
 // End of File
 //

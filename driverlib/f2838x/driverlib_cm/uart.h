@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -289,7 +289,7 @@ UART_setParityMode(uint32_t base, uint32_t parity)
     // Set the parity mode.
     //
     HWREG(base + UART_O_LCRH) = ((HWREG(base + UART_O_LCRH) &
-                                ~(UART_LCRH_SPS | UART_LCRH_EPS |
+                                ~(uint32_t)(UART_LCRH_SPS | UART_LCRH_EPS |
                                 UART_LCRH_PEN)) | parity);
 }
 
@@ -319,7 +319,7 @@ UART_getParityMode(uint32_t base)
     //
     // Return the current parity setting.
     //
-    return(HWREG(base + UART_O_LCRH) & (UART_LCRH_SPS |
+    return(HWREG(base + UART_O_LCRH) & (uint32_t)(UART_LCRH_SPS |
                                         UART_LCRH_EPS |
                                         UART_LCRH_PEN));
 }
@@ -404,8 +404,8 @@ UART_getFIFOLevel(uint32_t base, uint32_t *txLevel,
     //
     // Extract the transmit and receive FIFO levels.
     //
-    *txLevel = temp & UART_IFLS_TXIFLSEL_M;
-    *rxLevel = temp & UART_IFLS_RXIFLSEL_M;
+    *txLevel = temp & (uint32_t)UART_IFLS_TXIFLSEL_M;
+    *rxLevel = temp & (uint32_t)UART_IFLS_RXIFLSEL_M;
 }
 
 
@@ -431,12 +431,12 @@ UART_enableModule(uint32_t base)
     //
     // Enable the FIFO.
     //
-    HWREG(base + UART_O_LCRH) |= UART_LCRH_FEN;
+    HWREG(base + UART_O_LCRH) |= (uint32_t)UART_LCRH_FEN;
 
     //
     // Enable RX, TX, and the UART.
     //
-    HWREG(base + UART_O_CTL) |= (UART_CTL_UARTEN | UART_CTL_TXE |
+    HWREG(base + UART_O_CTL) |= (uint32_t)(UART_CTL_UARTEN | UART_CTL_TXE |
                                  UART_CTL_RXE);
 }
 
@@ -463,19 +463,19 @@ UART_disableModule(uint32_t base)
     //
     // Wait for end of TX.
     //
-    while((HWREG(base + UART_O_FR) & UART_FR_BUSY) == UART_FR_BUSY)
+    while((HWREG(base + UART_O_FR) & (uint32_t)UART_FR_BUSY) == (uint32_t)UART_FR_BUSY)
     {
     }
 
     //
     // Disable the FIFO.
     //
-    HWREG(base + UART_O_LCRH) &= ~(UART_LCRH_FEN);
+    HWREG(base + UART_O_LCRH) &= ~(uint32_t)(UART_LCRH_FEN);
 
     //
     // Disable the UART.
     //
-    HWREG(base + UART_O_CTL) &= ~(UART_CTL_UARTEN | UART_CTL_TXE |
+    HWREG(base + UART_O_CTL) &= ~(uint32_t)(UART_CTL_UARTEN | UART_CTL_TXE |
                                   UART_CTL_RXE);
 }
 
@@ -501,7 +501,7 @@ UART_enableFIFO(uint32_t base)
     //
     // Enable the FIFO.
     //
-    HWREG(base + UART_O_LCRH) |= UART_LCRH_FEN;
+    HWREG(base + UART_O_LCRH) |= (uint32_t)UART_LCRH_FEN;
 }
 
 //*****************************************************************************
@@ -526,7 +526,7 @@ UART_disableFIFO(uint32_t base)
     //
     // Disable the FIFO.
     //
-    HWREG(base + UART_O_LCRH) &= ~(UART_LCRH_FEN);
+    HWREG(base + UART_O_LCRH) &= ~(uint32_t)(UART_LCRH_FEN);
 }
 
 //*****************************************************************************
@@ -551,7 +551,7 @@ UART_enableModuleNonFIFO(uint32_t base)
     //
     // Enable RX, TX, and the UART.
     //
-    HWREG(base + UART_O_CTL) |= (UART_CTL_UARTEN | UART_CTL_TXE |
+    HWREG(base + UART_O_CTL) |= (uint32_t)(UART_CTL_UARTEN | UART_CTL_TXE |
                                  UART_CTL_RXE);
 }
 
@@ -578,14 +578,14 @@ UART_disableModuleNonFIFO(uint32_t base)
     //
     // Wait for end of TX.
     //
-    while((HWREG(base + UART_O_FR) & UART_FR_BUSY) == UART_FR_BUSY)
+    while((HWREG(base + UART_O_FR) & (uint32_t)UART_FR_BUSY) == (uint32_t)UART_FR_BUSY)
     {
     }
 
     //
     // Disable the UART.
     //
-    HWREG(base + UART_O_CTL) &= ~(UART_CTL_UARTEN | UART_CTL_TXE |
+    HWREG(base + UART_O_CTL) &= ~(uint32_t)(UART_CTL_UARTEN | UART_CTL_TXE |
                                   UART_CTL_RXE);
 }
 
@@ -613,7 +613,7 @@ UART_isFIFOEnabled(uint32_t base)
     //
     // Returns the FIFO is enabled or disabled.
     //
-    return(((HWREG(base + UART_O_LCRH) & UART_LCRH_FEN)== UART_LCRH_FEN) ?
+    return(((HWREG(base + UART_O_LCRH) & (uint32_t)UART_LCRH_FEN) == (uint32_t)UART_LCRH_FEN) ?
             true : false);
 }
 
@@ -653,13 +653,13 @@ UART_enableSIR(uint32_t base, Uart_SirLPMode bLowPower)
     //
     if(bLowPower)
     {
-        HWREG(base + UART_O_CTL) |= (UART_CTL_SIREN | UART_CTL_SIRLP);
+        HWREG(base + UART_O_CTL) |= (uint32_t)(UART_CTL_SIREN | UART_CTL_SIRLP);
     }
     else
     {
         HWREG(base + UART_O_CTL) = ((HWREG(base + UART_O_CTL) &
-                                    ~(UART_CTL_SIREN | UART_CTL_SIRLP)) |
-                                    (UART_CTL_SIREN));
+                                    ~(uint32_t)(UART_CTL_SIREN | UART_CTL_SIRLP)) |
+                                    (uint32_t)(UART_CTL_SIREN));
     }
 }
 
@@ -695,7 +695,7 @@ UART_disableSIR(uint32_t base)
     //
     // Disable SIR and SIRLP (if appropriate).
     //
-    HWREG(base + UART_O_CTL) &= ~(UART_CTL_SIREN | UART_CTL_SIRLP);
+    HWREG(base + UART_O_CTL) &= ~(uint32_t)(UART_CTL_SIREN | UART_CTL_SIRLP);
 }
 
 //*****************************************************************************
@@ -793,7 +793,7 @@ UART_isDataAvailable(uint32_t base)
     //
     // Return the availability of characters.
     //
-    return(((HWREG(base + UART_O_FR) & UART_FR_RXFE)== UART_FR_RXFE) ?
+    return(((HWREG(base + UART_O_FR) & (uint32_t)UART_FR_RXFE) == (uint32_t)UART_FR_RXFE) ?
             false : true);
 }
 
@@ -821,7 +821,7 @@ UART_isSpaceAvailable(uint32_t base)
     //
     // Return the availability of space.
     //
-    return(((HWREG(base + UART_O_FR) & UART_FR_TXFF)== UART_FR_TXFF) ?
+    return(((HWREG(base + UART_O_FR) & (uint32_t)UART_FR_TXFF) == (uint32_t)UART_FR_TXFF) ?
             false : true);
 }
 
@@ -853,7 +853,7 @@ UART_readCharNonBlocking(uint32_t base)
     //
     // See if there are any characters in the receive FIFO.
     //
-    if(((HWREG(base + UART_O_FR) & UART_FR_RXFE)) == 0U)
+    if(((HWREG(base + UART_O_FR) & (uint32_t)UART_FR_RXFE)) == 0U)
     {
         //
         // Read and return the next character.
@@ -895,7 +895,7 @@ UART_readChar(uint32_t base)
     //
     // Wait until a char is available.
     //
-    while((HWREG(base + UART_O_FR) & UART_FR_RXFE)== UART_FR_RXFE)
+    while((HWREG(base + UART_O_FR) & (uint32_t)UART_FR_RXFE) == (uint32_t)UART_FR_RXFE)
     {
     }
 
@@ -930,7 +930,7 @@ UART_writeChar(uint32_t base, uint8_t data)
     //
     // Wait until space is available.
     //
-    while((HWREG(base + UART_O_FR) & UART_FR_TXFF)== UART_FR_TXFF)
+    while((HWREG(base + UART_O_FR) & (uint32_t)UART_FR_TXFF) == (uint32_t)UART_FR_TXFF)
     {
     }
 
@@ -967,8 +967,8 @@ UART_setBreakConfig(uint32_t base, bool breakState)
     // Set the break condition as requested.
     //
     HWREG(base + UART_O_LCRH) = (breakState ?
-                                (HWREG(base + UART_O_LCRH) | UART_LCRH_BRK) :
-                                (HWREG(base + UART_O_LCRH) & ~(UART_LCRH_BRK)));
+                                (HWREG(base + UART_O_LCRH) | (uint32_t)UART_LCRH_BRK) :
+                                (HWREG(base + UART_O_LCRH) & ~(uint32_t)UART_LCRH_BRK));
 }
 
 //*****************************************************************************
@@ -997,7 +997,7 @@ UART_isBusy(uint32_t base)
     //
     // Determine if the UART is busy.
     //
-    return(((HWREG(base + UART_O_FR) & UART_FR_BUSY) == UART_FR_BUSY) ?
+    return(((HWREG(base + UART_O_FR) & (uint32_t)UART_FR_BUSY) == (uint32_t)UART_FR_BUSY) ?
             true : false);
 }
 
@@ -1321,7 +1321,7 @@ UART_getRxError(uint32_t base)
     //
     // Return the current value of the receive status register.
     //
-    return(HWREG(base + UART_O_RSR) & UART_RSR_ALL_M);
+    return(HWREG(base + UART_O_RSR) & (uint32_t)UART_RSR_ALL_M);
 }
 
 //*****************************************************************************
@@ -1350,7 +1350,7 @@ UART_clearRxError(uint32_t base)
     // Any write to the Error Clear Register clears all bits which are
     // currently set.
     //
-    HWREG(base + UART_O_ECR) &= ~UART_RSR_ALL_M;
+    HWREG(base + UART_O_ECR) &= ~(uint32_t)UART_RSR_ALL_M;
 }
 
 //*****************************************************************************
@@ -1400,7 +1400,7 @@ UART_disable9Bit(uint32_t base)
     //
     // Disable 9-bit mode.
     //
-    HWREG(base + UART_O_9BITADDR) &= ~UART_9BITADDR_9BITEN;
+    HWREG(base + UART_O_9BITADDR) &= ~((uint32_t)UART_9BITADDR_9BITEN);
 }
 
 //*****************************************************************************
@@ -1495,7 +1495,7 @@ static inline void UART_enableLoopback(uint32_t base)
     //
     // Write the loopback enable bit to the register.
     //
-    HWREG(base + UART_O_CTL) |= UART_CTL_LBE;
+    HWREG(base + UART_O_CTL) |= (uint32_t)UART_CTL_LBE;
 }
 
 //*****************************************************************************
@@ -1522,7 +1522,7 @@ static inline void UART_disableLoopback(uint32_t base)
     //
     // clears the loopback enable bit of the register.
     //
-    HWREG(base + UART_O_CTL) &= ~UART_CTL_LBE;
+    HWREG(base + UART_O_CTL) &= ~(uint32_t)UART_CTL_LBE;
 }
 //*****************************************************************************
 //
@@ -1658,6 +1658,47 @@ extern void UART_getConfig(uint32_t base, uint32_t uartClk,
 //*****************************************************************************
 
 extern bool UART_writeCharNonBlocking(uint32_t base, uint8_t data);
+
+//*****************************************************************************
+//
+//! Sends an array of characters to the specified port (BLOCKING).
+//!
+//! \param base is the base address of the UART port.
+//! \param array is a pointer to the buffer of data to be transmitted.
+//! \param length is the number of characters in the buffer.
+//!
+//! Sends the number of characters specified by \e length, starting at the
+//! address \e array, out of the transmit buffer for the specified port.
+//! If there is no space available in the transmit buffer, or the transmit
+//! FIFO if it is enabled, this function waits until there is space available
+//! and \e length number of characters are transmitted before returning.
+//!
+//! \return None.
+//
+//*****************************************************************************
+
+extern void UART_writeCharArray(uint32_t base, const uint8_t * const array,
+                                uint16_t length);
+
+//*****************************************************************************
+//
+//! Receives an array of characters from the specified port (BLOCKING).
+//!
+//! \param base is the base address of the UART port.
+//! \param array is a pointer to the buffer to store the received data.
+//! \param length is the number of characters to read.
+//!
+//! Receives an array of characters from the receive buffer for the specified
+//! port (including error bits) and stores them as an array of characters
+//! starting at address \e array. This function waits until the \e length
+//! number of characters are received before returning.
+//!
+//! \return None.
+//
+//*****************************************************************************
+
+extern void UART_readCharArray(uint32_t base, int32_t * const array,
+                               uint16_t length);
 
 //*****************************************************************************
 //

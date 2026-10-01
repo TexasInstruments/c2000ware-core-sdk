@@ -1,0 +1,95 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "MCPC029" --part "MCPC029_48RGZ" --package "48RGZ"
+ * @v2CliArgs --device "MCPC029" --package "48RGZ"
+ */
+/**
+ * Import the modules used in this configuration.
+ */
+const device_support = scripting.addModule("/driverlib/device_support.js");
+const drv            = scripting.addModule("/driverlib/drv.js", {}, false);
+const drv1           = drv.addInstance();
+const mcpwm          = scripting.addModule("/driverlib/mcpwm.js", {}, false);
+const mcpwm1         = mcpwm.addInstance();
+const sysctl         = scripting.addModule("/driverlib/sysctl.js");
+const FPUfastRTS     = scripting.addModule("/libraries/math/FPUfastRTS/FPUfastRTS.js", {}, false);
+const FPUfastRTS1    = FPUfastRTS.addInstance();
+const CMD            = scripting.addModule("/utilities/cmd_tool/cmd_syscfg/source/CMD");
+const CMD1           = CMD.addInstance();
+/**
+ * Write custom configuration values to the imported modules.
+ */
+drv1.$name                       = "myDRV0";
+drv1.CLRFLT                      = true;
+drv1.enableVdsLvlSelection       = true;
+drv1.spi.spi.$assign             = "SPIA";
+drv1.spi.spi.spi_picoPin.$assign = "GPIO7, SDI";
+drv1.spi.spi.spi_pociPin.$assign = "GPIO45, SDO";
+drv1.spi.spi.spi_clkPin.$assign  = "GPIO41, SCLK";
+drv1.spi.spi.spi_ptePin.$assign  = "GPIO23, NSCS";
+drv1.spi.picoQual.$name          = "myGPIOQUAL0";
+drv1.spi.pociQual.$name          = "myGPIOQUAL1";
+drv1.spi.clkQual.$name           = "myGPIOQUAL2";
+drv1.spi.pteQual.$name           = "myGPIOQUAL3";
+mcpwm1.$name                                                         = "myMCPWM0";
+mcpwm1.mcpwmTimebase_counterMode                                     = "MCPWM_COUNTER_MODE_UP_DOWN";
+mcpwm1.mcpwmTimebase_period                                          = 5000;
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1A_ON_TIMEBASE_UP_CMPA   = "MCPWM_AQ_OUTPUT_HIGH";
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1A_ON_TIMEBASE_DOWN_CMPA = "MCPWM_AQ_OUTPUT_LOW";
+mcpwm1.mcpwmDeadband_polarityFED                                     = "MCPWM_DB_POLARITY_ACTIVE_LOW";
+mcpwm1.mcpwmDeadband_enableFED                                       = true;
+mcpwm1.mcpwmDeadband_enableRED                                       = true;
+mcpwm1.mcpwmEventTrigger_enableInterrupt                             = true;
+mcpwm1.mcpwmEventTrigger_interruptSource                             = ["MCPWM_INT_ET_1"];
+mcpwm1.mcpwmEventTrigger_MCPWM_ET_1_triggerEnable                    = true;
+mcpwm1.mcpwmEventTrigger_MCPWM_ET_1_triggerSource                    = "MCPWM_EVT_TBCTR_PERIOD";
+mcpwm1.mcpwmEventTrigger_MCPWM_ET_1_triggerEventPrescalar            = "1";
+mcpwm1.mcpwmEventTrigger_registerInterrupts                          = true;
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_2A_ON_TIMEBASE_UP_CMPA   = "MCPWM_AQ_OUTPUT_HIGH";
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_2A_ON_TIMEBASE_DOWN_CMPA = "MCPWM_AQ_OUTPUT_LOW";
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_3A_ON_TIMEBASE_UP_CMPA   = "MCPWM_AQ_OUTPUT_HIGH";
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_3A_ON_TIMEBASE_DOWN_CMPA = "MCPWM_AQ_OUTPUT_LOW";
+mcpwm1.mcpwmDeadband_delayRED                                        = 5;
+mcpwm1.mcpwmDeadband_delayFED                                        = 5;
+mcpwm1.mcpwm.$assign                                                 = "MCPWM1";
+mcpwm1.mcpwm.mcpwm_1aPin.$assign                                     = "GPIO30, INHB";
+mcpwm1.mcpwm.mcpwm_1bPin.$assign                                     = "GPIO9, INLB";
+mcpwm1.mcpwm.mcpwm_2aPin.$assign                                     = "GPIO29, INHC";
+mcpwm1.mcpwm.mcpwm_2bPin.$assign                                     = "GPIO10, INLC";
+mcpwm1.mcpwm.mcpwm_3aPin.$assign                                     = "GPIO6, INHA";
+mcpwm1.mcpwm.mcpwm_3bPin.$assign                                     = "GPIO5, INLA";
+mcpwm1.mcpwmInt.enableInterrupt                                      = true;
+FPUfastRTS1.$name = "myFFR0";
+CMD1.$name                                      = "generic_flash_lnk";
+CMD1.sectionAlignEnable_ramfunc                 = true;
+CMD1.sectionAlignEnable_text                    = true;
+CMD1.sectionAlignEnable_binit                   = true;
+CMD1.sectionAlignEnable_cinit                   = true;
+CMD1.sectionAlignEnable_switch                  = true;
+CMD1.sectionAlignEnable_init_array              = true;
+CMD1.sectionAlignEnable_const                   = true;
+CMD1.sectionAlignEnable_ovly                    = true;
+CMD1.sectionMemory_codestart                    = "0x080000";
+CMD1.sectionMemory_stack                        = ["RAMM0"];
+CMD1.sectionMemory_bss                          = ["RAMGS0"];
+CMD1.sectionMemory_data                         = ["RAMGS0"];
+CMD1.sectionMemory_sysmem                       = ["RAMGS0"];
+CMD1.sectionMemory_ramfunc                      = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionMemory_text                         = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionMemory_binit                        = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionMemory_cinit                        = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionMemory_switch                       = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionMemory_init_array                   = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionMemory_const                        = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionMemory_ovly                         = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionRunFromDifferentAddr_ramfunc        = true;
+CMD1.sectionRun_ramfunc                         = ["RAMGS0"];
+CMD1.sectionBinit_ramfunc                       = false;
+CMD1.userSection.create(1);
+CMD1.userSection[0].$name                       = "userSection1";
+CMD1.userSection[0].sectionName                 = "FPUmathTables";
+CMD1.userSection[0].sectionRunFromDifferentAddr = true;
+CMD1.userSection[0].sectionMemory               = ["FLASH_BANK0_SEC_0_63"];
+CMD1.userSection[0].sectionAlignEnable          = true;
+CMD1.userSection[0].sectionRun                  = ["RAMGS0"];

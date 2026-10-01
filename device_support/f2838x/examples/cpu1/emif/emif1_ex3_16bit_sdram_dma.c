@@ -35,7 +35,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -68,12 +68,10 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Defines
 //
@@ -82,7 +80,6 @@
 #define SDRAM_CS0_START_ADDR 0x80000000
 #define SDRAM_CS0_SIZE       0x300000
 #define MEM_BUFFER_SIZE      1024 // 32-Bit Word
-
 //
 // Globals
 //
@@ -97,30 +94,25 @@ volatile Uint32 *DMADest;
 volatile Uint32 *DMASource;
 Uint16  ErrCount = 0;
 Uint32  TEST_STATUS;
-
 //
 // Function Prototypes
 //
 extern void setup_emif1_pinmux_sdram_16bit(Uint16);
-
 //
 // DMA_DstDataClear - Clear local and far memory buffers
 //
 void DMA_DstDataClear()
 {
     int i;
-
     for(i = 0; i < MEM_BUFFER_SIZE; i++)
     {
         __addr32_write_uint32(((Uint32)g_ulSDRAMBuf + (i*2)), 0x0);
     }
-
     for(i = 0; i < MEM_BUFFER_SIZE; i++)
     {
         g_ulDstBuf1[i] = 0x0;
     }
 }
-
 //
 // Main
 //
@@ -128,14 +120,11 @@ void main(void)
 {
     int i;
     TEST_STATUS = TEST_FAIL;
-
 //
 // Initialize System control
 //
     InitSysCtrl();
-
     DINT;
-
 //
 //  Initialize the PIE control registers to their default state.
 //  The default state is all PIE interrupts disabled and flags
@@ -143,7 +132,6 @@ void main(void)
 //  This function is found in the f2838x_piectrl.c file.
 //
     InitPieCtrl();
-
 //
 // Disable CPU interrupts and clear all CPU interrupt flags:
 //
@@ -151,7 +139,6 @@ void main(void)
     IER = 0x0000;
     IFR = 0x0000;
     EDIS;
-
 //
 // Initialize the PIE vector table with pointers to the shell Interrupt
 // GService Routines (ISR).
@@ -161,18 +148,15 @@ void main(void)
 // This function is found in f2838x_pievect.c.
 //
     InitPieVectTable();
-
     EALLOW;
     EINT;
     EDIS;
-
 //
 //Configure to run EMIF1 on half Rate (EMIF1CLK = CPU1SYSCLK/2)
 //
     EALLOW;
     ClkCfgRegs.PERCLKDIVSEL.bit.EMIF1CLKDIV = 0x1;
     EDIS;
-
     EALLOW;
 //
 // Grab EMIF1 For CPU1
@@ -182,7 +166,6 @@ void main(void)
     {
       ErrCount++;
     }
-
 //
 // Disable Access Protection (CPU_FETCH/CPU_WR/DMA_WR)
 //
@@ -191,7 +174,6 @@ void main(void)
     {
       ErrCount++;
     }
-
 //
 // Commit the configuration related to protection. Till this bit remains set
 // content of EMIF1ACCPROT0 register can't be changed.
@@ -201,7 +183,6 @@ void main(void)
     {
       ErrCount++;
     }
-
 //
 // Lock the configuration so that EMIF1COMMIT register can't be changed any
 // more.
@@ -211,9 +192,7 @@ void main(void)
     {
       ErrCount++;
     }
-
     EDIS;
-
 //
 // Initialize source buffer for DMA transfer.
 //
@@ -223,27 +202,22 @@ void main(void)
         InitData = InitData + 0x11111111;
         g_ulSrcBuf0[i] = InitData;
     }
-
 //
 // Initialize DMA
 //
     DMAInitialize();
-
 //
 // Configure DMA Channel 1 (16-bit datasize)
 //
     DMADest   = g_ulSDRAMBuf;
     DMASource = (volatile Uint32 *)g_ulSrcBuf0;
     DMACH1AddrConfig32bit(DMADest,DMASource);
-
 //
 //Will set up to use 16-bit datasize, pointers are based on 16-bit words
 //
     DMACH1BurstConfig(31,1,1);
-
     DMACH1TransferConfig(((MEM_BUFFER_SIZE*2/32) -1),1,1);
     DMACH1WrapConfig(0xFFFF,0,0xFFFF,0);
-
 //
 //Since this is a static copy use one shot mode, so only one trigger is needed
 //Also using 16-bit mode
@@ -251,22 +225,18 @@ void main(void)
     DMACH1ModeConfig(0x0,PERINT_ENABLE,ONESHOT_ENABLE,
                      CONT_DISABLE,SYNC_DISABLE,SYNC_SRC,
                      OVRFLOW_DISABLE,SIXTEEN_BIT,CHINT_END,CHINT_ENABLE);
-
 //
 // Configure DMA Channel 2 (32-bit datasize)
 //
     DMADest   = (volatile Uint32 *)g_ulDstBuf1;
     DMASource = g_ulSDRAMBuf;
     DMACH2AddrConfig32bit(DMADest,DMASource);
-
 //
 // Will set up to use 32-bit datasize, pointers are based on 32-bit words
 //
     DMACH2BurstConfig(31,2,2);
-
     DMACH2TransferConfig(((MEM_BUFFER_SIZE*2/32) -1),2,2);
     DMACH2WrapConfig(0xFFFF,0,0xFFFF,0);
-
 //
 //Since this is a static copy use one shot mode, so only one trigger is needed
 //Also using 32-bit mode
@@ -274,15 +244,12 @@ void main(void)
     DMACH2ModeConfig(0x0,PERINT_ENABLE,ONESHOT_ENABLE,CONT_DISABLE,
                      SYNC_DISABLE,SYNC_SRC,OVRFLOW_DISABLE,
                      THIRTYTWO_BIT,CHINT_END,CHINT_ENABLE);
-
     StartDMACH1();
     StartDMACH2();
-
 //
 //Configure GPIO pins for EMIF1
 //
     setup_emif1_pinmux_sdram_16bit(0);
-
 //
 //Configure SDRAM control registers
 //
@@ -296,32 +263,26 @@ void main(void)
 //T_RRD = 12ns = 0x1
 //
     Emif1Regs.SDRAM_TR.all = 0x31114610;
-
 //
 //Txsr = 70ns = 0x7
 //
     Emif1Regs.SDR_EXT_TMNG.all = 0x7;
-
 //
 //Tref = 64ms for 8192 ROW, RR = 64000*100(Tfrq)/8192 = 781.25 (0x30E)
 //
     Emif1Regs.SDRAM_RCR.all = 0x30E;
-
 //
 //PAGESIZE=2 (1024 elements per ROW), IBANK = 2 (4 BANK), CL = 3, NM = 1 (16bit)
 //
     Emif1Regs.SDRAM_CR.all = 0x00015622;
-
 //
 //Add some delay
 //
     for(i=0;i<123;i++) { }
-
 //
 // Clear the Data from DMA Destination Address
 //
     DMA_DstDataClear();
-
 //
 //WRITE TO EXT MEM (16-bit)
 //
@@ -330,7 +291,6 @@ void main(void)
     while (DmaRegs.CH1.CONTROL.bit.TRANSFERSTS != 1){};
     while (DmaRegs.CH1.CONTROL.bit.TRANSFERSTS != 0){};
     EDIS;
-
 //
 // READ FROM EXT MEM (32-bit)
 //
@@ -339,7 +299,6 @@ void main(void)
     while (DmaRegs.CH2.CONTROL.bit.TRANSFERSTS != 1){};
     while (DmaRegs.CH2.CONTROL.bit.TRANSFERSTS != 0){};
     EDIS;
-
 //
 //Compare the Data
 //
@@ -350,15 +309,12 @@ void main(void)
             ErrCount++;
         }
     }
-
     if(ErrCount == 0x0)
     {
         TEST_STATUS = TEST_PASS;
     }
-
     while (1);
 }
-
 //
 // End of file
 //

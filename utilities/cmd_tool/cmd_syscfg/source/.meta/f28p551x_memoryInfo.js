@@ -40,9 +40,9 @@ var memoryInfo = {
 
         {name : "FLASH_BANK0",  group : "FLASH", origin : 0x080002, length : 0x1FFFE}, // slightly different address for flash and ram linker.cmd files
         {name : "FLASH_BANK2",  group : "FLASH", origin : 0x0C0000, length : 0x20000},
-        {name : "FLASH_BANK4",  group : "FLASH", origin : 0x100000, length : 0x07FFF, description : "Last 16 words of Flash is reserved as per the errata advisory 'Memory: Prefetching Beyond Valid Memory'"},
+        {name : "FLASH_BANK4",  group : "FLASH", origin : 0x100000, length : 0x08000, description : "Last 16 words of Flash is reserved as per the errata advisory 'Memory: Prefetching Beyond Valid Memory'"},
 
-        {name : "CLATOCPURAM", group : "CLATOCPUMSGRAM", origin : 0x001480, length : 0x000080}, // Following names from template linker.cmd files? 
+        {name : "CLATOCPURAM", group : "CLATOCPUMSGRAM", origin : 0x001480, length : 0x000080}, // Following names from template linker.cmd files?
         {name : "CPUTOCLARAM", group : "CPUTOCLAMSGRAM", origin : 0x001500, length : 0x000080},
         {name : "CLATODMARAM", origin : 0x001680, length : 0x000080},
         {name : "DMATOCLARAM", origin : 0x001700, length : 0x000080},
@@ -79,7 +79,7 @@ var memoryInfo = {
         "data"       : ["RAMLS5", "RAMLS6"],
         "sysmem"     : ["RAMLS4"],
         "ovly"       : ["FLASH_BANK0"],
-        
+
     }
 }
 

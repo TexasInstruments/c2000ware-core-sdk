@@ -38,7 +38,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -71,7 +71,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -79,18 +78,15 @@
 #include "device.h"
 #include "inc/hw_ipc.h"
 #include "board.h"
-
 //
 // Defines
 //
 // Define AUTOBAUD to use the autobaud lock feature
 //#define AUTOBAUD
-
 //
 // Globals
 //
 uint16_t loopCounter = 0;
-
 //
 // Main
 //
@@ -100,28 +96,23 @@ void main(void)
     unsigned char *msg;
     uint16_t rxStatus = 0U;
     //uint16_t ipcFlag17 = 17U;
-
     //
     // Configure PLL, disable WD, enable peripheral clocks.
     //
     Device_init();
-
     //
     // Initialize interrupt controller and vector table.
     //
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
     //
     // Wait until CPU01 is ready and IPC flag 17 is set
     //
     IPC_sync(IPC_CPU2_L_CPU1_R, SYNC_FLAG);
-
     //
     // Initialize settings from SysConfig
     //
     Board_init();
-
 #ifdef AUTOBAUD
     //
     // Perform an autobaud lock.
@@ -129,7 +120,6 @@ void main(void)
     //
     SCI_lockAutobaud(SCIA_BASE);
 #endif
-
     //
     // Send starting message.
     //
@@ -137,17 +127,14 @@ void main(void)
     SCI_writeCharArray(SCIA_BASE, (uint16_t*)msg, 17);
     msg = "\r\nYou will enter a character, and the DSP will echo it back!\n\0";
     SCI_writeCharArray(SCIA_BASE, (uint16_t*)msg, 62);
-
     for(;;)
     {
         msg = "\r\nEnter a character: \0";
         SCI_writeCharArray(SCIA_BASE, (uint16_t*)msg, 22);
-
         //
         // Read a character from the FIFO.
         //
         receivedChar = SCI_readCharBlockingFIFO(SCIA_BASE);
-
         rxStatus = SCI_getRxStatus(SCIA_BASE);
         if((rxStatus & SCI_RXSTATUS_ERROR) != 0)
         {
@@ -157,22 +144,18 @@ void main(void)
             //
             ESTOP0;
         }
-
         //
         // Echo back the character.
         //
         msg = "  You sent: \0";
         SCI_writeCharArray(SCIA_BASE, (uint16_t*)msg, 13);
         SCI_writeCharBlockingFIFO(SCIA_BASE, receivedChar);
-
         //
         // Increment the loop count variable.
         //
         loopCounter++;
     }
 }
-
 //
 // End of File
 //
-

@@ -8,8 +8,8 @@
         launchWizard="False"
         linkerCommandFile=""
         >
-    <configuration name="CM_RAM" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -I${USB_LIB_ROOT} -I${COMMON_ROOT} -I${THIRD_PARTY} --define=DEBUG --float_support=none -mv7M4 -me --diag_warning=225 " linkerBuildOptions="--stack_size=512 --heap_size=1024  --library=libc.a --define RAM" />
-    <configuration name="CM_FLASH" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -I${USB_LIB_ROOT} -I${COMMON_ROOT} -I${THIRD_PARTY} --define=DEBUG --float_support=none --define=_FLASH  -mv7M4 -me --diag_warning=225 " linkerBuildOptions="--stack_size=512 --heap_size=1024  --library=libc.a " />
+    <configuration name="CM_RAM" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -I${USB_LIB_ROOT} -I${USB_LIB_ROOT}/../ -I${COMMON_ROOT} -I${THIRD_PARTY} --define=DEBUG --float_support=none -mv7M4 -me --diag_warning=225 " linkerBuildOptions="--stack_size=512 --heap_size=1024  --library=libc.a --define RAM" />
+    <configuration name="CM_FLASH" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -I${USB_LIB_ROOT} -I${USB_LIB_ROOT}/../ -I${COMMON_ROOT} -I${THIRD_PARTY} --define=DEBUG --float_support=none --define=_FLASH  -mv7M4 -me --diag_warning=225 " linkerBuildOptions="--stack_size=512 --heap_size=1024  --library=libc.a " />
     <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../../../driverlib/f2838x/driverlib_cm/" scope="project" />
     <pathVariable name="COMMON_ROOT" path="../../../../../../device_support/f2838x/common/" scope="project" />
 	<pathVariable name="USB_LIB_ROOT" path="../../../../../../libraries/communications/usb/f2838x/include/" scope="project" />

@@ -64,32 +64,26 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Globals
 //
-
 //
 // Send data for SCI-A
 //
 uint16_t sDataA[2];
-
 //
 // Received data for SCI-A
 //
 uint16_t rDataA[2];
-
 //
 // Used for checking the received data
 //
 uint16_t rDataPointA;
-
 //
 // Function Prototypes
 //
@@ -97,24 +91,20 @@ __interrupt void sciaTXFIFOISR(void);
 __interrupt void sciaRXFIFOISR(void);
 void initSCIAFIFO(void);
 void error(void);
-
 //
 // Main
 //
 void main(void)
 {
     uint16_t i;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Setup GPIO by disabling pin locks and enabling pullups
     //
     Device_initGPIO();
-
     //
     // SCI Rx pin configuration.
     //
@@ -122,7 +112,6 @@ void main(void)
     GPIO_setDirectionMode(DEVICE_GPIO_PIN_SCIRXDA, GPIO_DIR_MODE_IN);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_SCIRXDA, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_SCIRXDA, GPIO_QUAL_ASYNC);
-
     //
     // SCI Tx pin configuration.
     //
@@ -130,30 +119,25 @@ void main(void)
     GPIO_setDirectionMode(DEVICE_GPIO_PIN_SCITXDA, GPIO_DIR_MODE_OUT);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_SCITXDA, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_SCITXDA, GPIO_QUAL_ASYNC);
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Interrupts that are used in this example are re-mapped to
     // ISR functions found within this file.
     //
     Interrupt_register(INT_SCIA_RX, sciaRXFIFOISR);
     Interrupt_register(INT_SCIA_TX, sciaTXFIFOISR);
-
     //
     // Initialize the Device Peripherals:
     //
     initSCIAFIFO();
-
     //
     // Init the send data.  After each transmission this data
     // will be updated for the next transmission
@@ -162,26 +146,20 @@ void main(void)
     {
         sDataA[i] = i;
     }
-
     rDataPointA = sDataA[0];
-
     Interrupt_enable(INT_SCIA_RX);
     Interrupt_enable(INT_SCIA_TX);
-
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP9);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // IDLE loop. Just sit and loop forever (optional):
     //
     for(;;);
 }
-
 //
 // error - Function to halt debugger on error
 //
@@ -190,16 +168,13 @@ void error(void)
     asm("     ESTOP0"); // Test failed!! Stop!
     for (;;);
 }
-
 //
 // sciaTXFIFOISR - SCIA Transmit FIFO ISR
 //
 __interrupt void sciaTXFIFOISR(void)
 {
     uint16_t i;
-
     SCI_writeCharArray(SCIA_BASE, sDataA, 2);
-
     //
     // Increment send data for next cycle
     //
@@ -207,24 +182,19 @@ __interrupt void sciaTXFIFOISR(void)
     {
         sDataA[i] = (sDataA[i] + 1) & 0x00FF;
     }
-
     SCI_clearInterruptStatus(SCIA_BASE, SCI_INT_TXFF);
-
     //
     // Issue PIE ACK
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP9);
 }
-
 //
 // sciaRXFIFOISR - SCIA Receive FIFO ISR
 //
 __interrupt void sciaRXFIFOISR(void)
 {
     uint16_t i;
-
     SCI_readCharArray(SCIA_BASE, rDataA, 2);
-
     //
     // Check received data
     //
@@ -235,19 +205,14 @@ __interrupt void sciaRXFIFOISR(void)
             error();
         }
     }
-
     rDataPointA = (rDataPointA + 1) & 0x00FF;
-
     SCI_clearOverflowStatus(SCIA_BASE);
-
     SCI_clearInterruptStatus(SCIA_BASE, SCI_INT_RXFF);
-
     //
     // Issue PIE ack
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP9);
 }
-
 //
 // initSCIAFIFO - Configure SCIA FIFO
 //
@@ -263,13 +228,11 @@ void initSCIAFIFO()
     SCI_enableLoopback(SCIA_BASE);
     SCI_resetChannels(SCIA_BASE);
     SCI_enableFIFO(SCIA_BASE);
-
     //
     // RX and TX FIFO Interrupts Enabled
     //
     SCI_enableInterrupt(SCIA_BASE, (SCI_INT_RXFF | SCI_INT_TXFF));
     SCI_disableInterrupt(SCIA_BASE, SCI_INT_RXERR);
-
     //
     // The transmit FIFO generates an interrupt when FIFO status
     // bits are less than or equal to 2 out of 16 words
@@ -278,11 +241,9 @@ void initSCIAFIFO()
     //
     SCI_setFIFOInterruptLevel(SCIA_BASE, SCI_FIFO_TX2, SCI_FIFO_RX2);
     SCI_performSoftwareReset(SCIA_BASE);
-
     SCI_resetTxFIFO(SCIA_BASE);
     SCI_resetRxFIFO(SCIA_BASE);
 }
-
 //
 // End of file
 //

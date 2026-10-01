@@ -55,18 +55,15 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Globals
 //
 volatile struct DAC_REGS* DAC_PTR[3] = {0x0,&DacaRegs,&DacbRegs};
 uint16_t dacval = 2048;
-
 //
 // Defines
 //
@@ -74,15 +71,12 @@ uint16_t dacval = 2048;
 #define REFERENCE_VREF      1
 #define DACA         1
 #define DACB         2
-
 #define REFERENCE            REFERENCE_VDAC
 #define DAC_NUM                DACA
-
 //
 // Function Prototypes
 //
 void configureDAC(uint16_t dac_num);
-
 //
 // Main
 //
@@ -93,37 +87,31 @@ void main(void)
     // PLL, WatchDog, enable Peripheral Clocks
     //
     InitSysCtrl();
-
     //
     // Disable CPU interrupts
     //
     DINT;
-
     //
     // Initialize the PIE control registers to their default state.
     // The default state is all PIE interrupts disabled and flags are cleared.
     //
     InitPieCtrl();
-
     //
     // Clear all interrupts and initialize PIE vector table:
     //
     IER = 0x0000;
     IFR = 0x0000;
     InitPieVectTable();
-
     //
     // Configure DAC
     //
     configureDAC(DAC_NUM);
-
     while(1)
     {
         DAC_PTR[DAC_NUM]->DACVALS.all = dacval;
         DELAY_US(2);
     }
 }
-
 //
 // configureDAC - Configure specified DAC output
 //
@@ -136,7 +124,6 @@ void configureDAC(uint16_t dac_num)
     DELAY_US(10); // Delay for buffered DAC to power up
     EDIS;
 }
-
 //
 // End of File
 //

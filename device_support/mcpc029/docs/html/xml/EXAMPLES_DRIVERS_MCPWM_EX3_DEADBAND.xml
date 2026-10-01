@@ -1,0 +1,313 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND</compoundname>
+    <title>MCPWM Deadband Example</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_mcpwm_ex3_deadband"/></para>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md355">
+<title>Introduction</title>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md356">
+<title>Deadband Generation</title>
+<para>Deadband is a crucial safety feature in PWM applications that prevents shoot-through current by ensuring that complementary switches are never ON simultaneously. The feature inserts a deliberate delay between switching transitions.</para>
+<sect3 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md357">
+<title>Deadband Features</title>
+<para><itemizedlist>
+<listitem><para><bold>Configuration Options</bold><itemizedlist>
+<listitem><para>Active High/ Low, Complementary and swapping of A/B outputs</para>
+</listitem><listitem><para>Independent Rising/Falling edge delays<itemizedlist>
+<listitem><para>Cascaded delay additions</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Flexible input source selection</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+<sect3 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md358">
+<title>Deadband Control</title>
+</sect3>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md359">
+<title>Deadband Configuration Registers</title>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md360">
+<title>Register Overview</title>
+<para>The deadband module is controlled through four main register groups:<orderedlist>
+<listitem><para>Dead-Band Control Register (DBCTL)</para>
+</listitem><listitem><para>Rising/Falling Edge Delay Registers (DBRED/DBFED)</para>
+</listitem><listitem><para>Shadow Delay Registers (DBREDS/DBFEDS)</para>
+</listitem></orderedlist>
+</para>
+<sect3 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md361">
+<title>DBCTL Register (Dead-Band Control)</title>
+<para>Controls the deadband operation mode and signal routing.</para>
+<para><table rows="8" cols="4"><row>
+<entry thead="yes"><para>Bits   </para>
+</entry><entry thead="yes"><para>Name   </para>
+</entry><entry thead="yes"><para>Description   </para>
+</entry><entry thead="yes"><para>Configuration API    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>15-14   </para>
+</entry><entry thead="no"><para>OUTSWAP   </para>
+</entry><entry thead="no"><para>Output Swap Mode<linebreak/>
+- Controls output path routing for A/B signals<linebreak/>
+- Allows swapping of outputs between paths   </para>
+</entry><entry thead="no"><para><computeroutput><ref refid="group__mcpwm__api_1ga6465d4dc27a456ab38237dd924b9d347" kindref="member">MCPWM_setDeadBandOutputSwapMode()</ref></computeroutput>    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>13-12   </para>
+</entry><entry thead="no"><para>DEDB_MODE   </para>
+</entry><entry thead="no"><para>Dead-Band Input Mode<linebreak/>
+- Controls input signal selection for FED<linebreak/>
+- Enables cascaded RED to FED operation   </para>
+</entry><entry thead="no"><para><computeroutput><ref refid="group__mcpwm__api_1ga4eb3751a8bb2b6f301cf0116f5fcf406" kindref="member">MCPWM_setFallingEdgeDeadBandDelayInput()</ref></computeroutput>    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>11-10   </para>
+</entry><entry thead="no"><para>LOADFEDMODE   </para>
+</entry><entry thead="no"><para>FED Load from Shadow Mode<linebreak/>
+- Controls when FED loads from shadow   </para>
+</entry><entry thead="no"><para><computeroutput><ref refid="group__mcpwm__api_1gae3c636444dbf650355a68cf63b3b8163" kindref="member">MCPWM_setFallingEdgeDelayCountShadowLoadMode()</ref></computeroutput>    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>9-8   </para>
+</entry><entry thead="no"><para>LOADREDMODE   </para>
+</entry><entry thead="no"><para>RED Load from Shadow Mode<linebreak/>
+- Controls when RED loads from shadow   </para>
+</entry><entry thead="no"><para><computeroutput><ref refid="group__mcpwm__api_1gaf688b3aab725f0bc06c68547cd83619c" kindref="member">MCPWM_setRisingEdgeDelayCountShadowLoadMode()</ref></computeroutput>    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>7-6   </para>
+</entry><entry thead="no"><para>POLSEL   </para>
+</entry><entry thead="no"><para>Polarity Select<linebreak/>
+- Sets output polarity<linebreak/>
+- Active-high or active-low configurations   </para>
+</entry><entry thead="no"><para><computeroutput><ref refid="group__mcpwm__api_1gad3a5fb447a18296cbe549a13b3dd19e0" kindref="member">MCPWM_setDeadBandDelayPolarity()</ref></computeroutput>    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>5-4   </para>
+</entry><entry thead="no"><para>IN_MODE   </para>
+</entry><entry thead="no"><para>Dead-Band Input Mode<linebreak/>
+- Selects source signals for deadband generation   </para>
+</entry><entry thead="no"><para><computeroutput><ref refid="group__mcpwm__api_1ga65d715659c6ad21c533960ac48c7c5e8" kindref="member">MCPWM_setRisingEdgeDeadBandDelayInput()</ref></computeroutput>    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>1-0   </para>
+</entry><entry thead="no"><para>OUT_MODE   </para>
+</entry><entry thead="no"><para>Dead-Band Output Enable<linebreak/>
+- Enables/disables deadband for outputs<linebreak/>
+- Controls which edges have deadband   </para>
+</entry><entry thead="no"><para><computeroutput><ref refid="group__mcpwm__api_1ga5ebee88af12563866fac31264b020043" kindref="member">MCPWM_setDeadBandDelayMode()</ref></computeroutput>   </para>
+</entry></row>
+</table>
+</para>
+</sect3>
+<sect3 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md362">
+<title>Dead-Band Edge Delay Registers</title>
+<para>Controls the duration of deadband delays.</para>
+<sect4 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md363">
+<title>DBRED (Rising Edge Delay)</title>
+<para><table rows="2" cols="4"><row>
+<entry thead="yes"><para>Bits   </para>
+</entry><entry thead="yes"><para>Name   </para>
+</entry><entry thead="yes"><para>Description   </para>
+</entry><entry thead="yes"><para>Configuration API    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>15-0   </para>
+</entry><entry thead="no"><para>RED   </para>
+</entry><entry thead="no"><para>Rising Edge Delay Count<linebreak/>
+- Number of TBCLK cycles for rising edge delay   </para>
+</entry><entry thead="no"><para><computeroutput><ref refid="group__mcpwm__api_1ga94205485bfa3399a995f5473cb6e20c8" kindref="member">MCPWM_setRisingEdgeDelayCountActive()</ref></computeroutput>   </para>
+</entry></row>
+</table>
+</para>
+</sect4>
+<sect4 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md364">
+<title>DBFED (Falling Edge Delay)</title>
+<para><table rows="2" cols="4"><row>
+<entry thead="yes"><para>Bits   </para>
+</entry><entry thead="yes"><para>Name   </para>
+</entry><entry thead="yes"><para>Description   </para>
+</entry><entry thead="yes"><para>Configuration API    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>15-0   </para>
+</entry><entry thead="no"><para>FED   </para>
+</entry><entry thead="no"><para>Falling Edge Delay Count<linebreak/>
+- Number of TBCLK cycles for falling edge delay   </para>
+</entry><entry thead="no"><para><computeroutput><ref refid="group__mcpwm__api_1ga4191babd68b1ea3ef53ef377e99123c4" kindref="member">MCPWM_setFallingEdgeDelayCountActive()</ref></computeroutput>   </para>
+</entry></row>
+</table>
+</para>
+</sect4>
+</sect3>
+<sect3 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md365">
+<title>Shadow Registers</title>
+<para>Provides double-buffered updates to delay values.</para>
+<sect4 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md366">
+<title>DBREDS (Rising Edge Delay Shadow)</title>
+<para><table rows="2" cols="4"><row>
+<entry thead="yes"><para>Bits   </para>
+</entry><entry thead="yes"><para>Name   </para>
+</entry><entry thead="yes"><para>Description   </para>
+</entry><entry thead="yes"><para>Configuration API    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>15-0   </para>
+</entry><entry thead="no"><para>REDS   </para>
+</entry><entry thead="no"><para>Rising Edge Delay Shadow Value<linebreak/>
+- Shadow register for RED   </para>
+</entry><entry thead="no"><para><computeroutput><ref refid="group__mcpwm__api_1ga98a2071ace09b66595d53d92085e266e" kindref="member">MCPWM_setRisingEdgeDelayCountShadow()</ref></computeroutput>   </para>
+</entry></row>
+</table>
+</para>
+</sect4>
+<sect4 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md367">
+<title>DBFEDS (Falling Edge Delay Shadow)</title>
+<para><table rows="2" cols="4"><row>
+<entry thead="yes"><para>Bits   </para>
+</entry><entry thead="yes"><para>Name   </para>
+</entry><entry thead="yes"><para>Description   </para>
+</entry><entry thead="yes"><para>Configuration API    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>15-0   </para>
+</entry><entry thead="no"><para>FEDS   </para>
+</entry><entry thead="no"><para>Falling Edge Delay Shadow Value<linebreak/>
+- Shadow register for FED   </para>
+</entry><entry thead="no"><para><computeroutput><ref refid="group__mcpwm__api_1gafe3cbff4bcf86cdfb806fe57e2490631" kindref="member">MCPWM_setFallingEdgeDelayCountShadow()</ref></computeroutput>   </para>
+</entry></row>
+</table>
+</para>
+</sect4>
+</sect3>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md368">
+<title>Example Overview</title>
+<para>These examples demonstrate two different approaches to implement MCPWM deadband functionality:<orderedlist>
+<listitem><para>Driverlib Implementation (mcpwm_ex3_deadband.c in driverlib)</para>
+</listitem><listitem><para>Direct Register/Bitfield Implementation (mcpwm_ex3_deadband.c in examples_bitfield)</para>
+</listitem></orderedlist>
+</para>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md369">
+<title>Common Functionality</title>
+<para>Both implementations configure myMCPWM0(MCPWM1) and myMCPWM1(MCPWM3) with the following features:</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md370">
+<title>myMCPWM0 Configuration</title>
+<para><orderedlist>
+<listitem><para>Time Base Settings:<itemizedlist>
+<listitem><para>Up-Down Count Mode</para>
+</listitem><listitem><para>20KHz Frequency (4000 TBCLKs for 160MHz TBCLK)</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Action Qualifier Outputs:<itemizedlist>
+<listitem><para>Output A1/A2/A3: Set High on CMPA up, Low on CMPA down</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Deadband Configuration:<itemizedlist>
+<listitem><para>Active High Configuration</para>
+</listitem><listitem><para>100 TBCLK deadband for both edges</para>
+</listitem><listitem><para>Full deadband enabled</para>
+</listitem><listitem><para>All PWM outputs use PWMxA as source</para>
+</listitem></itemizedlist>
+</para>
+</listitem></orderedlist>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md371">
+<title>myMCPWM1 Configuration</title>
+<para><orderedlist>
+<listitem><para>Time Base Settings:<itemizedlist>
+<listitem><para>Up-Down Count Mode</para>
+</listitem><listitem><para>20KHz Frequency (4000 TBCLKs for 160MHz TBCLK)</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Action Qualifier Outputs:<itemizedlist>
+<listitem><para>Output A1: Set High on CMPA up, Low on CMPA down</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Deadband Configuration:<itemizedlist>
+<listitem><para>Deadband disabled</para>
+</listitem></itemizedlist>
+</para>
+</listitem></orderedlist>
+</para>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md372">
+<title>External Connections</title>
+<para>Monitor these PWM outputs on Launchpad:<itemizedlist>
+<listitem><para>J4 40 - GPIO0 - myMCPWM0 Output A1 - Active High Configuration</para>
+</listitem><listitem><para>J4 39 - GPIO1 - myMCPWM0 Output B1 - Active High Configuration</para>
+</listitem><listitem><para>J4 38 - GPIO2 - myMCPWM0 Output A2 - Active High Configuration</para>
+</listitem><listitem><para>J4 37 - GPIO3 - myMCPWM0 Output B2 - Active High Configuration</para>
+</listitem><listitem><para>J4 36 - GPIO4 - myMCPWM0 Output A3 - Active High Configuration</para>
+</listitem><listitem><para>J4 35 - GPIO5 - myMCPWM0 Output B3 - Active High Configuration</para>
+</listitem><listitem><para>J4 7 - GPIO12 - myMCPWM1 Output A1 - Reference Output</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md373">
+<title>Implementation Approaches</title>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md374">
+<title>Implementation Comparison</title>
+<para><table rows="5" cols="3"><row>
+<entry thead="yes"><para>Aspect   </para>
+</entry><entry thead="yes"><para>Driverlib Implementation   </para>
+</entry><entry thead="yes"><para>Bitfield Implementation    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Source File   </para>
+</entry><entry thead="no"><para>mcpwm_ex3_deadband.c (driverlib)   </para>
+</entry><entry thead="no"><para>mcpwm_ex3_deadband.c (examples_bitfield)    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Configuration Method   </para>
+</entry><entry thead="no"><para>Driverlib API calls   </para>
+</entry><entry thead="no"><para>Direct register access    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Hardware Abstraction   </para>
+</entry><entry thead="no"><para>Medium (driverlib)   </para>
+</entry><entry thead="no"><para>None (direct hardware)    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Deadband Control   </para>
+</entry><entry thead="no"><para>API-based configuration   </para>
+</entry><entry thead="no"><para>Direct register configuration   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md375">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Observe the complementary waveforms with deadband on the specified GPIO pins.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND_1autotoc_md376">
+<title>See Also</title>
+<para><itemizedlist>
+<listitem><para><ref refid="DRIVERS_MCPWM_PAGE" kindref="compound">MCPWM</ref></para>
+</listitem><listitem><para><ref refid="EXAMPLES_DRIVERS_MCPWM_EX1_BASIC_PWM" kindref="compound">MCPWM Basic PWM Generation Examples</ref></para>
+</listitem><listitem><para><ref refid="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION" kindref="compound">MCPWM Synchronization Example</ref> </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/mcpwm_ex3_deadband.md"/>
+  </compounddef>
+</doxygen>

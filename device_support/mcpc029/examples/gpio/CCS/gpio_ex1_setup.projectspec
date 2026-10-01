@@ -1,0 +1,29 @@
+<projectSpec>
+  <project
+        name="gpio_ex1_setup"
+        device="MCPC029"
+        cgtVersion="25.11.1.LTS"
+        products="C2000WARE"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        >
+    <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=off -I${C2000WARE_COMMON_INCLUDE} -I${C2000WARE_HEADERS_INCLUDE} -v28 -ml -mt  --float_support=fpu32 --define=DEBUG  --define=CPU1 --gen_func_subsections --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--stack_size=0x100 --entry_point code_start" />
+    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_COMMON_INCLUDE} -I${C2000WARE_HEADERS_INCLUDE} -v28 -ml -mt  --float_support=fpu32  --define=DEBUG  --define=CPU1 --gen_func_subsections --define=_FLASH --diag_warning=225  --diag_suppress=10063 " linkerBuildOptions="--stack_size=0x100 --entry_point code_start" />
+    <pathVariable name="C2000WARE_COMMON_INCLUDE" path="../../../common/include/" scope="project" />
+    <pathVariable name="C2000WARE_HEADERS_INCLUDE" path="../../../headers/include/" scope="project" />
+    <file action="copy" path="../../../common/source/mcpc029_codestartbranch.asm" targetDirectory="" />
+    <file action="copy" path="../../../common/source/mcpc029_defaultisr.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/mcpc029_gpio.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/mcpc029_piectrl.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/mcpc029_pievect.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/mcpc029_sysctrl.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/mcpc029_usdelay.asm" targetDirectory="" />
+    <file action="copy" path="../../../headers/cmd/mcpc029_headers_nonBIOS.cmd" targetDirectory="" />
+    <file action="copy" path="../../../headers/source/mcpc029_globalvariabledefs.c" targetDirectory="" />
+    <file action="copy" path="../../../common/targetConfigs/MCPC029.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../common/cmd/mcpc029_generic_ram_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_RAM" />
+    <file action="copy" path="../../../common/cmd/mcpc029_generic_flash_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_FLASH" />
+    <file action="copy" path="../gpio_ex1_setup.c" targetDirectory="" />
+  </project>
+</projectSpec>

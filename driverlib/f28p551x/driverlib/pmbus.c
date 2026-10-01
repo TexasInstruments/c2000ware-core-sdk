@@ -647,6 +647,7 @@ uint32_t PMBus_configModuleClock(uint32_t base, uint32_t moduleFrequency,
     //
     // Write to the PMBCTRL register
     //
+    HWREG(base + PMBUS_O_PMBCTRL) &= ~(uint32_t)PMBUS_PMBCTRL_CLKDIV_M;
     HWREG(base + PMBUS_O_PMBCTRL) |=
                                   ((clockDivider << PMBUS_PMBCTRL_CLKDIV_S)
                                                    & PMBUS_PMBCTRL_CLKDIV_M);
@@ -713,6 +714,7 @@ PMBus_configModuleClockMode(uint32_t base, uint32_t moduleFrequency, uint32_t sy
     //
     // Write to the PMBCTRL register
     //
+    HWREG(base + PMBUS_O_PMBCTRL) &= ~(uint32_t)PMBUS_PMBCTRL_CLKDIV_M;
     HWREG(base + PMBUS_O_PMBCTRL) |=
                                   ((clockDivider << PMBUS_PMBCTRL_CLKDIV_S)
                                                    & PMBUS_PMBCTRL_CLKDIV_M);

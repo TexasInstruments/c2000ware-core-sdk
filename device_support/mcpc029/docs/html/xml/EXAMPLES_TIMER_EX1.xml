@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_TIMER_EX1" kind="page">
+    <compoundname>EXAMPLES_TIMER_EX1</compoundname>
+    <title>Timer Counter Example</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_TIMER_EX1_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_timer_ex1"/></para>
+<sect1 id="EXAMPLES_TIMER_EX1_1autotoc_md467">
+<title>Universal CPU Timers Example</title>
+<para>This example demonstrates the configuration and usage of CPU Timer0, Timer1, and Timer2 on a C2000 device. Each timer is configured to generate an interrupt at specific intervals, and a counter is incremented in the corresponding ISR (Interrupt Service Routine).</para>
+<para><table rows="4" cols="3"><row>
+<entry thead="yes"><para><bold>Timer</bold>   </para>
+</entry><entry thead="yes"><para><bold>Interrupt Interval</bold>   </para>
+</entry><entry thead="yes"><para><bold>Description</bold>    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>CPU Timer0</bold>   </para>
+</entry><entry thead="no"><para>1 second   </para>
+</entry><entry thead="no"><para>Configured to interrupt every 1 second.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>CPU Timer1</bold>   </para>
+</entry><entry thead="no"><para>2 seconds   </para>
+</entry><entry thead="no"><para>Configured to interrupt every 2 seconds.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>CPU Timer2</bold>   </para>
+</entry><entry thead="no"><para>4 seconds   </para>
+</entry><entry thead="no"><para>Configured to interrupt every 4 seconds.   </para>
+</entry></row>
+</table>
+</para>
+<para>The example initializes the device, configures the timers, and enables interrupts. The main loop remains idle while the timers generate interrupts periodically.</para>
+<para><simplesect kind="note"><para>To migrate this project to another device using SysConfig, click the switch button under the device view, select the corresponding device, and save the project to auto-migrate the settings.</para>
+</simplesect>
+</para>
+<sect2 id="EXAMPLES_TIMER_EX1_1autotoc_md468">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>None</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_TIMER_EX1_1autotoc_md469">
+<title>Watch Variables</title>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para><bold>Variable</bold>   </para>
+</entry><entry thead="yes"><para><bold>Description</bold>    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>cpuTimer0IntCount</computeroutput>   </para>
+</entry><entry thead="no"><para>Counter incremented by Timer0 ISR.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>cpuTimer1IntCount</computeroutput>   </para>
+</entry><entry thead="no"><para>Counter incremented by Timer1 ISR.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>cpuTimer2IntCount</computeroutput>   </para>
+</entry><entry thead="no"><para>Counter incremented by Timer2 ISR.   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_TIMER_EX1_1autotoc_md470">
+<title>Functions</title>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para><bold>Function</bold>   </para>
+</entry><entry thead="yes"><para><bold>Description</bold>    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>main</computeroutput>   </para>
+</entry><entry thead="no"><para>Entry point of the program. Initializes the device, configures timers, and enables interrupts.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>initCPUTimers</computeroutput>   </para>
+</entry><entry thead="no"><para>Initializes all three CPU timers to a known state.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>configCPUTimer</computeroutput>   </para>
+</entry><entry thead="no"><para>Configures a specific CPU timer with a given frequency and period.   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_TIMER_EX1_1autotoc_md471">
+<title>ISR Table</title>
+<para><table rows="4" cols="3"><row>
+<entry thead="yes"><para><bold>ISR Function</bold>   </para>
+</entry><entry thead="yes"><para><bold>Timer</bold>   </para>
+</entry><entry thead="yes"><para><bold>Description</bold>    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>cpuTimer0ISR</computeroutput>   </para>
+</entry><entry thead="no"><para>CPU Timer0   </para>
+</entry><entry thead="no"><para>Increments <computeroutput>cpuTimer0IntCount</computeroutput>.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>cpuTimer1ISR</computeroutput>   </para>
+</entry><entry thead="no"><para>CPU Timer1   </para>
+</entry><entry thead="no"><para>Increments <computeroutput>cpuTimer1IntCount</computeroutput>.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>cpuTimer2ISR</computeroutput>   </para>
+</entry><entry thead="no"><para>CPU Timer2   </para>
+</entry><entry thead="no"><para>Increments <computeroutput>cpuTimer2IntCount</computeroutput>.   </para>
+</entry></row>
+</table>
+</para>
+<para><linebreak/>
+</para>
+<para><linebreak/>
+</para>
+<para><programlisting filename=".mermaid"><codeline><highlight class="normal">Code<sp/>Flow<sp/>:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>A[Initialize<sp/>Device<sp/>Clock<sp/>and<sp/>Peripherals]<sp/>--&gt;<sp/>B[Configure<sp/>Timers<sp/>using<sp/>`configCPUTimer`]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>B<sp/>--&gt;<sp/>C[Enable<sp/>Interrupts<sp/>and<sp/>Start<sp/>Timers]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>C<sp/>--&gt;<sp/>D[Monitor<sp/>Counters]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>D[Monitor<sp/>Counters]<sp/>--&gt;<sp/>E{Verify<sp/>Timer<sp/>Functionality}</highlight></codeline>
+</programlisting> </para>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_TIMER_EX1_1autotoc_md472">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Run the program and observe the interrupt counters (cpuTimer0IntCount, cpuTimer1IntCount, cpuTimer2IntCount) incrementing in the debugger</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para><itemizedlist>
+<listitem><para>When running in flash configuration, it is recommended to reset and restart after loading the example to remove any stale flags or states.</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+<sect3 id="EXAMPLES_TIMER_EX1_1autotoc_md473">
+<title>See Also</title>
+<para><ref refid="DRIVERS_TIMER_PAGE" kindref="compound">CPU Timer</ref> </para>
+</sect3>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/timer_ex1.md"/>
+  </compounddef>
+</doxygen>

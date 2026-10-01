@@ -66,7 +66,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -99,18 +99,15 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
 #define RESULTS_BUFFER_SIZE     256U
-
 //
 // Macros to define ADC resolution and input signal mode. Valid values of
 // resolution are 12 for 12-bit conversion resolution, which support input
@@ -119,7 +116,6 @@
 //
 #define EX_ADC_RESOLUTION     (ADC_RESOLUTION_12BIT)
 #define EX_ADC_INPUT_MODE     (ADC_MODE_SINGLE_ENDED)
-
 //
 // Globals
 //
@@ -132,7 +128,6 @@ volatile uint32_t sumBCh0 = 0, sumBCh1 = 0, averageBCh0 = 0, averageBCh1 = 0;
 volatile uint16_t indexA = 0, indexB = 0;    // Index into result buffer
 volatile uint16_t bufferFull = 0;            // Flag to indicate buffer is full
 volatile uint32_t countIdle = 0;             // Idle counter
-
 //
 // Function Prototypes
 //
@@ -140,7 +135,6 @@ void configureADC(uint32_t adcBase);
 void initEPWM(uint32_t pwmBase);
 void initADCSOC(uint32_t adcBase);
 void initADCGPIOTrigger(void);
-
 //
 // ISRs
 //
@@ -150,7 +144,6 @@ __interrupt void adcA1ISR(void);
 __interrupt void adcA2ISR(void);
 #pragma CODE_SECTION(adcA2ISR, ".TI.ramfunc")
 #pragma INTERRUPT (adcA2ISR, HPI)
-
 //
 // Main
 //
@@ -160,30 +153,25 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Interrupts that are used in this example are re-mapped to ISR functions
     // found within this file.
     //
     Interrupt_register(INT_ADCA1, &adcA1ISR);
     Interrupt_register(INT_ADCA2, &adcA2ISR);
-
     //
     // Set up the ADC and the ePWM and initialize the SOC
     //
@@ -191,12 +179,10 @@ void main(void)
     configureADC(ADCB_BASE);
     initADCSOC(ADCA_BASE);
     initADCSOC(ADCB_BASE);
-
     //
     // Configure GPIO trigger for ADC
     //
     initADCGPIOTrigger();
-
     //
     // Initialize results buffer
     //
@@ -207,29 +193,24 @@ void main(void)
         adcB0Results[indexA] = 0;
         adcB1Results[indexA] = 0;
     }
-
     indexA = 0;
     indexB = 0;
     bufferFull = 0;
-
     //
     // Enable ADC interrupt
     //
     Interrupt_enable(INT_ADCA1);
     Interrupt_enable(INT_ADCA2);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Trigger ADC once through setting GPIO32 connected to ADCEXTSOC
     // pin(GPIO33)
     //
     GPIO_setPortPins(GPIO_PORT_B, GPIO_GPBDIR_GPIO32);
-
     //
     // Loop indefinitely
     //
@@ -238,7 +219,6 @@ void main(void)
         countIdle = 0;
         indexA = 0;
         indexB = 0;
-
         //
         // Wait while ADCINT1 causes ADC conversions which then cause interrupts.
         // When the results buffer is filled, the bufferFull flag will be set.
@@ -250,13 +230,11 @@ void main(void)
             //
             countIdle++;
         }
-
         //
         // Clear the buffer full flag. Add breakpoint at this statement to
         // view ADC results in graph view.
         //
         bufferFull = 0;
-
 //        //
 //        // Software breakpoint to view results.
 //        // Hit run again to get updated conversions.
@@ -265,7 +243,6 @@ void main(void)
 //        ESTOP0;
     }
 }
-
 //
 // initADCGPIOTrigger - Configure ADCEXTSOC as ADC GPIO trigger
 //
@@ -276,11 +253,9 @@ void initADCGPIOTrigger(void)
     //
     GPIO_clearPortPins(GPIO_PORT_B, GPIO_GPBDIR_GPIO32);
     GPIO_setDirectionMode(32, GPIO_DIR_MODE_OUT);           // output
-
     GPIO_setDirectionMode(33, GPIO_DIR_MODE_IN);            // input
     XBAR_setInputPin(INPUTXBAR_BASE, XBAR_INPUT5, 33);
 }
-
 //
 // configureADC - Write ADC configurations and power up the selected ADC
 //                instance
@@ -291,43 +266,36 @@ void configureADC(uint32_t adcBase)
     // Set ADCCLK divider to /4
     //
     ADC_setPrescaler(adcBase, ADC_CLK_DIV_4_0);
-
     //
     // Set resolution and signal mode (see #defines above) and load
     // corresponding trims.
     //
     ADC_setMode(adcBase, EX_ADC_RESOLUTION, EX_ADC_INPUT_MODE);
-
     //
     // Set pulse positions at the end of the acquisition window.
     //
     ADC_setInterruptPulseMode(adcBase, ADC_PULSE_END_OF_ACQ_WIN);
-
     //
     // Power up the ADCs and then delay for 1 ms
     //
     ADC_enableConverter(adcBase);
-
     //
     // Delay for 1ms to allow ADC time to power up
     //
     DEVICE_DELAY_US(1000);
 }
-
 //
 // Function to configure selected ADC's SOC0 to be triggered by ePWM1.
 //
 void initADCSOC(uint32_t adcBase)
 {
     uint16_t i;
-
    //
    // Configure SOCs of selected ADC
    // - For 12-bit resolution, a sampling window of 15 (75 ns at a 200MHz
    //   SYSCLK rate) will be used.  For 16-bit resolution, a sampling window
    //   of 64 (320 ns at a 200MHz SYSCLK rate) will be used.
    //
-
    //
    // ADC channel for SOC0, SOC2, ...,SOC14 = ADCIN0
    // ADC channel for SOC1, SOC3, ...,SOC15 = ADCIN1
@@ -340,14 +308,12 @@ void initADCSOC(uint32_t adcBase)
                     ADC_TRIGGER_GPIO,
                     ((i % 2 == 0) ? ADC_CH_ADCIN0 : ADC_CH_ADCIN1),
                     ((EX_ADC_RESOLUTION == ADC_RESOLUTION_16BIT) ? 64U : 15U));
-
        //
        // Set SOC trigger
        //
        ADC_setInterruptSOCTrigger(adcBase, (ADC_SOCNumber)i,
                                   ADC_INT_SOC_TRIGGER_ADCINT1);
    }
-
     //
     // Set ADCA SOC7 to set the interrupt 2 flag and SOC15 to set interrupt 1
     // flag. Enable the interrupt and make sure its flag is cleared.
@@ -359,13 +325,11 @@ void initADCSOC(uint32_t adcBase)
         ADC_enableInterrupt(adcBase, ADC_INT_NUMBER2);
         ADC_clearInterruptStatus(adcBase, ADC_INT_NUMBER2);
     }
-
     ADC_setInterruptSource(adcBase, ADC_INT_NUMBER1, ADC_SOC_NUMBER15);
     ADC_enableContinuousMode(adcBase, ADC_INT_NUMBER1);
     ADC_enableInterrupt(adcBase, ADC_INT_NUMBER1);
     ADC_clearInterruptStatus(adcBase, ADC_INT_NUMBER1);
 }
-
 //
 // ADC A Interrupt 2 ISR
 //
@@ -378,28 +342,23 @@ __interrupt void adcA2ISR(void)
               ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER2) +
               ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER4) +
               ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER6);
-
     sumBCh0 = ADC_readResult(ADCBRESULT_BASE, ADC_SOC_NUMBER0) +
               ADC_readResult(ADCBRESULT_BASE, ADC_SOC_NUMBER2) +
               ADC_readResult(ADCBRESULT_BASE, ADC_SOC_NUMBER4) +
               ADC_readResult(ADCBRESULT_BASE, ADC_SOC_NUMBER6);
-
     sumACh1 = ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER1) +
               ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER3) +
               ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER5) +
               ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER7);
-
     sumBCh1 = ADC_readResult(ADCBRESULT_BASE, ADC_SOC_NUMBER1) +
               ADC_readResult(ADCBRESULT_BASE, ADC_SOC_NUMBER3) +
               ADC_readResult(ADCBRESULT_BASE, ADC_SOC_NUMBER5) +
               ADC_readResult(ADCBRESULT_BASE, ADC_SOC_NUMBER7);
-
     //
     // Acknowledge the interrupt
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP10);
 }
-
 //
 // ADC A Interrupt 1 ISR
 //
@@ -412,22 +371,18 @@ __interrupt void adcA1ISR(void)
                ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER10) +
                ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER12) +
                ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER14);
-
     sumBCh0 += ADC_readResult(ADCBRESULT_BASE, ADC_SOC_NUMBER8)  +
                ADC_readResult(ADCBRESULT_BASE, ADC_SOC_NUMBER10) +
                ADC_readResult(ADCBRESULT_BASE, ADC_SOC_NUMBER12) +
                ADC_readResult(ADCBRESULT_BASE, ADC_SOC_NUMBER14);
-
     sumACh1 += ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER9)  +
                ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER11) +
                ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER13) +
                ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER15);
-
     sumBCh1 += ADC_readResult(ADCBRESULT_BASE, ADC_SOC_NUMBER9)  +
                ADC_readResult(ADCBRESULT_BASE, ADC_SOC_NUMBER11) +
                ADC_readResult(ADCBRESULT_BASE, ADC_SOC_NUMBER13) +
                ADC_readResult(ADCBRESULT_BASE, ADC_SOC_NUMBER15);
-
     //
     // Taking average of 8 channels
     //
@@ -435,12 +390,10 @@ __interrupt void adcA1ISR(void)
     averageACh1 = sumACh1 >> 3;
     averageBCh0 = sumBCh0 >> 3;
     averageBCh1 = sumBCh1 >> 3;
-
     adcA0Results[indexA]   = averageACh0;
     adcA1Results[indexA++] = averageACh1;
     adcB0Results[indexB]   = averageBCh0;
     adcB1Results[indexB++] = averageBCh1;
-
     //
     // Set the bufferFull flag if the buffer is full
     //
@@ -448,13 +401,11 @@ __interrupt void adcA1ISR(void)
     {
         bufferFull = 1;
     }
-
     //
     // Acknowledge the interrupt
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP1);
 }
-
 //
 // End of file
 //

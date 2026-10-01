@@ -61,7 +61,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -94,29 +94,24 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
 #define MSG_DATA_LENGTH    2
-
 //
 // Globals
 //
 volatile unsigned long msgCount = 0;
-
 //
 // Stack start and end addresses
 //
 extern uint16_t _stack;
 extern uint16_t _STACK_END;
-
 //
 // Main
 //
@@ -126,29 +121,24 @@ void main(void)
     // Setup transfer and receive buffers
     //
     uint16_t txMsgData[2], rxMsgData[2];
-
     //
     // Create buffer to hold message history up to 50 messages
     //
     volatile uint32_t msgHistoryBuff[50];
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure GPIO pins for CANTX/CANRX
     //
     Device_initGPIO();
     GPIO_setPinConfig(DEVICE_GPIO_CFG_CANRXA);
     GPIO_setPinConfig(DEVICE_GPIO_CFG_CANTXA);
-
     //
     // Initialize the CAN controller
     //
     CAN_initModule(CANA_BASE);
-
     //
     // Set up the CAN bus bit rate to 500kHz
     // Refer to the Driver Library User Guide for information on how to set
@@ -156,29 +146,24 @@ void main(void)
     // for more information about the CAN module clocking.
     //
     CAN_setBitRate(CANA_BASE, DEVICE_SYSCLK_FREQ, 500000, 16);
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Enable CAN test mode with external loopback
     //
     CAN_enableTestMode(CANA_BASE, CAN_TEST_EXL);
-
     //
     // Initialize the transmit message object used for sending CAN messages.
     // Message Object Parameters:
@@ -193,7 +178,6 @@ void main(void)
     CAN_setupMessageObject(CANA_BASE, 1, 0x1234, CAN_MSG_FRAME_STD,
                            CAN_MSG_OBJ_TYPE_TX, 0, CAN_MSG_OBJ_NO_FLAGS, 
                            MSG_DATA_LENGTH);
-
     //
     // Initialize the receive message object used for receiving CAN messages.
     // Message Object Parameters:
@@ -208,19 +192,16 @@ void main(void)
     CAN_setupMessageObject(CANA_BASE, 2, 0x1234, CAN_MSG_FRAME_STD,
                            CAN_MSG_OBJ_TYPE_RX, 0, CAN_MSG_OBJ_NO_FLAGS, 
                            MSG_DATA_LENGTH);
-
     //
     // Start CAN module operations
     //
     CAN_startModule(CANA_BASE);    
-
     //
     // Setup send and receive buffers
     //
     txMsgData[0] = 0x01;
     txMsgData[1] = 0x02;
     *(uint16_t *)rxMsgData = 0;
-
     //
     // Loop Forever - Send and Receive data continuously
     //
@@ -230,12 +211,10 @@ void main(void)
         // Send CAN message data from message object 1
         //
         CAN_sendMessage(CANA_BASE, 1, MSG_DATA_LENGTH, txMsgData);
-
         //
         // Delay before receiving the data
         //
         DEVICE_DELAY_US(50000);
-
         //
         // Read CAN message object 2 and check for new data
         //
@@ -269,13 +248,11 @@ void main(void)
             //
             asm(" ESTOP0");            
         }
-
         //
         // Increment the value in the transmitted message data.
         //
         txMsgData[0] += 0x01;
         txMsgData[1] += 0x01;
-        
         //
         // Reset data if exceeds a byte
         //
@@ -289,7 +266,6 @@ void main(void)
         }        
     }
 }
-
 //
 // End of File
 //

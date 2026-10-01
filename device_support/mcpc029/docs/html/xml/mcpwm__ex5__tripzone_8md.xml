@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="mcpwm__ex5__tripzone_8md" kind="file" language="Markdown">
+    <compoundname>mcpwm_ex5_tripzone.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>MCPWM<sp/>Tripzone<sp/>Example<sp/>{#EXAMPLES_DRIVERS_MCPWM_EX5_TRIPZONE}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>This<sp/>example<sp/>demonstrates<sp/>MCPWM<sp/>tripzone<sp/>functionality<sp/>for<sp/>protecting<sp/>PWM<sp/>outputs<sp/>during<sp/>fault<sp/>conditions&quot;</highlight></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>MCPWM,<sp/>Tripzone,<sp/>Protection,<sp/>Fault<sp/>Handling&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Tripzone<sp/>Feature</highlight></codeline>
+<codeline><highlight class="normal">Tripzone<sp/>is<sp/>a<sp/>safety<sp/>feature<sp/>that<sp/>allows<sp/>PWM<sp/>outputs<sp/>to<sp/>be<sp/>quickly<sp/>forced<sp/>to<sp/>defined<sp/>states<sp/>in<sp/>response<sp/>to<sp/>fault<sp/>conditions.<sp/>It<sp/>provides<sp/>hardware-level<sp/>protection<sp/>for<sp/>power<sp/>electronic<sp/>circuits.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Tripzone<sp/>Features</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**Multiple<sp/>Trip<sp/>Sources**</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Cycle-by-cycle<sp/>(CBC)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>One-shot<sp/>(OSHT)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**Configurable<sp/>Actions**</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Force<sp/>outputs<sp/>high/low</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Independent<sp/>control<sp/>of<sp/>A/B<sp/>outputs</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**Interrupt<sp/>Generation**</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Trip<sp/>event<sp/>detection</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Status<sp/>monitoring</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Example<sp/>Overview</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>demonstrates<sp/>tripzone<sp/>functionality<sp/>using<sp/>myMCPWM0<sp/>and<sp/>myMCPWM1<sp/>modules<sp/>with<sp/>different<sp/>trip<sp/>configurations.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Module<sp/>Configurations</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>myMCPWM0</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>Time<sp/>Base<sp/>Settings:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Up<sp/>Count<sp/>Mode</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>10<sp/>kHz<sp/>Frequency<sp/>(15999<sp/>period<sp/>@<sp/>160MHz<sp/>TBCLK)</highlight></codeline>
+<codeline><highlight class="normal">2.<sp/>Action<sp/>Qualifier:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Output<sp/>A1/B1:<sp/>Set<sp/>High<sp/>on<sp/>Counter<sp/>Zero,<sp/>Low<sp/>on<sp/>CMPA/CMPB<sp/>up</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Output<sp/>A2/B2:<sp/>Set<sp/>Low<sp/>on<sp/>Counter<sp/>Period,<sp/>High<sp/>on<sp/>CMPA/CMPB<sp/>up</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Output<sp/>A3:<sp/>Set<sp/>High<sp/>on<sp/>CMPA,<sp/>Low<sp/>on<sp/>CMPB<sp/>up</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Output<sp/>B3:<sp/>Set<sp/>Low<sp/>on<sp/>CMPA,<sp/>High<sp/>on<sp/>CMPB<sp/>up</highlight></codeline>
+<codeline><highlight class="normal">3.<sp/>Trip<sp/>Zone<sp/>Configuration:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>CBC1<sp/>as<sp/>trip<sp/>source</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>CBC<sp/>Clear<sp/>on<sp/>&quot;counter<sp/>=<sp/>zero&quot;<sp/>event</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>TZA<sp/>configured<sp/>to<sp/>force<sp/>Low</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>TZB<sp/>configured<sp/>to<sp/>force<sp/>High</highlight></codeline>
+<codeline><highlight class="normal">4.<sp/>Interrupt:<sp/>Enabled<sp/>for<sp/>CBC<sp/>trip</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>myMCPWM1</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>Time<sp/>Base<sp/>Settings:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Up-Down<sp/>Count<sp/>Mode</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>10<sp/>kHz<sp/>Frequency<sp/>(8000<sp/>period<sp/>@<sp/>160MHz<sp/>TBCLK)</highlight></codeline>
+<codeline><highlight class="normal">2.<sp/>Action<sp/>Qualifier:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Output<sp/>A1:<sp/>Set<sp/>High<sp/>on<sp/>CMPA<sp/>up,<sp/>Low<sp/>on<sp/>CMPA<sp/>down</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Output<sp/>B1:<sp/>Set<sp/>High<sp/>on<sp/>CMPB<sp/>up,<sp/>Low<sp/>on<sp/>CMPB<sp/>down</highlight></codeline>
+<codeline><highlight class="normal">3.<sp/>Trip<sp/>Zone<sp/>Configuration:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>OSHT1<sp/>as<sp/>one-shot<sp/>trip<sp/>source</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>TZA<sp/>configured<sp/>to<sp/>force<sp/>Low</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>TZB<sp/>configured<sp/>to<sp/>force<sp/>High</highlight></codeline>
+<codeline><highlight class="normal">4.<sp/>Interrupt:<sp/>Enabled<sp/>for<sp/>OST<sp/>trip</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Trip<sp/>Signal<sp/>Routing</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">+--------+<sp/><sp/><sp/><sp/>+-----------------+<sp/><sp/><sp/><sp/>+-------+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>+---------------+</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/><sp/><sp/><sp/>|<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/><sp/><sp/><sp/>|<sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/><sp/><sp/><sp/>--&gt;|<sp/>CBC1<sp/>(MCPWM0)<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>GPIO6<sp/><sp/>|---&gt;|<sp/>INPUTXBAR_IN13<sp/><sp/>|---&gt;|PWMXBAR|---|<sp/><sp/><sp/>+---------------+</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/><sp/><sp/><sp/>|<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/><sp/><sp/><sp/>|<sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/><sp/><sp/><sp/>--&gt;|<sp/>OSHT1(MCPWM1)<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">+--------+<sp/><sp/><sp/><sp/>+-----------------+<sp/><sp/><sp/><sp/>+-------+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>+---------------+</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">Monitor<sp/>these<sp/>pins<sp/>on<sp/>the<sp/>LaunchPad:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>J4<sp/>32<sp/>-<sp/>GPIO6<sp/><sp/>-<sp/>Trip<sp/>Input</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>J4<sp/>40<sp/>-<sp/>GPIO0<sp/><sp/>-<sp/>myMCPWM0<sp/>Output<sp/>A1</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>J4<sp/>39<sp/>-<sp/>GPIO1<sp/><sp/>-<sp/>myMCPWM0<sp/>Output<sp/>B1</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>J4<sp/>38<sp/>-<sp/>GPIO2<sp/><sp/>-<sp/>myMCPWM0<sp/>Output<sp/>A2</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>J4<sp/>37<sp/>-<sp/>GPIO3<sp/><sp/>-<sp/>myMCPWM0<sp/>Output<sp/>B2</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>J4<sp/>36<sp/>-<sp/>GPIO4<sp/><sp/>-<sp/>myMCPWM0<sp/>Output<sp/>A3</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>J4<sp/>35<sp/>-<sp/>GPIO5<sp/><sp/>-<sp/>myMCPWM0<sp/>Output<sp/>B3</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>J1<sp/>7<sp/><sp/>-<sp/>GPIO12<sp/>-<sp/>myMCPWM1<sp/>Output<sp/>A1</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>J2<sp/>19<sp/>-<sp/>GPIO29<sp/>-<sp/>myMCPWM1<sp/>Output<sp/>B1</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Important<sp/>Notes</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>For<sp/>external<sp/>trip<sp/>usage,<sp/>configure<sp/>GPIO6<sp/>as<sp/>input</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>CBC<sp/>trip<sp/>clears<sp/>automatically<sp/>on<sp/>counter<sp/>zero</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>One-shot<sp/>trip<sp/>requires<sp/>explicit<sp/>clearing</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>ISR<sp/>counts<sp/>trips<sp/>up<sp/>to<sp/>MAX_TRIP_ISR_COUNT<sp/>before<sp/>clearing<sp/>one-shot<sp/>condition</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>Import<sp/>and<sp/>build<sp/>the<sp/>CCS<sp/>project</highlight></codeline>
+<codeline><highlight class="normal">2.<sp/>Connect<sp/>an<sp/>oscilloscope<sp/>to<sp/>observe<sp/>the<sp/>specified<sp/>GPIO<sp/>pins</highlight></codeline>
+<codeline><highlight class="normal">3.<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session</highlight></codeline>
+<codeline><highlight class="normal">4.<sp/>Run<sp/>the<sp/>executable</highlight></codeline>
+<codeline><highlight class="normal">5.<sp/>Observe<sp/>trip<sp/>behavior<sp/>when<sp/>GPIO6<sp/>is<sp/>toggled:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>MCPWM0<sp/>outputs<sp/>recover<sp/>on<sp/>next<sp/>cycle<sp/>(CBC)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>MCPWM1<sp/>outputs<sp/>remain<sp/>tripped<sp/>until<sp/>cleared<sp/>(OSHT)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Sample<sp/>Output<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\imageStyle{mcpwm_ex5_tripzone.png,width:50%}</highlight></codeline>
+<codeline><highlight class="normal">\image<sp/>html<sp/>mcpwm_ex5_tripzone.png<sp/>&quot;Sample<sp/>Output&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>See<sp/>Also</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\ref<sp/>DRIVERS_MCPWM_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\ref<sp/>EXAMPLES_DRIVERS_MCPWM_EX1_BASIC_PWM</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\ref<sp/>EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\ref<sp/>EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/mcpwm_ex5_tripzone.md"/>
+  </compounddef>
+</doxygen>

@@ -32,7 +32,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -65,23 +65,19 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib_cm.h"
 #include "cm.h"
-
 //
 // Defines
 //
 #define TEST_PASS 0xABCDABCD
 #define TEST_FAIL 0xDEADDEAD
-
 #define UDMA_SW_INT            41U //!< Interrupt Number for UDMASWINT
 #define UDMA_ERR_INT           42U //!< Interrupt Number for UDMAERRINT
 #define SYSTICK_INT            15U //!< Interrupt Number for SYSTICKINT
-
 //
 // Buffer Size(in words)
 // If mem buffer size is 2k fault should be generated and if mem buffer size is
@@ -91,15 +87,12 @@
 //
 //#define MEM_BUFFER_SIZE         2048U
 #define MEM_BUFFER_SIZE         1536U
-
 #define SRC_DMA_ADD  (S2RAM_BASE)
 #define DST_DMA_ADD  (S2RAM_BASE + 0x2000U)
-
 static volatile uint32_t srcDMA = S2RAM_BASE;
 static volatile uint32_t dstDMA = (S2RAM_BASE + 0x2000U);
 static volatile int32_t fullTransferSize = MEM_BUFFER_SIZE;
 static volatile int32_t transferSize = 0;
-
 //
 // The count of uDMA errors.  This value is incremented by the uDMA error
 // handler.
@@ -110,73 +103,61 @@ static volatile uint32_t memFaultAdd, busFaultAdd, val;
 static volatile uint32_t faultStatus;
 static volatile uint32_t intFlagStatus, accVioAdd;
 static volatile uint32_t indexISR = 0;
-
 //
 // The count of times the uDMA interrupt occurred but the uDMA transfer was not
 // complete.  This should remain 0.
 //
 static uint32_t badInterruptCount = 0;
-
 //
 // Test status & error counter.
 //
 uint32_t testStatusGlobal = TEST_FAIL;
 static uint32_t errCountGlobal = 0;
-
 //
 // The count of memory uDMA transfer blocks.  This value is incremented by the
 // uDMA interrupt handler whenever a memory block transfer is completed.
 //
 static uint32_t memTransferCount = 0;
-
 //
 // The control table used by the uDMA controller.  This table must be aligned
 // to a 1024 byte boundary.
 //
 #pragma DATA_ALIGN(ucControlTable, 64)
 UDMA_ControlTable ucControlTable[64];
-
 //
 // Function prototypes
 //
 void uDMAErrorISR(void);
 void uDMAIntISR(void);
 void initSWTransfer(void);
-
 //
 // Main
 //
 void main(void)
 {
     uint32_t i, srcAddr;
-
     //
     // Initialize device clock and peripherals
     //
     CM_init();
-
     //
     // Register interrupt handlers in the RAM vector table.
     //
     Interrupt_registerHandler(UDMA_SW_INT, uDMAIntISR);
     Interrupt_registerHandler(UDMA_ERR_INT, uDMAErrorISR);
-
     //
     // Enable the uDMA controller error interrupt.  This interrupt will occur
     // if there is a bus error during a transfer.
     //
     Interrupt_enable(UDMA_ERR_INT);
-
     //
     // Enable the uDMA controller.
     //
     UDMA_enable(UDMA_BASE);
-
     //
     // Point at the control table to use for channel control structures.
     //
     UDMA_setControlBase(UDMA_BASE, ucControlTable);
-
     //
     // Fill source array before enabling MPU.
     //
@@ -186,12 +167,10 @@ void main(void)
         HWREG(srcAddr) = i*2;
         srcAddr = srcAddr + 4;
     }
-
     //
     // Setting up MPU regions for source, destination buffers and controltable
     // array.
     //
-
     //
     // Configure sub regions to get desired region size 0f 6k. If mem buffer
     // size is 2k fault should be generated and if membuffer size is 1536 no
@@ -201,33 +180,26 @@ void main(void)
                           (CMMPU_RGN_SIZE_8K | CMMPU_RGN_PERM_READ_ONLY |
                            (CMMPU_SUB_RGN_DISABLE_6 | CMMPU_SUB_RGN_DISABLE_7) |
                            CMMPU_RGN_ENABLE));
-
     CMMPU_setRegionAttributes(DMPU_BASE, CMMPU_RGN_2, (uint32_t)&ucControlTable[0],
                               (CMMPU_RGN_SIZE_1K| CMMPU_RGN_PERM_FULL_ACCESS |
                                CMMPU_RGN_ENABLE));
-
     CMMPU_setRegionAttributes(DMPU_BASE, CMMPU_RGN_3, dstDMA,
                           (CMMPU_RGN_SIZE_8K| CMMPU_RGN_PERM_FULL_ACCESS |
                            (CMMPU_SUB_RGN_DISABLE_6 | CMMPU_SUB_RGN_DISABLE_7) |
                            CMMPU_RGN_ENABLE));
-
     CMMPU_enableAccessViolationInterrupt(DMPU_BASE);
     CMMPU_enable(DMPU_BASE);
-
     //
     // Initialize the uDMA memory to memory transfers.
     //
     initSWTransfer();
-
     //
     // Check for error counter & fault counts
     //
     while((faultCount == 0) && (errCountGlobal == 0))
     {
     }
-
     testStatusGlobal = TEST_FAIL;
-
     //
     // Loop forever with the CPU not sleeping, so the debugger can connect.
     //
@@ -235,7 +207,6 @@ void main(void)
     {
     }
 }
-
 //
 // initSWTransfer - Initializes the uDMA software channel to perform a memory
 // to memory uDMA transfer.
@@ -246,13 +217,11 @@ void initSWTransfer(void)
     // Enable interrupts from the uDMA software channel.
     //
     Interrupt_enable(UDMA_SW_INT);
-
     //
     // Put the attributes in a known state for the uDMA software channel.
     // These should already be disabled by default.
     //
     UDMA_disableChannelAttribute(UDMA_BASE, 30U, UDMA_CH_ATTR_ALL);
-
     //
     // Configure the control parameters for the SW channel.  The SW channel
     // will be used to transfer between two memory buffers, 32 bits at a time.
@@ -266,7 +235,6 @@ void initSWTransfer(void)
     UDMA_setChannelControlParams(UDMA_BASE, (30U  | UDMA_PRI_SELECT),
                                  (UDMA_SIZE_32    | UDMA_SRC_INC_32 |
                                   UDMA_DST_INC_32 | UDMA_ARB_8));
-
     //
     // Set up the transfer parameters for the software channel.  This will
     // configure the transfer buffers and the transfer size.  Auto mode must be
@@ -276,7 +244,6 @@ void initSWTransfer(void)
     UDMA_setChannelTransferParams(UDMA_BASE, (30U | UDMA_PRI_SELECT),
                                   (void*)(srcDMA), (void*)(dstDMA),
                                   UDMA_MODE_AUTO, transferSize);
-
     //
     // Now the software channel is primed to start a transfer.  The channel
     // must be enabled.  For software based transfers, a request must be
@@ -285,7 +252,6 @@ void initSWTransfer(void)
     UDMA_enableChannel(UDMA_BASE, 30U);
     UDMA_requestSoftwareTransfer(UDMA_BASE, 30U);
 }
-
 //
 // uDMAIntISR - The interrupt handler for uDMA interrupts from the memory
 // channel.  This interrupt will increment a counter, and then restart another
@@ -295,7 +261,6 @@ void uDMAIntISR(void)
 {
     uint32_t chMode;
     uint32_t i;
-
     //
     // Check for the primary control structure to indicate complete.
     //
@@ -340,7 +305,6 @@ void uDMAIntISR(void)
             }
         }
     }
-
     //
     // If the channel is not stopped, then something is wrong.
     //
@@ -349,7 +313,6 @@ void uDMAIntISR(void)
         badInterruptCount++;
     }
 }
-
 //
 // uDMAErrorISR - The interrupt handler for uDMA errors.  This interrupt will
 // occur if the uDMA encounters a bus error while trying to perform a transfer.
@@ -358,7 +321,6 @@ void uDMAIntISR(void)
 void uDMAErrorISR(void)
 {
     uint32_t errStatus;
-
     //
     // CM-MPU ACC-VIO register status.
     //
@@ -366,7 +328,6 @@ void uDMAErrorISR(void)
     accVioAdd = CMMPU_getAccessViolationAddr(DMPU_BASE);
     CMMPU_clearAccessViolationFlags(DMPU_BASE, (CMMPU_ACC_VIO_FLAGS_READ |
                                     CMMPU_ACC_VIO_FLAGS_WRITE));
-
     //
     // Increment a counter to indicate fault occurred in MPU.
     //
@@ -374,12 +335,10 @@ void uDMAErrorISR(void)
     {
         faultCount++;
     }
-
     //
     // Check for uDMA error bit.
     //
     errStatus = UDMA_getErrorStatus(UDMA_BASE);
-
     //
     // If there is a uDMA error, then clear the error and increment
     // the error counter.
@@ -390,7 +349,6 @@ void uDMAErrorISR(void)
         errCountDMA++;
     }
 }
-
 //
 // End of File
 //

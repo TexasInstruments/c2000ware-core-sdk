@@ -1,4 +1,9 @@
-
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P551x" --part "F28P551x_100PZ" --package "100PZ" --context "system"
+ * @v2CliArgs --device "TMS320F28P551SG" --package "100PZ" --variant "TMS320F28P551SG5" --context "system"
+ */
 /**
  * Import the modules used in this configuration.
  */
@@ -6,14 +11,12 @@ const cmpss       = scripting.addModule("/driverlib/cmpss.js", {}, false);
 const cmpss1      = cmpss.addInstance();
 const outputxbar  = scripting.addModule("/driverlib/outputxbar.js", {}, false);
 const outputxbar1 = outputxbar.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
 cmpss1.$name        = "myCMPSS0";
 cmpss1.enableModule = true;
 cmpss1.dacValHigh   = 2048;
-
 outputxbar1.$name                            = "myOUTPUTXBAR0";
 outputxbar1.muxesUsed                        = ["XBAR_MUX00"];
 outputxbar1.outputxbar.$assign               = "OUTPUTXBAR3";

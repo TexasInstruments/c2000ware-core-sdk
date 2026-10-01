@@ -16,7 +16,7 @@
 //
 //
 //  
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -49,14 +49,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 // #############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Defines
 //
@@ -64,7 +62,6 @@
 #define NUM_I2C_DATA (4)
 #define I2CA_SDA_CURRENT (42)
 #define I2CA_SCL_CURRENT (43)
-
 //
 // Globals
 //
@@ -74,7 +71,6 @@ volatile uint16_t waitForInt = 4;
 uint16_t ui32Index = 0, ui32Index_1 = 0, error = 0;
 volatile uint16_t I2C_Int = 1;
 int status1 = 0;
-
 //
 // Function Prototypes
 //
@@ -83,45 +79,37 @@ void INTERRUPT_init(void);
 void I2C_init(void);
 void All_Interrupt_PIE_Enable(void);
 void Pinmux_init(void);
-
 //
 // Main
 //
 void main(void)
 {
     EALLOW;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     Pinmux_init();
     INTERRUPT_init();
     I2C_init();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     I2C_sendStartCondition(I2CA_BASE);
     while (I2C_Int)
     {
@@ -141,11 +129,9 @@ void main(void)
     }
     EDIS;
 }
-
 //
 // I2C A Transmit & Receive ISR.
 //
-
 __interrupt void INT_I2CA_ISR(void)
 {
     waitForInt = waitForInt - 1;
@@ -153,10 +139,8 @@ __interrupt void INT_I2CA_ISR(void)
     I2C_putData(I2CA_BASE, txData + 1);
     pui32DataTx[ui32Index] = txData + 1;
     ui32Index++;
-
     INTERRUPT_init();
 }
-
 void I2C_init()
 {
     I2C_disableModule(I2CA_BASE);
@@ -174,20 +158,17 @@ void I2C_init()
     I2C_setEmulationMode(I2CA_BASE, I2C_EMULATION_FREE_RUN);
     I2C_enableModule(I2CA_BASE);
 }
-
 void INTERRUPT_init()
 {
     Interrupt_disable(INT_I2CA);
     Interrupt_register(INT_I2CA, &INT_I2CA_ISR);
     Interrupt_enable(INT_I2CA);
 }
-
 void Pinmux_init()
 {
     GPIO_setPinConfig(GPIO_42_I2CA_SDA);
     GPIO_setPadConfig(I2CA_SDA_CURRENT, GPIO_PIN_TYPE_STD | GPIO_PIN_TYPE_PULLUP);
     GPIO_setQualificationMode(I2CA_SDA_CURRENT, GPIO_QUAL_ASYNC);
-
     GPIO_setPinConfig(GPIO_43_I2CA_SCL);
     GPIO_setPadConfig(I2CA_SCL_CURRENT, GPIO_PIN_TYPE_STD | GPIO_PIN_TYPE_PULLUP);
     GPIO_setQualificationMode(I2CA_SCL_CURRENT, GPIO_QUAL_ASYNC);

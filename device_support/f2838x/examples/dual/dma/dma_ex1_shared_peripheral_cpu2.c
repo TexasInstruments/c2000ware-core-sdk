@@ -13,7 +13,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -46,17 +46,14 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Pragma - Put the ePWM CMP value into shared RAM
 //
 #pragma DATA_SECTION(new_cmp_value, "ramgs1");
-
 //
 // Function Prototypes
 //
@@ -65,13 +62,11 @@ void InitSpi(void);
 void InitCpuTimer(void);
 __interrupt void cpu_timer1_isr(void);
 void load_buffer(void);
-
 //
 // Global variable used in this example
 //
 Uint16 new_cmp_value;
 Uint16 direction = 1;
-
 //
 // Main
 //
@@ -83,15 +78,12 @@ void main(void)
 // This example function is found in the f2838x_sysctrl.c file.
 //
     ExampleInitSysCtrl();
-
     new_cmp_value = 3000;  // Set CMP value
-
 //
 // Clear all interrupts and initialize PIE vector table:
 // Disable CPU interrupts
 //
     DINT;
-
 //
 // Initialize the PIE control registers to their default state.
 // The default state is all PIE interrupts disabled and flags
@@ -99,13 +91,11 @@ void main(void)
 // This function is found in the f2838x_piectrl.c file.
 //
     InitPieCtrl();
-
 //
 // Disable CPU interrupts and clear all CPU interrupt flags.
 //
     IER = 0x0000;
     IFR = 0x0000;
-
 //
 // Initialize the PIE vector table with pointers to the default
 // Interrupt Service Routines (ISR).
@@ -113,7 +103,6 @@ void main(void)
 // This function is found in f2838x_pievect.c.
 //
     InitPieVectTable();
-
 //
 // Wait for IPC from CPU1 confirming DMA is configured before
 // initializing SPI. Note that because of the way the TXFIFO interrupt
@@ -121,19 +110,16 @@ void main(void)
 // SPI is released from reset
 //
     while(IPCRtoLFlagBusy(IPC_FLAG0) == 0);
-
 //
 // Setup SPI for FIFO mode
 //
     InitSpi();
-
 //
 // Setup CPU Timer 1 to interrupt every 10 ms
 //
     InitCpuTimers();
     ConfigCpuTimer(&CpuTimer1, 200, 10000);
     CpuTimer1Regs.TCR.all = 0x4000;
-
 //
 // Configure CPU Timer 1 ISR
 //
@@ -141,14 +127,12 @@ void main(void)
     PieVectTable.TIMER1_INT = &cpu_timer1_isr;
     IER |= M_INT13;
     EDIS;
-
 //
 // Enable global Interrupts and higher priority real-time debug
 // events:
 //
     EINT;  // Enable Global interrupt INTM
     ERTM;  // Enable Global realtime interrupt DBGM
-
 //
 // IDLE loop. Just sit and loop forever (optional):
 //
@@ -157,7 +141,6 @@ void main(void)
         asm ("  NOP");
     }
 }
-
 //
 // ExampleInitSysCtrl function
 // This example uses custom InitSysCtrl function since CPU2 owns some of the
@@ -169,7 +152,6 @@ void ExampleInitSysCtrl(void)
     // Disable the watchdog
     //
     DisableDog();
-
 #ifdef _FLASH
     //
     // Copy time critical code and Flash setup code to RAM. This includes the
@@ -179,21 +161,17 @@ void ExampleInitSysCtrl(void)
     // symbols are created by the linker. Refer to the device .cmd file.
     //
     memcpy(&RamfuncsRunStart, &RamfuncsLoadStart, (size_t)&RamfuncsLoadSize);
-
     //
     // Call Flash Initialization to setup flash waitstates. This function must
     // reside in RAM.
     //
     InitFlash();
 #endif
-
     //
     // Wait for IPC flag from CPU1
     //
     while(IPCRtoLFlagBusy(IPC_FLAG31) == 0);
     IPCRtoLFlagAcknowledge(IPC_FLAG31);
-
-
     //
     // Turn on required peripherals
     //
@@ -201,8 +179,6 @@ void ExampleInitSysCtrl(void)
     CpuSysRegs.PCLKCR8.bit.SPI_A = 1;
     EDIS;
 }
-
-
 //
 // InitSpi - Function to Setup SPI for FIFO mode
 //
@@ -225,16 +201,13 @@ void InitSpi(void)
    SpiaRegs.SPICCR.bit.SPISWRESET = 1;          // Enable SPI
    SpiaRegs.SPIFFTX.bit.TXFIFO = 1;
    SpiaRegs.SPIFFRX.bit.RXFIFORESET = 1;
-
    //
    // A DMA transfer will be triggered here!
    //
-
    //
    // Load the SPI FIFO Tx Buffer
    //
    load_buffer();
-
    //
    // Disable the clock to prevent continuous transfer / DMA triggers
    // Note this method of disabling the clock should not be used if
@@ -244,7 +217,6 @@ void InitSpi(void)
    CpuSysRegs.PCLKCR8.bit.SPI_A = 0;
    EDIS;
 }
-
 //
 // cpu_timer1_isr - Function for CPU Timer1 Interrupt Service Routine
 //
@@ -256,20 +228,16 @@ __interrupt void cpu_timer1_isr(void)
     EALLOW;
     CpuSysRegs.PCLKCR8.bit.SPI_A = 1;
     EDIS;
-
     //
     // Wait for interrupt flag
     // This is when the DMA trigger will occur
     //
     while(!SpiaRegs.SPIFFTX.bit.TXFFINT);
-
     //
     // Reload the SPI TX buffer and clear interrupt flag
     //
     load_buffer();
-
     SpiaRegs.SPIFFTX.bit.TXFFINTCLR = 1;
-
     //
     // Disable the clock to prevent continuous transfer / DMA triggers
     // Note this method of disabling the clock should not be used if
@@ -278,7 +246,6 @@ __interrupt void cpu_timer1_isr(void)
     EALLOW;
     CpuSysRegs.PCLKCR8.bit.SPI_A = 0;
     EDIS;
-
     //
     // Update next value to be transferred to the EPWM
     //
@@ -290,7 +257,6 @@ __interrupt void cpu_timer1_isr(void)
     {
         direction = 1;
     }
-
     if(!direction)
     {
         new_cmp_value -= 50;
@@ -300,7 +266,6 @@ __interrupt void cpu_timer1_isr(void)
         new_cmp_value += 50;
     }
 }
-
 //
 // load_buffer - Function to load SPI Tx FIFO Buffer
 //
@@ -326,7 +291,6 @@ void load_buffer(void)
     SpiaRegs.SPITXBUF = 0xAAAA;
     SpiaRegs.SPITXBUF = 0xAAAA;
 }
-
 //
 // End of file
 //

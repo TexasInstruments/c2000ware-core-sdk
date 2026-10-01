@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="DRIVERS_PGA_PAGE" kind="page">
+    <compoundname>DRIVERS_PGA_PAGE</compoundname>
+    <title>PGA</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="DRIVERS_PGA_PAGE_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_components_drivers_pga"/></para>
+<para>The PGA driver provides API to configure the PGA module. Below are the high level features supported by the PGA driver.</para>
+<sect1 id="DRIVERS_PGA_PAGE_1autotoc_md90">
+<title>Features Supported</title>
+<para><itemizedlist>
+<listitem><para>Rail to rail input and output voltage within VDDA and VSSA range.</para>
+</listitem><listitem><para>Programmable gain modes including unity gain and other values from 2˟ to 64˟.</para>
+</listitem><listitem><para>Post-gain filtering using on-chip resistors (RFILT or Rib) and external capacitor.</para>
+</listitem><listitem><para>Differential input support.</para>
+</listitem><listitem><para>Hardware assisted chopping for offset reduction.</para>
+</listitem><listitem><para>Support for Kelvin ground connections using PGA_INM pins.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_PGA_PAGE_1autotoc_md91">
+<title>SysConfig Features</title>
+<para><simplesect kind="note"><para>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</para>
+</simplesect>
+<itemizedlist>
+<listitem><para>Support different gain modes (buffer mode, Standalone mode, Non-inverting mode, Subtractor mode) using PMUXSEL, NMUXSEL and MMUXSEL configuration.</para>
+</listitem><listitem><para>Support additional muxing configuration on the inputs.</para>
+</listitem><listitem><para>Support programmable gain values for subtractor and non-inverting modes.</para>
+</listitem><listitem><para>Support PGA feedback to negative input configuration.</para>
+</listitem><listitem><para>Support post-gain filtering using on-chip resistors and capacitor.</para>
+</listitem><listitem><para>Support to enable/disable internal gain output on an external pin.</para>
+</listitem><listitem><para>Support chopping feature for offset reduction.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_PGA_PAGE_1autotoc_md92">
+<title>Features NOT Supported</title>
+<para>NA</para>
+</sect1>
+<sect1 id="DRIVERS_PGA_PAGE_1autotoc_md93">
+<title>Important Usage Guidelines</title>
+<para>Changing the gain mode during normal operation is allowed, but a minimum configuration settling time can be observed when doing so. See the device data sheet for the gain switch settling time.</para>
+</sect1>
+<sect1 id="DRIVERS_PGA_PAGE_1autotoc_md94">
+<title>Example Usage</title>
+<para>Include the below file to access the APIs #include &lt;<ref refid="pga_8h" kindref="compound">pga.h</ref>&gt;</para>
+</sect1>
+<sect1 id="DRIVERS_PGA_PAGE_1autotoc_md95">
+<title>API</title>
+<para><ref refid="group__pga__api" kindref="compound">PGA</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/pga.md"/>
+  </compounddef>
+</doxygen>

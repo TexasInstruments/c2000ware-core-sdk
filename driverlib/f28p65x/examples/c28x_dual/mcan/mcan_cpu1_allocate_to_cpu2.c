@@ -62,13 +62,11 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Main
 //
@@ -78,7 +76,6 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Assign RAMs and Flash banks to CPU2.
     // In the default CPU2 linker cmd files, GS4, FLASH_BANK3 and FLASH_BANK4
@@ -92,7 +89,6 @@ void main(void)
     MemCfg_setGSRAMControllerSel(MEMCFG_SECT_GS4, MEMCFG_GSRAMCONTROLLER_CPU2);
     SysCtl_allocateFlashBank(SYSCTL_FLASH_BANK3, SYSCTL_CPUSEL_CPU2);
     SysCtl_allocateFlashBank(SYSCTL_FLASH_BANK4, SYSCTL_CPUSEL_CPU2);
- 
     //
     // Boot CPU2 core
     //
@@ -101,45 +97,37 @@ void main(void)
 #else
     Device_bootCPU2(BOOTMODE_BOOT_TO_M0RAM);
 #endif
-
     //
     // Initialize GPIO and configure the GPIO pin as a push-pull output
     //
     Device_initGPIO();
-
     //
     // Configuring the GPIOs for MCAN.
     //
     GPIO_setPinConfig(DEVICE_GPIO_CFG_MCANRXA);
     GPIO_setPinConfig(DEVICE_GPIO_CFG_MCANTXA);
-
     //
     // Configure the divisor for the MCAN bit-clock
     //
     SysCtl_setMCANClk(SYSCTL_MCANA, SYSCTL_MCANCLK_DIV_5);
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Allocate Ethercat to CPU2
     //
     SysCtl_selectCPUForPeripheralInstance(SYSCTL_CPUSEL_MCANA, SYSCTL_CPUSEL_CPU2);
-
     //
     // Wait Forever
     //
@@ -150,7 +138,6 @@ void main(void)
         //
     }
 }
-
 //
 // End of File
 //

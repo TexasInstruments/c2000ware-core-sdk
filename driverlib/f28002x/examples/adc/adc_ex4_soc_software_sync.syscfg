@@ -1,4 +1,9 @@
-
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28002x" --part "F28002x_80QFP" --package "80QFP" --context "system" 
+ * @v2CliArgs --device "TMS320F280025C" --package "80QFP" --context "system"
+ */
 /**
  * Import the modules used in this configuration.
  */
@@ -10,7 +15,6 @@ const gpio       = scripting.addModule("/driverlib/gpio.js", {}, false);
 const gpio1      = gpio.addInstance();
 const inputxbar  = scripting.addModule("/driverlib/inputxbar.js", {}, false);
 const inputxbar1 = inputxbar.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -27,7 +31,6 @@ adc1.soc1SampleWindow    = 8;
 adc1.enabledInts         = ["ADC_INT_NUMBER1"];
 adc1.enableInterrupt1    = true;
 adc1.interrupt1SOCSource = "ADC_SOC_NUMBER1";
-
 adc2.$name              = "myADC1";
 adc2.adcBase            = "ADCC_BASE";
 adc2.adcClockPrescaler  = "ADC_CLK_DIV_2_0";
@@ -39,15 +42,12 @@ adc2.soc1Channel        = "ADC_CH_ADCIN3";
 adc2.soc1Trigger        = "ADC_TRIGGER_GPIO";
 adc2.soc0SampleWindow   = 8;
 adc2.soc1SampleWindow   = 8;
-
 asysctl.analogReference         = "INTERNAL";
 asysctl.analogReferenceVoltage  = "1P65";
-
 gpio1.$name             = "myGPIO0";
 gpio1.direction         = "GPIO_DIR_MODE_OUT";
 gpio1.writeInitialValue = true;
 gpio1.gpioPin.$assign   = "GPIO0";
-
 inputxbar1.$name          = "myINPUTXBAR0";
 inputxbar1.inputsUsed     = ["inputxbar5Gpio"];
 inputxbar1.inputxbar5Gpio = "GPIO0";

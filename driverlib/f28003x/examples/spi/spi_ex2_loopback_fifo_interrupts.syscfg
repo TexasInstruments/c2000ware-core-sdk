@@ -1,10 +1,9 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --device "F28003x" --package "100PZ" --part "F28003x_100PZ" --context "system" --product "C2000WARE@5.02.00.00"
- * @versions {"tool":"1.0.0+dev"}
+ * @cliArgs --device "F28003x" --part "F28003x_100PZ" --package "100PZ" --context "system"
+ * @v2CliArgs  --device "TMS320F280039C" --package "100PZ" --context "system"
  */
-
 /**
  * Import the modules used in this configuration.
  */
@@ -15,7 +14,6 @@ const CMD1           = CMD.addInstance();
 const CMD2           = CMD.addInstance();
 const spi  = scripting.addModule("/driverlib/spi.js", {}, false);
 const spi1 = spi.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -35,10 +33,8 @@ spi1.spiRXInt.interruptHandler = "spiRxFIFOISR";
 spi1.spiTXInt.enableInterrupt  = true;
 spi1.spiTXInt.$name            = "INT_SPIA_TX";
 spi1.spiTXInt.interruptHandler = "spiTxFIFOISR";
-
 CMD1.$name                    = "generic_ram_lnk";
 CMD2.$name                    = "generic_flash_lnk";
-
 CMD1.sectionMemory_text       = ["RAMGS0","RAMLS4","RAMLS5","RAMLS6","RAMLS7"];
 CMD1.sectionMemory_ramfunc    = ["RAMM0"];
 CMD1.sectionMemory_cinit      = ["RAMM0"];
@@ -49,7 +45,6 @@ CMD1.sectionMemory_const      = ["RAMLS4"];
 CMD1.sectionMemory_data       = ["RAMLS4"];
 CMD1.sectionMemory_switch     = ["RAMM0"];
 CMD1.sectionMemory_sysmem     = ["RAMLS4"];
-
 CMD2.sectionAlignEnable_ramfunc    = true;
 CMD2.sectionAlignEnable_text       = true;
 CMD2.sectionAlignEnable_binit      = true;

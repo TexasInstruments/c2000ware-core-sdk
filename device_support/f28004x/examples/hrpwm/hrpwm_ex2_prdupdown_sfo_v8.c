@@ -77,20 +77,17 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
 #include "SFO_V8.h"
-
 //
 // Defines
 //
 #define PWM_CH            2        // # of PWM channels - 1
 #define STATUS_SUCCESS    1
 #define STATUS_FAIL       0
-
 //
 // Globals
 //
@@ -99,35 +96,29 @@ int MEP_ScaleFactor; // Global variable used by the SFO library
                      // Result can be used for all HRPWM channels
                      // This variable is also copied to HRMSTEP
                      // register by SFO(0) function.
-
 // Used by SFO library (ePWM[0] is a dummy value that isn't used)
 volatile struct EPWM_REGS *ePWM[PWM_CH] = {&EPwm1Regs, &EPwm1Regs};
-
 //
 // Function Prototypes
 //
 void initHRPWM1GPIO(void);
 void configHRPWM(uint16_t period);
 void error(void);
-
 //
 // Main
 //
 void main(void)
 {
     uint16_t i;
-
     //
     // Initialize device clock and peripherals
     //
     InitSysCtrl();
-
     //
     // Initialize GPIO
     //
     InitGpio();
     initHRPWM1GPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
@@ -135,26 +126,22 @@ void main(void)
     InitPieCtrl();
     IER = 0x0000;
     IFR = 0x0000;
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     InitPieVectTable();
-
     //
     // Setup example variables
     //
     UpdateFine = 1;
     PeriodFine = 0;
     status = SFO_INCOMPLETE;
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-    
     //
     // ePWM and HRPWM register initialization
     //
@@ -165,7 +152,6 @@ void main(void)
         (*ePWM[i]).TBCTL.bit.HSPCLKDIV = 0;
     }    
     configHRPWM(20);
-    
     //
     // Calling SFO() updates the HRMSTEP register with calibrated MEP_ScaleFactor.
     // HRMSTEP must be populated with a scale factor value prior to enabling
@@ -179,7 +165,6 @@ void main(void)
             error();    // SFO function returns 2 if an error occurs & # of MEP
         }               // steps/coarse step exceeds maximum of 255.
     }
-
     for(;;)
     {
         //
@@ -221,7 +206,6 @@ void main(void)
                     (*ePWM[i]).TBPRDHR = 0;
                 }
             }
-
             //
             // Call the scale factor optimizer lib function SFO(0)
             // periodically to track for any change due to temp/voltage.
@@ -232,7 +216,6 @@ void main(void)
             //
             status = SFO(); // in background, MEP calibration module
                             // continuously updates MEP_ScaleFactor
-
             if(status == SFO_ERROR)
             {
                 error();   // SFO function returns 2 if an error occurs & # of
@@ -241,7 +224,6 @@ void main(void)
         } // end PeriodFine for loop
     } // end infinite for loop
 }
-
 //
 // configHRPWM - Configures all ePWM channels and sets up HRPWM
 //                on ePWMxA channels &  ePWMxB channels
@@ -249,7 +231,6 @@ void main(void)
 void configHRPWM(uint16_t period)
 {
     uint16_t j;
-
     //
     // ePWM channel register configuration with HRPWM
     // ePWMxA toggle low/high with MEP control on Rising edge
@@ -257,7 +238,6 @@ void configHRPWM(uint16_t period)
     EALLOW;
     CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 0;   // Disable TBCLK within the EPWM
     EDIS;
-
     for(j=1; j<PWM_CH; j++)
     {
         (*ePWM[j]).TBCTL.bit.PRDLD = TB_SHADOW;  // set Shadow load
@@ -268,24 +248,20 @@ void configHRPWM(uint16_t period)
         (*ePWM[j]).CMPB.all |= 1;
         (*ePWM[j]).TBPHS.all = 0;
         (*ePWM[j]).TBCTR = 0;
-
         (*ePWM[j]).TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN; // Select up-down
                                                         // count mode
         (*ePWM[j]).TBCTL.bit.SYNCOSEL = TB_SYNC_DISABLE;
         (*ePWM[j]).TBCTL.bit.HSPCLKDIV = TB_DIV1;
         (*ePWM[j]).TBCTL.bit.CLKDIV = TB_DIV1;          // TBCLK = SYSCLKOUT
         (*ePWM[j]).TBCTL.bit.FREE_SOFT = 11;
-
         (*ePWM[j]).CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;  // LOAD CMPA on CTR = 0
         (*ePWM[j]).CMPCTL.bit.LOADBMODE = CC_CTR_ZERO;
         (*ePWM[j]).CMPCTL.bit.SHDWAMODE = CC_SHADOW;
         (*ePWM[j]).CMPCTL.bit.SHDWBMODE = CC_SHADOW;
-
         (*ePWM[j]).AQCTLA.bit.CAU = AQ_SET;             // PWM toggle high/low
         (*ePWM[j]).AQCTLA.bit.CAD = AQ_CLEAR;
         (*ePWM[j]).AQCTLB.bit.CBU = AQ_SET;             // PWM toggle high/low
         (*ePWM[j]).AQCTLB.bit.CBD = AQ_CLEAR;
-
         EALLOW;
         (*ePWM[j]).HRCNFG.all = 0x0;
         (*ePWM[j]).HRCNFG.bit.EDGMODE = HR_BEP;          // MEP control on
@@ -302,13 +278,11 @@ void configHRPWM(uint16_t period)
                                                          // and CTR = TBPRD
         (*ePWM[j]).HRCNFG.bit.AUTOCONV = 1;        // Enable autoconversion for
                                                    // HR period
-
         (*ePWM[j]).HRPCTL.bit.TBPHSHRLOADE = 1;    // Enable TBPHSHR sync
                                                    // (required for updwn
                                                    //  count HR control)
         (*ePWM[j]).HRPCTL.bit.HRPE = 1;            // Turn on high-resolution
                                                    // period control.
-
         CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 1;      // Enable TBCLK within
                                                    // the EPWM
         (*ePWM[j]).TBCTL.bit.SWFSYNC = 1;          // Synchronize high
@@ -317,14 +291,12 @@ void configHRPWM(uint16_t period)
         EDIS;
     }
 }
-
 //
 // initHRPWM1GPIO - Initialize HRPWM1 GPIOs
 //
 void initHRPWM1GPIO(void)
 {
     EALLOW;
-
     //
     // Disable internal pull-up for the selected output pins
     // for reduced power consumption
@@ -332,7 +304,6 @@ void initHRPWM1GPIO(void)
     //
     GpioCtrlRegs.GPAPUD.bit.GPIO0 = 1;    // Disable pull-up on GPIO0 (EPWM1A)
     GpioCtrlRegs.GPAPUD.bit.GPIO1 = 1;    // Disable pull-up on GPIO1 (EPWM1B)
-
     //
     // Configure EPWM-1 pins using GPIO regs
     // This specifies which of the possible GPIO pins will be EPWM1 functional
@@ -340,10 +311,8 @@ void initHRPWM1GPIO(void)
     //
     GpioCtrlRegs.GPAMUX1.bit.GPIO0 = 1;   // Configure GPIO0 as EPWM1A
     GpioCtrlRegs.GPAMUX1.bit.GPIO1 = 1;   // Configure GPIO1 as EPWM1B
-
     EDIS;
 }
-
 //
 // error - Halt debugger when error occurs
 //
@@ -351,7 +320,6 @@ void error (void)
 {
     ESTOP0;         // Stop here and handle error
 }
-
 //
 // End of file
 //

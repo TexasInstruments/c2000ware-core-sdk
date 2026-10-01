@@ -70,7 +70,6 @@
 // $Copyright:
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -78,34 +77,28 @@
 #include "device.h"
 #include "board.h"
 #include "c2000ware_libraries.h"
-
 //
 // Globals
 //
 uint32_t tz_Int_Count=0U;
-
 //
 // Function Prototypes
 //
 __interrupt void epwm1_TZ_ISR(void);
 __interrupt void epwm2_TZ_ISR(void);
-
 //
 // Main
 //
 void main(void)
 {
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull-ups.
     //
     Device_initGPIO();
-
     //
     // Configuring GPIO for LED and turning them off initially.
     //
@@ -113,59 +106,47 @@ void main(void)
     GPIO_setDirectionMode(DEVICE_GPIO_PIN_LED1, GPIO_DIR_MODE_OUT);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_LED2, GPIO_PIN_TYPE_STD);
     GPIO_setDirectionMode(DEVICE_GPIO_PIN_LED2, GPIO_DIR_MODE_OUT);
-
     GPIO_writePin(DEVICE_GPIO_PIN_LED1, 1U);
     GPIO_writePin(DEVICE_GPIO_PIN_LED2, 1U);
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Disable sync(Freeze clock to PWM as well)
     //
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     // 
     // Set EPWM Clock Divider to 1 to feed 200 MHz SysClock. 
     // Note: Default value is 2.
     // 
     SysCtl_setEPWMClockDivider(SYSCTL_EPWMCLK_DIV_1);
-
     //
     // PinMux and Peripheral Initialization
     //
     Board_init();
-
     //
     // Enable sync and clock to PWM
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // C2000Ware Library initialization
     //
     C2000Ware_libraries_init();
-
     //
     // Enable Global Interrupt (INTM) and real time interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     while(1)
     {
-
     }
 }
-
 __interrupt void epwm1_TZ_ISR(void)
 {   
     tz_Int_Count++;
@@ -177,23 +158,19 @@ __interrupt void epwm1_TZ_ISR(void)
         GPIO_togglePin(DEVICE_GPIO_PIN_LED1);
         tz_Int_Count = 0U;
     }
-
     //
     // Acknowledge this interrupt to receive more interrupts from group 2
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP2);
     EPWM_clearTripZoneFlag(myEPWM1_BASE,EPWM_TZ_FLAG_CAPEVT);
     EPWM_clearTripZoneFlag(myEPWM1_BASE,EPWM_TZ_INTERRUPT);
-
 }
-
 __interrupt void epwm2_TZ_ISR(void)
 {
     //
     // Turn on LED
     //
     GPIO_writePin(DEVICE_GPIO_PIN_LED2, 0U);
-
     //
     // Acknowledge this interrupt to receive more interrupts from group 2
     //
@@ -201,7 +178,6 @@ __interrupt void epwm2_TZ_ISR(void)
     EPWM_clearTripZoneFlag(myEPWM2_BASE,EPWM_TZ_FLAG_CAPEVT);
     EPWM_clearTripZoneFlag(myEPWM2_BASE,EPWM_TZ_INTERRUPT);
 }
-
 //
 // End of File
 //

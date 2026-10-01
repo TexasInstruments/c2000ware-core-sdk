@@ -30,7 +30,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -63,7 +63,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -73,22 +72,18 @@
 #include <stdio.h>
 #include <file.h>
 #include "uart_drv.h"
-
 //
 // Defines
 //
-
 //
 // Globals
 //
 uint16_t loopCounter = 0;
-
 //
 // Declarations
 //
 void UartSetup();
 void UartPutChar(uint16_t charToWrite);
-
 //
 // Main
 //
@@ -97,36 +92,24 @@ void main(void)
     uint16_t receivedChar;
     unsigned char *msg;
     uint16_t rxStatus = 0U;
-
     //
     // Configure PLL, disable WD, enable peripheral clocks.
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
-
-
-
-
     //**************************************************************************
     // NOTE: SCI Configuration for this example is done in UartSetup()
     // As an alternative, the user can configure SCI here in the main, and then
     // provide an empty UartSetup() function. UartSetup() must be defined, even
     // if it is empty.
     //**************************************************************************
-
-
-
-
     /*-----------------------------------------------------------------------*/
     /* STDOUT CONFIG START                                                   */
     /*-----------------------------------------------------------------------*/
     FILE *uart = NULL;
-
     /*-----------------------------------------------------------------------*/
     /* Add the UART device.  When fopen is called with a filename that       */
     /* begins "uart:", the UART device will be used to handle the file.      */
@@ -140,27 +123,22 @@ void main(void)
                UART_lseek,
                UART_unlink,
                UART_rename);
-
     /*-----------------------------------------------------------------------*/
     /* Open a UART file.  Because the "uart" device is _SSA, only one UART   */
     /* file may be open at once.                                             */
     /*-----------------------------------------------------------------------*/
-
     uart = fopen("uart:", "w");
     assert(uart != NULL);
-
     /*-----------------------------------------------------------------------*/
     /* Now, write something to the UART device                               */
     /*-----------------------------------------------------------------------*/
     fputs("\r\n\r\n", uart);
     fputs("hello, world on UART\r\n", uart);
-
     /*-----------------------------------------------------------------------*/
     /* We must close the UART file before opening another with freopen,      */
     /* below.  Closing a file will flush the buffer automatically.           */
     /*-----------------------------------------------------------------------*/
     fclose(uart);
-
     /*-----------------------------------------------------------------------*/
     /* Add delay here based on the number of bytes being sent and baud rate  */
     /* This allows time for buffer to flush                                  */
@@ -168,22 +146,18 @@ void main(void)
     /* 176 bits * (1/9600 bits/sec) = ~20 ms delay required for all bytes    */
     /*-----------------------------------------------------------------------*/
     DEVICE_DELAY_US(20000);
-
     /*-----------------------------------------------------------------------*/
     /* Show that stdout still works.                                         */
     /*-----------------------------------------------------------------------*/
     puts("hello, world on stdout\r\n");
-
     /*-----------------------------------------------------------------------*/
     /* Now reassign stdout to be a UART device!                              */
     /*-----------------------------------------------------------------------*/
     assert(freopen("uart:", "w", stdout) != NULL);
-
     /*-----------------------------------------------------------------------*/
     /* Now, writing to stdout actually writes to UART                        */
     /*-----------------------------------------------------------------------*/
     puts("hello, world on the new UART stdout\r\n");
-
     /*-----------------------------------------------------------------------*/
     /* All files are flushed when the program exits.                         */
     /*-----------------------------------------------------------------------*/
@@ -191,10 +165,7 @@ void main(void)
     /*-----------------------------------------------------------------------*/
     /* UART CONFIG END                                                       */
     /*-----------------------------------------------------------------------*/
-
 }
-
-
 void UartSetup()
 {
     //
@@ -205,7 +176,6 @@ void UartSetup()
     GPIO_setDirectionMode(DEVICE_GPIO_PIN_SCIRXDA, GPIO_DIR_MODE_IN);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_SCIRXDA, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_SCIRXDA, GPIO_QUAL_ASYNC);
-
     //
     // DEVICE_GPIO_PIN_SCITXDA is the SCI Tx pin.
     //
@@ -214,12 +184,10 @@ void UartSetup()
     GPIO_setDirectionMode(DEVICE_GPIO_PIN_SCITXDA, GPIO_DIR_MODE_OUT);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_SCITXDA, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_SCITXDA, GPIO_QUAL_ASYNC);
-
     //
     // Initialize SCIA and its FIFO.
     //
     SCI_performSoftwareReset(SCIA_BASE);
-
     //
     // Configure SCIA with FIFO
     //
@@ -233,13 +201,10 @@ void UartSetup()
     SCI_enableModule(SCIA_BASE);
     SCI_performSoftwareReset(SCIA_BASE);
 }
-
 void UartPutChar(uint16_t charToWrite)
 {
     SCI_writeCharBlockingFIFO(SCIA_BASE, charToWrite);
 }
-
 //
 // End of File
 //
-

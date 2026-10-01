@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -41,12 +41,10 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 //
 // Include Files.
 //
 #include "usb_hal.h"
-
 //******************************************************************************
 //
 //! \addtogroup c2000_specific
@@ -60,7 +58,6 @@
 //******************************************************************************
 void USBGPIOEnable(void)
 {
-
     //
     // Set the USB DM and DP.
     //
@@ -68,28 +65,22 @@ void USBGPIOEnable(void)
     GPIO_setAnalogMode(42, GPIO_ANALOG_ENABLED);
     GPIO_setControllerCore(43, GPIO_CORE_CPU1);
     GPIO_setAnalogMode(43, GPIO_ANALOG_ENABLED);
-
     //
     // Set the direction for VBUS.
     //
     GPIO_setControllerCore(46, GPIO_CORE_CPU1);
     GPIO_setDirectionMode(46, GPIO_DIR_MODE_IN);
-
     //
     // Set the direction for ID.
     //
     GPIO_setControllerCore(47, GPIO_CORE_CPU1);
     GPIO_setDirectionMode(47, GPIO_DIR_MODE_IN);
-
     GPIO_setControllerCore(120, GPIO_CORE_CPU1);
     GPIO_setDirectionMode(120, GPIO_DIR_MODE_IN);
-
     GPIO_setControllerCore(121, GPIO_CORE_CPU1);
 	GPIO_setDirectionMode(121, GPIO_DIR_MODE_OUT);
 	GPIO_writePin(121, 1);
-	
 }
-
 //******************************************************************************
 //
 //! Configure the CPU Timer.
@@ -101,17 +92,14 @@ void CPUTimerInit(void)
     // Initialize timer period to maximum.
     //
     CPUTimer_setPeriod(CPUTIMER0_BASE,0xFFFFFFFF);
-
     //
     // Initialize Pre-scale counter to divide by 1.
     //
     CPUTimer_setPreScaler(CPUTIMER0_BASE, 0U);
-
     //
     // Make sure timer is stopped.
     //
     CPUTimer_stopTimer(CPUTIMER0_BASE);
-
     //
     // Reload all counter register with period value:
     //
@@ -126,8 +114,6 @@ void USBDelay(uint32_t ui32Delay)
 {
     DEVICE_DELAY_US(ui32Delay*1000);
 }
-
-
 //******************************************************************************
 //
 //! Dual mode interrupt service routine wrapper to make ISR compatible with
@@ -140,7 +126,6 @@ f28x_USB0DualModeIntHandler(void)
     USB0DualModeIntHandler();
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP9);
 }
-
 //******************************************************************************
 //
 //! Dual mode interrupt service routine wrapper to make ISR compatible with
@@ -153,7 +138,6 @@ f28x_USB0OTGModeIntHandler(void)
     USB0OTGModeIntHandler();
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP9);
 }
-
 //******************************************************************************
 //
 // Close the c2000_specific Doxygen group.

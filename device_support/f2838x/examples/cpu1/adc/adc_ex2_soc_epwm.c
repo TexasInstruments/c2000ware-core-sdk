@@ -18,7 +18,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -51,12 +51,10 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Function Prototypes
 //
@@ -64,19 +62,16 @@ void ConfigureADC(void);
 void ConfigureEPWM(void);
 void SetupADCEpwm(Uint16 channel);
 interrupt void adca1_isr(void);
-
 //
 // Defines
 //
 #define RESULTS_BUFFER_SIZE 256
-
 //
 // Globals
 //
 Uint16 AdcaResults[RESULTS_BUFFER_SIZE];
 Uint16 resultsIndex;
 volatile Uint16 bufferFull;
-
 void main(void)
 {
 //
@@ -85,20 +80,17 @@ void main(void)
 // This example function is found in the f2838x_sysctrl.c file.
 //
     InitSysCtrl();
-
 //
 // Step 2. Initialize GPIO:
 // This example function is found in the f2838x_gpio.c file and
 // illustrates how to set the GPIO to it's default state.
 //
     InitGpio(); // Skipped for this example
-
 //
 // Step 3. Clear all interrupts and initialize PIE vector table:
 // Disable CPU interrupts
 //
     DINT;
-
 //
 // Initialize the PIE control registers to their default state.
 // The default state is all PIE interrupts disabled and flags
@@ -106,13 +98,11 @@ void main(void)
 // This function is found in the f2838x_piectrl.c file.
 //
     InitPieCtrl();
-
 //
 // Disable CPU interrupts and clear all CPU interrupt flags:
 //
     IER = 0x0000;
     IFR = 0x0000;
-
 //
 // Initialize the PIE vector table with pointers to the shell Interrupt
 // Service Routines (ISR).
@@ -122,36 +112,30 @@ void main(void)
 // This function is found in f2838x_pievect.c.
 //
     InitPieVectTable();
-
 //
 // Map ISR functions
 //
     EALLOW;
     PieVectTable.ADCA1_INT = &adca1_isr; //function for ADCA interrupt 1
     EDIS;
-
 //
 // Configure the ADC and power it up
 //
     ConfigureADC();
-
 //
 // Configure the ePWM
 //
     ConfigureEPWM();
-
 //
 // Setup the ADC for ePWM triggered conversions on channel 0
 //
     SetupADCEpwm(0);
-
 //
 // Enable global Interrupts and higher priority real-time debug events:
 //
     IER |= M_INT1; //Enable group 1 interrupts
     EINT;  // Enable Global interrupt INTM
     ERTM;  // Enable Global realtime interrupt DBGM
-
 //
 // Initialize results buffer
 //
@@ -161,18 +145,15 @@ void main(void)
     }
     resultsIndex = 0;
     bufferFull = 0;
-
 //
 // Enable PIE interrupt
 //
     PieCtrlRegs.PIEIER1.bit.INTx1 = 1;
-
 //
 // Sync ePWM
 //
     EALLOW;
     CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 1;
-
 //
 // Take conversions indefinitely in loop
 //
@@ -183,7 +164,6 @@ void main(void)
         //
         EPwm1Regs.ETSEL.bit.SOCAEN = 1;  //enable SOCA
         EPwm1Regs.TBCTL.bit.CTRMODE = 0; //unfreeze, and enter up count mode
-
         //
         // Wait while ePWM causes ADC conversions, which then cause interrupts,
         // which fill the results buffer, eventually setting the bufferFull
@@ -191,25 +171,21 @@ void main(void)
         //
         while(!bufferFull);
         bufferFull = 0; //clear the buffer full flag
-
         //
         // Stop ePWM
         //
         EPwm1Regs.ETSEL.bit.SOCAEN = 0;  //disable SOCA
         EPwm1Regs.TBCTL.bit.CTRMODE = 3; //freeze counter
-
         //
         // At this point, AdcaResults[] contains a sequence of conversions
         // from the selected channel
         //
-
         //
         // Software breakpoint, hit run again to get updated conversions
         //
         asm("   ESTOP0");
     } while(1);
 }
-
 //
 // ConfigureADC - Write ADC configurations and power up the ADC for both
 //                ADC A and ADC B
@@ -217,31 +193,25 @@ void main(void)
 void ConfigureADC(void)
 {
     EALLOW;
-
     //
     // Write configurations
     //
     AdcaRegs.ADCCTL2.bit.PRESCALE = 6; //set ADCCLK divider to /4
     AdcSetMode(ADC_ADCA, ADC_RESOLUTION_12BIT, ADC_SIGNALMODE_SINGLE);
-
     //
     // Set pulse positions to late
     //
     AdcaRegs.ADCCTL1.bit.INTPULSEPOS = 1;
-
     //
     // Power up the ADC
     //
     AdcaRegs.ADCCTL1.bit.ADCPWDNZ = 1;
-
     //
     // Delay for 1ms to allow ADC time to power up
     //
     DELAY_US(1000);
-
     EDIS;
 }
-
 //
 // ConfigureEPWM - Configure EPWM SOC and compare values
 //
@@ -257,14 +227,12 @@ void ConfigureEPWM(void)
     EPwm1Regs.TBCTL.bit.CTRMODE = 3;      // freeze counter
     EDIS;
 }
-
 //
 // SetupADCEpwm - Setup ADC EPWM acquisition window
 //
 void SetupADCEpwm(Uint16 channel)
 {
     Uint16 acqps;
-
     //
     // Determine minimum acquisition window (in SYSCLKS) based on resolution
     //
@@ -276,7 +244,6 @@ void SetupADCEpwm(Uint16 channel)
     {
         acqps = 63; //320ns
     }
-
     //
     // Select the channels to convert and end of conversion flag
     //
@@ -289,7 +256,6 @@ void SetupADCEpwm(Uint16 channel)
     AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1; //make sure INT1 flag is cleared
     EDIS;
 }
-
 //
 // adca1_isr - Read ADC Buffer in ISR
 //
@@ -301,9 +267,7 @@ interrupt void adca1_isr(void)
         resultsIndex = 0;
         bufferFull = 1;
     }
-
     AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1; //clear INT1 flag
-
     //
     // Check if overflow has occurred
     //
@@ -312,10 +276,8 @@ interrupt void adca1_isr(void)
         AdcaRegs.ADCINTOVFCLR.bit.ADCINT1 = 1; //clear INT1 overflow flag
         AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1; //clear INT1 flag
     }
-
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
 }
-
 //
 // End of file
 //

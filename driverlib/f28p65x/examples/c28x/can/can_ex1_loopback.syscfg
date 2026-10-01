@@ -1,9 +1,14 @@
 /**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P65x" --part "F28P65x_256ZEJ" --package "256ZEJ" --board "/boards/TMDSCNCD28P65X" --context "CPU1"
+ * @v2CliArgs --device "TMS320F28P650DK" --package "256ZEJ" --variant "TMS320F28P650DK9" --context "CPU1"
+ */
+/**
  * Import the modules used in this configuration.
  */
 const can  = scripting.addModule("/driverlib/can.js", {}, false);
 const can1 = can.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */

@@ -11,7 +11,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -44,24 +44,19 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include <stdint.h>
 #include "device.h"
 #include "driverlib.h"
-
 #ifdef CPU1
-
 //
 // Function Prototypes
 //
 void setupMcBSPAPinmux(void);
 void setupMcBSPBPinmux(void);
-
 #endif
-
 //
 // Setup McBSPA Pinmux - This function configures pins for McBSPA instance.
 //
@@ -73,7 +68,6 @@ void setupMcBSPAPinmux(void)
     // input pins to asynchronous only. This will select asynchronous (no
     // qualification) for the selected pins.
     //
-
     //
     // MDXA pin - GPIO20 or GPIO84
     //
@@ -81,7 +75,6 @@ void setupMcBSPAPinmux(void)
     GPIO_setQualificationMode(20, GPIO_QUAL_ASYNC);
     //GPIO_setPinConfig(GPIO_84_MDXA);
     //GPIO_setQualificationMode(84, GPIO_QUAL_ASYNC);
-
     //
     // MDRA pin - GPIO21 or GPIO85
     //
@@ -89,7 +82,6 @@ void setupMcBSPAPinmux(void)
     GPIO_setQualificationMode(21, GPIO_QUAL_ASYNC);
     //GPIO_setPinConfig(GPIO_85_MDRA);
     //GPIO_setQualificationMode(85, GPIO_QUAL_ASYNC);
-
     //
     // MCLKXA - GPIO22 or GPIO86
     //
@@ -97,7 +89,6 @@ void setupMcBSPAPinmux(void)
     GPIO_setQualificationMode(22, GPIO_QUAL_ASYNC);
     //GPIO_setPinConfig(GPIO_86_MCLKXA);
     //GPIO_setQualificationMode(86, GPIO_QUAL_ASYNC);
-
     //
     // MCLKRA - GPIO7 or GPIO58
     //
@@ -105,7 +96,6 @@ void setupMcBSPAPinmux(void)
     GPIO_setQualificationMode(7, GPIO_QUAL_ASYNC);
     //GPIO_setPinConfig(GPIO_58_MCLKRA);
     //GPIO_setQualificationMode(58, GPIO_QUAL_ASYNC);
-
     //
     // MFSXA - GPIO23 or GPIO87
     //
@@ -113,7 +103,6 @@ void setupMcBSPAPinmux(void)
     GPIO_setQualificationMode(23, GPIO_QUAL_ASYNC);
     //GPIO_setPinConfig(GPIO_87_MFSXA);
     //GPIO_setQualificationMode(87, GPIO_QUAL_ASYNC);
-
     //
     // MFSRA - GPIO5 or GPIO59
     //
@@ -121,9 +110,7 @@ void setupMcBSPAPinmux(void)
     GPIO_setQualificationMode(5, GPIO_QUAL_ASYNC);
     //GPIO_setPinConfig(GPIO_59_MFSRA);
     //GPIO_setQualificationMode(59, GPIO_QUAL_ASYNC);
-
 }
-
 //
 // Setup McBSPB Pinmux - This function configures pins for McBSPB instance.
 //
@@ -135,7 +122,6 @@ void setupMcBSPBPinmux(void)
     // input pins to asynchronous only. This will select asynchronous (no
     // qualification) for the selected pins.
     //
-
     //
     // MDXB pin - GPIO24 or GPIO84
     //
@@ -143,7 +129,6 @@ void setupMcBSPBPinmux(void)
     GPIO_setQualificationMode(24, GPIO_QUAL_ASYNC);
     //GPIO_setPinConfig(GPIO_84_MDXB);
     //GPIO_setQualificationMode(84, GPIO_QUAL_ASYNC);
-
     //
     // MDRB pin - GPIO13 or GPIO25 or GPIO85
     //
@@ -153,7 +138,6 @@ void setupMcBSPBPinmux(void)
     GPIO_setQualificationMode(25, GPIO_QUAL_ASYNC);
     //GPIO_setPinConfig(GPIO_85_MDRA);
     //GPIO_setQualificationMode(85, GPIO_QUAL_ASYNC);
-
     //
     // MCLKXB - GPIO14 or GPIO26 or GPIO86
     //
@@ -163,7 +147,6 @@ void setupMcBSPBPinmux(void)
     GPIO_setQualificationMode(26, GPIO_QUAL_ASYNC);
     //GPIO_setPinConfig(GPIO_86_MCLKXA);
     //GPIO_setQualificationMode(86, GPIO_QUAL_ASYNC);
-
     //
     // MCLKRB - GPIO3 or GPIO60
     //
@@ -171,7 +154,6 @@ void setupMcBSPBPinmux(void)
     GPIO_setQualificationMode(3, GPIO_QUAL_ASYNC);
     //GPIO_setPinConfig(GPIO_60_MCLKRB);
     //GPIO_setQualificationMode(60, GPIO_QUAL_ASYNC);
-
     //
     // MFSXB - GPIO15 or GPIO27 or GPIO87
     //
@@ -181,7 +163,6 @@ void setupMcBSPBPinmux(void)
     GPIO_setQualificationMode(27, GPIO_QUAL_ASYNC);
     //GPIO_setPinConfig(GPIO_87_MFSXA);
     //GPIO_setQualificationMode(87, GPIO_QUAL_ASYNC);
-
     //
     // MFSRB - GPIO1 or GPIO61
     //
@@ -190,7 +171,6 @@ void setupMcBSPBPinmux(void)
     //GPIO_setPinConfig(GPIO_61_MFSRB);
     //GPIO_setQualificationMode(61, GPIO_QUAL_ASYNC);
 }
-
 //
 // End of File
 //

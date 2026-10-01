@@ -34,7 +34,7 @@ Data (Re)Synchronization Jump Width Range (DSJW) at Cell C60\n
 
 var Line0IntName = "INT_MCANA_0";
 var Line1IntName = "INT_MCANA_1";
-if ((["F28006x"].includes(Common.getDeviceName())) || (["F28P55x","F28P551x"].includes(Common.getDeviceName()))){
+if ((["F28006x"].includes(Common.getDeviceName())) || (["F28P55x","F28P551x","F28P65x"].includes(Common.getDeviceName()))){
     Line0IntName = "INT_#_0";
     Line1IntName = "INT_#_1";
 }
@@ -46,6 +46,17 @@ for (var stdFiltCount = 0; stdFiltCount < 128; stdFiltCount++)
         {
             name: stdFiltCount ,
             displayName: stdFiltCount.toString()
+        }
+    );
+}
+
+var extFiltCountConfig = []
+for (var extFiltCount = 0; extFiltCount < 128; extFiltCount++)
+{
+    extFiltCountConfig.push(
+        {
+            name: extFiltCount ,
+            displayName: extFiltCount.toString()
         }
     );
 }
@@ -160,7 +171,7 @@ function onChangeMsgRamConfig(inst, ui)
     }
 }
 var flssa, flesa;
-var lss, lse; 
+var lss, lse;
 var rxFIFO0startAddr, rxFIFO1startAddr, rxBufStartAddr;
 var rxFIFO0size, rxFIFO1size, rxBufNum;
 var rxFIFO0ElemSize, rxFIFO1ElemSize, rxBufElemSize;
@@ -203,7 +214,7 @@ function onChangeUseCalcStartingAddress(inst, ui)
         inst.txStartAddr = txStartAddr;
         inst.txEventFIFOStartAddr = txEventFIFOStartAddr;
     }
-        
+
 }
 
 let MCAN_InterruptFlags = [
@@ -373,27 +384,6 @@ let config = [
                 default: "C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2838x/docs/MCAN_BitTimingCalculator.xls",
                 deprecated: true,
                 //fileFilter: ".* ",
-            },
-            {
-                name: "canBitTimeFileOpen",
-                displayName: "Open MCAN Bit Timing Calculator",
-                description : 'Open MCAN Bit Timing Calculator',
-                buttonText: "Open",
-                onLaunch: (inst) => {
-                    var currnetSDKProductPath = system.getProducts()[0].path
-                    var sdkPath = system.utils.path.join(currnetSDKProductPath + "../../../")
-                    sdkPath = sdkPath.replace(new RegExp('\\' + system.utils.path.sep, 'g'), '/')
-                    sdkPath = sdkPath + "device_support/f2838x/docs/MCAN_BitTimingCalculator.xls"
-                    //console.log(sdkPath)
-                    return ({
-                        command: "../driverlib/.meta/mcan/mcanBitTimeCalc.bat",
-                        args: [sdkPath],
-                        initialData: "",
-                    });
-                },
-                onComplete: (inst, ui, result) => {
-                    return result;
-                },
             },
             {
                 name: "Nominal Bit Timing Parameters",
@@ -675,21 +665,21 @@ let config = [
                 displayName : "Standard ID Filter List Start Address",
                 description : 'Standard ID Filter List Start Address.',
                 hidden      : false,
-                default     : 0x0,
+                default     : 0,
             },
             {
                 name        : "lss",
                 displayName : "No of Standard ID Filters",
                 description : 'No of Standard ID Filters.',
                 hidden      : false,
-                default     : 0x1,
+                default     : 1,
             },
             {
                 name        : "flesa",
                 displayName : "Extended ID Filter List Start Address",
                 description : 'Extended ID Filter List Start Address.',
                 hidden      : false,
-                default     : 48,
+                default     : 4,
             },
             {
                 name        : "lse",
@@ -707,21 +697,21 @@ let config = [
                         displayName : "Tx Buffers Start Address",
                         description : 'Tx Buffers Start Address.',
                         hidden      : false,
-                        default     : 148,
+                        default     : 2172,
                     },
                     {
                         name        : "txBufNum",
                         displayName : "Number of Dedicated Transmit Buffers",
                         description : 'Number of Dedicated Transmit Buffers.',
                         hidden      : false,
-                        default     : 0,
+                        default     : 10,
                     },
                     {
                         name        : "txFIFOSize",
                         displayName : "No of Tx FIFO / Tx Queue Elements",
                         description : 'No of Tx FIFO / Tx Queue Elements.',
                         hidden      : false,
-                        default     : 0,
+                        default     : 10,
                     },
                     {
                         name        : "txBufMode",
@@ -747,21 +737,21 @@ let config = [
                         displayName : "Tx Event FIFO Start Address",
                         description : 'Tx Event FIFO Start Address.',
                         hidden      : false,
-                        default     : 0xFF,
+                        default     : 3612,
                     },
                     {
                         name        : "txEventFIFOSize",
                         displayName : "Tx Event FIFO Size",
                         description : 'Tx Event FIFO Size.',
                         hidden      : false,
-                        default     : 0,
+                        default     : 10,
                     },
                     {
                         name        : "txEventFIFOWaterMark",
                         displayName : "Level for Tx Event FIFO watermark interrupt",
                         description : 'Level for Tx Event FIFO watermark interrupt.',
                         hidden      : false,
-                        default     : 0,
+                        default     : 3,
                     },
                 ]
             },
@@ -774,21 +764,21 @@ let config = [
                         displayName : "Rx FIFO0 Start Address",
                         description : 'Rx FIFO0 Start Address.',
                         hidden      : false,
-                        default     : 548,
+                        default     : 12,
                     },
                     {
                         name        : "rxFIFO0size",
                         displayName : "Number of Rx FIFO0 elements",
                         description : 'Number of Rx FIFO0 elements.',
                         hidden      : false,
-                        default     : 0,
+                        default     : 10,
                     },
                     {
                         name        : "rxFIFO0waterMark",
                         displayName : "Rx FIFO0 Watermark",
                         description : 'Rx FIFO0 Watermark.',
                         hidden      : false,
-                        default     : 0,
+                        default     : 3,
                     },
                     {
                         name        : "rxFIFO0OpMode",
@@ -803,21 +793,21 @@ let config = [
                         displayName : "Rx FIFO1 Start Address",
                         description : 'Rx FIFO1 Start Address.',
                         hidden      : false,
-                        default     : 748,
+                        default     : 732,
                     },
                     {
                         name        : "rxFIFO1size",
                         displayName : "Number of Rx FIFO1 elements",
                         description : 'Number of Rx FIFO1 elements.',
                         hidden      : false,
-                        default     : 0,
+                        default     : 10,
                     },
                     {
                         name        : "rxFIFO1waterMark",
                         displayName : "Rx FIFO1 Watermark",
                         description : 'Rx FIFO1 Watermark.',
                         hidden      : false,
-                        default     : 0,
+                        default     : 3,
                     },
                     {
                         name        : "rxFIFO1OpMode",
@@ -832,14 +822,14 @@ let config = [
                         displayName : "Rx Buffer Start Address",
                         description : 'Rx Buffer Start Address.',
                         hidden      : false,
-                        default     : 948,
+                        default     : 1452,
                     },
                     {
                         name        : "rxBufNum",
                         displayName : "Rx Buffer Size (number of elements)",
                         description : 'Rx Buffer Size (number of elements)',
                         hidden      : false,
-                        default     : 0,
+                        default     : 10,
                     },
                     {
                         name        : "rxBufElemSize",
@@ -871,28 +861,58 @@ let config = [
         ]
     },
     {
-        name        : "stdFilts",
-        displayName : "Standard Filter Elements",
-        description : 'Standard Filter Elements need to be configured',
-        hidden      : false,
-        default     : 0,
-        onChange    : (inst, ui) => {
-            var convertedArray = []
-            for (var mO = 1; mO <= inst["stdFilts"]; mO++)
+        name: "GROUP_FILTER",
+        displayName: "Filter Configuration",
+        config: [
             {
-                convertedArray.push(mO);
-            }
-            inst["stdFiltsUsed"] = convertedArray;
-        }
-    },
-    {
-        name        : "stdFiltsUsed",
-        displayName : "Standard Filter Elements used (0-127)",
-        description : 'Standard Filter Elements need to be configured',
-        hidden      : false,
-        minSelections : 0,
-        default     : [],
-        options     : stdFiltCountConfig
+                name        : "stdFilts",
+                displayName : "Standard Filter Elements",
+                description : 'Standard Filter Elements need to be configured',
+                hidden      : false,
+                default     : 0,
+                onChange    : (inst, ui) => {
+                    var convertedArray = []
+                    for (var mO = 0; mO < inst["stdFilts"]; mO++)
+                    {
+                        convertedArray.push(mO);
+                    }
+                    inst["stdFiltsUsed"] = convertedArray;
+                }
+            },
+            {
+                name        : "stdFiltsUsed",
+                displayName : "Standard Filter Elements used (0-127)",
+                description : 'Standard Filter Elements need to be configured',
+                hidden      : true,
+                minSelections : 0,
+                default     : [],
+                options     : stdFiltCountConfig
+            },
+            {
+                name        : "extFilts",
+                displayName : "Extended Filter Elements",
+                description : 'Extended Filter Elements need to be configured',
+                hidden      : false,
+                default     : 0,
+                onChange    : (inst, ui) => {
+                    var convertedArray = []
+                    for (var mO = 0; mO < inst["extFilts"]; mO++)
+                    {
+                        convertedArray.push(mO);
+                    }
+                    inst["extFiltsUsed"] = convertedArray;
+                }
+            },
+            {
+                name        : "extFiltsUsed",
+                displayName : "Extended Filter Elements used (0-127)",
+                description : 'Extended Filter Elements need to be configured',
+                hidden      : true,
+                minSelections : 0,
+                default     : [],
+                options     : extFiltCountConfig
+            },
+        ]
     },
     {
         name: "useCase",
@@ -926,6 +946,20 @@ function moduleInstances(inst,ui) {
             name : "stdFilt"+inst.stdFiltsUsed[i],
             displayName: "Standard Filter Element "+inst.stdFiltsUsed[i],
             collapsed : true,
+            group: "GROUP_FILTER",
+        },
+        ]);
+    }
+
+    for(var i in inst.extFiltsUsed)
+    {
+        components = components.concat([
+        {
+            moduleName : "/driverlib/mcanExtFilt.js",
+            name : "extFilt"+inst.extFiltsUsed[i],
+            displayName: "Extended Filter Element "+inst.extFiltsUsed[i],
+            collapsed : true,
+            group: "GROUP_FILTER",
         },
         ]);
     }

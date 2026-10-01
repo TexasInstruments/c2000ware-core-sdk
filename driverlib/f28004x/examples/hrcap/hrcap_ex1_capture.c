@@ -55,7 +55,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -63,7 +62,6 @@
 #include "device.h"
 #include "hrcap_ex1_capture.h"
 #include "board.h"
-
 //
 // Globals
 //
@@ -71,30 +69,23 @@ volatile uint32_t cap1Count;
 volatile uint32_t cap2Count;
 volatile uint32_t cap3Count;
 volatile uint32_t cap4Count;
-
 uint32_t absCountOn1, absCountOn2;
 uint32_t absCountOff1, absCountOff2;
 uint32_t absCountPeriod1, absCountPeriod2;
-
 float32_t onTime1 = 0, onTime2 = 0;
 float32_t offTime1 = 0, offTime2 = 0;
 float32_t period1 = 0, period2 = 0;
-
 uint32_t ecapIntCount;
 uint16_t hrcapIntCount = 0;
 uint16_t ecapIntCalCount = 0;
 uint16_t calStatus = 0;
-
 HRCAPCAL_CalResultObj hrcapCalResult;
-
 uint64_t totalCount = 0;
 float32_t inputFreqMHz = 0;
-
 //
 // Function Prototypes
 //
 void initXCLKOUT(void);
-
 //
 // Main
 //
@@ -104,41 +95,33 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Board Initialization
     //
     Board_init();
-
     //
     // Initialize XCLKOUT
     //
     initXCLKOUT();
-
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Enable interrupts required for this example
     //
     Interrupt_enable(INT_myECAP0);
     Interrupt_enable(INT_myECAP0_HR);
-
     //
     // Initialize counters
     //
@@ -146,15 +129,12 @@ void main(void)
     cap2Count = 0U;
     cap3Count = 0U;
     cap4Count = 0U;
-
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Enable Global Interrupt (INTM) and Real time interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Loop indefinitely
     //
@@ -170,10 +150,8 @@ void main(void)
             //
             inputFreqMHz = 1 / (period1 / 1000);
         }
-
     }
 }
-
 //
 // initXCLKOUT - Configure XCLKOUT
 //
@@ -183,7 +161,6 @@ void initXCLKOUT(void)
     // Clock source is SYSCLK
     //
     SysCtl_selectClockOutSource(SYSCTL_CLOCKOUT_XTALOSC);
-
     //
     // XCLKOUT = Clock Source / 8
     //
@@ -191,7 +168,6 @@ void initXCLKOUT(void)
     SysCtl_setXClk(SYSCTL_XCLKOUT_DIV_8);
     EDIS;
 }
-
 //
 // INT_myECAP0_ISR -  eCAP ISR
 //
@@ -201,7 +177,6 @@ __interrupt void INT_myECAP0_ISR(void)
     if(ecapIntCount++ > 10)
     {
         ecapIntCount = 0;
-
         //
         // Get the raw time stamps
         //
@@ -209,15 +184,12 @@ __interrupt void INT_myECAP0_ISR(void)
         cap2Count = ECAP_getEventTimeStamp(myECAP0_BASE, ECAP_EVENT_2);
         cap3Count = ECAP_getEventTimeStamp(myECAP0_BASE, ECAP_EVENT_3);
         cap4Count = ECAP_getEventTimeStamp(myECAP0_BASE, ECAP_EVENT_4);
-
         absCountOn1 = cap2Count - cap1Count;
         absCountOff1 = cap3Count - cap2Count;
         absCountPeriod1 = cap3Count - cap1Count;
-
         absCountOn2 = cap4Count - cap3Count;
         absCountOff2 = cap3Count - cap2Count;
         absCountPeriod2 = cap4Count - cap2Count;
-
         //
         // Convert counts to nanoseconds using the scale factor
         //
@@ -227,40 +199,33 @@ __interrupt void INT_myECAP0_ISR(void)
                                                    hrcapCalResult.scaleFactor);
         period1 = HRCAP_convertEventTimeStampNanoseconds(absCountPeriod1,
                                                    hrcapCalResult.scaleFactor);
-
         onTime2 = HRCAP_convertEventTimeStampNanoseconds(absCountOn2,
                                                    hrcapCalResult.scaleFactor);
         offTime2 = HRCAP_convertEventTimeStampNanoseconds(absCountOff2,
                                                    hrcapCalResult.scaleFactor);
         period2 = HRCAP_convertEventTimeStampNanoseconds(absCountPeriod2,
                                                    hrcapCalResult.scaleFactor);
-
         totalCount++;
     }
-
     ECAP_clearInterrupt(myECAP0_BASE, ECAP_ISR_SOURCE_CAPTURE_EVENT_4);
     ECAP_clearGlobalInterrupt(myECAP0_BASE);
     ECAP_reArm(myECAP0_BASE);
     ECAP_resetCounters(myECAP0_BASE);
-
     //
     // Acknowledge the PIE interrupt group
     //
     Interrupt_clearACKGroup(INT_myECAP0_INTERRUPT_ACK_GROUP);
 }
-
 //
 // INT_myECAP0_HR_ISR -  HRCAP Calibration ISR
 //
 __interrupt void INT_myECAP0_HR_ISR(void)
 {
     hrcapIntCount++;
-
     //
     // Get calibration interrupt sources
     //
     calStatus = HRCAP_getCalibrationFlags(myECAP0_HR_BASE);
-
     //
     // Get calibration clock counts
     //
@@ -268,7 +233,6 @@ __interrupt void INT_myECAP0_HR_ISR(void)
                                             HRCAP_CALIBRATION_CLOCK_HRCLK);
     hrcapCalResult.sysclkcount = HRCAP_getCalibrationClockPeriod(myECAP0_HR_BASE,
                                             HRCAP_CALIBRATION_CLOCK_SYSCLK);
-
     //
     // The following options are possible
     //   - HRCALCAL_STATUS_DONE_ISR
@@ -318,12 +282,10 @@ __interrupt void INT_myECAP0_HR_ISR(void)
         // Software generated interrupt
         //
     }
-
     //
     // Clear the interrupts
     //
     HRCAP_clearCalibrationFlags(myECAP0_HR_BASE, calStatus);
-
     //
     // Acknowledge the PIE interrupt group
     //

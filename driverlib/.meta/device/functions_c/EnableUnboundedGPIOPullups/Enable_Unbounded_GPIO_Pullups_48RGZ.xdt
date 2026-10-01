@@ -1,0 +1,38 @@
+//*****************************************************************************
+//
+// Function to enable pullups for the unbonded GPIOs
+//
+//*****************************************************************************
+void Device_enableUnbondedGPIOPullups(uint16_t packageType)
+{
+    EALLOW;
+    #if (packageType == DEV_PKG_48RGZ)
+    {
+        //
+        // Package type is 48RGZ
+        //
+        *(unsigned long *)(GPIOCTRL_BASE + GPIO_O_GPAPUD) &= 0xFFFEF7EAUL;
+        *(unsigned long *)(GPIOCTRL_BASE + GPIO_O_GPBPUD) &= 0xFFFFFFFFUL;
+        *(unsigned long *)(GPIOCTRL_BASE + GPIO_O_GPHPUD) &= 0xFFFFFFF7UL;
+    }
+    #endif
+    EDIS;
+
+}
+
+//*****************************************************************************
+//
+// Function to update peripheral configuraiton register. These bits are used to
+// provide the protection for the package when the GPIOs are double boned
+//
+//*****************************************************************************
+void Device_updatePeripheralConfig(uint16_t packageType)
+{
+
+    #if ((packageType == DEV_PKG_48RGZ))
+    {
+        *(unsigned long *)(DEVCFG_BASE + SYSCTL_O_PERCNF) |= 0x00000001UL;
+    }
+    #endif
+
+}

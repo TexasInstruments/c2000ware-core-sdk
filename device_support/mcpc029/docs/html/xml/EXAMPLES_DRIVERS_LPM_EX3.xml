@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_LPM_EX3" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_LPM_EX3</compoundname>
+    <title>Device Standby Mode and Wakeup using GPIO</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_LPM_EX3_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_lpm_ex3"/></para>
+<sect1 id="EXAMPLES_DRIVERS_LPM_EX3_1autotoc_md422">
+<title>Introduction</title>
+<para>This example puts the device into STANDBY mode. If the lowest possible current consumption in STANDBY mode is desired, the JTAG connector must be removed from the device board while the device is in STANDBY mode.</para>
+<para>This example puts the device into STANDBY mode and then wakes up the device from STANDBY using an LPM wakeup pin.</para>
+<para>The pin GPIO0 is configured as the LPM wakeup pin to trigger a WAKEINT interrupt upon detection of a low pulse. Initially, pull GPIO0 high externally. To wake device from STANDBY mode, pull GPIO0 low for at least (2+QUALSTDBY), OSCLKS, then pull it high again.</para>
+<para>The example then wakes up the device from STANDBY using GPIO0. GPIO0 wakes the device from STANDBY mode when a low pulse (signal goes high-&gt;low-&gt;high)is detected on the pin. This pin must be pulsed by an external agent for wakeup.</para>
+<para>GPIO1 is pulled high before entering the STANDBY mode and is pulled low when in the wakeup ISR.</para>
+<para><itemizedlist>
+<listitem><para>External Connections<itemizedlist>
+<listitem><para>GPIO0 needs to be pulled low to wake up the device.</para>
+</listitem><listitem><para>On device wakeup, the GPIO1 will be low and LED1 will start blinking </para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/lpm_ex3.md"/>
+  </compounddef>
+</doxygen>

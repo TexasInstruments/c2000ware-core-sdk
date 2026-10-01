@@ -82,14 +82,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include <stdio.h>
-
 //
 // Defines
 //
@@ -98,16 +96,13 @@
 #define SDFM_PIN_MUX_OPTION2      2
 #define EPWM_TIMER_TBPRD          65535  // ePWM Period register
 #define SDFM_INT_MASK             0x8000F000U
-
 //
 // Macro to read the SDFM filter data in 16-bit format
 //
 #define READ_16BIT_FILTER_DATA(base, offset)                                  \
                                    (*((volatile int16_t *)(base + offset + 1)))
-
 #define READ_32BIT_FILTER_DATA(base, offset)                                  \
                                    (*((volatile int32_t *)(base + offset)))
-
 //
 // Globals
 //
@@ -121,7 +116,6 @@ int16_t  filter4Result[MAX_SAMPLES];
 #pragma DATA_SECTION(filter2Result, "Filter2_RegsFile");
 #pragma DATA_SECTION(filter3Result, "Filter3_RegsFile");
 #pragma DATA_SECTION(filter4Result, "Filter4_RegsFile");
-
 //
 // Function Prototypes
 //
@@ -131,7 +125,6 @@ void setPinConfig2(void);
 void initEPWM(uint32_t epwmInstance);
 __interrupt void sdfm1ISR(void);
 __interrupt void sdfm2ISR(void);
-
 //
 // Main
 //
@@ -139,28 +132,23 @@ void main(void)
 {
    uint16_t  pinMuxOption;
    uint16_t  hlt, llt;
-
    //
    // Initialize device clock and peripherals
    //
    Device_init();
-
    //
    // Setup GPIO by disabling pin locks and enabling pullups
    //
    Device_initGPIO();
-
    //
    // Initialize PIE and clear PIE registers. Disables CPU interrupts.
    //
    Interrupt_initModule();
-
    //
    // Initialize the PIE vector table with pointers to the shell Interrupt
    // Service Routines (ISR).
    //
    Interrupt_initVectorTable();
-
    //
    // Interrupts that are used in this example are re-mapped to
    // ISR functions found within this file.
@@ -168,52 +156,41 @@ void main(void)
    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP5);
    Interrupt_register(INT_SDFM1, sdfm1ISR);
    Interrupt_register(INT_SDFM2, sdfm2ISR);
-
    //
    // Enable SDFM1 amd SDFM2 interrupts
    //
    Interrupt_enable(INT_SDFM1);
    Interrupt_enable(INT_SDFM2);
-
    //
    // Configure SDFM type to 0 and see if data ack generated SDINT.
    //
    SysCtl_configureType(SYSCTL_SDFMTYPE, 0, 1);
-
    pinMuxOption = SDFM_PIN_MUX_OPTION1;
-
    //
    // Configure GPIO pins as SDFM pins
    //
    configureSDFMPins(pinMuxOption);
-
     //
     // Select SDFM1
     //
     sdfmInstance = SDFM1_BASE;
-
     //
     // Input Control Module:
     // Configure Modulator Clock rate = Modulator data rate
     //
     SDFM_setupModulatorClock(sdfmInstance, SDFM_FILTER_1,
                              SDFM_MODULATOR_CLK_EQUAL_DATA_RATE);
-
     SDFM_setupModulatorClock(sdfmInstance, SDFM_FILTER_2,
                              SDFM_MODULATOR_CLK_EQUAL_DATA_RATE);
-
     SDFM_setupModulatorClock(sdfmInstance, SDFM_FILTER_3,
                              SDFM_MODULATOR_CLK_EQUAL_DATA_RATE);
-
     SDFM_setupModulatorClock(sdfmInstance, SDFM_FILTER_4,
                              SDFM_MODULATOR_CLK_EQUAL_DATA_RATE);
-
     //
     // Comparator Module
     //
     hlt = 0x7FFF;    //Over value threshold settings
     llt = 0x0000;    //Under value threshold settings
-
     //
     // Configure Comparator module's comparator filter type and comparator's OSR
     // value, higher threshold, lower threshold
@@ -230,7 +207,6 @@ void main(void)
     SDFM_configComparator(sdfmInstance,
         (SDFM_FILTER_4 | SDFM_FILTER_SINC_3 | SDFM_SET_OSR(32)),
         (SDFM_THRESHOLD(hlt,llt)), 0);
-
     //
     // Data filter Module
     //
@@ -240,32 +216,25 @@ void main(void)
     SDFM_configDataFilter(sdfmInstance, (SDFM_FILTER_1 | SDFM_FILTER_SINC_3 |
            SDFM_SET_OSR(256)), (SDFM_DATA_FORMAT_16_BIT | SDFM_FILTER_ENABLE |
            SDFM_SHIFT_VALUE(0x000A)));
-
     SDFM_configDataFilter(sdfmInstance, (SDFM_FILTER_2 | SDFM_FILTER_SINC_3 |
            SDFM_SET_OSR(256)), (SDFM_DATA_FORMAT_16_BIT | SDFM_FILTER_ENABLE |
            SDFM_SHIFT_VALUE(0x000A)));
-
     SDFM_configDataFilter(sdfmInstance, (SDFM_FILTER_3 | SDFM_FILTER_SINC_3 |
            SDFM_SET_OSR(256)), (SDFM_DATA_FORMAT_16_BIT | SDFM_FILTER_ENABLE |
            SDFM_SHIFT_VALUE(0x000A)));
-
     SDFM_configDataFilter(sdfmInstance, (SDFM_FILTER_4 | SDFM_FILTER_SINC_3 |
            SDFM_SET_OSR(256)), (SDFM_DATA_FORMAT_16_BIT | SDFM_FILTER_ENABLE |
            SDFM_SHIFT_VALUE(0x000A)));
-
     //
     // Enable Master filter bit: Unless this bit is set none of the filter modules
     // can be enabled. All the filter modules are synchronized when master filter
     // bit is enabled after individual filter modules are enabled.
     //
     SDFM_enableMainFilter(sdfmInstance);
-
-
     SDFM_enableExternalReset(sdfmInstance, SDFM_FILTER_1);
     SDFM_enableExternalReset(sdfmInstance, SDFM_FILTER_2);
     SDFM_enableExternalReset(sdfmInstance, SDFM_FILTER_3);
     SDFM_enableExternalReset(sdfmInstance, SDFM_FILTER_4);
-
     //
     // Use PWM4.SOCA to provide SDSYNC pulse to SDFM
     //
@@ -273,12 +242,10 @@ void main(void)
     SDFM_setPWMSyncSource(sdfmInstance, SDFM_FILTER_2, SDFM_SYNC_PWM4_SOCA);
     SDFM_setPWMSyncSource(sdfmInstance, SDFM_FILTER_3, SDFM_SYNC_PWM4_SOCA);
     SDFM_setPWMSyncSource(sdfmInstance, SDFM_FILTER_4, SDFM_SYNC_PWM4_SOCA);
-
     //
     // Init EPWMs
     //
     initEPWM(pwmInstance);
-
     //
     // Enable interrupts
     //
@@ -291,64 +258,50 @@ void main(void)
     SDFM_enableInterrupt(sdfmInstance, SDFM_FILTER_1,
             (SDFM_MODULATOR_FAILURE_INTERRUPT |
              SDFM_DATA_FILTER_ACKNOWLEDGE_INTERRUPT));
-
     SDFM_enableInterrupt(sdfmInstance, SDFM_FILTER_2,
             (SDFM_MODULATOR_FAILURE_INTERRUPT |
              SDFM_DATA_FILTER_ACKNOWLEDGE_INTERRUPT));
-
     SDFM_enableInterrupt(sdfmInstance, SDFM_FILTER_3,
             (SDFM_MODULATOR_FAILURE_INTERRUPT |
              SDFM_DATA_FILTER_ACKNOWLEDGE_INTERRUPT));
-
     SDFM_enableInterrupt(sdfmInstance, SDFM_FILTER_4,
             (SDFM_MODULATOR_FAILURE_INTERRUPT |
              SDFM_DATA_FILTER_ACKNOWLEDGE_INTERRUPT));
-
     SDFM_disableInterrupt(sdfmInstance, SDFM_FILTER_1,
             (SDFM_HIGH_LEVEL_THRESHOLD_INTERRUPT |
              SDFM_LOW_LEVEL_THRESHOLD_INTERRUPT));
-
     SDFM_disableInterrupt(sdfmInstance, SDFM_FILTER_2,
             (SDFM_HIGH_LEVEL_THRESHOLD_INTERRUPT |
              SDFM_LOW_LEVEL_THRESHOLD_INTERRUPT));
-
     SDFM_disableInterrupt(sdfmInstance, SDFM_FILTER_3,
             (SDFM_HIGH_LEVEL_THRESHOLD_INTERRUPT |
              SDFM_LOW_LEVEL_THRESHOLD_INTERRUPT));
-
     SDFM_disableInterrupt(sdfmInstance, SDFM_FILTER_4,
             (SDFM_HIGH_LEVEL_THRESHOLD_INTERRUPT |
              SDFM_LOW_LEVEL_THRESHOLD_INTERRUPT));
-
     while((HWREGH(pwmInstance + EPWM_O_TBCTR)) < 550);
-
     //
     // Enable master interrupt so that any of the filter interrupts can trigger
     // by SDFM interrupt to CPU
     //
     SDFM_enableMainInterrupt(sdfmInstance);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     while(1);
 }
-
 //
 // sdfm1ISR - SDFM 1 ISR
 //
 __interrupt void sdfm1ISR(void)
 {
     static uint16_t loopCounter1 = 0;
-
     //
     // Wait for result from all the filters (SDIFLG)
     //
     while(HWREG(SDFM1_BASE + SDFM_O_SDIFLG) & SDFM_INT_MASK != SDFM_INT_MASK);
-
     //
     // Reset the loop counter
     //
@@ -356,7 +309,6 @@ __interrupt void sdfm1ISR(void)
     {
         loopCounter1 = 0;
     }
-
     //
     // Read each SDFM filter output and store it in respective filter
     // result array
@@ -369,30 +321,25 @@ __interrupt void sdfm1ISR(void)
                         READ_16BIT_FILTER_DATA(SDFM1_BASE, SDFM_O_SDDATA3);
     filter4Result[loopCounter1++] =
                         READ_16BIT_FILTER_DATA(SDFM1_BASE, SDFM_O_SDDATA4);
-
     //
     // Clear SDFM flag register
     //
     SDFM_clearInterruptFlag(SDFM1_BASE, SDFM_INT_MASK);
-
     //
     // Acknowledge this __interrupt to receive more __interrupts from group 5
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP5);
 }
-
 //
 // sdfm2ISR - SDFM 2 ISR
 //
 __interrupt void sdfm2ISR(void)
 {
     static uint16_t loopCounter2 = 0;
-
     //
     // Wait for result from all the filters (SDIFLG)
     //
     while(HWREG(SDFM2_BASE + SDFM_O_SDIFLG) & SDFM_INT_MASK != SDFM_INT_MASK);
-
     //
     // Reset the loop counter
     //
@@ -400,7 +347,6 @@ __interrupt void sdfm2ISR(void)
     {
         loopCounter2 = 0;
     }
-
     //
     // Read each SDFM filter output and store it in respective filter
     // result array
@@ -413,25 +359,21 @@ __interrupt void sdfm2ISR(void)
                         READ_16BIT_FILTER_DATA(SDFM2_BASE, SDFM_O_SDDATA1);
     filter4Result[loopCounter2++] =
                         READ_16BIT_FILTER_DATA(SDFM2_BASE, SDFM_O_SDDATA1);
-
     //
     // Clear SDFM flag register
     //
     SDFM_clearInterruptFlag(SDFM2_BASE, SDFM_INT_MASK);
-
     //
     // Acknowledge this __interrupt to receive more __interrupts from group 5
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP5);
 }
-
 //
 // configureSDFMPins - Configure SDFM GPIOs
 //
 void configureSDFMPins(uint16_t sdfmPinOption)
 {
     uint16_t pin;
-
     switch (sdfmPinOption)
     {
         case SDFM_PIN_MUX_OPTION1:
@@ -444,7 +386,6 @@ void configureSDFMPins(uint16_t sdfmPinOption)
             }
             setPinConfig1();
             break;
-
         case SDFM_PIN_MUX_OPTION2:
             for(pin = 46; pin <= 61; pin++)
             {
@@ -457,7 +398,6 @@ void configureSDFMPins(uint16_t sdfmPinOption)
             break;
     }
 }
-
 //
 // done - Function to halt debugger and stop application
 //
@@ -466,7 +406,6 @@ void done(void)
     asm(" ESTOP0");
     for(;;);
 }
-
 //
 // setPinConfig1 - sets the pin configuration for pins 16-21
 //
@@ -489,7 +428,6 @@ void setPinConfig1()
     GPIO_setPinConfig(GPIO_30_SD2_D4);
     GPIO_setPinConfig(GPIO_31_SD2_C4);
 }
-
 //
 // setPinConfig2 - sets the pin configuration for
 // pins 46-61
@@ -513,26 +451,20 @@ void setPinConfig2()
     GPIO_setPinConfig(GPIO_60_SD2_D3);
     GPIO_setPinConfig(GPIO_61_SD2_C3);
 }
-
-
 //
 // initEPWM - Initialize specified EPWM settings
 //
 void initEPWM(uint32_t epwmInstance)
 {
     uint16_t compCVal,compDVal;
-
     compCVal = 200;
     compDVal = 200;
-
     GPIO_setDirectionMode(4, GPIO_DIR_MODE_OUT);
     GPIO_setPinConfig(GPIO_4_GPIO4);
-
     //
     // Disable sync(Freeze clock to PWM as well)
     //
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Setup TBCLK: Configure timer period = 801 TBCLKs, phase = 0 &
     // clear counter
@@ -540,7 +472,6 @@ void initEPWM(uint32_t epwmInstance)
     EPWM_setTimeBasePeriod(epwmInstance, EPWM_TIMER_TBPRD);
     EPWM_setPhaseShift(epwmInstance, 0U);
     EPWM_setTimeBaseCounter(epwmInstance, 0U);
-
     //
     // Set CMPA, CMPB, CMPC & CMPD values
     //
@@ -548,7 +479,6 @@ void initEPWM(uint32_t epwmInstance)
     EPWM_setCounterCompareValue(epwmInstance, EPWM_COUNTER_COMPARE_D, compDVal);
     EPWM_setCounterCompareValue(epwmInstance, EPWM_COUNTER_COMPARE_A, compCVal);
     EPWM_setCounterCompareValue(epwmInstance, EPWM_COUNTER_COMPARE_B, compDVal);
-
     //
     // Setup counter mode
     //
@@ -556,7 +486,6 @@ void initEPWM(uint32_t epwmInstance)
     EPWM_setClockPrescaler(epwmInstance,
                            EPWM_CLOCK_DIVIDER_1,
                            EPWM_HSCLOCK_DIVIDER_1);
-
     //
     // Set actions:
     // Toggle PWMxA on event A, up-count
@@ -570,13 +499,11 @@ void initEPWM(uint32_t epwmInstance)
                                   EPWM_AQ_OUTPUT_B,
                                   EPWM_AQ_OUTPUT_TOGGLE,
                                   EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB);
-
     //
     // Enable sync and clock to PWM
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
 }
-
 //
 // End of file
 //

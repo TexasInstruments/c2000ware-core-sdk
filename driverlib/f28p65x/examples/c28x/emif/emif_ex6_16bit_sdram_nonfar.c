@@ -30,7 +30,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -63,30 +63,25 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "device.h"
 #include "driverlib.h"
-
 //
 // Defines
 //
 #define TEST_PASS 0xABCDABCD
 #define TEST_FAIL 0xDEADDEAD
-
 //
 // Mem buffer size = 1280U
 //
 #define MEM_BUFFER_SIZE 0x500
-
 //
 // Globals
 //
 uint16_t errCountGlobal = 0;
 uint32_t testStatusGlobal;
-
 //
 // Buffer in local memory.
 //
@@ -97,14 +92,12 @@ uint32_t localRAMBuf[MEM_BUFFER_SIZE];
 //
 volatile uint32_t extSDRAMBuf[MEM_BUFFER_SIZE];
 #pragma DATA_SECTION(extSDRAMBuf, "emif_cs0_nonfar");
-
 //
 // Function Prototypes
 //
 extern void setupEMIF1PinmuxSync16Bit(void);
 void clearDataBuffer(uint32_t memSize);
 uint16_t readWriteSyncMemory(uint32_t memSize);
-
 //
 // Main
 //
@@ -115,78 +108,64 @@ void main(void)
     EMIF_SyncConfig sdConfig;
     EMIF_SyncTimingParams tParam;
     testStatusGlobal = TEST_FAIL;
-
     //
     // Initialize device clock and peripherals.
     //
     Device_init();
-
     //
     // Disable all the interrupts.
     //
     DINT;
-
     //
     // Setup GPIO by disabling pin locks and enabling pullups.
     //
     Device_initGPIO();
-
     //
     // This function initializes the PIE control registers. After globally
     // disabling interrupts and enabling the PIE, it clears all of the PIE
     // interrupt enable bits and interrupt flags.
     //
     Interrupt_initModule();
-
     //
     // Initializes the PIE vector table by setting all vectors to a default
     // handler function.
     //
     Interrupt_initVectorTable();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM).
     //
     EINT;
     ERTM;
-
     //
     // Configure to run EMIF1 on half Rate. (EMIF1CLK = CPU1SYSCLK/2)
     //
     SysCtl_setEMIF1ClockDivider(SYSCTL_EMIF1CLK_DIV_2);
-
     //
     // Enable non-far memory range for EMIF1
     //
     SysCtl_configureType(SYSCTL_MEMMAPTYPE, 0x1U, 0x1U);
-
     //
     // Grab EMIF1 For CPU1.
     //
     EMIF_selectController(EMIF1CONFIG_BASE, EMIF_CONTROLLER_CPU1_G);
-
     //
     // Disable Access Protection. (CPU_FETCH/CPU_WR/DMA_WR)
     //
     EMIF_setAccessProtection(EMIF1CONFIG_BASE, 0x0);
-
     //
     // Commit the configuration related to protection. Till this bit remains
     // set content of EMIF1ACCPROT0 register can't be changed.
     //
     EMIF_commitAccessConfig(EMIF1CONFIG_BASE);
-
     //
     // Lock the configuration so that EMIF1COMMIT register can't be changed
     // any more.
     //
     EMIF_lockAccessConfig(EMIF1CONFIG_BASE);
-
     //
     // Configure GPIO pins for EMIF1.
     //
     setupEMIF1PinmuxSync16Bit();
-
     //
     // Configure SDRAM control registers. Needs to be
     // programmed based on SDRAM Data-Sheet. For this example:
@@ -203,19 +182,16 @@ void main(void)
     tParam.tRc  = 0x6U;
     tParam.tRrd = 0x1U;
     EMIF_setSyncTimingParams(EMIF1_BASE, &tParam);
-
     //
     // Configure Self Refresh exit timing.
     // Txsr = 70ns = 0x7.
     //
     EMIF_setSyncSelfRefreshExitTmng(EMIF1_BASE, 0x7U);
-
     //
     // Configure Refresh Rate.
     // Tref = 64ms for 8192 ROW, RR = 64000*100(Tfrq)/8192 = 781.25 (0x30E).
     //
     EMIF_setSyncRefreshRate(EMIF1_BASE, 781);
-
     //
     // Configure SDRAM parameters. PAGESIZE=2 (1024 elements per ROW),
     // IBANK = 2 (4 BANK), CL = 3, NM = 1 (16bit).
@@ -225,19 +201,16 @@ void main(void)
     sdConfig.narrowMode = EMIF_SYNC_NARROW_MODE_TRUE;
     sdConfig.pageSize = EMIF_SYNC_COLUMN_WIDTH_10;
     EMIF_setSyncMemoryConfig(EMIF1_BASE, &sdConfig);
-
     //
     // Adding some delay.
     //
     for(i = 0; i < 123; i++)
     {
     }
-
     //
     // Clear local and far memory buffers.
     //
     clearDataBuffer(MEM_BUFFER_SIZE);
-
     //
     // Basic read/write check.
     //
@@ -247,7 +220,6 @@ void main(void)
     {
         testStatusGlobal = TEST_PASS;
     }
-
     //
     // Checking total memory accesses.
     //
@@ -255,7 +227,6 @@ void main(void)
     uint32_t totActAccess = EMIF_getSyncTotalActivateAccesses(EMIF1_BASE);
     while(1);
 }
-
 //
 // Clear Data Buffer - This function clears the memory location of size memSize.
 //
@@ -263,7 +234,6 @@ void clearDataBuffer(uint32_t memSize)
 {
     uint32_t i;
     uint32_t memWdl = 0x0;
-
     //
     // Clear far memory buffer.
     //
@@ -271,7 +241,6 @@ void clearDataBuffer(uint32_t memSize)
     {
         extSDRAMBuf[i] = memWdl;
     }
-
     //
     // Clear local memory buffer.
     //
@@ -280,7 +249,6 @@ void clearDataBuffer(uint32_t memSize)
         localRAMBuf[i] = memWdl;
     }
 }
-
 //
 // Read Write Sync Memory - This function writes data into memory & verifies
 // the written data.
@@ -289,7 +257,6 @@ uint16_t readWriteSyncMemory(uint32_t memSize)
 {
     uint32_t memWdl;
     uint32_t i;
-
     //
     // Fill far memory buffer with data.
     //
@@ -299,7 +266,6 @@ uint16_t readWriteSyncMemory(uint32_t memSize)
         extSDRAMBuf[i] = memWdl;
         memWdl += 0x00050001;
     }
-
     //
     // Read far memory buffer into local buffer and verify data.
     //
@@ -307,7 +273,6 @@ uint16_t readWriteSyncMemory(uint32_t memSize)
     for(i=0; i < memSize; i++)
     {
         localRAMBuf[i] = extSDRAMBuf[i];
-
         //
         // Return error if read data is incorrect.
         //
@@ -319,7 +284,6 @@ uint16_t readWriteSyncMemory(uint32_t memSize)
     }
     return(0);
 }
-
 //
 // End of File
 //

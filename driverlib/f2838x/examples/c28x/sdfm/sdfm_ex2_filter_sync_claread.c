@@ -53,7 +53,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -86,7 +86,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -94,7 +93,6 @@
 #include "device.h"
 #include <stdio.h>
 #include "sdfm_claread.h"
-
 //
 // Defines
 //
@@ -102,12 +100,10 @@
 #define SDFM_PIN_MUX_OPTION2      2
 #define SDFM_PIN_MUX_OPTION3      3
 #define WAITSTEP                  asm(" RPT #255 || NOP")
-
 //
 // Globals
 //
 uint32_t sdfmInstance;
-
 //
 // Function Prototypes
 //
@@ -117,7 +113,6 @@ void setPinConfig2(void);
 void setPinConfig3(void);
 void initCLAMemoryMap(void);
 void initCPU1CLA(void);
-
 //
 // Main
 //
@@ -125,73 +120,59 @@ int main(void)
 {
     uint16_t  pinMuxOption;
     uint16_t  hlt, llt;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Setup GPIO by disabling pin locks and enabling pullups
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Configure SDFM type to 0 and see if data ack generated SDINT.
     //
     SysCtl_configureType(SYSCTL_SDFMTYPE, 0, 1);
-
 #ifdef CPU1
     pinMuxOption = SDFM_PIN_MUX_OPTION1;
-
     //
     // Configure GPIO pins as SDFM pins
     //
     configureSDFMPins(pinMuxOption);
 #endif
-
     //
     // Configure the CLA memory spaces
     //
     initCLAMemoryMap();
-
     //
     // Configure the CLA task vectors & end-of task interrupts
     //
     initCPU1CLA();
-
     //
     // Force task 8
     //
     CLA_forceTasks(CLA1_BASE,CLA_TASKFLAG_8);
     WAITSTEP;
-
     //
     // Trigger Source for TASK1 of CLA1 = SDFM1
     //
     CLA_setTriggerSource(CLA_TASK_1, CLA_TRIGGER_SDFM1INT);
-
     //
     // Trigger Source for TASK2 of CLA1 = SDFM2
     //
     CLA_setTriggerSource(CLA_TASK_2, CLA_TRIGGER_SDFM2INT);
-
     //
     // Configure SDFM1
     //
     sdfmInstance = SDFM1_BASE;
-
     //
     // Input Control Module
     //
@@ -199,22 +180,17 @@ int main(void)
     //
     SDFM_setupModulatorClock(sdfmInstance, SDFM_FILTER_1,
                              SDFM_MODULATOR_CLK_EQUAL_DATA_RATE);
-
     SDFM_setupModulatorClock(sdfmInstance, SDFM_FILTER_2,
                              SDFM_MODULATOR_CLK_EQUAL_DATA_RATE);
-
     SDFM_setupModulatorClock(sdfmInstance, SDFM_FILTER_3,
                              SDFM_MODULATOR_CLK_EQUAL_DATA_RATE);
-
     SDFM_setupModulatorClock(sdfmInstance, SDFM_FILTER_4,
                              SDFM_MODULATOR_CLK_EQUAL_DATA_RATE);
-
     //
     // Comparator Module
     //
     hlt = 0x7FFF;    //Over value threshold settings
     llt = 0x0000;    //Under value threshold settings
-
     //
     // Configure Comparator module's comparator filter type and comparator's OSR
     // value, higher threshold, lower threshold
@@ -231,7 +207,6 @@ int main(void)
     SDFM_configComparator(sdfmInstance,
         (SDFM_FILTER_4 | SDFM_FILTER_SINC_3 | SDFM_SET_OSR(32)),
         (SDFM_THRESHOLD(hlt,llt)), 0);
-
     //
     // Data filter Module
     //
@@ -241,26 +216,21 @@ int main(void)
     SDFM_configDataFilter(sdfmInstance, (SDFM_FILTER_1 | SDFM_FILTER_SINC_3 |
            SDFM_SET_OSR(256)), (SDFM_DATA_FORMAT_16_BIT | SDFM_FILTER_ENABLE |
            SDFM_SHIFT_VALUE(0x000A)));
-
     SDFM_configDataFilter(sdfmInstance, (SDFM_FILTER_2 | SDFM_FILTER_SINC_3 |
            SDFM_SET_OSR(256)), (SDFM_DATA_FORMAT_16_BIT | SDFM_FILTER_ENABLE |
            SDFM_SHIFT_VALUE(0x000A)));
-
     SDFM_configDataFilter(sdfmInstance, (SDFM_FILTER_3 | SDFM_FILTER_SINC_3 |
            SDFM_SET_OSR(256)), (SDFM_DATA_FORMAT_16_BIT | SDFM_FILTER_ENABLE |
            SDFM_SHIFT_VALUE(0x000A)));
-
     SDFM_configDataFilter(sdfmInstance, (SDFM_FILTER_4 | SDFM_FILTER_SINC_3 |
            SDFM_SET_OSR(256)), (SDFM_DATA_FORMAT_16_BIT | SDFM_FILTER_ENABLE |
            SDFM_SHIFT_VALUE(0x000A)));
-
     //
     // Enable Master filter bit: Unless this bit is set none of the filter
     // modules can be enabled. All the filter modules are synchronized when
     // master filter bit is enabled after individual filter modules are enabled.
     //
     SDFM_enableMainFilter(sdfmInstance);
-
     //
     // PWM11.CMPC, PWM11.CMPD, PWM12.CMPC and PWM12.CMPD signals can synchronize
     // the filters. This option is not being used in this example.
@@ -269,7 +239,6 @@ int main(void)
     SDFM_disableExternalReset(sdfmInstance, SDFM_FILTER_2);
     SDFM_disableExternalReset(sdfmInstance, SDFM_FILTER_3);
     SDFM_disableExternalReset(sdfmInstance, SDFM_FILTER_4);
-
     //
     // Enable interrupts
     //
@@ -282,57 +251,45 @@ int main(void)
     SDFM_enableInterrupt(sdfmInstance, SDFM_FILTER_1,
             (SDFM_MODULATOR_FAILURE_INTERRUPT |
              SDFM_DATA_FILTER_ACKNOWLEDGE_INTERRUPT));
-
     SDFM_enableInterrupt(sdfmInstance, SDFM_FILTER_2,
             (SDFM_MODULATOR_FAILURE_INTERRUPT |
              SDFM_DATA_FILTER_ACKNOWLEDGE_INTERRUPT));
-
     SDFM_enableInterrupt(sdfmInstance, SDFM_FILTER_3,
             (SDFM_MODULATOR_FAILURE_INTERRUPT |
              SDFM_DATA_FILTER_ACKNOWLEDGE_INTERRUPT));
-
     SDFM_enableInterrupt(sdfmInstance, SDFM_FILTER_4,
             (SDFM_MODULATOR_FAILURE_INTERRUPT |
              SDFM_DATA_FILTER_ACKNOWLEDGE_INTERRUPT));
-
     SDFM_disableInterrupt(sdfmInstance, SDFM_FILTER_1,
             (SDFM_HIGH_LEVEL_THRESHOLD_INTERRUPT |
              SDFM_LOW_LEVEL_THRESHOLD_INTERRUPT));
-
     SDFM_disableInterrupt(sdfmInstance, SDFM_FILTER_2,
             (SDFM_HIGH_LEVEL_THRESHOLD_INTERRUPT |
              SDFM_LOW_LEVEL_THRESHOLD_INTERRUPT));
-
     SDFM_disableInterrupt(sdfmInstance, SDFM_FILTER_3,
             (SDFM_HIGH_LEVEL_THRESHOLD_INTERRUPT |
              SDFM_LOW_LEVEL_THRESHOLD_INTERRUPT));
-
     SDFM_disableInterrupt(sdfmInstance, SDFM_FILTER_4,
             (SDFM_HIGH_LEVEL_THRESHOLD_INTERRUPT |
              SDFM_LOW_LEVEL_THRESHOLD_INTERRUPT));
-
     //
     // Enable master interrupt so that any of the filter interrupts can
     // trigger by SDFM interrupt to CPU
     //
     SDFM_enableMainInterrupt(sdfmInstance);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     while(1);
 }
-
 //
 // configureSDFMPins - Configure SDFM GPIOs
 //
 void configureSDFMPins(uint16_t sdfmPinOption)
 {
     uint16_t pin;
-
     switch (sdfmPinOption)
     {
         case SDFM_PIN_MUX_OPTION1:
@@ -345,7 +302,6 @@ void configureSDFMPins(uint16_t sdfmPinOption)
             }
             setPinConfig1();
             break;
-
         case SDFM_PIN_MUX_OPTION2:
             for(pin = 48; pin <= 63; pin++)
             {
@@ -356,7 +312,6 @@ void configureSDFMPins(uint16_t sdfmPinOption)
             }
             setPinConfig2();
             break;
-
         case SDFM_PIN_MUX_OPTION3:
             for(pin = 122; pin <= 137; pin++)
             {
@@ -369,7 +324,6 @@ void configureSDFMPins(uint16_t sdfmPinOption)
             break;
     }
 }
-
 //
 // setPinConfig1 - sets the pin configuration for pins 16-21
 //
@@ -392,7 +346,6 @@ void setPinConfig1()
     GPIO_setPinConfig(GPIO_30_SD2_D4);
     GPIO_setPinConfig(GPIO_31_SD2_C4);
 }
-
 //
 // setPinConfig2 - sets the pin configuration for
 // pins 48-63
@@ -416,7 +369,6 @@ void setPinConfig2()
     GPIO_setPinConfig(GPIO_62_SD2_D4);
     GPIO_setPinConfig(GPIO_63_SD2_C4);
 }
-
 //
 // setPinConfig3 - sets the pin configuration for pins 122-137
 //
@@ -439,7 +391,6 @@ void setPinConfig3()
     GPIO_setPinConfig(GPIO_136_SD2_D4);
     GPIO_setPinConfig(GPIO_137_SD2_C4);
 }
-
 //
 // initCLAMemoryMap - Initialize Memory map
 //
@@ -450,7 +401,6 @@ void initCLAMemoryMap(void)
     //
     MemCfg_initSections(MEMCFG_SECT_MSGCLA1TOCPU);
     while(MemCfg_getInitStatus(MEMCFG_SECT_MSGCLA1TOCPU) != true);
-
     //
     // Copy the program and constants from FLASH to RAM before configuring
     // the CLA
@@ -461,7 +411,6 @@ void initCLAMemoryMap(void)
     memcpy((uint32_t *)&Cla1ConstRunStart, (uint32_t *)&Cla1ConstLoadStart,
         (uint32_t)&Cla1ConstLoadSize );
 #endif //defined(_FLASH)
-
     //
     // Select LS0 and LS1 RAM to be data RAM for the CLA and LS5 to be
     // programming space for the CLA as per linker cmd file used in this
@@ -474,14 +423,11 @@ void initCLAMemoryMap(void)
     MemCfg_setLSRAMControllerSel(MEMCFG_SECT_LS5, MEMCFG_LSRAMCONTROLLER_CPU_CLA1);
     MemCfg_setLSRAMControllerSel(MEMCFG_SECT_LS0, MEMCFG_LSRAMCONTROLLER_CPU_CLA1);
     MemCfg_setLSRAMControllerSel(MEMCFG_SECT_LS1, MEMCFG_LSRAMCONTROLLER_CPU_CLA1);
-
-
     //
     // Initialize and wait for CPUToCLA1MsgRAM
     //
     MemCfg_initSections(MEMCFG_SECT_MSGCPUTOCLA1);
     while(MemCfg_getInitStatus(MEMCFG_SECT_MSGCPUTOCLA1) != true);
-
     //
     // Filter1 and Filter2 data memory is mapped to LS6 RAM in linker cmd file
     // used in this example. This configuration should be updated as per the
@@ -489,7 +435,6 @@ void initCLAMemoryMap(void)
     //
     MemCfg_setCLAMemType(MEMCFG_SECT_LS6, MEMCFG_CLA_MEM_DATA);
     MemCfg_setLSRAMControllerSel(MEMCFG_SECT_LS6, MEMCFG_LSRAMCONTROLLER_CPU_CLA1);
-
     //
     // Filter3 and Filter4 data memory is mapped to LS7 RAM in linker cmd file
     // used in this example. This configuration should be updated as per the
@@ -498,7 +443,6 @@ void initCLAMemoryMap(void)
     MemCfg_setCLAMemType(MEMCFG_SECT_LS7, MEMCFG_CLA_MEM_DATA);
     MemCfg_setLSRAMControllerSel(MEMCFG_SECT_LS7, MEMCFG_LSRAMCONTROLLER_CPU_CLA1);
 }
-
 //
 // initCPU1CLA - Initialize CLA1 task vectors and end of task interrupts
 //
@@ -519,7 +463,6 @@ void initCPU1CLA(void)
     CLA_mapTaskVector(CLA1_BASE,CLA_MVECT_7,(uint16_t)&Cla1Task7);
     CLA_mapTaskVector(CLA1_BASE,CLA_MVECT_8,(uint16_t)&Cla1Task8);
 #pragma diag_warning=770
-
     //
     // Enable IACK instruction to start a task on CLA in software
     // for all  8 CLA tasks
@@ -527,7 +470,6 @@ void initCPU1CLA(void)
     asm("   RPT #3 || NOP");
     CLA_enableIACK(CLA1_BASE);
     CLA_enableTasks(CLA1_BASE, CLA_TASKFLAG_ALL);
-
     //
     // Configure the vectors for the end-of-task interrupt for all
     // 8 tasks
@@ -540,7 +482,6 @@ void initCPU1CLA(void)
     Interrupt_register(INT_CLA1_6, &cla1Isr6);
     Interrupt_register(INT_CLA1_7, &cla1Isr7);
     Interrupt_register(INT_CLA1_8, &cla1Isr8);
-
     //
     // Enable CLA interrupts at the group and subgroup levels
     //
@@ -552,11 +493,9 @@ void initCPU1CLA(void)
     Interrupt_enable(INT_CLA1_6);
     Interrupt_enable(INT_CLA1_7);
     Interrupt_enable(INT_CLA1_8);
-
     EINT;   // Enable Global interrupt INTM
     ERTM;   // Enable Global realtime interrupt DBGM
 }
-
 //
 // cla1Isr1 - CLA1 ISR 1
 //
@@ -566,13 +505,11 @@ interrupt void cla1Isr1 ()
     // Acknowledge the end-of-task interrupt for task 1
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP11);
-
     //
     // Halt debugger and stop here
     //
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr1 - CLA1 ISR 2
 //
@@ -582,13 +519,11 @@ interrupt void cla1Isr2 ()
     // Acknowledge the end-of-task interrupt for task 2
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP11);
-
     //
     // Halt debugger and stop here
     //
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr1 - CLA1 ISR 3
 //
@@ -599,7 +534,6 @@ interrupt void cla1Isr3 ()
     //
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr1 - CLA1 ISR 4
 //
@@ -610,7 +544,6 @@ interrupt void cla1Isr4 ()
     //
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr1 - CLA1 ISR 5
 //
@@ -621,7 +554,6 @@ interrupt void cla1Isr5 ()
     //
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr1 - CLA1 ISR 6
 //
@@ -632,7 +564,6 @@ interrupt void cla1Isr6 ()
     //
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr1 - CLA1 ISR 7
 //
@@ -643,7 +574,6 @@ interrupt void cla1Isr7 ()
     //
     asm(" ESTOP0");
 }
-
 //
 // cla1Isr1 - CLA1 ISR 8
 //
@@ -653,13 +583,11 @@ interrupt void cla1Isr8 ()
     // Acknowledge the end-of-task interrupt for task 8
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP11);
-
 //    //
 //    // Uncomment to halt debugger and stop here
 //    //
 //    asm(" ESTOP0");
 }
-
 //
 // End of file
 //

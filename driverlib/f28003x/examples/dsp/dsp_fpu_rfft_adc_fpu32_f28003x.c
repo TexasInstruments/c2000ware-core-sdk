@@ -44,8 +44,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
 //
 // Included Files
 //
@@ -53,7 +51,6 @@
 #include "device.h"
 #include "board.h"
 #include "c2000ware_libraries.h"
-
 uint16_t test_input[512] = {
      46,      83,      68,      35,
          42,      73,      77,      53,
@@ -120,7 +117,6 @@ uint16_t test_input[512] = {
          26,      28,      32,      37,
          44,      37,      22,      33,
 };
-
 const float test_golden[514] = {
        2.873748473748F,    0.000055087470F,   -0.000200581179F,    0.000653881035F,
        0.000251828052F,    0.000293578167F,   -0.000038960524F,    0.000018333666F,
@@ -251,37 +247,31 @@ const float test_golden[514] = {
        3.033629856705F,    2.993458186342F,   -2.915328172795F,    3.126018943379F,
       -3.064517109099F,    3.066975397711F,   -3.120888455319F,   -3.136302794799F,
        3.036697817257F,    3.141592653590F, };
-
 uint16_t pass = 0U, fail = 0U;
 float tolerance = 1.0e-3;
 volatile uint16_t flagInputReady = 0;
 volatile uint16_t sampleIndex = 0;
 uint32_t max_idx = 1;
-
 uint16_t test_input[2U*myRFFT0_RFFT_SIZE];
 float32_t test_output[myRFFT0_RFFT_SIZE];
 float32_t test_error[myRFFT0_RFFT_SIZE];
 float32_t test_magnitude_phase[(myRFFT0_RFFT_SIZE >> 1) + 1];
 float32_t twiddleFactors[myRFFT0_RFFT_SIZE];
-
 uint16_t *inADC;
 float32_t *inPtr = (float32_t *)test_input;
 float32_t *outPtr = test_output;
 float32_t *magPtr = test_magnitude_phase;
 float32_t *phasPtr = test_magnitude_phase;
-
 #ifdef __cplusplus
 #pragma DATA_SECTION("FFT_buffer_1")
 #else
 #pragma DATA_SECTION(test_input, "FFT_buffer_1")
 #endif
-
 #ifdef __cplusplus
 #pragma DATA_SECTION("FFT_buffer_2")
 #else
 #pragma DATA_SECTION(test_output, "FFT_buffer_2")
 #endif
-
 //
 // Main
 //
@@ -296,14 +286,11 @@ void main(void)
     Interrupt_initVectorTable();
     Board_init();
     C2000Ware_libraries_init();
-
     int16_t i, j;
     float32u_t out, gold, err;
     float32_t max;
     float32_t *p_temp;
-
     RFFT_adc_f32(myRFFT0_adc_handle);
-
     p_temp      = test_output;
     for(i = 0U; i < myRFFT0_RFFT_SIZE; i++)
     {
@@ -320,15 +307,11 @@ void main(void)
         }
         test_error[i] = err.f32;
     }
-
     flagInputReady = 0;
-
     RFFT_f32_mag_TMU0(myRFFT0_handle);
     p_temp      = test_magnitude_phase;
-
     max = 0.0f;
     max_idx = 1;
-
     for(i = 1U; i < myRFFT0_RFFT_SIZE / 2; i++)
     {
         if(p_temp[i] > max)
@@ -337,7 +320,6 @@ void main(void)
             max_idx = i;
         }
     }
-
     if (max_idx == 51)
     {
         pass = 1;
@@ -348,7 +330,6 @@ void main(void)
         pass = 0;
         fail = 1;
     }
-
     for(i = (myRFFT0_RFFT_SIZE), j=0U; i <= (myRFFT0_RFFT_SIZE+(myRFFT0_RFFT_SIZE >> 1)); i++, j++)
     {
         out.f32     = p_temp[j];
@@ -364,10 +345,8 @@ void main(void)
         }
         test_error[j] = err.f32;
     }
-
     RFFT_f32_phase_TMU0(myRFFT0_handle);
     p_temp      = test_magnitude_phase;
-
     for(i  = (myRFFT0_RFFT_SIZE+(myRFFT0_RFFT_SIZE >> 1)+1U), j=0U;
             i <= ((myRFFT0_RFFT_SIZE << 1)+1U); i++, j++)
     {
@@ -386,7 +365,6 @@ void main(void)
     }
     while(1);
 }
-
 //
 // End of File
 //

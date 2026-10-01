@@ -56,12 +56,10 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Function Prototypes
 //
@@ -70,52 +68,43 @@ void initSPIFIFO(void);
 void error(void);
 void InitSpi(void);
 void InitSpiaGpio(void);
-
 void main(void)
 {
     uint16_t sdata;  // sent data
     uint16_t rdata;  // received data
-
     //
     // Initialize device clock and peripherals
     //
     InitSysCtrl();
-
     //
     // Initialize GPIO
     //
     InitGpio();
     InitSpiaGpio();
-
     //
     // Disable CPU interrupts
     //
     DINT;
-
     //
     // Initialize the PIE control registers to their default state.
     // The default state is all PIE interrupts disabled and flags
     // are cleared.
     //
     InitPieCtrl();
-
     //
     // Disable CPU interrupts and clear all CPU interrupt flags
     //
     IER = 0x0000;
     IFR = 0x0000;
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR)
     //
     InitPieVectTable();
-
     //
     // Set up SPI, initializing it for FIFO mode
     //
     initSPIFIFO();
-
     //
     // Loop forever. Suspend or place breakpoints to observe the buffers.
     //
@@ -126,15 +115,12 @@ void main(void)
         // Transmit data
         //
         transmitData(sdata);
-
         //
         // Wait until data is received
         //
         while(SpiaRegs.SPIFFRX.bit.RXFFST != 1)
         {
-
         }
-
         //
         // Check against sent data
         //
@@ -146,7 +132,6 @@ void main(void)
         sdata++;
     }
 }
-
 //
 // error - Error function that halts the debugger
 //
@@ -155,7 +140,6 @@ void error(void)
     asm("     ESTOP0");     // Test failed!! Stop!
     for(;;);
 }
-
 //
 // transmitData - Transmit value via SPI
 //
@@ -163,7 +147,6 @@ void transmitData(uint16_t a)
 {
     SpiaRegs.SPITXBUF = a;
 }
-
 //
 // initSPIFIFO - Initialize SPIA FIFO
 //
@@ -175,13 +158,11 @@ void initSPIFIFO(void)
     SpiaRegs.SPIFFTX.all = 0xE040;
     SpiaRegs.SPIFFRX.all = 0x2044;
     SpiaRegs.SPIFFCT.all = 0x0;
-
     //
     // Initialize core SPI registers
     //
     InitSpi();
 }
-
 //
 // InitSPI - This function initializes the SPI to a known state
 //
@@ -190,7 +171,6 @@ void InitSpi(void)
     //
     // Initialize SPI-A
     //
-
     //
     // Set reset low before configuration changes
     // Clock polarity (0 == rising, 1 == falling)
@@ -201,7 +181,6 @@ void InitSpi(void)
     SpiaRegs.SPICCR.bit.CLKPOLARITY = 0;
     SpiaRegs.SPICCR.bit.SPICHAR = (16 - 1);
     SpiaRegs.SPICCR.bit.SPILBK = 1;
-
     //
     // Enable master (0 == slave, 1 == master)
     // Enable transmission (Talk)
@@ -212,29 +191,23 @@ void InitSpi(void)
     SpiaRegs.SPICTL.bit.TALK = 1;
     SpiaRegs.SPICTL.bit.CLK_PHASE = 0;
     SpiaRegs.SPICTL.bit.SPIINTENA = 0;
-
     //
     // Set the baud rate using a 1 MHz SPICLK
     // BRR = (LSPCLK / SPICLK) - 1
     //
     SpiaRegs.SPIBRR.bit.SPI_BIT_RATE = ((25000000 / 1000000) - 1);
-
     // Set FREE bit
     // Halting on a breakpoint will not halt the SPI
     //
     SpiaRegs.SPIPRI.bit.FREE = 1;
-
     //
     // Release the SPI from reset
     //
     SpiaRegs.SPICCR.bit.SPISWRESET = 1;
 }
-
-
 void InitSpiaGpio(void)
 {
        EALLOW;
-
     //
     // Enable internal pull-up for the selected pins
     //
@@ -245,7 +218,6 @@ void InitSpiaGpio(void)
     GpioCtrlRegs.GPAPUD.bit.GPIO17 = 0;  // Enable pull-up on GPIO17 (SPISOMIA)
     GpioCtrlRegs.GPBPUD.bit.GPIO56 = 0;  // Enable pull-up on GPIO56 (SPICLKA)
     GpioCtrlRegs.GPBPUD.bit.GPIO57 = 0;  // Enable pull-up on GPIO57 (SPISTEA)
-
     //
     // Set qualification for selected pins to asynch only
     //
@@ -255,7 +227,6 @@ void InitSpiaGpio(void)
     GpioCtrlRegs.GPAQSEL2.bit.GPIO17 = 3; // Asynch input GPIO17 (SPISOMIA)
     GpioCtrlRegs.GPBQSEL2.bit.GPIO56 = 3; // Asynch input GPIO56 (SPICLKA)
     GpioCtrlRegs.GPBQSEL2.bit.GPIO57 = 3; // Asynch input GPIO57 (SPISTEA)
-
     //
     // Configure SPI-A pins
     //
@@ -266,10 +237,8 @@ void InitSpiaGpio(void)
     GpioCtrlRegs.GPAMUX2.bit.GPIO17 = 1; // Configure GPIO17 as SPISOMIA
     GpioCtrlRegs.GPBMUX2.bit.GPIO56 = 1; // Configure GPIO56 as SPICLKA
     GpioCtrlRegs.GPBMUX2.bit.GPIO57 = 1; // Configure GPIO57 as SPISTEA
-
     EDIS;
 }
-
 //
 // End of file
 //

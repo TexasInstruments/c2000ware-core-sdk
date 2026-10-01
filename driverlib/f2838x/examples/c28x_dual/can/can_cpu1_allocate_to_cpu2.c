@@ -45,13 +45,11 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Main
 //
@@ -61,40 +59,31 @@ void main(void)
     // Configure PLL, disable WD, enable peripheral clocks.
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Hand-over the CAN module access to CPU2
     //
     SysCtl_selectCPUForPeripheral(SYSCTL_CPUSEL8_CAN, 1, SYSCTL_CPUSEL_CPU2);
-
     //
     // Configuring the GPIOs for CAN.
     //
     GPIO_setPinConfig(DEVICE_GPIO_CFG_CANRXA);
     GPIO_setPinConfig(DEVICE_GPIO_CFG_CANTXA);
-
     //
     // Initialize interrupt controller and vector table.
     //
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
     while(1)
     {
         //
         //  Forever Loop
         //
-
     }
-
 }
-
 //
 // End of File
 //
-

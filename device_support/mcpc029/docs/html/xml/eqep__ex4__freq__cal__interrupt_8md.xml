@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="eqep__ex4__freq__cal__interrupt_8md" kind="file" language="Markdown">
+    <compoundname>eqep_ex4_freq_cal_interrupt.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>EQEP<sp/>Frequency<sp/>Calculation<sp/>{#EXAMPLES_DRIVERS_EQEP_EX4_FREQ_CAL_INTERRUPT}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>will<sp/>calculate<sp/>the<sp/>frequency<sp/>of<sp/>an<sp/>input<sp/>signal<sp/>using<sp/>the<sp/>eQEP<sp/>module.<sp/>EPWM1A<sp/>(MCPWM1A<sp/>in<sp/>case<sp/>of<sp/>F28E12x<sp/>and<sp/>MCPC029)<sp/>is<sp/>configured<sp/>to<sp/>generate<sp/>this<sp/>input<sp/>signal<sp/>with<sp/>a<sp/>frequency<sp/>of<sp/>5<sp/>kHz.<sp/>EQEP<sp/>unit<sp/>timeout<sp/>is<sp/>set<sp/>which<sp/>will<sp/>generate<sp/>an<sp/>interrupt<sp/>every<sp/>UNIT_PERIOD<sp/>microseconds<sp/>and<sp/>frequency<sp/>calculation<sp/>occurs<sp/>continuously.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>example<sp/>does<sp/>the<sp/>below</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>PWM<sp/>frequency<sp/>is<sp/>specified<sp/>as<sp/>5000Hz.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>UNIT_PERIOD<sp/>is<sp/>specified<sp/>as<sp/>10000<sp/>us.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Min<sp/>frequency<sp/>is<sp/>(1/(2*10ms))<sp/>i.e<sp/>50Hz.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Highest<sp/>frequency<sp/>can<sp/>be<sp/>(2^32)/<sp/>((2*10ms)).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Resolution<sp/>of<sp/>frequency<sp/>measurement<sp/>is<sp/>50Hz.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Watch<sp/><sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>freq<sp/>-<sp/>Frequency<sp/>measurement<sp/>using<sp/>position<sp/>counter/unit<sp/>time<sp/>out</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>pass<sp/>-<sp/>If<sp/>measured<sp/>frequency<sp/>matches<sp/>with<sp/>PWM<sp/>frequency<sp/>then<sp/>pass<sp/>=<sp/>1<sp/>else<sp/>0.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>GPIO6/eQEP1A<sp/>to<sp/>GPIO0/MCPWM1A.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28P55x<sp/>||<sp/>F28P551x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>GPIO20/eQEP1A<sp/>to<sp/>GPIO0/ePWM1A</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Using<sp/>the<sp/>watch<sp/>variables,<sp/>view<sp/>the<sp/>frequency<sp/>calculated<sp/>for<sp/>MCPWM<sp/>and<sp/>verify<sp/>it<sp/>with<sp/>the<sp/>original<sp/>frequency.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_EQEP_PAGE</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/eqep_ex4_freq_cal_interrupt.md"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_EQEP_EX1_FREQ_CAL" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_EQEP_EX1_FREQ_CAL</compoundname>
+    <title>EQEP Frequency Measurement</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_EQEP_EX1_FREQ_CAL_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_eqep_ex1_freq_cal"/></para>
+<sect1 id="EXAMPLES_DRIVERS_EQEP_EX1_FREQ_CAL_1autotoc_md230">
+<title>Introduction</title>
+<para>This example will calculate the frequency of an input signal using the eQEP module. EPWM1A (MCPWM1A in case of F28E12x and MCPC029) is configured to generate this input signal with a frequency of 5 kHz. It will interrupt once every period and call the frequency calculation function. This example uses the IQMath library to simplify high-precision calculations.</para>
+<para>In addition to the main example file, the following files must be included in this project:<itemizedlist>
+<listitem><para>eqep_ex1_calculation.c - contains frequency calculation function</para>
+</listitem><listitem><para>eqep_ex1_calculation.h - includes initialization values for frequency structure</para>
+</listitem></itemizedlist>
+</para>
+<para>The configuration for this example is as follows<itemizedlist>
+<listitem><para>Maximum frequency is configured to 10KHz (baseFreq)</para>
+</listitem><listitem><para>Minimum frequency is assumed at 50Hz for capture pre-scalar selection</para>
+</listitem></itemizedlist>
+</para>
+<para>SPEED_FR: High Frequency Measurement is obtained by counting the external input pulses for 10ms (unit timer set to 100Hz). SPEED_FR = \frac{Count\ Delta}{10ms}</para>
+<para>SPEED_PR: Low Frequency Measurement is obtained by measuring time period of input edges. Time measurement is averaged over 64 edges for better results and the capture unit performs the time measurement using pre-scaled SYSCLK.</para>
+<para>Note that the pre-scaler for capture unit clock is selected such that the capture timer does not overflow at the required minimum frequency. This example runs indefinitely until the user stops it. For more information about the frequency calculation see the comments at the beginning of eqep_ex1_calculation.c and the XLS file provided with the project, eqep_ex1_calculation.xls.</para>
+<para>Watch Variables<itemizedlist>
+<listitem><para>freq.freqHzFR - Frequency measurement using position counter/unit time out</para>
+</listitem><listitem><para>freq.freqHzPR - Frequency measurement using capture unit</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_EQEP_EX1_FREQ_CAL_1autotoc_md231">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>Connect GPIO6/eQEP1A to GPIO0/MCPWM1A</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_EQEP_EX1_FREQ_CAL_1autotoc_md232">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Using the watch variables, view the position and speed calculated for the motor.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_EQEP_EX1_FREQ_CAL_1autotoc_md233">
+<title>See Also</title>
+<para><ref refid="DRIVERS_EQEP_PAGE" kindref="compound">EQEP</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/eqep_ex1_freq_cal.md"/>
+  </compounddef>
+</doxygen>

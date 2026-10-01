@@ -1,9 +1,14 @@
 /**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F2838x" --part "F2838x_337bga" --package "337bga" --context "CPU1" 
+ * @v2CliArgs --device "TMS320F28388D" --package "337bga" --context "CPU1"
+ */
+/**
  * Import the modules used in this configuration.
  */
 const dcc  = scripting.addModule("/driverlib/dcc.js", {}, false);
 const dcc1 = dcc.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -14,7 +19,6 @@ dcc1.setCounter0ClkSource       = "DCC_COUNT0SRC_INTOSC2";
 dcc1.enableInterrupts           = true;
 dcc1.enableErrorSignalInterrupt = true;
 dcc1.registerInterrupts         = true;
-
 const interrupt_sys_err                            = scripting.addModule("/driverlib/interrupt/interrupt_sys_err.js", {}, false);
 const interrupt_sys_err1                           = interrupt_sys_err.addInstance({}, false);
 interrupt_sys_err1.$name                           = "myInterruptSysErr0";

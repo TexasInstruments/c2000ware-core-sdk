@@ -36,7 +36,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -69,13 +69,11 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
@@ -85,7 +83,6 @@
 #define DMA_BURST       2
 #define DMA_TRANSFER    1
 #define CAN_IF2    2
-
 //
 // Globals
 //
@@ -94,18 +91,15 @@ volatile uint32_t rxMsgCount = 0;
 uint16_t txMsgData[4] = {0x12, 0x34, 0x56, 0x78};
 uint16_t rxMsgData[2] = {0xFFFF, 0xFFFF};
 volatile uint16_t done = 0;
-
 // Place buffers in GSRAM
 #pragma DATA_SECTION(txMsgData, "ramgs0");
 #pragma DATA_SECTION(rxMsgData, "ramgs0");
-
 //
 // Function Prototypes
 //
 void initDMA(void);
 __interrupt void dmaCh5ISR(void);
 __interrupt void canISR(void);
-
 //
 // Main
 //
@@ -115,19 +109,16 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure GPIO pins for CANTX/CANRX
     //
     Device_initGPIO();
     GPIO_setPinConfig(DEVICE_GPIO_CFG_CANRXA);
     GPIO_setPinConfig(DEVICE_GPIO_CFG_CANTXA);
-
     //
     // Initialize the CAN controller
     //
     CAN_initModule(CANA_BASE);
-
     //
     // Set up the CAN bus bit rate to 500kHz
     // Refer to the Driver Library User Guide for information on how to set
@@ -135,30 +126,25 @@ void main(void)
     // for more information about the CAN module clocking.
     //
     CAN_setBitRate(CANA_BASE, DEVICE_SYSCLK_FREQ, 500000, 20);
-
     //
     // Enable interrupts on the CAN peripheral.
     //
     CAN_enableInterrupt(CANA_BASE, CAN_INT_IE0 | CAN_INT_ERROR |
                         CAN_INT_STATUS);
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Interrupts that are used in this example are re-mapped to
     // ISR functions found within this file.
@@ -166,29 +152,24 @@ void main(void)
     //
     Interrupt_register(INT_CANA0, &canISR);
     Interrupt_register(INT_DMA_CH5, &dmaCh5ISR);
-
     //
     // Setup the DMA for CAN use
     //
     initDMA();
-
     //
     // Enable the CAN DMA request lines for IF1, IF2, and IF3
     //
     CAN_enableDMARequests(CANA_BASE);
-
     //
     // Enable the CAN and DMA interrupt signal
     //
     Interrupt_enable(INT_DMA_CH5);
     Interrupt_enable(INT_CANA0);
     CAN_enableGlobalInterrupt(CANA_BASE, CAN_GLOBAL_INT_CANINT0);
-
     //
     // Enable CAN test mode with external loopback
     //
     CAN_enableTestMode(CANA_BASE, CAN_TEST_EXL);
-
     //
     // Initialize the transmit message object used for sending CAN messages.
     // Message Object Parameters:
@@ -203,7 +184,6 @@ void main(void)
     CAN_setupMessageObject(CANA_BASE, TX_MSG_OBJ_ID, 0x1, CAN_MSG_FRAME_STD,
                            CAN_MSG_OBJ_TYPE_TX, 0, CAN_MSG_OBJ_TX_INT_ENABLE,
                            MSG_DATA_LENGTH);
-
     //
     // Initialize the receive message object used for receiving CAN messages.
     // Message Object Parameters:
@@ -219,34 +199,28 @@ void main(void)
     CAN_setupMessageObject(CANA_BASE, RX_MSG_OBJ_ID, 0x1, CAN_MSG_FRAME_STD,
                            CAN_MSG_OBJ_TYPE_RX, 0, CAN_MSG_OBJ_RX_INT_ENABLE,
                            MSG_DATA_LENGTH);
-
     //
     // Start CAN module operations
     //
     CAN_startModule(CANA_BASE);
-
     //
     // Start the DMA channel
     //
     DMA_startChannel(DMA_CH5_BASE);
-
     //
     // Transmit the CAN message
     //
     CAN_sendMessage(CANA_BASE, TX_MSG_OBJ_ID, MSG_DATA_LENGTH,
                     txMsgData);
-
     //
     // Wait until the CAN message is received and the DMA transfer is complete
     //
     while(!done);
-
     //
     // When the DMA transfer is complete, the program will stop here
     //
     ESTOP0;
 }
-
 //
 // initDMA - Initialize the DMA controller and configure DMA channel 5 to
 //           transfer the received CAN data into the specified RX buffer
@@ -257,7 +231,6 @@ void initDMA()
     // Initialize DMA
     //
     DMA_initController();
-
     //
     // Configure DMA Ch5 for RX. When the CAN asserts the DMA line, the DMA
     // will transfer the contents of the IF2 data register into the RX buffer
@@ -268,7 +241,6 @@ void initDMA()
     DMA_configTransfer(DMA_CH5_BASE, DMA_TRANSFER, 0, 0);
     DMA_configMode(DMA_CH5_BASE, DMA_TRIGGER_CANAIF2, DMA_CFG_ONESHOT_DISABLE |
                    DMA_CFG_CONTINUOUS_DISABLE | DMA_CFG_SIZE_16BIT);
-
     //
     // Configure DMA Ch5 interrupts
     //
@@ -276,7 +248,6 @@ void initDMA()
     DMA_enableInterrupt(DMA_CH5_BASE);
     DMA_enableTrigger(DMA_CH5_BASE);
 }
-
 //
 // CAN ISR - The interrupt service routine called when a CAN interrupt is
 //           triggered.  It checks for the cause of the interrupt, and
@@ -286,12 +257,10 @@ __interrupt void
 canISR(void)
 {
     uint32_t status;
-
     //
     // Read the CAN interrupt status to find the cause of the interrupt
     //
     status = CAN_getInterruptCause(CANA_BASE);
-
     //
     // If the cause is a controller status interrupt, then get the status
     //
@@ -305,7 +274,6 @@ canISR(void)
         // The act of reading this status will clear the interrupt.
         //
         status = CAN_getStatus(CANA_BASE);
-
         //
         // Check to see if an error occurred.
         //
@@ -316,7 +284,6 @@ canISR(void)
             ESTOP0;
         }
     }
-
     //
     // Check if the cause is the transmit message object 1
     //
@@ -328,7 +295,6 @@ canISR(void)
         // message object interrupt.
         //
         CAN_clearInterruptStatus(CANA_BASE, TX_MSG_OBJ_ID);
-
         //
         // Increment a counter to keep track of how many messages have been
         // sent.  In a real application this could be used to set flags to
@@ -336,7 +302,6 @@ canISR(void)
         //
         txMsgCount++;
     }
-
     //
     // Check if the cause is the receive message object 2
     //
@@ -346,14 +311,12 @@ canISR(void)
         // Assert the DMA request line for IF2 register for the message object
         //
         CAN_transferMessage(CANA_BASE, CAN_IF2, RX_MSG_OBJ_ID, false, true);
-
         //
         // Getting to this point means that the RX interrupt occurred on
         // message object 2, and the message RX is complete.  Clear the
         // message object interrupt.
         //
         CAN_clearInterruptStatus(CANA_BASE, RX_MSG_OBJ_ID);
-
         //
         // Increment a counter to keep track of how many messages have been
         // received. In a real application this could be used to set flags to
@@ -361,7 +324,6 @@ canISR(void)
         //
         rxMsgCount++;
     }
-
     //
     // If something unexpected caused the interrupt, this would handle it.
     //
@@ -371,18 +333,15 @@ canISR(void)
         // Spurious interrupt handling can go here.
         //
     }
-
     //
     // Clear the global interrupt flag for the CAN interrupt line
     //
     CAN_clearGlobalInterruptStatus(CANA_BASE, CAN_GLOBAL_INT_CANINT0);
-
     //
     // Acknowledge this interrupt located in group 9
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP9);
 }
-
 //
 // DMA Channel 5 ISR - The interrupt service routine called when the DMA
 //                     channel completes the transfer of data into the buffer.
@@ -390,13 +349,11 @@ canISR(void)
 __interrupt void dmaCh5ISR(void)
 {
     uint16_t i, txWordData, txIndex = 0;
-
     //
     // Stop the DMA channel operations and acknowledge interrupt
     //
     DMA_stopChannel(DMA_CH5_BASE);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
-
     //
     // Check for data integrity
     //
@@ -407,20 +364,16 @@ __interrupt void dmaCh5ISR(void)
         // checking since the DMA transfers data as words into the RX buffer.
         //
         txWordData = txMsgData[txIndex] + (txMsgData[txIndex + 1] << 8U);
-
         if(rxMsgData[i] != txWordData)
         {
             // Something went wrong. rxMsgData doesn't contain expected data.
             ESTOP0;
         }
-
         txIndex+=2;
     }
-
     done = 1;
     return;
 }
-
 //
 // End of File
 //

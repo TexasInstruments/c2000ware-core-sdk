@@ -5,7 +5,7 @@
 // TITLE:  LP5891 register and bit definitions.
 //
 //#############################################################################
-// $TI Release: F28004x Support Library v26.01.00.00 $
+// $TI Release: F28004x Support Library v26.02.00.00 $
 // 
 // $Copyright:
 // Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
@@ -39,10 +39,8 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 #ifndef CLB_EX32_LP5891_H_
 #define CLB_EX32_LP5891_H_
-
 enum WRITE_COMMAND_ID{
     W_FC0 = 0xAA00,
     W_FC1,
@@ -56,7 +54,6 @@ enum WRITE_COMMAND_ID{
     W_SOFT_RESET = 0XAA80,
     W_SRAM = 0xAA30
 };
-
 enum READ_COMMAND_ID{
     R_FC0 = 0xAA60,
     R_FC1,
@@ -73,12 +70,10 @@ enum READ_COMMAND_ID{
     R_FC21,
     R_CHIP_INDEX = 0xAA70
 };
-
 #define RGB_CHANNEL_CNT 16
 #define CHANNEL_CNT 48
 #define LP589X 1
 #define LP5891 1
-
 /* FC0  Bits */
 #define LSD_RM_EN_1                        (0x800000000000)        /* enable */
 #define LSD_RM_EN_0                        (0x000000000000)        /* disable */
@@ -399,7 +394,6 @@ enum READ_COMMAND_ID{
 #define CHIP_NUM__3                        (0x000000000002)        /* 3 devices */
 #define CHIP_NUM__2                        (0x000000000001)        /* 2 devices */
 #define CHIP_NUM__1                        (0x000000000000)        /* 1 devices */
-
 /* FC1  Bits */
 #define BLK_ADJ_63                         (0x7E0000000000)        /* 63 GCLK */
 #define BLK_ADJ_62                         (0x7C0000000000)        /* 62 GCLK */
@@ -1650,7 +1644,6 @@ enum READ_COMMAND_ID{
 #define SEG_LENGTH__130                    (0x000000000081)        /* 130 GCLK */
 #define SEG_LENGTH__129                    (0x000000000080)        /* 129 GCLK */
 #define SEG_LENGTH__128                    (0x00000000007F)        /* 128 GCLK */
-
 /* FC2  Bits */
 #define MPSM_EN_1                          (0x800000000000)        /* enable */
 #define MPSM_EN_0                          (0x000000000000)        /* disable */
@@ -1878,7 +1871,6 @@ enum READ_COMMAND_ID{
 #define V_PDC_R__0V3                       (0x000000000002)        /* 0.3 V */
 #define V_PDC_R__0V2                       (0x000000000001)        /* 0.2 V */
 #define V_PDC_R__0V1                       (0x000000000000)        /* 0.1 V */
-
 /* FC3  Bits */
 #define LSDVTH_B__2V8                      (0xE00000000000)        /* 2.8 V */
 #define LSDVTH_B__2V4                      (0xC00000000000)        /* 2.4 V */
@@ -3488,7 +3480,6 @@ enum READ_COMMAND_ID{
 #define LODVTH_R__0V9                      (0x000000000002)        /* VLEDR-0.9 V */
 #define LODVTH_R__0V5                      (0x000000000001)        /* VLEDR-0.5 V */
 #define LODVTH_R__0V2                      (0x000000000000)        /* VLEDR-0.2 V */
-
 /* FC4  Bits */
 #define DE_COUPLE3_EN_1                    (0x100000000000)        /* enabled */
 #define DE_COUPLE3_EN_0                    (0x000000000000)        /* disabled */
@@ -3622,5 +3613,4 @@ enum READ_COMMAND_ID{
 #define IMAX_0                             (0x000000000000)        /* 10 mA maximum */
 #define IMAX__20                           (0x000000000002)        /* 20 mA maximum */
 #define IMAX__10                           (0x000000000000)        /* 10 mA maximum */
-
 #endif /* CLB_EX32_LP5891_H_ */

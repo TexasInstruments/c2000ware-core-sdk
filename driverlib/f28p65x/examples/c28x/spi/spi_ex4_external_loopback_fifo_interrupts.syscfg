@@ -1,10 +1,9 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --device "F28P65x" --package "256ZEJ" --part "F28P65x_256ZEJ" --context "CPU1" --product "C2000WARE@5.02.00.00"
- * @versions {"tool":"1.17.0+2988"}
+ * @cliArgs --device "F28P65x" --part "F28P65x_256ZEJ" --package "256ZEJ" --board "/boards/TMDSCNCD28P65X" --context "CPU1"
+ * @v2CliArgs --device "TMS320F28P650DK" --package "256ZEJ" --variant "TMS320F28P650DK9" --context "CPU1"
  */
-
 /**
  * Import the modules used in this configuration.
  */
@@ -17,7 +16,6 @@ const memcfg         = scripting.addModule("/driverlib/memcfg.js");
 const spi  = scripting.addModule("/driverlib/spi.js", {}, false);
 const spi1 = spi.addInstance();
 const spi2 = spi.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -36,7 +34,6 @@ spi1.spi.spi_picoPin.$assign = "GPIO16";
 spi1.spi.spi_pociPin.$assign = "GPIO17";
 spi1.spi.spi_clkPin.$assign  = "GPIO18";
 spi1.spi.spi_ptePin.$assign  = "GPIO35";
-
 spi2.$name                     = "SPIB_controller";
 spi2.mode                      = "SPI_MODE_CONTROLLER";
 spi2.emulationMode             = "SPI_EMULATION_FREE_RUN";
@@ -53,10 +50,8 @@ spi2.spi.spi_picoPin.$assign = "GPIO24";
 spi2.spi.spi_pociPin.$assign = "GPIO25";
 spi2.spi.spi_clkPin.$assign  = "GPIO26";
 spi2.spi.spi_ptePin.$assign  = "GPIO27";
-
 CMD1.$name                    = "generic_ram_lnk";
 CMD2.$name                    = "generic_flash_lnk";
-
 CMD1.sectionMemory_text       = ["RAMD0","RAMD1","RAMLS0","RAMLS1","RAMLS2","RAMLS3"];
 CMD1.sectionMemory_bss        = ["RAMLS5"];
 CMD1.sectionMemory_const      = ["RAMLS5","RAMLS6"];
@@ -67,7 +62,6 @@ CMD1.sectionMemory_stack      = ["RAMM1"];
 CMD1.sectionMemory_init_array = ["RAMM0"];
 CMD1.sectionMemory_switch     = ["RAMM0"];
 CMD1.sectionMemory_sysmem     = ["RAMLS4"];
-
 CMD2.sectionAlignEnable_ramfunc    = true;
 CMD2.sectionAlignEnable_text       = true;
 CMD2.sectionAlignEnable_binit      = true;

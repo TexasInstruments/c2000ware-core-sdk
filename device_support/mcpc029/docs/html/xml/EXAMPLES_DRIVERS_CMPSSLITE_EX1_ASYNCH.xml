@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_CMPSSLITE_EX1_ASYNCH" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_CMPSSLITE_EX1_ASYNCH</compoundname>
+    <title>CMPSSLITE Asynchronous Trip</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_CMPSSLITE_EX1_ASYNCH_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_cmpss_lite_ex1_asynch"/></para>
+<sect1 id="EXAMPLES_DRIVERS_CMPSSLITE_EX1_ASYNCH_1autotoc_md160">
+<title>Introduction</title>
+<para>This example enables the CMPSSLITE2 COMPH comparator and feeds the asynchronous CTRIPOUTH signal to the GPIO4/OUTPUTXBAR3 pin and CTRIPH to GPIO0/MCPWM1A. CMPSS is configured to generate trip signals to trip the MCPWM signals. CMPIN2P is used to give positive input and internal DAC is configured to provide the negative input. Internal DAC is configured to provide a signal at VDD/2. An MCPWM signal is generated at GPIO0 and is configured to be tripped by CTRIPOUTH.</para>
+<para>When a low input(VSS) is provided to CMPIN2P,<itemizedlist>
+<listitem><para>Trip signal(GPIO4) output is low</para>
+</listitem><listitem><para>PWM1B(GPIO0) gives a PWM signal When a high input(higher than VDD/2) is provided to CMPIN2P,</para>
+</listitem><listitem><para>Trip signal(GPIO4) output turns high</para>
+</listitem><listitem><para>PWM1B(GPIO0) gets tripped and outputs as high</para>
+</listitem></itemizedlist>
+</para>
+<para>Watch Variables<itemizedlist>
+<listitem><para>Outputs can be observed on GPIO4 and GPIO0 using an oscilloscope</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_CMPSSLITE_EX1_ASYNCH_1autotoc_md161">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>Give input on CMPIN1P.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_CMPSSLITE_EX1_ASYNCH_1autotoc_md162">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Using the watch variables, view the required waveforms.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_CMPSSLITE_EX1_ASYNCH_1autotoc_md163">
+<title>See Also</title>
+<para><ref refid="DRIVERS_CMPSSLITE_PAGE" kindref="compound">CMPSSLITE</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/cmpss_lite_ex1_asynch.md"/>
+  </compounddef>
+</doxygen>

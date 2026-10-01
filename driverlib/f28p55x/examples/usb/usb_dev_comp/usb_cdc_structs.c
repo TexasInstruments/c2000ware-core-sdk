@@ -30,15 +30,10 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-
-
-
-
 //
 // Included Files
 //
 #include "usb_structs.h"
-
 //******************************************************************************
 //
 // CDC device callback function prototypes.
@@ -50,12 +45,8 @@ uint32_t USBDCDCTxHandler(void *pvCBData, uint32_t ui32Event,
                    uint32_t ui32MsgValue, void *pvMsgData);
 uint32_t USBDCDCControlHandler(void *pvCBData, uint32_t ui32Event,
                         uint32_t ui32MsgValue, void *pvMsgData);
-
-
-
 extern tUSBBuffer g_sTxBuffer;
 extern tUSBBuffer g_sRxBuffer;
-
 //*****************************************************************************
 //
 //! The structure used by the application to define operating parameters for
@@ -77,7 +68,6 @@ tUSBDCDCDevice g_sCDCDevice =
     g_pui8StringDescriptors,
     0
 };
-
 //******************************************************************************
 //
 // Receive buffer (from the USB perspective).
@@ -96,7 +86,6 @@ tUSBBuffer g_sRxBuffer =
     g_pi8USBRxBuffer,               // pi8Buffer
     myUSB0_LIB_SCI_BUFFER_SIZE          // ui32BufferSize
 };
-
 //******************************************************************************
 //
 // Transmit buffer (from the USB perspective).
@@ -115,9 +104,6 @@ tUSBBuffer g_sTxBuffer =
     g_pi8USBTxBuffer,               // pi8Buffer
     myUSB0_LIB_SCI_BUFFER_SIZE      // ui32BufferSize
 };
-
-
-
 //
 // End of file
 //

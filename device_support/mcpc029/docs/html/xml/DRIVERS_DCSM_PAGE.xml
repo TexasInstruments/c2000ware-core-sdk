@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="DRIVERS_DCSM_PAGE" kind="page">
+    <compoundname>DRIVERS_DCSM_PAGE</compoundname>
+    <title>DCSM</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="DRIVERS_DCSM_PAGE_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_components_drivers_dcsm"/></para>
+<para>The DCSM driver provides API to configure the DCSM module. In order to configure the Dual Code Security Module, the user must program the Linkpointer in DCSM OTP as well as the security configuration registers of the Zone Select Blocks in DCSM OTP. It prevents access and visibility to on-chip secure memories (and other secure resources) by unauthorized persons. Since there are two independent zones, two developers can program proprietary code on the same device while protecting the confidentiality of their code from both each other and potential hackers.</para>
+<sect1 id="DRIVERS_DCSM_PAGE_1autotoc_md39">
+<title>Features Supported</title>
+<para><itemizedlist>
+<listitem><para>Provides functions which secure and unsecure each zone and return the ownership, security status, EXEONLY status of specific RAM modules or Flash sectors.</para>
+</listitem><listitem><para>The security module restricts the CPU access to on-chip secure memory and resources without interrupting or stalling CPU execution</para>
+</listitem><listitem><para>The security of each zone is provided by their own 128-bit (four 32-bit words) password (CSM password). The password for each zone is stored as user OTP. </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_DCSM_PAGE_1autotoc_md40">
+<title>SysConfig Features</title>
+<para><simplesect kind="note"><para>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</para>
+</simplesect>
+<itemizedlist>
+<listitem><para>The DCSM tool generates dcsm.asm (containing the linkpointer) and dcsm.cmd (containing the memory addresses and sections that references the contents in dcsm.asm file) file.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_DCSM_PAGE_1autotoc_md41">
+<title>Features NOT Supported</title>
+<para>NA</para>
+</sect1>
+<sect1 id="DRIVERS_DCSM_PAGE_1autotoc_md42">
+<title>Example Usage</title>
+<para>Include the below file to access the APIs #include &lt;<ref refid="dcsm_8h" kindref="compound">dcsm.h</ref>&gt;</para>
+</sect1>
+<sect1 id="DRIVERS_DCSM_PAGE_1autotoc_md43">
+<title>API</title>
+<para><ref refid="group__dcsm__api" kindref="compound">DCSM</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/dcsm.md"/>
+  </compounddef>
+</doxygen>

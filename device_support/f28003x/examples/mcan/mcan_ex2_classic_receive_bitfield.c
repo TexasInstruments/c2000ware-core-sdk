@@ -61,12 +61,10 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Include Files
 //
 #include "f28x_project.h"
-
 //
 // Defines.
 //
@@ -75,7 +73,6 @@
 //
 #define HW_WR_REG32(reg, val)               (*((volatile uint32_t *)(reg)) = val)
 #define HW_RD_REG32(addr)                   (*(volatile uint32_t *) addr)
-
 //
 // MCAN config defines
 //
@@ -142,18 +139,14 @@
 #define BF_MCANSS_RX_BUFFER_ELEM_FIDX_MASK     (0x7F000000U)
 #define BF_MCANSS_RX_BUFFER_ELEM_ANMF_SHIFT    (31U)
 #define BF_MCANSS_RX_BUFFER_ELEM_ANMF_MASK     (0x80000000U)
-
 //  MCAN RAM base address
 //
 #define MCANA_MSG_RAM_BASE                  (0x00058000U)
-
 //
 // MCAN defines
 //
 #define MCAN_INTR_SRC_DEDICATED_RX_BUFF_MSG (0x00080000U)
 #define MCAN_INTR_MASK_ALL                  (0x3FFFFFFFU)
-
-
 /**
  * \brief  Structure for MCAN new data flag for Rx buffer.
  */
@@ -164,8 +157,6 @@ struct MCAN_RxNewDataStatus
     uint32_t statusHigh;
     /**< New data flag for Rx buffer no. 32 to 63 */
 }newData;
-
-
 struct MCAN_RxBufElement
 {
     uint32_t id;
@@ -215,7 +206,6 @@ struct MCAN_RxBufElement
      *   Only first dlc number of bytes are valid.
      */
 }rxMsg[1], elem;
-
 //
 // Global Variables.
 //
@@ -225,12 +215,10 @@ struct MCAN_RxBufElement
 uint16_t bf_mcan_data[BF_MCAN_PAYLOAD];
 static uint32_t objSize[8]      = {4, 5, 6, 7, 8, 10, 14, 18};
 static uint32_t dataSize[16]    = {0,  1,  2,  3,  4,  5,  6,  7, 8, 8, 8, 8, 8, 8, 8, 8};
-
 //
 //  Other variables
 //
 int32_t loopCnt = 0U, error=0;
-
 //
 // Function Prototype.
 //
@@ -240,18 +228,14 @@ static void MCAN_readMsg(uint32_t           baseAddr,
                          uint32_t           elemAddr,
                          struct MCAN_RxBufElement *elem);
 __interrupt void MCANIntr1ISR(void);
-
-
 void main()
 {
     uint32_t cnt            = 0U;
     uint32_t regVal = 0U;
-
     //
     // Initialize device clock and peripherals
     //
     InitSysCtrl();
-
     //
     // Initialize GPIO and configure GPIO pins
     //
@@ -259,28 +243,23 @@ void main()
     // Initialize GPIO
     //
     InitGpio();
-
     //
     // Configure the divisor for the MCAN bit-clock
     //
     ClkCfgRegs.AUXCLKDIVSEL.bit.MCANCLKDIV = 2U;
-
     //
     // ISR Configuration.
     //
     MCANIntrConfig();
-
     //
     // Configuring the GPIOs for MCAN.
     //
     GPIO_SetupPinMux(4U, GPIO_MUX_CPU1, 0x03U);//TX
     GPIO_SetupPinMux(5U, GPIO_MUX_CPU1, 0x05U);//RX
-
     //
     // Configure the MCAN Module.
     //
     MCANConfig();
-
     //
     // Initialize message to receive
     //
@@ -295,32 +274,26 @@ void main()
     rxMsg[loopCnt].fidx = 0U;   // Filter Index
                                 // (of matching Rx acceptance filter element)
     rxMsg[loopCnt].anmf = 0U;   // Accepted Non-matching Frame
-
     for(cnt = 0U;cnt < dataSize[BF_MCAN_MSG_DLC];cnt++)
     {
         rxMsg[loopCnt].data[cnt] = 0;
     }
-
-
     //
     // Configure the MCAN Module.
     //
     MCANConfig();
-
     //
     // Enable Interrupts.
     //
     regVal  = McanaRegs.MCAN_IE.all;
     regVal |= MCAN_INTR_MASK_ALL;
     McanaRegs.MCAN_IE.all = regVal;
-
     //
     // Select Interrupt Line.
     //
     regVal  = McanaRegs.MCAN_ILS.all;
     regVal |= MCAN_INTR_MASK_ALL;
     McanaRegs.MCAN_ILS.all = regVal;
-
     //
     // Enable Interrupt Line.
     //
@@ -328,7 +301,6 @@ void main()
     regVal  &= ~((uint32_t) 0x1U << 0x1U);
     regVal  |= (uint32_t) (0x1U << 0x1U);
     McanaRegs.MCAN_ILE.all = regVal;
-
     while(1)
     {
         //
@@ -336,58 +308,46 @@ void main()
         //
         F28x_usDelay(2000);
     }
-
 }
-
-
 //
 // This function will configure X-BAR for MCAN interrupts.
 //
 static void MCANIntrConfig(void)
 {
-
     //
      // Disable CPU interrupts
      //
      DINT;
-
      //
      // Initialize the PIE control registers to their default state.
      // The default state is all PIE interrupts disabled and flags
      // are cleared.
      //
      InitPieCtrl();
-
      //
      // Disable CPU interrupts and clear all CPU interrupt flags
      //
      IER = 0x0000;
      IFR = 0x0000;
-
      //
      // Initialize the PIE vector table with pointers to the shell Interrupt
      // Service Routines (ISR)
      //
      InitPieVectTable();
-
      //
      // Register the interrupt ISR
      //
      EALLOW;  // This is needed to write to EALLOW protected registers
      PieVectTable.MCANA_1_INT = &MCANIntr1ISR;
      EDIS;    // This is needed to disable write to EALLOW protected registers
-
      //
      // Enable Interrupts
      //
      PieCtrlRegs.PIEIER9.bit.INTx10 = 0x1;   // Enable PIE Group 9 INT10
      IER |= M_INT9;                          // Enable CPU INT9
      EINT;                                   // Enable Global Interrupts
-
      EnableInterrupts();
-
 }
-
 //
 // This is Interrupt Service Routine for MCAN interrupt 1.
 //
@@ -397,24 +357,19 @@ __interrupt void MCANIntr1ISR(void)
     uint32_t startAddr      = 0U;
     uint32_t elemSize       = 0U;
     uint32_t elemAddr       = 0U;
-
     intrStatus = McanaRegs.MCAN_IR.all;
-
     //
     // Clear the interrupt Status.
     //
     McanaRegs.MCAN_IR.all = intrStatus;
-
     //
     //  Clearing the interrupt lineNum
     //
     McanaSsRegs.MCANSS_EOI.bit.EOI= 0x2;
-
     //
     //  Check to see if the interrupt is caused by a message being
     //  received in dedicated RX Buffers
     //
-
     if((MCAN_INTR_SRC_DEDICATED_RX_BUFF_MSG & intrStatus) == MCAN_INTR_SRC_DEDICATED_RX_BUFF_MSG)
     {
         //
@@ -422,7 +377,6 @@ __interrupt void MCANIntr1ISR(void)
         //
         newData.statusLow = McanaRegs.MCAN_NDAT1.all;
         newData.statusHigh = McanaRegs.MCAN_NDAT2.all;
-
         //
         //  If message is received in buffer element 0, read payload
         //
@@ -433,10 +387,8 @@ __interrupt void MCANIntr1ISR(void)
             elemSize *= 4U;
             elemAddr  = startAddr + (elemSize * 0);
             MCAN_readMsg(MCANA_MSG_RAM_BASE, elemAddr, &elem);
-
             rxMsg[loopCnt] = elem;
         }
-
         //
         //  Clearing the NewData registers
         //
@@ -446,19 +398,15 @@ __interrupt void MCANIntr1ISR(void)
     else
     {
         error++;
-
         //
         //  Interrupt handling for other interrupt sources goes here
         //
-
     }
-
     //
     // Clear the current interrupt and enable future interrupts
     //
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP9;
 }
-
 //
 // This function is used to read received message from Message RAM.
 //
@@ -467,9 +415,7 @@ static void MCAN_readMsg(uint32_t           baseAddr,
                          struct MCAN_RxBufElement *elem)
 {
     uint32_t regVal = 0U, loopCnt = 0U;
-
     regVal   = HW_RD_REG32((baseAddr + elemAddr));
-
     elem->id = (uint32_t) ((regVal & BF_MCANSS_RX_BUFFER_ELEM_ID_MASK)
                            >> BF_MCANSS_RX_BUFFER_ELEM_ID_SHIFT);
     elem->rtr = (uint32_t) ((regVal & BF_MCANSS_RX_BUFFER_ELEM_RTR_MASK)
@@ -478,7 +424,6 @@ static void MCAN_readMsg(uint32_t           baseAddr,
                             >> BF_MCANSS_RX_BUFFER_ELEM_XTD_SHIFT);
     elem->esi = (uint32_t) ((regVal & BF_MCANSS_RX_BUFFER_ELEM_ESI_MASK)
                             >> BF_MCANSS_RX_BUFFER_ELEM_ESI_SHIFT);
-
     elemAddr  += 4U;
     regVal     = HW_RD_REG32((baseAddr + elemAddr));
     elem->rxts = (uint32_t) ((regVal & BF_MCANSS_RX_BUFFER_ELEM_RXTS_MASK)
@@ -494,7 +439,6 @@ static void MCAN_readMsg(uint32_t           baseAddr,
     elem->anmf = (uint32_t) ((regVal & BF_MCANSS_RX_BUFFER_ELEM_ANMF_MASK)
                              >> BF_MCANSS_RX_BUFFER_ELEM_ANMF_SHIFT);
     elemAddr += 4U;
-
     loopCnt = 0U;
     /* Reading words from message RAM and forming payload bytes out of it */
     while((4U <= (dataSize[elem->dlc] - loopCnt)) &&
@@ -516,9 +460,7 @@ static void MCAN_readMsg(uint32_t           baseAddr,
         elem->data[(loopCnt + 1U)] = (uint16_t)((regVal & 0x0000FF00U) >> 8U);
         elem->data[(loopCnt + 2U)] = (uint16_t)((regVal & 0x00FF0000U) >> 16U);
     }
-
 }
-
 //
 // Configure the MCAN module
 //
@@ -526,7 +468,6 @@ static void MCANConfig(void)
 {
     uint32_t startAddr      = 0U;
     uint32_t elemAddr       = 0U, regVal=0;
-
     //
     // Wait for memory initialization to happen.
     //
@@ -534,12 +475,10 @@ static void MCANConfig(void)
     {
         ;
     }
-
     //
     // Put MCAN in SW initialization mode.
     //
     McanaRegs.MCAN_CCCR.bit.INIT = 1U;
-
     //
     // Wait till MCAN is not initialized.
     //
@@ -547,23 +486,19 @@ static void MCANConfig(void)
     {
         ;
     }
-
     //***************************************************************
     // MCAN init
     //***************************************************************
-
     //
     //  Configure MCAN wakeup and clock stop controls
     //
     McanaSsRegs.MCANSS_CTRL.bit.WAKEUPREQEN     = BF_MCAN_WAKEUPREQEN;
     McanaSsRegs.MCANSS_CTRL.bit.AUTOWAKEUP      = BF_MCAN_AUTOWAKEUP;
     McanaSsRegs.MCANSS_CTRL.bit.DBGSUSP_FREE    = BF_MCAN_DBGSUSP_FREE;
-
     //
     //  Unlock write protected registers
     //
     McanaRegs.MCAN_CCCR.bit.CCE     = 1U;
-
     //
     //  Configure MCAN mode(FD vs Classic CAN operation) and controls
     //
@@ -573,7 +508,6 @@ static void MCANConfig(void)
     McanaRegs.MCAN_CCCR.bit.EFBI    = BF_MCAN_EFBI;
     McanaRegs.MCAN_CCCR.bit.PXHD    = BF_MCAN_PXHD;
     McanaRegs.MCAN_CCCR.bit.DAR     = BF_MCAN_DAR;
-
     //
     //  Configure Transceiver Delay Compensation
     //
@@ -581,11 +515,9 @@ static void MCANConfig(void)
     McanaRegs.MCAN_TDCR.bit.TDCO    = BF_MCAN_TDCO;
     McanaRegs.MCAN_RWD.bit.WDC      = BF_MCAN_WDC;
     McanaRegs.MCAN_DBTP.bit.TDC     = BF_MCAN_TDC;
-
     //***************************************************************
     // MCAN timing configuration
     //***************************************************************
-
     //
     // Configure Bit timings.
     //
@@ -596,44 +528,35 @@ static void MCANConfig(void)
     McanaRegs.MCAN_NBTP.bit.NTSEG2  = BF_MCAN_NBTP_NTSEG2;
     McanaRegs.MCAN_NBTP.bit.NTSEG1  = BF_MCAN_NBTP_NTSEG1;
     McanaRegs.MCAN_NBTP.bit.NBRP    = BF_MCAN_NBTP_NBRP;
-
     //
     //  Data bit timing - NOT required for Classic CAN
     //
-
     //***************************************************************
     // Configure Message RAM Sections
     //***************************************************************
-
     McanaRegs.MCAN_SIDFC.bit.FLSSA = (BF_MCAN_STD_ID_FILT_START_ADDR >> 2U);
     McanaRegs.MCAN_SIDFC.bit.LSS = BF_MCAN_STD_ID_FILTER_NUM;
     McanaRegs.MCAN_RXBC.bit.RBSA = (BF_MCAN_RX_BUFF_START_ADDR >> 2U);
     McanaRegs.MCAN_RXESC.bit.RBDS = BF_MCAN_RX_BUFF_ELEM_SIZE;
-
-
     //
     // Configure Standard ID filter element
     //
     startAddr = McanaRegs.MCAN_SIDFC.bit.FLSSA;
     startAddr = (uint32_t) (startAddr << 2U);
     elemAddr  = startAddr + (0 * BF_MCANSS_STD_ID_FILTER_SIZE_WORDS * 4U);
-
     regVal  = 0U;
     regVal |= ((uint32_t)BF_MCAN_STD_ID_SFID2 << BF_MCANSS_STD_ID_FILTER_SFID2_SHIFT);
     regVal |= ((uint32_t)BF_MCAN_STD_ID_SFID1 << BF_MCANSS_STD_ID_FILTER_SFID1_SHIFT);
     regVal |= ((uint32_t)BF_MCAN_STD_ID_SFEC << BF_MCANSS_STD_ID_FILTER_SFEC_SHIFT);
     HW_WR_REG32(MCANA_MSG_RAM_BASE + elemAddr, regVal);
-
     //
     //  Lock write protected registers
     //
     McanaRegs.MCAN_CCCR.bit.CCE     = 0U;
-
     //
     // Take MCAN out of the SW initialization mode
     //
     McanaRegs.MCAN_CCCR.bit.INIT    = 0U;
-
     while(1U == McanaRegs.MCAN_CCCR.bit.INIT)
     {
         ;

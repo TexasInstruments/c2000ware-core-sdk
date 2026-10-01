@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="sysctl__ex1_8md" kind="file" language="Markdown">
+    <compoundname>sysctl_ex1.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Missing<sp/>clock<sp/>detection<sp/>{#EXAMPLES_DRIVERS_SYSCTL_EX1}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>Missing<sp/>clock<sp/>detection<sp/>&quot;</highlight></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>MCD&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>demonstrates<sp/>the<sp/>missing<sp/>clock<sp/>detection<sp/>functionality<sp/>and</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>way<sp/>to<sp/>handle<sp/>it.</highlight></codeline>
+<codeline><highlight class="normal">Once<sp/>the<sp/>MCD<sp/>is<sp/>simulated<sp/>by<sp/>disconnecting<sp/>the<sp/>OSCCLK<sp/>to<sp/>the<sp/>MCD<sp/>module</highlight></codeline>
+<codeline><highlight class="normal">an<sp/>NMI<sp/>would<sp/>be<sp/>generated.<sp/>This<sp/>NMI<sp/>determines<sp/>that<sp/>an<sp/>MCD<sp/>was<sp/>generated</highlight></codeline>
+<codeline><highlight class="normal">due<sp/>to<sp/>a<sp/>clock<sp/>failure<sp/>which<sp/>is<sp/>handled<sp/>in<sp/>the<sp/>ISR.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Before<sp/>an<sp/>MCD<sp/>the<sp/>clock<sp/>frequency<sp/>would<sp/>be<sp/>as<sp/>per<sp/>device<sp/>initialization<sp/>(200Mhz).</highlight></codeline>
+<codeline><highlight class="normal">Post<sp/>MCD<sp/>the<sp/>frequency<sp/>would<sp/>move<sp/>to<sp/>10Mhz<sp/>or<sp/>INTOSC1.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>example<sp/>also<sp/>shows<sp/>how<sp/>we<sp/>can<sp/>lock<sp/>the<sp/>PLL<sp/>after<sp/>missing<sp/>clock,</highlight></codeline>
+<codeline><highlight class="normal">detection,<sp/>by<sp/>first<sp/>explicitly<sp/>switching<sp/>the<sp/>clock<sp/>source<sp/>to<sp/>INTOSC1,</highlight></codeline>
+<codeline><highlight class="normal">resetting<sp/>the<sp/>missing<sp/>clock<sp/>detect<sp/>circuit<sp/>and<sp/>then<sp/>re-locking<sp/>the<sp/>PLL.</highlight></codeline>
+<codeline><highlight class="normal">Post<sp/>a<sp/>re-lock<sp/>the<sp/>clock<sp/>frequency<sp/>would<sp/>be<sp/>200Mhz<sp/>but<sp/>using<sp/>the<sp/>INTOSC1<sp/>as</highlight></codeline>
+<codeline><highlight class="normal">clock<sp/>source.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>None.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Watch<sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>\b<sp/>fail<sp/>-<sp/>Indicates<sp/>that<sp/>a<sp/>missing<sp/>clock<sp/>was<sp/>either<sp/>not<sp/>detected<sp/>or<sp/>was</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>not<sp/>handled<sp/>correctly.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>\b<sp/>mcd_clkfail_isr<sp/>-<sp/>Indicates<sp/>that<sp/>the<sp/>missing<sp/>clock<sp/>failure<sp/>caused<sp/>an</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>NMI<sp/>to<sp/>be<sp/>triggered<sp/>and<sp/>called<sp/>an<sp/>the<sp/>ISR<sp/>to<sp/>handle<sp/>it.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>\b<sp/>mcd_detect<sp/>-<sp/>Indicates<sp/>that<sp/>a<sp/>missing<sp/>clock<sp/>was<sp/>detected.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>\b<sp/>result<sp/>-<sp/>Status<sp/>of<sp/>a<sp/>successful<sp/>handling<sp/>of<sp/>missing<sp/>clock<sp/>detection</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/sysctl_ex1.md"/>
+  </compounddef>
+</doxygen>

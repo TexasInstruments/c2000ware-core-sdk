@@ -1,4 +1,9 @@
-
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F2838x" --part "F2838x_337bga" --package "337bga" --context "CPU1" 
+ * @v2CliArgs --device "TMS320F28388D" --package "337bga" --context "CPU1"
+ */
 /**
  * Import the modules used in this configuration.
  */
@@ -34,7 +39,6 @@ const clb_run_dynamic_template_clb_c   = scripting.addModule("/utilities/clb_too
 const clb_run_dynamic_template_clb_dot = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_dot.js");
 const clb_run_dynamic_template_clb_h   = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_h.js");
 const clb_run_dynamic_template_clb_sim = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_sim.js");
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -48,7 +52,6 @@ clb1.globalConfigCLB_IN1         = "CLB_GLOBAL_IN_MUX_CLB_AUXSIG1";
 clb1.outputsToOverridePeripheral = ["CLB_OUT2"];
 clb1.synchronizeCLB_IN0          = true;
 clb1.synchronizeCLB_IN1          = true;
-
 clb2.clbBase             = "CLB2_BASE";
 clb2.$name               = "myTILE2";
 clb2.enableCLB           = true;
@@ -59,7 +62,6 @@ clb2.globalConfigCLB_IN0 = "CLB_GLOBAL_IN_MUX_CLB_AUXSIG0";
 clb2.globalConfigCLB_IN1 = "CLB_GLOBAL_IN_MUX_CLB_AUXSIG2";
 clb2.synchronizeCLB_IN0  = true;
 clb2.synchronizeCLB_IN1  = true;
-
 clb3.clbBase                     = "CLB3_BASE";
 clb3.$name                       = "myTILE3";
 clb3.enableCLB                   = true;
@@ -71,7 +73,6 @@ clb3.globalConfigCLB_IN1         = "CLB_GLOBAL_IN_MUX_CLB_AUXSIG3";
 clb3.outputsToOverridePeripheral = ["CLB_OUT2"];
 clb3.synchronizeCLB_IN0          = true;
 clb3.synchronizeCLB_IN1          = true;
-
 clb4.clbBase             = "CLB4_BASE";
 clb4.$name               = "myTILE4";
 clb4.enableCLB           = true;
@@ -82,7 +83,6 @@ clb4.globalConfigCLB_IN0 = "CLB_GLOBAL_IN_MUX_CLB_AUXSIG0";
 clb4.globalConfigCLB_IN1 = "CLB_GLOBAL_IN_MUX_CLB_AUXSIG4";
 clb4.synchronizeCLB_IN0  = true;
 clb4.synchronizeCLB_IN1  = true;
-
 clbxbar1.$name      = "myCLBXBAR0";
 clbxbar1.muxesUsed  = ["XBAR_MUX01"];
 clbxbar1.mux1Config = "XBAR_CLB_MUX01_INPUTXBAR1";
@@ -90,67 +90,55 @@ clbxbar2.$name      = "myCLBXBAR1";
 clbxbar2.auxInput   = "XBAR_AUXSIG1";
 clbxbar2.muxesUsed  = ["XBAR_MUX05"];
 clbxbar2.mux5Config = "XBAR_CLB_MUX05_CLB2_OUT4";
-
 clbxbar3.$name      = "myCLBXBAR2";
 clbxbar3.auxInput   = "XBAR_AUXSIG2";
 clbxbar3.muxesUsed  = ["XBAR_MUX01"];
 clbxbar3.mux1Config = "XBAR_CLB_MUX01_CLB1_OUT4";
-
 clbxbar4.$name      = "myCLBXBAR3";
 clbxbar4.auxInput   = "XBAR_AUXSIG3";
 clbxbar4.muxesUsed  = ["XBAR_MUX03"];
 clbxbar4.mux3Config = "XBAR_CLB_MUX03_INPUTXBAR2";
-
 clbxbar5.$name      = "myCLBXBAR4";
 clbxbar5.auxInput   = "XBAR_AUXSIG4";
 clbxbar5.muxesUsed  = ["XBAR_MUX05"];
 clbxbar5.mux5Config = "XBAR_CLB_MUX05_INPUTXBAR3";
-
 epwm1.$name                 = "myEPWM1";
 epwm1.useCase               = "CUSTOM";
 epwm1.useInterfacePins      = ["EPWM#B"];
 epwm1.epwm.$assign          = "EPWM1";
 epwm1.epwm.epwmbPin.$assign = "GPIO1";
-
 epwm2.$name                 = "myEPWM3";
 epwm2.useCase               = "CUSTOM";
 epwm2.useInterfacePins      = ["EPWM#B"];
 epwm2.epwm.$assign          = "EPWM3";
 epwm2.epwm.epwmbPin.$assign = "GPIO5";
-
 gpio1.$name           = "myGPIO0";
 gpio1.direction       = "GPIO_DIR_MODE_OUT";
 gpio1.gpioPin.$assign = "GPIO0";
-
 inputxbar1.$name          = "myINPUTXBAR0";
 inputxbar1.inputxbar3Gpio = "GPIO14";
 inputxbar1.inputsUsed     = ["inputxbar1Gpio","inputxbar2Gpio","inputxbar3Gpio"];
 inputxbar1.inputxbar2Gpio = "GPIO15";
-
 outputxbar1.$name                            = "myOUTPUTXBAR1";
 outputxbar1.muxesUsed                        = ["XBAR_MUX01"];
 outputxbar1.mux1Config                       = "XBAR_OUT_MUX01_CLB1_OUT4";
 outputxbar1.outputxbar.$assign               = "OUTPUTXBAR1";
 outputxbar1.outputxbar.outputxbarPin.$assign = "GPIO24";
-
 outputxbar2.$name                            = "myOUTPUTXBAR7";
 outputxbar2.muxesUsed                        = ["XBAR_MUX05"];
 outputxbar2.mux5Config                       = "XBAR_OUT_MUX05_CLB2_OUT4";
 outputxbar2.outputxbar.$assign               = "OUTPUTXBAR7";
 outputxbar2.outputxbar.outputxbarPin.$assign = "GPIO16";
-
 outputxbar3.$name                            = "myOUTPUTXBAR3";
 outputxbar3.muxesUsed                        = ["XBAR_MUX09"];
 outputxbar3.mux9Config                       = "XBAR_OUT_MUX09_CLB3_OUT4";
 outputxbar3.outputxbar.$assign               = "OUTPUTXBAR3";
 outputxbar3.outputxbar.outputxbarPin.$assign = "GPIO14";
-
 outputxbar4.$name                            = "myOUTPUTXBAR4";
 outputxbar4.muxesUsed                        = ["XBAR_MUX13"];
 outputxbar4.mux13Config                      = "XBAR_OUT_MUX13_CLB4_OUT4";
 outputxbar4.outputxbar.$assign               = "OUTPUTXBAR4";
 outputxbar4.outputxbar.outputxbarPin.$assign = "GPIO15";
-
 TILE1.$name                     = "TILE1";
 TILE1.BOUNDARY.$name            = "BOUNDARY0";
 TILE1.BOUNDARY.boundaryInput1              = "tileOutput";
@@ -195,7 +183,6 @@ TILE1.HLC.program0.instruct0    = "INTR 1";
 TILE1.HLC.program1.$name        = "HLCP_1";
 TILE1.HLC.program2.$name        = "HLCP_2";
 TILE1.HLC.program3.$name        = "HLCP_3";
-
 TILE2.$name                     = "TILE2";
 TILE2.BOUNDARY.$name            = "BOUNDARY1";
 TILE2.BOUNDARY.boundaryInput1              = "tileOutput";
@@ -282,7 +269,6 @@ TILE3.HLC.program0.instruct0    = "INTR 1";
 TILE3.HLC.program1.$name        = "HLCP_9";
 TILE3.HLC.program2.$name        = "HLCP_10";
 TILE3.HLC.program3.$name        = "HLCP_11";
-
 TILE4.$name                     = "TILE4";
 TILE4.BOUNDARY.$name            = "BOUNDARY3";
 TILE4.BOUNDARY.boundaryInput1              = "tileOutput";

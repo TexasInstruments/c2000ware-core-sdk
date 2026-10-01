@@ -30,7 +30,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -63,19 +63,16 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Defines
 //
 #define BURST         (FIFO_LVL-1)    // burst size should be less than 8
 #define TRANSFER      15              // [(MEM_BUFFER_SIZE/FIFO_LVL)-1]
 #define FIFO_LVL      8               // FIFO Interrupt Level
-
 //
 // Globals
 //
@@ -88,7 +85,6 @@ uint16_t rData_point;    // Keep track of where we are
 volatile uint16_t *DMADest;
 volatile uint16_t *DMASource;
 volatile uint16_t done;
-
 //
 // Function Prototypes
 //
@@ -99,32 +95,27 @@ void spi_fifo_init(void);
 void error();
 void InitSpi(void);
 void InitSpiaGpio(void);
-
 //
 // Main
 //
 void main(void)
 {
     uint16_t i;
-
     //
     // Initialize System Control:
     // PLL, WatchDog, enable Peripheral Clocks
     // This example function is found in the <device>_sysctrl.c file.
     //
     InitSysCtrl();
-
     //
     // Initialize GPIO
     //
     InitGpio();
     InitSpiaGpio();
-
     //
     // Clear all interrupts:
     //
     DINT;
-
     //
     // Initialize PIE control registers to their default state.
     // The default state is all PIE __interrupts disabled and flags
@@ -132,13 +123,11 @@ void main(void)
     // This function is found in the <device>_piectrl.c file.
     //
     InitPieCtrl();
-
     //
     // Disable CPU __interrupts and clear all CPU __interrupt flags:
     //
     IER = 0x0000;
     IFR = 0x0000;
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
@@ -148,7 +137,6 @@ void main(void)
     // This function is found in <device>_pievect.c.
     //
     InitPieVectTable();
-
     //
     // Interrupts that are used in this example are re-mapped to
     // ISR functions found within this file.
@@ -157,14 +145,11 @@ void main(void)
     PieVectTable.DMA_CH5_INT= &local_D_INTCH5_ISR;
     PieVectTable.DMA_CH6_INT= &local_D_INTCH6_ISR;
     EDIS;   // This is needed to disable write to EALLOW protected registers
-
     //
     // Initialize the Device Peripherals:
     //
     dma_init();
     spi_fifo_init();     // Initialize the SPI FIFO
-
-
     //
     // Initialize the data buffers
     //
@@ -174,7 +159,6 @@ void main(void)
         rData[i]= 0;
     }
     rData_point = 0;
-
     //
     // Enable interrupts required for this example
     //
@@ -183,20 +167,15 @@ void main(void)
     PieCtrlRegs.PIEIER7.bit.INTx6 = 1; // Enable PIE Group 7, INT 6 (DMA CH6)
     IER= M_INT7;                       // Enable CPU INT7
     EINT;                              // Enable Global Interrupts
-
     StartDMACH6();                   // Start SPI RX DMA channel
     StartDMACH5();                   // Start SPI TX DMA channel
-
     done = 0;                        // Test is not done yet
-
     while(!done);                    // wait until the DMA transfer is complete
-
     //
     // when the DMA transfer is complete the program will stop here
     //
     ESTOP0;
 }
-
 //
 // error - Halt debugger when error received
 //
@@ -205,7 +184,6 @@ void error(void)
     asm("     ESTOP0");  //Test failed!! Stop!
     for (;;);
 }
-
 //
 // spi_fifo_init - Initialize SPIA FIFO
 //
@@ -216,16 +194,13 @@ void spi_fifo_init()
     //
     SpiaRegs.SPIFFRX.all=0x2040;             // RX FIFO enabled, clear FIFO int
     SpiaRegs.SPIFFRX.bit.RXFFIL = FIFO_LVL;  // Set RX FIFO level
-
     SpiaRegs.SPIFFTX.all=0xE040;             // FIFOs enabled, TX FIFO released,
     SpiaRegs.SPIFFTX.bit.TXFFIL = FIFO_LVL;  // Set TX FIFO level
-
     //
     // Initialize core SPI registers
     //
     InitSpi();
 }
-
 //
 // dma_init - DMA setup for both TX and RX channels.
 //
@@ -235,10 +210,8 @@ void dma_init()
     // Initialize DMA
     //
     DMAInitialize();
-
     DMASource = (volatile uint16_t *)sData;
     DMADest = (volatile uint16_t *)rData;
-
     //
     // configure DMA CH5 for TX
     //
@@ -248,7 +221,6 @@ void dma_init()
     DMACH5ModeConfig(DMA_SPIATX,PERINT_ENABLE,ONESHOT_DISABLE,CONT_DISABLE,
                      SYNC_DISABLE,SYNC_SRC,OVRFLOW_DISABLE,SIXTEEN_BIT,
                      CHINT_END,CHINT_ENABLE);
-
     //
     // configure DMA CH6 for RX
     //
@@ -259,7 +231,6 @@ void dma_init()
                      SYNC_DISABLE,SYNC_SRC,OVRFLOW_DISABLE,SIXTEEN_BIT,
                      CHINT_END,CHINT_ENABLE);
 }
-
 //
 // local_D_INTCH5_ISR - DMA Channel 5 ISR
 //
@@ -272,20 +243,17 @@ __interrupt void local_D_INTCH5_ISR(void)
     EDIS;
     return;
 }
-
 //
 // local_D_INTCH6_ISR - DMA Channel 6 ISR
 //
 __interrupt void local_D_INTCH6_ISR(void)
 {
     uint16_t i;
-
     EALLOW;  // NEED TO EXECUTE EALLOW INSIDE ISR !!!
     DmaRegs.CH6.CONTROL.bit.HALT = 1;
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP7; // ACK to receive more interrupts
                                             // from this PIE group
     EDIS;
-
     for( i = 0; i<128; i++ )
     {
         //
@@ -296,12 +264,9 @@ __interrupt void local_D_INTCH6_ISR(void)
             error();
         }
     }
-
     done = 1;  // test done.
     return;
 }
-
-
 //
 // InitSPI - This function initializes the SPI to a known state
 //
@@ -310,7 +275,6 @@ void InitSpi(void)
     //
     // Initialize SPI-A
     //
-
     //
     // Set reset low before configuration changes
     // Clock polarity (0 == rising, 1 == falling)
@@ -321,7 +285,6 @@ void InitSpi(void)
     SpiaRegs.SPICCR.bit.CLKPOLARITY = 0;
     SpiaRegs.SPICCR.bit.SPICHAR = (16 - 1);
     SpiaRegs.SPICCR.bit.SPILBK = 1;
-
     //
     // Enable controller (0 == peripheral, 1 == controller)
     // Enable transmission (Talk)
@@ -332,30 +295,24 @@ void InitSpi(void)
     SpiaRegs.SPICTL.bit.TALK = 1;
     SpiaRegs.SPICTL.bit.CLK_PHASE = 0;
     SpiaRegs.SPICTL.bit.SPIINTENA = 0;
-
     //
     // Set the baud rate using a 1 MHz SPICLK
     // BRR = (LSPCLK / SPICLK) - 1
     //
     SpiaRegs.SPIBRR.bit.SPI_BIT_RATE = ((50000000 / 1000000) - 1);
-
     //
     // Set FREE bit
     // Halting on a breakpoint will not halt the SPI
     //
     SpiaRegs.SPIPRI.bit.FREE = 1;
-
     //
     // Release the SPI from reset
     //
     SpiaRegs.SPICCR.bit.SPISWRESET = 1;
 }
-
-
 void InitSpiaGpio(void)
 {
        EALLOW;
-
     //
     // Enable internal pull-up for the selected pins
     //
@@ -366,7 +323,6 @@ void InitSpiaGpio(void)
     GpioCtrlRegs.GPAPUD.bit.GPIO17 = 0;  // Enable pull-up on GPIO17 (SPIPOCIA)
     GpioCtrlRegs.GPAPUD.bit.GPIO18 = 0;  // Enable pull-up on GPIO18 (SPICLKA)
     GpioCtrlRegs.GPAPUD.bit.GPIO19 = 0;  // Enable pull-up on GPIO19 (SPIPTEA)
-
     //
     // Set qualification for selected pins to asynch only
     //
@@ -376,7 +332,6 @@ void InitSpiaGpio(void)
     GpioCtrlRegs.GPAQSEL2.bit.GPIO17 = 3; // Asynch input GPIO17 (SPIPOCIA)
     GpioCtrlRegs.GPAQSEL2.bit.GPIO18 = 3; // Asynch input GPIO18 (SPICLKA)
     GpioCtrlRegs.GPAQSEL2.bit.GPIO19 = 3; // Asynch input GPIO19 (SPIPTEA)
-
     //
     // Configure SPI-A pins
     //
@@ -387,11 +342,8 @@ void InitSpiaGpio(void)
     GpioCtrlRegs.GPAMUX2.bit.GPIO17 = 1; // Configure GPIO17 as SPIPOCIA
     GpioCtrlRegs.GPAMUX2.bit.GPIO18 = 1; // Configure GPIO18 as SPICLKA
     GpioCtrlRegs.GPAMUX2.bit.GPIO19 = 1; // Configure GPIO19 as SPIPTEA
-
     EDIS;
 }
-
-
 //
 // End of File
 //

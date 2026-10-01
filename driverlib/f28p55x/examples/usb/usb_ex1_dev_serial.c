@@ -26,7 +26,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -59,7 +59,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 //
 // Included Files
 //
@@ -73,14 +72,12 @@
 #include "device/usbdcdc.h"
 #include "ustdlib.h"
 #include "usb_hal.h"
-
 void INT_myUSB0_ISR(void);
 //******************************************************************************
 //
 // Configuration and tuning parameters.
 //
 //******************************************************************************
-
 //******************************************************************************
 //
 // Variables tracking transmit and receive counts.
@@ -91,7 +88,6 @@ volatile uint32_t g_ui32SCIRxCount = 0;
 #ifdef DEBUG
 uint32_t g_ui32SCIRxErrors = 0;
 #endif
-
 //******************************************************************************
 //
 // Default line coding settings for the redirected SCI.
@@ -100,14 +96,12 @@ uint32_t g_ui32SCIRxErrors = 0;
 #define DEFAULT_BIT_RATE        115200
 #define DEFAULT_SCI_CONFIG     (SCI_CONFIG_WLEN_8 | SCI_CONFIG_PAR_NONE | \
                                 SCI_CONFIG_STOP_ONE)
-
 //******************************************************************************
 //
 // Flag indicating whether or not we are currently sending a Break condition.
 //
 //******************************************************************************
 static bool g_bSendingBreak = false;
-
 //******************************************************************************
 //
 // Flags used to pass commands from interrupt context to the main loop.
@@ -115,17 +109,14 @@ static bool g_bSendingBreak = false;
 //******************************************************************************
 #define COMMAND_PACKET_RECEIVED 0x00000001
 #define COMMAND_STATUS_UPDATE   0x00000002
-
 volatile uint32_t g_ui32Flags = 0;
 char *g_pcStatus;
-
 //******************************************************************************
 //
 // Global flag indicating that a USB configuration has been set.
 //
 //******************************************************************************
 static volatile bool g_bUSBConfigured = false;
-
 //******************************************************************************
 //
 // Internal function prototypes.
@@ -138,7 +129,6 @@ static void SetControlLineState(uint16_t ui16State);
 static bool SetLineCoding(tLineCoding *psLineCoding);
 static void GetLineCoding(tLineCoding *psLineCoding);
 static void SendBreak(bool bSend);
-
 //******************************************************************************
 //
 // This function is called whenever serial data is received from the SCI.
@@ -157,14 +147,12 @@ static void
 CheckForSerialStateChange(const tUSBDCDCDevice *psDevice, int32_t i32Errors)
 {
     uint16_t ui16SerialState;
-
     //
     // Clear our USB serial state.  Since we are faking the handshakes, always
     // set the TXCARRIER (DSR) and RXCARRIER (DCD) bits.
     //
     ui16SerialState = USB_CDC_SERIAL_STATE_TXCARRIER |
                       USB_CDC_SERIAL_STATE_RXCARRIER;
-
     //
     // Are any error bits set?
     //
@@ -178,29 +166,24 @@ CheckForSerialStateChange(const tUSBDCDCDevice *psDevice, int32_t i32Errors)
         {
             ui16SerialState |= USB_CDC_SERIAL_STATE_OVERRUN;
         }
-
         if(i32Errors & SCI_RXST_PE)
         {
             ui16SerialState |= USB_CDC_SERIAL_STATE_PARITY;
         }
-
         if(i32Errors & SCI_RXST_FE)
         {
             ui16SerialState |= USB_CDC_SERIAL_STATE_FRAMING;
         }
-
         if(i32Errors & SCI_RXST_BRKDT)
         {
             ui16SerialState |= USB_CDC_SERIAL_STATE_BREAK;
         }
-
         //
         // Call the CDC driver to notify the state change.
         //
         USBDCDCSerialStateChange((void *)psDevice, ui16SerialState);
     }
 }
-
 //******************************************************************************
 //
 // Read as many characters from the SCI FIFO as we can and move them into
@@ -215,17 +198,14 @@ ReadSCIData(void)
     int32_t i32Char, i32Errors;
     uint8_t ui8Char;
     uint32_t ui32Space;
-
     //
     // Clear our error indicator.
     //
     i32Errors = 0;
-
     //
     // Check the space in the buffer.
     //
     ui32Space = USBBufferSpaceAvailable((tUSBBuffer *)&g_sTxBuffer);
-
     //
     // Read data from the SCI FIFO until there is none left or we run
     // out of space in our receive buffer.
@@ -237,7 +217,6 @@ ReadSCIData(void)
         // errors are reported.
         //
         i32Char = SCI_readCharNonBlocking(SCIA_BASE);
-
         //
         // If the character did not contain any error notifications,
         // copy it to the output buffer.
@@ -246,7 +225,6 @@ ReadSCIData(void)
         {
             ui8Char = (uint8_t)(i32Char & 0xFF);
             USBBufferWrite((tUSBBuffer *)&g_sTxBuffer, (uint8_t *)&ui8Char, 1);
-
             //
             // Decrement the number of bytes we know the buffer can accept.
             //
@@ -265,19 +243,16 @@ ReadSCIData(void)
             //
             i32Errors |= i32Char;
         }
-
         //
         // Update our count of bytes received via the SCI.
         //
         g_ui32SCIRxCount++;
     }
-
     //
     // Pass back the accumulated error indicators.
     //
     return(i32Errors);
 }
-
 //******************************************************************************
 //
 // Take as many bytes from the transmit buffer as we have space for and move
@@ -289,7 +264,6 @@ USBSCIPrimeTransmit(uint32_t ui32Base)
 {
     uint32_t ui32Read;
     uint8_t ui8Char;
-
     //
     // If we are currently sending a break condition, don't receive any
     // more data. We will resume transmission once the break is turned off.
@@ -298,7 +272,6 @@ USBSCIPrimeTransmit(uint32_t ui32Base)
     {
         return;
     }
-
     //
     // If there is space in the SCI FIFO, try to read some characters
     // from the receive buffer to fill it again.
@@ -309,7 +282,6 @@ USBSCIPrimeTransmit(uint32_t ui32Base)
         // Get a character from the buffer.
         //
         ui32Read = USBBufferRead((tUSBBuffer *)&g_sRxBuffer, &ui8Char, 1);
-
         //
         // Did we get a character?
         //
@@ -319,7 +291,6 @@ USBSCIPrimeTransmit(uint32_t ui32Base)
             // Place the character in the SCI transmit FIFO.
             //
             SCI_writeCharBlockingNonFIFO(ui32Base, ui8Char);
-
             //
             // Update our count of bytes transmitted via the SCI.
             //
@@ -334,7 +305,6 @@ USBSCIPrimeTransmit(uint32_t ui32Base)
         }
     }
 }
-
 //******************************************************************************
 //
 // Interrupt handler for the SCI TX which is being redirected via USB.
@@ -344,9 +314,7 @@ __interrupt void
 USBSCITXIntHandler(void)
 {
     uint32_t ui32Ints;
-
     ui32Ints = SCI_getInterruptStatus(SCIA_BASE);
-
     //
     // Handle transmit interrupts.
     //
@@ -356,7 +324,6 @@ USBSCITXIntHandler(void)
         // Move as many bytes as possible into the transmit FIFO.
         //
         USBSCIPrimeTransmit(SCIA_BASE);
-
         //
         // If the output buffer is empty, turn off the transmit interrupt.
         //
@@ -365,10 +332,8 @@ USBSCITXIntHandler(void)
             SCI_disableInterrupt(SCIA_BASE, SCI_INT_TXRDY);
         }
     }
-
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP9);
 }
-
 //******************************************************************************
 //
 // ConfigureSCI - Configure the SCI and its pins.
@@ -380,7 +345,6 @@ ConfigureSCI(void)
     //
     // Configure GPIO Pins for SCI mode.
     //
-
     //
     // GPIO28 is the SCI Rx pin.
     //
@@ -389,7 +353,6 @@ ConfigureSCI(void)
     GPIO_setDirectionMode(28, GPIO_DIR_MODE_IN);
     GPIO_setPadConfig(28, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(28, GPIO_QUAL_ASYNC);
-
     //
     // GPIO29 is the SCI Tx pin.
     //
@@ -399,7 +362,6 @@ ConfigureSCI(void)
     GPIO_setPadConfig(29, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(29, GPIO_QUAL_ASYNC);
 }
-
 //******************************************************************************
 //
 // Interrupt handler for the SCI RX which is being redirected via USB.
@@ -409,9 +371,7 @@ __interrupt void
 USBSCIRXIntHandler(void)
 {
     uint32_t u3i2Ints;
-
     u3i2Ints = SCI_getInterruptStatus(SCIA_BASE);
-
     //
     // Handle receive interrupts.
     //
@@ -421,7 +381,6 @@ USBSCIRXIntHandler(void)
         // Read SCI's characters into the buffer.
         //
         ReadSCIData();
-
     }
     else if(u3i2Ints & SCI_INT_RXERR)
     {
@@ -429,16 +388,13 @@ USBSCIRXIntHandler(void)
         // Notify Host of our error
         //
         CheckForSerialStateChange(&g_sCDCDevice, SCI_getRxStatus(SCIA_BASE));
-
         //
         // Clear the error and continue
         //
         SCI_performSoftwareReset(SCIA_BASE);
     }
-
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP9);
 }
-
 //******************************************************************************
 //
 // Set the state of the RS232 RTS and DTR signals.
@@ -453,7 +409,6 @@ SetControlLineState(uint16_t ui16State)
     // field of the request structure passed.
     //
 }
-
 //******************************************************************************
 //
 // Set the communication parameters to use on the SCI.
@@ -464,12 +419,10 @@ SetLineCoding(tLineCoding *psLineCoding)
 {
     uint32_t ui32Config;
     bool bRetcode;
-
     //
     // Assume everything is OK until we detect any problem.
     //
     bRetcode = true;
-
     //
     // Word length.  For invalid values, the default is to set 8 bits per
     // character and return an error.
@@ -481,25 +434,21 @@ SetLineCoding(tLineCoding *psLineCoding)
             ui32Config = SCI_CONFIG_WLEN_5;
             break;
         }
-
         case 6:
         {
             ui32Config = SCI_CONFIG_WLEN_6;
             break;
         }
-
         case 7:
         {
             ui32Config = SCI_CONFIG_WLEN_7;
             break;
         }
-
         case 8:
         {
             ui32Config = SCI_CONFIG_WLEN_8;
             break;
         }
-
         default:
         {
             ui32Config = SCI_CONFIG_WLEN_8;
@@ -507,7 +456,6 @@ SetLineCoding(tLineCoding *psLineCoding)
             break;
         }
     }
-
     //
     // Parity. For any invalid values, we set no parity and return an error.
     //
@@ -518,31 +466,26 @@ SetLineCoding(tLineCoding *psLineCoding)
             ui32Config |= SCI_CONFIG_PAR_NONE;
             break;
         }
-
         case USB_CDC_PARITY_ODD:
         {
             ui32Config |= SCI_CONFIG_PAR_ODD;
             break;
         }
-
         case USB_CDC_PARITY_EVEN:
         {
             ui32Config |= SCI_CONFIG_PAR_EVEN;
             break;
         }
-
         case USB_CDC_PARITY_MARK:
         {
             ui32Config |= SCI_CONFIG_PAR_ODD;
             break;
         }
-
         case USB_CDC_PARITY_SPACE:
         {
             ui32Config |= SCI_CONFIG_PAR_EVEN;
             break;
         }
-
         default:
         {
             ui32Config |= SCI_CONFIG_PAR_NONE;
@@ -550,7 +493,6 @@ SetLineCoding(tLineCoding *psLineCoding)
             break;
         }
     }
-
     //
     // Stop bits.  Our hardware only supports 1 or 2 stop bits whereas CDC
     // allows the host to select 1.5 stop bits.  If passed 1.5 (or any other
@@ -568,7 +510,6 @@ SetLineCoding(tLineCoding *psLineCoding)
             ui32Config |= SCI_CONFIG_STOP_ONE;
             break;
         }
-
         //
         // Two stop bits requested.
         //
@@ -577,7 +518,6 @@ SetLineCoding(tLineCoding *psLineCoding)
             ui32Config |= SCI_CONFIG_STOP_TWO;
             break;
         }
-
         //
         // Other cases are either invalid values of ui8Stop or values that we
         // cannot support so set 1 stop bit but return an error.
@@ -589,19 +529,16 @@ SetLineCoding(tLineCoding *psLineCoding)
             break;
         }
     }
-
     //
     // Set the SCI mode appropriately.
     //
     SCI_setConfig(SCIA_BASE, SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ),
                   readusb32_t(&(psLineCoding->ui32Rate)), ui32Config);
-
     //
     // Let the caller know if we had a problem or not.
     //
     return(bRetcode);
 }
-
 //******************************************************************************
 //
 // Get the communication parameters in use on the SCI.
@@ -612,14 +549,12 @@ GetLineCoding(tLineCoding *psLineCoding)
 {
     uint32_t ui32Config;
     uint32_t ui32Rate;
-
     //
     // Get the current line coding set in the SCI.
     //
     SCI_getConfig(SCIA_BASE, SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ),
                   &ui32Rate, &ui32Config);
     writeusb32_t(&(psLineCoding->ui32Rate), ui32Rate);
-
     //
     // Translate the configuration word length field into the format expected
     // by the host.
@@ -631,25 +566,21 @@ GetLineCoding(tLineCoding *psLineCoding)
             psLineCoding->ui8Databits = 8;
             break;
         }
-
         case SCI_CONFIG_WLEN_7:
         {
             psLineCoding->ui8Databits = 7;
             break;
         }
-
         case SCI_CONFIG_WLEN_6:
         {
             psLineCoding->ui8Databits = 6;
             break;
         }
-
         case SCI_CONFIG_WLEN_5:
         {
             psLineCoding->ui8Databits = 5;
             break;
         }
-
         //
         // We don't expect to receive any other events.  Ignore any that show
         // up in a release build or hang in a debug build.
@@ -661,7 +592,6 @@ GetLineCoding(tLineCoding *psLineCoding)
             break;
 #endif
     }
-
     //
     // Translate the configuration parity field into the format expected
     // by the host.
@@ -673,13 +603,11 @@ GetLineCoding(tLineCoding *psLineCoding)
             psLineCoding->ui8Parity = USB_CDC_PARITY_NONE;
             break;
         }
-
         case SCI_CONFIG_PAR_ODD:
         {
             psLineCoding->ui8Parity = USB_CDC_PARITY_ODD;
             break;
         }
-
         case SCI_CONFIG_PAR_EVEN:
         {
             psLineCoding->ui8Parity = USB_CDC_PARITY_EVEN;
@@ -696,7 +624,6 @@ GetLineCoding(tLineCoding *psLineCoding)
             break;
 #endif
     }
-
     //
     // Translate the configuration stop bits field into the format expected
     // by the host.
@@ -708,13 +635,11 @@ GetLineCoding(tLineCoding *psLineCoding)
             psLineCoding->ui8Stop = USB_CDC_STOP_BITS_1;
             break;
         }
-
         case SCI_CONFIG_STOP_TWO:
         {
             psLineCoding->ui8Stop = USB_CDC_STOP_BITS_2;
             break;
         }
-
         //
         // We don't expect to receive any other events.  Ignore any that show
         // up in a release build or hang in a debug build.
@@ -727,7 +652,6 @@ GetLineCoding(tLineCoding *psLineCoding)
 #endif
     }
 }
-
 //******************************************************************************
 //
 // This function sets or clears a break condition on the redirected SCI RX
@@ -744,7 +668,6 @@ SendBreak(bool bSend)
     //
     return;
 }
-
 //******************************************************************************
 //
 // Handles CDC driver notifications related to control and setup of the device.
@@ -767,7 +690,6 @@ ControlHandler(void *pvCBData, uint32_t ui32Event,
                uint32_t ui32MsgValue, void *pvMsgData)
 {
     uint32_t ui32IntsOff;
-
     //
     // Which event are we being asked to process?
     //
@@ -778,13 +700,11 @@ ControlHandler(void *pvCBData, uint32_t ui32Event,
         //
         case USB_EVENT_CONNECTED:
             g_bUSBConfigured = true;
-
             //
             // Flush our buffers.
             //
             USBBufferFlush(&g_sTxBuffer);
             USBBufferFlush(&g_sRxBuffer);
-
             //
             // Tell the main loop to update the display.
             //
@@ -796,7 +716,6 @@ ControlHandler(void *pvCBData, uint32_t ui32Event,
                 Interrupt_enableGlobal();
             }
             break;
-
         //
         // The host has disconnected.
         //
@@ -810,49 +729,42 @@ ControlHandler(void *pvCBData, uint32_t ui32Event,
                 Interrupt_enableGlobal();
             }
             break;
-
         //
         // Return the current serial communication parameters.
         //
         case USBD_CDC_EVENT_GET_LINE_CODING:
             GetLineCoding(pvMsgData);
             break;
-
         //
         // Set the current serial communication parameters.
         //
         case USBD_CDC_EVENT_SET_LINE_CODING:
             SetLineCoding(pvMsgData);
             break;
-
         //
         // Set the current serial communication parameters.
         //
         case USBD_CDC_EVENT_SET_CONTROL_LINE_STATE:
             SetControlLineState((uint16_t)ui32MsgValue);
             break;
-
         //
         // Send a break condition on the serial line.
         //
         case USBD_CDC_EVENT_SEND_BREAK:
             SendBreak(true);
             break;
-
         //
         // Clear the break condition on the serial line.
         //
         case USBD_CDC_EVENT_CLEAR_BREAK:
             SendBreak(false);
             break;
-
         //
         // Ignore SUSPEND and RESUME for now.
         //
         case USB_EVENT_SUSPEND:
         case USB_EVENT_RESUME:
             break;
-
         //
         // We don't expect to receive any other events.  Ignore any that show
         // up in a release build or hang in a debug build.
@@ -863,12 +775,9 @@ ControlHandler(void *pvCBData, uint32_t ui32Event,
 #else
             break;
 #endif
-
     }
-
     return(0);
 }
-
 //******************************************************************************
 //
 // Handles CDC driver notifications related to the transmit channel (data to
@@ -901,7 +810,6 @@ TxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
             // here.
             //
             break;
-
         //
         // We don't expect to receive any other events.  Ignore any that show
         // up in a release build or hang in a debug build.
@@ -912,11 +820,9 @@ TxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
 #else
             break;
 #endif
-
     }
     return(0);
 }
-
 //******************************************************************************
 //
 // Handles CDC driver notifications related to the receive channel (data from
@@ -939,7 +845,6 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
           void *pvMsgData)
 {
     uint32_t ui32Count;
-
     //
     // Which event are we being sent?
     //
@@ -958,7 +863,6 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
             SCI_enableInterrupt(SCIA_BASE, SCI_INT_TXRDY);
             break;
         }
-
         //
         // We are being asked how much unprocessed data we have still to
         // process. We return 0 if the SCI is currently idle or 1 if it is
@@ -975,7 +879,6 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
             ui32Count = SCI_isTransmitterBusy(SCIA_BASE) ? 1 : 0;
             return(ui32Count);
         }
-
         //
         // We are being asked to provide a buffer into which the next packet
         // can be read. We do not support this mode of receiving data so let
@@ -987,7 +890,6 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
         {
             return(0);
         }
-
         //
         // We don't expect to receive any other events.  Ignore any that show
         // up in a release build or hang in a debug build.
@@ -999,10 +901,8 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
             break;
 #endif
     }
-
     return(0);
 }
-
 //******************************************************************************
 //
 // This is the main application entry function.
@@ -1015,53 +915,39 @@ main(void)
     uint32_t ui32RxCount;
     char pcBuffer[16];
     volatile uint32_t ui32Fullness;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure GPIO pins for USB.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Initialize the transmit and receive buffers.
     //
     USBBufferInit(&g_sTxBuffer);
     USBBufferInit(&g_sRxBuffer);
-
-
-
-
     //
     // Register the interrupt handler, returning an error if an error occurs.
     //
     //Interrupt_register(INT_USBA, &INT_myUSB0_ISR);
     //Interrupt_register(INT_myUSB0, &INT_myUSB0_ISR);
-
     //
     // Set the clocking to run from the PLL at 60MHz
     //
    // SysCtl_setAuxClock(DEVICE_AUXSETCLOCK_CFG_USB);
     Board_init();
-
     C2000Ware_libraries_init();
-
-
-
     //
     // Pass our device information to the USB library and place the device
     // on the bus.
@@ -1072,31 +958,24 @@ main(void)
     //
     EINT;
     ERTM;
-
     //
     // Configure the required pins for USB operation.
     //
     USBGPIOEnable();
-
-
     //
     // Not configured initially.
     //
     g_bUSBConfigured = false;
-
     //
     // Configure the SCI for debug output.
     //
     ConfigureSCI();
-
     //
     // Set the default SCI configuration.
     //
     SCI_setConfig(SCIA_BASE, SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ),
                   DEFAULT_BIT_RATE, DEFAULT_SCI_CONFIG);
-
     SCI_setFIFOInterruptLevel(SCIA_BASE,SCI_FIFO_TX8, SCI_FIFO_RX8);
-
     //
     // Configure and enable SCI interrupts.
     //
@@ -1105,20 +984,16 @@ main(void)
                                     SCI_INT_TXRDY));
     Interrupt_register(INT_SCIA_TX, &USBSCITXIntHandler);
     Interrupt_register(INT_SCIA_RX, &USBSCIRXIntHandler);
-
-
     //
     // Clear our local byte counters.
     //
     ui32RxCount = 0;
     ui32TxCount = 0;
-
     //
     // Enable interrupts now that the application is ready to start.
     //
     Interrupt_enable(INT_SCIA_RX);
     Interrupt_enableGlobal();
-
     //
     // Main application loop.
     //
@@ -1136,7 +1011,6 @@ main(void)
             g_ui32Flags &= ~COMMAND_STATUS_UPDATE;
             Interrupt_enableGlobal();
         }
-
         //
         // Has there been any transmit traffic since we last checked?
         //
@@ -1146,12 +1020,10 @@ main(void)
             // Take a snapshot of the latest transmit count.
             //
             ui32TxCount = g_ui32SCITxCount;
-
             //
             // Update the display of bytes transmitted by the SCI.
             //
             usnprintf(pcBuffer, 16, "%d ", ui32TxCount);
-
             //
             // Update the RX buffer fullness. Remember that the buffers are
             // named relative to the USB whereas the status display is from
@@ -1161,7 +1033,6 @@ main(void)
             ui32Fullness = ((USBBufferDataAvailable(&g_sRxBuffer) * 100) /
                     myUSB0_LIB_SCI_BUFFER_SIZE);
         }
-
         //
         // Has there been any receive traffic since we last checked?
         //
@@ -1171,12 +1042,10 @@ main(void)
             // Take a snapshot of the latest receive count.
             //
             ui32RxCount = g_ui32SCIRxCount;
-
             //
             // Update the display of bytes received by the SCI.
             //
             usnprintf(pcBuffer, 16, "%d ", ui32RxCount);
-
             //
             // Update the TX buffer fullness. Remember that the buffers are
             // named relative to the USB whereas the status display is from
@@ -1188,7 +1057,6 @@ main(void)
         }
     }
 }
-
 //******************************************************************************
 //
 //! Device interrupt service routine wrapper to make ISR compatible with
@@ -1201,7 +1069,6 @@ INT_myUSB0_ISR(void)
     USB0DeviceIntHandler();
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP9);
 }
-
 //
 // End of file
 //

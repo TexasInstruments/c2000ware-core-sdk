@@ -23,7 +23,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -56,30 +56,25 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include <string.h>
 #include "driverlib_cm.h"
 #include "cm.h"
-
 //
 // Defines
 //
 #define TEST_PASS 0xABCDABCD
 #define TEST_FAIL 0xDEADDEAD
-
 //
 // Global variables
 //
-
 //
 // The DMA control structure table
 //
 #pragma DATA_ALIGN(ucControlTable, 1024)
 UDMA_ControlTable ucControlTable[64];
-
 //
 // Variables to provide & gather results from AES module for
 // each test case
@@ -90,47 +85,37 @@ uint32_t *expCipherTextArray, authDataLength, *authDataArray;
 uint32_t *plainTextArray, *expTagArray;
 uint8_t vectorCnt;
 AES_KeySize keySize;
-
 //
 // Variables to capture error count & test status
 //
 uint32_t errorCountGlobal, testStatusGlobal;
-
 //
 // Interrupt status
 //
 volatile uint32_t intStatus;
-
 //
 // Function Prototypes
 //
 void performECBEncryption(AES_KeySize keySize, uint32_t *srcArray,
                           uint32_t *dstArray,   uint32_t *keyArray,
                           uint32_t dataLength);
-
 void performGCMEncryption(AES_KeySize keySize, uint32_t *srcArray,
                           uint32_t *dstArray, uint32_t dataLength,
                           uint32_t *keyArray, uint32_t *ivArray,
                           uint32_t *aadArray, uint32_t aadLength,
                           uint32_t *tagArray, bool useDMA);
-
 void performGHASHOperation(AES_KeySize keySize, uint32_t *hashSubkeyArray,
                            uint32_t *ivArray, uint32_t ivLength,
                            uint32_t *resultTagArray);
-
 void getHashSubKey(AES_KeySize keySize, uint32_t *keyArray,
                    uint32_t *hashSubkeyArray);
-
 void getGCMY0(AES_KeySize keySize,   uint32_t *ivArray, uint32_t ivLength,
               uint32_t *keyArray, uint32_t *y0Array);
-
 uint32_t roundUpDataLength(uint32_t dataLength);
-
 //
 // ISR for AESINT.
 //
 __interrupt void localAESIntISR(void);
-
 //
 // The AES interrupt handler and interrupt flags
 //
@@ -142,7 +127,6 @@ static volatile bool contextInDMADoneIntFlag;
 static volatile bool dataInDMADoneIntFlag;
 static volatile bool contextOutDMADoneIntFlag;
 static volatile bool dataOutDMADoneIntFlag;
-
 //
 // Structure for NIST AES GCM tests
 //
@@ -159,7 +143,6 @@ typedef struct
     uint32_t cipherTextArray[64];
     uint32_t tagArray[4];
 } testVectorGCM;
-
 //
 // Test Cases from NIST GCM Revised Spec
 //
@@ -183,7 +166,6 @@ testVectorGCM testVectorGCMArray[] =
   { 0 },                                                    // cipherTextArray
   { 0xcefce258, 0x61307efa, 0x571d7f36, 0x5a45e7a4 }        // tagArray
  },
-
  //
  // Test Case #2
  // This is the first test in which the AAD length is zero.
@@ -200,7 +182,6 @@ testVectorGCM testVectorGCMArray[] =
   { 0xceda8803, 0x92a3b660, 0xb9c228f3, 0x78feb271 },       // cipherTextArray
   { 0xd4476eab, 0xbd13ec2c, 0xb2673af5, 0xdfbd5712 }        // tagArray
  },
-
  //
  // Test Case #3
  //
@@ -222,7 +203,6 @@ testVectorGCM testVectorGCMArray[] =
     0x390ba31b, 0x97ac0a6a, 0x91e0583d, 0x85593f47 },
   { 0xf32a5c4d, 0xa664cd27, 0xbd5af32c, 0xb4faa62b }        // tagArray
  },
-
  //
  // Test Case #4
  // When the data lengths do not align with the block
@@ -248,7 +228,6 @@ testVectorGCM testVectorGCMArray[] =
     0x390ba31b, 0x97ac0a6a, 0x91e0583d, 0x00000000 },
   { 0xbc4fc95b, 0xdba52132, 0x5ae9fa94, 0x471a12e7 }        // tagArray
 },
-
  //
  // Test Case #5
  // This is the first case in which IV is less than
@@ -273,7 +252,6 @@ testVectorGCM testVectorGCMArray[] =
       0xe1b58949, 0x070faceb, 0x98453fc2, 0x00000000 },
     { 0xe7d21236, 0x85073b9e, 0x4ae11b56, 0xcbfca2ac }      // tagArray
 },
-
 //
 // Test Case #6
 // This is the first case in which IV is more than
@@ -301,7 +279,6 @@ testVectorGCM testVectorGCMArray[] =
       0xd27528d6, 0x0317a4ac, 0xe5ae344c, 0x00000000 },
     { 0xaec59c61, 0xfa0bfeff, 0x3cf42a46, 0x50d09916 }      // tagArray
 },
-
 //
 // The following test cases use 256bit Keys.
 //
@@ -323,7 +300,6 @@ testVectorGCM testVectorGCMArray[] =
     { 0 },                                                  // cipherTextArray
     { 0xfb8a0f53, 0xb93645c7, 0xf1b463a9, 0x8b73cbc4 }      // tagArray
 },
-
 //
 // Test Case #8, - Test Case 14 from the doc
 // This is the first test in which the AAD length is zero.
@@ -341,7 +317,6 @@ testVectorGCM testVectorGCMArray[] =
     { 0x3d40a7ce, 0x6e6b604d, 0xd3c54e07, 0x189df3ba },     // cipherTextArray
     { 0xa7c8d1d0, 0xf06b9999, 0xb5985b26, 0x19b98ad4 }      // tagArray
 },
-
 //
 // Test Case #9, - Test Case 15 from the doc
 //
@@ -364,7 +339,6 @@ testVectorGCM testVectorGCMArray[] =
       0x631ef6c5, 0x0a7aba93, 0x62f6c9bc, 0xad158089 },
     { 0xc5da94b0, 0xbd7134d9, 0x22501aec, 0x6ccce370 }      // tagArray
 },
-
  //
  // Test Case #10 - Test Case 16 from the doc
  // When the data lengths do not align with the block
@@ -392,7 +366,6 @@ testVectorGCM testVectorGCMArray[] =
   { 0xce6efc76, 0x68174e0f, 0x5388dfcd, 0x1b552dbb }        // tagArray
  }
 };
-
 //
 // Main
 //
@@ -402,7 +375,6 @@ void main(void)
     // Initialize device clock and peripherals
     //
     CM_init();
-
     //
     // Initialize variables
     //
@@ -415,24 +387,20 @@ void main(void)
     {
         tagArray[cnt] = 0U;
     }
-
     //
     // Enable AES interrupts
     //
     Interrupt_enable(INT_AES);
     AES_registerInterrupt(INT_AES, localAESIntISR);
-
     //
     // Setup the control table
     //
     UDMA_enable(UDMA_BASE);
     UDMA_setControlBase(UDMA_BASE, ucControlTable);
-
     //
     // Perform AES Soft Reset
     //
     AES_performSoftReset(AES_BASE);
-
     //
     // Loop through all the given vectors
     //
@@ -453,7 +421,6 @@ void main(void)
         authDataArray      = testVectorGCMArray[vectorCnt].authDataArray;
         expCipherTextArray = testVectorGCMArray[vectorCnt].cipherTextArray;
         expTagArray        = testVectorGCMArray[vectorCnt].tagArray;
-
         //
         // Clear the arrays containing the cipher-text and tag to ensure things
         // are working correctly
@@ -466,7 +433,6 @@ void main(void)
         {
             tagArray[cnt] = 0U;
         }
-
         //
         // If both the data lengths are zero, then it's a special case
         //
@@ -475,12 +441,10 @@ void main(void)
             //
             // Performing encryption without uDMA.
             //
-
             //
             // Figure out the value of Y0 depending on the IV length
             //
             getGCMY0(keySize, ivArray, ivLength, keyArray, y0Array);
-
             //
             // Perform the basic encryption
             //
@@ -492,7 +456,6 @@ void main(void)
             // Figure out the value of Y0 depending on the IV length
             //
             getGCMY0(keySize, ivArray, ivLength, keyArray, y0Array);
-
             //
             // Perform the encryption without uDMA
             //
@@ -500,7 +463,6 @@ void main(void)
                           dataLength, keyArray, y0Array, authDataArray,
                           authDataLength, tagArray, false);
         }
-
         //
         // Check the results
         //
@@ -524,7 +486,6 @@ void main(void)
                 errorCountGlobal |= ((cnt << 16U) | 0x00000003U);
             }
         }
-
         //
         // Clear the arrays containing the cipher-text and tag to ensure things
         // are working correctly.
@@ -537,7 +498,6 @@ void main(void)
         {
             tagArray[cnt] = 0U;
         }
-
         //
         // Only use DMA with the vectors that have data
         //
@@ -549,7 +509,6 @@ void main(void)
             performGCMEncryption(keySize, plainTextArray, cipherTextArray,
                           dataLength, keyArray, y0Array, authDataArray,
                           authDataLength, tagArray, true);
-
             //
             // Check the result
             //
@@ -575,12 +534,10 @@ void main(void)
             }
         }
     }
-
     //
     // Clean up AES Data registers
     //
     AES_performSoftReset(AES_BASE);
-
     //
     // Update test status variable
     //
@@ -592,7 +549,6 @@ void main(void)
     {
         testStatusGlobal = TEST_FAIL;
     }
-
     //
     // Wait forever
     //
@@ -600,7 +556,6 @@ void main(void)
     {
     }
 }
-
 //
 // performECBEncryption - Perform an AES-ECB encryption operation.
 //
@@ -612,7 +567,6 @@ void performECBEncryption(AES_KeySize keySize, uint32_t *srcArray,
     // Perform a soft reset
     //
     AES_performSoftReset(AES_BASE);
-
     //
     // Configure the AES module
     //
@@ -622,18 +576,15 @@ void performECBEncryption(AES_KeySize keySize, uint32_t *srcArray,
     aesConfig.keySize = keySize;
     aesConfig.opMode = AES_OPMODE_ECB;
     AES_configureModule(AES_BASE, &aesConfig);
-
     //
     // Write the key
     //
     AES_setKey1(AES_BASE, keyArray, keySize);
-
     //
     // Perform the encryption
     //
     AES_processData(AES_BASE, srcArray, dstArray, dataLength);
 }
-
 //
 // getGCMY0 - Calculate the Y0 value that needs to be written into the IV
 // registers. Note: Y0 will always be 128 bits.
@@ -642,7 +593,6 @@ void getGCMY0(AES_KeySize keySize, uint32_t *ivArray, uint32_t ivLength,
               uint32_t *keyArray, uint32_t *y0Array)
 {
     uint32_t hashSubkeyArray[8U];
-
     //
     // If the length is 96 bits, then just set the last bit of the IV to 1
     //
@@ -653,7 +603,6 @@ void getGCMY0(AES_KeySize keySize, uint32_t *ivArray, uint32_t ivLength,
         y0Array[2] = ivArray[2];
         y0Array[3] = 0x01000000U;
     }
-
     //
     // If the length is not 96 bits, then perform a basic GHASH on the IV
     //
@@ -663,7 +612,6 @@ void getGCMY0(AES_KeySize keySize, uint32_t *ivArray, uint32_t ivLength,
         // First, get the hash subkey or H
         //
         getHashSubKey(keySize, keyArray, hashSubkeyArray);
-
         //
         // Next, perform the GHASH operation
         //
@@ -671,7 +619,6 @@ void getGCMY0(AES_KeySize keySize, uint32_t *ivArray, uint32_t ivLength,
                               y0Array);
     }
 }
-
 //
 // getHashSubKey - Calculate hash subkey(H) with the given key.
 // This is performed by encrypting 128 zeroes with the key.
@@ -680,7 +627,6 @@ void getHashSubKey(AES_KeySize keySize, uint32_t *keyArray,
                    uint32_t *hashSubkeyArray)
 {
     uint32_t zeroArray[8];
-
     //
     // Put zeroes into the first 4 words of the array
     //
@@ -688,7 +634,6 @@ void getHashSubKey(AES_KeySize keySize, uint32_t *keyArray,
     zeroArray[1] = 0x0U;
     zeroArray[2] = 0x0U;
     zeroArray[3] = 0x0U;
-
     //
     // Put zeroes into the next 4 words if the key size is 256bit
     //
@@ -699,14 +644,12 @@ void getHashSubKey(AES_KeySize keySize, uint32_t *keyArray,
         zeroArray[6] = 0x0U;
         zeroArray[7] = 0x0U;
     }
-
     //
     // Perform the encryption
     //
     performECBEncryption(keySize, zeroArray, hashSubkeyArray, keyArray,
                   (keySize == AES_KEY_SIZE_128BIT ? 16U : 32U));
 }
-
 //
 // performGHASHOperation - Perform a basic GHASH operation with the hashsubkey
 // and IV. This is used to get Y0 when the IV is not 96 bits.  To use this GCM
@@ -718,12 +661,10 @@ void performGHASHOperation(AES_KeySize keySize, uint32_t *hashSubkeyArray,
                            uint32_t *resultTagArray)
 {
     uint32_t ghashCnt;
-
     //
     // Perform a soft reset
     //
     AES_performSoftReset(AES_BASE);
-
     //
     // Configure the AES module
     //
@@ -732,18 +673,15 @@ void performGHASHOperation(AES_KeySize keySize, uint32_t *hashSubkeyArray,
     aesConfig.keySize = (AES_KeySize)keySize;
     aesConfig.opMode = AES_OPMODE_GCM_HLY0ZERO;
     AES_configureModule(AES_BASE, &aesConfig);
-
     //
     // Set the hash subkey
     //
     AES_setKey2(AES_BASE, hashSubkeyArray, keySize);
-
     //
     // Write the lengths
     //
     AES_setDataLength(AES_BASE, ivLength);
     AES_setAuthDataLength(AES_BASE, 0U);
-
     //
     // Write the data
     //
@@ -754,13 +692,11 @@ void performGHASHOperation(AES_KeySize keySize, uint32_t *hashSubkeyArray,
         //
         AES_writeDataBlocking(AES_BASE, (ivArray + (ghashCnt / 4U)));
     }
-
     //
     // Read the hash tag value
     //
     AES_readTag(AES_BASE, resultTagArray);
 }
-
 //
 // performGCMEncryption - Perform GCM encryption operation.
 //
@@ -774,7 +710,6 @@ void performGCMEncryption(AES_KeySize keySize, uint32_t *srcArray,
     // Perform a soft reset
     //
     AES_performSoftReset(AES_BASE);
-
     //
     // Clear the interrupt flags
     //
@@ -786,7 +721,6 @@ void performGCMEncryption(AES_KeySize keySize, uint32_t *srcArray,
     dataInDMADoneIntFlag = false;
     contextOutDMADoneIntFlag = false;
     dataOutDMADoneIntFlag = false;
-
     //
     // Configure the AES module
     //
@@ -796,17 +730,14 @@ void performGCMEncryption(AES_KeySize keySize, uint32_t *srcArray,
     aesConfig.keySize = keySize;
     aesConfig.opMode = AES_OPMODE_GCM_HY0CALC;
     AES_configureModule(AES_BASE, &aesConfig);
-
     //
     // Write the initialization value
     //
     AES_setInitializationVector(AES_BASE, ivArray);
-
     //
     // Write the keys
     //
     AES_setKey1(AES_BASE, keyArray, keySize);
-
     //
     // Depending on the argument, perform the encryption
     // with or without uDMA
@@ -819,7 +750,6 @@ void performGCMEncryption(AES_KeySize keySize, uint32_t *srcArray,
         AES_disableInterrupt(AES_BASE, AESW_BASE, (AES_INT_CONTEXT_IN |
                              AES_INT_CONTEXT_OUT | AES_INT_DATA_IN    |
                              AES_INT_DATA_OUT));
-
         //
         // Enable DMA interrupts
         //
@@ -827,7 +757,6 @@ void performGCMEncryption(AES_KeySize keySize, uint32_t *srcArray,
                                                   AES_INT_DMA_DATA_IN     |
                                                   AES_INT_DMA_CONTEXT_OUT |
                                                   AES_INT_DMA_DATA_OUT));
-
         if(aadLength != 0U)
         {
             //
@@ -835,55 +764,45 @@ void performGCMEncryption(AES_KeySize keySize, uint32_t *srcArray,
             //
             UDMA_changeChannelMapping(UDMA_BASE, UDMA_CHANNEL_AES_DIN,
                                       UDMA_CH_MAPPING_0);
-
             UDMA_disableChannelAttribute(UDMA_BASE, UDMA_CHANNEL_AES_DIN,
                                         UDMA_CH_ATTR_ALL);
-
             UDMA_setChannelControlParams(UDMA_BASE, (UDMA_CHANNEL_AES_DIN    |
                                         UDMA_PRI_SELECT), (UDMA_SIZE_32      |
                                                            UDMA_SRC_INC_32   |
                                                            UDMA_DST_INC_NONE |
                                                            UDMA_ARB_4        |
                                                            UDMA_DST_PROT_PRIV));
-
             UDMA_setChannelTransferParams(UDMA_BASE, (UDMA_CHANNEL_AES_DIN   |
                          UDMA_PRI_SELECT), (void*)aadArray,
                          (void*)(AES_BASE + AES_O_DATA_IN_OUT_0),
                          UDMA_MODE_BASIC, (roundUpDataLength(aadLength) / 4U));
         }
-
         //
         // Setup the DMA module to copy the data out
         //
         UDMA_changeChannelMapping(UDMA_BASE, UDMA_CHANNEL_AES_DOUT,
                                   UDMA_CH_MAPPING_0);
-
         UDMA_disableChannelAttribute(UDMA_BASE, UDMA_CHANNEL_AES_DOUT,
                                     UDMA_CH_ATTR_ALL);
-
         UDMA_setChannelControlParams(UDMA_BASE, (UDMA_CHANNEL_AES_DOUT    |
                                      UDMA_PRI_SELECT), (UDMA_SIZE_32      |
                                                         UDMA_SRC_INC_NONE |
                                                         UDMA_DST_INC_32   |
                                                         UDMA_ARB_4        |
                                                         UDMA_SRC_PROT_PRIV));
-
         UDMA_setChannelTransferParams(UDMA_BASE, (UDMA_CHANNEL_AES_DOUT |
                                  UDMA_PRI_SELECT),
                                  (void*)(AES_BASE + AES_O_DATA_IN_OUT_0),
                                  (void*)dstArray, UDMA_MODE_BASIC,
                                  roundUpDataLength(dataLength) / 4U);
-
         //
         // Write the plain-text length
         //
         AES_setDataLength(AES_BASE, (uint64_t)(dataLength));
-
         //
         // Write the auth length registers to start the process
         //
         AES_setAuthDataLength(AES_BASE, aadLength);
-
         //
         // Enable the DMA channels to start the transfers. This must be done
         // after writing the length to prevent data from copying before the
@@ -893,15 +812,12 @@ void performGCMEncryption(AES_KeySize keySize, uint32_t *srcArray,
         {
             UDMA_enableChannel(UDMA_BASE, UDMA_CHANNEL_AES_DIN);
         }
-
         UDMA_enableChannel(UDMA_BASE, UDMA_CHANNEL_AES_DOUT);
-
         //
         // Enable DMA requests
         //
         AES_enableDMARequest(AES_BASE,(AES_DMA_EN_DATA_IN |
                                        AES_DMA_EN_DATA_OUT));
-
         if(aadLength != 0U)
         {
             //
@@ -911,7 +827,6 @@ void performGCMEncryption(AES_KeySize keySize, uint32_t *srcArray,
             {
             }
         }
-
         if(dataLength != 0U)
         {
             //
@@ -919,30 +834,24 @@ void performGCMEncryption(AES_KeySize keySize, uint32_t *srcArray,
             //
             UDMA_changeChannelMapping(UDMA_BASE, UDMA_CHANNEL_AES_DIN,
                                       UDMA_CH_MAPPING_0);
-
             UDMA_disableChannelAttribute(UDMA_BASE, UDMA_CHANNEL_AES_DIN,
                                         UDMA_CH_ATTR_ALL);
-
             UDMA_setChannelControlParams(UDMA_BASE, (UDMA_CHANNEL_AES_DIN    |
                                         UDMA_PRI_SELECT), (UDMA_SIZE_32      |
                                                            UDMA_SRC_INC_32   |
                                                            UDMA_DST_INC_NONE |
                                                            UDMA_ARB_4        |
                                                            UDMA_DST_PROT_PRIV));
-
             UDMA_setChannelTransferParams(UDMA_BASE, (UDMA_CHANNEL_AES_DIN  |
                            UDMA_PRI_SELECT), (void*)srcArray,
                            (void*)(AES_BASE + AES_O_DATA_IN_OUT_0),
                            UDMA_MODE_BASIC, roundUpDataLength(dataLength) / 4U);
-
             UDMA_enableChannel(UDMA_BASE, UDMA_CHANNEL_AES_DIN);
-
             //
             // Enable DMA requests
             //
             AES_enableDMARequest(AES_BASE,(AES_DMA_EN_DATA_IN |
                                            AES_DMA_EN_DATA_OUT));
-
             //
             // Wait for the data out DMA done interrupt
             //
@@ -950,7 +859,6 @@ void performGCMEncryption(AES_KeySize keySize, uint32_t *srcArray,
             {
             }
         }
-
         //
         // Read out the tag.
         //
@@ -964,7 +872,6 @@ void performGCMEncryption(AES_KeySize keySize, uint32_t *srcArray,
         AES_enableInterrupt(AES_BASE, AESW_BASE, (AES_INT_CONTEXT_IN |
                             AES_INT_CONTEXT_OUT | AES_INT_DATA_IN    |
                             AES_INT_DATA_OUT));
-
         //
         // Perform the encryption
         //
@@ -972,7 +879,6 @@ void performGCMEncryption(AES_KeySize keySize, uint32_t *srcArray,
                                   aadArray, aadLength, tagArray);
     }
 }
-
 //
 // roundUpDataLength - Round up length to nearest 16 byte boundary.  This is
 // needed because all four data registers must be written at once.  This is
@@ -981,7 +887,6 @@ void performGCMEncryption(AES_KeySize keySize, uint32_t *srcArray,
 uint32_t roundUpDataLength(uint32_t dataLength)
 {
     uint32_t remainder;
-
     remainder = dataLength % 16U;
     if(remainder == 0U)
     {
@@ -992,7 +897,6 @@ uint32_t roundUpDataLength(uint32_t dataLength)
         return(dataLength + (16U - remainder));
     }
 }
-
 //
 // localAESIntISR - local AES Int ISR
 //
@@ -1002,7 +906,6 @@ void localAESIntISR(void)
     // Read the AES masked interrupt status
     //
     intStatus = AES_getInterruptStatus(AES_BASE, AESW_BASE, false);
-
     //
     // Print a different message depending on the interrupt source
     //
@@ -1083,7 +986,6 @@ void localAESIntISR(void)
         dataOutDMADoneIntFlag = true;
     }
 }
-
 //
 // End of File
 //

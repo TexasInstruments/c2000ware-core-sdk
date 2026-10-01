@@ -44,6 +44,8 @@
 #ifndef F28004x_CLA_TYPEDEFS_H_
 #define F28004x_CLA_TYPEDEFS_H_
 
+#include "stdint.h"
+
 //
 // Macros to manipulate pre-processor to generate a header file name
 // at compile time that is based on the test name and can be used as
@@ -57,6 +59,7 @@
 //
 // Suppress warnings casting CLA pointers
 //
+#pragma diag_push
 #pragma diag_suppress 70,770,232
 
 #ifdef __TMS320C28XX_CLA__
@@ -120,6 +123,7 @@ struct MSTF_SHADOW_BITS {
 extern __cregister volatile unsigned int MSTF;
 
 #endif
+#pragma diag_pop
 
 #ifndef __TMS320C28XX__
 #define __cregister

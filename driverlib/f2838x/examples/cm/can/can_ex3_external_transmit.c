@@ -41,7 +41,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -74,12 +74,10 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "cm.h"
-
 //
 // Defines
 //
@@ -87,7 +85,6 @@
 #define MSG_DATA_LENGTH    4
 #define TX_MSG_OBJ_ID    1
 #define RX_MSG_OBJ_ID    1
-
 //
 // Globals
 //
@@ -97,30 +94,25 @@ volatile uint32_t rxMsgCount = 0;
 volatile uint32_t errorFlag = 0;
 uint8_t txMsgData[4];
 uint8_t rxMsgData[4];
-
 //
 // Function Prototypes
 //
 __interrupt void canbISR(void);
-
 //
 // Main
 //
 void main(void)
 {
     volatile uint32_t delay;
-
     //
     // Initialize device clock and peripherals
     //
     CM_init();
-
     //
     // Initialize the CAN controllers
     //
     CAN_initModule(CANA_BASE);
     CAN_initModule(CANB_BASE);
-
     //
     // Set up the CAN bus bit rate to 500kHz for each module
     // Refer to the Driver Library User Guide for information on how to set
@@ -129,26 +121,22 @@ void main(void)
     //
     CAN_setBitRate(CANA_BASE, CM_CLK_FREQ, 500000, 16);
     CAN_setBitRate(CANB_BASE, CM_CLK_FREQ, 500000, 16);
-
     //
     // Enable interrupts on the CAN B peripheral.
     //
     CAN_enableInterrupt(CANB_BASE, CAN_INT_IE0 | CAN_INT_ERROR |
                         CAN_INT_STATUS);
-
     //
     // Interrupts that are used in this example are re-mapped to
     // ISR functions found within this file.
     // This registers the interrupt handler in PIE vector table.
     //
     Interrupt_registerHandler(INT_CANB0, &canbISR);
-
     //
     // Enable the CAN-B interrupt signal
     //
     Interrupt_enable(INT_CANB0);
     CAN_enableGlobalInterrupt(CANB_BASE, CAN_GLOBAL_INT_CANINT0);
-
     //
     // Initialize the transmit message object used for sending CAN messages.
     // Message Object Parameters:
@@ -164,7 +152,6 @@ void main(void)
     CAN_setupMessageObject(CANA_BASE, TX_MSG_OBJ_ID, 0x15555555,
                            CAN_MSG_FRAME_EXT, CAN_MSG_OBJ_TYPE_TX, 0,
                            CAN_MSG_OBJ_NO_FLAGS, MSG_DATA_LENGTH);
-
     //
     // Initialize the receive message object used for receiving CAN messages.
     // Message Object Parameters:
@@ -180,7 +167,6 @@ void main(void)
     CAN_setupMessageObject(CANB_BASE, RX_MSG_OBJ_ID, 0x15555555,
                            CAN_MSG_FRAME_EXT, CAN_MSG_OBJ_TYPE_RX, 0,
                            CAN_MSG_OBJ_RX_INT_ENABLE, MSG_DATA_LENGTH);
-
     //
     // Initialize the transmit message object data buffer to be sent
     //
@@ -188,13 +174,11 @@ void main(void)
     txMsgData[1] = 0x34;
     txMsgData[2] = 0x56;
     txMsgData[3] = 0x78;
-
     //
     // Start CAN module A and B operations
     //
     CAN_startModule(CANA_BASE);
     CAN_startModule(CANB_BASE);
-
     //
     // Transmit messages from CAN-A to CAN-B
     //
@@ -210,7 +194,6 @@ void main(void)
             //
             __asm("   bkpt #0");
         }
-
         //
         // Verify that the number of transmitted messages equal the number of
         // messages received before sending a new message
@@ -225,12 +208,10 @@ void main(void)
         {
             errorFlag = 1;
         }
-
         //
         // Delay before continuing
         //
         for(delay=0U; delay<50000; delay++);
-
         //
         // Increment the value in the transmitted message data.
         //
@@ -238,7 +219,6 @@ void main(void)
         txMsgData[1] += 0x01;
         txMsgData[2] += 0x01;
         txMsgData[3] += 0x01;
-        
         //
         // Reset data if exceeds a byte
         //
@@ -259,13 +239,11 @@ void main(void)
             txMsgData[3] = 0;
         }        
     }
-    
     //
     // Stop Application.
     //
     __asm("   bkpt #0");
 }
-
 //
 // CAN B ISR - The interrupt service routine called when a CAN interrupt is
 //             triggered on CAN module B.
@@ -274,12 +252,10 @@ __interrupt void
 canbISR(void)
 {
     uint32_t status;
-
     //
     // Read the CAN-B interrupt status to find the cause of the interrupt
     //
     status = CAN_getInterruptCause(CANB_BASE);
-
     //
     // If the cause is a controller status interrupt, then get the status
     //
@@ -293,7 +269,6 @@ canbISR(void)
         // The act of reading this status will clear the interrupt.
         //
         status = CAN_getStatus(CANB_BASE);
-
         //
         // Check to see if an error occurred.
         //
@@ -315,21 +290,18 @@ canbISR(void)
         // Get the received message
         //
         CAN_readMessage(CANB_BASE, RX_MSG_OBJ_ID, rxMsgData);
-
         //
         // Getting to this point means that the RX interrupt occurred on
         // message object 1, and the message RX is complete.  Clear the
         // message object interrupt.
         //
         CAN_clearInterruptStatus(CANB_BASE, RX_MSG_OBJ_ID);
-
         //
         // Increment a counter to keep track of how many messages have been
         // received. In a real application this could be used to set flags to
         // indicate when a message is received.
         //
         rxMsgCount++;
-
         //
         // Since the message was received, clear any error flags.
         //
@@ -344,13 +316,11 @@ canbISR(void)
         // Spurious interrupt handling can go here.
         //
     }
-
     //
     // Clear the global interrupt flag for the CAN interrupt line
     //
     CAN_clearGlobalInterruptStatus(CANB_BASE, CAN_GLOBAL_INT_CANINT0);
 }
-
 //
 // End of File
 //

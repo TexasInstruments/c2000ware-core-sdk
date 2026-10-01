@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="i2c__ex1__loopback_8md" kind="file" language="Markdown">
+    <compoundname>i2c_ex1_loopback.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>I2C<sp/>Loopback{#EXAMPLES_I2C_EX1_LOOPBACK}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>I2C<sp/>Loopback<sp/>Example&quot;</highlight></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>I2C&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>program<sp/>demonstrates<sp/>the<sp/>use<sp/>of<sp/>the<sp/>I2C<sp/>module&apos;s<sp/>internal<sp/>loopback<sp/>test<sp/>mode<sp/>with<sp/>FIFO<sp/>interrupts.<sp/>It<sp/>sends<sp/>a<sp/>stream<sp/>of<sp/>data<sp/>and<sp/>verifies<sp/>the<sp/>received<sp/>data<sp/>against<sp/>the<sp/>expected<sp/>pattern.<sp/>The<sp/>example<sp/>uses<sp/>the<sp/>TX<sp/>and<sp/>RX<sp/>I2C<sp/>FIFOs<sp/>and<sp/>their<sp/>associated<sp/>interrupts.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Description</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>sent<sp/>data<sp/>follows<sp/>a<sp/>repeating<sp/>pattern:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>`0000<sp/>0001`</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>`0001<sp/>0002`</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>`0002<sp/>0003`</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>`00FE<sp/>00FF`</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>`00FF<sp/>0000`</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>program<sp/>initializes<sp/>the<sp/>device,<sp/>GPIO,<sp/>PIE,<sp/>and<sp/>I2C<sp/>modules.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Data<sp/>is<sp/>transmitted<sp/>and<sp/>received<sp/>using<sp/>FIFO<sp/>interrupts.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>received<sp/>data<sp/>is<sp/>validated<sp/>against<sp/>the<sp/>expected<sp/>pattern.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>If<sp/>a<sp/>mismatch<sp/>occurs,<sp/>the<sp/>program<sp/>halts<sp/>execution<sp/>for<sp/>debugging.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\note</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>This<sp/>example<sp/>supports<sp/>migration<sp/>across<sp/>C2000<sp/>device<sp/>families.<sp/>Ensure<sp/>the<sp/>correct<sp/>board<sp/>is<sp/>specified<sp/>in<sp/>the<sp/>`.syscfg`<sp/>file.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>No<sp/>external<sp/>connections<sp/>are<sp/>required<sp/>for<sp/>this<sp/>example.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Watch<sp/>Variables</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Variable<sp/><sp/><sp/><sp/>|<sp/>Description<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|-------------|--------------------------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`sData`<sp/><sp/><sp/><sp/><sp/>|<sp/>Data<sp/>to<sp/>send.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`rData`<sp/><sp/><sp/><sp/><sp/>|<sp/>Received<sp/>data.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`rDataPoint`|<sp/>Tracks<sp/>the<sp/>last<sp/>position<sp/>in<sp/>the<sp/>receive<sp/>stream<sp/>for<sp/>error<sp/>checking.<sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>None.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>ISR<sp/>Table</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>ISR<sp/>Name<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Description<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|------------------|-----------------------------------------------------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`i2cFIFOISR`<sp/><sp/><sp/><sp/><sp/>|<sp/>Handles<sp/>FIFO<sp/>interrupts<sp/>for<sp/>transmitting<sp/>and<sp/>receiving<sp/>data,<sp/>validates<sp/>received<sp/>data,<sp/>and<sp/>clears<sp/>interrupt<sp/>flags.<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`INT_myI2C0_ISR`<sp/>|<sp/>Clears<sp/>interrupt<sp/>acknowledgment<sp/>for<sp/>SysConfig<sp/>functionality.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Code<sp/>Flow</highlight></codeline>
+<codeline><highlight class="normal">```markdown</highlight></codeline>
+<codeline><highlight class="normal">```mermaid</highlight></codeline>
+<codeline><highlight class="normal">flowchart<sp/>TD</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>A[Start]<sp/>--&gt;<sp/>B[Initialize<sp/>device,<sp/>GPIO,<sp/>PIE,<sp/>and<sp/>I2C<sp/>modules]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>B<sp/>--&gt;<sp/>C[Enable<sp/>I2C<sp/>internal<sp/>loopback<sp/>mode]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>C<sp/>--&gt;<sp/>D[Transmit<sp/>data<sp/>using<sp/>TX<sp/>FIFO<sp/>interrupts]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>D<sp/>--&gt;<sp/>E[Receive<sp/>data<sp/>using<sp/>RX<sp/>FIFO<sp/>interrupts]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>E<sp/>--&gt;<sp/>F[Validate<sp/>received<sp/>data<sp/>against<sp/>expected<sp/>pattern]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>F<sp/>--&gt;<sp/>G{Data<sp/>matches<sp/>expected<sp/>pattern?}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>G<sp/>--&gt;|Yes|<sp/>H[Continue<sp/>operation]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>G<sp/>--&gt;|No|<sp/>I[Halt<sp/>execution<sp/>for<sp/>debugging]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>H<sp/>--&gt;<sp/>J[Observe<sp/>sData<sp/>and<sp/>rData<sp/>buffers]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>J<sp/>--&gt;<sp/>K[Use<sp/>breakpoints<sp/>or<sp/>suspend<sp/>execution<sp/>to<sp/>debug]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>K<sp/>--&gt;<sp/>L[End]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>I<sp/>--&gt;<sp/>L</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\note</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>When<sp/>running<sp/>in<sp/>flash<sp/>configuration,<sp/>it<sp/>is<sp/>recommended<sp/>to<sp/>reset<sp/>and<sp/>restart<sp/>after<sp/>loading<sp/>the<sp/>example<sp/>to<sp/>remove<sp/>any<sp/>stale<sp/>flags<sp/>or<sp/>states.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_I2C_PAGE</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/i2c_ex1_loopback.md"/>
+  </compounddef>
+</doxygen>

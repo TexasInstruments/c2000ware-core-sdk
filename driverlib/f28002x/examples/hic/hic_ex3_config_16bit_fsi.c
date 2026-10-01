@@ -80,18 +80,15 @@
 #include "device.h"
 #include "driverlib.h"
 #include "hic.h"
-
 #define PRESCALER_VAL           FSI_PRESCALE_50MHZ
 #define HIC_INIT_DONE_TOKEN     0xFAU
 #define HIC_START_TOKEN         0xFBU
 #define HIC_BASE_TOKEN          0xFCU
-
 //
 //Function Prototypes
 //
 void initFSI(void);
 void initGPIOHIC(void);
-
 //
 // Main
 //
@@ -101,16 +98,12 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure the GPIO pin as a push-pull output
     //
     Device_initGPIO();
-
     initGPIOHIC();
-
     HIC_enableHostInterface();
-
     //
     //Set HIC Configuration
     //16 Bit mode with Separate
@@ -127,58 +120,47 @@ void main(void)
                    HIC_MODE_DEVICE_HOST_ACCESS_ENABLE |
                    HIC_MODE_HOST_WREALLOW_ENABLE
                   );
-
     //
     //Enable EALLOW access from Host, with Page selection through BASESEL Pins
     //
     HIC_configureHostAccessMode(HIC_HOST_CONTROL_EALLOW_EN|HIC_HOST_CONTROL_PAGESEL_PIN);
-
     //
     //Initialize the FSI module for internal loopback
     //
     initFSI();
-
     //
     //Enable Host to be interrupted on FSI Rx interrupt
     //Bit 0 of Event trigger bus is FSI Rx interrupt
     //Refer Device Technical Reference manual for details
     //
     HIC_enableD2HInterrupt(HIC_EVTTRIG_EVENT_0);
-
     //
     //Region 0 is configured for FSI TX region access
     //Entire Tx and Rx region of FSI can be done with a
     //Single region in 16 bit mode of HIC
     //
     HIC_setBaseAddress(0,FSITXA_BASE);
-
-
     //
     //Flag to the host by writing to the Token
     //This will generate a D2H interrupt
     //
     HIC_setD2HToken(HIC_INIT_DONE_TOKEN);
-
-
     //
     //Now the Host side can read and write to the FSI memory region
     //
     ESTOP0;
 }
-
 void initGPIOHIC(void)
 {
     //
     //This routine does PinMux for 16 Bit configuration
     //of HIC module.These are for a TI Internal Board
     //
-
     //
     //For Chip Select Pin
     //
     GPIO_setPinConfig(GPIO_29_HIC_NCS);
     GPIO_setQualificationMode(29,GPIO_QUAL_ASYNC);
-
     //
     //For Base Select Pins
     //
@@ -189,20 +171,17 @@ void initGPIOHIC(void)
     //HINT Pin
     //
     GPIO_setPinConfig(GPIO_32_HIC_INT);
-
     //
     //Output Enable
     //
     GPIO_setPinConfig(GPIO_28_HIC_NOE);
     GPIO_setQualificationMode(28,GPIO_QUAL_ASYNC);
-
     //
     //Write Enable pin
     //
     GPIO_setPinConfig(GPIO_225_HIC_NWE);
     GPIO_setQualificationMode(225,GPIO_QUAL_ASYNC);
     GPIO_setAnalogMode(225, GPIO_ANALOG_DISABLED);
-
     //
     //Byte Enables
     //
@@ -212,13 +191,11 @@ void initGPIOHIC(void)
     GPIO_setQualificationMode(241,GPIO_QUAL_ASYNC);
     GPIO_setAnalogMode(227, GPIO_ANALOG_DISABLED);
     GPIO_setAnalogMode(241, GPIO_ANALOG_DISABLED);
-
     //
     //Ready Pin
     //
     GPIO_setPinConfig(GPIO_9_HIC_NRDY);
     GPIO_setQualificationMode(9,GPIO_QUAL_ASYNC);
-
     //
     //HIC Data Pins
     //
@@ -254,7 +231,6 @@ void initGPIOHIC(void)
     GPIO_setQualificationMode(22,GPIO_QUAL_ASYNC);
     GPIO_setQualificationMode(7,GPIO_QUAL_ASYNC);
     GPIO_setQualificationMode(14,GPIO_QUAL_ASYNC);
-
     //
     //HIC Address Pins
     //
@@ -308,19 +284,15 @@ void initFSI(void)
     //
     uint32_t rxFrameWdRefCntr = 0x1000000;
     uint16_t i;
-
     //
     // Set internalLoopback mode
     //
     FSI_enableRxInternalLoopback(FSIRXA_BASE);
-
-
     //
     // Initialize Tx/Rx, reset sequence, clear events
     //
     FSI_performTxInitialization(FSITXA_BASE, PRESCALER_VAL);
     FSI_performRxInitialization(FSIRXA_BASE);
-
     //
     // Flush Sequence before and after releasing Rx core reset, ensures flushing
     // of Rx data/clock lines and prepares it for reception
@@ -330,12 +302,9 @@ void initFSI(void)
     DEVICE_DELAY_US(1);
     FSI_clearRxModuleReset(FSIRXA_BASE, FSI_RX_MASTER_CORE_RESET);
     FSI_executeTxFlushSequence(FSITXA_BASE, PRESCALER_VAL);
-
-
     //
     // First setup Ping transfer and then Data
     //
-
     //
     // Performing a reset on PING WD counter before its usage is recommended
     // Done on both FSI Tx/Rx sides
@@ -343,16 +312,13 @@ void initFSI(void)
     FSI_resetTxModule(FSITXA_BASE, FSI_TX_PING_TIMEOUT_CNT_RESET);
     DEVICE_DELAY_US(1);
     FSI_clearTxModuleReset(FSITXA_BASE, FSI_TX_PING_TIMEOUT_CNT_RESET);
-
     FSI_resetRxModule(FSIRXA_BASE, FSI_RX_PING_WD_CNT_RESET);
     DEVICE_DELAY_US(1);
     FSI_clearRxModuleReset(FSIRXA_BASE, FSI_RX_PING_WD_CNT_RESET);
-
     //
     // Enable Rx Ping Watchdog timeout event on INT2 line
     //
     FSI_enableRxInterrupt(FSIRXA_BASE, FSI_INT2, FSI_RX_EVT_PING_WD_TIMEOUT);
-
     //
     // Now enable PING WD timer in both FSI Tx/Rx sides
     // Keeping reference counter for Rx little wide to ensure its not too sharp
@@ -360,11 +326,9 @@ void initFSI(void)
     //
     FSI_enableTxPingTimer(FSITXA_BASE, txPingTimeRefCntr, txPingFrameTag);
     FSI_enableRxPingWatchdog(FSIRXA_BASE, rxWdTimeoutRefCntr);
-
     //
     // Automatic Ping transmission is setup, now configure for data transfers
     //
-
     //
     // Setting for requested nWords and nLanes with transfers
     //
@@ -372,13 +336,11 @@ void initFSI(void)
     FSI_setRxSoftwareFrameSize(FSIRXA_BASE, nWords);
     FSI_setTxDataWidth(FSITXA_BASE, nLanes);
     FSI_setRxDataWidth(FSIRXA_BASE, nLanes);
-
     //
     // Enable normal data transfer events to be sent over INT1 line
     //
     FSI_enableTxInterrupt(FSITXA_BASE, FSI_INT1, FSI_TX_EVT_FRAME_DONE);
     FSI_enableRxInterrupt(FSIRXA_BASE, FSI_INT1, FSI_RX_EVT_DATA_FRAME );
-
     //
     // Enable transmit/receive error events to be sent over INT2 line
     // Overrun and Underrun conditions in Rx are not enabled as buffer pointers
@@ -390,14 +352,12 @@ void initFSI(void)
     FSI_setTxUserDefinedData(FSITXA_BASE, txUserData);
     FSI_setTxFrameTag(FSITXA_BASE, txDataFrameTag);
     FSI_setTxFrameType(FSITXA_BASE, FSI_FRAME_TYPE_NWORD_DATA);
-
     //
     // Performing a reset on frame WD before its usage is recommended
     //
     FSI_resetRxModule(FSIRXA_BASE, FSI_RX_FRAME_WD_CNT_RESET);
     DEVICE_DELAY_US(1);
     FSI_clearRxModuleReset(FSIRXA_BASE, FSI_RX_FRAME_WD_CNT_RESET);
-
     FSI_enableRxInterrupt(FSIRXA_BASE, FSI_INT2,
                         FSI_RX_EVT_FRAME_WD_TIMEOUT);
     FSI_enableRxFrameWatchdog(FSIRXA_BASE, rxFrameWdRefCntr);

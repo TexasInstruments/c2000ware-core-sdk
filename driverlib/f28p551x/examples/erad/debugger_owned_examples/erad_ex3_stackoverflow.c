@@ -74,25 +74,20 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
-
 //
 // Globals
 //
 extern uint32_t __TI_STACK_END;
 volatile uint32_t functionCallCount = 0;
-
 //
 // Function Prototypes
 //
 void recursiveFunction(uint32_t delay);
-
 //
 // Main
 //
@@ -102,54 +97,43 @@ void main(void)
     // Initializes device clock and peripherals
     //
     Device_init();
-
     //
     // Configures the GPIO pin as a push-pull output
     //
     Device_initGPIO();
-
     //
     // Initializes PIE and clears PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initializes the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     recursiveFunction(1);
-
     //
     // IDLE loop. Just sit and loop forever (optional)
     //
     while(1)
     {
-
     }
 }
-
 //
 // recursive function to fill the stack
 //
 void recursiveFunction(uint32_t delay)
 {
     functionCallCount++;
-
     //
     // Recursive function
     //
     recursiveFunction(delay + 1UL);
 }
-
-
 //
 // End of File
 //

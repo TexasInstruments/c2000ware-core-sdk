@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="interrupt__ex3__sw__prioritization_8md" kind="file" language="Markdown">
+    <compoundname>interrupt_ex3_sw_prioritization.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>CPU<sp/>Timer<sp/>Interrupt<sp/>Software<sp/>Prioritization<sp/>example<sp/>{#EXAMPLES_DRIVERS_INTERRUPT_EX3_SW_PRIORITIZATION}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>CPU<sp/>Timer<sp/>Interrupt<sp/>Software<sp/>Prioritization<sp/>example&quot;</highlight></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>Interrupt&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>This<sp/>examples<sp/>demonstrates<sp/>the<sp/>software<sp/>prioritization<sp/>of<sp/>interrupts</highlight></codeline>
+<codeline><highlight class="normal"><sp/>through<sp/>CPU<sp/>Timer<sp/>Interrupts.<sp/>Software<sp/>prioritization<sp/>of<sp/>interrupts<sp/>is</highlight></codeline>
+<codeline><highlight class="normal"><sp/>achieved<sp/>by<sp/>enabling<sp/>interrupt<sp/>nesting.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>In<sp/>this<sp/>device,<sp/>hardware<sp/>priorities<sp/>for<sp/>CPU<sp/>Timer<sp/>0,<sp/>1<sp/>and<sp/>2<sp/>are<sp/>set</highlight></codeline>
+<codeline><highlight class="normal"><sp/>as<sp/>timer<sp/>0<sp/>being<sp/>highest<sp/>priority<sp/>and<sp/>timer<sp/>2<sp/>being<sp/>lowest<sp/>priority.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>This<sp/>example<sp/>configures<sp/>CPU<sp/>Timer0,<sp/>1,<sp/>and<sp/>2<sp/>priority<sp/>in<sp/>software<sp/>with</highlight></codeline>
+<codeline><highlight class="normal"><sp/>timer<sp/>2<sp/>priority<sp/>being<sp/>highest<sp/>and<sp/>timer<sp/>0<sp/>being<sp/>lowest<sp/>in<sp/>software<sp/>and</highlight></codeline>
+<codeline><highlight class="normal"><sp/>prints<sp/>a<sp/>trace<sp/>for<sp/>the<sp/>order<sp/>of<sp/>execution.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>For<sp/>most<sp/>applications,<sp/>the<sp/>hardware<sp/>prioritizing<sp/>of<sp/>the<sp/>interrupts<sp/>is</highlight></codeline>
+<codeline><highlight class="normal"><sp/>sufficient.<sp/>For<sp/>applications<sp/>that<sp/>need<sp/>custom<sp/>prioritizing,<sp/>this<sp/>example</highlight></codeline>
+<codeline><highlight class="normal"><sp/>illustrates<sp/>how<sp/>this<sp/>can<sp/>be<sp/>done<sp/>through<sp/>software.User<sp/>specific<sp/>priorities</highlight></codeline>
+<codeline><highlight class="normal"><sp/>can<sp/>be<sp/>configured<sp/>in<sp/>sw_prioritized_isr_level.h<sp/>header<sp/>file.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>To<sp/>enable<sp/>interrupt<sp/>nesting,<sp/>following<sp/>sequence<sp/>needs<sp/>to<sp/>followed<sp/>in<sp/>ISRs.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>Step<sp/>1:<sp/>Set<sp/>the<sp/>global<sp/>priority:</highlight></codeline>
+<codeline><highlight class="normal"><sp/>Modify<sp/>the<sp/>IER<sp/>register<sp/>to<sp/>allow<sp/>CPU<sp/>interrupts<sp/>with<sp/>a<sp/>higher<sp/>user</highlight></codeline>
+<codeline><highlight class="normal"><sp/>priority<sp/>to<sp/>be<sp/>serviced.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>Note:<sp/>at<sp/>this<sp/>time<sp/>IER<sp/>has<sp/>already<sp/>been<sp/>saved<sp/>on<sp/>the<sp/>stack.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>Step<sp/>2:<sp/>Set<sp/>the<sp/>group<sp/>priority:<sp/>(optional)</highlight></codeline>
+<codeline><highlight class="normal"><sp/>Modify<sp/>the<sp/>appropriate<sp/>PIEIERx<sp/>register<sp/>to<sp/>allow<sp/>group<sp/>interrupts<sp/>with<sp/>a</highlight></codeline>
+<codeline><highlight class="normal"><sp/>higher<sp/>user<sp/>set<sp/>priority<sp/>to<sp/>be<sp/>serviced.<sp/>Do<sp/>NOT<sp/>clear<sp/>PIEIER<sp/>register<sp/>bits</highlight></codeline>
+<codeline><highlight class="normal"><sp/>from<sp/>another<sp/>group<sp/>other<sp/>than<sp/>that<sp/>being<sp/>serviced<sp/>by<sp/>this<sp/>ISR.<sp/>Doing<sp/>so</highlight></codeline>
+<codeline><highlight class="normal"><sp/>can<sp/>cause<sp/>erroneous<sp/>interrupts<sp/>to<sp/>occur.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>Step<sp/>3:<sp/>Enable<sp/>interrupts:<sp/>There<sp/>are<sp/>three<sp/>steps<sp/>to<sp/>do<sp/>this:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>a.<sp/>Clear<sp/>the<sp/>PIEACK<sp/>bits</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b.<sp/>Wait<sp/>at<sp/>least<sp/>one<sp/>cycle</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c.<sp/>Clear<sp/>the<sp/>INTM<sp/>bit.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>Step<sp/>4:<sp/>Run<sp/>the<sp/>main<sp/>part<sp/>of<sp/>the<sp/>ISR</highlight></codeline>
+<codeline><highlight class="normal"><sp/>Step<sp/>5:<sp/>Set<sp/>INTM<sp/>to<sp/>disable<sp/>interrupts.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>Step<sp/>6:<sp/>Restore<sp/>PIEIERx<sp/>(optional<sp/>depending<sp/>on<sp/>step<sp/>2)</highlight></codeline>
+<codeline><highlight class="normal"><sp/>Step<sp/>7:<sp/>Return<sp/>from<sp/>ISR</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>Refer<sp/>to<sp/>below<sp/>link<sp/>on<sp/>more<sp/>details<sp/>on<sp/>Interrupt<sp/>nesting<sp/>in<sp/>C28x<sp/>devices:</highlight></codeline>
+<codeline><highlight class="normal">[c28x_interrupt_nesting](https://software-dl.ti.com/C2000/docs/c28x_interrupt_nesting/html/index.html)</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>None</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Watch<sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>traceISR<sp/>-<sp/>shows<sp/>the<sp/>order<sp/>in<sp/>which<sp/>ISRs<sp/>are<sp/>executed.</highlight></codeline>
+<codeline></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/interrupt_ex3_sw_prioritization.md"/>
+  </compounddef>
+</doxygen>

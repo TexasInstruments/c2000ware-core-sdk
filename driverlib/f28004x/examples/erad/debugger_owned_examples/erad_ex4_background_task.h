@@ -42,50 +42,36 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 #ifndef _ERAD_EX4_BACKGROUND_TASK_H_
 #define _ERAD_EX4_BACKGROUND_TASK_H_
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 //
 // Included Files
 //
-
 //
 // Defines
 //
 #define BUFFER_SIZE     1024 // NOTE: keep to a power of 2
 #define FILTER_ORDER    28U
 #define FILTER_LENGTH   (FILTER_ORDER + 1U)
-
-
 //
 // Globals
 //
 //Task 1 (C) Variables
 extern const float coeffs[FILTER_LENGTH];
 extern float filter_out;
-
 //Task 2 (C) Variables
-
 //Task 3 (C) Variables
-
 //Task 4 (C) Variables
-
 //Task 5 (C) Variables
-
 //Task 6 (C) Variables
-
 //Task 7 (C) Variables
-
 //Background Task (C) Variables
 extern volatile float buffer[BUFFER_SIZE];
-
 //Common (C) Variables
 extern float D[FILTER_LENGTH];
-
 //
 // Function Prototypes
 //
@@ -102,12 +88,10 @@ __attribute__((interrupt))  void Cla1BackgroundTask();
 #else
 __attribute__((interrupt("background")))  void Cla1BackgroundTask();
 #endif
-
 #ifdef __cplusplus
 }
 #endif // extern "C"
 #endif //_ERAD_EX4_BACKGROUND_TASK_H_
-
 //
 // End of File
 //

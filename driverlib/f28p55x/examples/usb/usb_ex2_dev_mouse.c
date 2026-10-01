@@ -21,7 +21,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -54,7 +54,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 //
 // Included Files
 //
@@ -71,9 +70,7 @@
 //#include "usb_ex2_mouse_structs.h"
 #include "usb_structs.h"
 #include "scistdio.h"
-
 void INT_myUSB0_ISR(void);
-
 //******************************************************************************
 //
 // Defines
@@ -84,7 +81,6 @@ void INT_myUSB0_ISR(void);
 #define TICKS_PER_SECOND        100
 #define MS_PER_SYSTICK          (1000 / TICKS_PER_SECOND)
 #define TICK_EVENT               0
-
 #ifdef DEBUG // Debug output is available via SCIA if DEBUG is defined.
     //
     // Map all debug print calls to SCIprintf in debug builds.
@@ -96,12 +92,10 @@ void INT_myUSB0_ISR(void);
     //
     #define DEBUG_PRINT while(0) ((int32_t (*)(char *, ...))0)
 #endif
-
 #define MAX_SEND_DELAY          50   // The number of system ticks to wait for
                                      // each USB packet to be sent before
                                      // we assume the host has disconnected.
                                      // The value 50 equates to half a second.
-
 //******************************************************************************
 //
 // Globals
@@ -129,19 +123,16 @@ volatile enum
     // Unconfigured.
     //
     MOUSE_STATE_UNCONFIGURED,
-
     //
     // No keys to send and not waiting on data.
     //
     MOUSE_STATE_IDLE,
-
     //
     // Waiting on data to be sent out.
     //
     MOUSE_STATE_SENDING
 }
 g_eMouseState = MOUSE_STATE_UNCONFIGURED;
-
 //******************************************************************************
 //
 // MouseHandler - This function handles notification messages from the
@@ -163,7 +154,6 @@ MouseHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_bConnected = true;
             break;
         }
-
         //
         // The USB host has disconnected from the device.
         //
@@ -173,7 +163,6 @@ MouseHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_eMouseState = MOUSE_STATE_UNCONFIGURED;
             break;
         }
-
         //
         // A report was sent to the host.  We are not free to send another.
         //
@@ -182,7 +171,6 @@ MouseHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_eMouseState = MOUSE_STATE_IDLE;
             break;
         }
-
         //
         // Ignore the other events.
         //
@@ -191,7 +179,6 @@ MouseHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
     }
     return(0);
 }
-
 //******************************************************************************
 //
 // WaitForSendIdle - Wait for a period of time for the state to become idle.
@@ -213,10 +200,8 @@ WaitForSendIdle(uint32_t ui32TimeoutTicks)
     uint32_t ui32Start;
     uint32_t ui32Now;
     uint32_t ui32Elapsed;
-
     ui32Start = g_ui32SysTickCount;
     ui32Elapsed = 0;
-
     while(ui32Elapsed < ui32TimeoutTicks)
     {
         //
@@ -226,7 +211,6 @@ WaitForSendIdle(uint32_t ui32TimeoutTicks)
         {
             return(true);
         }
-
         //
         // Determine how much time has elapsed since we started waiting.  This
         // should be safe across a wrap of g_ui32SysTickCount.
@@ -235,14 +219,12 @@ WaitForSendIdle(uint32_t ui32TimeoutTicks)
         ui32Elapsed = ((ui32Start < ui32Now) ? (ui32Now - ui32Start) :
                      (((uint32_t)0xFFFFFFFF - ui32Start) + ui32Now + 1));
     }
-
     //
     // If we get here, we timed out so return a bad return code to let the
     // caller know.
     //
     return(false);
 }
-
 //******************************************************************************
 //
 // MoveHandler - This function provides simulated movements of the mouse.
@@ -253,7 +235,6 @@ MoveHandler(void)
 {
     uint32_t ui32Retcode;
     char cDeltaX, cDeltaY;
-
     //
     // Determine the direction to move the mouse.
     //
@@ -278,14 +259,12 @@ MoveHandler(void)
         cDeltaX = 0;
         cDeltaY = (char)MOUSE_MOVE_DEC;
     }
-
     //
     // Tell the HID driver to send this new report.
     //
     g_eMouseState = MOUSE_STATE_SENDING;
     ui32Retcode = USBDHIDMouseStateChange((void *)&g_sMouseDevice, cDeltaX,
                                          cDeltaY, 0);
-
     //
     // Did we schedule the report for transmission?
     //
@@ -304,7 +283,6 @@ MoveHandler(void)
         }
     }
 }
-
 //******************************************************************************
 //
 // CPUTimerIntHandler - This is the interrupt handler for the CPU Timer
@@ -316,16 +294,11 @@ __interrupt void
 CPUTimerIntHandler(void)
 {
     GPIO_writePin(0,1);
-
     g_ui32SysTickCount++;
-
     HWREG(&g_ui32Commands) |= 1;
-
     GPIO_writePin(0,0);
-
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP1);
 }
-
 #ifdef DEBUG
 //******************************************************************************
 //
@@ -344,7 +317,6 @@ ConfigureSCI(void)
     GPIO_setDirectionMode(28, GPIO_DIR_MODE_IN);
     GPIO_setPadConfig(28, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(28, GPIO_QUAL_ASYNC);
-
     //
     // GPIO29 is the SCI Tx pin.
     //
@@ -353,7 +325,6 @@ ConfigureSCI(void)
     GPIO_setDirectionMode(29, GPIO_DIR_MODE_OUT);
     GPIO_setPadConfig(29, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(29, GPIO_QUAL_ASYNC);
-
     //
     // Initialize the SCI for console I/O.
     //
@@ -361,7 +332,6 @@ ConfigureSCI(void)
                    SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ));
 }
 #endif
-
 //******************************************************************************
 //
 // This is the main application entry function.
@@ -370,17 +340,14 @@ ConfigureSCI(void)
 int main(void)
 {
     g_bConnected = false;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure GPIO pins for USB.
     //
     Device_initGPIO();
-
     //
     // Set the clocking to run from the PLL at 60MHz
     //
@@ -389,72 +356,55 @@ int main(void)
      // Initialize PIE and clear PIE registers. Disables CPU interrupts.
      //
      Interrupt_initModule();
-
      //
      // Initialize the PIE vector table with pointers to the shell Interrupt
      // Service Routines (ISR).
      //
      Interrupt_initVectorTable();
-
     Board_init();
-
     C2000Ware_libraries_init();
-
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
 #ifdef DEBUG
     //
     // Configure the SCI for debug output.
     //
     ConfigureSCI();
 #endif
-
     USBGPIOEnable();
     //Interrupt_register(INT_USBA, INT_myUSB0_ISR);
-
     //
     // Initialize the USB stack for device mode.
     //
     //USBStackModeSet(0, eUSBModeForceDevice, 0);
     GPIO_setDirectionMode(0, GPIO_DIR_MODE_OUT);
-
     //
     // Register the interrupt handler, returning an error if an error occurs.
     //
     Interrupt_register(INT_TIMER0, &CPUTimerIntHandler);
-
     CPUTimerInit();
-
     CPUTimer_setPeriod(CPUTIMER0_BASE,
                       (SysCtl_getClock(DEVICE_OSCSRC_FREQ) / TICKS_PER_SECOND));
-
     //
     // Enable the CPU Timer interrupt.
     //
     CPUTimer_enableInterrupt(CPUTIMER0_BASE);
     Interrupt_enable(INT_TIMER0);
-
     CPUTimer_startTimer(CPUTIMER0_BASE);
-
     //
     // Show the application name on the display and SCI output.
     //
     DEBUG_PRINT("\nC2000 F2838x Series USB HID Mouse device example\n");
     DEBUG_PRINT("---------------------------------\n\n");
-
     //
     // Pass the USB library our device information, initialize the USB
     // controller and connect the device to the bus.
     //
     //USBDHIDMouseInit(0, (tUSBDHIDMouseDevice *)&g_sMouseDevice);
-
     Interrupt_enableGlobal();
-
     //
     // Drop into the main loop.
     //
@@ -464,19 +414,16 @@ int main(void)
         // Tell the user what we are doing.
         //
         SCIprintf("Waiting for host...\n");
-
         //
         // Wait for USB configuration to complete.
         //
         while(!g_bConnected)
         {
         }
-
         //
         // Update the status.
         //
         SCIprintf("Host connected...\n");
-
         //
         // Now keep processing the mouse as long as the host is connected.
         //
@@ -493,7 +440,6 @@ int main(void)
         }
     }
 }
-
 //******************************************************************************
 //
 //! Device interrupt service routine wrapper to make ISR compatible with
@@ -506,7 +452,6 @@ INT_myUSB0_ISR(void)
     USB0DeviceIntHandler();
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP9);
 }
-
 //
 // End of file
 //

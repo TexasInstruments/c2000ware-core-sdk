@@ -4,7 +4,7 @@
 let Common   = system.getScript("/utilities/dcsm_tool/dcsm_syscfg/source/Common.js");
 
 var OTPModulePath = "/utilities/dcsm_tool/dcsm_syscfg/source/ZONE_OTP_F28X7x";
-if (["F28004x", "F28002x", "F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x"].includes(Common.getDeviceName()))
+if (["F28004x", "F28002x", "F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x", "F28E12x", "MCPC029"].includes(Common.getDeviceName()))
 {
     OTPModulePath = "/utilities/dcsm_tool/dcsm_syscfg/source/ZONE_OTP";
 }
@@ -36,6 +36,7 @@ function moduleInstances(inst)
         }
 
     }
+    
     let components = [
         {
             moduleName: OTPModulePath,
@@ -68,13 +69,13 @@ function moduleInstances(inst)
             collapsed: true
         },
     ];
-    // if (["F28004x", "F28002x"].includes(Common.getDeviceName()))
-    // {
-    //     if (inst["csm"])
-    //     {
-    //         components[2].args["useZone"] = false;
-    //     }
-    // }
+    if (["F28004x", "F28002x"].includes(Common.getDeviceName()))
+    {
+        if (inst["csm"])
+        {
+            components[2].args["useZone"] = false;
+        }
+    }
 
     return components;
 }
@@ -94,6 +95,7 @@ var config = [];
 // }
 
 // Define the common/portable base Watchdog
+
 exports = {
     displayName         : "DCSM",
     description         : "DCSM",
@@ -102,6 +104,7 @@ exports = {
     maxInstances        : 1,
     moduleInstances     : moduleInstances,
     modules: (inst) => {
+        //console.log(inst)
         if (inst) {
             return [
                 {

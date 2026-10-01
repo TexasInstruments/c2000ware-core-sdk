@@ -1,19 +1,15 @@
-
 MEMORY
 {
 PAGE 0 :
    /* BEGIN is used for the "boot to Flash" bootloader mode   */
-
    BEGIN           	: origin = 0x080000, length = 0x000002
    RAMM0           	: origin = 0x0000F3, length = 0x00030D
-
    RAMLS0          	: origin = 0x008000, length = 0x000800
    RAMLS1          	: origin = 0x008800, length = 0x000800
    RAMLS2      		: origin = 0x009000, length = 0x000800
    RAMLS3      		: origin = 0x009800, length = 0x000800
    RAMLS4      		: origin = 0x00A000, length = 0x000800
    RESET           	: origin = 0x3FFFC0, length = 0x000002
-
    /* Flash sectors */
    /* BANK 0 */
    FLASH_BANK0_SEC0  : origin = 0x080002, length = 0x000FFE	/* on-chip Flash */
@@ -32,7 +28,6 @@ PAGE 0 :
    FLASH_BANK0_SEC13 : origin = 0x08D000, length = 0x001000	/* on-chip Flash */
    FLASH_BANK0_SEC14 : origin = 0x08E000, length = 0x001000	/* on-chip Flash */
    FLASH_BANK0_SEC15 : origin = 0x08F000, length = 0x001000	/* on-chip Flash */
-
    /* BANK 1 */
    FLASH_BANK1_SEC0  : origin = 0x090000, length = 0x001000	/* on-chip Flash */
    FLASH_BANK1_SEC1  : origin = 0x091000, length = 0x001000	/* on-chip Flash */
@@ -50,25 +45,18 @@ PAGE 0 :
    FLASH_BANK1_SEC13 : origin = 0x09D000, length = 0x001000	/* on-chip Flash */
    FLASH_BANK1_SEC14 : origin = 0x09E000, length = 0x001000	/* on-chip Flash */
    FLASH_BANK1_SEC15 : origin = 0x09F000, length = 0x000FF0	/* on-chip Flash */
-
 //   FLASH_BANK1_SEC15_RSVD : origin = 0x09FFF0, length = 0x000010  /* Reserve and do not use for code as per the errata advisory "Memory: Prefetching Beyond Valid Memory" */
-
 PAGE 1 :
-
    BOOT_RSVD       : origin = 0x000002, length = 0x0000F1     /* Part of M0, BOOT rom will use this for stack */
    RAMM1           : origin = 0x000400, length = 0x0003F8     /* on-chip RAM block M1 */
 //   RAMM1_RSVD      : origin = 0x0007F8, length = 0x000008     /* Reserve and do not use for code as per the errata advisory "Memory: Prefetching Beyond Valid Memory" */
-
    RAMLS5_6_7      : origin = 0x00A800, length = 0x001800
-
    RAMGS0      : origin = 0x00C000, length = 0x002000
    RAMGS1      : origin = 0x00E000, length = 0x002000
    RAMGS2      : origin = 0x010000, length = 0x002000
    RAMGS3      : origin = 0x012000, length = 0x001FF8
 //   RAMGS3_RSVD : origin = 0x013FF8, length = 0x000008     /* Reserve and do not use for code as per the errata advisory "Memory: Prefetching Beyond Valid Memory" */
 }
-
-
 SECTIONS
 {
    codestart        : > BEGIN,     PAGE = 0, ALIGN(4)
@@ -76,9 +64,7 @@ SECTIONS
    .cinit           : > FLASH_BANK0_SEC1,     PAGE = 0, ALIGN(4)
    .switch          : > FLASH_BANK0_SEC1,     PAGE = 0, ALIGN(4)
    .reset           : > RESET,     PAGE = 0, TYPE = DSECT /* not used, */
-
    .stack           : > RAMM1,     PAGE = 1
-
 #if defined(__TI_EABI__)
    .init_array      : > FLASH_BANK0_SEC1,       PAGE = 0,       ALIGN(4)
    .bss             : > RAMLS5_6_7,       PAGE = 1
@@ -95,11 +81,8 @@ SECTIONS
    .cio             : > RAMLS0,       PAGE = 0
    .econst          : > FLASH_BANK0_SEC4,    PAGE = 0, ALIGN(4)
 #endif
-
    ramgs0           : > RAMGS0,    PAGE = 1
    ramgs1           : > RAMGS1,    PAGE = 1
-
- 
 #if defined(__TI_EABI__) 
    .TI.ramfunc      : LOAD = FLASH_BANK0_SEC1,
                       RUN = RAMLS0,
@@ -121,9 +104,7 @@ SECTIONS
                       RUN_END(_RamfuncsRunEnd),
                       PAGE = 0, ALIGN(4)
 #endif
-
 }
-
 /*
 //===========================================================================
 // End of file.

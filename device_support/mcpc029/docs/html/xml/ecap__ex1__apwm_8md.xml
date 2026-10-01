@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="ecap__ex1__apwm_8md" kind="file" language="Markdown">
+    <compoundname>ecap_ex1_apwm.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>ECAP<sp/>APWM<sp/>Mode{#EXAMPLES_DRIVERS_ECAP_EX1_APWM}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/>||<sp/>F28E12x<sp/>||<sp/>MCPC029</highlight></codeline>
+<codeline><highlight class="normal">This<sp/>program<sp/>sets<sp/>up<sp/>the<sp/>eCAP<sp/>module<sp/>in<sp/>APWM<sp/>mode.<sp/>The<sp/>PWM<sp/>waveform<sp/>will<sp/>come<sp/>out<sp/>on<sp/>GPIO5.<sp/>The<sp/>frequency<sp/>of<sp/>PWM<sp/>is<sp/>configured<sp/>to<sp/>vary<sp/>between<sp/>10Hz<sp/>and<sp/>20Hz<sp/>using<sp/>the<sp/>shadow<sp/>registers<sp/>to<sp/>load<sp/>the<sp/>next<sp/>period/compare<sp/>values.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28P55x<sp/>||<sp/>F28P551x</highlight></codeline>
+<codeline><highlight class="normal">This<sp/>program<sp/>sets<sp/>up<sp/>the<sp/>eCAP<sp/>module<sp/>in<sp/>APWM<sp/>mode.<sp/>The<sp/>PWM<sp/>waveform<sp/>will<sp/>come<sp/>out<sp/>on<sp/>GPIO5.<sp/>The<sp/>frequency<sp/>of<sp/>PWM<sp/>is<sp/>configured<sp/>to<sp/>vary<sp/>between<sp/>5Hz<sp/>and<sp/>10Hz<sp/>using<sp/>the<sp/>shadow<sp/>registers<sp/>to<sp/>load<sp/>the<sp/>next<sp/>period/compare<sp/>values.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Watch<sp/><sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Observe<sp/>the<sp/>waveform<sp/>on<sp/>GPIO5.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>None.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x<sp/>||<sp/>F28P55x<sp/>||<sp/>F28P551x<sp/>||<sp/>MCPC029</highlight></codeline>
+<codeline><highlight class="normal">##<sp/>Implementation<sp/>Comparison</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Aspect<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Driverlib<sp/>Implementation<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Bitfield<sp/>Implementation<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|-----------------------|-----------------------------------------|--------------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Source<sp/>File<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>ecap_ex1_apwm.c<sp/>(driverlib)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>ecap_ex1_apwm.c<sp/>(examples_bitfield)<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Configuration<sp/>Method<sp/><sp/>|<sp/>Driverlib<sp/>API<sp/>calls<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Direct<sp/>register<sp/>access<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Hardware<sp/>Abstraction<sp/><sp/>|<sp/>Medium<sp/>(driverlib)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>None<sp/>(direct<sp/>hardware)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>PWM<sp/>Genearion<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>API-based<sp/>configuration<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Direct<sp/>register<sp/>configuration<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Observe<sp/>the<sp/>required<sp/>waveform<sp/>on<sp/>the<sp/>GPIO<sp/>mentioned<sp/>in<sp/>watch<sp/>variables.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_ECAP_PAGE</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/ecap_ex1_apwm.md"/>
+  </compounddef>
+</doxygen>

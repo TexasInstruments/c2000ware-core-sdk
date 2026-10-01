@@ -34,7 +34,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -67,14 +67,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Main
 //
@@ -82,39 +80,32 @@ void main(void)
 {
     uint16_t sData = 0;                  // Send data
     uint16_t rData = 0;                  // Receive data
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Board initialization
     //
     Board_init();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Loop forever. Suspend or place breakpoints to observe the buffers.
     //
@@ -122,22 +113,17 @@ void main(void)
     {
         // Transmit data
         SPI_writeDataNonBlocking(mySPI0_BASE, sData);
-
         // Block until data is received and then return it
         rData = SPI_readDataBlockingNonFIFO(mySPI0_BASE);
-
         // Check received data against sent data
         if(rData != sData)
         {
             // Something went wrong. rData doesn't contain expected data.
             ESTOP0;
         }
-
         sData++;
-
     }
 }
-
 //
 // End File
 //

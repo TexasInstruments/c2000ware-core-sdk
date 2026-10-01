@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="ecap_8md" kind="file" language="Markdown">
+    <compoundname>ecap.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>ECAP<sp/>{#DRIVERS_ECAP_PAGE}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>ECAP<sp/>driver<sp/>provides<sp/>API<sp/>to<sp/>configure<sp/>the<sp/>ECAP<sp/>module.</highlight></codeline>
+<codeline><highlight class="normal">Below<sp/>are<sp/>the<sp/>high<sp/>level<sp/>features<sp/>supported<sp/>by<sp/>the<sp/>ECAP<sp/>driver.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Features<sp/>Supported</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>6<sp/>ECAP<sp/>instances.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Supports<sp/>various<sp/>features<sp/>like<sp/>APWM<sp/>and<sp/>capture<sp/>mode.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Supports<sp/>HRCAP.<sp/>HRCAP<sp/>measures<sp/>the<sp/>width<sp/>of<sp/>external<sp/>pulses<sp/>to<sp/>a<sp/>higher<sp/>degree<sp/>of</highlight></codeline>
+<codeline><highlight class="normal">accuracy<sp/>than<sp/>the<sp/>eCAP<sp/>module.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>4-event<sp/>time-stamp<sp/>registers<sp/>(each<sp/>32<sp/>bits).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Interrupt<sp/>on<sp/>either<sp/>of<sp/>the<sp/>four<sp/>events.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x<sp/>||<sp/>F28P55x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Period<sp/>and<sp/>duty<sp/>cycle<sp/>measurements<sp/>of<sp/>pulse<sp/>train<sp/>signals.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Speed<sp/>measurements<sp/>of<sp/>rotating<sp/>machinery.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>4-event<sp/>time-stamp<sp/>registers<sp/>(each<sp/>32<sp/>bits).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Edge<sp/>polarity<sp/>selection<sp/>for<sp/>upto<sp/>four<sp/>sequenced<sp/>time-stamp<sp/>capture<sp/>events.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Single<sp/>shot<sp/>capture<sp/>of<sp/>upto<sp/>four<sp/>event<sp/>time-stamps.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Continuous<sp/>mode<sp/>capture<sp/>of<sp/>time<sp/>stamps<sp/>in<sp/>a<sp/>four-deep<sp/>circular<sp/>buffer.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Absolute<sp/>time-stamp<sp/>capture<sp/>and<sp/>Delta<sp/>mode<sp/>time-stamp<sp/>capture.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>When<sp/>not<sp/>used<sp/>in<sp/>capture<sp/>mode,<sp/>the<sp/>eCAP<sp/>module<sp/>can<sp/>be<sp/>configured<sp/>as<sp/>a<sp/>single<sp/>channel<sp/>PWM<sp/>output.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Interrupt<sp/>on<sp/>either<sp/>of<sp/>the<sp/>four<sp/>events.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>SysConfig<sp/>Features</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@VAR_SYSCFG_USAGE_NOTE</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Support<sp/>for<sp/>ECAP<sp/>instance<sp/>selection.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Specifying<sp/>the<sp/>behaviour<sp/>of<sp/>Time-Stamp<sp/>counter<sp/>during<sp/>an<sp/>emulation<sp/>event.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Support<sp/>for<sp/>ECAP<sp/>modes<sp/>-<sp/>APWM<sp/>or<sp/>Capture<sp/>mode.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Support<sp/>for<sp/>event<sp/>polarity<sp/>in<sp/>capture<sp/>mode.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Interrupt<sp/>source<sp/>configuration.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Support<sp/>for<sp/>APWM<sp/>polarity,<sp/>period<sp/>and<sp/>compare<sp/>values<sp/>in<sp/>APWM<sp/>mode.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Seperate<sp/>DMA<sp/>trigger.</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Support<sp/>for<sp/>HRCAP<sp/>configuration.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Support<sp/>of<sp/>Signal<sp/>Monitoring<sp/>Unit.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Features<sp/>NOT<sp/>Supported</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">NA</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Important<sp/>Usage<sp/>Guidelines</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">NA</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Example<sp/>Usage</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Include<sp/>the<sp/>below<sp/>file<sp/>to<sp/>access<sp/>the<sp/>APIs</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;ecap.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>API</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>ecap_api</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/ecap.md"/>
+  </compounddef>
+</doxygen>

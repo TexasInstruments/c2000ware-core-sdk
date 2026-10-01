@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_ADC_EX13_SOC_OVERSAMPLING" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_ADC_EX13_SOC_OVERSAMPLING</compoundname>
+    <title>ADC SOC Oversampling</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_ADC_EX13_SOC_OVERSAMPLING_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_adc_ex13_soc_oversampling"/></para>
+<sect1 id="EXAMPLES_DRIVERS_ADC_EX13_SOC_OVERSAMPLING_1autotoc_md152">
+<title>Introduction</title>
+<para>This example sets up MCPWM1 to periodically trigger a set of conversions on ADCA including multiple SOCs that all convert A8 to achieve oversampling on A8.</para>
+<para>ADCA Interrupt ISRs are used to read results of ADCA.</para>
+<para>Watch Variables</para>
+<para><itemizedlist>
+<listitem><para>adcAResult0 - Digital representation of the voltage on pin A0</para>
+</listitem><listitem><para>adcAResult1 - Digital representation of the voltage on pin A5</para>
+</listitem><listitem><para>adcAResult2 - Digital representation of the voltage on pin A8</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_ADC_EX13_SOC_OVERSAMPLING_1autotoc_md153">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>A0, A5, A8 should be connected to signals to be converted.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_ADC_EX13_SOC_OVERSAMPLING_1autotoc_md154">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Using the watch variables, view the ADC conversion results.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_ADC_EX13_SOC_OVERSAMPLING_1autotoc_md155">
+<title>See Also</title>
+<para><ref refid="DRIVERS_ADC_PAGE" kindref="compound">ADC</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/adc_ex13_soc_oversampling.md"/>
+  </compounddef>
+</doxygen>

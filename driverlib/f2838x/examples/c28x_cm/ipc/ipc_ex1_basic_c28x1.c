@@ -20,7 +20,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -53,40 +53,31 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
 #define IPC_CMD_READ_MEM   0x1001
 #define IPC_CMD_RESP       0x2001
-
 #define TEST_PASS          0x5555
 #define TEST_FAIL          0xAAAA
-
-
 #pragma DATA_SECTION(readData, "MSGRAM_CPU_TO_CM")
 uint32_t readData[10];
-
 uint32_t pass;
-
 //
 // Main
 //
 void main(void)
 {
     int i;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Boot CM core
     //
@@ -95,34 +86,28 @@ void main(void)
 #else
     Device_bootCM(BOOTMODE_BOOT_TO_S0RAM);
 #endif
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Clear any IPC flags if set already
     //
     IPC_clearFlagLtoR(IPC_CPU1_L_CM_R, IPC_FLAG_ALL);
-
     //
     // Synchronize both the cores.
     //
     IPC_sync(IPC_CPU1_L_CM_R, IPC_FLAG31);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Fill in the data to be sent
     //
@@ -130,7 +115,6 @@ void main(void)
     {
         readData[i] = i;
     }
-
     //
     // Send a message without message queue
     // Since C28x and CM does not share the same address space for shared RAM,
@@ -139,12 +123,10 @@ void main(void)
     //
     IPC_sendCommand(IPC_CPU1_L_CM_R, IPC_FLAG0, IPC_ADDR_CORRECTION_ENABLE,
                     IPC_CMD_READ_MEM, (uint32_t)readData, 10);
-
     //
     // Wait for acknowledgment
     //
     IPC_waitForAck(IPC_CPU1_L_CM_R, IPC_FLAG0);
-
     //
     // Read response
     //
@@ -156,14 +138,11 @@ void main(void)
     {
         pass = 0;
     }
-
     //
     // End of example. Loop forever
     //
     while(1);
 }
-
-
 //
 // End of File
 //

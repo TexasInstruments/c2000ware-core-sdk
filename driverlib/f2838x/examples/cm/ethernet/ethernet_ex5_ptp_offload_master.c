@@ -31,7 +31,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -64,10 +64,8 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 #include "driverlib_cm.h"
 #include "cm.h"
-
 //
 // This frequency is actually set in the c28x side code. If it is changed
 // there, then the following value also needs to be updated since the
@@ -76,11 +74,9 @@
 //
 #define PTP_REF_CLOCK_FREQ   100000000
 #define PTP_REF_CLOCK_PERIOD 1000000000/PTP_REF_CLOCK_FREQ
-
 #define NUM_PACKET_DESC_RX_APPLICATION      8U
 #define ETHERNET_NO_OF_RX_PACKETS           8U
 #define ETHERNET_MAX_PACKET_LENGTH          100U
-
 static Ethernet_Handle emac_handle;
 extern Ethernet_Device Ethernet_device_struct;
 //
@@ -88,7 +84,6 @@ extern Ethernet_Device Ethernet_device_struct;
 //
 uint8_t Ethernet_rxBuffer[ETHERNET_NO_OF_RX_PACKETS *
                           ETHERNET_MAX_PACKET_LENGTH];
-
 //
 // This function is a callback function called by the LLD to
 // Get a Packet Buffer. Has to return a ETHERNET_Pkt_Desc Structure filled
@@ -98,38 +93,28 @@ uint32_t Ethernet_numGetPacketBufferCallbackCustom = 0;
 uint32_t Ethernet_numRxCallbackCustom = 0;
 uint32_t Ethernet_ptpDelayReqPktCount = 0;
 Ethernet_Pkt_Desc  pktDescriptorRXCustom[NUM_PACKET_DESC_RX_APPLICATION];
-
 Ethernet_Pkt_Desc* Ethernet_getPacketBufferCustom(void)
 {
-
     uint32_t shortIndex = (Ethernet_numGetPacketBufferCallbackCustom + 3) %
                           NUM_PACKET_DESC_RX_APPLICATION;
-
     Ethernet_numGetPacketBufferCallbackCustom++;
-
     pktDescriptorRXCustom[shortIndex].bufferLength =
                                   ETHERNET_MAX_PACKET_LENGTH;
-
-
     pktDescriptorRXCustom[shortIndex].dataBuffer =
                                       &Ethernet_device_struct.rxBuffer [
             (ETHERNET_MAX_PACKET_LENGTH * Ethernet_device_struct.rxBuffIndex)];
-
     //
     // Wrap around
     //
     Ethernet_device_struct.rxBuffIndex += 1U;
     Ethernet_device_struct.rxBuffIndex  =
                 (Ethernet_device_struct.rxBuffIndex%ETHERNET_NO_OF_RX_PACKETS);
-
     //
     // Usable from Address 0
     //
     pktDescriptorRXCustom[shortIndex].dataOffset = 0U;
-
     return (&(pktDescriptorRXCustom[shortIndex]));
 }
-
 Ethernet_Pkt_Desc* Ethernet_receivePacketCallbackCustom(
         Ethernet_Handle handleApplication,
         Ethernet_Pkt_Desc *pPacket)
@@ -142,34 +127,28 @@ Ethernet_Pkt_Desc* Ethernet_receivePacketCallbackCustom(
     //
     if ((pPacket->dataBuffer[14] & 0x0F) == 0x1)
         Ethernet_ptpDelayReqPktCount++;
-
     Ethernet_numRxCallbackCustom++;
-
     //
     // This is a placeholder for Application specific handling
     // We are replenishing the buffer received with another buffer
     //
     return  Ethernet_getPacketBufferCustom();
 }
-
 main(void)
 {
     Ethernet_InitConfig *pInitCfg;
     Ethernet_InitInterfaceConfig initInterfaceConfig;
     uint32_t varPtpConfig = 0;
     float subSecondInc;
-
     //
     // Initialize device clock and peripherals
     //
     CM_init();
-
     //
     // Hardcoded MAC Address
     //
     uint32_t mac_lower = 0x00F363A8;
     uint32_t mac_higher = 0x00800000;
-
     initInterfaceConfig.ssbase = EMAC_SS_BASE;
     initInterfaceConfig.enet_base = EMAC_BASE;
     initInterfaceConfig.phyMode = ETHERNET_SS_PHY_INTF_SEL_MII;
@@ -181,6 +160,8 @@ main(void)
     initInterfaceConfig.ptrPlatformInterruptEnable = &Platform_enableInterrupt;
     initInterfaceConfig.ptrPlatformPeripheralEnable = &Platform_enablePeripheral;
     initInterfaceConfig.ptrPlatformPeripheralReset = &Platform_resetPeripheral;
+    initInterfaceConfig.ptrCoreInterruptDisable = &Interrupt_disableInProcessor;
+    initInterfaceConfig.ptrCoreInterruptEnable = &Interrupt_enableInProcessor;
     //
     //Assign the peripheral number at the SoC
     //
@@ -193,9 +174,7 @@ main(void)
     initInterfaceConfig.interruptNum[2] = INT_EMAC_TX1;
     initInterfaceConfig.interruptNum[3] = INT_EMAC_RX0;
     initInterfaceConfig.interruptNum[4] = INT_EMAC_RX1;
-
     pInitCfg = Ethernet_initInterface(initInterfaceConfig);
-
     Ethernet_getInitConfig(pInitCfg);
     pInitCfg->pfcbRxPacket = &Ethernet_receivePacketCallbackCustom;
     pInitCfg->pfcbGetPacket = &Ethernet_getPacketBufferCustom;
@@ -204,7 +183,6 @@ main(void)
     //Do global Interrupt Enable
     //
     (void)Interrupt_enableInProcessor();
-
     Ethernet_getHandle((Ethernet_Handle)1,pInitCfg , &emac_handle);
     //
     //Assign default ISRs
@@ -218,13 +196,11 @@ main(void)
     Interrupt_enable(INT_EMAC_TX0);
     Interrupt_enable(INT_EMAC_RX0);
     Interrupt_enable(INT_EMAC);
-
     Ethernet_setMACAddr(EMAC_BASE,
                         0,
                         mac_higher,
                         mac_lower,
                         ETHERNET_CHANNEL_0);
-
     //
     // We need to program this standard multicast address so that this device
     // identifies PTP over Ethernet packets correctly. "01:1B:19:00:00:00"
@@ -234,7 +210,6 @@ main(void)
                         0x00000000,
                         0x00191B01,
                         ETHERNET_CHANNEL_0);
-
     //
     // Ethernet PTP module is configured with:
     // - Master
@@ -249,59 +224,46 @@ main(void)
             ETHERNET_MAC_TIMESTAMP_CONTROL_TSIPENA |
             ETHERNET_MAC_TIMESTAMP_CONTROL_TSVER2ENA |
             ETHERNET_MAC_TIMESTAMP_CONTROL_TSCTRLSSR;
-
     subSecondInc = PTP_REF_CLOCK_PERIOD;
-
     Ethernet_setConfigTimestampPTP(EMAC_BASE, varPtpConfig, subSecondInc);
-
     Ethernet_enableSysTimePTP(EMAC_BASE);
-
     Ethernet_setSysTimePTP(EMAC_BASE, 0x4132EDCA, 0x25a5a5a5);
-
     //
     // PTP Offlad related configuration follows. This is used to automatically
     // assemble the PTP Header for the packets which will be ultimately sent
     // out by the PTP Offload engine.
     //
-
     Ethernet_PTPOffloadConfigParams ptoConfigParams = {0};
-
     //
     // "sourcePortIdentity" field in the PTP Header.
     //
     ptoConfigParams.srcPortId.id0 = 0xFFFFFFFF;
     ptoConfigParams.srcPortId.id1 = 0xFFFFFFFF;
     ptoConfigParams.srcPortId.id2 = 0xFFFF;
-
     //
     // "logMessageInterval" field in the PTP Header.
     //
     ptoConfigParams.logMsgIntervalConf.delayReqToSyncRatio = 2;
     ptoConfigParams.logMsgIntervalConf.logMinPdelayReqInterval= 0;
     ptoConfigParams.logMsgIntervalConf.logSyncInterval = 0;
-
     //
     // "domainNumber" field in the PTP Header.
     //
     ptoConfigParams.domainNumber = 0x00;
-
     //
     // Automatic Message reply switches follow
     //
-
     //
     // Peer to Peer mechanism not required, so disable sending of PDelayReq
     // packet.
     //
     ptoConfigParams.ptoAutoPDelayReqMode =
             ETHERNET_PTO_AUTO_P_DELAY_REQ_MESSAGE_DISABLE;
-
     //
     // This is Master code, so enable sending of Sync packets.
     //
     ptoConfigParams.ptoAutoPtpSyncMode =
             ETHERNET_PTO_AUTO_SYNC_MESSAGE_ENABLE;
-
     //
     // Since this is Master code, enabling this switch will result in sending
     // of automatic DelayResp messages in response to the DelayReq messages
@@ -309,26 +271,22 @@ main(void)
     //
     ptoConfigParams.ptoDelayReqRespMode =
             ETHERNET_PTO_DELAY_REQ_DELAY_RESP_ENABLE;
-
     //
     // Peer to Peer mechanism not required, so disable sending of PDelayResp
     // packet.
     //
     ptoConfigParams.ptoPDelayRespMode =
             ETHERNET_PTO_P_DELAY_RESP_MESSAGE_DISABLE;
-
     //
     // Pass the configuration to the Ethernet driver to program the hardware
     // with this.
     //
     Ethernet_setConfigPTPOffload(EMAC_BASE, ptoConfigParams);
-
     //
     // Finally, enable the PTP offload engine for above configuration to take
     // effect.
     //
     Ethernet_enableDisablePTPOffload(EMAC_BASE, ETHERNET_PTP_OFFLOAD_ENABLE);
-
     while(1)
     {
     }

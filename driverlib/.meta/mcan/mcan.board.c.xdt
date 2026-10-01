@@ -8,17 +8,17 @@
 //
 //*****************************************************************************
 void `nameOfPeripheral`_SYSCFG_init(){
-%   for(var i = 0; i < module.$instances.length; i++)
+%   for(var instnum = 0; instnum < module.$instances.length; instnum++)
 %   {
-%      var instance = module.$instances[i];
+%      var instance = module.$instances[instnum];
     `instance.$name`_init();
 %   }
 }
 
 %if (module != null)
 %{
-    % for(var i = 0; i < module.$instances.length; i++) {
-        % var instance = module.$instances[i];
+    % for(var instnum = 0; instnum < module.$instances.length; instnum++) {
+        % var instance = module.$instances[instnum];
 void `instance.$name`_init(){
         % let instancePinmux = instance[nameOfModule];
         % let solution    = instancePinmux.$solution;
@@ -30,6 +30,9 @@ void `instance.$name`_init(){
     % }
         % if(instance.stdFiltsUsed.length){
     MCAN_StdMsgIDFilterElement stdFiltelem_`instance.$name`;
+        % }
+        % if(instance.extFiltsUsed.length){
+    MCAN_ExtMsgIDFilterElement extFiltelem_`instance.$name`;
         % }
     % if (instance.msgRamConfig){
     MCAN_MsgRAMConfigParams    msgRAMConfigParams_`instance.$name`;
@@ -201,8 +204,8 @@ void `instance.$name`_init(){
     //
     MCAN_msgRAMConfig(`instance.$name`_BASE, &msgRAMConfigParams_`instance.$name`);
     % }
-    % for(var i in instance.stdFiltsUsed){
-        % var stdFiltInstance = instance["stdFilt" + instance.stdFiltsUsed[i]];
+    % for(var stdfiltnum in instance.stdFiltsUsed){
+        % var stdFiltInstance = instance["stdFilt" + instance.stdFiltsUsed[stdfiltnum]];
 
     stdFiltelem_`instance.$name`.sft = `stdFiltInstance.sft`;
     stdFiltelem_`instance.$name`.sfec = `stdFiltInstance.sfec`;
@@ -210,9 +213,22 @@ void `instance.$name`_init(){
     stdFiltelem_`instance.$name`.sfid2 = `stdFiltInstance.sfid2`;
 
     //
-    // Configure Standard ID filter element `instance.stdFiltsUsed[i]`
+    // Configure Standard ID filter element `instance.stdFiltsUsed[stdfiltnum]`
     //
-    MCAN_addStdMsgIDFilter(`instance.$name`_BASE, `instance.stdFiltsUsed[i]`U, &stdFiltelem_`instance.$name`);
+    MCAN_addStdMsgIDFilter(`instance.$name`_BASE, `instance.stdFiltsUsed[stdfiltnum]`U, &stdFiltelem_`instance.$name`);
+        % }
+    % for(var extfiltnum in instance.extFiltsUsed){
+        % var extFiltInstance = instance["extFilt" + instance.extFiltsUsed[extfiltnum]];
+
+    extFiltelem_`instance.$name`.eft = `extFiltInstance.eft`;
+    extFiltelem_`instance.$name`.efec = `extFiltInstance.efec`;
+    extFiltelem_`instance.$name`.efid1 = `extFiltInstance.efid1`;
+    extFiltelem_`instance.$name`.efid2 = `extFiltInstance.efid2`;
+
+    //
+    // Configure Extended ID filter element `instance.extFiltsUsed[extfiltnum]`
+    //
+    MCAN_addExtMsgIDFilter(`instance.$name`_BASE, `instance.extFiltsUsed[extfiltnum]`U, &extFiltelem_`instance.$name`);
         % }
     //
     // Internal loopback mode

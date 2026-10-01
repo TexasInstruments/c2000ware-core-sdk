@@ -29,7 +29,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -62,42 +62,35 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "device.h"
 #include "driverlib.h"
-
 //
 // FPU header file to access memcpy_fast_far().
 //
 #include "fpu_vector.h"
-
 //
 // Defines
 //
 #define TEST_PASS 0xABCDABCD
 #define TEST_FAIL 0xDEADDEAD
 #define MEM_BUFFER_SIZE 0x500
-
 //
 // Globals
 //
 uint16_t errCountGlobal = 0;
 uint32_t testStatusGlobal;
-
 //
 // Buffer in local memory.
 //
 uint32_t localRAMBuf[MEM_BUFFER_SIZE];
-
 //
 // Buffer in far memory.
 //
 __attribute__((far)) volatile uint32_t extSDRAMBuf[MEM_BUFFER_SIZE];
 #pragma DATA_SECTION(localRAMBuf, "ramgs0");
-
 //
 // Function Prototypes
 //
@@ -106,12 +99,10 @@ void clearGlobalDataBuffer(uint32_t memSize);
 void clearLocalDataBuffer(uint32_t memSize);
 uint16_t readWriteSyncMemory(uint32_t memSize);
 uint16_t readSyncMemory(uint32_t memSize);
-
 //
 // ISR for WAKEINT.
 //
 __interrupt void localWakeISR(void);
-
 //
 // Main
 //
@@ -122,36 +113,30 @@ void main(void)
     EMIF_SyncConfig sdConfig;
     EMIF_SyncTimingParams tParam;
     testStatusGlobal = TEST_FAIL;
-
     //
     // Initialize System Control:
     // PLL, WatchDog, enable Peripheral Clocks.
     //
     Device_init();
-
     //
     // Initialize GPIO:Disable pin locks and enable pullups.
     //
     Device_initGPIO();
-
     //
     // Configure GPIO11 as output.
     //
     GPIO_setPinConfig(GPIO_11_GPIO11);
     GPIO_setDirectionMode(11, GPIO_DIR_MODE_OUT);
-
     //
     // Clear all interrupts.
     //
     DINT;
-
     //
     // Initialize the PIE control registers to their default state.
     // The default state is all PIE interrupts disabled and flags
     // are cleared.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR). This will populate the entire table, even if
@@ -159,63 +144,52 @@ void main(void)
     // purposes.
     //
     Interrupt_initVectorTable();
-
     //
     // Interrupts that are used in this example are re-mapped to
     // ISR functions found within this file.
     //
     Interrupt_register(INT_WAKE,localWakeISR);
-
     //
     // Set Watchdog to generate Interrupt signal i.e. connect the Watchdog to
     // WAKEINT interrupt of the PIE.
     //
     SysCtl_setWatchdogMode(SYSCTL_WD_MODE_INTERRUPT);
-
     //
     // Enable the device to wake from STANDBY mode upon a watchdog interrupt.
     //
     SysCtl_enableWatchdogStandbyWakeup();
-
     //
     // Enables WAKEINT in the PIE: Group 1 interrupt 8 & in CPU.
     //
     Interrupt_enable(INT_WAKE);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP1);
-
     //
     // EMIF Configurations:
     // Configure to run EMIF1 on half Rate. (EMIF1CLK = CPU1SYSCLK/2)
     //
     SysCtl_setEMIF1ClockDivider(SYSCTL_EMIF1CLK_DIV_2);
-
     //
     // Grab EMIF1 For CPU1.
     //
     EMIF_selectController(EMIF1CONFIG_BASE, EMIF_CONTROLLER_CPU1_G);
-
     //
     // Disable Access Protection. (CPU_FETCH/CPU_WR/DMA_WR)
     //
     EMIF_setAccessProtection(EMIF1CONFIG_BASE, 0x0);
-
     //
     // Commit the configuration related to protection. Till this bit remains
     // set, contents of EMIF1ACCPROT0 register can't be changed.
     //
     EMIF_commitAccessConfig(EMIF1CONFIG_BASE);
-
     //
     // Lock the configuration so that EMIF1COMMIT register can't be changed
     // any more.
     //
     EMIF_lockAccessConfig(EMIF1CONFIG_BASE);
-
     //
     // Configure GPIO pins for EMIF1.
     //
     setupEMIF1PinmuxSync16Bit();
-
     //
     // Configure SDRAM control registers. Needs to be programmed
     // based on SDRAM Data-Sheet. For this example:
@@ -232,19 +206,16 @@ void main(void)
     tParam.tRc  = 0x6U;
     tParam.tRrd = 0x1U;
     EMIF_setSyncTimingParams(EMIF1_BASE, &tParam);
-
     //
     // Configure Self Refresh exit timing.
     // Txsr = 70ns = 0x7.
     //
     EMIF_setSyncSelfRefreshExitTmng(EMIF1_BASE, 0x7U);
-
     //
     // Configure Refresh Rate.
     // Tref = 64ms for 8192 ROW, RR = 64000*100(Tfrq)/8192 = 781.25 (0x30E).
     //
     EMIF_setSyncRefreshRate(EMIF1_BASE, 781);
-
     //
     // Configure SDRAM parameters. PAGESIZE=2 (1024 elements per ROW),
     // IBANK = 2 (4 BANK), CL = 3, NM = 1 (16bit).
@@ -254,64 +225,53 @@ void main(void)
     sdConfig.narrowMode = EMIF_SYNC_NARROW_MODE_TRUE;
     sdConfig.pageSize = EMIF_SYNC_COLUMN_WIDTH_10;
     EMIF_setSyncMemoryConfig(EMIF1_BASE, &sdConfig);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM).
     //
     EINT;
     ERTM;
-
     //
     // Adding some delay.
     //
     for(i = 0; i < 123; i++)
     {
     }
-
     //
     // Clear local and far memory buffers.
     //
     clearLocalDataBuffer(MEM_BUFFER_SIZE);
     clearGlobalDataBuffer(MEM_BUFFER_SIZE);
-
     //
     // Basic read/write check.
     //
     errCountLocal = readWriteSyncMemory(MEM_BUFFER_SIZE);
     errCountGlobal = errCountGlobal + errCountLocal;
-
     if(errCountGlobal == 0x0)
     {
         testStatusGlobal = TEST_PASS;
     }
-
     //
     // Enable Self Refresh for SDRAM.
     //
     EMIF_enableSyncSelfRefresh(EMIF1_BASE);
-
     //
     // Enable Watchdog Timer.
     //
     SysCtl_enableWatchdog();
-
     //
     // Reset Watchdog counter.
     //
     SysCtl_serviceWatchdog();
-
     //
     // Enter STANDBY mode.
     //
     SysCtl_enterStandbyMode();
-
     //
     // Disable Watchdog Timer.
     //
     SysCtl_disableWatchdog();
     while(1);
 }
-
 //
 // Clear Global Data Buffer - This function clears global memory buffers.
 //
@@ -319,7 +279,6 @@ void clearGlobalDataBuffer(uint32_t memSize)
 {
     uint32_t i;
     uint32_t memWdl = 0x0;
-
     //
     // Clear far memory buffer.
     //
@@ -328,7 +287,6 @@ void clearGlobalDataBuffer(uint32_t memSize)
         memcpy_fast_far((extSDRAMBuf + i), &memWdl, 2);
     }
 }
-
 //
 // Clear Local Data Buffer - This function clears the local memory buffer.
 //
@@ -336,7 +294,6 @@ void clearLocalDataBuffer(uint32_t memSize)
 {
     uint32_t i;
     uint32_t memWdl = 0x0;
-
     //
     // Clear local memory buffer.
     //
@@ -345,7 +302,6 @@ void clearLocalDataBuffer(uint32_t memSize)
         localRAMBuf[i] = memWdl;
     }
 }
-
 //
 // Read Write Sync Memory - This function writes data into memory & reads the
 // written data.
@@ -354,7 +310,6 @@ uint16_t readWriteSyncMemory(uint32_t memSize)
 {
     uint32_t memWdl;
     uint32_t i;
-
     //
     // Fill far memory buffer with data.
     //
@@ -364,7 +319,6 @@ uint16_t readWriteSyncMemory(uint32_t memSize)
         memcpy_fast_far((extSDRAMBuf + i), &memWdl, 2);
         memWdl += 0x00050001;
     }
-
     //
     // Read far memory buffer into local buffer and verify data.
     //
@@ -372,7 +326,6 @@ uint16_t readWriteSyncMemory(uint32_t memSize)
     for(i=0; i < memSize; i++)
     {
         memcpy_fast_far((localRAMBuf + i), (extSDRAMBuf + i), 2);
-
         //
         // Return error if read data is incorrect.
         //
@@ -384,7 +337,6 @@ uint16_t readWriteSyncMemory(uint32_t memSize)
     }
     return(0);
 }
-
 //
 // Read Sync Memory - This function reads the memory data & verify if its
 // similar to previously written data.
@@ -393,7 +345,6 @@ uint16_t readSyncMemory(uint32_t memSize)
 {
     uint32_t memWdl;
     uint32_t i;
-
     //
     // Read far memory buffer into local buffer and verify data.
     //
@@ -401,7 +352,6 @@ uint16_t readSyncMemory(uint32_t memSize)
     for(i = 0; i < memSize; i++)
     {
         memcpy_fast_far((localRAMBuf + i), (extSDRAMBuf + i), 2);
-
         //
         // Return error if read data is incorrect.
         //
@@ -413,7 +363,6 @@ uint16_t readSyncMemory(uint32_t memSize)
     }
     return(0);
 }
-
 //
 // Local Wake ISR - ISR for WAKEINT Interrupt.
 //
@@ -422,47 +371,39 @@ interrupt void localWakeISR(void)
     uint16_t i;
     uint16_t errCountLocal;
     testStatusGlobal = TEST_FAIL;
-
     //
     // Disable Self Refresh mode in SDRAM.
     //
     EMIF_disableSyncSelfRefresh(EMIF1_BASE);
-
     //
     // Adding some delay.
     //
     for(i = 0; i < 123; i++)
     {
     }
-
     //
     // Clear local memory buffers.
     //
     clearLocalDataBuffer(MEM_BUFFER_SIZE);
-
     //
     // Verifying contents of memory on exiting
     // self refresh mode.
     //
     errCountLocal = readSyncMemory(MEM_BUFFER_SIZE);
     errCountGlobal = errCountGlobal + errCountLocal;
-
     if(errCountGlobal == 0x0)
     {
         testStatusGlobal = TEST_PASS;
     }
-
     //
     // GPIO11 is driven high upon exiting STANDBY.
     //
     GPIO_writePin(11, 0x1);
-
     //
     // Acknowledge the interrupt.
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP1);
 }
-
 //
 // End of File
 //

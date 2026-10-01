@@ -21,7 +21,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -54,12 +54,10 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Defines
 //
@@ -67,19 +65,16 @@
 #define TEST_FAIL             0xDEADDEAD
 #define SDRAM_CS0_START_ADDR  0x80000000
 #define SDRAM_CS0_SIZE        0x300000
-
 //
 // Globals
 //
 Uint16  ErrCount = 0;
 Uint32  TEST_STATUS;
 int i;
-
 //
 // Function Prototypes
 //
 extern void setup_emif1_pinmux_sdram_32bit(Uint16);
-
 //
 // sdram_data_walk - This function performs a walking 0 & 1 For SDRAM RD & WR
 //
@@ -92,15 +87,12 @@ sdram_data_walk(Uint32 start_addr, Uint32 mem_size)
     int i;
     int k;
     int m;
-
     XM_p = start_addr;
-
     for (i=0; i < mem_size; i=i+64)
     {
         for (m=0; m < 2; m++)
         {
             XMEM_p = XM_p;
-
             //
             //Write loop
             //
@@ -118,7 +110,6 @@ sdram_data_walk(Uint32 start_addr, Uint32 mem_size)
                   XMEM_p = XMEM_p+2;
                  sdram_wdl   = sdram_wdl<<1;
             }
-
             //
             //Read loop
             //
@@ -135,7 +126,6 @@ sdram_data_walk(Uint32 start_addr, Uint32 mem_size)
                 {
                     return(1);
                 }
-
                 XMEM_p = XMEM_p+2;
                 sdram_wdl=sdram_wdl<<1;
             }
@@ -144,7 +134,6 @@ sdram_data_walk(Uint32 start_addr, Uint32 mem_size)
     }
     return(0);
 }
-
 //
 // sdram_addr_walk - This function performs a toggle on each address bit.
 //                   In this case memory assumed is 4Mb.
@@ -159,7 +148,6 @@ sdram_addr_walk(Uint32 start_addr, Uint32 addr_size)
     int i;
     unsigned long xshift;
     unsigned long xshift2;
-
     //
     //Write loop
     //
@@ -173,7 +161,6 @@ sdram_addr_walk(Uint32 start_addr, Uint32 addr_size)
         sdram_wdl = sdram_wdl+0x11111111;
         xshift   = xshift<<1;
     }
-
    //
    //Read loop
    //
@@ -193,7 +180,6 @@ sdram_addr_walk(Uint32 start_addr, Uint32 addr_size)
    }
    return(0);
 }
-
 //
 // sdram_data_size - This function performs different data type
 //                  (HALFWORD/WORD) access.
@@ -207,7 +193,6 @@ sdram_data_size(Uint32 start_addr, Uint32 mem_size)
     unsigned long  sdram_wdl;
     int i;
     Uint32 XMEM_p;
-
     //
     //Write data short
     //
@@ -219,7 +204,6 @@ sdram_data_size(Uint32 start_addr, Uint32 mem_size)
         XMEM_p++;
         sdram_wds += 0x0202;
     }
-
     //
     //Write data long
     //
@@ -230,7 +214,6 @@ sdram_data_size(Uint32 start_addr, Uint32 mem_size)
         XMEM_p = XMEM_p+2;
         sdram_wdl += 0x04040404;
     }
-
     //
     //Read data short
     //
@@ -246,7 +229,6 @@ sdram_data_size(Uint32 start_addr, Uint32 mem_size)
         XMEM_p++;
         sdram_wds += 0x0202;
     }
-
     //
     //Read data long
     //
@@ -264,7 +246,6 @@ sdram_data_size(Uint32 start_addr, Uint32 mem_size)
     }
     return(0);
 }
-
 //
 // sdram_read_write - This function performs simple read/write accesses
 //                    to memory.
@@ -276,12 +257,10 @@ sdram_read_write(Uint32 start_addr, Uint32 mem_size)
     unsigned long mem_wdl;
     Uint32 XMEM_p;
     Uint32 i;
-
     //
     //Write data
     //
     XMEM_p = start_addr;
-
     //
     //Fill memory
     //
@@ -292,7 +271,6 @@ sdram_read_write(Uint32 start_addr, Uint32 mem_size)
         XMEM_p = XMEM_p+2;
         mem_wdl += 0x11111111;
     }
-
     //
     //Verify memory
     //
@@ -310,7 +288,6 @@ sdram_read_write(Uint32 start_addr, Uint32 mem_size)
     }
     return(0);
 }
-
 //
 // Main
 //
@@ -318,14 +295,11 @@ void main(void)
 {
     char ErrCount_local;
     TEST_STATUS = TEST_FAIL;
-
     //
     // Initialize the device system and clocks
     //
     InitSysCtrl();
-
     DINT;
-
     //
     //  Initialize the PIE control registers to their default state.
     //  The default state is all PIE interrupts disabled and flags
@@ -333,7 +307,6 @@ void main(void)
     //  This function is found in the f2838x_piectrl.c file.
     //
     InitPieCtrl();
-
     //
     // Disable CPU interrupts and clear all CPU interrupt flags:
     //
@@ -341,7 +314,6 @@ void main(void)
     IER = 0x0000;
     IFR = 0x0000;
     EDIS;
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // GService Routines (ISR).
@@ -351,14 +323,12 @@ void main(void)
     // This function is found in f2838x_pievect.c.
     //
     InitPieVectTable();
-
     //
     //Configure to run EMIF1 on half Rate (EMIF1CLK = CPU1SYSCLK/2)
     //
     EALLOW;
     ClkCfgRegs.PERCLKDIVSEL.bit.EMIF1CLKDIV = 0x1;
     EDIS;
-
     EALLOW;
     //
     // Grab EMIF1 For CPU1
@@ -368,7 +338,6 @@ void main(void)
     {
         ErrCount++;
     }
-
     //
     //Disable Access Protection (CPU_FETCH/CPU_WR/DMA_WR)
     //
@@ -377,7 +346,6 @@ void main(void)
     {
         ErrCount++;
     }
-
     //
     // Commit the configuration related to protection. Till this bit remains
     // set content of EMIF1ACCPROT0 register can't be changed.
@@ -387,7 +355,6 @@ void main(void)
     {
         ErrCount++;
     }
-
     //
     // Lock the configuration so that EMIF1COMMIT register can't be changed
     // any more.
@@ -397,14 +364,11 @@ void main(void)
     {
         ErrCount++;
     }
-
     EDIS;
-
     //
     //Configure GPIO pins for EMIF1
     //
     setup_emif1_pinmux_sdram_32bit(0);
-
     //
     //Configure SDRAM control registers
     //
@@ -418,60 +382,49 @@ void main(void)
     //T_RRD = 12ns = 0x1
     //
     Emif1Regs.SDRAM_TR.all = 0x31114610;
-
     //
     //Txsr = 70ns = 0x7
     //
     Emif1Regs.SDR_EXT_TMNG.all = 0x7;
-
     //
     //Tref = 64ms for 4096 ROW, RR = 64000*100(Tfrq)/4096 = 1562.5 (0x61B)
     //
     Emif1Regs.SDRAM_RCR.all = 0x61B;
-
     //
     //PAGESIZE=0 (256 elements per ROW), IBANK = 2 (4 BANK), CL = 3,
     //NM = 0 (32bit)
     //
     Emif1Regs.SDRAM_CR.all = 0x00000720;
-
     //
     //Add some delay
     //
     for(i=0;i<123;i++) { }
-
     //
     // Basic read/write check.
     //
     ErrCount_local = sdram_read_write(SDRAM_CS0_START_ADDR, SDRAM_CS0_SIZE);
     ErrCount = ErrCount + ErrCount_local;
-
     //
     //run different addr walk checks
     //
     ErrCount_local = sdram_addr_walk(SDRAM_CS0_START_ADDR, 15);
     ErrCount = ErrCount + ErrCount_local;
-
     //
     //run different data walk checks
     //
     ErrCount_local = sdram_data_walk(SDRAM_CS0_START_ADDR, SDRAM_CS0_SIZE);
     ErrCount = ErrCount + ErrCount_local;
-
     //
     //run different data size checks
     //
     ErrCount_local = sdram_data_size(SDRAM_CS0_START_ADDR, 4);
     ErrCount = ErrCount + ErrCount_local;
-
     if (ErrCount == 0x0)
     {
         TEST_STATUS = TEST_PASS;
     }
-
     while (1);
 }
-
 //
 // End of file
 //

@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="uart__loopback_8md" kind="file" language="Markdown">
+    <compoundname>uart_loopback.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>UART<sp/>Internal<sp/>Loopback<sp/>{#EXAMPLES_DRIVERS_UART_LOOPBACK}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>Simple<sp/>internal<sp/>data<sp/>loopback<sp/>testing&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>UART&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>uses<sp/>the<sp/>internal<sp/>loopback<sp/>test<sp/>mode<sp/>of<sp/>the<sp/>UART<sp/>module.<sp/>This</highlight></codeline>
+<codeline><highlight class="normal">is<sp/>a<sp/>very<sp/>basic<sp/>loopback<sp/>that<sp/>does<sp/>not<sp/>use<sp/>the<sp/>FIFOs<sp/>or<sp/>interrupts.<sp/>Data<sp/>is<sp/>sent</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>by<sp/>byte,<sp/>then<sp/>compared<sp/>to<sp/>received<sp/>data<sp/>in<sp/>an<sp/>infinite<sp/>loop.</highlight></codeline>
+<codeline><highlight class="normal">The<sp/>pinmux<sp/>and<sp/>UART<sp/>modules<sp/>are<sp/>configured<sp/>through<sp/>the<sp/>sysconfig<sp/>file.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>sent<sp/>data<sp/>looks<sp/>like<sp/>this:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\code</highlight></codeline>
+<codeline><highlight class="normal"><sp/>0x01<sp/>0x02<sp/>0x03<sp/>0x04<sp/>0x05<sp/>0x06<sp/>0x07<sp/>....<sp/>0xFE<sp/>0xFF<sp/>0x00</highlight></codeline>
+<codeline><highlight class="normal">\endcode</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>pattern<sp/>is<sp/>repeated<sp/>forever.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\note<sp/>Avoid<sp/>keeping<sp/>the<sp/>memory<sp/>browser<sp/>open<sp/>while<sp/>the<sp/>execution<sp/>is<sp/>in<sp/>progress.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x</highlight></codeline>
+<codeline><highlight class="normal">##<sp/>Watch<sp/><sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>sData<sp/>:<sp/>Data<sp/>to<sp/>send</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>rData<sp/>:<sp/>Received<sp/>data</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>None</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x</highlight></codeline>
+<codeline><highlight class="normal">##<sp/>Watch<sp/><sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>sData<sp/>:<sp/>Data<sp/>being<sp/>sent</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>rData<sp/>:<sp/>Data<sp/>received</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>loopCount<sp/>:<sp/>Number<sp/>of<sp/>characters<sp/>sent</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>errorCount<sp/>:<sp/>Number<sp/>of<sp/>errors<sp/>detected</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">Connect<sp/>the<sp/>UARTA<sp/>Rx<sp/>port<sp/>to<sp/>Tx<sp/>port<sp/>for<sp/>external<sp/>loopback.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>GPIO32<sp/>is<sp/>UARTARX<sp/>to<sp/>be<sp/>connected<sp/>to<sp/>GPIO43<sp/>is<sp/>UARTATX</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Using<sp/>the<sp/>watch<sp/>variables,<sp/>monitor<sp/>data<sp/>transmission</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_UART_PAGE</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/uart_loopback.md"/>
+  </compounddef>
+</doxygen>

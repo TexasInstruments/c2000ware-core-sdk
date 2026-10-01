@@ -26,7 +26,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -59,7 +59,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 #include "cm.h"
 #include "usblib.h"
 #include "usbcdc.h"
@@ -69,7 +68,6 @@
 #include "ustdlib.h"
 #include "usb_ex1_device_structs.h"
 #include "usb_hal.h"
-
 //******************************************************************************
 //
 // Variables tracking transmit and receive counts.
@@ -80,7 +78,6 @@ volatile uint32_t g_ui32UARTRxCount = 0;
 #ifdef DEBUG
 uint32_t g_ui32UARTRxErrors = 0;
 #endif
-
 //******************************************************************************
 //
 // Default line coding settings for the redirected UART.
@@ -89,14 +86,12 @@ uint32_t g_ui32UARTRxErrors = 0;
 #define DEFAULT_BIT_RATE        115200
 #define DEFAULT_UART_CONFIG     (UART_CONFIG_WLEN_8 | UART_CONFIG_PAR_NONE |  \
                                  UART_CONFIG_STOP_ONE)
-
 //******************************************************************************
 //
 // Flag indicating whether or not we are currently sending a Break condition.
 //
 //******************************************************************************
 static bool g_bSendingBreak = false;
-
 //******************************************************************************
 //
 // Flags used to pass commands from interrupt context to the main loop.
@@ -105,17 +100,14 @@ static bool g_bSendingBreak = false;
 #define COMMAND_PACKET_RECEIVED 0x00000001
 #define COMMAND_STATUS_UPDATE   0x00000002
 #define COMMAND_RECEIVED        0x00000004
-
 volatile uint32_t g_ui32Flags = 0;
 char *g_pcStatus;
-
 //****************************************************************************
 //
 // Global flag indicating that a USB configuration has been set.
 //
 //****************************************************************************
 static volatile bool g_bUSBConfigured = false;
-
 //*****************************************************************************
 //
 // Internal function prototypes.
@@ -128,7 +120,6 @@ static void SetControlLineState(uint16_t ui16State);
 static bool SetLineCoding(tLineCoding *psLineCoding);
 static void GetLineCoding(tLineCoding *psLineCoding);
 static void SendBreak(bool bSend);
-
 //****************************************************************************
 //
 // This function is called whenever serial data is received from the UART.
@@ -147,14 +138,12 @@ static void
 CheckForSerialStateChange(const tUSBDCDCDevice *psDevice, int32_t i32Errors)
 {
     uint16_t ui16SerialState;
-
     //
     // Clear our USB serial state.  Since we are faking the handshakes, always
     // set the TXCARRIER (DSR) and RXCARRIER (DCD) bits.
     //
     ui16SerialState = USB_CDC_SERIAL_STATE_TXCARRIER |
                     USB_CDC_SERIAL_STATE_RXCARRIER;
-
     //
     // Are any error bits set?
     //
@@ -168,29 +157,24 @@ CheckForSerialStateChange(const tUSBDCDCDevice *psDevice, int32_t i32Errors)
         {
             ui16SerialState |= USB_CDC_SERIAL_STATE_OVERRUN;
         }
-
         if(i32Errors & UART_DR_PE)
         {
             ui16SerialState |= USB_CDC_SERIAL_STATE_PARITY;
         }
-
         if(i32Errors & UART_DR_FE)
         {
             ui16SerialState |= USB_CDC_SERIAL_STATE_FRAMING;
         }
-
         if(i32Errors & UART_DR_BE)
         {
             ui16SerialState |= USB_CDC_SERIAL_STATE_BREAK;
         }
-
         //
         // Call the CDC driver to notify the state change.
         //
         USBDCDCSerialStateChange((void *)psDevice, ui16SerialState);
     }
 }
-
 //****************************************************************************
 //
 // Read as many characters from the UART FIFO as we can and move them into
@@ -205,17 +189,14 @@ ReadUARTData(void)
     int32_t i32Char, i32Errors;
     uint8_t ucChar;
     uint32_t ui32Space;
-
     //
     // Clear our error indicator.
     //
     i32Errors = 0;
-
     //
     // How much space do we have in the buffer?
     //
     ui32Space = USBBufferSpaceAvailable((tUSBBuffer *)&g_sTxBuffer);
-
     //
     // Read data from the UART FIFO until there is none left or we run
     // out of space in our receive buffer.
@@ -227,7 +208,6 @@ ReadUARTData(void)
         // errors are reported.
         //
         i32Char = UART_readCharNonBlocking(UART0_BASE);
-
         //
         // If the character did not contain any error notifications,
         // copy it to the output buffer.
@@ -235,10 +215,8 @@ ReadUARTData(void)
         if(!(i32Char & ~0xFF))
         {
             ucChar = (uint8_t)(i32Char & 0xFF);
-
             USBBufferWrite((tUSBBuffer *)&g_sTxBuffer,
                            (uint8_t *)&ucChar, 1);
-
             //
             // Decrement the number of bytes we know the buffer can accept.
             //
@@ -257,19 +235,16 @@ ReadUARTData(void)
             //
             i32Errors |= i32Char;
         }
-
         //
         // Update our count of bytes received via the UART.
         //
         g_ui32UARTRxCount++;
     }
-
     //
     // Pass back the accumulated error indicators.
     //
     return(i32Errors);
 }
-
 //****************************************************************************
 //
 // Take as many bytes from the transmit buffer as we have space for and move
@@ -281,7 +256,6 @@ USBUARTPrimeTransmit(uint32_t ui32Base)
 {
     uint32_t ui32Read;
     uint8_t ucChar;
-
     //
     // If we are currently sending a break condition, don't receive any
     // more data. We will resume transmission once the break is turned off.
@@ -290,7 +264,6 @@ USBUARTPrimeTransmit(uint32_t ui32Base)
     {
         return;
     }
-
     //
     // If there is space in the UART FIFO, try to read some characters
     // from the receive buffer to fill it again.
@@ -301,7 +274,6 @@ USBUARTPrimeTransmit(uint32_t ui32Base)
         // Get a character from the buffer.
         //
         ui32Read = USBBufferRead((tUSBBuffer *)&g_sRxBuffer, &ucChar, 1);
-
         //
         // Did we get a character?
         //
@@ -311,7 +283,6 @@ USBUARTPrimeTransmit(uint32_t ui32Base)
             // Place the character in the UART transmit FIFO.
             //
             UART_writeCharNonBlocking(ui32Base, ucChar);
-
             //
             // Update our count of bytes transmitted via the UART.
             //
@@ -326,7 +297,6 @@ USBUARTPrimeTransmit(uint32_t ui32Base)
         }
     }
 }
-
 //****************************************************************************
 //
 // Interrupt handler for the UART which we are redirecting via USB.
@@ -337,17 +307,14 @@ USBUARTIntHandler(void)
 {
     uint32_t ui32Ints;
     int32_t i32Errors;
-
     //
     // Get the interrupt status.
     //
     ui32Ints = UART_getInterruptStatus(UART0_BASE, true);
-
     //
     // Clear the asserted interrupts.
     //
     UART_clearInterruptStatus(UART0_BASE, ui32Ints);
-
     //
     // Are we being interrupted because the TX FIFO has space available?
     //
@@ -357,7 +324,6 @@ USBUARTIntHandler(void)
         // Move as many bytes as we can into the transmit FIFO.
         //
         USBUARTPrimeTransmit(UART0_BASE);
-
         //
         // If the output buffer is empty, turn off the transmit interrupt.
         //
@@ -366,7 +332,6 @@ USBUARTIntHandler(void)
             UART_disableInterrupt(UART0_BASE, UART_INT_TX);
         }
     }
-
     //
     // Handle receive interrupts.
     //
@@ -376,7 +341,6 @@ USBUARTIntHandler(void)
         // Read the UART's characters into the buffer.
         //
         i32Errors = ReadUARTData();
-
         //
         // Check to see if we need to notify the host of any errors we just
         // detected.
@@ -384,7 +348,6 @@ USBUARTIntHandler(void)
         CheckForSerialStateChange(&g_sCDCDevice, i32Errors);
     }
 }
-
 //****************************************************************************
 //
 // Set the state of the RS232 RTS and DTR signals. Handshaking is not
@@ -400,7 +363,6 @@ SetControlLineState(uint16_t ui16State)
     // field of the request structure passed.
     //
 }
-
 //****************************************************************************
 //
 // Set the communication parameters to use on the UART.
@@ -411,12 +373,10 @@ SetLineCoding(tLineCoding *psLineCoding)
 {
     uint32_t ui32Config;
     bool bRetcode;
-
     //
     // Assume everything is OK until we detect any problem.
     //
     bRetcode = true;
-
     //
     // Word length.  For invalid values, the default is to set 8 bits per
     // character and return an error.
@@ -428,25 +388,21 @@ SetLineCoding(tLineCoding *psLineCoding)
             ui32Config = UART_CONFIG_WLEN_5;
             break;
         }
-
         case 6:
         {
             ui32Config = UART_CONFIG_WLEN_6;
             break;
         }
-
         case 7:
         {
             ui32Config = UART_CONFIG_WLEN_7;
             break;
         }
-
         case 8:
         {
             ui32Config = UART_CONFIG_WLEN_8;
             break;
         }
-
         default:
         {
             ui32Config = UART_CONFIG_WLEN_8;
@@ -454,7 +410,6 @@ SetLineCoding(tLineCoding *psLineCoding)
             break;
         }
     }
-
     //
     // Parity.  For any invalid values, we set no parity and return an error.
     //
@@ -465,31 +420,26 @@ SetLineCoding(tLineCoding *psLineCoding)
             ui32Config |= UART_CONFIG_PAR_NONE;
             break;
         }
-
         case USB_CDC_PARITY_ODD:
         {
             ui32Config |= UART_CONFIG_PAR_ODD;
             break;
         }
-
         case USB_CDC_PARITY_EVEN:
         {
             ui32Config |= UART_CONFIG_PAR_EVEN;
             break;
         }
-
         case USB_CDC_PARITY_MARK:
         {
             ui32Config |= UART_CONFIG_PAR_ONE;
             break;
         }
-
         case USB_CDC_PARITY_SPACE:
         {
             ui32Config |= UART_CONFIG_PAR_ZERO;
             break;
         }
-
         default:
         {
             ui32Config |= UART_CONFIG_PAR_NONE;
@@ -497,7 +447,6 @@ SetLineCoding(tLineCoding *psLineCoding)
             break;
         }
     }
-
     //
     // Stop bits.  Our hardware only supports 1 or 2 stop bits whereas CDC
     // allows the host to select 1.5 stop bits.  If passed 1.5 (or any other
@@ -515,7 +464,6 @@ SetLineCoding(tLineCoding *psLineCoding)
             ui32Config |= UART_CONFIG_STOP_ONE;
             break;
         }
-
         //
         // Two stop bits requested.
         //
@@ -524,7 +472,6 @@ SetLineCoding(tLineCoding *psLineCoding)
             ui32Config |= UART_CONFIG_STOP_TWO;
             break;
         }
-
         //
         // Other cases are either invalid values of ui8Stop or values that we
         // cannot support so set 1 stop bit but return an error.
@@ -536,19 +483,16 @@ SetLineCoding(tLineCoding *psLineCoding)
             break;
         }
     }
-
     //
     // Set the UART mode appropriately.
     //
     UART_setConfig(UART0_BASE, UART_CLK_FREQ_USB, psLineCoding->ui32Rate,
                    ui32Config);
-
     //
     // Let the caller know if we had a problem or not.
     //
     return(bRetcode);
 }
-
 //****************************************************************************
 //
 // Get the communication parameters in use on the UART.
@@ -559,14 +503,12 @@ GetLineCoding(tLineCoding *psLineCoding)
 {
     uint32_t ui32Config;
     uint32_t ui32Rate;
-
     //
     // Get the current line coding set in the UART.
     //
     UART_getConfig(UART0_BASE, UART_CLK_FREQ_USB, &ui32Rate,
                    &ui32Config);
     psLineCoding->ui32Rate = ui32Rate;
-
     //
     // Translate the configuration word length field into the format expected
     // by the host.
@@ -578,25 +520,21 @@ GetLineCoding(tLineCoding *psLineCoding)
             psLineCoding->ui8Databits = 8;
             break;
         }
-
         case UART_CONFIG_WLEN_7:
         {
             psLineCoding->ui8Databits = 7;
             break;
         }
-
         case UART_CONFIG_WLEN_6:
         {
             psLineCoding->ui8Databits = 6;
             break;
         }
-
         case UART_CONFIG_WLEN_5:
         {
             psLineCoding->ui8Databits = 5;
             break;
         }
-
         //
         // We don't expect to receive any other events.  Ignore any that show
         // up in a release build or hang in a debug build.
@@ -608,7 +546,6 @@ GetLineCoding(tLineCoding *psLineCoding)
             break;
 #endif
     }
-
     //
     // Translate the configuration parity field into the format expected
     // by the host.
@@ -620,31 +557,26 @@ GetLineCoding(tLineCoding *psLineCoding)
             psLineCoding->ui8Parity = USB_CDC_PARITY_NONE;
             break;
         }
-
         case UART_CONFIG_PAR_ODD:
         {
             psLineCoding->ui8Parity = USB_CDC_PARITY_ODD;
             break;
         }
-
         case UART_CONFIG_PAR_EVEN:
         {
             psLineCoding->ui8Parity = USB_CDC_PARITY_EVEN;
             break;
         }
-
         case UART_CONFIG_PAR_ONE:
         {
             psLineCoding->ui8Parity = USB_CDC_PARITY_MARK;
             break;
         }
-
         case UART_CONFIG_PAR_ZERO:
         {
             psLineCoding->ui8Parity = USB_CDC_PARITY_SPACE;
             break;
         }
-
         //
         // We don't expect to receive any other events.  Ignore any that show
         // up in a release build or hang in a debug build.
@@ -656,7 +588,6 @@ GetLineCoding(tLineCoding *psLineCoding)
             break;
 #endif
     }
-
     //
     // Translate the configuration stop bits field into the format expected
     // by the host.
@@ -668,13 +599,11 @@ GetLineCoding(tLineCoding *psLineCoding)
             psLineCoding->ui8Stop = USB_CDC_STOP_BITS_1;
             break;
         }
-
         case UART_CONFIG_STOP_TWO:
         {
             psLineCoding->ui8Stop = USB_CDC_STOP_BITS_2;
             break;
         }
-
         //
         // We don't expect to receive any other events.  Ignore any that show
         // up in a release build or hang in a debug build.
@@ -687,7 +616,6 @@ GetLineCoding(tLineCoding *psLineCoding)
 #endif
     }
 }
-
 //****************************************************************************
 //
 // This function sets or clears a break condition on the redirected UART RX
@@ -719,7 +647,6 @@ SendBreak(bool bSend)
         g_bSendingBreak = true;
     }
 }
-
 //****************************************************************************
 //
 // Handles CDC driver notifications related to control and setup of the
@@ -743,7 +670,6 @@ ControlHandler(void *pvCBData, uint32_t ui32Event,
                uint32_t ui32MsgValue, void *pvMsgData)
 {
     uint32_t ui32IntsOff;
-
     //
     // Which event are we being asked to process?
     //
@@ -755,13 +681,11 @@ ControlHandler(void *pvCBData, uint32_t ui32Event,
         case USB_EVENT_CONNECTED:
         {
             g_bUSBConfigured = true;
-
             //
             // Flush our buffers.
             //
             USBBufferFlush(&g_sTxBuffer);
             USBBufferFlush(&g_sRxBuffer);
-
             //
             // Tell the main loop to update the display.
             //
@@ -774,7 +698,6 @@ ControlHandler(void *pvCBData, uint32_t ui32Event,
             }
             break;
         }
-
         //
         // The host has disconnected.
         //
@@ -790,7 +713,6 @@ ControlHandler(void *pvCBData, uint32_t ui32Event,
             }
             break;
         }
-
         //
         // Return the current serial communication parameters.
         //
@@ -799,7 +721,6 @@ ControlHandler(void *pvCBData, uint32_t ui32Event,
             GetLineCoding(pvMsgData);
             break;
         }
-
         //
         // Set the current serial communication parameters.
         //
@@ -808,7 +729,6 @@ ControlHandler(void *pvCBData, uint32_t ui32Event,
             SetLineCoding(pvMsgData);
             break;
         }
-
         //
         // Set the current serial communication parameters.
         //
@@ -817,7 +737,6 @@ ControlHandler(void *pvCBData, uint32_t ui32Event,
             SetControlLineState((unsigned short)ui32MsgValue);
             break;
         }
-
         //
         // Send a break condition on the serial line.
         //
@@ -826,7 +745,6 @@ ControlHandler(void *pvCBData, uint32_t ui32Event,
             SendBreak(true);
             break;
         }
-
         //
         // Clear the break condition on the serial line.
         //
@@ -835,7 +753,6 @@ ControlHandler(void *pvCBData, uint32_t ui32Event,
             SendBreak(false);
             break;
         }
-
         //
         // Ignore SUSPEND and RESUME for now.
         //
@@ -844,7 +761,6 @@ ControlHandler(void *pvCBData, uint32_t ui32Event,
         {
             break;
         }
-
         //
         // We don't expect to receive any other events.  Ignore any that show
         // up in a release build or hang in a debug build.
@@ -854,10 +770,8 @@ ControlHandler(void *pvCBData, uint32_t ui32Event,
             break;
         }
     }
-
     return(0);
 }
-
 //****************************************************************************
 //
 // Handles CDC driver notifications related to the transmit channel (data to
@@ -892,7 +806,6 @@ TxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
             //
             break;
         }
-
         //
         // We don't expect to receive any other events.  Ignore any that show
         // up in a release build or hang in a debug build.
@@ -906,7 +819,6 @@ TxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
     }
     return(0);
 }
-
 //****************************************************************************
 //
 // Handles CDC driver notifications related to the receive channel (data from
@@ -930,7 +842,6 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
           void *pvMsgData)
 {
     uint32_t ui32Count;
-
     //
     // Which event are we being sent?
     //
@@ -949,7 +860,6 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
             UART_enableInterrupt(UART0_BASE, UART_INT_TX);
             break;
         }
-
         //
         // We are being asked how much unprocessed data we have still to
         // process. We return 0 if the UART is currently idle or 1 if it is
@@ -967,7 +877,6 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
             UART_isBusy(UART0_BASE) ? 1 : 0;
             return(ui32Count);
         }
-
         //
         // We are being asked to provide a buffer into which the next packet
         // can be read. We do not support this mode of receiving data so let
@@ -979,7 +888,6 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
         {
             return(0);
         }
-
         //
         // We don't expect to receive any other events.  Ignore any that show
         // up in a release build or hang in a debug build.
@@ -991,10 +899,8 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
             break;
 #endif
     }
-
     return(0);
 }
-
 //****************************************************************************
 //
 // This is the main application entry function.
@@ -1007,29 +913,24 @@ main(void)
     uint32_t ui32RxCount;
     char pcBuffer[16];
     volatile uint32_t ui32Fullness;
-
     //
     // Initialize device clock and peripherals
     //
     CM_init();
-
     //
     // Not configured initially.
     //
     g_bUSBConfigured = false;
-
     //
     // Set the default UART configuration.
     //
     UART_setConfig(UART0_BASE, UART_CLK_FREQ_USB, DEFAULT_BIT_RATE,
                    DEFAULT_UART_CONFIG);
     UART_setFIFOLevel(UART0_BASE, UART_FIFO_TX4_8, UART_FIFO_RX4_8);
-
     //
     // Register the interrupt handler, for USB UART.
     //
     Interrupt_registerHandler(INT_UART0, &USBUARTIntHandler);
-
     //
     // Configure and enable UART interrupts.
     //
@@ -1038,41 +939,34 @@ main(void)
     UART_enableInterrupt(UART0_BASE, (UART_INT_OE | UART_INT_BE | UART_INT_PE |
                                       UART_INT_FE | UART_INT_RT | UART_INT_TX |
                                       UART_INT_RX));
-
     //
     // Register the interrupt handler, for USB.
     //
     Interrupt_registerHandler(INT_USB0, &CM_USB0DeviceIntHandler);
-
     //
     // Initialize the transmit and receive buffers for first serial device.
     //
     USBBufferInit(&g_sTxBuffer);
     USBBufferInit(&g_sRxBuffer);
-
     //
     // Set the USB stack mode to Device mode with VBUS monitoring.
     //
     USBStackModeSet(0, eUSBModeForceDevice, 0);
-
     //
     // Pass our device information to the USB library and place the device
     // on the bus.
     //
     USBDCDCInit(0, &g_sCDCDevice);
-
     //
     // Clear our local byte counters.
     //
     ui32RxCount = 0;
     ui32TxCount = 0;
-
     //
     // Enable interrupts now that the application is ready to start.
     //
     Interrupt_enable(INT_UART0);
     Interrupt_enableInProcessor();
-
     //
     // Main application loop.
     //
@@ -1090,7 +984,6 @@ main(void)
             g_ui32Flags &= ~COMMAND_STATUS_UPDATE;
             Interrupt_enableInProcessor();
         }
-
         //
         // Has there been any transmit traffic since we last checked?
         //
@@ -1100,12 +993,10 @@ main(void)
             // Take a snapshot of the latest transmit count.
             //
             ui32TxCount = g_ui32UARTTxCount;
-
             //
             // Update the display of bytes transmitted by the UART.
             //
             usnprintf(pcBuffer, 16, "%d ", ui32TxCount);
-
             //
             // Update the RX buffer fullness. Remember that the buffers are
             // named relative to the USB whereas the status display is from
@@ -1115,7 +1006,6 @@ main(void)
             ui32Fullness = ((USBBufferDataAvailable(&g_sRxBuffer) * 100) /
                           UART_BUFFER_SIZE);
         }
-
         //
         // Has there been any receive traffic since we last checked?
         //
@@ -1125,12 +1015,10 @@ main(void)
             // Take a snapshot of the latest receive count.
             //
             ui32RxCount = g_ui32UARTRxCount;
-
             //
             // Update the display of bytes received by the UART.
             //
             usnprintf(pcBuffer, 16, "%d ", ui32RxCount);
-
             //
             // Update the TX buffer fullness. Remember that the buffers are
             // named relative to the USB whereas the status display is from
@@ -1142,7 +1030,6 @@ main(void)
         }
     }
 }
-
 //
 // End of file
 //

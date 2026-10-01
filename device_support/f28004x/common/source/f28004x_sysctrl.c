@@ -440,9 +440,9 @@ InitSysPll(Uint16 clock_source, Uint16 imult, Uint16 fmult, Uint16 divsel)
         ClkCfgRegs.SYSPLLCTL1.bit.PLLCLKEN = 0;
 
         //
-        // Delay of at least 60 OSCCLK cycles required post PLL bypass
+        // Delay of at least 300 OSCCLK cycles required post PLL bypass
         //
-        asm(" RPT #60 || NOP");
+        SYSCTRL_CLKSRCCTL1_DELAY;
 
         ClkCfgRegs.SYSCLKDIVSEL.bit.PLLSYSCLKDIV = 0;
 

@@ -21,7 +21,7 @@
 // $TI Release: $
 // 
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -54,40 +54,26 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
-
 #include "driverlib.h"
 #include "device.h"
 #include "clb_config.h"
 #include "clb.h"
 #include "board.h"
-
-
 void main(void)
 {
     Device_init();
     Device_initGPIO();
-
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
     //
     // Enabling CLB1
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB1);
-
 	Board_init();
-
     initTILE1(myCLBTILE1_BASE);
     CLB_enableCLB(myCLBTILE1_BASE);
-
-
     while(1)
     {
-
         asm(" NOP");
     }
 }
-
-

@@ -1,0 +1,629 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="cmpss__lite_8h" kind="file" language="C++">
+    <compoundname>cmpss_lite.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes local="no">stdint.h</includes>
+    <includes local="yes">inc/hw_cmpss_lite.h</includes>
+    <includes local="yes">inc/hw_memmap.h</includes>
+    <includes local="yes">inc/hw_types.h</includes>
+    <includes local="yes">cpu.h</includes>
+    <includes local="yes">debug.h</includes>
+    <includes refid="cmpss_8h" local="yes">cmpss.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="10">
+        <label>inc/hw_cmpss.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+      <node id="7">
+        <label>cpu.h</label>
+      </node>
+      <node id="5">
+        <label>inc/hw_memmap.h</label>
+      </node>
+      <node id="4">
+        <label>inc/hw_cmpss_lite.h</label>
+      </node>
+      <node id="1">
+        <label>cmpss_lite.h</label>
+        <link refid="cmpss__lite_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>cmpss.h</label>
+        <link refid="cmpss_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>debug.h</label>
+      </node>
+      <node id="6">
+        <label>inc/hw_types.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga2283879dab33b43d8887e675522a5789" prot="public" static="no">
+        <name>CMPSSLITE_DACVAL_SYSCLK</name>
+        <initializer>0x0000U</initializer>
+        <briefdescription>
+<para>DAC value updated from SYSCLK. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="80" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga1dea3aade39c3f3b39a7b8fa69522deb" prot="public" static="no">
+        <name>CMPSSLITE_DACVAL_PWMSYNC</name>
+        <initializer>0x0080U</initializer>
+        <briefdescription>
+<para>DAC value updated from PWMSYNC. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="82" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga24cecdca8bddd3005b0ecebfdd3c4d4d" prot="public" static="no">
+        <name>CMPSSLITE_isBaseValid</name>
+        <initializer>CMPSS_isLiteBaseValid</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="90" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1gada590f052c78c7fdfcd1cc404b93dcaf" prot="public" static="no">
+        <name>CMPSSLITE_enableModule</name>
+        <initializer><ref refid="group__cmpss__api_1ga562d4a4ed73f41c430e69af25df2bd78" kindref="member">CMPSS_enableModule</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="91" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1gab03217b9e6a3ee0444d6196e4ce89723" prot="public" static="no">
+        <name>CMPSSLITE_disableModule</name>
+        <initializer><ref refid="group__cmpss__api_1gaab908ddb546186f7a1ab65e01e9ea4d5" kindref="member">CMPSS_disableModule</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="92" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1gaf9874bdeeb450f834156f5458bf30fe8" prot="public" static="no">
+        <name>CMPSSLITE_configHighComparator</name>
+        <initializer><ref refid="group__cmpss__api_1ga6212038b6d7d03662b770b2dbff2b27c" kindref="member">CMPSS_configHighComparator</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="93" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga2abf459efb88fb38f4a92f8bd30dfb92" prot="public" static="no">
+        <name>CMPSSLITE_configLowComparator</name>
+        <initializer><ref refid="group__cmpss__api_1ga8d0709e11f33b3fd0e68c93960e27d1b" kindref="member">CMPSS_configLowComparator</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="94" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga945c6940e4008940a18dde3b3a0812af" prot="public" static="no">
+        <name>CMPSSLITE_configOutputsHigh</name>
+        <initializer><ref refid="group__cmpss__api_1ga197e8809c56f074dbf21362f15f7acf5" kindref="member">CMPSS_configOutputsHigh</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="95" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga1c2016cd239915350e37d559d07fe2bf" prot="public" static="no">
+        <name>CMPSSLITE_configOutputsLow</name>
+        <initializer><ref refid="group__cmpss__api_1ga7b10b96e23141bf7124acd176927c275" kindref="member">CMPSS_configOutputsLow</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="96" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga4379c2ca46df1c2492a376bd2b5cb676" prot="public" static="no">
+        <name>CMPSSLITE_getStatus</name>
+        <initializer><ref refid="group__cmpss__api_1ga747f958120a9e2cf45715c051eafca76" kindref="member">CMPSS_getStatus</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="97" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga37cd8c0ff02ce5ce9fb9de15a68cac49" prot="public" static="no">
+        <name>CMPSSLITE_setDACValueHigh</name>
+        <initializer><ref refid="group__cmpss__api_1ga5a07ef42b141f2eb1af6ea9de6cb2947" kindref="member">CMPSS_setDACValueHigh</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="98" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1gaadf5d2659391e6cd6ca1ed870acb23b0" prot="public" static="no">
+        <name>CMPSSLITE_setDACValueLow</name>
+        <initializer><ref refid="group__cmpss__api_1ga11ea2667e78f9869eec6567e59f279b9" kindref="member">CMPSS_setDACValueLow</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="99" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga5d28147dcd9a29f0e5f08e227f606fe0" prot="public" static="no">
+        <name>CMPSSLITE_initFilterHigh</name>
+        <initializer><ref refid="group__cmpss__api_1ga6e8c8b3b8976ca8be282d9299c810142" kindref="member">CMPSS_initFilterHigh</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="100" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga9d6d100c1e6dcc0f6f85862bcd1cb6d9" prot="public" static="no">
+        <name>CMPSSLITE_initFilterLow</name>
+        <initializer><ref refid="group__cmpss__api_1ga9ee825b811e49d78a32613714a9cad94" kindref="member">CMPSS_initFilterLow</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="101" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga62d12c12f91a0f3d970c8f988afc5a46" prot="public" static="no">
+        <name>CMPSSLITE_configureFilterInputHigh</name>
+        <initializer><ref refid="group__cmpss__api_1gab8a17cd0cd0ce4394ddaff66b4c2c4a1" kindref="member">CMPSS_configureFilterInputHigh</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="102" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1gaaa29102a836817ea089a2cce6e3741cd" prot="public" static="no">
+        <name>CMPSSLITE_configureFilterInputLow</name>
+        <initializer><ref refid="group__cmpss__api_1gadbba09f53c3535e1dc09988358cdac80" kindref="member">CMPSS_configureFilterInputLow</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="103" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1gabc4138b0ec5046fcd9ef503ed2ce1304" prot="public" static="no">
+        <name>CMPSSLITE_getDACValueHigh</name>
+        <initializer><ref refid="group__cmpss__api_1ga078588178a9dbdedb06dfa37a10ed8ec" kindref="member">CMPSS_getDACValueHigh</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="104" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga1521fdf4bfe5ec94c3ae2d117fa1ae2a" prot="public" static="no">
+        <name>CMPSSLITE_getDACValueLow</name>
+        <initializer><ref refid="group__cmpss__api_1gae55bef9c9c8a5b0ce8cfc57d6a9337eb" kindref="member">CMPSS_getDACValueLow</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="105" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga73041b1ba9d0c87113673cd9ec6a5211" prot="public" static="no">
+        <name>CMPSSLITE_clearFilterLatchHigh</name>
+        <initializer><ref refid="group__cmpss__api_1gad743d05bc8deb2bdc00d477d2e935aa4" kindref="member">CMPSS_clearFilterLatchHigh</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="106" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga1f5da8022afac439eebbdad04cde19c1" prot="public" static="no">
+        <name>CMPSSLITE_clearFilterLatchLow</name>
+        <initializer><ref refid="group__cmpss__api_1ga30b2c7654215475d9cb4e61ea04b9841" kindref="member">CMPSS_clearFilterLatchLow</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="107" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga1bc727af1112a8f6f5b420d60afcdfa2" prot="public" static="no">
+        <name>CMPSSLITE_configureSyncSourceHigh</name>
+        <initializer><ref refid="group__cmpss__api_1gafef09bb0fdce9d18ffeb9fd5778312bb" kindref="member">CMPSS_configureSyncSourceHigh</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="108" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1gad19fddc21e0e948b6dbdfad90862c2d8" prot="public" static="no">
+        <name>CMPSSLITE_configureSyncSourceLow</name>
+        <initializer><ref refid="group__cmpss__api_1ga81aa2e0672bbd51e8675a2d7974fe5b5" kindref="member">CMPSS_configureSyncSourceLow</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="109" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1gae3400c4097f319c82ab04354e871951d" prot="public" static="no">
+        <name>CMPSSLITE_setHysteresis</name>
+        <initializer><ref refid="group__cmpss__api_1gacc2df7773ce6970a508b3806f0ca8233" kindref="member">CMPSS_setHysteresis</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="110" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga58aec185816133e59aa64f5e9202cfa1" prot="public" static="no">
+        <name>CMPSSLITE_enableLatchResetOnPWMSYNCHigh</name>
+        <initializer>                                           <ref refid="group__cmpss__api_1ga8e7484687263b5a8111650963c430d6b" kindref="member">CMPSS_enableLatchResetOnPWMSYNCHigh</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="111" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1gafa90765dd47ccbd4a7c3aa2a67a74910" prot="public" static="no">
+        <name>CMPSSLITE_disableLatchResetOnPWMSYNCHigh</name>
+        <initializer>                                           <ref refid="group__cmpss__api_1gaddc4ed8319459df8298c6342db877deb" kindref="member">CMPSS_disableLatchResetOnPWMSYNCHigh</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="113" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1gaba11a8b84d4497603c58754a9c940964" prot="public" static="no">
+        <name>CMPSSLITE_enableLatchResetOnPWMSYNCLow</name>
+        <initializer>                                           <ref refid="group__cmpss__api_1ga2c1f78b188de9ed5a48553ee826c2d08" kindref="member">CMPSS_enableLatchResetOnPWMSYNCLow</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="115" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga8f2be8471ceb629cea8684bce82eea36" prot="public" static="no">
+        <name>CMPSSLITE_disableLatchResetOnPWMSYNCLow</name>
+        <initializer>                                           <ref refid="group__cmpss__api_1gaddcbdb35ccd103fef879972e4b772573" kindref="member">CMPSS_disableLatchResetOnPWMSYNCLow</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="117" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga259417b0255a89ac8ed2c1e723b4af15" prot="public" static="no">
+        <name>CMPSSLITE_configFilterHigh</name>
+        <initializer><ref refid="group__cmpss__api_1gaa0345e3d4b5df846668e3699da609a55" kindref="member">CMPSS_configFilterHigh</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="119" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga12b9ff25cbbdb67ac85fa600873f1f56" prot="public" static="no">
+        <name>CMPSSLITE_configFilterLow</name>
+        <initializer><ref refid="group__cmpss__api_1ga775b12cdecceeb61fd2fcf4c0736ffca" kindref="member">CMPSS_configFilterLow</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="120" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga3f072ab1621b4cf40ca0239b66b45a4e" prot="public" static="no">
+        <name>CMPSSLITE_configLatchOnPWMSYNC</name>
+        <initializer><ref refid="group__cmpss__api_1ga29d69a8ef0e45af4403c7275e59984d5" kindref="member">CMPSS_configLatchOnPWMSYNC</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="121" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__cmpss__lite__api_1gac68327c52ae4e9d00fc01fa6307010d9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CMPSSLITE_configDAC</definition>
+        <argsstring>(uint32_t base, uint16_t config)</argsstring>
+        <name>CMPSSLITE_configDAC</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>config</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the configuration for the internal comparator DACs.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the CMPSSLITE module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>config</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the configuration of the internal DAC.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the comparator&apos;s internal DAC. The <emphasis>config</emphasis> parameter configures the DAC value load trigger event between SYSCLK and MCPWMSYNCPER i.e. the CMPSS_DACVAL_xxx value.</para>
+<para>The <bold>CMPSS_DACVAL_xxx</bold> term can take on the following values to specify when the DAC value is loaded from its shadow register:<itemizedlist>
+<listitem><para><bold>CMPSS_DACVAL_SYSCLK</bold> - Value register updated on system clock.</para>
+</listitem><listitem><para><bold>CMPSS_DACVAL_PWMSYNC</bold> - Value register updated on PWM sync.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="144" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="144" bodyend="162"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//###########################################################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>FILE:<sp/><sp/><sp/>cmpss_lite.h</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>TITLE:<sp/><sp/>C28x<sp/>CMPSS-Lite<sp/>driver.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//###########################################################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>$Copyright:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(C)<sp/>2026<sp/>Texas<sp/>Instruments<sp/>Incorporated<sp/>-<sp/>http://www.ti.com/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Redistribution<sp/>and<sp/>use<sp/>in<sp/>source<sp/>and<sp/>binary<sp/>forms,<sp/>with<sp/>or<sp/>without<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>modification,<sp/>are<sp/>permitted<sp/>provided<sp/>that<sp/>the<sp/>following<sp/>conditions<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>are<sp/>met:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>Redistributions<sp/>of<sp/>source<sp/>code<sp/>must<sp/>retain<sp/>the<sp/>above<sp/>copyright<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>Redistributions<sp/>in<sp/>binary<sp/>form<sp/>must<sp/>reproduce<sp/>the<sp/>above<sp/>copyright</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer<sp/>in<sp/>the<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>documentation<sp/>and/or<sp/>other<sp/>materials<sp/>provided<sp/>with<sp/>the<sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>distribution.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>Neither<sp/>the<sp/>name<sp/>of<sp/>Texas<sp/>Instruments<sp/>Incorporated<sp/>nor<sp/>the<sp/>names<sp/>of</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>its<sp/>contributors<sp/>may<sp/>be<sp/>used<sp/>to<sp/>endorse<sp/>or<sp/>promote<sp/>products<sp/>derived</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>from<sp/>this<sp/>software<sp/>without<sp/>specific<sp/>prior<sp/>written<sp/>permission.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>THIS<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>BY<sp/>THE<sp/>COPYRIGHT<sp/>HOLDERS<sp/>AND<sp/>CONTRIBUTORS<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>ANY<sp/>EXPRESS<sp/>OR<sp/>IMPLIED<sp/>WARRANTIES,<sp/>INCLUDING,<sp/>BUT<sp/>NOT<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>LIMITED<sp/>TO,<sp/>THE<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS<sp/>FOR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>ARE<sp/>DISCLAIMED.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>COPYRIGHT<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>OWNER<sp/>OR<sp/>CONTRIBUTORS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>DIRECT,<sp/>INDIRECT,<sp/>INCIDENTAL,<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPECIAL,<sp/>EXEMPLARY,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>(INCLUDING,<sp/>BUT<sp/>NOT<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>LIMITED<sp/>TO,<sp/>PROCUREMENT<sp/>OF<sp/>SUBSTITUTE<sp/>GOODS<sp/>OR<sp/>SERVICES;<sp/>LOSS<sp/>OF<sp/>USE,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>DATA,<sp/>OR<sp/>PROFITS;<sp/>OR<sp/>BUSINESS<sp/>INTERRUPTION)<sp/>HOWEVER<sp/>CAUSED<sp/>AND<sp/>ON<sp/>ANY</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>THEORY<sp/>OF<sp/>LIABILITY,<sp/>WHETHER<sp/>IN<sp/>CONTRACT,<sp/>STRICT<sp/>LIABILITY,<sp/>OR<sp/>TORT<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/>(INCLUDING<sp/>NEGLIGENCE<sp/>OR<sp/>OTHERWISE)<sp/>ARISING<sp/>IN<sp/>ANY<sp/>WAY<sp/>OUT<sp/>OF<sp/>THE<sp/>USE<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>OF<sp/>THIS<sp/>SOFTWARE,<sp/>EVEN<sp/>IF<sp/>ADVISED<sp/>OF<sp/>THE<sp/>POSSIBILITY<sp/>OF<sp/>SUCH<sp/>DAMAGE.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">//<sp/>$</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//###########################################################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>CMPSS_LITE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSS_LITE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>If<sp/>building<sp/>with<sp/>a<sp/>C++<sp/>compiler,<sp/>make<sp/>all<sp/>of<sp/>the<sp/>definitions<sp/>in<sp/>this<sp/>header</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>have<sp/>a<sp/>C<sp/>binding.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;inc/hw_cmpss_lite.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;inc/hw_memmap.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;inc/hw_types.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cpu.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;debug.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="cmpss_8h" kindref="compound">cmpss.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>DOXYGEN_PDF_IGNORE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="comment">//<sp/>When<sp/>is<sp/>DAC<sp/>value<sp/>loaded<sp/>from<sp/>shadow<sp/>register</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="80" refid="group__cmpss__lite__api_1ga2283879dab33b43d8887e675522a5789" refkind="member"><highlight class="comment"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_DACVAL_SYSCLK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x0000U</highlight></codeline>
+<codeline lineno="82" refid="group__cmpss__lite__api_1ga1dea3aade39c3f3b39a7b8fa69522deb" refkind="member"><highlight class="preprocessor">#define<sp/>CMPSSLITE_DACVAL_PWMSYNC<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x0080U</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Prototypes<sp/>for<sp/>the<sp/>APIs.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="group__cmpss__lite__api_1ga24cecdca8bddd3005b0ecebfdd3c4d4d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_isBaseValid<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMPSS_isLiteBaseValid</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="group__cmpss__lite__api_1gada590f052c78c7fdfcd1cc404b93dcaf" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_enableModule<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMPSS_enableModule</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="group__cmpss__lite__api_1gab03217b9e6a3ee0444d6196e4ce89723" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_disableModule<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMPSS_disableModule</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="group__cmpss__lite__api_1gaf9874bdeeb450f834156f5458bf30fe8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_configHighComparator<sp/><sp/><sp/><sp/><sp/>CMPSS_configHighComparator</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="group__cmpss__lite__api_1ga2abf459efb88fb38f4a92f8bd30dfb92" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_configLowComparator<sp/><sp/><sp/><sp/><sp/><sp/>CMPSS_configLowComparator</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95" refid="group__cmpss__lite__api_1ga945c6940e4008940a18dde3b3a0812af" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_configOutputsHigh<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMPSS_configOutputsHigh</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="group__cmpss__lite__api_1ga1c2016cd239915350e37d559d07fe2bf" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_configOutputsLow<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMPSS_configOutputsLow</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="group__cmpss__lite__api_1ga4379c2ca46df1c2492a376bd2b5cb676" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_getStatus<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMPSS_getStatus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="group__cmpss__lite__api_1ga37cd8c0ff02ce5ce9fb9de15a68cac49" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_setDACValueHigh<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMPSS_setDACValueHigh</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="group__cmpss__lite__api_1gaadf5d2659391e6cd6ca1ed870acb23b0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_setDACValueLow<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMPSS_setDACValueLow</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="group__cmpss__lite__api_1ga5d28147dcd9a29f0e5f08e227f606fe0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_initFilterHigh<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMPSS_initFilterHigh</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="group__cmpss__lite__api_1ga9d6d100c1e6dcc0f6f85862bcd1cb6d9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_initFilterLow<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMPSS_initFilterLow</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102" refid="group__cmpss__lite__api_1ga62d12c12f91a0f3d970c8f988afc5a46" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_configureFilterInputHigh<sp/>CMPSS_configureFilterInputHigh</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103" refid="group__cmpss__lite__api_1gaaa29102a836817ea089a2cce6e3741cd" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_configureFilterInputLow<sp/><sp/>CMPSS_configureFilterInputLow</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="group__cmpss__lite__api_1gabc4138b0ec5046fcd9ef503ed2ce1304" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_getDACValueHigh<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMPSS_getDACValueHigh</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="group__cmpss__lite__api_1ga1521fdf4bfe5ec94c3ae2d117fa1ae2a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_getDACValueLow<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMPSS_getDACValueLow</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106" refid="group__cmpss__lite__api_1ga73041b1ba9d0c87113673cd9ec6a5211" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_clearFilterLatchHigh<sp/><sp/><sp/><sp/><sp/>CMPSS_clearFilterLatchHigh</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107" refid="group__cmpss__lite__api_1ga1f5da8022afac439eebbdad04cde19c1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_clearFilterLatchLow<sp/><sp/><sp/><sp/><sp/><sp/>CMPSS_clearFilterLatchLow</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108" refid="group__cmpss__lite__api_1ga1bc727af1112a8f6f5b420d60afcdfa2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_configureSyncSourceHigh<sp/><sp/>CMPSS_configureSyncSourceHigh</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109" refid="group__cmpss__lite__api_1gad19fddc21e0e948b6dbdfad90862c2d8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_configureSyncSourceLow<sp/><sp/><sp/>CMPSS_configureSyncSourceLow</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110" refid="group__cmpss__lite__api_1gae3400c4097f319c82ab04354e871951d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_setHysteresis<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMPSS_setHysteresis</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111" refid="group__cmpss__lite__api_1ga58aec185816133e59aa64f5e9202cfa1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_enableLatchResetOnPWMSYNCHigh<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="112"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMPSS_enableLatchResetOnPWMSYNCHigh</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113" refid="group__cmpss__lite__api_1gafa90765dd47ccbd4a7c3aa2a67a74910" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_disableLatchResetOnPWMSYNCHigh<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="114"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMPSS_disableLatchResetOnPWMSYNCHigh</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115" refid="group__cmpss__lite__api_1gaba11a8b84d4497603c58754a9c940964" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_enableLatchResetOnPWMSYNCLow<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="116"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMPSS_enableLatchResetOnPWMSYNCLow</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117" refid="group__cmpss__lite__api_1ga8f2be8471ceb629cea8684bce82eea36" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_disableLatchResetOnPWMSYNCLow<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="118"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMPSS_disableLatchResetOnPWMSYNCLow</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119" refid="group__cmpss__lite__api_1ga259417b0255a89ac8ed2c1e723b4af15" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_configFilterHigh<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMPSS_configFilterHigh</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120" refid="group__cmpss__lite__api_1ga12b9ff25cbbdb67ac85fa600873f1f56" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_configFilterLow<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMPSS_configFilterLow</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121" refid="group__cmpss__lite__api_1ga3f072ab1621b4cf40ca0239b66b45a4e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMPSSLITE_configLatchOnPWMSYNC<sp/><sp/><sp/><sp/><sp/>CMPSS_configLatchOnPWMSYNC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="141"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144" refid="group__cmpss__lite__api_1gac68327c52ae4e9d00fc01fa6307010d9" refkind="member"><highlight class="normal"><ref refid="group__cmpss__lite__api_1gac68327c52ae4e9d00fc01fa6307010d9" kindref="member">CMPSSLITE_configDAC</ref>(uint32_t<sp/>base,<sp/>uint16_t<sp/>config)</highlight></codeline>
+<codeline lineno="145"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>the<sp/>arguments.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(<ref refid="group__cmpss__lite__api_1ga24cecdca8bddd3005b0ecebfdd3c4d4d" kindref="member">CMPSSLITE_isBaseValid</ref>(base));</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Write<sp/>the<sp/>DAC<sp/>configuration<sp/>to<sp/>the<sp/>appropriate<sp/>register.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>EALLOW;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>CMPSSLITE_O_COMPDACHCTL)<sp/>=</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(HWREGH(base<sp/>+<sp/>CMPSSLITE_O_COMPDACHCTL)<sp/>&amp;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>~CMPSSLITE_COMPDACHCTL_SWLOADSEL)<sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>config;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>EDIS;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Close<sp/>the<sp/>Doxygen<sp/>group.</highlight></codeline>
+<codeline lineno="169"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Mark<sp/>the<sp/>end<sp/>of<sp/>the<sp/>C<sp/>bindings<sp/>section<sp/>for<sp/>C++<sp/>compilers.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>CMPSS_LITE_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h"/>
+  </compounddef>
+</doxygen>

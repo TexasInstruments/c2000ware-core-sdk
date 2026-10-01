@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -77,7 +77,7 @@ extern unsigned long __STACK_END;
 #pragma RETAIN(vectorTableFlash)
 #pragma DATA_ALIGN(vectorTableFlash, 1024U)
 #pragma DATA_SECTION(vectorTableFlash, ".vftable")
-void (* const vectorTableFlash[])(void) =
+void (* vectorTableFlash[])(void) =
 #else
 #pragma RETAIN(vectorTableRAM)
 #pragma DATA_ALIGN(vectorTableRAM, 1024U)

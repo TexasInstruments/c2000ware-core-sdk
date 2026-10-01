@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="CCS_LAUNCH_PAGE" kind="page">
+    <compoundname>CCS_LAUNCH_PAGE</compoundname>
+    <title>Build, Load and Run</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="CCS_LAUNCH_PAGE_1md_ccs_launch"/></para>
+<para><simplesect kind="note"><para>The steps on this page should be done each time Launchpad is power cycled or when a new CCS session is started.</para>
+</simplesect>
+</para>
+<sect1 id="CCS_LAUNCH_PAGE_1autotoc_md9">
+<title>Build Configurations</title>
+<para><itemizedlist>
+<listitem><para>The following build configurations are supported for the majority of the examples<itemizedlist>
+<listitem><para>RAM Build Configuration</para>
+</listitem><listitem><para>FLASH Build Configuration</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Some examples have only FLASH or only RAM build configurations</para>
+</listitem></itemizedlist>
+</para>
+<sect2 id="CCS_LAUNCH_PAGE_1autotoc_md10">
+<title>RAM Build Configuration</title>
+<para><itemizedlist>
+<listitem><para>The example program is loaded into and run from RAM memory</para>
+</listitem><listitem><para>Launch CCS</para>
+</listitem><listitem><para>Import the example CCS project<itemizedlist>
+<listitem><para>Goto &quot;File -&gt; Import Project(s)&quot;</para>
+</listitem><listitem><para>Browse the required example directory within SDK and select the &apos;ccs&apos; folder which contain the CCS projectspec file<itemizedlist>
+<listitem><para>Discovered projects are listed</para>
+</listitem><listitem><para>Select a project and click &apos;Finish&apos; <htmlonly> &lt;style&gt;div.image img[src=&quot;ccs_import_project.jpg&quot;]{width:30%}&lt;/style&gt;</htmlonly> <image type="html" name="ccs_import_project.jpg">Import CCS project</image>
+</para>
+</listitem><listitem><para>Select RAM build configuration<itemizedlist>
+<listitem><para>Right click on the project select &apos;Build Configurations -&gt;CPU1_LAUNCHXL_RAM&apos; <htmlonly> &lt;style&gt;div.image img[src=&quot;ccs_ram_config.jpg&quot;]{width:40%}&lt;/style&gt;</htmlonly> <image type="html" name="ccs_ram_config.jpg">RAM Build Configuration</image>
+</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="CCS_LAUNCH_PAGE_1autotoc_md11">
+<title>FLASH Build Configuration</title>
+<para><itemizedlist>
+<listitem><para>The example program is loaded and run from flash memory</para>
+</listitem><listitem><para>Launch CCS</para>
+</listitem><listitem><para>Import the example CCS project<itemizedlist>
+<listitem><para>Goto &quot;File -&gt; Import Project(s)&quot;</para>
+</listitem><listitem><para>Browse the required example directory within SDK and select the &apos;ccs&apos; folder which contain the CCS projectspec file<itemizedlist>
+<listitem><para>Discovered projects are listed</para>
+</listitem><listitem><para>Select a project and click &apos;Finish&apos; <htmlonly> &lt;style&gt;div.image img[src=&quot;ccs_import_project.jpg&quot;]{width:30%}&lt;/style&gt;</htmlonly> <image type="html" name="ccs_import_project.jpg">Import CCS project</image>
+</para>
+</listitem><listitem><para>Select FLASH build configuration<itemizedlist>
+<listitem><para>Default build configuration is RAM, change it to FLASH</para>
+</listitem><listitem><para>Right click on the project select &apos;Build Configurations -&gt;CPU1_LAUNCHXL_FLASH&apos; <htmlonly> &lt;style&gt;div.image img[src=&quot;ccs_flash_config.jpg&quot;]{width:40%}&lt;/style&gt;</htmlonly> <image type="html" name="ccs_flash_config.jpg">FLASH Build Configuration</image>
+</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+</sect1>
+<sect1 id="CCS_LAUNCH_PAGE_1autotoc_md12">
+<title>Build and Load Program</title>
+<para><itemizedlist>
+<listitem><para>Following are the options to build and load an example program<itemizedlist>
+<listitem><para>Build and Load together in a single click<itemizedlist>
+<listitem><para>Righ click on the project and select &apos;Debug Project (F5)&apos; option <htmlonly> &lt;style&gt;div.image img[src=&quot;ccs_debug.jpg&quot;]{width:30%}&lt;/style&gt;</htmlonly> <image type="html" name="ccs_debug.jpg">Debug CCS project</image>
+</para>
+</listitem><listitem><para>It performs the following sequence<itemizedlist>
+<listitem><para>Builds the project</para>
+</listitem><listitem><para>Launches the Target Configuration based on the &apos;ccxml&apos; included in projectspec</para>
+</listitem><listitem><para>Connects to the target core</para>
+</listitem><listitem><para>Loads the program onto the target core</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="CCS_LAUNCH_PAGE_1autotoc_md13">
+<title>Run and Debug Program</title>
+<para><itemizedlist>
+<listitem><para>Run<itemizedlist>
+<listitem><para>Once the program is loaded the core is in &apos;HALTED&apos; state and the following debug options are available<itemizedlist>
+<listitem><para>Continue (Free Run)<itemizedlist>
+<listitem><para>Runs either to end of the program or to a breakpoint if present</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Step Over</para>
+</listitem><listitem><para>Step Into</para>
+</listitem><listitem><para>Step Out</para>
+</listitem><listitem><para>Restart<itemizedlist>
+<listitem><para>Starts from &apos;main&apos; function</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Stop<itemizedlist>
+<listitem><para>Disconnects the target</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Debug<itemizedlist>
+<listitem><para>The following options are available to debug the loaded program<itemizedlist>
+<listitem><para>Breakpoints<itemizedlist>
+<listitem><para>The program execution halts at a breakpoint</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>View memory contents<itemizedlist>
+<listitem><para>Goto &apos;View-&gt;Memory&apos;</para>
+</listitem><listitem><para>Select address and format</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>View Global Variables<itemizedlist>
+<listitem><para>Add global variables to &apos;Watch&apos; window to view the contents</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>View Core and Peripheral registers<itemizedlist>
+<listitem><para>Goto &apos;View-&gt;Register&apos; to view the core and peripheral regsters </para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="ccs_launch.md"/>
+  </compounddef>
+</doxygen>

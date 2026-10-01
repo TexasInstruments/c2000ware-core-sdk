@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="drv8329__simple__motor__control_8md" kind="file" language="Markdown">
+    <compoundname>drv8329_simple_motor_control.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>DRV8329<sp/>Simple<sp/>3-Phase<sp/>Motor<sp/>Control<sp/>{#EXAMPLES_DRIVERS_DRV8329_SIMPLE_MOTOR_CONTROL}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>This<sp/>example<sp/>shows<sp/>a<sp/>simple<sp/>implementation<sp/>of<sp/>3-phase<sp/>motor<sp/>control<sp/>using<sp/>the<sp/>DRV8329<sp/>gate<sp/>driver<sp/>and<sp/>MCPWM<sp/>module.&quot;</highlight></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>DRV8329,<sp/>MCPWM&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>shows<sp/>a<sp/>simple<sp/>implementation<sp/>of<sp/>3-phase<sp/>motor<sp/>control.<sp/>SysConfig</highlight></codeline>
+<codeline><highlight class="normal">is<sp/>used<sp/>to<sp/>configure<sp/>the<sp/>DRV8329<sp/>gate<sp/>driver<sp/>and<sp/>the<sp/>MCPWM<sp/>module.<sp/>The<sp/>MCPWM</highlight></codeline>
+<codeline><highlight class="normal">module<sp/>is<sp/>set<sp/>up<sp/>to<sp/>generate<sp/>3-phase<sp/>PWM<sp/>signals<sp/>that<sp/>are<sp/>open-loop</highlight></codeline>
+<codeline><highlight class="normal">sine-modulated<sp/>to<sp/>drive<sp/>the<sp/>DRV8329.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">myDRV0(DRV8329)<sp/>is<sp/>configured<sp/>over<sp/>SPI<sp/>to:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Clear<sp/>any<sp/>existing<sp/>faults<sp/>(CLRFLT)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Set<sp/>the<sp/>VDS<sp/>level<sp/>selection<sp/>to<sp/>2.00V</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">myMCPWM0(MCPWM1)<sp/>is<sp/>configured<sp/>to:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Generate<sp/>3-phase<sp/>PWM<sp/>(PWM1A/B,<sp/>PWM2A/B,<sp/>PWM3A/B)<sp/>in<sp/>Up-Down<sp/>Count<sp/>mode</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Apply<sp/>deadband<sp/>on<sp/>the<sp/>rising<sp/>and<sp/>falling<sp/>edges<sp/>of<sp/>all<sp/>outputs</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Trigger<sp/>an<sp/>interrupt<sp/>(ET1)<sp/>on<sp/>every<sp/>&quot;Counter<sp/>=<sp/>Period&quot;<sp/>event</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">In<sp/>the<sp/>MCPWM<sp/>ISR,<sp/>the<sp/>phase<sp/>angle<sp/>(theta)<sp/>is<sp/>incremented<sp/>and<sp/>the<sp/>three</highlight></codeline>
+<codeline><highlight class="normal">sinusoidal<sp/>duty<sp/>cycles<sp/>(120<sp/>degrees<sp/>apart)<sp/>are<sp/>computed<sp/>and<sp/>written<sp/>to<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">CMPA<sp/>shadow<sp/>registers<sp/>of<sp/>PWM1A,<sp/>PWM2A,<sp/>and<sp/>PWM3A,<sp/>producing<sp/>a<sp/>rotating</highlight></codeline>
+<codeline><highlight class="normal">3-phase<sp/>voltage<sp/>waveform<sp/>for<sp/>open-loop<sp/>motor<sp/>control.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">Monitor<sp/>GLA,<sp/>GLB,<sp/>GLC<sp/>on<sp/>the<sp/>DRV8329<sp/>to<sp/>see<sp/>the<sp/>3-phase<sp/>PWM<sp/>signals.<sp/>These</highlight></codeline>
+<codeline><highlight class="normal">gate<sp/>driver<sp/>outputs<sp/>are<sp/>driven<sp/>by<sp/>the<sp/>following<sp/>MCPWM/GPIO<sp/>pins:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>DRV8329<sp/>Pin<sp/>|<sp/>MCPWM<sp/>Output<sp/>|<sp/>Phase<sp/>Output<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|-------------|--------------|--------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>INHA<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>PWM3A<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>GLA<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>INLA<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>PWM3B<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>GLA<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>INHB<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>PWM1A<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>GLB<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>INLB<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>PWM1B<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>GLB<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>INHC<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>PWM2A<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>GLC<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>INLC<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>PWM2B<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>GLC<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Watch<sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>interruptcounter<sp/>-<sp/>Counts<sp/>the<sp/>number<sp/>of<sp/>MCPWM<sp/>interrupts</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>theta<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>Current<sp/>phase<sp/>angle<sp/>in<sp/>degrees</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>valA,<sp/>valB,<sp/>valC<sp/>-<sp/>Computed<sp/>CMPA<sp/>values<sp/>for<sp/>the<sp/>three<sp/>PWM<sp/>phases</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>required<sp/>combination<sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>the<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Using<sp/>the<sp/>watch<sp/>variables,<sp/>observe<sp/>the<sp/>3-phase<sp/>PWM<sp/>waveforms.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>See<sp/>Also</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\ref<sp/>DRIVERS_MCPWM_PAGE</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/drv8329_simple_motor_control.md"/>
+  </compounddef>
+</doxygen>

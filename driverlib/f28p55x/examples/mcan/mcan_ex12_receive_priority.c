@@ -16,7 +16,6 @@
 //! receiving CAN node (frames in itself conform to CAN Protocol, Priority is only
 //! marked from the perspective of the receiving CAN Node), following which a separate
 //! interrupt is generated and the messages can be read.
-
 //! Communication is done between two CAN nodes. The transmitting node could be another
 //! MCU or a CAN bus analysis tool capable of transmitting CAN FD frames. The transmit
 //! and receive pins of the MCAN module should be connected to a CAN
@@ -75,7 +74,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Include Files
 //
@@ -84,7 +82,6 @@
 #include "inc/stw_dataTypes.h"
 #include "inc/stw_types.h"
 #include "inc/hw_types_mcan.h"
-
 //
 // Defines
 //
@@ -99,7 +96,6 @@
 #define MCAN_TX_BUFF_SIZE               (10U)
 #define MCAN_TX_BUFF_ELEM_SIZE          (MCAN_ELEM_SIZE_64BYTES)
 #define MCAN_TX_EVENT_SIZE              (10U)
-
 //
 //  Defining Starting Addresses for Message RAM Sections,
 //  (Calculated from Macros based on User defined configuration above)
@@ -111,7 +107,6 @@
 #define MCAN_RX_BUFF_START_ADDR         (MCAN_FIFO_1_START_ADDR + (MCAN_getMsgObjSize(MCAN_FIFO_1_ELEM_SIZE) * 4U * MCAN_FIFO_1_NUM))
 #define MCAN_TX_BUFF_START_ADDR         (MCAN_RX_BUFF_START_ADDR + (MCAN_getMsgObjSize(MCAN_RX_BUFF_ELEM_SIZE) * 4U * MCAN_RX_BUFF_NUM))
 #define MCAN_TX_EVENT_START_ADDR        (MCAN_TX_BUFF_START_ADDR + (MCAN_getMsgObjSize(MCAN_TX_BUFF_ELEM_SIZE) * 4U * MCAN_TX_BUFF_SIZE))
-
 //
 // Global Variables.
 //
@@ -122,86 +117,70 @@ volatile unsigned long msgCount = 0;
 volatile unsigned long error = 0;
 MCAN_RxBufElement rxMsg, rxMsg1;
 MCAN_RxFIFOStatus RxFS;
-
 //
 // Function Prototype.
 //
 static void MCANConfig(void);
 static void MCANIntrConfig(void);
 __interrupt void MCANIntr1ISR(void);
-
 //
 // Main
 //
 void main(void)
 {
     volatile uint32_t mode = 0U;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and unlock the GPIO configuration registers
     //
     Device_initGPIO();
-
     //
     // Configuring the GPIOs for MCAN.
     //
     GPIO_setPinConfig(DEVICE_GPIO_CFG_MCANRXA);
     GPIO_setPinConfig(DEVICE_GPIO_CFG_MCANTXA);
-
     //
     // Configure the divisor for the MCAN bit-clock
     //
     SysCtl_setMCANClk(SYSCTL_MCANA, SYSCTL_MCANCLK_DIV_5);
-
     //
     // CrossBar and ISR Configuration.
     //
     MCANIntrConfig();
-
     //
     // Configure MCAN.
     //
     MCANConfig();
-
     //
     // Enable Interrupts.
     //
     MCAN_enableIntr(MCANA_DRIVER_BASE, MCAN_INTR_MASK_ALL, 1U);
-
     //
     // Select Interrupt Line.
     //
     MCAN_selectIntrLine(MCANA_DRIVER_BASE, MCAN_INTR_MASK_ALL, MCAN_INTR_LINE_NUM_1);
-
     //
     // Enable Interrupt Line.
     //
     MCAN_enableIntrLine(MCANA_DRIVER_BASE, MCAN_INTR_LINE_NUM_1, 1U);
-
     while(1)
     {
         //
         //  Adding delay of 1 second
         //
         DEVICE_DELAY_US(1000000);
-
         //
         //  Message Handling Code goes here
         //
-
     }
-
     //
     // Stop Application.
     //
     asm(" ESTOP0");
 }
-
 //
 // This function will configure MCAN module.
 //
@@ -213,7 +192,6 @@ static void MCANConfig(void)
     MCAN_MsgRAMConfigParams    msgRAMConfigParams;
     MCAN_StdMsgIDFilterElement stdFiltelem;
     MCAN_BitTimingParams       bitTimes;
-
     //
     //  Initializing all structs to zero to prevent stray values
     //
@@ -222,7 +200,6 @@ static void MCANConfig(void)
     memset(&msgRAMConfigParams, 0, sizeof(msgRAMConfigParams));
     memset(&stdFiltelem, 0, sizeof(stdFiltelem));
     memset(&bitTimes, 0, sizeof(bitTimes));
-
     //
     // Initialize MCAN Init parameters.
     //
@@ -241,13 +218,11 @@ static void MCANConfig(void)
                                          // enabled.
     initParams.wdcPreload        = 0xFFU; // Start value of the Message RAM
                                           // Watchdog Counter preload.
-
     //
     // Transmitter Delay Compensation parameters.
     //
     initParams.tdcConfig.tdcf    = 0xAU;
     initParams.tdcConfig.tdco    = 0x6U;
-
     //
     // Initialize MCAN Config parameters.
     //
@@ -266,7 +241,6 @@ static void MCANConfig(void)
                                            // 11-bit standard IDs.
     configParams.filterConfig.anfe = 0x1U; // Accept in Rx FIFO 1.
     configParams.filterConfig.anfs = 0x1U; // Accept in Rx FIFO 1.
-
     //
     // Initialize Message RAM Sections Configuration Parameters.
     //
@@ -283,7 +257,6 @@ static void MCANConfig(void)
     msgRAMConfigParams.rxFIFO1OpMode        = 0U; // FIFO blocking mode.
     msgRAMConfigParams.rxFIFO1ElemSize      = MCAN_FIFO_1_ELEM_SIZE;
     // Rx FIFO1 Element Size.
-
     //
     // Initialize bit timings.
     //
@@ -295,47 +268,38 @@ static void MCANConfig(void)
     bitTimes.dataTimeSeg1       = 0xAU; // Data Time segment before SP
     bitTimes.dataTimeSeg2       = 0x2U; // Data Time segment after SP
     bitTimes.dataSynchJumpWidth = 0x2U; // Data SJW
-
     //
     // Get MCANSS Revision ID.
     //
     MCAN_getRevisionId(MCANA_DRIVER_BASE, &revId);
-
     //
     // Wait for Memory initialization to be completed.
     //
     while(FALSE == MCAN_isMemInitDone(MCANA_DRIVER_BASE));
-
     //
     // Put MCAN in SW initialization mode.
     //
     MCAN_setOpMode(MCANA_DRIVER_BASE, MCAN_OPERATION_MODE_SW_INIT);
-
     //
     // Wait till MCAN is not initialized.
     //
     while (MCAN_OPERATION_MODE_SW_INIT != MCAN_getOpMode(MCANA_DRIVER_BASE));
-
     //
     // Initialize MCAN module.
     //
     MCAN_init(MCANA_DRIVER_BASE, &initParams);
-
     //
     // Configure MCAN module.
     //
     MCAN_config(MCANA_DRIVER_BASE, &configParams);
-
     //
     // Configure Bit timings.
     //
     MCAN_setBitTime(MCANA_DRIVER_BASE, &bitTimes);
-
     //
     // Configure Message RAM Sections
     //
     MCAN_msgRAMConfig(MCANA_DRIVER_BASE, &msgRAMConfigParams);
-
     //
     // Initialize Rx Buffer Configuration parameters.
     //
@@ -343,12 +307,10 @@ static void MCANConfig(void)
     stdFiltelem.sfid1              = 0x9U; // Standard Filter ID 1.
     stdFiltelem.sfec               = MCAN_STDFILTEC_PRI_FIFO0; //
     stdFiltelem.sft                = 0x1U; // Dual ID filter for SFID1 and SFID2
-
     //
     // Configure Standard ID filter element
     //
     MCAN_addStdMsgIDFilter(MCANA_DRIVER_BASE, 0U, &stdFiltelem);
-
     //
     // Initialize Rx Buffer Configuration parameters.
     //
@@ -356,82 +318,62 @@ static void MCANConfig(void)
     stdFiltelem.sfid1              = 0xBU; // Standard Filter ID 1.
     stdFiltelem.sfec               = MCAN_STDFILTEC_FIFO0; //
     stdFiltelem.sft                = 0x0U; // Range filter from SFID1 to SFID2
-
     //
     // Configure Standard ID filter element
     //
     MCAN_addStdMsgIDFilter(MCANA_DRIVER_BASE, 1U, &stdFiltelem);
-
     //
     // Take MCAN out of the SW initialization mode
     //
     MCAN_setOpMode(MCANA_DRIVER_BASE, MCAN_OPERATION_MODE_NORMAL);
-
     while (MCAN_OPERATION_MODE_NORMAL != MCAN_getOpMode(MCANA_DRIVER_BASE));
 }
-
 //
 // This function will configure X-BAR for MCAN interrupts.
 //
 static void MCANIntrConfig(void)
 {
-
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
     Interrupt_register(INT_MCANA_1,&MCANIntr1ISR);
     Interrupt_enable(INT_MCANA_1);
-
     Interrupt_enableGlobal();
-
 }
-
 //
 // This is Interrupt Service Routine for MCAN interrupt 1.
 //
 __interrupt void MCANIntr1ISR(void)
 {
     uint32_t intrStatus;
-
     intrStatus = MCAN_getIntrStatus(MCANA_DRIVER_BASE);
-
     if((intrStatus & MCAN_INTR_SRC_HIGH_PRIO_MSG) == MCAN_INTR_SRC_HIGH_PRIO_MSG)
     {
         MCAN_readHighPriorityMsgRam(MCANA_DRIVER_BASE, &rxMsg);
-
         //
         //  High Priority Message Handling Goes Here
         //
-
     }
     if((intrStatus & MCAN_INTR_SRC_RX_FIFO1_WATERMARK) == MCAN_INTR_SRC_RX_FIFO1_WATERMARK)
     {
         MCAN_RxFIFOStatus RxFS;
-
         RxFS.num = MCAN_RX_FIFO_NUM_1;
-
         MCAN_getRxFIFOStatus(MCANA_DRIVER_BASE, &RxFS);
-
         while(RxFS.fillLvl)
         {
             MCAN_readMsgRam(MCANA_DRIVER_BASE, MCAN_MEM_TYPE_FIFO, 0U,
                                 MCAN_RX_FIFO_NUM_1, &rxMsg1);
-
             MCAN_writeRxFIFOAck(MCANA_DRIVER_BASE, MCAN_RX_FIFO_NUM_1,
                                 RxFS.getIdx);
         }
     }
-
     //
     // Clear the interrupt Status.
     //
     MCAN_clearIntrStatus(MCANA_DRIVER_BASE, intrStatus);
-
     //
     //  Clearing the interrupt lineNum
     //
     MCAN_clearInterrupt(MCANA_DRIVER_BASE, 0x2);
-
     //
     // Acknowledge this interrupt located in group 9
     //

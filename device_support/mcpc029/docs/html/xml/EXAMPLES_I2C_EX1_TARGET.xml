@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_I2C_EX1_TARGET" kind="page">
+    <compoundname>EXAMPLES_I2C_EX1_TARGET</compoundname>
+    <title>I2C Target Mode</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_I2C_EX1_TARGET_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_i2c_ex1_target"/> This example demonstrates how to configure and use the I2CA module in target mode on a Texas Instruments C2000 microcontroller. The example uses I2C interrupts and does not utilize FIFO. It requires two control cards: one configured as a controller and the other as a target.</para>
+<sect2 id="EXAMPLES_I2C_EX1_TARGET_1autotoc_md270">
+<title>Details</title>
+<para><itemizedlist>
+<listitem><para>The controller runs the binary generated from <computeroutput>i2c_ex1_controller.projectspec</computeroutput>.</para>
+</listitem><listitem><para>The target runs the binary generated from <computeroutput>i2c_ex1_target.projectspec</computeroutput>.</para>
+</listitem><listitem><para>External connections between the control cards should be made as follows:</para>
+</listitem></itemizedlist>
+</para>
+<para><table rows="4" cols="3"><row>
+<entry thead="yes"><para>Signal   </para>
+</entry><entry thead="yes"><para>I2CA on Board 1   </para>
+</entry><entry thead="yes"><para>I2CA on Board 2    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>SCL   </para>
+</entry><entry thead="no"><para>GPIO_PIN_SCLA   </para>
+</entry><entry thead="no"><para>GPIO_PIN_SCLA    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>SDA   </para>
+</entry><entry thead="no"><para>GPIO_PIN_SDAA   </para>
+</entry><entry thead="no"><para>GPIO_PIN_SDAA    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>GND   </para>
+</entry><entry thead="no"><para>GND   </para>
+</entry><entry thead="no"><para>GND   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_I2C_EX1_TARGET_1autotoc_md271">
+<title>Watch Variables</title>
+<para><table rows="3" cols="2"><row>
+<entry thead="yes"><para>Variable   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>I2CA_TXdata</computeroutput>   </para>
+</entry><entry thead="no"><para>Transmit data buffer.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>I2CA_RXdata</computeroutput>   </para>
+</entry><entry thead="no"><para>Receive data buffer.   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_I2C_EX1_TARGET_1autotoc_md272">
+<title>Global Variables</title>
+<para><table rows="3" cols="2"><row>
+<entry thead="yes"><para>Variable   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>PassCount</computeroutput>   </para>
+</entry><entry thead="no"><para>Counter for successful data matches.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>FailCount</computeroutput>   </para>
+</entry><entry thead="no"><para>Counter for failed data matches.   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_I2C_EX1_TARGET_1autotoc_md273">
+<title>Defines</title>
+<para><table rows="6" cols="2"><row>
+<entry thead="yes"><para>Define Name   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>I2C_TARGET_ADDR</computeroutput>   </para>
+</entry><entry thead="no"><para>Target I2C address (<computeroutput>0x6A</computeroutput>).    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>MAX_BUFFER_SIZE</computeroutput>   </para>
+</entry><entry thead="no"><para>Maximum buffer size (<computeroutput>16</computeroutput>).    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>I2C_NUMBYTES</computeroutput>   </para>
+</entry><entry thead="no"><para>Number of bytes to transmit (<computeroutput>2</computeroutput>).    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>GPIO_PIN_SDAA</computeroutput>   </para>
+</entry><entry thead="no"><para>GPIO pin for I2C SDAA (<computeroutput>0</computeroutput>).    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>GPIO_PIN_SCLA</computeroutput>   </para>
+</entry><entry thead="no"><para>GPIO pin for I2C SCLA (<computeroutput>1</computeroutput>).   </para>
+</entry></row>
+</table>
+</para>
+<para><simplesect kind="note"><para><itemizedlist>
+<listitem><para>The I2C clock settings are configured for a prescaler value of <computeroutput>0x11</computeroutput> and non-zero clock low/high periods.</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_I2C_EX1_TARGET_1autotoc_md274">
+<title>Function</title>
+<para><table rows="2" cols="2"><row>
+<entry thead="yes"><para>Function Signature   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>void I2CTarget_Init(uint16_t I2CTarget_OwnAddress)</computeroutput>   </para>
+</entry><entry thead="no"><para>Initializes the I2C module in target mode.   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_I2C_EX1_TARGET_1autotoc_md275">
+<title>ISR</title>
+<para><table rows="2" cols="2"><row>
+<entry thead="yes"><para>ISR Function Signature   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>__interrupt void I2CISR(void)</computeroutput>   </para>
+</entry><entry thead="no"><para>Interrupt Service Routine for handling I2C interrupts.   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_I2C_EX1_TARGET_1autotoc_md276">
+<title>Interrupts</title>
+<para><table rows="5" cols="2"><row>
+<entry thead="yes"><para>Interrupt Name   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>AAT Interrupt</bold>   </para>
+</entry><entry thead="no"><para>Configures the target as transmitter or receiver.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>STOP Interrupt</bold>   </para>
+</entry><entry thead="no"><para>Compares received data with transmitted data and updates pass/fail counts.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>RRDY Interrupt</bold>   </para>
+</entry><entry thead="no"><para>Handles received data and stores it in the RX buffer.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>XRDY Interrupt</bold>   </para>
+</entry><entry thead="no"><para>Handles data transmission from the TX buffer.   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_I2C_EX1_TARGET_1autotoc_md277">
+<title>Flow</title>
+<para><programlisting filename=".mermaid"><codeline><highlight class="normal">flowchart<sp/>TD</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>A[Start]<sp/>--&gt;<sp/>B[Configure<sp/>GPIO<sp/>pins<sp/>for<sp/>I2C<sp/>communication]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>B<sp/>--&gt;<sp/>C[Initialize<sp/>system<sp/>control<sp/>and<sp/>PIE<sp/>control<sp/>registers]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>C<sp/>--&gt;<sp/>D[Register<sp/>the<sp/>I2C<sp/>interrupt<sp/>service<sp/>routine]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>D<sp/>--&gt;<sp/>E[Initialize<sp/>I2C<sp/>module<sp/>in<sp/>target<sp/>mode<sp/>using<sp/>I2CTarget_Init]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>E<sp/>--&gt;<sp/>F[Application<sp/>loop<sp/>to<sp/>respond<sp/>to<sp/>controller<sp/>commands]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>F<sp/>--&gt;<sp/>G[End]</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="note"><para><itemizedlist>
+<listitem><para>Ensure proper external connections between the control cards.</para>
+</listitem><listitem><para>The RX buffer is reinitialized to a non-zero value (<computeroutput>0xBAAD</computeroutput>) after successful data comparison.</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+</sect2>
+<sect1 id="EXAMPLES_I2C_EX1_TARGET_1autotoc_md278">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para><itemizedlist>
+<listitem><para>When running in flash configuration, it is recommended to reset and restart after loading the example to remove any stale flags or states.</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+<sect3 id="EXAMPLES_I2C_EX1_TARGET_1autotoc_md279">
+<title>See Also</title>
+<para><ref refid="DRIVERS_I2C_PAGE" kindref="compound">I2C</ref> </para>
+</sect3>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/i2c_ex1_target.md"/>
+  </compounddef>
+</doxygen>

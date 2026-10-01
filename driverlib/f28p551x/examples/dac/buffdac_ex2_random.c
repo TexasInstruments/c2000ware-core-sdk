@@ -51,7 +51,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -60,13 +59,11 @@
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Globals
 //
 uint16_t lowLimit = 410;
 uint16_t highLimit = 3686;
-
 //
 // Main
 //
@@ -76,29 +73,24 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Initialize a random time seed
     //
     srand(time(NULL));
-
     //
     // Configure the DAC module
     // Configure DAC - Setup the reference voltage and output value for the DAC
     //
     Board_init();
-
     //
     // Continuously set the DAC output value based on random value
     //
@@ -109,7 +101,6 @@ void main(void)
         DEVICE_DELAY_US(1);
     }
 }
-
 //
 // End of File
 //

@@ -8,7 +8,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -41,34 +41,27 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
- 
 #ifndef PI_TEST_H
 #define PI_TEST_H
-
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 #include "c2000ware_libraries.h"
 #include "stdint.h"
 #include "math.h"
 #include "stdio.h"
-
 int PI_test(void);
-
 //
 //  User configurable values
 //
 #define DATA_LENGTH     800  //!< Size of total data inputs
 #define NUM_ELEMENTS    400   //!< The number of samples ran, cannot exceed DATA_LENGTH
 #define EPSILON         0.00001f
-
 //
 // declared & initialized by sysconfig
 //
 extern DCL_PI myController0;
 extern float32_t outLogArr[DATA_LENGTH];
-
 //
 // Allocate data sections and initialize data
 //
@@ -77,23 +70,17 @@ float32_t rkLogArr[DATA_LENGTH] =
 {
 #include "data/PI_rk-1.dat"
 };
-
 #pragma DATA_SECTION(ykLogArr, "LoggerDataSection")
 float32_t ykLogArr[DATA_LENGTH] =
 {
 #include "data/PI_yk-1.dat"
 };
-
 #pragma DATA_SECTION(ctlLogArr, "LoggerDataSection")
 float32_t ctlLogArr[DATA_LENGTH] =
 {
 #include "data/PI_ctl-1.dat"
 };
-
-
-
 #ifdef __cplusplus
 }
 #endif // extern "C"
-
 #endif

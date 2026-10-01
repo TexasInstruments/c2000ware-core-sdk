@@ -9,7 +9,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -42,12 +42,10 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 //
 // Include Files.
 //
 #include "usb_hal.h"
-
 //******************************************************************************
 //
 // USB HAL APIs
@@ -64,7 +62,6 @@ CM_USB0DeviceIntHandler(void)
 {
     USB0DeviceIntHandler();
 }
-
 //******************************************************************************
 //
 //! Host interrupt service routine wrapper to make ISR compatible with
@@ -76,7 +73,6 @@ CM_USB0HostIntHandler(void)
 {
     USB0HostIntHandler();
 }
-
 //******************************************************************************
 //
 // Close the c2000_specific Doxygen group.

@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_MCPWM_EX1_BASIC_PWM" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_MCPWM_EX1_BASIC_PWM</compoundname>
+    <title>MCPWM Basic PWM Generation Examples</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_MCPWM_EX1_BASIC_PWM_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_mcpwm_ex1_basic_pwm"/></para>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX1_BASIC_PWM_1autotoc_md324">
+<title>Example Overview</title>
+<para>These examples demonstrate three different approaches to implement MCPWM functionality:<orderedlist>
+<listitem><para>SysConfig-based (mcpwm_ex1_basic_pwm.c in driverlib)</para>
+</listitem><listitem><para>Manual Driverlib (mcpwm_ex4_basic_pwm_no_syscfg.c)</para>
+</listitem><listitem><para>Direct Register/Bitfield (mcpwm_ex1_basic_pwm.c in examples_bitfield)</para>
+</listitem></orderedlist>
+</para>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX1_BASIC_PWM_1autotoc_md325">
+<title>Common Functionality</title>
+<para>All implementations configure myMCPWM0(MCPWM1) and myMCPWM1(MCPWM3) as follows:<linebreak/>
+<bold>Common Features Across All Implementations</bold><orderedlist>
+<listitem><para>PWM Generation<itemizedlist>
+<listitem><para>10KHz frequency generation</para>
+</listitem><listitem><para>Configurable duty cycle updates</para>
+</listitem><listitem><para>Multiple output patterns</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Interrupt Handling<itemizedlist>
+<listitem><para>Event-triggered updates</para>
+</listitem><listitem><para>Synchronized compare value modifications</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Flexible Output Configurations<itemizedlist>
+<listitem><para>Up counting and Up-Down counting modes</para>
+</listitem><listitem><para>Multiple compare value triggers</para>
+</listitem><listitem><para>Complementary output options</para>
+</listitem></itemizedlist>
+</para>
+</listitem></orderedlist>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX1_BASIC_PWM_1autotoc_md326">
+<title>myMCPWM0 Configuration</title>
+<para><orderedlist>
+<listitem><para>Time Base Settings:<itemizedlist>
+<listitem><para>Up Count Mode</para>
+</listitem><listitem><para>10KHz Frequency PWM</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Action Qualifier Outputs:<itemizedlist>
+<listitem><para>Output A1: Set High at zero, Low at CMPA</para>
+</listitem><listitem><para>Output B1: Set High at zero, Low at CMPB</para>
+</listitem><listitem><para>Output A2: Set High at CMPA, Low at Period</para>
+</listitem><listitem><para>Output B2: Set High at CMPB, Low at Period</para>
+</listitem><listitem><para>Output A3: Set High at CMPA, Low at CMPB</para>
+</listitem><listitem><para>Output B3: Set Low at CMPA, High at CMPB</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Interrupt Configuration:<itemizedlist>
+<listitem><para>ET1 triggers every 5 &quot;Counter = Period&quot; events and is selected as source of Interrupt</para>
+</listitem><listitem><para>Updates CMPx values at runtime</para>
+</listitem></itemizedlist>
+</para>
+</listitem></orderedlist>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX1_BASIC_PWM_1autotoc_md327">
+<title>myMCPWM1 Configuration</title>
+<para><orderedlist>
+<listitem><para>Time Base Settings:<itemizedlist>
+<listitem><para>Up-Down Count Mode</para>
+</listitem><listitem><para>10KHz Frequency PWM</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Action Qualifier Outputs:<itemizedlist>
+<listitem><para>Output A1: High at CMPA up, Low at CMPA down</para>
+</listitem><listitem><para>Output B1: High at CMPB up, Low at CMPB down</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Interrupt Configuration:<itemizedlist>
+<listitem><para>ET1 triggers every 5 &quot;Counter = Period&quot; events and is selected as source of Interrupt</para>
+</listitem><listitem><para>Updates CMPx values at runtime</para>
+</listitem></itemizedlist>
+</para>
+</listitem></orderedlist>
+</para>
+<para>/cond F28E12x </para>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX1_BASIC_PWM_1autotoc_md328">
+<title>External Connections</title>
+<para>Monitor these PWM outputs on Launchpad:<itemizedlist>
+<listitem><para>J4 40 - GPIO0 - myMCPWM0 Output A1</para>
+</listitem><listitem><para>J4 39 - GPIO1 - myMCPWM0 Output B1</para>
+</listitem><listitem><para>J4 38 - GPIO2 - myMCPWM0 Output A2</para>
+</listitem><listitem><para>J4 37 - GPIO3 - myMCPWM0 Output B2</para>
+</listitem><listitem><para>J4 36 - GPIO4 - myMCPWM0 Output A3</para>
+</listitem><listitem><para>J4 35 - GPIO5 - myMCPWM0 Output B3</para>
+</listitem><listitem><para>J4 7 - GPIO12 - myMCPWM1 Output A1</para>
+</listitem><listitem><para>J2 19 - GPIO29 - myMCPWM1 Output B1 /endcond</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX1_BASIC_PWM_1autotoc_md329">
+<title>Implementation Approaches</title>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX1_BASIC_PWM_1autotoc_md330">
+<title>Overview Comparison</title>
+<para><table rows="5" cols="4"><row>
+<entry thead="yes"><para>Aspect   </para>
+</entry><entry thead="yes"><para>SysConfig Implementation   </para>
+</entry><entry thead="yes"><para>Manual Driverlib Implementation   </para>
+</entry><entry thead="yes"><para>Bitfield Implementation    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Source File   </para>
+</entry><entry thead="no"><para>mcpwm_ex1_basic_pwm.c (driverlib)   </para>
+</entry><entry thead="no"><para>mcpwm_ex4_basic_pwm_no_syscfg.c   </para>
+</entry><entry thead="no"><para>mcpwm_ex1_basic_pwm.c (examples_bitfield)    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Configuration Method   </para>
+</entry><entry thead="no"><para>GUI-based SysConfig   </para>
+</entry><entry thead="no"><para>Direct driverlib API calls   </para>
+</entry><entry thead="no"><para>Direct register access    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Hardware Abstraction   </para>
+</entry><entry thead="no"><para>High (driverlib + SysConfig)   </para>
+</entry><entry thead="no"><para>Medium (driverlib)   </para>
+</entry><entry thead="no"><para>None (direct hardware)    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Key Features   </para>
+</entry><entry thead="no"><para>• Generated initialization code<linebreak/>
+• GUI configuration<linebreak/>
+• Hardware abstraction   </para>
+</entry><entry thead="no"><para>• Explicit API configuration<linebreak/>
+• Direct control<linebreak/>
+• API abstraction   </para>
+</entry><entry thead="no"><para>• Register-level access<linebreak/>
+• Maximum control<linebreak/>
+• No abstraction layer   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX1_BASIC_PWM_1autotoc_md331">
+<title>Development Characteristics</title>
+<para><table rows="6" cols="4"><row>
+<entry thead="yes"><para>Characteristic   </para>
+</entry><entry thead="yes"><para>SysConfig   </para>
+</entry><entry thead="yes"><para>Manual Driverlib   </para>
+</entry><entry thead="yes"><para>Bitfield    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Learning Curve   </para>
+</entry><entry thead="no"><para>Low   </para>
+</entry><entry thead="no"><para>Medium   </para>
+</entry><entry thead="no"><para>High    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Code Control   </para>
+</entry><entry thead="no"><para>Limited   </para>
+</entry><entry thead="no"><para>Moderate   </para>
+</entry><entry thead="no"><para>Complete    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Maintainability   </para>
+</entry><entry thead="no"><para>High   </para>
+</entry><entry thead="no"><para>Medium   </para>
+</entry><entry thead="no"><para>Lower    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Debug Effort   </para>
+</entry><entry thead="no"><para>Lower   </para>
+</entry><entry thead="no"><para>Medium   </para>
+</entry><entry thead="no"><para>Higher    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Code Portability   </para>
+</entry><entry thead="no"><para>High   </para>
+</entry><entry thead="no"><para>High   </para>
+</entry><entry thead="no"><para>Limited   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX1_BASIC_PWM_1autotoc_md332">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Using the watch variables, observe the waveforms.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX1_BASIC_PWM_1autotoc_md333">
+<title>See Also</title>
+<para><itemizedlist>
+<listitem><para><ref refid="DRIVERS_MCPWM_PAGE" kindref="compound">MCPWM</ref></para>
+</listitem><listitem><para><ref refid="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION" kindref="compound">MCPWM Synchronization Example</ref></para>
+</listitem><listitem><para><ref refid="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND" kindref="compound">MCPWM Deadband Example</ref> </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/mcpwm_ex1_basic_pwm.md"/>
+  </compounddef>
+</doxygen>

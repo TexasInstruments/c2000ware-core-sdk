@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="mcpwm__ex6__global__load__use__case_8md" kind="file" language="Markdown">
+    <compoundname>mcpwm_ex6_global_load_use_case.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>MCPWM<sp/>Global<sp/>Load<sp/>Use<sp/>Case<sp/>Example<sp/>{#EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>This<sp/>example<sp/>demonstrates<sp/>MCPWM<sp/>global<sp/>load<sp/>feature<sp/>for<sp/>synchronized<sp/>parameter<sp/>updates<sp/>across<sp/>multiple<sp/>PWM<sp/>channels&quot;</highlight></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>MCPWM,<sp/>Global<sp/>Load,<sp/>Synchronization&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Global<sp/>Load<sp/>Feature</highlight></codeline>
+<codeline><highlight class="normal">Global<sp/>load<sp/>is<sp/>an<sp/>advanced<sp/>MCPWM<sp/>feature<sp/>that<sp/>enables<sp/>synchronized<sp/>updates<sp/>of<sp/>multiple<sp/>PWM<sp/>parameters<sp/>across<sp/>different<sp/>channels.<sp/>This<sp/>ensures<sp/>smooth<sp/>transitions<sp/>and<sp/>maintains<sp/>phase<sp/>relationships<sp/>when<sp/>modifying<sp/>PWM<sp/>settings<sp/>during<sp/>operation.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>feature<sp/>operates<sp/>by<sp/>controlling<sp/>transfers<sp/>from<sp/>shadow<sp/>to<sp/>active<sp/>registers<sp/>(GLDCTL[GLD]),<sp/>synchronizing<sp/>updates<sp/>based<sp/>on<sp/>configured<sp/>events<sp/>(GLDCTL[GLDMODE]).<sp/>When<sp/>enabled,<sp/>it<sp/>overrides<sp/>individual<sp/>shadow<sp/>register<sp/>load<sp/>settings<sp/>for<sp/>coordinated<sp/>updates.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Key<sp/>aspects<sp/>include:</highlight></codeline>
+<codeline><highlight class="normal">**One-Shot<sp/>Load<sp/>Operations**</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>Global<sp/>Load<sp/>Enable/Disable<sp/>Control:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>MCPWM_enableGlobalLoad()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>MCPWM_disableGlobalLoad()</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>Global<sp/>Load<sp/>Trigger<sp/>Configuration:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>MCPWM_setGlobalLoadTrigger()</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>One-Shot<sp/>Mode<sp/>Control:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>MCPWM_enableGlobalLoadOneShotMode()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>MCPWM_disableGlobalLoadOneShotMode()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>MCPWM_setGlobalLoadOneShotLatch()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>MCPWM_clearGlobalLoadOneShotLatch()</highlight></codeline>
+<codeline><highlight class="normal"><sp/>-<sp/>One-Shot<sp/>Status<sp/>and<sp/>Force<sp/>Control:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>MCPWM_getGlobalLoadOneShotLatchStatus()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>MCPWM_forceGlobalLoadOneShotEvent()</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\note<sp/>When<sp/>global<sp/>load<sp/>is<sp/>enabled,<sp/>these<sp/>shadow<sp/>load<sp/>mode<sp/>settings<sp/>are<sp/>overridden<sp/>by<sp/>the<sp/>global<sp/>load<sp/>trigger<sp/>events.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Global<sp/>Load<sp/>Features</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**Synchronized<sp/>Updates**</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Compare<sp/>values</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Action<sp/>qualifier<sp/>settings</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Deadband<sp/>parameters</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**Multiple<sp/>Update<sp/>Modes**</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>One-shot<sp/>updates</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Forced<sp/>Updates</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Example<sp/>Overview</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>demonstrates<sp/>synchronized<sp/>parameter<sp/>updates<sp/>across<sp/>myMCPWM0<sp/>and<sp/>myMCPWM1<sp/>modules<sp/>using<sp/>the<sp/>global<sp/>load<sp/>feature.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Module<sp/>Configurations</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>myMCPWM0</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>Time<sp/>Base<sp/>Settings:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Up<sp/>Count<sp/>Mode</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>40<sp/>kHz<sp/>Frequency<sp/>(3999<sp/>period<sp/>@<sp/>160MHz<sp/>TBCLK)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Free<sp/>Run<sp/>emulation<sp/>mode</highlight></codeline>
+<codeline><highlight class="normal">2.<sp/>Initial<sp/>Compare<sp/>Values:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>PWM1A/B:<sp/>1800<sp/>(45%<sp/>duty<sp/>cycle)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>PWM2A/B:<sp/>3133<sp/>(78%<sp/>duty<sp/>cycle)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>PWM3A/B:<sp/>467<sp/>(12%<sp/>duty<sp/>cycle)</highlight></codeline>
+<codeline><highlight class="normal">3.<sp/>Action<sp/>Qualifier:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>All<sp/>pairs<sp/>set<sp/>HIGH<sp/>on<sp/>Counter<sp/>matches<sp/>CMPA/CMPB<sp/>counting<sp/>up</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>All<sp/>pairs<sp/>set<sp/>LOW<sp/>on<sp/>Counter<sp/>Period</highlight></codeline>
+<codeline><highlight class="normal">4.<sp/>Initial<sp/>Deadband:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>32<sp/>counts<sp/>(200ns<sp/>@<sp/>160MHz)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Both<sp/>Rising<sp/>and<sp/>Falling<sp/>edge<sp/>delay<sp/>enabled</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>myMCPWM1</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>Time<sp/>Base<sp/>Settings:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Up<sp/>Count<sp/>Mode<sp/>synchronized<sp/>to<sp/>myMCPWM0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>40<sp/>kHz<sp/>Frequency<sp/>(3999<sp/>period)</highlight></codeline>
+<codeline><highlight class="normal">2.<sp/>Initial<sp/>Compare<sp/>Values:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>PWM1A/B:<sp/>1000<sp/>(25%<sp/>duty<sp/>cycle)</highlight></codeline>
+<codeline><highlight class="normal">3.<sp/>Action<sp/>Qualifier:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>PWM1A/B<sp/>set<sp/>HIGH<sp/>on<sp/>Counter<sp/>matches<sp/>CMPA/CMPB<sp/>counting<sp/>up</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>PWM1A/B<sp/>set<sp/>LOW<sp/>on<sp/>Counter<sp/>Period</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Global<sp/>Load<sp/>Implementation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">When<sp/>perform_one_shot_load<sp/>flag<sp/>is<sp/>set,<sp/>the<sp/>following<sp/>synchronized<sp/>updates<sp/>occur:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Parameter<sp/>Updates</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>Compare<sp/>Values:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>myMCPWM0:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>-<sp/>PWM1A:<sp/>2000<sp/>(50%<sp/>duty)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>-<sp/>PWM2A:<sp/>3333<sp/>(83%<sp/>duty)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>-<sp/>PWM3A:<sp/>667<sp/>(17%<sp/>duty)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>myMCPWM1:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>-<sp/>PWM1A:<sp/>2000<sp/>(50%<sp/>duty)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.<sp/>Deadband<sp/>Parameters:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Both<sp/>modules<sp/>updated<sp/>to<sp/>48<sp/>counts<sp/>(300ns<sp/>@<sp/>160MHz)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>-<sp/>Applied<sp/>to<sp/>both<sp/>rising<sp/>and<sp/>falling<sp/>edges</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Update<sp/>Process</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>New<sp/>values<sp/>written<sp/>to<sp/>shadow<sp/>registers</highlight></codeline>
+<codeline><highlight class="normal">2.<sp/>Global<sp/>load<sp/>trigger<sp/>synchronizes<sp/>all<sp/>updates</highlight></codeline>
+<codeline><highlight class="normal">3.<sp/>Changes<sp/>take<sp/>effect<sp/>simultaneously<sp/>on<sp/>next<sp/>global<sp/>load<sp/>event</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">Monitor<sp/>these<sp/>PWM<sp/>outputs<sp/>on<sp/>the<sp/>LaunchPad:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>J4<sp/>40<sp/>-<sp/>GPIO0<sp/><sp/>-<sp/>myMCPWM0<sp/>Output<sp/>A1</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>J4<sp/>39<sp/>-<sp/>GPIO1<sp/><sp/>-<sp/>myMCPWM0<sp/>Output<sp/>B1</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>J4<sp/>38<sp/>-<sp/>GPIO2<sp/><sp/>-<sp/>myMCPWM0<sp/>Output<sp/>A2</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>J4<sp/>37<sp/>-<sp/>GPIO3<sp/><sp/>-<sp/>myMCPWM0<sp/>Output<sp/>B2</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>J4<sp/>36<sp/>-<sp/>GPIO4<sp/><sp/>-<sp/>myMCPWM0<sp/>Output<sp/>A3</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>J4<sp/>35<sp/>-<sp/>GPIO5<sp/><sp/>-<sp/>myMCPWM0<sp/>Output<sp/>B3</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>J1<sp/>7<sp/><sp/>-<sp/>GPIO12<sp/>-<sp/>myMCPWM1<sp/>Output<sp/>A1</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>J2<sp/>19<sp/>-<sp/>GPIO29<sp/>-<sp/>myMCPWM1<sp/>Output<sp/>B1</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Important<sp/>Notes</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Use<sp/>an<sp/>oscilloscope<sp/>to<sp/>observe<sp/>synchronized<sp/>updates</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Watch<sp/>deadband<sp/>transitions<sp/>on<sp/>complementary<sp/>pairs</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>All<sp/>updates<sp/>occur<sp/>on<sp/>the<sp/>next<sp/>global<sp/>load<sp/>event</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Period<sp/>remains<sp/>constant<sp/>during<sp/>updates</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>Import<sp/>and<sp/>build<sp/>the<sp/>CCS<sp/>project</highlight></codeline>
+<codeline><highlight class="normal">2.<sp/>Connect<sp/>an<sp/>oscilloscope<sp/>to<sp/>observe<sp/>the<sp/>specified<sp/>GPIO<sp/>pins</highlight></codeline>
+<codeline><highlight class="normal">3.<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session</highlight></codeline>
+<codeline><highlight class="normal">4.<sp/>Run<sp/>the<sp/>executable</highlight></codeline>
+<codeline><highlight class="normal">5.<sp/>Observe<sp/>the<sp/>synchronized<sp/>parameter<sp/>updates<sp/>across<sp/>all<sp/>channels</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Sample<sp/>Output<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\imageStyle{mcpwm_ex6_global_load_use_case.png,width:50%}</highlight></codeline>
+<codeline><highlight class="normal">\image<sp/>html<sp/>mcpwm_ex6_global_load_use_case.png<sp/>&quot;Sample<sp/>Output&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>See<sp/>Also</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\ref<sp/>DRIVERS_MCPWM_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\ref<sp/>EXAMPLES_DRIVERS_MCPWM_EX1_BASIC_PWM</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\ref<sp/>EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\ref<sp/>EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>\ref<sp/>EXAMPLES_DRIVERS_MCPWM_EX5_TRIPZONE</highlight></codeline>
+<codeline></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/mcpwm_ex6_global_load_use_case.md"/>
+  </compounddef>
+</doxygen>

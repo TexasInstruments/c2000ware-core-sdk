@@ -12,7 +12,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -45,24 +45,19 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include <stdint.h>
 #include "device.h"
 #include "driverlib.h"
-
 #ifdef CPU1
-
 //
 // Function Prototypes
 //
 void setupEMIF1PinmuxSync16Bit(void);
 void setupEMIF1PinmuxSync32Bit(void);
-
 #endif
-
 //
 // Setup EMIF1 Pinmux Sync 16Bit - This function configures pins for 16bit
 // Synchronous EMIF1.
@@ -70,7 +65,6 @@ void setupEMIF1PinmuxSync32Bit(void);
 void setupEMIF1PinmuxSync16Bit(void)
 {
     uint16_t i;
-
     GPIO_setPinConfig(GPIO_29_EMIF1_SDCKE);
     GPIO_setPinConfig(GPIO_30_EMIF1_CLK);
     GPIO_setPinConfig(GPIO_31_EMIF1_WEN);
@@ -80,7 +74,6 @@ void setupEMIF1PinmuxSync16Bit(void)
     GPIO_setPinConfig(GPIO_35_EMIF1_CS3N);
     GPIO_setPinConfig(GPIO_36_EMIF1_WAIT);
     GPIO_setPinConfig(GPIO_37_EMIF1_OEN);
-
     //
     // Selecting address lines.
     //
@@ -97,7 +90,6 @@ void setupEMIF1PinmuxSync16Bit(void)
     GPIO_setPinConfig(GPIO_50_EMIF1_A10);
     GPIO_setPinConfig(GPIO_51_EMIF1_A11);
     GPIO_setPinConfig(GPIO_52_EMIF1_A12);
-
     //
     // Selecting Data Lines.
     //
@@ -117,13 +109,11 @@ void setupEMIF1PinmuxSync16Bit(void)
     GPIO_setPinConfig(GPIO_82_EMIF1_D2);
     GPIO_setPinConfig(GPIO_83_EMIF1_D1);
     GPIO_setPinConfig(GPIO_85_EMIF1_D0);
-
     //
     // Selecting RAS & CAS.
     //
     GPIO_setPinConfig(GPIO_86_EMIF1_CAS);
     GPIO_setPinConfig(GPIO_87_EMIF1_RAS);
-
     //
     // Selecting DQM and Bank Select Lines.
     //
@@ -133,7 +123,6 @@ void setupEMIF1PinmuxSync16Bit(void)
     GPIO_setPinConfig(GPIO_91_EMIF1_DQM3);
     GPIO_setPinConfig(GPIO_92_EMIF1_BA1);
     GPIO_setPinConfig(GPIO_93_EMIF1_BA0);
-
     //
     // Configure Data pins for Async mode.
     //
@@ -145,16 +134,12 @@ void setupEMIF1PinmuxSync16Bit(void)
             GPIO_setQualificationMode(i, GPIO_QUAL_ASYNC);
         }
     }
-
     for(i = 88; i <= 91; i++)
     {
         GPIO_setPadConfig(i, GPIO_PIN_TYPE_PULLUP);
         GPIO_setQualificationMode(i, GPIO_QUAL_ASYNC);
     }
-
 }
-
-
 //
 // Setup EMIF1 Pinmux Sync 32Bit - This function configures pins for 32bit
 // Synchronous EMIF1.
@@ -162,7 +147,6 @@ void setupEMIF1PinmuxSync16Bit(void)
 void setupEMIF1PinmuxSync32Bit(void)
 {
     uint16_t i;
-
     GPIO_setPinConfig(GPIO_28_EMIF1_CS4N);
     GPIO_setPinConfig(GPIO_29_EMIF1_SDCKE);
     GPIO_setPinConfig(GPIO_30_EMIF1_CLK);
@@ -173,7 +157,6 @@ void setupEMIF1PinmuxSync32Bit(void)
     GPIO_setPinConfig(GPIO_35_EMIF1_CS3N);
     GPIO_setPinConfig(GPIO_36_EMIF1_WAIT);
     GPIO_setPinConfig(GPIO_37_EMIF1_OEN);
-
     //
     // Selecting address lines.
     //
@@ -190,7 +173,6 @@ void setupEMIF1PinmuxSync32Bit(void)
     GPIO_setPinConfig(GPIO_50_EMIF1_A10);
     GPIO_setPinConfig(GPIO_51_EMIF1_A11);
     GPIO_setPinConfig(GPIO_52_EMIF1_A12);
-
     //
     // Selecting data lines.
     //
@@ -226,7 +208,6 @@ void setupEMIF1PinmuxSync32Bit(void)
     GPIO_setPinConfig(GPIO_82_EMIF1_D2);
     GPIO_setPinConfig(GPIO_83_EMIF1_D1);
     GPIO_setPinConfig(GPIO_85_EMIF1_D0);
-
     //
     // Selecting RAS, CAS, DQM & Bank select lines.
     //
@@ -238,7 +219,6 @@ void setupEMIF1PinmuxSync32Bit(void)
     GPIO_setPinConfig(GPIO_91_EMIF1_DQM3);
     GPIO_setPinConfig(GPIO_92_EMIF1_BA1);
     GPIO_setPinConfig(GPIO_93_EMIF1_BA0);
-
     //
     // Configure Data pins for Async mode.
     //
@@ -256,7 +236,6 @@ void setupEMIF1PinmuxSync32Bit(void)
         GPIO_setQualificationMode(i, GPIO_QUAL_ASYNC);
     }
  }
-
 //
 // End of File
 //

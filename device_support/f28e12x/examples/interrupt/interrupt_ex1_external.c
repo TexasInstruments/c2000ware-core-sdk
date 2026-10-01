@@ -70,30 +70,25 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Defines
 //
 #define DELAY (CPU_RATE/1000*6*510)  //Qual period at 6 samples
-
 //
 // Globals
 //
 volatile Uint32 Xint1Count;
 volatile Uint32 Xint2Count;
 Uint32 LoopCount;
-
 //
 // Function Prototypes
 //
 interrupt void xint1_isr(void);
 interrupt void xint2_isr(void);
-
 //
 // Main
 //
@@ -101,27 +96,23 @@ void main(void)
 {
    Uint32 TempX1Count;
    Uint32 TempX2Count;
-
 //
 // Step 1. Initialize System Control:
 // PLL, WatchDog, enable Peripheral Clocks
 // This example function is found in the f28e12x_sysctrl.c file.
 //
    InitSysCtrl();
-
 //
 // Step 2. Initialize GPIO:
 // This example function is found in the f28e12x_gpio.c file and
 // illustrates how to set the GPIO to its default state.
 //
 // InitGpio();  // Skipped for this example
-
 //
 // Step 3. Clear all interrupts and initialize PIE vector table:
 // Disable CPU interrupts
 //
    DINT;
-
 //
 // Initialize PIE control registers to their default state.
 // The default state is all PIE interrupts disabled and flags
@@ -129,13 +120,11 @@ void main(void)
 // This function is found in the f28e12x_piectrl.c file.
 //
    InitPieCtrl();
-
 //
 // Disable CPU interrupts and clear all CPU interrupt flags:
 //
    IER = 0x0000;
    IFR = 0x0000;
-
 //
 // Initialize the PIE vector table with pointers to the shell Interrupt
 // Service Routines (ISR).
@@ -145,7 +134,6 @@ void main(void)
 // This function is found in f28e12x_pievect.c.
 //
    InitPieVectTable();
-
 //
 // Interrupts that are used in this example are re-mapped to
 // ISR functions found within this file.
@@ -154,7 +142,6 @@ void main(void)
    PieVectTable.XINT1_INT = &xint1_isr;
    PieVectTable.XINT2_INT = &xint2_isr;
    EDIS;    // This is needed to disable write to EALLOW protected registers
-
 //
 // Step 4. User specific code, enable interrupts:
 //
@@ -163,7 +150,6 @@ void main(void)
    Xint1Count = 0; // Count XINT1 interrupts
    Xint2Count = 0; // Count XINT2 interrupts
    LoopCount = 0;  // Count times through idle loop
-
 //
 // Enable XINT1 and XINT2 in the PIE: Group 1 interrupt 3 & 4
 // Enable INT1 which is connected to WAKEINT:
@@ -173,7 +159,6 @@ void main(void)
    PieCtrlRegs.PIEIER1.bit.INTx4 = 1;          // Enable PIE Group 1 INT4
    IER |= M_INT1;                              // Enable CPU INT1
    EINT;                                       // Enable Global Interrupts
-
 //
 // GPIO4 & GPIO5 are outputs, start GPIO4 high and GPIO5 low
 //
@@ -181,12 +166,10 @@ void main(void)
    GpioDataRegs.GPASET.bit.GPIO4 = 1;         // Load the output latch
    GpioCtrlRegs.GPAMUX1.bit.GPIO4 = 0;        // GPIO
    GpioCtrlRegs.GPADIR.bit.GPIO4 = 1;         // output
-
    GpioDataRegs.GPACLEAR.bit.GPIO5 = 1;       // Load the output latch
    GpioCtrlRegs.GPAMUX1.bit.GPIO5 = 0;        // GPIO
    GpioCtrlRegs.GPADIR.bit.GPIO5 = 1;         // output
    EDIS;
-
 //
 // GPIO0 and GPIO1 are inputs
 //
@@ -194,32 +177,27 @@ void main(void)
    GpioCtrlRegs.GPAMUX1.bit.GPIO0 = 0;         // GPIO
    GpioCtrlRegs.GPADIR.bit.GPIO0 = 0;          // input
    GpioCtrlRegs.GPAQSEL1.bit.GPIO0 = 0;        // XINT1 Synch to SYSCLKOUT only
-
    GpioCtrlRegs.GPAMUX1.bit.GPIO1 = 0;         // GPIO
    GpioCtrlRegs.GPADIR.bit.GPIO1 = 0;          // input
    GpioCtrlRegs.GPAQSEL1.bit.GPIO1 = 2;        // XINT2 Qual using 6 samples
    GpioCtrlRegs.GPACTRL.bit.QUALPRD0 = 0xFF;   // Each sampling window
                                                // is 510*SYSCLKOUT
    EDIS;
-
 //
 // GPIO0 is XINT1, GPIO1 is XINT2
 //
    GPIO_SetupXINT1Gpio(0);
    GPIO_SetupXINT2Gpio(1);
-
 //
 // Configure XINT1
 //
    XintRegs.XINT1CR.bit.POLARITY = 0;          // Falling edge interrupt
    XintRegs.XINT2CR.bit.POLARITY = 1;          // Rising edge interrupt
-
 //
 // Enable XINT1 and XINT2
 //
    XintRegs.XINT1CR.bit.ENABLE = 1;            // Enable XINT1
    XintRegs.XINT2CR.bit.ENABLE = 1;            // Enable XINT2
-
 //
 // GPIO33 will go low inside each interrupt.  Monitor this on a scope
 //
@@ -227,7 +205,6 @@ void main(void)
    GpioCtrlRegs.GPBMUX1.bit.GPIO33 = 0;        // GPIO
    GpioCtrlRegs.GPBDIR.bit.GPIO33 = 1;         // output
    EDIS;
-
 //
 // Step 5. IDLE loop:
 //
@@ -235,14 +212,12 @@ void main(void)
    {
       TempX1Count = Xint1Count;
       TempX2Count = Xint2Count;
-
       //
       // Trigger both XINT1
       //
       GpioDataRegs.GPBSET.bit.GPIO33 = 1;      // GPIO33 is high
       GpioDataRegs.GPACLEAR.bit.GPIO4 = 1;    // Lower GPIO4, trigger XINT1
       while(Xint1Count == TempX1Count) {}
-
       //
       // Trigger both XINT2
       //
@@ -250,7 +225,6 @@ void main(void)
       DELAY_US(DELAY);                         // Wait for Qual period
       GpioDataRegs.GPASET.bit.GPIO5 = 1;      // Raise GPIO5, trigger XINT2
       while(Xint2Count == TempX2Count) {}
-
       //
       // Check that the counts were incremented properly and get ready
       // to start over.
@@ -267,7 +241,6 @@ void main(void)
       }
    }
 }
-
 //
 // xint1_isr - External Interrupt 1 ISR
 //
@@ -275,13 +248,11 @@ interrupt void xint1_isr(void)
 {
     GpioDataRegs.GPBCLEAR.all = 0x4;   // GPIO33 is low
     Xint1Count++;
-
     //
     // Acknowledge this interrupt to get more from group 1
     //
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
 }
-
 //
 // xint2_isr - External Interrupt 2 ISR
 //
@@ -289,13 +260,11 @@ interrupt void xint2_isr(void)
 {
     GpioDataRegs.GPBCLEAR.all = 0x4;   // GPIO33 is low
     Xint2Count++;
-
     //
     // Acknowledge this interrupt to get more from group 1
     //
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
 }
-
 //
 // End of file
 //

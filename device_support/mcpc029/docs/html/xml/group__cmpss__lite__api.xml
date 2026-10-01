@@ -1,0 +1,395 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="group__cmpss__lite__api" kind="group">
+    <compoundname>cmpss_lite_api</compoundname>
+    <title>CMPSS-Lite</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__cmpss__lite__api_1gac68327c52ae4e9d00fc01fa6307010d9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CMPSSLITE_configDAC</definition>
+        <argsstring>(uint32_t base, uint16_t config)</argsstring>
+        <name>CMPSSLITE_configDAC</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>config</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the configuration for the internal comparator DACs.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the CMPSSLITE module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>config</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the configuration of the internal DAC.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the comparator&apos;s internal DAC. The <emphasis>config</emphasis> parameter configures the DAC value load trigger event between SYSCLK and MCPWMSYNCPER i.e. the CMPSS_DACVAL_xxx value.</para>
+<para>The <bold>CMPSS_DACVAL_xxx</bold> term can take on the following values to specify when the DAC value is loaded from its shadow register:<itemizedlist>
+<listitem><para><bold>CMPSS_DACVAL_SYSCLK</bold> - Value register updated on system clock.</para>
+</listitem><listitem><para><bold>CMPSS_DACVAL_PWMSYNC</bold> - Value register updated on PWM sync.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="144" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="144" bodyend="162"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga2283879dab33b43d8887e675522a5789" prot="public" static="no">
+        <name>CMPSSLITE_DACVAL_SYSCLK</name>
+        <initializer>0x0000U</initializer>
+        <briefdescription>
+<para>DAC value updated from SYSCLK. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="80" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga1dea3aade39c3f3b39a7b8fa69522deb" prot="public" static="no">
+        <name>CMPSSLITE_DACVAL_PWMSYNC</name>
+        <initializer>0x0080U</initializer>
+        <briefdescription>
+<para>DAC value updated from PWMSYNC. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="82" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga24cecdca8bddd3005b0ecebfdd3c4d4d" prot="public" static="no">
+        <name>CMPSSLITE_isBaseValid</name>
+        <initializer>CMPSS_isLiteBaseValid</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="90" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1gada590f052c78c7fdfcd1cc404b93dcaf" prot="public" static="no">
+        <name>CMPSSLITE_enableModule</name>
+        <initializer><ref refid="group__cmpss__api_1ga562d4a4ed73f41c430e69af25df2bd78" kindref="member">CMPSS_enableModule</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="91" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1gab03217b9e6a3ee0444d6196e4ce89723" prot="public" static="no">
+        <name>CMPSSLITE_disableModule</name>
+        <initializer><ref refid="group__cmpss__api_1gaab908ddb546186f7a1ab65e01e9ea4d5" kindref="member">CMPSS_disableModule</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="92" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1gaf9874bdeeb450f834156f5458bf30fe8" prot="public" static="no">
+        <name>CMPSSLITE_configHighComparator</name>
+        <initializer><ref refid="group__cmpss__api_1ga6212038b6d7d03662b770b2dbff2b27c" kindref="member">CMPSS_configHighComparator</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="93" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga2abf459efb88fb38f4a92f8bd30dfb92" prot="public" static="no">
+        <name>CMPSSLITE_configLowComparator</name>
+        <initializer><ref refid="group__cmpss__api_1ga8d0709e11f33b3fd0e68c93960e27d1b" kindref="member">CMPSS_configLowComparator</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="94" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga945c6940e4008940a18dde3b3a0812af" prot="public" static="no">
+        <name>CMPSSLITE_configOutputsHigh</name>
+        <initializer><ref refid="group__cmpss__api_1ga197e8809c56f074dbf21362f15f7acf5" kindref="member">CMPSS_configOutputsHigh</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="95" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga1c2016cd239915350e37d559d07fe2bf" prot="public" static="no">
+        <name>CMPSSLITE_configOutputsLow</name>
+        <initializer><ref refid="group__cmpss__api_1ga7b10b96e23141bf7124acd176927c275" kindref="member">CMPSS_configOutputsLow</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="96" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga4379c2ca46df1c2492a376bd2b5cb676" prot="public" static="no">
+        <name>CMPSSLITE_getStatus</name>
+        <initializer><ref refid="group__cmpss__api_1ga747f958120a9e2cf45715c051eafca76" kindref="member">CMPSS_getStatus</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="97" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga37cd8c0ff02ce5ce9fb9de15a68cac49" prot="public" static="no">
+        <name>CMPSSLITE_setDACValueHigh</name>
+        <initializer><ref refid="group__cmpss__api_1ga5a07ef42b141f2eb1af6ea9de6cb2947" kindref="member">CMPSS_setDACValueHigh</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="98" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1gaadf5d2659391e6cd6ca1ed870acb23b0" prot="public" static="no">
+        <name>CMPSSLITE_setDACValueLow</name>
+        <initializer><ref refid="group__cmpss__api_1ga11ea2667e78f9869eec6567e59f279b9" kindref="member">CMPSS_setDACValueLow</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="99" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga5d28147dcd9a29f0e5f08e227f606fe0" prot="public" static="no">
+        <name>CMPSSLITE_initFilterHigh</name>
+        <initializer><ref refid="group__cmpss__api_1ga6e8c8b3b8976ca8be282d9299c810142" kindref="member">CMPSS_initFilterHigh</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="100" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga9d6d100c1e6dcc0f6f85862bcd1cb6d9" prot="public" static="no">
+        <name>CMPSSLITE_initFilterLow</name>
+        <initializer><ref refid="group__cmpss__api_1ga9ee825b811e49d78a32613714a9cad94" kindref="member">CMPSS_initFilterLow</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="101" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga62d12c12f91a0f3d970c8f988afc5a46" prot="public" static="no">
+        <name>CMPSSLITE_configureFilterInputHigh</name>
+        <initializer><ref refid="group__cmpss__api_1gab8a17cd0cd0ce4394ddaff66b4c2c4a1" kindref="member">CMPSS_configureFilterInputHigh</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="102" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1gaaa29102a836817ea089a2cce6e3741cd" prot="public" static="no">
+        <name>CMPSSLITE_configureFilterInputLow</name>
+        <initializer><ref refid="group__cmpss__api_1gadbba09f53c3535e1dc09988358cdac80" kindref="member">CMPSS_configureFilterInputLow</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="103" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1gabc4138b0ec5046fcd9ef503ed2ce1304" prot="public" static="no">
+        <name>CMPSSLITE_getDACValueHigh</name>
+        <initializer><ref refid="group__cmpss__api_1ga078588178a9dbdedb06dfa37a10ed8ec" kindref="member">CMPSS_getDACValueHigh</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="104" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga1521fdf4bfe5ec94c3ae2d117fa1ae2a" prot="public" static="no">
+        <name>CMPSSLITE_getDACValueLow</name>
+        <initializer><ref refid="group__cmpss__api_1gae55bef9c9c8a5b0ce8cfc57d6a9337eb" kindref="member">CMPSS_getDACValueLow</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="105" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga73041b1ba9d0c87113673cd9ec6a5211" prot="public" static="no">
+        <name>CMPSSLITE_clearFilterLatchHigh</name>
+        <initializer><ref refid="group__cmpss__api_1gad743d05bc8deb2bdc00d477d2e935aa4" kindref="member">CMPSS_clearFilterLatchHigh</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="106" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga1f5da8022afac439eebbdad04cde19c1" prot="public" static="no">
+        <name>CMPSSLITE_clearFilterLatchLow</name>
+        <initializer><ref refid="group__cmpss__api_1ga30b2c7654215475d9cb4e61ea04b9841" kindref="member">CMPSS_clearFilterLatchLow</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="107" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga1bc727af1112a8f6f5b420d60afcdfa2" prot="public" static="no">
+        <name>CMPSSLITE_configureSyncSourceHigh</name>
+        <initializer><ref refid="group__cmpss__api_1gafef09bb0fdce9d18ffeb9fd5778312bb" kindref="member">CMPSS_configureSyncSourceHigh</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="108" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1gad19fddc21e0e948b6dbdfad90862c2d8" prot="public" static="no">
+        <name>CMPSSLITE_configureSyncSourceLow</name>
+        <initializer><ref refid="group__cmpss__api_1ga81aa2e0672bbd51e8675a2d7974fe5b5" kindref="member">CMPSS_configureSyncSourceLow</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="109" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1gae3400c4097f319c82ab04354e871951d" prot="public" static="no">
+        <name>CMPSSLITE_setHysteresis</name>
+        <initializer><ref refid="group__cmpss__api_1gacc2df7773ce6970a508b3806f0ca8233" kindref="member">CMPSS_setHysteresis</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="110" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga58aec185816133e59aa64f5e9202cfa1" prot="public" static="no">
+        <name>CMPSSLITE_enableLatchResetOnPWMSYNCHigh</name>
+        <initializer>                                           <ref refid="group__cmpss__api_1ga8e7484687263b5a8111650963c430d6b" kindref="member">CMPSS_enableLatchResetOnPWMSYNCHigh</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="111" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1gafa90765dd47ccbd4a7c3aa2a67a74910" prot="public" static="no">
+        <name>CMPSSLITE_disableLatchResetOnPWMSYNCHigh</name>
+        <initializer>                                           <ref refid="group__cmpss__api_1gaddc4ed8319459df8298c6342db877deb" kindref="member">CMPSS_disableLatchResetOnPWMSYNCHigh</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="113" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1gaba11a8b84d4497603c58754a9c940964" prot="public" static="no">
+        <name>CMPSSLITE_enableLatchResetOnPWMSYNCLow</name>
+        <initializer>                                           <ref refid="group__cmpss__api_1ga2c1f78b188de9ed5a48553ee826c2d08" kindref="member">CMPSS_enableLatchResetOnPWMSYNCLow</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="115" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga8f2be8471ceb629cea8684bce82eea36" prot="public" static="no">
+        <name>CMPSSLITE_disableLatchResetOnPWMSYNCLow</name>
+        <initializer>                                           <ref refid="group__cmpss__api_1gaddcbdb35ccd103fef879972e4b772573" kindref="member">CMPSS_disableLatchResetOnPWMSYNCLow</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="117" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga259417b0255a89ac8ed2c1e723b4af15" prot="public" static="no">
+        <name>CMPSSLITE_configFilterHigh</name>
+        <initializer><ref refid="group__cmpss__api_1gaa0345e3d4b5df846668e3699da609a55" kindref="member">CMPSS_configFilterHigh</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="119" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga12b9ff25cbbdb67ac85fa600873f1f56" prot="public" static="no">
+        <name>CMPSSLITE_configFilterLow</name>
+        <initializer><ref refid="group__cmpss__api_1ga775b12cdecceeb61fd2fcf4c0736ffca" kindref="member">CMPSS_configFilterLow</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="120" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__cmpss__lite__api_1ga3f072ab1621b4cf40ca0239b66b45a4e" prot="public" static="no">
+        <name>CMPSSLITE_configLatchOnPWMSYNC</name>
+        <initializer><ref refid="group__cmpss__api_1ga29d69a8ef0e45af4403c7275e59984d5" kindref="member">CMPSS_configLatchOnPWMSYNC</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" line="121" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cmpss_lite.h" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

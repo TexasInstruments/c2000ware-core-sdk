@@ -20,7 +20,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -53,12 +53,10 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Function Prototypes
 //
@@ -67,13 +65,11 @@ void ConfigureEPWM(void);
 void SetupADCEpwm(void);
 interrupt void adca1_isr(void);
 int16_t GetTemperatureC(uint16_t);
-
 //
 // Globals
 //
 Uint16 sensorSample;
 int16 sensorTemp;
-
 void main(void)
 {
 //
@@ -82,20 +78,17 @@ void main(void)
 // This example function is found in the f28p65x_sysctrl.c file.
 //
     InitSysCtrl();
-
 //
 // Step 2. Initialize GPIO:
 // This example function is found in the f28p65x_gpio.c file and
 // illustrates how to set the GPIO to it's default state.
 //
     InitGpio(); // Skipped for this example
-
 //
 // Step 3. Clear all interrupts and initialize PIE vector table:
 // Disable CPU interrupts
 //
     DINT;
-
 //
 // Initialize the PIE control registers to their default state.
 // The default state is all PIE interrupts disabled and flags
@@ -103,13 +96,11 @@ void main(void)
 // This function is found in the f28p65x_piectrl.c file.
 //
     InitPieCtrl();
-
 //
 // Disable CPU interrupts and clear all CPU interrupt flags:
 //
     IER = 0x0000;
     IFR = 0x0000;
-
 //
 // Initialize the PIE vector table with pointers to the shell Interrupt
 // Service Routines (ISR).
@@ -119,65 +110,54 @@ void main(void)
 // This function is found in f28p65x_pievect.c.
 //
     InitPieVectTable();
-
 //
 // Map ISR functions
 //
     EALLOW;
     PieVectTable.ADCA1_INT = &adca1_isr; //function for ADCA interrupt 1
     EDIS;
-
 //
 // Configure the ADC and power it up
 //
     ConfigureADC();
-
 //
 // Initialize the temperature sensor
 // Note: The argument needs to change if using a VREFHI voltage other than 3.0V
 //
     InitTempSensor(3.3f);
-
 //
 // Configure the ePWM
 //
     ConfigureEPWM();
-
 //
 // Setup the ADC for ePWM triggered conversions on temperature sensor
 //
     SetupADCEpwm();
-
 //
 // Enable global Interrupts and higher priority real-time debug events:
 //
     IER |= M_INT1; //Enable group 1 interrupts
     EINT;  // Enable Global interrupt INTM
     ERTM;  // Enable Global realtime interrupt DBGM
-
 //
 // Enable PIE interrupt
 //
     PieCtrlRegs.PIEIER1.bit.INTx1 = 1;
-
 //
 // Sync ePWM
 //
     EALLOW;
     CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 1;
-
 //
 // Start ePWM
 //
     EPwm1Regs.ETSEL.bit.SOCAEN = 1;  //enable SOCA
     EPwm1Regs.TBCTL.bit.CTRMODE = 0; //unfreeze, and enter up count mode
-
 //
 // Take conversions indefinitely in loop
 //
     while(1);
 }
-
 //
 // ConfigureADC - Write ADC configurations and power up the ADC for both
 //                ADC A and ADC B
@@ -185,31 +165,25 @@ void main(void)
 void ConfigureADC(void)
 {
     EALLOW;
-
     //
     // Write configurations
     //
     AdcaRegs.ADCCTL2.bit.PRESCALE = 6; //set ADCCLK divider to /4
     AdcSetMode(ADC_ADCA, ADC_RESOLUTION_12BIT, ADC_SIGNALMODE_SINGLE);
-
     //
     // Set pulse positions to late
     //
     AdcaRegs.ADCCTL1.bit.INTPULSEPOS = 1;
-
     //
     // Power up the ADC
     //
     AdcaRegs.ADCCTL1.bit.ADCPWDNZ = 1;
-
     //
     // Delay for 1ms to allow ADC time to power up
     //
     DELAY_US(1000);
-
     EDIS;
 }
-
 //
 // ConfigureEPWM - Configure EPWM SOC and compare values
 //
@@ -227,17 +201,14 @@ void ConfigureEPWM(void)
     EPwm1Regs.TBCTL.bit.CTRMODE = 3;      // freeze counter
     EDIS;
 }
-
 //
 // SetupADCEpwm - Configure ADC EPWM acquisition window and trigger
 //
 void SetupADCEpwm(void)
 {
     Uint16 tempsensor_acqps;
-
     tempsensor_acqps = 139; //temperature sensor needs at least 700ns
                             //acquisition time
-
     //
     // Select the channels to convert and end of conversion flag
     //
@@ -252,7 +223,6 @@ void SetupADCEpwm(void)
     AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1; //make sure INT1 flag is cleared
     EDIS;
 }
-
 //
 // adca1_isr - Read Temperature ISR
 //
@@ -260,9 +230,7 @@ interrupt void adca1_isr(void)
 {
     sensorSample = AdcaResultRegs.ADCRESULT0;
     sensorTemp = GetTemperatureC(sensorSample);
-
     AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1; //clear INT1 flag
-
     //
     // Check if overflow has occurred
     //
@@ -271,10 +239,8 @@ interrupt void adca1_isr(void)
         AdcaRegs.ADCINTOVFCLR.bit.ADCINT1 = 1; //clear INT1 overflow flag
         AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1; //clear INT1 flag
     }
-
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
 }
-
 //
 // End of file
 //

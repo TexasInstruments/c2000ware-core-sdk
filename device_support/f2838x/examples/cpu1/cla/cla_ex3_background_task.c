@@ -30,7 +30,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -63,38 +63,31 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
 #include "cla_ex3_background_task_shared.h"
-
 //
 // Defines
 //
 #define SYS_FREQ            100000000UL
 #define EPWM_CLKDIV         64UL
-
 #define EPWM1_FREQ          1000UL
 #define EPWM4_FREQ          100UL
 #define EPWM1_PERIOD        (uint16_t)(SYS_FREQ/(EPWM_CLKDIV*EPWM1_FREQ))
 #define EPWM4_PERIOD        (uint16_t)(SYS_FREQ/(EPWM_CLKDIV*EPWM4_FREQ))
 #define EPWM4_DUTY_CYCLE    (EPWM4_PERIOD/2)
-
 //
 // Globals
 //
-
 // Background Task (C) Variables
 // Circular buffer to store filtered output
 #pragma DATA_SECTION(buffer, "CLADataLS0");
 volatile float buffer[BUFFER_SIZE];
-
 // Linker Defined variables
 extern uint32_t Cla1funcsRunStart, Cla1funcsLoadStart, Cla1funcsLoadSize;
 extern uint32_t Cla1ConstRunStart, Cla1ConstLoadStart, Cla1ConstLoadSize;
-
 //
 // Function Prototypes
 //
@@ -103,7 +96,6 @@ void initADCSOC( void );
 void initEPWM( void );
 void initCLA( void );
 __attribute__((interrupt))  void cla1Isr1( void );
-
 //
 // Main
 //
@@ -113,47 +105,40 @@ void main(void)
     // Initialize device clock and peripherals
     //
     InitSysCtrl();
-
     //
     // GPIO0 is set to EPWM1A
     //
     InitGpio();
     GPIO_SetupPinMux(0U, GPIO_MUX_CPU1, 1);
     GPIO_SetupPinOptions(0U, GPIO_OUTPUT, GPIO_PUSHPULL);
-
     //
     // GPIO6 is set to EPWM4A
     //
     GPIO_SetupPinMux(6U, GPIO_MUX_CPU1, 1);
     GPIO_SetupPinOptions(6U, GPIO_OUTPUT, GPIO_PUSHPULL);
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts. 
     //
     InitPieCtrl();
     IER = 0x0000;
     IFR = 0x0000;
-
     //
     // Initialize the PIE vector table with pointers to the default Interrupt
     // Service Routines (ISR).
     //
     InitPieVectTable();
-
     //
     // Map the ISR to the CLA end-of-task interrupt.
     //
     EALLOW;
     PieVectTable.CLA1_1_INT = &cla1Isr1;
     EDIS;
-
     //
     // Setup the CLA and ADC
     //
     initCLA();
     initADC();
     initADCSOC();
-
     //
     // Disable sync(Freeze clock to PWM as well)
     //
@@ -161,32 +146,27 @@ void main(void)
     CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 0U;
     EDIS;
     initEPWM();
-
     //
     // Enable the interrupts in the PIE: Group 11 interrupt 1.
     //
     PieCtrlRegs.PIEIER11.bit.INTx1 = 1U;
     IER |= 0x0400U;
     PieCtrlRegs.PIEACK.bit.ACK11 = 1U;
-
     //
     // Enable global interrupts.
     //
     EINT;
     ERTM;
-
     //
     // Enable sync and clock to PWM
     //
     EALLOW;
     CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 1U;
     EDIS;
-
     for(;;)
     {
     }
 }
-
 //-----------------------------------------------------------------------------
 // ADC Initialization
 //
@@ -196,27 +176,21 @@ void main(void)
 void initADC(void)
 {
     EALLOW;
-
     //
     // Set ADCCLK divider to /4
     //
     AdcaRegs.ADCCTL2.bit.PRESCALE = 6;
-
     //
     // Set pulse positions to late
     //
     AdcaRegs.ADCCTL1.bit.INTPULSEPOS = 1;
-
     //
     // Power up the ADCs and then delay for 1 ms
     //
     AdcaRegs.ADCCTL1.bit.ADCPWDNZ = 1;
-
     EDIS;
-
     DELAY_US(1000);
 }
-
 //-----------------------------------------------------------------------------
 //
 // ADC SOC Initialization
@@ -230,7 +204,6 @@ void initADC(void)
 void initADCSOC( void )
 {
 	EALLOW;
-
     //
     // Configure SOC0 of ADCA
     // - SOC0 will be triggered by EPWM1SOCA
@@ -242,7 +215,6 @@ void initADCSOC( void )
     AdcaRegs.ADCSOC0CTL.bit.ACQPS = 100U - 1U;
     AdcaRegs.ADCSOC0CTL.bit.TRIGSEL = 5;
     AdcaRegs.ADCINTSEL1N2.bit.INT1CONT = 1;
-
     //
     // Set SOC0 to set the interrupt 1 flag. Enable the interrupt and make
     // sure its flag is cleared.
@@ -250,10 +222,8 @@ void initADCSOC( void )
     AdcaRegs.ADCINTSEL1N2.bit.INT1SEL = 0;
     AdcaRegs.ADCINTSEL1N2.bit.INT1E = 1;
     AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
-
     EDIS;
 }
-
 //-----------------------------------------------------------------------------
 //
 // EPWM Initialization
@@ -284,7 +254,6 @@ void initADCSOC( void )
 void initEPWM( void )
 {
 	EALLOW;
-
     //
     // Set up EPWM1 to
     // - run on a base clock of SYSCLK/128
@@ -296,7 +265,6 @@ void initEPWM( void )
     EPwm1Regs.TBPRD = EPWM1_PERIOD;
     EPwm1Regs.TBCTL.bit.CTRMODE = 0U;
     EPwm1Regs.TBCTR = 0U;
-
     //
     // Enable SOC-A and set it to assert when the counter hits
     // zero. It asserts on every event
@@ -305,12 +273,10 @@ void initEPWM( void )
     EPwm1Regs.ETSEL.bit.SOCASEL = 1U;
     EPwm1Regs.ETPS.bit.SOCPSSEL = 1U;
     EPwm1Regs.ETSOCPS.bit.SOCAPRD2 = 1U;
-
     //
     // EPWM1 should toggle each time its counter hits zero
     //
     EPwm1Regs.AQCTLA.bit.ZRO = 3U;
-
     //
     // Set up EPWM4 to
     // - run on a base clock of SYSCLK/32
@@ -320,29 +286,23 @@ void initEPWM( void )
     //
     EPwm4Regs.TBCTL.bit.CLKDIV = 2U;    // EPWM_CLOCK_DIVIDER_4
     EPwm4Regs.TBCTL.bit.HSPCLKDIV = 4U; // EPWM_HSCLOCK_DIVIDER_8
-
-
     EPwm4Regs.TBPRD = EPWM4_PERIOD;
     EPwm4Regs.TBCTL.bit.CTRMODE = 2U;
     EPwm4Regs.TBCTR = 0U;
     EPwm4Regs.CMPA. all = EPWM4_DUTY_CYCLE;
-
     //
     // On compare A, when counting up, pull the EPWM A output high
     // On compare A, when counting down, pull the EPWM A output low
     //
     EPwm4Regs.AQCTLA.bit.CAU = 2U;
     EPwm4Regs.AQCTLA.bit.CAD = 1U;
-
     //
     // EPWM 1 and 4 should run freely in emulation mode
     //
     EPwm1Regs.TBCTL.bit.FREE_SOFT = 2U;
     EPwm4Regs.TBCTL.bit.FREE_SOFT = 2U;
-
     EDIS;
 }
-
 //-----------------------------------------------------------------------------
 //
 // CLA Initialization
@@ -373,23 +333,19 @@ void initCLA( void )
     memcpy((uint32_t *)&Cla1ConstRunStart, (uint32_t *)&Cla1ConstLoadStart,
         (uint32_t)&Cla1ConstLoadSize );
 #endif //defined(_FLASH)
-
     EALLOW;
-
     //
     // CLA Program will reside in RAMLS5 and data in RAMLS0, RAMLS1
     //
     MemCfgRegs.LSxCLAPGM.bit.CLAPGM_LS5 = 1U;
     MemCfgRegs.LSxCLAPGM.bit.CLAPGM_LS0 = 0U;
     MemCfgRegs.LSxCLAPGM.bit.CLAPGM_LS1 = 0U;
-
     //
     // Select CLA as the master of RAMLS0, RAMSL1, RAMLS5
     //
     MemCfgRegs.LSxMSEL.bit.MSEL_LS0 = 1U;
     MemCfgRegs.LSxMSEL.bit.MSEL_LS1 = 1U;
     MemCfgRegs.LSxMSEL.bit.MSEL_LS5 = 1U;
-
     //
     // Suppressing #770-D conversion from pointer to smaller integer
     // The CLA address range is 16 bits so the addresses passed to the MVECT
@@ -402,19 +358,15 @@ void initCLA( void )
     //
     Cla1Regs.MVECT1 = (uint16_t)&Cla1Task1;
     Cla1Regs.MVECT7 = (uint16_t)&Cla1Task7;
-
     DmaClaSrcSelRegs.CLA1TASKSRCSEL1.bit.TASK1 = 1U; //ADCA1
     DmaClaSrcSelRegs.CLA1TASKSRCSEL2.bit.TASK7 = 0U; //Software
-
     //
     // Enable Tasks 1 and 7. Since task 7 is forced in software, we must
     // enable software forcing (IACKE)
     //
     Cla1Regs.MIER.bit.INT1 = 1U;
     Cla1Regs.MIER.bit.INT7 = 1U;
-
     Cla1Regs.MCTL.bit.IACKE = 1U;
-
     //
     // The background task will be triggered by software; it shares
     // the same trigger source as task 8. Disable the hardware triggering
@@ -427,23 +379,16 @@ void initCLA( void )
     //
     Cla1Regs._MVECTBGRND = (uint16_t)&Cla1BackgroundTask;
 #pragma diag_warning=770
-
     Cla1Regs._MCTLBGRND.bit.TRIGEN = 0U;
-
     DmaClaSrcSelRegs.CLA1TASKSRCSEL2.bit.TASK8 = 0U; //Software
-
     Cla1Regs._MCTLBGRND.bit.BGEN = 1U;
-
     Cla1Regs._MCTLBGRND.bit.BGSTART = 1U;
-
     //
     // Force task 7, the one time initialization task
     //
     Cla1Regs.MIFRC.bit.INT7 = 1U;
-
     EDIS;
 }
-
 //-----------------------------------------------------------------------------
 //
 // CLA Task 1 End-of-Task Interrupt Service Routine
@@ -460,20 +405,16 @@ void initCLA( void )
 __attribute__((interrupt))  void cla1Isr1 ()
 {
 	EALLOW;
-
     //
     // Clear the ADC interrupt flag so the next SOC can occur
     //
     AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1U;
-
     //
     // Acknowledge the end-of-task interrupt for task 1
     //
     PieCtrlRegs.PIEACK.bit.ACK11 = 1U;
-
     EDIS;
 }
-
 //
 // End of File
 //

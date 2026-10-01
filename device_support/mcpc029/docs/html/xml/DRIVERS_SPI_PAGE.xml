@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="DRIVERS_SPI_PAGE" kind="page">
+    <compoundname>DRIVERS_SPI_PAGE</compoundname>
+    <title>SPI</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="DRIVERS_SPI_PAGE_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_components_drivers_spi"/></para>
+<para>The SPI driver provides API to configure the SPI module. Below are the high level features supported by the SPI driver.</para>
+<sect1 id="DRIVERS_SPI_PAGE_1autotoc_md101">
+<title>Features Supported</title>
+<para><itemizedlist>
+<listitem><para>Controller &amp; Peripheral operational modes with 125 different programmable baud rates (upto SYSCLK/4)</para>
+</listitem><listitem><para>1 to 16 data bits per word, 4 standard SPI clocking schemes</para>
+</listitem><listitem><para>16-level Transmit and Receive FIFOs</para>
+</listitem><listitem><para>Supports simultaneous receive and transmit operation, delayed transmit control</para>
+</listitem><listitem><para>SPIPTE inversion for digital audio interface receive mode on devices with two SPI modules</para>
+</listitem><listitem><para>Support for DMA, High Speed SPI, 3-wire SPI</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_SPI_PAGE_1autotoc_md102">
+<title>SysConfig Features</title>
+<para><simplesect kind="note"><para>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</para>
+</simplesect>
+<itemizedlist>
+<listitem><para>Baud rate configuration, loopback support</para>
+</listitem><listitem><para>Configurable data width, SPI mode, emulation behaviour</para>
+</listitem><listitem><para>Separately configurable TX &amp; RX FIFO settings</para>
+</listitem><listitem><para>High speed mode support</para>
+</listitem><listitem><para>Integrated support for interrupt &amp; RTDMA modules</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para>To use SPI with custom pin combinations, select one of the predefined options under <bold>Use Case</bold>, or select &quot;Custom&quot; to configure each pin as required.</para>
+</simplesect>
+</para>
+</sect1>
+<sect1 id="DRIVERS_SPI_PAGE_1autotoc_md103">
+<title>Features NOT Supported</title>
+<para>NA</para>
+</sect1>
+<sect1 id="DRIVERS_SPI_PAGE_1autotoc_md104">
+<title>Example Usage</title>
+<para>Include the below file to access the APIs #include &lt;<ref refid="spi_8h" kindref="compound">spi.h</ref>&gt;</para>
+</sect1>
+<sect1 id="DRIVERS_SPI_PAGE_1autotoc_md105">
+<title>API</title>
+<para><ref refid="group__spi__api" kindref="compound">SPI</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/spi.md"/>
+  </compounddef>
+</doxygen>

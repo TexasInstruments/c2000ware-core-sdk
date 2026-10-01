@@ -83,14 +83,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Defines
 //
@@ -101,12 +99,10 @@
 #define UNIT_PERIOD  10000U // Specify the period in microseconds
 //Uncomment if motor is available for interfacing
 //#define MOTOR
-
 //
 // Function Prototypes
 //
 void initEPWM(void);
-
 //
 // Globals
 //
@@ -116,7 +112,6 @@ float32_t speed = 0.0f;       // measured speed of motor in rpm
 int32_t dir = 0;       // direction of rotation of motor
 uint32_t count = 0;     // just to make sure measured frequency gets saturated
 uint32_t pass = 0, fail = 0; // test pass or fail indicator
-
 //
 // Main
 //
@@ -126,23 +121,19 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-    
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-    
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Board Initialization
     // - Setup eQEP1, configuring the unit timer and quadrature capture units
@@ -151,7 +142,6 @@ void main(void)
     // - Enable interrupts required for this example
     //
     Board_init();
-
     //
     // Initialize GPIOs for use as EPWM1A,EPWM1B and EQEP1A,
     // EQEPB
@@ -160,30 +150,24 @@ void main(void)
     GPIO_setPadConfig(0, GPIO_PIN_TYPE_STD);
     GPIO_setPinConfig(GPIO_1_EPWM1_B);
     GPIO_setPadConfig(1, GPIO_PIN_TYPE_STD);
-
 #ifndef MOTOR
     //
     // Setup ePWM1 to generate a 5 kHz signal to be an input to the eQEP
     //
     initEPWM();
-
 #endif
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
-
     //
     // Loop indefinitely
     //
     while(1)
     {
-
     }
 }
-
 //
 // initEPWM - Function to configure ePWM1 to generate a 5 kHz signal.
 //
@@ -194,13 +178,11 @@ initEPWM(void)
     // Disable the ePWM time base clock before configuring the module
     //
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Set phase shift to 0 and clear the time base counter
     //
     EPWM_setPhaseShift(EPWM1_BASE, 0);
     EPWM_setTimeBaseCounter(EPWM1_BASE, 0);
-
     //
     // Disable the shadow load; the load will be immediate instead
     //
@@ -208,13 +190,11 @@ initEPWM(void)
                                                 EPWM_COUNTER_COMPARE_A);
     EPWM_disableCounterCompareShadowLoadMode(EPWM1_BASE,
                                                 EPWM_COUNTER_COMPARE_B);
-
     //
     // Set the compare A value to half the period value, compare B to 0
     //
     EPWM_setCounterCompareValue(EPWM1_BASE, EPWM_COUNTER_COMPARE_A, PRD_VAL/2);
     EPWM_setCounterCompareValue(EPWM1_BASE, EPWM_COUNTER_COMPARE_B, 0);
-
     //
     // Set action qualifier behavior on compare A events
     // - EPWM1A --> 1 when CTR = CMPA and increasing
@@ -226,7 +206,6 @@ initEPWM(void)
     EPWM_setActionQualifierAction(EPWM1_BASE, EPWM_AQ_OUTPUT_A,
                                     EPWM_AQ_OUTPUT_LOW,
                                     EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);
-
     //
     // Set action qualifier behavior on compare B events
     // - EPWM1B --> 1 when CTR = PRD and increasing
@@ -238,30 +217,25 @@ initEPWM(void)
     EPWM_setActionQualifierAction(EPWM1_BASE, EPWM_AQ_OUTPUT_B,
                                     EPWM_AQ_OUTPUT_LOW,
                                     EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);
-
     //
     // Set the time base clock prescaler to /1
     //
     EPWM_setClockPrescaler(EPWM1_BASE, EPWM_CLOCK_DIVIDER_1,
                             EPWM_HSCLOCK_DIVIDER_1);
-
     //
     // Set the period value; don't shadow the register
     //
     EPWM_setPeriodLoadMode(EPWM1_BASE, EPWM_PERIOD_DIRECT_LOAD);
     EPWM_setTimeBasePeriod(EPWM1_BASE, PRD_VAL);
-
     //
     // Put the time base counter into up-down count mode
     //
     EPWM_setTimeBaseCounterMode(EPWM1_BASE, EPWM_COUNTER_MODE_UP_DOWN);
-
     //
     // Sync the ePWM time base clock
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
 }
-
 //
 // eqep1 ISR- interrupts once per ePWM period
 //
@@ -269,17 +243,13 @@ __interrupt void
 INT_myEQEP0_ISR(void)
 {
     uint32_t temp = 0, newcount = 0 ;
-    
     count++; // increment count value so to wait for frequency saturation
-
     newcount = EQEP_getPositionLatch(myEQEP0_BASE); // new position counter value
     temp = newcount;
-
    //
    // Gets direction of rotation of motor
    //
    dir = EQEP_getDirection(myEQEP0_BASE);
-
    //
    // Calculates the number of position in unit time based on
    // motor's direction of rotation
@@ -296,18 +266,15 @@ INT_myEQEP0_ISR(void)
         else
             newcount = (0xFFFFFFFF - newcount) + oldcount;
         }
-
    //
    // Stores the current position count value to oldcount variable
    //
    oldcount = temp;
-
    //
    // Simulated Frequency and speed calculation
    //
    freq = (newcount * (uint32_t)1000000U)/((uint32_t)UNIT_PERIOD);
    speed = (freq * 60)/4000.0f;
-
    //
    // Compares the measured quadrature simulated frequency with input quadrature
    // frequency and if difference is within the measurement resolution
@@ -323,15 +290,12 @@ INT_myEQEP0_ISR(void)
         }
     }
 #endif
-
    //
    // Clear interrupt flag and issue ACK
    //
    EQEP_clearInterruptStatus(myEQEP0_BASE,EQEP_INT_UNIT_TIME_OUT|EQEP_INT_GLOBAL);
    Interrupt_clearACKGroup(INT_myEQEP0_INTERRUPT_ACK_GROUP);
  }
-
 //
 // End of File
 //
-

@@ -1,4 +1,10 @@
 /**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F2838x" --part "F2838x_337bga" --package "337bga" --context "CPU1" 
+ * @v2CliArgs --device "TMS320F28388D" --package "337bga" --context "CPU1"
+ */
+/**
  * Import the modules used in this configuration.
  */
 const ecap       = scripting.addModule("/driverlib/ecap.js", {}, false);
@@ -9,7 +15,6 @@ const inputxbar  = scripting.addModule("/driverlib/inputxbar.js", {}, false);
 const inputxbar1 = inputxbar.addInstance();
 const other      = scripting.addModule("/driverlib/other.js", {}, false);
 const other1     = other.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -30,20 +35,16 @@ ecap1.hrcapCalibrationEnable              = true;
 ecap1.enabledCalibrationInterrupts        = ["HRCAP_CALIBRATION_DONE","HRCAP_CALIBRATION_PERIOD_OVERFLOW"];
 ecap1.ecapInt.enableInterrupt             = true;
 ecap1.hrcapCalibrationInt.enableInterrupt = true;
-
 gpio1.$name           = "myGPIO0";
 gpio1.qualMode        = "GPIO_QUAL_ASYNC";
 gpio1.gpioPin.$assign = "GPIO2";
-
 inputxbar1.$name          = "myINPUTXBAR0";
 inputxbar1.inputsUsed     = ["inputxbar7Gpio"];
 inputxbar1.inputxbar7Gpio = "GPIO2";
-
 other1.$name            = "myOTHER0";
 other1.useCase          = "CUSTOM";
 other1.useInterfacePins = ["XCLKOUT"];
 other1.other.$assign    = "OTHER";
-
 /**
  * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
  * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to

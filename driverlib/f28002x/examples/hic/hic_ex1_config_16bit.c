@@ -77,20 +77,16 @@
 #include "device.h"
 #include "driverlib.h"
 #include "hic.h"
-
-
 void initGPIOHIC(void)
 {
     //
     //This routine does PinMux for 16 Bit configuration
     //of HIC module.These are for a TI Internal Board
     //
-    
     //
     //For Chip Select Pin
     //
     GPIO_setPinConfig(GPIO_29_HIC_NCS);
-    
     //
     //For Base Select Pins
     //
@@ -103,25 +99,21 @@ void initGPIOHIC(void)
     GPIO_setAnalogMode(230, GPIO_ANALOG_DISABLED);
     GPIO_setAnalogMode(231, GPIO_ANALOG_DISABLED);
     GPIO_setAnalogMode(232, GPIO_ANALOG_DISABLED);
-    
     //
     //HINT Pin
     //
     GPIO_setPinConfig(GPIO_32_HIC_INT);
-    
     //
     //Output Enable
     //
     GPIO_setPinConfig(GPIO_28_HIC_NOE);
     GPIO_setQualificationMode(28,GPIO_QUAL_ASYNC);
-    
     //
     //Write Enable pin
     //
     GPIO_setPinConfig(GPIO_225_HIC_NWE);
     GPIO_setQualificationMode(225,GPIO_QUAL_ASYNC);
     GPIO_setAnalogMode(225, GPIO_ANALOG_DISABLED);
-    
     //
     //Byte Enables
     //
@@ -131,13 +123,11 @@ void initGPIOHIC(void)
     GPIO_setQualificationMode(241,GPIO_QUAL_ASYNC);
     GPIO_setAnalogMode(227, GPIO_ANALOG_DISABLED);
     GPIO_setAnalogMode(241, GPIO_ANALOG_DISABLED);
-    
     //
     //Ready Pin
     //
     GPIO_setPinConfig(GPIO_9_HIC_NRDY);
     GPIO_setQualificationMode(9,GPIO_QUAL_ASYNC);
-    
     //
     //HIC Data Pins
     //
@@ -173,7 +163,6 @@ void initGPIOHIC(void)
     GPIO_setQualificationMode(22,GPIO_QUAL_ASYNC);
     GPIO_setQualificationMode(7,GPIO_QUAL_ASYNC);
     GPIO_setQualificationMode(14,GPIO_QUAL_ASYNC);
-    
     //
     //HIC Address Pins
     //
@@ -202,7 +191,6 @@ void initGPIOHIC(void)
     GPIO_setAnalogMode(237, GPIO_ANALOG_DISABLED);
     GPIO_setAnalogMode(244, GPIO_ANALOG_DISABLED);
 }
-
 //
 // Main
 //
@@ -211,19 +199,15 @@ void main(void)
     uint32_t testData;
     uint16_t iteration;
     uint32_t baseAddress;
-    
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure the GPIO pin as a push-pull output
     //
     Device_initGPIO();
-
     initGPIOHIC();
-
     HIC_enableHostInterface();
     //
     //Set HIC Configuration
@@ -241,12 +225,10 @@ void main(void)
                    HIC_MODE_DEVICE_HOST_ACCESS_ENABLE |
                    HIC_MODE_HOST_WREALLOW_ENABLE
                   );
-                  
     //
     //Enable EALLOW access from Host
     //
     HIC_configureHostAccessMode(HIC_HOST_CONTROL_EALLOW_EN);
-
     //
     //Write test data to D2H buffer
     //
@@ -256,13 +238,11 @@ void main(void)
         HIC_writeD2HBuffer(iteration,testData);
         testData += 0x11111111;
     }
-
     //
     //Flag to the host by writing to the Token
     //This will generate a D2H interrupt
     //
     HIC_setD2HToken(0xFA);
-
     //
     //Wait for Message from Host Containing the Base address
     //to be configured and clear the interrupt
@@ -270,19 +250,16 @@ void main(void)
     while(HIC_getH2DInterruptStatus() != HIC_H2DINTFLG_H2D_FLG);
     HIC_clearH2DInterrupt(HIC_H2DINTFLG_H2D_FLG);
     while(HIC_getH2DInterruptStatus() != 0);
-
     if(HIC_readH2DBuffer(0) == 0x1)
     {
         baseAddress = HIC_readH2DBuffer(1);
         HIC_setBaseAddress(0,baseAddress);
     }
-    
     //
     //Flag to the host by writing to the Token
     //This will generate a D2H interrupt
     //
     HIC_setD2HToken(0xFB);
-
     //
     //Now the Host side can read and write to the memory region
     //

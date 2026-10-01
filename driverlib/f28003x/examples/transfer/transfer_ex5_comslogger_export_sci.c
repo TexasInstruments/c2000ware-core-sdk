@@ -54,7 +54,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -64,84 +63,65 @@
 #include "c2000ware_libraries.h"
 #include "export/export.h"
 #include "logger/coms_logger.h"
-
-
 //
 // Main
 //
 void main(void)
 {
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull-ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // PinMux and Peripheral Initialization
     //
     Board_init();
-
     //
     // C2000Ware Library initialization
     //
     C2000Ware_libraries_init();
-
     //
     // Logging Inits
     //
     EXPORT_init();
     COMSLOG_init();
-
     //
     // Enable Global Interrupt (INTM) and real time interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     while(1)
     {
         COMSLOG_transferBufferData();
     }
 }
-
 void COMSLOG_transferBufferOverflow() {
-
     //
     // Received too much data too quickly. The transfer buffer overflowed
     // Make the buffer larger
     //
     ESTOP0;
-
 }
-
 void COMSLOG_comsLinkError(uint16_t status) {
-
     //
     // FSI receive error occurred
     // Bad frames received
     //
     ESTOP0;
 }
-
-
-
 //
 // End of File
 //

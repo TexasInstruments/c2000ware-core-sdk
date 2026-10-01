@@ -12,7 +12,7 @@ var memoryInfo = {
     ],
     memorySections:  memorySections.CompilerMemorySections.concat(memorySections.CLACompilerMemorySections),
     memoryRanges : [
-        {name : "RAMM0",   group : "RAMM", origin  : 0x000128, length : 0x0002D8, description : "The initial bytes of RAMM0 is reserved for BootROM"},
+        {name : "RAMM0",   group : "RAMM", origin  : 0x0001C0, length : 0x000240, description : "The initial bytes of RAMM0 is reserved for BootROM"},
         {name : "RAMM1",   group : "RAMM", origin  : 0x000400, length : 0x000400, description : "Last 8 words of RAMM1 is reserved as per the errata advisory 'Memory: Prefetching Beyond Valid Memory'"},
 
         {name : "RAMGS0",  group : "RAMGS", origin : 0x00C000, length : 0x001800},

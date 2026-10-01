@@ -22,7 +22,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -55,19 +55,16 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Globals
 //
 uint32_t loopCount;
-
 //
 // Main
 //
@@ -77,40 +74,33 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize settings from SysConfig
     //
     Board_init();
-
     //
     // Toggle LED1 indicating CPU2 has reset
     //
     GPIO_togglePin(CPU2_LED);
-
     //
     // Clear the lopoCount variable
     //
     loopCount = 0;
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Add 0.5 second delay before starting the watchdog.
     // This makes sure that there is atleast 0.5 second delay between 2 CPU2
     // resets and hence the LED toggling will be more visible.
     //
     DEVICE_DELAY_US(500000);
-
     //
     // Set the watchdog to generate an interrupt signal instead of a
     // reset signal
@@ -122,17 +112,14 @@ void main(void)
         SysCtl_serviceWatchdog();
         SysCtl_setWatchdogMode(SYSCTL_WD_MODE_RESET);
     }
-
     //
     // Reset the watchdog counter
     //
     SysCtl_serviceWatchdog();
-
     //
     // Enable the watchdog
     //
     SysCtl_enableWatchdog();
-
     //
     // Loop Forever
     //
@@ -140,9 +127,7 @@ void main(void)
     {
         loopCount++;
     }
-
 }
-
 //
 // End of File
 //

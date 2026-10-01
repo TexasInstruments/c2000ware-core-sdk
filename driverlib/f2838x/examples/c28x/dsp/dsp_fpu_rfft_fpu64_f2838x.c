@@ -13,7 +13,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -46,8 +46,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
 //
 // Included Files
 //
@@ -55,9 +53,7 @@
 #include "device.h"
 #include "board.h"
 #include "c2000ware_libraries.h"
-
 #define USE_REAL_ADC_INPUT  0U
-
 float64_t test_input[512] = {
    0.000000000000L,   21.572962329776L,   33.101549345938L,   31.348099381273L,
   21.659704690254L,   13.462635707408L,   12.925769914236L,   18.345490092755L,
@@ -447,24 +443,19 @@ const float64_t test_golden[1026] = {
    3.127760282515L,    3.130527157907L,    3.133293765615L,    3.136060172852L,
    3.138826446578L,    3.141592653590L,
 };
-
 uint16_t pass = 0U, fail = 0U;
 float64_t tolerance = 3.2e-7;
-
 volatile uint16_t flagInputReady = 0;
 volatile uint16_t sampleIndex = 0;
 uint32_t max_idx = 1;
-
 #if USE_REAL_ADC_INPUT == 1U
 #ifdef __cplusplus
 #pragma DATA_SECTION("FFT_buffer_1")
 #else
 #pragma DATA_SECTION(test_input, "FFT_buffer_1")
 #endif
-
 uint16_t test_input[4U*myRFFT0_RFFT_SIZE];
 #endif
-
 #ifdef __cplusplus
 #pragma DATA_SECTION("FFT_buffer_2")
 #else
@@ -473,10 +464,8 @@ uint16_t test_input[4U*myRFFT0_RFFT_SIZE];
 float64_t test_output[myRFFT0_RFFT_SIZE];
 float64_t test_magnitude_phase[(myRFFT0_RFFT_SIZE >> 1) + 1];
 float64_t twiddleFactors[myRFFT0_RFFT_SIZE];
-
 float64_t *inPtr = (float64_t *)test_input;
 float64_t *outPtr = test_output;
-
 //
 // Main
 //
@@ -491,13 +480,10 @@ void main(void)
     Interrupt_initVectorTable();
     Board_init();
     C2000Ware_libraries_init();
-
     int16_t i, j;
     float64u_t out, gold, errld;
     float64_t *p_temp;
-
     myRFFT0_handle->calc(myRFFT0_handle);
-
     for(i = 0U; i < myRFFT0_RFFT_SIZE; i++)
     {
         out.f64 = myRFFT0_handle->p_currOutput[i];
@@ -512,13 +498,10 @@ void main(void)
             fail++;
         }
     }
-
     p_temp = CFFT_f64_getCurrInputPtr(myRFFT0_handle);
     CFFT_f64_setCurrInputPtr(myRFFT0_handle, CFFT_f64_getCurrOutputPtr(myRFFT0_handle));
     CFFT_f64_setCurrOutputPtr(myRFFT0_handle, p_temp);
-
     myRFFT0_handle->mag(myRFFT0_handle);
-
     for(i = (myRFFT0_RFFT_SIZE), j=0U; i <= (myRFFT0_RFFT_SIZE+(myRFFT0_RFFT_SIZE >> 1)); i++, j++)
     {
         out.f64 = myRFFT0_handle->p_currOutput[j];
@@ -533,9 +516,7 @@ void main(void)
             fail++;
         }
     }
-
     myRFFT0_handle->phase(myRFFT0_handle);
-
     for(i = (myRFFT0_RFFT_SIZE+(myRFFT0_RFFT_SIZE >> 1)) + 1U, j=0U; i <= (2U * myRFFT0_RFFT_SIZE) + 1U; i++, j++)
     {
         out.f64 = myRFFT0_handle->p_currOutput[j];
@@ -552,7 +533,6 @@ void main(void)
     }
     while(1);
 }
-
 //
 // End of File
 //

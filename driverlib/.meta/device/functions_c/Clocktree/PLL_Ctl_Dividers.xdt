@@ -6,6 +6,7 @@ const clocktree_PLL_Ctl_Dividers_Type0 		= device_common.clocktree_PLL_Ctl_Divid
 const clocktree_PLL_Ctl_Dividers_Type1 		= device_common.clocktree_PLL_Ctl_Dividers_Type1;
 const clocktree_PLL_Ctl_Dividers_Type2 		= device_common.clocktree_PLL_Ctl_Dividers_Type2;
 const clocktree_PLL_Ctl_Dividers_Type3 		= device_common.clocktree_PLL_Ctl_Dividers_Type3;
+const WD_SECCLK_devices				= device_common.WD_SECCLK_devices;
 const device  					= device_common.device;
 %%}
 % if(clocktree_PLL_Ctl_Dividers_Type0.includes(device))
@@ -69,4 +70,14 @@ const device  					= device_common.device;
     // Make sure the LSPCLK divider is set to the default (divide by 4)
     //
     SysCtl_setLowSpeedClock(DEVICE_LSPCLK_CFG);
+
+	% if(WD_SECCLK_devices.includes(device))
+	% {
+    //
+    // Select the clock source for the watchdog (SECCLK).
+    // DEVICE_WATCHDOG_CLK_SRC is defined in clocktree.h based on the
+    // SECCLKSRCSEL setting.
+    //
+    SysCtl_selectWatchdogclkSource(DEVICE_WATCHDOG_CLK_SRC);
+	% }
 	% }

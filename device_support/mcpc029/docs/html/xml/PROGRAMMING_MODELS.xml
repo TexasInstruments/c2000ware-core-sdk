@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="PROGRAMMING_MODELS" kind="page">
+    <compoundname>PROGRAMMING_MODELS</compoundname>
+    <title>Programming Models</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="PROGRAMMING_MODELS_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_device_common_c28x_programming_models"/></para>
+<para>The peripheral driver library provides support for two programming models: the direct register access model and the software driver model. Each model can be used independently or combined, based on the needs of the application or the programming environment desired by the developer.</para>
+<para>Each programming model has advantages and disadvantages. Use of the direct register access model generally results in smaller and more efficient code than using the software driver model. However, the direct register access model requires detailed knowledge of the operation of each register and bit field, as well as their interactions and any sequencing required for proper operation of the peripheral; the developer is somewhat more insulated from these details by the software driver model, generally requiring less time to develop applications. The software driver model also results in more readable code.</para>
+<sect1 id="PROGRAMMING_MODELS_1autotoc_md1">
+<title>Direct Register Access Model</title>
+<para>In the direct register access model, the peripherals are programmed by the application by writing values directly into the peripheral&apos;s registers. A set of macros is provided that simplifies this process. These macros are stored in several header files contained in the inc directory. By including the header files inc/hw_types.h and inc/hw_memmap.h, macros are available for accessing all registers. Individual bitfield accesses can easily be added by simply including the inc/hw_peripheral.h header file for the desired peripheral.</para>
+<para>The defines used by the direct register access model follow a naming convention that makes it easier to know how to use a particular macro. The rules are as follows:</para>
+<para><itemizedlist>
+<listitem><para>Values that end in _BASE and are found in inc/hw_memmap.h are module instance base addresses. For example, SPIA_BASE and SPIB_BASE are the base addresses of instances A and B of the SPI module respectively.</para>
+</listitem><listitem><para>Values that contain an <emphasis>O</emphasis> are register address offsets used to access the value of a register. For example, SPI_O_CCR is used to access the CCR register in a SPI module. These can be added to the base address values to get the register address.</para>
+</listitem><listitem><para>Values that end in _M represent the mask for a multi-bit field in a register. For example, SPI_CCR_SPICHAR_M is a mask for the SPICHAR field in the CCR register. Note that fields that are the whole width of the register are not given masks.</para>
+</listitem><listitem><para>Values that end in _S represent the number of bits to shift a value in order to align it with a multi-bit field. These values match the macro with the same base name but ending with _M.</para>
+</listitem><listitem><para>All others are single-bit field masks. For example, SPI_CCR_SPILBK corresponds to the SPILBK bit in the CCR register.</para>
+</listitem></itemizedlist>
+</para>
+<para>The inc\hw_types.h file contains macros to access a register. They are as follows where x is the address to be accessed:</para>
+<para><itemizedlist>
+<listitem><para>HWREG(x) is used for 32-bit accesses, such as reading a value from a 32-bit counter register.</para>
+</listitem><listitem><para>HWREGH(x) is used for 16-bit accesses. This can be used to access a 16-bit register or the upper or lower words of a 32-bit register. This is usually the most efficient.</para>
+</listitem><listitem><para>HWREGB(x) is used for 8-bit accesses using the __byte() intrinsic (see the TMS320C28x Optimizing C/C++ Compiler User&apos;s Guide). It typically should only be used when an 8-bit access is required by the hardware. Otherwise, use HWREGH() and mask and shift out the unwanted bits.</para>
+</listitem><listitem><para>HWREG_BP(x) is another macro used for 32-bit accesses, but it uses the __byte_peripheral_32() compiler intrinsic. This is intended for use with peripherals that use a special addressing scheme to support byte accesses such as CAN or USB.</para>
+</listitem></itemizedlist>
+</para>
+<para>Given these definitions, the CCR register can be programmed as follows:</para>
+<para>// Enable loopback mode on SPI A HWREGH(SPIA_BASE + SPI_O_CCR) |= SPI_CCR_SPILBK;</para>
+<para>// Change the number of bits that make up a character to 8 // * First clear the field // * Then shift the new value into place and write it into the register HWREGH(SPIA_BASE + SPI_O_CCR) &amp;= ~SPI_CCR_SPICHAR_M; HWREGH(SPIA_BASE + SPI_O_CCR) |= 8 &lt;&lt; SPI_CCR_SPICHAR_S;</para>
+<para>Extracting the value of the SPICHAR field in the CCR register is as follows: <verbatim>x = (HWREGH(SPIA_BASE + SPI_O_CCR) &amp; SPI_CCR_SPICHAR_M) &gt;&gt; SPI_CCR_SPICHAR_S;
+</verbatim> </para>
+</sect1>
+<sect1 id="PROGRAMMING_MODELS_1autotoc_md2">
+<title>Software Driver Model</title>
+<para>In the software driver model, the API provided by the peripheral driver library is used by applications to control the peripherals. Because these drivers provide complete control of the peripherals in their normal mode of operation, it is possible to write an entire application without direct access to the hardware. This method provides for rapid development of the application without requiring detailed knowledge of the registers.</para>
+<para>The following function call programs the SPICHAR field of CCR register mentioned in the direct register access model as well as a few other fields and registers. <verbatim>SPI_setConfig(SPIA_BASE, 100000000, SPI_PROT_POL0PHA0,SPI_MODE_MASTER, 500000, 16);
+</verbatim> The drivers in the peripheral driver library are described in the remaining chapters in this document. They combine to form the software driver model.</para>
+</sect1>
+<sect1 id="PROGRAMMING_MODELS_1autotoc_md3">
+<title>Combining The Models</title>
+<para>The direct register access model and software driver model can be used together in a single application, allowing the most appropriate model to be applied as needed to any particular situation within the application. For example, the software driver model can be used to configure the peripherals (because this is not performance critical) and the direct register access model can be used for operation of the peripheral (which may be more performance critical). Or, the software driver model can be used for peripherals that are not performance critical (such as SCI used for data logging) and the direct register access model for performance critical peripherals.</para>
+<para>Additionally, the direct register access model can be used when there is no suitable driver library API for the desired task. Although an API may be available that performs a specific function on an individual bit or register, it could be more beneficial to use the direct register access programming model when performing tasks on entire registers or multiple bits at a given time. However, if there is an API available for the intended task it should be used as it will provide for more rapid development of the application without going into depth on programming the peripherals.</para>
+</sect1>
+<sect1 id="PROGRAMMING_MODELS_1autotoc_md4">
+<title>Documentation Credits</title>
+<para>This user guide is generated using doxygen, v1.8.20. See <ulink url="https://www.doxygen.nl/index.html">https://www.doxygen.nl/index.html</ulink> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/device/common_c28x/programming_models.md"/>
+  </compounddef>
+</doxygen>

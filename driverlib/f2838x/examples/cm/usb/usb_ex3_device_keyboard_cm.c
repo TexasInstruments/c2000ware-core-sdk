@@ -30,7 +30,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -63,7 +63,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 #include "cm.h"
 #include "usblib.h"
 #include "usbhid.h"
@@ -74,14 +73,12 @@
 #include "usb_hal.h"
 #include "usb_ex3_device_keyboard_structs.h"
 #include <string.h>
-
 //*****************************************************************************
 //
 // The system tick timer period.
 //
 //*****************************************************************************
 #define SYSTICKS_PER_SECOND     100
-
 //*****************************************************************************
 //
 // A mapping from the ASCII value received from the UART to the corresponding
@@ -186,14 +183,12 @@ static const char g_ppcKeyUsageCodes[][2] =
     { HID_KEYB_LEFT_SHIFT, HID_KEYB_USAGE_RBRACKET },  // } 0x7d
     { HID_KEYB_LEFT_SHIFT, HID_KEYB_USAGE_BQUOTE },    // ~ 0x7e
 };
-
 //*****************************************************************************
 //
 // This global indicates whether or not we are connected to a USB host.
 //
 //*****************************************************************************
 volatile bool g_bConnected = false;
-
 //*****************************************************************************
 //
 // This global indicates whether or not the USB bus is currently in the suspend
@@ -201,7 +196,6 @@ volatile bool g_bConnected = false;
 //
 //*****************************************************************************
 volatile bool g_bSuspended = false;
-
 //*****************************************************************************
 //
 // Global system tick counter holds elapsed time since the application started
@@ -209,7 +203,6 @@ volatile bool g_bSuspended = false;
 //
 //*****************************************************************************
 volatile uint32_t g_ui32SysTickCount;
-
 //*****************************************************************************
 //
 // The number of system ticks to wait for each USB packet to be sent before
@@ -217,7 +210,6 @@ volatile uint32_t g_ui32SysTickCount;
 //
 //*****************************************************************************
 #define MAX_SEND_DELAY          50
-
 //*****************************************************************************
 //
 // This global is set to true if the host sends a request to set or clear
@@ -225,7 +217,6 @@ volatile uint32_t g_ui32SysTickCount;
 //
 //*****************************************************************************
 volatile bool g_bDisplayUpdateRequired;
-
 //*****************************************************************************
 //
 // This enumeration holds the various states that the keyboard can be in during
@@ -238,19 +229,16 @@ volatile enum
     // Unconfigured.
     //
     STATE_UNCONFIGURED,
-
     //
     // No keys to send and not waiting on data.
     //
     STATE_IDLE,
-
     //
     // Waiting on data to be sent out.
     //
     STATE_SENDING
 }
 g_eKeyboardState = STATE_UNCONFIGURED;
-
 //*****************************************************************************
 //
 // Handles asynchronous events from the HID keyboard driver.
@@ -275,7 +263,6 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
 {
     switch (ui32Event)
     {
-
         //
         // The host has connected to us and configured the device.
         //
@@ -285,7 +272,6 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_bSuspended = false;
             break;
         }
-
         //
         // The host has disconnected from us.
         //
@@ -294,7 +280,6 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_bConnected = false;
             break;
         }
-
         //
         // We receive this event every time the host acknowledges transmission
         // of a report. It is used here purely as a way of determining whether
@@ -308,7 +293,6 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_eKeyboardState = STATE_IDLE;
             break;
         }
-
         //
         // This event indicates that the host has suspended the USB bus.
         //
@@ -317,7 +301,6 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_bSuspended = true;
             break;
         }
-
         //
         // This event signals that the host has resumed signaling on the bus.
         //
@@ -326,7 +309,6 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             g_bSuspended = false;
             break;
         }
-
         //
         // This event indicates that the host has sent us an Output or
         // Feature report and that the report is now in the buffer we provided
@@ -336,7 +318,6 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
         {
             break;
         }
-
         //
         // We ignore all other events.
         //
@@ -345,10 +326,8 @@ KeyboardHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgData,
             break;
         }
     }
-
     return(0);
 }
-
 //***************************************************************************
 //
 // Wait for a period of time for the state to become idle.
@@ -370,10 +349,8 @@ WaitForSendIdle(uint_fast32_t ui32TimeoutTicks)
     uint32_t ui32Start;
     uint32_t ui32Now;
     uint32_t ui32Elapsed;
-
     ui32Start = g_ui32SysTickCount;
     ui32Elapsed = 0;
-
     while(ui32Elapsed < ui32TimeoutTicks)
     {
         //
@@ -383,7 +360,6 @@ WaitForSendIdle(uint_fast32_t ui32TimeoutTicks)
         {
             return(true);
         }
-
         //
         // Determine how much time has elapsed since we started waiting.  This
         // should be safe across a wrap of g_ui32SysTickCount.
@@ -392,14 +368,12 @@ WaitForSendIdle(uint_fast32_t ui32TimeoutTicks)
         ui32Elapsed = ((ui32Start < ui32Now) ? (ui32Now - ui32Start) :
                      (((uint32_t)0xFFFFFFFF - ui32Start) + ui32Now + 1));
     }
-
     //
     // If we get here, we timed out so return a bad return code to let the
     // caller know.
     //
     return(false);
 }
-
 //*****************************************************************************
 //
 // Sends a string of characters via the USB HID keyboard interface.
@@ -409,7 +383,6 @@ void
 SendString(char *pcStr)
 {
     uint32_t ui32Char;
-
     //
     // Loop while there are more characters in the string.
     //
@@ -419,7 +392,6 @@ SendString(char *pcStr)
         // Get the next character from the string.
         //
         ui32Char = *pcStr++;
-
         //
         // Skip this character if it is a non-printable character.
         //
@@ -427,18 +399,15 @@ SendString(char *pcStr)
         {
             continue;
         }
-
         //
         // Convert the character into an index into the keyboard usage code
         // table.
         //
         ui32Char -= ' ';
-
         //
         // Send the key press message.
         //
         g_eKeyboardState = STATE_SENDING;
-
         if(USBDHIDKeyboardKeyStateChange((void *)&g_sKeyboardDevice,
                                          g_ppcKeyUsageCodes[ui32Char][0],
                                          g_ppcKeyUsageCodes[ui32Char][1],
@@ -446,7 +415,6 @@ SendString(char *pcStr)
         {
             return;
         }
-
         //
         // Wait until the key press message has been sent.
         //
@@ -455,19 +423,16 @@ SendString(char *pcStr)
             g_bConnected = 0;
             return;
         }
-
         //
         // Send the key release message.
         //
         g_eKeyboardState = STATE_SENDING;
-
         if(USBDHIDKeyboardKeyStateChange((void *)&g_sKeyboardDevice,
                                          0, g_ppcKeyUsageCodes[ui32Char][1],
                                          false) != KEYB_SUCCESS)
         {
             return;
         }
-
         //
         // Wait until the key release message has been sent.
         //
@@ -478,7 +443,6 @@ SendString(char *pcStr)
         }
     }
 }
-
 //*****************************************************************************
 //
 // This is the interrupt handler for the SysTick interrupt.  It is used to
@@ -491,7 +455,6 @@ SysTickIntHandler(void)
 {
     g_ui32SysTickCount++;
 }
-
 //*****************************************************************************
 //
 // This is the main loop that runs the application.
@@ -504,22 +467,18 @@ main(void)
     uint32_t ui32Button, ui32Previous;
     bool bLastSuspend;
     g_bConnected = false;
-
     //
     // Initialize device clock and peripherals
     //
     CM_init();
-
     //
     // Initialize the UART for console I/O.
     //
     UARTStdioConfig(UART0_BASE, 115200, UART_CLK_FREQ_USB);
-
     //
     // Register the interrupt handler, for USB.
     //
     Interrupt_registerHandler(INT_USB0, &CM_USB0DeviceIntHandler);
-
     //
     // Set the system tick to fire 100 times per second.
     //
@@ -528,50 +487,42 @@ main(void)
     SYSTICK_setPeriod(120000000 / SYSTICKS_PER_SECOND);
     SYSTICK_enableInterrupt();
     SYSTICK_enableCounter();
-
     //
     // Register interrupt handlers in the RAM vector table
     //
     Interrupt_registerHandler(FAULT_SYSTICK, SysTickIntHandler);
-
     //
     // Enable interrupts now that the application is ready to start.
     //
     Interrupt_enableInProcessor();
-
     //
     // Not configured initially.
     //
     g_bConnected = false;
     g_bSuspended = false;
     bLastSuspend = false;
-
     //
     // Set the USB stack mode to Device mode with VBUS monitoring.
     //
     USBStackModeSet(0, eUSBModeForceDevice, 0);
-
     //
     // Pass our device information to the USB HID device class driver,
     // initialize the USB
     // controller and connect the device to the bus.
     //
     USBDHIDKeyboardInit(0, &g_sKeyboardDevice);
-
     //
     // The main loop starts here.  We begin by waiting for a host connection
     // then drop into the main keyboard handling section.  If the host
     // disconnects, we return to the top and wait for a new connection.
     //
     ui32Previous = 1;
-
     while(1)
     {
         //
         // Tell the user what we are doing and provide some basic instructions.
         //
         UARTprintf("Waiting for host...\n");
-
         //
         // Wait for USB configuration to complete. Even in this state, we look
         // for key presses and, if any occur while the bus is suspended, we
@@ -583,7 +534,6 @@ main(void)
             // Remember the current time.
             //
             ui32LastTickCount = g_ui32SysTickCount;
-
             //
             // Has the suspend state changed since last time we checked?
             //
@@ -596,7 +546,6 @@ main(void)
                 UARTprintf(bLastSuspend ? "Bus suspended...\n" :
                            "Waiting for host...\n");
             }
-
             //
             // Update the global variable ui32Button in the expression window
             // to request a remote wake up of the USB.
@@ -609,7 +558,6 @@ main(void)
                 USBDHIDKeyboardRemoteWakeupRequest((void *)&g_sKeyboardDevice);
             }
             ui32Previous = ui32Button;
-
             //
             // Wait for at least 1 system tick to have gone by before we poll
             // the buttons again.
@@ -618,23 +566,19 @@ main(void)
             {
             }
         }
-
         //
         // Update the status.
         //
         UARTprintf("Host connected...\n");
-
         //
         // Enter the idle state.
         //
         g_eKeyboardState = STATE_IDLE;
-
         //
         // Assume that the bus is not currently suspended if we have just been
         // configured.
         //
         bLastSuspend = false;
-
         //
         // Keep transferring characters from the UART to the USB host for as
         // long as we are connected to the host.
@@ -645,7 +589,6 @@ main(void)
             // Remember the current time.
             //
             ui32LastTickCount = g_ui32SysTickCount;
-
             //
             // Has the suspend state changed since last time we checked?
             //
@@ -658,7 +601,6 @@ main(void)
                 UARTprintf(bLastSuspend ? "Bus suspended...\n" :
                            "Host connected...\n");
             }
-
             //
             // Update the global variable ui32Button in the expression window
             // to send the string if the bus is not suspended.
@@ -680,7 +622,6 @@ main(void)
                 }
             }
             ui32Previous = ui32Button;
-
             //
             // Wait for at least 1 system tick to have gone by before we poll
             // the buttons again.

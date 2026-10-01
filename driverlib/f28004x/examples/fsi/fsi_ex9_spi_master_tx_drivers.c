@@ -70,28 +70,23 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "device.h"
 #include "driverlib.h"
 #include "spifsi.h"
-
 // Period (in us) with which CPU Timer-0 will send events
 #define TIMER_PERIOD_US 1000U
 #define PRESCALER_VAL   25U
 #define SPI_CLK_SPEED   500000U
-
 //
 // Globals, User can modify these parameters as per usecase
 //
-
 //
 // Number of words per transfer may be from 1 - 16
 //
 uint16_t nLength;
-
 //
 // FrameTag and userData used with Data/Ping/Error transfers
 //
@@ -99,25 +94,21 @@ SPIFSI_FrameTag txDataFrameTag = SPIFSI_FRAME_TAG10;
 SPIFSI_FrameTag txPingFrameTag = SPIFSI_FRAME_TAG0;
 SPIFSI_FrameTag txErrorFrameTag = SPIFSI_FRAME_TAG15;
 uint16_t txUserData = 0x47U;
-
 //
 // SPI-side error flag.
 //
 SPIFSI_Error spifsiErrorStatus = SPIFSI_NO_ERROR;
-
 //
 // Globals, these are not config parameters, user are not required to edit them
 //
 uint16_t txEventSts = 0U, rxEventSts = 0U;
 uint16_t *txBufAddr = 0U, *rxBufAddr = 0U;
-
 //
 // Interrupt Line flag.
 //
 volatile uint32_t fsiTxInt1Received = 0U,fsiTxInt2Received = 0U;
 volatile uint32_t fsiRxInt1Received = 0U,fsiRxInt2Received = 0U;
 volatile uint32_t spiRxIntReceived = 0U;
-
 //
 // dataFrameCntr - number of frames transmitted from FSI.
 // spiRxCntr - number of frames received by SPI.
@@ -132,7 +123,6 @@ uint32_t error = 0U;
 SPIFSI_FrameInfo  spiFrameInfo;
 uint16_t data[16];
 uint16_t txBufData[18] = { 0 };
-
 //
 // Function Prototypes
 //
@@ -149,8 +139,6 @@ __interrupt void fsiRxInt1ISR(void);
 __interrupt void fsiRxInt2ISR(void);
 __interrupt void spiRxFIFOISR(void);
 void disableAllFSIInterrupts(void);
-
-
 //*****************************************************************************
 //
 // Main.
@@ -159,7 +147,6 @@ void disableAllFSIInterrupts(void);
 void main(void)
 {
     init();
-
     //
     // Now, start sending data frames from FSI Tx and receive + verify at SPI end
     // Come out of loop if there is any mismatch btw transmit and receive data.
@@ -170,18 +157,15 @@ void main(void)
         // Send Ping frame with ping tag, then decode/verify on SPI side.
         //
         pingOrErrorFrame(SPIFSI_FRAME_TYPE_PING);
-
         //
         // Send Error frame with error tag, then decode/verify on SPI side.
         //
         pingOrErrorFrame(SPIFSI_FRAME_TYPE_ERROR);
-
         //
         // Send 1 - 16 words data frame with data tag,
         // then decode/verify on SPI side.
         //
         dataFrame();
-
         //
         // In case of comparison failures, break execution
         // Else, increment received data frame counter and reset FSI Tx buffer
@@ -192,19 +176,16 @@ void main(void)
             break;
         }
     }
-
     //
     // Coming out of infinite while loop means data comparison test failed.
     // Debug further to root-cause
     //
     ESTOP0;
-
     //
     // Infinite loop.
     //
     while(1U);
 }
-
 //*****************************************************************************
 //
 // Sending PING or ERROR frame, then verifying. (FSI -> SPI)
@@ -216,7 +197,6 @@ void pingOrErrorFrame(SPIFSI_FrameType frameType)
     // set frameType.
     //
     FSI_setTxFrameType(FSITXA_BASE, (FSI_FrameType) frameType);
-
     //
     // Set frameTag then transmit.
     //
@@ -229,7 +209,6 @@ void pingOrErrorFrame(SPIFSI_FrameType frameType)
         FSI_setTxFrameTag(FSITXA_BASE, (FSI_FrameTag) txErrorFrameTag);
     }
     FSI_startTxTransmit(FSITXA_BASE);
-
     //
     // Wait for FSI Tx to finish transmit operation
     // Also, check that the Transmit frame done interrupt was the source
@@ -237,18 +216,15 @@ void pingOrErrorFrame(SPIFSI_FrameType frameType)
     while(fsiTxInt1Received != 1U);
     fsiTxInt1Received = 0U;
     compare16(txEventSts, FSI_TX_EVT_FRAME_DONE);
-
     //
     // Increment dataFrameCntr.
     //
     dataFrameCntr++;
-
     //
     // Wait till SPI completely receives a frame.
     //
     while(spiRxIntReceived != 1U);
     spiRxIntReceived = 0U;
-
     //
     // Compare frameType/Tag
     //
@@ -261,14 +237,12 @@ void pingOrErrorFrame(SPIFSI_FrameType frameType)
     {
         compare16(spiFrameInfo.frameTag, txErrorFrameTag);
     }
-
     //
     // Reset FSI_TxBuffer and SPI_RXFIFO
     //
     FSI_setTxBufferPtr(FSITXA_BASE, 0U);
     SPI_resetRxFIFO(SPIA_BASE);
 }
-
 //*****************************************************************************
 //
 // Sending 1 to 16 word frames, then verifying. (FSI -> SPI)
@@ -277,14 +251,12 @@ void pingOrErrorFrame(SPIFSI_FrameType frameType)
 void dataFrame(void)
 {
     SPIFSI_FrameType frameType;
-
     for (nLength = 1; nLength <= 16; nLength++)
     {
         //
         // set nLength for NWORD_DATA_FRAME.
         //
         spiFrameInfo.nLength = nLength;
-
         //
         // If nLength is not 1,2,4, nor 6, use NWORD_DATA_FRAME.
         //
@@ -304,21 +276,18 @@ void dataFrame(void)
                 break;
             default:
                 frameType = SPIFSI_FRAME_TYPE_NWORD_DATA;
-
                 //
                 // Let FSI know the number of data words.
                 //
                 FSI_setTxSoftwareFrameSize(FSITXA_BASE, nLength);
                 break;
         }
-
         //
         // set tag, userData, and frameType.
         //
         FSI_setTxFrameTag(FSITXA_BASE, (FSI_FrameTag) txDataFrameTag);
         FSI_setTxUserDefinedData(FSITXA_BASE, txUserData);
         FSI_setTxFrameType(FSITXA_BASE, (FSI_FrameType) frameType);
-
         //
         // Setting for requested nLength with transfers
         // Write data into Tx buffer and set other Frame specific fields
@@ -326,7 +295,6 @@ void dataFrame(void)
         prepareTxBufData(nLength);
         FSI_writeTxBuffer(FSITXA_BASE, txBufData, nLength, 0U);
         FSI_startTxTransmit(FSITXA_BASE);
-
         //
         // Wait for FSI Tx to finish transmit operation
         // Also, check that the Transmit frame done interrupt was the source
@@ -334,18 +302,15 @@ void dataFrame(void)
         while(fsiTxInt1Received != 1U);
         fsiTxInt1Received = 0U;
         compare16(txEventSts, FSI_TX_EVT_FRAME_DONE);
-
         //
         // Increment dataFrameCntr.
         //
         dataFrameCntr++;
-
         //
         // Wait till SPI completely receives a frame.
         //
         while(spiRxIntReceived != 1U);
         spiRxIntReceived = 0U;
-
         //
         // Compare frameType, frameTag, userData, and data,
         //
@@ -353,7 +318,6 @@ void dataFrame(void)
         compare16(spiFrameInfo.frameTag, txDataFrameTag);
         compare16(spiFrameInfo.userData, txUserData);
         compareBufData(0U, 0U, spiFrameInfo.nLength);
-
         //
         // Reset FSI_TxBuffer and SPI_RXFIFO
         //
@@ -361,7 +325,6 @@ void dataFrame(void)
         SPI_resetRxFIFO(SPIA_BASE);
     }
 }
-
 //*****************************************************************************
 //
 // Device/variable initialization.
@@ -369,28 +332,23 @@ void dataFrame(void)
 //*****************************************************************************
 void init(void)
 {
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Interrupts that are used in this example are re-mapped to ISR functions
     // found within this file. Total 4; FSI Tx/Rx :: INT1/INT2
@@ -400,23 +358,19 @@ void init(void)
     Interrupt_register(INT_FSIRXA_INT1, &fsiRxInt1ISR);
     Interrupt_register(INT_FSIRXA_INT2, &fsiRxInt2ISR);
     Interrupt_register(INT_SPIA_RX, &spiRxFIFOISR);
-
     // TODO- Add logic to calculate PRESCALER_VAL based on user input FSI CLK
     FSI_performTxInitialization(FSITXA_BASE, PRESCALER_VAL);
     //FSI_disableRxInternalLoopback(FSIRXA_BASE);
-
     //
     // Configure GPIOs for FSI Tx and SPIA
     //
     GPIO_setPinConfig(GPIO_7_FSITXA_CLK);
     GPIO_setPinConfig(GPIO_6_FSITXA_D0);
     GPIO_setPinConfig(GPIO_5_FSITXA_D1);
-
     GPIO_setPinConfig(DEVICE_GPIO_CFG_SPICLKA);
     GPIO_setPinConfig(GPIO_11_SPIA_STE);
     GPIO_setPinConfig(DEVICE_GPIO_CFG_SPISOMIA);
     GPIO_setPinConfig(DEVICE_GPIO_CFG_SPISIMOA);
-
     //
     // Set GP8, 9, 10, 11 (56, 16, 17, 11 on LaunchPad) to be 
     // asynchronous(pass through without delay)
@@ -426,17 +380,14 @@ void init(void)
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_SPICLKA, GPIO_QUAL_ASYNC);
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_SPISIMOA, GPIO_QUAL_ASYNC);
     GPIO_setQualificationMode(11, GPIO_QUAL_ASYNC);
-
     //
     // Configure SPI module for Rx operation
     //
     configureSPI();
-
     //
     // enable SPI mode on the FSIRX
     //
     FSI_enableTxSPIMode(FSITXA_BASE);
-
     //
     // Enable FSI Tx/Rx interrupts
     //
@@ -445,30 +396,25 @@ void init(void)
     Interrupt_enable(INT_FSIRXA_INT1);
     Interrupt_enable(INT_FSIRXA_INT2);
     Interrupt_enable(INT_SPIA_RX);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Enable normal data transfer events to be sent over INT1 line
     //
     FSI_enableTxInterrupt(FSITXA_BASE, FSI_INT1, FSI_TX_EVT_FRAME_DONE);
-
     //
     // initialize spiFrameInfo.data.
     //
     spiFrameInfo.data = data;
-
     //
     // Assigning base addresses of Tx/Rx data buffer to globals
     //
     txBufAddr = (uint16_t *) FSI_getTxBufferAddress(FSITXA_BASE);
     rxBufAddr = (uint16_t *) spiFrameInfo.data;
 }
-
 //*****************************************************************************
 //
 // prepareTxBufData - Update array which is used as source to Tx data buffer
@@ -477,13 +423,11 @@ void init(void)
 void prepareTxBufData(uint16_t nLength)
 {
     uint16_t i;
-
     for(i = 0; i < nLength; i++)
     {
         txBufData[i] = txBufData[i] + 1;
     }
 }
-
 //*****************************************************************************
 //
 // fsiTxInt1ISR - FSI Tx Interrupt on INsT1 line
@@ -492,16 +436,13 @@ void prepareTxBufData(uint16_t nLength)
 __interrupt void fsiTxInt1ISR(void)
 {
     fsiTxInt1Received = 1U;
-
     txEventSts = FSI_getTxEventStatus(FSITXA_BASE);
-
     //
     // Clear the interrupt flag and issue ACK
     //
     FSI_clearTxEvents(FSITXA_BASE, FSI_TX_EVTMASK);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
 }
-
 //*****************************************************************************
 //
 // fsiTxInt2ISR - FSI Tx Interrupt on INT2 line
@@ -510,24 +451,19 @@ __interrupt void fsiTxInt1ISR(void)
 __interrupt void fsiTxInt2ISR(void)
 {
     fsiTxInt2Received = 1U;
-
     txEventSts = FSI_getTxEventStatus(FSITXA_BASE);
-
     //
     // Clear the interrupt flag and issue ACK
     //
     FSI_clearTxEvents(FSITXA_BASE, FSI_TX_EVTMASK);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
-
     disableAllFSIInterrupts();
-
     //
     // INT2 line is set to fire for error events, stop immediately. Actual Error
     // is captured in txEventSts for debug
     //
     ESTOP0;
 }
-
 //*****************************************************************************
 //
 // fsiRxInt1ISR - FSI Rx Interrupt on INT1 line
@@ -536,17 +472,14 @@ __interrupt void fsiTxInt2ISR(void)
 __interrupt void fsiRxInt1ISR(void)
 {
     rxEventSts = FSI_getRxEventStatus(FSIRXA_BASE);
-
     fsiRxInt1Received = 1U;
     dataFrameCntr++;
-
     //
     // Clear the interrupt flag and issue ACK
     //
     FSI_clearRxEvents(FSIRXA_BASE,rxEventSts);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
 }
-
 //*****************************************************************************
 //
 // fsiRxInt2ISR - FSI Rx Interrupt on INT2 line
@@ -555,24 +488,19 @@ __interrupt void fsiRxInt1ISR(void)
 __interrupt void fsiRxInt2ISR(void)
 {
     rxEventSts = FSI_getRxEventStatus(FSIRXA_BASE);
-
     fsiRxInt2Received = fsiRxInt2Received + 1U;
-
     //
     // Clear the interrupt flag and issue ACK
     //
     FSI_clearRxEvents(FSIRXA_BASE,rxEventSts);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
-
     disableAllFSIInterrupts();
-
     //
     // INT2 line is set to fire for error events, stop immediately. Error
     // is captured in rxEventSts for debug
     //
     ESTOP0;
 }
-
 //*****************************************************************************
 //
 // SPI A Receive FIFO ISR at RX level 1.
@@ -590,24 +518,20 @@ __interrupt void spiRxFIFOISR(void)
         error++;
         ESTOP0;
     }
-
     //
     // Set the global interrupt.
     //
     spiRxIntReceived = 1U;
-
     //
     // Number of frames received on SPI side.
     //
     spiRxCntr++;
-
     //
     // Clear interrupt flag and issue ACK
     //
     SPI_clearInterruptStatus(SPIA_BASE, SPI_INT_RXFF);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP6);
 }
-
 //*****************************************************************************
 //
 // disableAllFSIInterrupts - Disables all event interrupts in both FSI Tx/Rx,
@@ -619,11 +543,9 @@ void disableAllFSIInterrupts(void)
     FSI_disableTxInterrupt(FSITXA_BASE, FSI_INT2, FSI_TX_EVTMASK);
     FSI_disableRxInterrupt(FSIRXA_BASE, FSI_INT1, FSI_RX_EVTMASK);
     FSI_disableRxInterrupt(FSIRXA_BASE, FSI_INT2, FSI_RX_EVTMASK);
-
     FSI_clearTxEvents(FSITXA_BASE, FSI_TX_EVTMASK);
     FSI_clearRxEvents(FSIRXA_BASE, FSI_RX_EVTMASK);
 }
-
 //*****************************************************************************
 //
 // compare16 - Compares two 16 bit values and increments global error flag by 1
@@ -637,7 +559,6 @@ static inline void compare16(uint16_t val1, uint16_t val2)
         error++;
     }
 }
-
 //*****************************************************************************
 //
 // compareBufData - Compares if received data is same as transmitted ones
@@ -647,7 +568,6 @@ static inline void compare16(uint16_t val1, uint16_t val2)
 void compareBufData(uint16_t txBufIndex, uint16_t rxBufIndex, uint16_t nLength)
 {
     uint16_t i;
-
     for(i = 0; i < nLength; i++)
     {
         if(rxBufAddr[rxBufIndex] != txBufAddr[txBufIndex])
@@ -655,12 +575,10 @@ void compareBufData(uint16_t txBufIndex, uint16_t rxBufIndex, uint16_t nLength)
             error++;
             return;
         }
-
         txBufIndex++;
         rxBufIndex++;
     }
 }
-
 //*****************************************************************************
 //
 // configureSPI - Configure SPI for Rx slave operation
@@ -669,20 +587,15 @@ void compareBufData(uint16_t txBufIndex, uint16_t rxBufIndex, uint16_t nLength)
 void configureSPI(void)
 {
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_SPIA);
-
     SPI_disableModule(SPIA_BASE);
-
     //
     // SPI configuration. Use a 500kHz SPICLK and 16-bit word size.
     // SPICLK will be an input driven by FSI_TXCLK.
     //
     SPI_setConfig(SPIA_BASE, DEVICE_LSPCLK_FREQ, SPI_PROT_POL0PHA0,
                   SPI_MODE_SLAVE, SPI_CLK_SPEED, 16U);
-
-
     SPI_enableFIFO(SPIA_BASE);
     SPI_setEmulationMode(SPIA_BASE, SPI_EMULATION_FREE_RUN);
-
     //
     // interrupt at FIFO level 1.
     //
@@ -690,10 +603,8 @@ void configureSPI(void)
     SPI_setFIFOInterruptLevel(SPIA_BASE, SPI_FIFO_TX1, SPI_FIFO_RX1);
     SPI_enableInterrupt(SPIA_BASE, SPI_INT_RXFF);
     SPI_disableInterrupt(SPIA_BASE, SPI_INT_TXFF);
-
     SPI_enableModule(SPIA_BASE);
 }
-
 //
 // End of File
 //

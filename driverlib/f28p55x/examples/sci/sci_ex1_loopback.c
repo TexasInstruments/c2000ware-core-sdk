@@ -32,7 +32,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -65,25 +65,21 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
-
 //
 // Globals
 //
 uint16_t loopCount;
 uint16_t errorCount;
-
 //
 // Function Prototypes
 //
 void error();
-
 //
 // Main
 //
@@ -91,48 +87,39 @@ void main(void)
 {
     uint16_t sendChar;
     uint16_t receivedChar;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Setup GPIO by disabling pin locks and enabling pullups
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Board Initialization
     //
     Board_init();
-
     //
     // Enables CPU interrupts
     //
     Interrupt_enableGlobal();
-
     //
     // Initialize counts
     //
     loopCount = 0;
     errorCount = 0;
-
     //
     // Send a character starting with 0
     //
     sendChar = 0;
-
     //
     // Send Characters forever starting with 0x00 and going through 0xFF.
     // After sending each, check the receive buffer for the correct value.
@@ -140,7 +127,6 @@ void main(void)
     for(;;)
     {
         SCI_writeCharNonBlocking(mySCI0_BASE, sendChar);
-
         //
         // Wait for RRDY/RXFFST = 1 for 1 data available in FIFO
         //
@@ -148,12 +134,10 @@ void main(void)
         {
             ;
         }
-
         //
         // Check received character
         //
         receivedChar = SCI_readCharBlockingFIFO(mySCI0_BASE);
-
         //
         // Received character not correct
         //
@@ -163,21 +147,17 @@ void main(void)
             // asm("     ESTOP0");  // Uncomment to stop the test here
             for (;;);
         }
-
         //
         // Move to the next character and repeat the test
         //
         sendChar++;
-
         //
         // Limit the character to 8-bits
         //
         sendChar &= 0x00FF;
         loopCount++;
-
     }
 }
-
 //
 // End of file
 //

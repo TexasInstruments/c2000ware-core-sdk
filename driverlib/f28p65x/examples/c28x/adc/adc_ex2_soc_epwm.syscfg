@@ -1,11 +1,15 @@
-
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P65x" --part "F28P65x_256ZEJ" --package "256ZEJ" --board "/boards/TMDSCNCD28P65X" --context "CPU1"
+ * @v2CliArgs --device "TMS320F28P650DK" --package "256ZEJ" --variant "TMS320F28P650DK9" --context "CPU1"
+ */
 /**
  * Import the modules used in this configuration.
  */
 const adc     = scripting.addModule("/driverlib/adc.js", {}, false);
 const adc1    = adc.addInstance();
 const asysctl = scripting.addModule("/driverlib/asysctl.js");
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -22,6 +26,5 @@ adc1.adcInt1.enableInterrupt = true;
 adc1.adcInt1.interruptHandler = "adcA1ISR";
 adc1.adcSignalMode     = "ADC_MODE_SINGLE_ENDED";
 adc1.adcResolutionMode = "ADC_RESOLUTION_12BIT";
-
 asysctl.analogReference        = "INTERNAL";
 asysctl.analogReferenceVoltage = "1P65";

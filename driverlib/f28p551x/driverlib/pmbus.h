@@ -773,7 +773,7 @@ static inline uint16_t PMBus_getOwnAddress(uint32_t base)
     //
     ASSERT(PMBus_isBaseValid(base));
 
-    return((HWREG(base + PMBUS_O_PMBHTA) & 0xFEU) >> 1U);
+    return((HWREG(base + PMBUS_O_PMBHTA) & PMBUS_PMBHTA_TARGET_ADDR_M) >> PMBUS_PMBHTA_TARGET_ADDR_S);
 }
 
 //*****************************************************************************
@@ -781,7 +781,7 @@ static inline uint16_t PMBus_getOwnAddress(uint32_t base)
 //! Set the current device address
 //!
 //! \param base is the base address of the PMBus instance used.
-//! \param address : Address to be configured.
+//! \param Ownaddress : Address to be configured.
 //!
 //! This function configures the current device address, this
 //! will be the own address of the module.
@@ -802,8 +802,9 @@ static inline void PMBus_setOwnAddress(uint32_t base, uint16_t Ownaddress)
     //
     // Write the address to the PMBSC register (bits 6:0)
     //
-    HWREG(base + PMBUS_O_PMBTCR)|= Ownaddress;
-
+    HWREG(base + PMBUS_O_PMBTCR) &= ~(uint32_t)PMBUS_PMBTCR_TARGET_ADDR_M;
+    HWREG(base + PMBUS_O_PMBTCR) |=
+        (((uint32_t)Ownaddress << PMBUS_PMBTCR_TARGET_ADDR_S) & PMBUS_PMBTCR_TARGET_ADDR_M);
     EDIS;
 }
 
@@ -812,7 +813,7 @@ static inline void PMBus_setOwnAddress(uint32_t base, uint16_t Ownaddress)
 //! Set the target address
 //!
 //! \param base is the base address of the PMBus instance used.
-//! \param address : Target Address to be configured.
+//! \param targetAddress : Target Address to be configured.
 //!
 //! This function configures the current device address, this
 //! will be the target address.
@@ -832,8 +833,10 @@ static inline void PMBus_setTargetAddress(uint32_t base, uint16_t targetAddress)
     //
     // Write the target address to PMBMC register
     //
-    HWREG(base + PMBUS_O_PMBCCR) |= (((uint32_t)targetAddress << PMBUS_PMBCCR_TARGET_ADDR_S) &
-                                                PMBUS_PMBCCR_TARGET_ADDR_M);
+    HWREG(base + PMBUS_O_PMBCCR) &= ~(uint32_t)PMBUS_PMBCCR_TARGET_ADDR_M;
+    HWREG(base + PMBUS_O_PMBCCR) |=
+        (((uint32_t)targetAddress << PMBUS_PMBCCR_TARGET_ADDR_S) & PMBUS_PMBCCR_TARGET_ADDR_M);
+
     EDIS;
 }
 
@@ -858,7 +861,7 @@ static inline PMBus_accessType PMBus_getCurrentAccessType(uint32_t base)
     //
     ASSERT(PMBus_isBaseValid(base));
 
-    return((PMBus_accessType)(HWREG(base + PMBUS_O_PMBHTA) & 0x01U));
+    return((PMBus_accessType)(HWREG(base + PMBUS_O_PMBHTA) & PMBUS_PMBHTA_TARGET_RW));
 }
 
 //*****************************************************************************
@@ -968,7 +971,7 @@ void PMBus_disableZeroHoldTime(uint32_t base)
 {
     ASSERT(PMBus_isBaseValid(base));
 
-    HWREG(base + PMBUS_O_PMBCTRL) = HWREG(base + PMBUS_O_PMBCTRL) & (~PMBUS_PMBCTRL_ZH_EN);
+    HWREG(base + PMBUS_O_PMBCTRL) &= ~(uint32_t)PMBUS_PMBCTRL_ZH_EN;
 }
 
 //*****************************************************************************

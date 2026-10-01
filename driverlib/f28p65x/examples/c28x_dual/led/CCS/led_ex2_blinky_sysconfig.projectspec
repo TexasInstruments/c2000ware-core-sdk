@@ -9,10 +9,11 @@
         "
         device="TMS320F28P650DK9"
         outputType="system"
-        cgtVersion="22.6.3.LTS"
+        cgtVersion="25.11.1.LTS"
         >
         <pathVariable name="C2000WARE_ROOT" path="../../../../../../" scope="project" />
         <file path="../system.xml" action="copy" openOnCreation="false"/>
+        <file path="./README.md" action="copy" targetDirectory="" />     
         <configuration name="FLASH"
         ></configuration>
         <configuration name="RAM"
@@ -25,7 +26,7 @@
   <project
         name="led_ex2_blinky_sysconfig_cpu1"
         device="TMS320F28P650DK9"
-        cgtVersion="22.6.3.LTS"
+        cgtVersion="25.11.1.LTS"
         outputFormat="ELF"
         launchWizard="False"
         linkerCommandFile=""
@@ -54,17 +55,23 @@
   <project
         name="led_ex2_blinky_sysconfig_cpu2"
         device="TMS320F28P650DK9"
-        cgtVersion="22.6.3.LTS"
+        cgtVersion="25.11.1.LTS"
         outputFormat="ELF"
         launchWizard="False"
         linkerCommandFile=""
 	enableSysConfigTool="true"
 	sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F28P65x --package 256ZEJ --part F28P65x_256ZEJ --context CPU2"
         >
-    <configuration name="RAM" compilerBuildOptions=  "--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -v28 -ml -mt --cla_support=cla2 --define=RAM --float_support=fpu64 --tmu_support=tmu1 --define=DEBUG --define=CPU2 --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 " />
-    <configuration name="FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=_FLASH -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --tmu_support=tmu1 --define=DEBUG --define=CPU2 --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 --define=_FLASH " />
-    <configuration name="RAM_LAUNCHXL" compilerBuildOptions=  "--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -v28 -ml -mt --cla_support=cla2 --define=RAM --float_support=fpu64 --tmu_support=tmu1 --define=DEBUG --define=CPU2 --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 " />
-    <configuration name="FLASH_LAUNCHXL" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=_FLASH -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --tmu_support=tmu1 --define=DEBUG --define=CPU2 --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 --define=_FLASH " />
+    <configuration name="RAM" compilerBuildOptions=  "--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -v28 -ml -mt --cla_support=cla2 --define=RAM --float_support=fpu64 --tmu_support=tmu1 --define=DEBUG --define=CPU2 --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 " 
+    />
+    <configuration name="FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=_FLASH -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --tmu_support=tmu1 --define=DEBUG --define=CPU2 --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 --define=_FLASH "
+    postBuildStep="${CG_TOOL_ROOT}/bin/hex2000.exe --memwidth=16 --romwidth=16 -ii --map='..\..\led_ex2_blinky_sysconfig_multi\combined.map' '..\..\led_ex2_blinky_sysconfig_cpu1\FLASH\led_ex2_blinky_sysconfig_cpu1.out' '..\..\led_ex2_blinky_sysconfig_cpu2\FLASH\led_ex2_blinky_sysconfig_cpu2.out' -o '..\..\led_ex2_blinky_sysconfig_multi\combined.hex'"
+     />
+    <configuration name="RAM_LAUNCHXL" compilerBuildOptions=  "--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -v28 -ml -mt --cla_support=cla2 --define=RAM --float_support=fpu64 --tmu_support=tmu1 --define=DEBUG --define=CPU2 --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 "
+    />
+    <configuration name="FLASH_LAUNCHXL" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=_FLASH -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --tmu_support=tmu1 --define=DEBUG --define=CPU2 --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 --define=_FLASH " 
+    postBuildStep="${CG_TOOL_ROOT}/bin/hex2000.exe --memwidth=16 --romwidth=16 -ii --map='..\..\led_ex2_blinky_sysconfig_multi\combined.map' '..\..\led_ex2_blinky_sysconfig_cpu1\FLASH_LAUNCHXL\led_ex2_blinky_sysconfig_cpu1.out' '..\..\led_ex2_blinky_sysconfig_cpu2\FLASH_LAUNCHXL\led_ex2_blinky_sysconfig_cpu2.out' -o '..\..\led_ex2_blinky_sysconfig_multi\combined.hex'"
+    />
     <pathVariable name="C2000WARE_ROOT" path="../../../../../../" scope="project" />
     <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../driverlib" scope="project" />        
     <file action="copy" path="../../../../../../device_support/f28p65x/common/include/driverlib.h" targetDirectory="device" />

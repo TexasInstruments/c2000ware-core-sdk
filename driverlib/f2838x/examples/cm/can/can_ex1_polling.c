@@ -31,23 +31,18 @@
 //!
 //
 //#############################################################################
-
 //
 // Included Files
 //
 #include "cm.h"
-
 //
 // Defines
 //
 #define MSG_DATA_LENGTH    2
-
 //
 // Globals
 //
 volatile unsigned long msgCount = 0;
-
-
 //
 // Main
 //
@@ -55,17 +50,14 @@ void main(void)
 {
     volatile uint32_t delay;
     uint8_t txMsgData[2], rxMsgData[2];
-
     //
     // Initialize device clock and peripherals
     //
     CM_init();
-
     //
     // Initialize the CAN controller
     //
     CAN_initModule(CANA_BASE);
-
     //
     // Set up the CAN bus bit rate to 500kHz
     // Refer to the Driver Library User Guide for information on how to set
@@ -73,12 +65,10 @@ void main(void)
     // for more information about the CAN module clocking.
     //
     CAN_setBitRate(CANA_BASE, CM_CLK_FREQ, 500000, 16);
-
     //
     // Enable CAN test mode with external loopback
     //
     CAN_enableTestMode(CANA_BASE, CAN_TEST_EXL);
-
     //
     // Initialize the transmit message object used for sending CAN messages.
     // Message Object Parameters:
@@ -93,7 +83,6 @@ void main(void)
     CAN_setupMessageObject(CANA_BASE, 1, 0x1234, CAN_MSG_FRAME_STD,
                            CAN_MSG_OBJ_TYPE_TX, 0, CAN_MSG_OBJ_NO_FLAGS,
                            MSG_DATA_LENGTH);
-
     //
     // Initialize the receive message object used for receiving CAN messages.
     // Message Object Parameters:
@@ -108,19 +97,16 @@ void main(void)
     CAN_setupMessageObject(CANA_BASE, 2, 0x1234, CAN_MSG_FRAME_STD,
                            CAN_MSG_OBJ_TYPE_RX, 0, CAN_MSG_OBJ_NO_FLAGS,
                            MSG_DATA_LENGTH);
-
     //
     // Start CAN module operations
     //
     CAN_startModule(CANA_BASE);
-
     //
     // Setup send and receive buffers
     //
     txMsgData[0] = 0x01;
     txMsgData[1] = 0x02;
     *(uint16_t *)rxMsgData = 0;
-
     //
     // Loop Forever - Send and Receive data continuously
     //
@@ -130,12 +116,10 @@ void main(void)
         // Send CAN message data from message object 1
         //
         CAN_sendMessage(CANA_BASE, 1, MSG_DATA_LENGTH, txMsgData);
-
         //
         // Delay before receiving the data
         //
         for(delay = 0U; delay < 50000; delay++);
-
         //
         // Read CAN message object 2 and check for new data
         //
@@ -169,13 +153,11 @@ void main(void)
             //
             __asm("   bkpt #0");
         }
-
         //
         // Increment the value in the transmitted message data.
         //
         txMsgData[0] += 0x01;
         txMsgData[1] += 0x01;
-
         //
         // Reset data if exceeds a byte
         //
@@ -189,7 +171,6 @@ void main(void)
         }
     }
 }
-
 //
 // End of File
 //

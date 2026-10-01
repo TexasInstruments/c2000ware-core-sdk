@@ -1,4 +1,9 @@
-
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P551x" --part "F28P551x_100PZ" --package "100PZ" --context "system"
+ * @v2CliArgs --device "TMS320F28P551SG" --package "100PZ" --variant "TMS320F28P551SG5" --context "system"
+ */
 /**
  * Import the modules used in this configuration.
  */
@@ -14,7 +19,6 @@ const gpio1           = gpio.addInstance();
 const TILE            = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/TILE", {}, false);
 const TILE1           = TILE.addInstance();
 const TILE2           = TILE.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -23,25 +27,20 @@ clb1.inputTypeCLB_IN0   = "LOCAL";
 clb1.localConfigCLB_IN0 = "CLB_LOCAL_IN_MUX_INPUT1";
 clb1.synchronizeCLB_IN0 = true;
 clb1.$name              = "myCLBForTILE1";
-
 clb2.clbBase             = "CLB2_BASE";
 clb2.inputsUsed          = ["CLB_IN0"];
 clb2.inputTypeCLB_IN0    = "GLOBAL";
 clb2.globalConfigCLB_IN0 = "CLB_GLOBAL_IN_MUX_CLB1_OUT16";
 clb2.inputPipelineConfigCLB_IN0 = true;
 clb2.$name               = "myCLBForTILE2";
-
 clb_inputxbar1.$name      = "myCLBINPUTXBAR0";
 clb_inputxbar1.inputsUsed = ["CLB_INPUTXBAR1Gpio"];
-
 clb_outputxbar1.muxesUsed                                = ["XBAR_MUX08"];
 clb_outputxbar1.$name                                    = "myCLB_OUTPUTXBAR1";
 clb_outputxbar1.clb_outputxbar.$name                     = "MyCLB_OUTPUTXBAR1";
-
 gpio1.$name           = "myGPIO0";
 gpio1.padConfig       = "PULLUP";
 gpio1.gpioPin.$assign = "GPIO0";
-
 TILE1.$name              = "TILE1";
 TILE1.BOUNDARY.$name     = "BOUNDARY0";
 TILE1.LUT_0.$name        = "LUT_0";
@@ -76,7 +75,6 @@ TILE1.AOC_4.$name        = "AOC_4";
 TILE1.AOC_5.$name        = "AOC_5";
 TILE1.AOC_6.$name        = "AOC_6";
 TILE1.AOC_7.$name        = "AOC_7";
-
 TILE2.$name              = "TILE2";
 TILE2.BOUNDARY.$name     = "BOUNDARY1";
 TILE2.LUT_0.$name        = "LUT_3";

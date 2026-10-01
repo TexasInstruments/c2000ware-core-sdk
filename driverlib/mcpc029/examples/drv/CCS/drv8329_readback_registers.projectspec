@@ -1,0 +1,29 @@
+<projectSpec>
+  <project
+        name="drv8329_readback_registers"
+        device="MCPC029"
+        cgtVersion="25.11.1.LTS"
+        products="sysconfig;C2000WARE"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json"
+        postBuildStep="
+           echo &quot;========= Build of the CLB simulation has moved to the CLB Tool. Click the '?' icon by the _Generate CLB Simulation File_ enable for more details (located in the Global Parameters of the Tile Design SysConfig module) =============&quot;
+          ;${NODE_TOOL} -e &quot;if(process.argv[1]==='1'){require('fs').mkdirSync(process.argv[3]+'/diagrams',{recursive:true});require('child_process').spawnSync(process.execPath,[process.argv[2]+'/driverlib/.meta/generate_diagrams.js',process.argv[2],process.argv[3]+'/diagrams',process.argv[3]+'/syscfg'],{stdio:'inherit'})}&quot; &quot;${GENERATE_DIAGRAM}&quot; &quot;${C2000WARE_ROOT}&quot; &quot;${BuildDirectory}&quot;
+        "
+        >
+    <configuration name="CPU1_LAUNCHXL_RAM" compilerBuildOptions="--opt_level=O4 -I${C2000WARE_ROOT} -I${DRV8329_ROOT} -I${DRV_COMMON_ROOT} -v28 -ml -mt  --float_support=fpu32 --fp_mode=relaxed --gen_func_subsections=on --define=DEBUG --define=generic_ram_lnk --diag_warning=225 --diag_suppress=10063 --define=_LAUNCHXL_MCPC029 --define=MCPC029_GATE_DRIVER" linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100 -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs -lboard.cmd.genlibs --define=generic_ram_lnk"/>
+    <configuration name="CPU1_LAUNCHXL_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${DRV8329_ROOT} -I${DRV_COMMON_ROOT} -v28 -ml -mt  --float_support=fpu32 --fp_mode=relaxed --gen_func_subsections=on --define=DEBUG --define=_FLASH --define=generic_flash_lnk --diag_warning=225 --diag_suppress=10063 --define=_LAUNCHXL_MCPC029 --define=MCPC029_GATE_DRIVER" linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100  --define=_FLASH -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs -lboard.cmd.genlibs --define=generic_flash_lnk"/>
+    <pathVariable name="C2000WARE_ROOT"     path="../../../../../" scope="project" />
+    <pathVariable name="DRV8329_ROOT"       path="../../../../../driverlib/mcpc029/gateDriverLib/DRV8329/include" scope="project" />
+    <pathVariable name="DRV_COMMON_ROOT"    path="../../../../../driverlib/mcpc029/gateDriverLib/include"         scope="project" />
+    <buildVariable name="GENERATE_DIAGRAM" value="0" scope="project" />
+    <buildVariable name="GUI_SUPPORT" value="0" scope="project" />
+    <file action="copy" path="../../../../../device_support/mcpc029/common/targetConfigs/MCPC029.ccxml" targetDirectory="targetConfigs"  applicableConfigurations="CPU1_LAUNCHXL_RAM,CPU1_LAUNCHXL_FLASH" />
+    <file action="link" path="../../../../../driverlib/mcpc029/gateDriverLib/ccs/Debug/gateDriverLib.lib" targetDirectory=""/>
+    <file action="copy" path="../drv8329_readback_registers.c" targetDirectory="" />
+    <file action="copy" path="../drv8329_readback_registers.syscfg" targetDirectory="" />
+  </project>
+</projectSpec>

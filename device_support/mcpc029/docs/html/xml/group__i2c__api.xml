@@ -1,0 +1,2850 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="group__i2c__api" kind="group">
+    <compoundname>i2c_api</compoundname>
+    <title>I2C</title>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="group__i2c__api_1ga65d4d1522b504625b64522aecc7efc23" prot="public" static="no" strong="no">
+        <type></type>
+        <name>I2C_InterruptSource</name>
+        <enumvalue id="group__i2c__api_1gga65d4d1522b504625b64522aecc7efc23af893f88c61c51a8dc32f6da46d4f2b79" prot="public">
+          <name>I2C_INTSRC_NONE</name>
+          <briefdescription>
+<para>No interrupt pending. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga65d4d1522b504625b64522aecc7efc23a4e272de8158ee1c0b5e68ed66db20685" prot="public">
+          <name>I2C_INTSRC_ARB_LOST</name>
+          <briefdescription>
+<para>Arbitration-lost interrupt. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga65d4d1522b504625b64522aecc7efc23ae4e3795b32686aec89c90835a191c109" prot="public">
+          <name>I2C_INTSRC_NO_ACK</name>
+          <briefdescription>
+<para>NACK interrupt. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga65d4d1522b504625b64522aecc7efc23a94b099d4458f1a599c3e734854efbd1b" prot="public">
+          <name>I2C_INTSRC_REG_ACCESS_RDY</name>
+          <briefdescription>
+<para>Register-access-ready interrupt. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga65d4d1522b504625b64522aecc7efc23a95f4478796e86baffb72d19507e0c008" prot="public">
+          <name>I2C_INTSRC_RX_DATA_RDY</name>
+          <briefdescription>
+<para>Receive-data-ready interrupt. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga65d4d1522b504625b64522aecc7efc23a8ea44624ef3fd760a98e383ecbf09e3b" prot="public">
+          <name>I2C_INTSRC_TX_DATA_RDY</name>
+          <briefdescription>
+<para>Transmit-data-ready interrupt. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga65d4d1522b504625b64522aecc7efc23aa4724ed869d30ef07bec08e0f113ca55" prot="public">
+          <name>I2C_INTSRC_STOP_CONDITION</name>
+          <briefdescription>
+<para>Stop condition detected. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga65d4d1522b504625b64522aecc7efc23a7deec3e2b484ef1e6ba6cdc350ddcc6a" prot="public">
+          <name>I2C_INTSRC_ADDR_TARGET</name>
+          <briefdescription>
+<para>Addressed as target interrupt. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga65d4d1522b504625b64522aecc7efc23ace3ca48be1fb244a0bbf2a36d6bce3ef" prot="public">
+          <name>I2C_INTSRC_SCL_ECS</name>
+          <briefdescription>
+<para>Extended Clock Streching interrupt. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>I2C interrupts to be returned by <ref refid="group__i2c__api_1gac2570e1d0d0fd5eb1f9759903bd58a26" kindref="member">I2C_getInterruptSource()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="162" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="163" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__i2c__api_1ga9886cb94314bb81524b57ddc23a0af4b" prot="public" static="no" strong="no">
+        <type></type>
+        <name>I2C_TxFIFOLevel</name>
+        <enumvalue id="group__i2c__api_1gga9886cb94314bb81524b57ddc23a0af4ba2de6c23d460dbf6dab798b3cbd2559e6" prot="public">
+          <name>I2C_FIFO_TXEMPTY</name>
+          <initializer>= 0x0000U</initializer>
+          <briefdescription>
+<para>Transmit FIFO empty. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga9886cb94314bb81524b57ddc23a0af4ba05e3f38d9c922609a58f9eeabd279a8a" prot="public">
+          <name>I2C_FIFO_TX0</name>
+          <initializer>= 0x0000U</initializer>
+          <briefdescription>
+<para>Transmit FIFO empty. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga9886cb94314bb81524b57ddc23a0af4ba61d5ff763b9e071a6f616349e51cf661" prot="public">
+          <name>I2C_FIFO_TX1</name>
+          <initializer>= 0x0001U</initializer>
+          <briefdescription>
+<para>Transmit FIFO 1/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga9886cb94314bb81524b57ddc23a0af4ba2131767267f0ab0ba4a6b933e4322399" prot="public">
+          <name>I2C_FIFO_TX2</name>
+          <initializer>= 0x0002U</initializer>
+          <briefdescription>
+<para>Transmit FIFO 2/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga9886cb94314bb81524b57ddc23a0af4ba15419fe549daa0342f43b40c52d6a818" prot="public">
+          <name>I2C_FIFO_TX3</name>
+          <initializer>= 0x0003U</initializer>
+          <briefdescription>
+<para>Transmit FIFO 3/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga9886cb94314bb81524b57ddc23a0af4bad84d56c31d1d73ddb6742a05aec5c220" prot="public">
+          <name>I2C_FIFO_TX4</name>
+          <initializer>= 0x0004U</initializer>
+          <briefdescription>
+<para>Transmit FIFO 4/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga9886cb94314bb81524b57ddc23a0af4ba4a7cb7511b5f71a53a2974093f2722d3" prot="public">
+          <name>I2C_FIFO_TX5</name>
+          <initializer>= 0x0005U</initializer>
+          <briefdescription>
+<para>Transmit FIFO 5/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga9886cb94314bb81524b57ddc23a0af4ba48bf90b465ed0a9da9f914021359f517" prot="public">
+          <name>I2C_FIFO_TX6</name>
+          <initializer>= 0x0006U</initializer>
+          <briefdescription>
+<para>Transmit FIFO 6/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga9886cb94314bb81524b57ddc23a0af4ba6f56e0a720285f8d8e6ba701609564cc" prot="public">
+          <name>I2C_FIFO_TX7</name>
+          <initializer>= 0x0007U</initializer>
+          <briefdescription>
+<para>Transmit FIFO 7/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga9886cb94314bb81524b57ddc23a0af4bacaee79deecf526a222b1750991ae1d40" prot="public">
+          <name>I2C_FIFO_TX8</name>
+          <initializer>= 0x0008U</initializer>
+          <briefdescription>
+<para>Transmit FIFO 8/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga9886cb94314bb81524b57ddc23a0af4baf1c9e34375926be849734bea7d4c84aa" prot="public">
+          <name>I2C_FIFO_TX9</name>
+          <initializer>= 0x0009U</initializer>
+          <briefdescription>
+<para>Transmit FIFO 9/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga9886cb94314bb81524b57ddc23a0af4bad3d400bcacfd5bbb7b3afc44d8f7df07" prot="public">
+          <name>I2C_FIFO_TX10</name>
+          <initializer>= 0x000AU</initializer>
+          <briefdescription>
+<para>Transmit FIFO 10/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga9886cb94314bb81524b57ddc23a0af4ba045c04961e3223171235c09fbbfcd813" prot="public">
+          <name>I2C_FIFO_TX11</name>
+          <initializer>= 0x000BU</initializer>
+          <briefdescription>
+<para>Transmit FIFO 11/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga9886cb94314bb81524b57ddc23a0af4baa3e3518b86cf70c0b1ecba332040b888" prot="public">
+          <name>I2C_FIFO_TX12</name>
+          <initializer>= 0x000CU</initializer>
+          <briefdescription>
+<para>Transmit FIFO 12/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga9886cb94314bb81524b57ddc23a0af4ba0ea94067e8235ef09443c463658b858f" prot="public">
+          <name>I2C_FIFO_TX13</name>
+          <initializer>= 0x000DU</initializer>
+          <briefdescription>
+<para>Transmit FIFO 13/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga9886cb94314bb81524b57ddc23a0af4ba53ba5a5caa41cb80266c0cbd7cc57298" prot="public">
+          <name>I2C_FIFO_TX14</name>
+          <initializer>= 0x000EU</initializer>
+          <briefdescription>
+<para>Transmit FIFO 14/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga9886cb94314bb81524b57ddc23a0af4ba26fefa7d1b420322ac95b3aed6254a49" prot="public">
+          <name>I2C_FIFO_TX15</name>
+          <initializer>= 0x000FU</initializer>
+          <briefdescription>
+<para>Transmit FIFO 15/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga9886cb94314bb81524b57ddc23a0af4bab4cbba4d063e715f93d6732654eb6d66" prot="public">
+          <name>I2C_FIFO_TX16</name>
+          <initializer>= 0x0010U</initializer>
+          <briefdescription>
+<para>Transmit FIFO full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga9886cb94314bb81524b57ddc23a0af4baf528fceff4efb6a8f83f9816e235c077" prot="public">
+          <name>I2C_FIFO_TXFULL</name>
+          <initializer>= 0x0010U</initializer>
+          <briefdescription>
+<para>Transmit FIFO full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__i2c__api_1ga7e8653da179b6eda33232210343a7ac7" kindref="member">I2C_setFIFOInterruptLevel()</ref> as the <emphasis>txLevel</emphasis> parameter, returned by <ref refid="group__i2c__api_1gaacd8193078f81914c8d71aebe7698569" kindref="member">I2C_getFIFOInterruptLevel()</ref> in the <emphasis>txLevel</emphasis> parameter, and returned by <ref refid="group__i2c__api_1ga821fb6efe4075ec8bc55829c0a1bd0c3" kindref="member">I2C_getTxFIFOStatus()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="182" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="183" bodyend="203"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__i2c__api_1ga91f4122cb0d0dfd2cf7f3f465352c1ea" prot="public" static="no" strong="no">
+        <type></type>
+        <name>I2C_RxFIFOLevel</name>
+        <enumvalue id="group__i2c__api_1gga91f4122cb0d0dfd2cf7f3f465352c1eaa827dad7b60151a556e8f8971172c75d7" prot="public">
+          <name>I2C_FIFO_RXEMPTY</name>
+          <initializer>= 0x0000U</initializer>
+          <briefdescription>
+<para>Receive FIFO empty. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga91f4122cb0d0dfd2cf7f3f465352c1eaad31b588a7767b6adb279f6f7793655d8" prot="public">
+          <name>I2C_FIFO_RX0</name>
+          <initializer>= 0x0000U</initializer>
+          <briefdescription>
+<para>Receive FIFO empty. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga91f4122cb0d0dfd2cf7f3f465352c1eaa00f0939b8d62c729ee7566528b0ad905" prot="public">
+          <name>I2C_FIFO_RX1</name>
+          <initializer>= 0x0001U</initializer>
+          <briefdescription>
+<para>Receive FIFO 1/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga91f4122cb0d0dfd2cf7f3f465352c1eaa6d371f65c8dd485ab871111abe0cca49" prot="public">
+          <name>I2C_FIFO_RX2</name>
+          <initializer>= 0x0002U</initializer>
+          <briefdescription>
+<para>Receive FIFO 2/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga91f4122cb0d0dfd2cf7f3f465352c1eaa9d3c4b177ca70a42d123b47dc2df7ee4" prot="public">
+          <name>I2C_FIFO_RX3</name>
+          <initializer>= 0x0003U</initializer>
+          <briefdescription>
+<para>Receive FIFO 3/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga91f4122cb0d0dfd2cf7f3f465352c1eaa0d9e21188ce12f0b41983d8a30022dcf" prot="public">
+          <name>I2C_FIFO_RX4</name>
+          <initializer>= 0x0004U</initializer>
+          <briefdescription>
+<para>Receive FIFO 4/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga91f4122cb0d0dfd2cf7f3f465352c1eaa3520923e6ab55b9ddb7fe1f36ba09542" prot="public">
+          <name>I2C_FIFO_RX5</name>
+          <initializer>= 0x0005U</initializer>
+          <briefdescription>
+<para>Receive FIFO 5/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga91f4122cb0d0dfd2cf7f3f465352c1eaa1ef434d7ec871ece1d740a57fc93b777" prot="public">
+          <name>I2C_FIFO_RX6</name>
+          <initializer>= 0x0006U</initializer>
+          <briefdescription>
+<para>Receive FIFO 6/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga91f4122cb0d0dfd2cf7f3f465352c1eaab5577527b203487fe67a2a8f65814d9d" prot="public">
+          <name>I2C_FIFO_RX7</name>
+          <initializer>= 0x0007U</initializer>
+          <briefdescription>
+<para>Receive FIFO 7/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga91f4122cb0d0dfd2cf7f3f465352c1eaa2e7a603c950b73069b9781e818fddced" prot="public">
+          <name>I2C_FIFO_RX8</name>
+          <initializer>= 0x0008U</initializer>
+          <briefdescription>
+<para>Receive FIFO 8/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga91f4122cb0d0dfd2cf7f3f465352c1eaaf6fefeb8b4ec6a7f271dcaa2e7877c50" prot="public">
+          <name>I2C_FIFO_RX9</name>
+          <initializer>= 0x0009U</initializer>
+          <briefdescription>
+<para>Receive FIFO 9/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga91f4122cb0d0dfd2cf7f3f465352c1eaa7b7b08149114d6638a618106ff925e83" prot="public">
+          <name>I2C_FIFO_RX10</name>
+          <initializer>= 0x000AU</initializer>
+          <briefdescription>
+<para>Receive FIFO 10/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga91f4122cb0d0dfd2cf7f3f465352c1eaa693e44d7c37783c88f959b37d07a1d40" prot="public">
+          <name>I2C_FIFO_RX11</name>
+          <initializer>= 0x000BU</initializer>
+          <briefdescription>
+<para>Receive FIFO 11/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga91f4122cb0d0dfd2cf7f3f465352c1eaab96e8f8d1446d6956b0fae4a57d5d59d" prot="public">
+          <name>I2C_FIFO_RX12</name>
+          <initializer>= 0x000CU</initializer>
+          <briefdescription>
+<para>Receive FIFO 12/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga91f4122cb0d0dfd2cf7f3f465352c1eaa05bc4f4c833afc308d3afc0662d8f809" prot="public">
+          <name>I2C_FIFO_RX13</name>
+          <initializer>= 0x000DU</initializer>
+          <briefdescription>
+<para>Receive FIFO 13/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga91f4122cb0d0dfd2cf7f3f465352c1eaafa270cf8008fd1edc44d488e4bfa01bb" prot="public">
+          <name>I2C_FIFO_RX14</name>
+          <initializer>= 0x000EU</initializer>
+          <briefdescription>
+<para>Receive FIFO 14/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga91f4122cb0d0dfd2cf7f3f465352c1eaa0b0b0283b387a1505a9b1940c3e981d7" prot="public">
+          <name>I2C_FIFO_RX15</name>
+          <initializer>= 0x000FU</initializer>
+          <briefdescription>
+<para>Receive FIFO 15/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga91f4122cb0d0dfd2cf7f3f465352c1eaaf780aab1e6ade1f855cb2ceb15b99f9a" prot="public">
+          <name>I2C_FIFO_RX16</name>
+          <initializer>= 0x0010U</initializer>
+          <briefdescription>
+<para>Receive FIFO full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga91f4122cb0d0dfd2cf7f3f465352c1eaac723a89b5337bcd146e35efd3ab8e9d2" prot="public">
+          <name>I2C_FIFO_RXFULL</name>
+          <initializer>= 0x0010U</initializer>
+          <briefdescription>
+<para>Receive FIFO full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__i2c__api_1ga7e8653da179b6eda33232210343a7ac7" kindref="member">I2C_setFIFOInterruptLevel()</ref> as the <emphasis>rxLevel</emphasis> parameter, returned by <ref refid="group__i2c__api_1gaacd8193078f81914c8d71aebe7698569" kindref="member">I2C_getFIFOInterruptLevel()</ref> in the <emphasis>rxLevel</emphasis> parameter, and returned by <ref refid="group__i2c__api_1gae2606f92eb85b32ba767a7665aec89a3" kindref="member">I2C_getRxFIFOStatus()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="212" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="213" bodyend="233"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__i2c__api_1gad3ea8baaa89dce43e667db5213add11e" prot="public" static="no" strong="no">
+        <type></type>
+        <name>I2C_BitCount</name>
+        <enumvalue id="group__i2c__api_1ggad3ea8baaa89dce43e667db5213add11eacb67798936a589f27f3fc684a66b787e" prot="public">
+          <name>I2C_BITCOUNT_1</name>
+          <initializer>= 1U</initializer>
+          <briefdescription>
+<para>1 bit per data byte </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1ggad3ea8baaa89dce43e667db5213add11eac36340a536bee8ea7e6cc5c8c09b7509" prot="public">
+          <name>I2C_BITCOUNT_2</name>
+          <initializer>= 2U</initializer>
+          <briefdescription>
+<para>2 bits per data byte </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1ggad3ea8baaa89dce43e667db5213add11ea78e202c9a47315228bac0ddf1b9e233e" prot="public">
+          <name>I2C_BITCOUNT_3</name>
+          <initializer>= 3U</initializer>
+          <briefdescription>
+<para>3 bits per data byte </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1ggad3ea8baaa89dce43e667db5213add11ea8d5d8ac900206dc028733119c8591085" prot="public">
+          <name>I2C_BITCOUNT_4</name>
+          <initializer>= 4U</initializer>
+          <briefdescription>
+<para>4 bits per data byte </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1ggad3ea8baaa89dce43e667db5213add11ea2e74b6940893d70cc227bb55cf502942" prot="public">
+          <name>I2C_BITCOUNT_5</name>
+          <initializer>= 5U</initializer>
+          <briefdescription>
+<para>5 bits per data byte </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1ggad3ea8baaa89dce43e667db5213add11ea9665039b2c7f07615add03706bdfd90b" prot="public">
+          <name>I2C_BITCOUNT_6</name>
+          <initializer>= 6U</initializer>
+          <briefdescription>
+<para>6 bits per data byte </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1ggad3ea8baaa89dce43e667db5213add11ea0aeb480fe72f7a8a2cf80f38adf4ea15" prot="public">
+          <name>I2C_BITCOUNT_7</name>
+          <initializer>= 7U</initializer>
+          <briefdescription>
+<para>7 bits per data byte </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1ggad3ea8baaa89dce43e667db5213add11eaa3961a560cb841ff7d572b7a3886c16d" prot="public">
+          <name>I2C_BITCOUNT_8</name>
+          <initializer>= 0U</initializer>
+          <briefdescription>
+<para>8 bits per data byte </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Values that can be passed to <ref refid="group__i2c__api_1ga42c49c1834809c94bef986db6b1ef5c7" kindref="member">I2C_setBitCount()</ref> as the <emphasis>size</emphasis> parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="240" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="241" bodyend="250"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__i2c__api_1gaa86181c7a2da2635a9b5fb3cb51432b2" prot="public" static="no" strong="no">
+        <type></type>
+        <name>I2C_AddressMode</name>
+        <enumvalue id="group__i2c__api_1ggaa86181c7a2da2635a9b5fb3cb51432b2a71c3825c7b9f3d051b210bc02d6d7323" prot="public">
+          <name>I2C_ADDR_MODE_7BITS</name>
+          <initializer>= 0x0000U</initializer>
+          <briefdescription>
+<para>7-bit address </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1ggaa86181c7a2da2635a9b5fb3cb51432b2a39ab6f5090c45e0a2dbae3674a5f2931" prot="public">
+          <name>I2C_ADDR_MODE_10BITS</name>
+          <initializer>= 0x0100U</initializer>
+          <briefdescription>
+<para>10-bit address </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Values that can be passed to <ref refid="group__i2c__api_1ga8678a6c753b0ece0626654021159cc95" kindref="member">I2C_setAddressMode()</ref> as the <emphasis>mode</emphasis> parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="257" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="258" bodyend="261"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__i2c__api_1gabd5e674dc12c10eb264f48c78fac064f" prot="public" static="no" strong="no">
+        <type></type>
+        <name>I2C_ExtendedMode</name>
+        <enumvalue id="group__i2c__api_1ggabd5e674dc12c10eb264f48c78fac064fab43f548bcd36f09e49c8d366d2fff345" prot="public">
+          <name>I2C_EADDR_MODE_BC</name>
+          <initializer>= 1U</initializer>
+          <briefdescription>
+<para>Backward compatibility. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1ggabd5e674dc12c10eb264f48c78fac064fadf1db4ea14906aa619e82b9ce424647f" prot="public">
+          <name>I2C_EADDR_MODE_FWD</name>
+          <initializer>= 2U</initializer>
+          <briefdescription>
+<para>Forward compatibility. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Values that can be passed to <ref refid="group__i2c__api_1gab28311193e5c8fe97c6cac0c39e2071e" kindref="member">I2C_setExtendedMode()</ref> as the <emphasis>mode</emphasis> parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="268" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="269" bodyend="272"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__i2c__api_1gadd1b6e17d8814775499653000061c434" prot="public" static="no" strong="no">
+        <type></type>
+        <name>I2C_EmulationMode</name>
+        <enumvalue id="group__i2c__api_1ggadd1b6e17d8814775499653000061c434a4907c1bd2639317bd7a1a83e00aadb7c" prot="public">
+          <name>I2C_EMULATION_STOP_SCL_LOW</name>
+          <initializer>= 0x0000U</initializer>
+          <briefdescription>
+<para>If SCL is low, keep it low. If high, stop when it goes low again. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1ggadd1b6e17d8814775499653000061c434adcfd3b2adb8984b18451dddb0f0707d8" prot="public">
+          <name>I2C_EMULATION_FREE_RUN</name>
+          <initializer>= 0x4000U</initializer>
+          <briefdescription>
+<para>Continue I2C operation regardless. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__i2c__api_1ga9ed74089cfd4d0d7c0faec977269a331" kindref="member">I2C_setEmulationMode()</ref> as the <emphasis>mode</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="280" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="281" bodyend="286"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__i2c__api_1ga93eefc059d0a3c81e61d4c3c4816d4e0" prot="public" static="no" strong="no">
+        <type></type>
+        <name>I2C_DutyCycle</name>
+        <enumvalue id="group__i2c__api_1gga93eefc059d0a3c81e61d4c3c4816d4e0ab0d8b5d917719bcc4d9f5ecec4f588de" prot="public">
+          <name>I2C_DUTYCYCLE_33</name>
+          <briefdescription>
+<para>Clock duty cycle is 33%. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__i2c__api_1gga93eefc059d0a3c81e61d4c3c4816d4e0a7d5ff14e54f33ac1e4d4ef29d1d69acb" prot="public">
+          <name>I2C_DUTYCYCLE_50</name>
+          <briefdescription>
+<para>Clock duty cycle is 55%. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__i2c__api_1gacb9dc5a590289a658a707ae1df19f2f1" kindref="member">I2C_initController()</ref> as the <emphasis>dutyCycle</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="294" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="295" bodyend="298"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__i2c__api_1gabe5c7fa12c0e3ea599d219bff7f966ef" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_enableModule</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_enableModule</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables the I2C module.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables operation of the I2C module.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="340" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="340" bodyend="348"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga63c72dcf216280a84725a8c2d538a20a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_disableModule</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_disableModule</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables the I2C module.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables operation of the I2C module.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="362" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="362" bodyend="370"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga70e7ce0a3c6ec888bf52b83bc702124d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_enableFIFO</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_enableFIFO</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables the transmit and receive FIFOs.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This functions enables the transmit and receive FIFOs in the I2C.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="384" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="384" bodyend="396"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1gae4486b5f38330bcba0e5b4d43db5ef09" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_disableFIFO</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_disableFIFO</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables the transmit and receive FIFOs.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This functions disables the transmit and receive FIFOs in the I2C.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="410" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="410" bodyend="422"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga7e8653da179b6eda33232210343a7ac7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_setFIFOInterruptLevel</definition>
+        <argsstring>(uint32_t base, I2C_TxFIFOLevel txLevel, I2C_RxFIFOLevel rxLevel)</argsstring>
+        <name>I2C_setFIFOInterruptLevel</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__i2c__api_1ga9886cb94314bb81524b57ddc23a0af4b" kindref="member">I2C_TxFIFOLevel</ref></type>
+          <declname>txLevel</declname>
+        </param>
+        <param>
+          <type><ref refid="group__i2c__api_1ga91f4122cb0d0dfd2cf7f3f465352c1ea" kindref="member">I2C_RxFIFOLevel</ref></type>
+          <declname>rxLevel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the FIFO level at which interrupts are generated.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txLevel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the transmit FIFO interrupt level, specified as <bold>I2C_FIFO_TX0</bold>, <bold>I2C_FIFO_TX1</bold>, <bold>I2C_FIFO_TX2</bold>, . . . or <bold>I2C_FIFO_TX16</bold>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rxLevel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the receive FIFO interrupt level, specified as <bold>I2C_FIFO_RX0</bold>, <bold>I2C_FIFO_RX1</bold>, <bold>I2C_FIFO_RX2</bold>, . . . or <bold>I2C_FIFO_RX16</bold>.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the FIFO level at which transmit and receive interrupts are generated. The transmit FIFO interrupt flag will be set when the FIFO reaches a value less than or equal to <emphasis>txLevel</emphasis>. The receive FIFO flag will be set when the FIFO reaches a value greater than or equal to <emphasis>rxLevel</emphasis>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="446" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="446" bodyend="461"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1gaacd8193078f81914c8d71aebe7698569" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_getFIFOInterruptLevel</definition>
+        <argsstring>(uint32_t base, I2C_TxFIFOLevel *txLevel, I2C_RxFIFOLevel *rxLevel)</argsstring>
+        <name>I2C_getFIFOInterruptLevel</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__i2c__api_1ga9886cb94314bb81524b57ddc23a0af4b" kindref="member">I2C_TxFIFOLevel</ref> *</type>
+          <declname>txLevel</declname>
+        </param>
+        <param>
+          <type><ref refid="group__i2c__api_1ga91f4122cb0d0dfd2cf7f3f465352c1ea" kindref="member">I2C_RxFIFOLevel</ref> *</type>
+          <declname>rxLevel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the FIFO level at which interrupts are generated.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txLevel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a pointer to storage for the transmit FIFO level, returned as one of <bold>I2C_FIFO_TX0</bold>, <bold>I2C_FIFO_TX1</bold>, <bold>I2C_FIFO_TX2</bold>, . . . or <bold>I2C_FIFO_TX16</bold>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rxLevel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a pointer to storage for the receive FIFO level, returned as one of <bold>I2C_FIFO_RX0</bold>, <bold>I2C_FIFO_RX1</bold>, <bold>I2C_FIFO_RX2</bold>, . . . or <bold>I2C_FIFO_RX16</bold>.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function gets the FIFO level at which transmit and receive interrupts are generated. The transmit FIFO interrupt flag will be set when the FIFO reaches a value less than or equal to <emphasis>txLevel</emphasis>. The receive FIFO flag will be set when the FIFO reaches a value greater than or equal to <emphasis>rxLevel</emphasis>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="485" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="485" bodyend="500"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga821fb6efe4075ec8bc55829c0a1bd0c3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="group__i2c__api_1ga9886cb94314bb81524b57ddc23a0af4b" kindref="member">I2C_TxFIFOLevel</ref></type>
+        <definition>static I2C_TxFIFOLevel I2C_getTxFIFOStatus</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_getTxFIFOStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the transmit FIFO status</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function gets the current number of words in the transmit FIFO.</para>
+<para><simplesect kind="return"><para>Returns the current number of words in the transmit FIFO specified as one of the following: <bold>I2C_FIFO_TX0</bold>, <bold>I2C_FIFO_TX1</bold>, <bold>I2C_FIFO_TX2</bold>, <bold>I2C_FIFO_TX3</bold>, ..., or <bold>I2C_FIFO_TX16</bold> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="517" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="517" bodyend="533"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1gae2606f92eb85b32ba767a7665aec89a3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="group__i2c__api_1ga91f4122cb0d0dfd2cf7f3f465352c1ea" kindref="member">I2C_RxFIFOLevel</ref></type>
+        <definition>static I2C_RxFIFOLevel I2C_getRxFIFOStatus</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_getRxFIFOStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the receive FIFO status</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function gets the current number of words in the receive FIFO.</para>
+<para><simplesect kind="return"><para>Returns the current number of words in the receive FIFO specified as one of the following: <bold>I2C_FIFO_RX0</bold>, <bold>I2C_FIFO_RX1</bold>, <bold>I2C_FIFO_RX2</bold>, <bold>I2C_FIFO_RX3</bold>, ..., or <bold>I2C_FIFO_RX16</bold> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="550" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="550" bodyend="566"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga975f588e76d76ea2140036bede79425a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>static uint16_t I2C_getPreScaler</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_getPreScaler</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reads I2C Module clock prescaler value.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function reads the I2C prescaler value which configures the I2C module clock by dividing down the SYSCLK. I2C_MODULE_CLK = SYSCLK / (I2CPSC + )</para>
+<para><simplesect kind="return"><para>Returns the I2C prescaler(I2CPSC) cast as an uint16_t. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="581" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="581" bodyend="592"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga6a547f7c1f57f0174ba34692e2f7910f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_setTargetAddress</definition>
+        <argsstring>(uint32_t base, uint16_t targetAddr)</argsstring>
+        <name>I2C_setTargetAddress</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>targetAddr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the address that the I2C Controller places on the bus.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>targetAddr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>7-bit or 10-bit target address</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the address that the I2C Controller places on the bus when initiating a transaction.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="608" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="608" bodyend="617"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1gaa72d9ecaaf726cbdb07973ce4bf0dcfd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_setOwnAddress</definition>
+        <argsstring>(uint32_t base, uint16_t Addr)</argsstring>
+        <name>I2C_setOwnAddress</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>Addr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the own address for this I2C module.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C Target module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Addr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the 7-bit or 10-bit address</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function writes the specified address.</para>
+<para>The parameter <emphasis>Addr</emphasis> is the value that is compared against the target address sent by an I2C controller.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="635" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="635" bodyend="644"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga4876ef53e8db70bff18317df267b15de" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool I2C_isBusBusy</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_isBusBusy</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Indicates whether or not the I2C bus is busy.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns an indication of whether or not the I2C bus is busy. This function can be used in a multi-controller environment to determine if the bus is free for another data transfer.</para>
+<para><simplesect kind="return"><para>Returns <bold>true</bold> if the I2C bus is busy; otherwise, returns <bold>false</bold>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="661" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="661" bodyend="669"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1gad8d13078f426783c23c53959dab992ad" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>static uint16_t I2C_getStatus</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_getStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the current I2C module status.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns the status for the I2C module.</para>
+<para><simplesect kind="return"><para>The current module status, enumerated as a bit field of<itemizedlist>
+<listitem><para><bold>I2C_STS_ARB_LOST</bold> - Arbitration-lost</para>
+</listitem><listitem><para><bold>I2C_STS_NO_ACK</bold> - No-acknowledgment (NACK)</para>
+</listitem><listitem><para><bold>I2C_STS_REG_ACCESS_RDY</bold> - Register-access-ready (ARDY)</para>
+</listitem><listitem><para><bold>I2C_STS_RX_DATA_RDY</bold> - Receive-data-ready</para>
+</listitem><listitem><para><bold>I2C_STS_TX_DATA_RDY</bold> - Transmit-data-ready</para>
+</listitem><listitem><para><bold>I2C_STS_STOP_CONDITION</bold> - Stop condition detected</para>
+</listitem><listitem><para><bold>I2C_STS_BYTE_SENT</bold> - Byte transmit complete</para>
+</listitem><listitem><para><bold>I2C_STS_ADDR_ZERO</bold> - Address of all zeros detected</para>
+</listitem><listitem><para><bold>I2C_STS_ADDR_TARGET</bold> - Addressed as Target</para>
+</listitem><listitem><para><bold>I2C_STS_TX_EMPTY</bold> - Transmit shift register empty</para>
+</listitem><listitem><para><bold>I2C_STS_RX_FULL</bold> - Receive shift register full</para>
+</listitem><listitem><para><bold>I2C_STS_BUS_BUSY</bold> - Bus busy, wait for STOP or reset</para>
+</listitem><listitem><para><bold>I2C_STS_NACK_SENT</bold> - NACK was sent</para>
+</listitem><listitem><para><bold>I2C_STS_TARGET_DIR-</bold> Addressed as Target transmitter</para>
+</listitem><listitem><para><bold>I2C_STS_SCL_ECS</bold> - SCL Auto Clock Stretch Status </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="698" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="698" bodyend="709"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga36ecb589e4db0de1e513a4e31f875985" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_clearStatus</definition>
+        <argsstring>(uint32_t base, uint16_t stsFlags)</argsstring>
+        <name>I2C_clearStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>stsFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clears I2C status flags.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stsFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a bit mask of the status flags to be cleared.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function clears the specified I2C status flags. The <emphasis>stsFlags</emphasis> parameter is the logical OR of the following values:<itemizedlist>
+<listitem><para><bold>I2C_STS_ARB_LOST</bold> </para>
+</listitem><listitem><para><bold>I2C_STS_NO_ACK</bold>,</para>
+</listitem><listitem><para><bold>I2C_STS_REG_ACCESS_RDY</bold> </para>
+</listitem><listitem><para><bold>I2C_STS_RX_DATA_RDY</bold> </para>
+</listitem><listitem><para><bold>I2C_STS_STOP_CONDITION</bold> </para>
+</listitem><listitem><para><bold>I2C_STS_BYTE_SENT</bold> </para>
+</listitem><listitem><para><bold>I2C_STS_NACK_SENT</bold> </para>
+</listitem><listitem><para><bold>I2C_STS_TARGET_DIR</bold> </para>
+</listitem><listitem><para><bold>I2C_STS_SCL_ECS</bold> </para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para>Note that some of the status flags returned by <ref refid="group__i2c__api_1gad8d13078f426783c23c53959dab992ad" kindref="member">I2C_getStatus()</ref> cannot be cleared by this function. Some may only be cleared by hardware or a reset of the I2C module.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="738" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="738" bodyend="749"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1gacba4b03079f610c7142b1ff6d7d00ce3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_setConfig</definition>
+        <argsstring>(uint32_t base, uint16_t config)</argsstring>
+        <name>I2C_setConfig</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>config</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Controls the state of the I2C module.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>config</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the command to be issued to the I2C module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function is used to control the state of the controller and target send and receive operations. The <emphasis>config</emphasis> is a logical OR of the following options.</para>
+<para>One of the following four options:<itemizedlist>
+<listitem><para><bold>I2C_CONTROLLER_SEND_MODE</bold> - Controller-transmitter mode</para>
+</listitem><listitem><para><bold>I2C_CONTROLLER_RECEIVE_MODE</bold> - Controller-receiver mode</para>
+</listitem><listitem><para><bold>I2C_TARGET_SEND_MODE</bold> - Target-transmitter mode</para>
+</listitem><listitem><para><bold>I2C_TARGET_RECEIVE_MODE</bold> - Target-receiver mode</para>
+</listitem></itemizedlist>
+</para>
+<para>Any of the following:<itemizedlist>
+<listitem><para><bold>I2C_REPEAT_MODE</bold> - Sends data until stop bit is set, ignores data count</para>
+</listitem><listitem><para><bold>I2C_START_BYTE_MODE</bold> - Use start byte mode</para>
+</listitem><listitem><para><bold>I2C_FREE_DATA_FORMAT</bold> - Use free data format, transfers have no address</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="776" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="776" bodyend="789"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga42c49c1834809c94bef986db6b1ef5c7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_setBitCount</definition>
+        <argsstring>(uint32_t base, I2C_BitCount size)</argsstring>
+        <name>I2C_setBitCount</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__i2c__api_1gad3ea8baaa89dce43e667db5213add11e" kindref="member">I2C_BitCount</ref></type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the data byte bit count the I2C module.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the number of bits per data byte.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+The <emphasis>size</emphasis> parameter is a value I2C_BITCOUNT_x where x is the number of bits per data byte. The default and maximum size is 8 bits.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="805" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="805" bodyend="817"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1gaa7e1e5f0ed8de7d718ba3d03a2845d4e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_sendStartCondition</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_sendStartCondition</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Issues an I2C START condition.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function causes the I2C module to generate a start condition. This function is only valid when the I2C module specified by the <bold>base</bold> parameter is a controller.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="833" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="833" bodyend="844"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga818e3e39311a901da8c5b3d4f7317c7a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_sendStopCondition</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_sendStopCondition</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Issues an I2C STOP condition.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function causes the I2C module to generate a stop condition. This function is only valid when the I2C module specified by the <bold>base</bold> parameter is a controller.</para>
+<para>To check on the status of the STOP condition, <ref refid="group__i2c__api_1ga1a89d9c39a2a5f9d510e95cc7112209a" kindref="member">I2C_getStopConditionStatus()</ref> can be used.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="863" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="863" bodyend="874"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1gae9e416d2cd6f991e2ea0756b9d4bc1bd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_sendNACK</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_sendNACK</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Issues a no-acknowledge (NACK) bit.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function causes the I2C module to generate a NACK bit. This is only applicable when the I2C module is acting as a receiver.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="889" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="889" bodyend="900"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga1f356850f7959da08bb3a9c2c62cc051" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>static uint16_t I2C_getData</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_getData</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Receives a byte that has been sent to the I2C.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function reads a byte of data from the I2C Data Receive Register.</para>
+<para><simplesect kind="return"><para>Returns the byte received from by the I2C cast as an uint16_t. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="914" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="914" bodyend="925"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga468035fec26fe217bbdacab04f9e7209" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_putData</definition>
+        <argsstring>(uint32_t base, uint16_t data)</argsstring>
+        <name>I2C_putData</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Transmits a byte from the I2C.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the data to be transmitted from the I2C Controller.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function places the supplied data into I2C Data Transmit Register.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="940" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="940" bodyend="951"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga1a89d9c39a2a5f9d510e95cc7112209a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool I2C_getStopConditionStatus</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_getStopConditionStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get stop condition status.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function reads and returns the stop condition bit status.</para>
+<para><simplesect kind="return"><para>Returns <bold>true</bold> if the STP bit has been set by the device to generate a stop condition when the internal data counter of the I2C module has reached 0. Returns <bold>false</bold> when the STP bit is zero. This bit is automatically cleared after the stop condition has been generated. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="968" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="968" bodyend="979"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga633c6394ccf7ead95fdd7709f1fe9447" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_setDataCount</definition>
+        <argsstring>(uint32_t base, uint16_t count)</argsstring>
+        <name>I2C_setDataCount</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set number of bytes to be to transfer or receive when repeat mode is off.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>count</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the value to be put in the I2C data count register.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the number of bytes to transfer or receive when repeat mode is off.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="995" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="995" bodyend="1006"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga8678a6c753b0ece0626654021159cc95" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_setAddressMode</definition>
+        <argsstring>(uint32_t base, I2C_AddressMode mode)</argsstring>
+        <name>I2C_setAddressMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__i2c__api_1gaa86181c7a2da2635a9b5fb3cb51432b2" kindref="member">I2C_AddressMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the addressing mode to either 7-bit or 10-bit.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the address mode, 7-bit or 10-bit.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the I2C module for either a 7-bit address (default) or a 10-bit address. The <emphasis>mode</emphasis> parameter configures the address length to 10 bits when its value is <bold>I2C_ADDR_MODE_10BITS</bold> and 7 bits when <bold>I2C_ADDR_MODE_7BITS</bold>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="1024" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="1024" bodyend="1036"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga9ed74089cfd4d0d7c0faec977269a331" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_setEmulationMode</definition>
+        <argsstring>(uint32_t base, I2C_EmulationMode mode)</argsstring>
+        <name>I2C_setEmulationMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__i2c__api_1gadd1b6e17d8814775499653000061c434" kindref="member">I2C_EmulationMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets I2C emulation mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the emulation mode.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the behavior of the I2C operation when an emulation suspend occurs. The <emphasis>mode</emphasis> parameter can be one of the following:</para>
+<para><itemizedlist>
+<listitem><para><bold>I2C_EMULATION_STOP_SCL_LOW</bold> - If SCL is low when the breakpoint occurs, the I2C module stops immediately. If SCL is high, the I2C module waits until SCL becomes low and then stops.</para>
+</listitem><listitem><para><bold>I2C_EMULATION_FREE_RUN</bold> - I2C operation continues regardless of a the suspend.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="1058" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="1058" bodyend="1070"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga1bde75fdc6b2fbf9d3b8dbcca1a02263" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_enableLoopback</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_enableLoopback</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables I2C loopback mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables loopback mode. This mode is only valid during controller mode and is helpful during device testing as it causes data transmitted out of the data transmit register to be received in data receive register.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="1086" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="1086" bodyend="1097"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1gaae96d6307d42090ce2c9d2fc6f843bbb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_disableLoopback</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_disableLoopback</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables I2C loopback mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables loopback mode. Loopback mode is disabled by default after reset.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="1112" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="1112" bodyend="1123"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1gac2570e1d0d0fd5eb1f9759903bd58a26" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="group__i2c__api_1ga65d4d1522b504625b64522aecc7efc23" kindref="member">I2C_InterruptSource</ref></type>
+        <definition>static I2C_InterruptSource I2C_getInterruptSource</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_getInterruptSource</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the current I2C interrupt source.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns the event that generated an I2C basic (non-FIFO) interrupt. The possible sources are the following:<itemizedlist>
+<listitem><para><bold>I2C_INTSRC_NONE</bold> </para>
+</listitem><listitem><para><bold>I2C_INTSRC_ARB_LOST</bold> </para>
+</listitem><listitem><para><bold>I2C_INTSRC_NO_ACK</bold> </para>
+</listitem><listitem><para><bold>I2C_INTSRC_REG_ACCESS_RDY</bold> </para>
+</listitem><listitem><para><bold>I2C_INTSRC_RX_DATA_RDY</bold> </para>
+</listitem><listitem><para><bold>I2C_INTSRC_TX_DATA_RDY</bold> </para>
+</listitem><listitem><para><bold>I2C_INTSRC_STOP_CONDITION</bold> </para>
+</listitem><listitem><para><bold>I2C_INTSRC_ADDR_TARGET</bold> </para>
+</listitem></itemizedlist>
+</para>
+<para>Calling this function will result in hardware automatically clearing the current interrupt code and if ready, loading the next pending enabled interrupt. It will also clear the corresponding interrupt flag if the source is <bold>I2C_INTSRC_ARB_LOST</bold>, <bold>I2C_INTSRC_NO_ACK</bold>, or <bold>I2C_INTSRC_STOP_CONDITION</bold>.</para>
+<para><simplesect kind="note"><para>Note that this function differs from <ref refid="group__i2c__api_1gae2121679de766a4e914b1304f1f4be65" kindref="member">I2C_getInterruptStatus()</ref> in that it returns a single interrupt source. <ref refid="group__i2c__api_1gac2570e1d0d0fd5eb1f9759903bd58a26" kindref="member">I2C_getInterruptSource()</ref> will return the status of all interrupt flags possible, including the flags that aren&apos;t necessarily enabled to generate interrupts.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="1157" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="1157" bodyend="1169"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1gab28311193e5c8fe97c6cac0c39e2071e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_setExtendedMode</definition>
+        <argsstring>(uint32_t base, I2C_ExtendedMode mode)</argsstring>
+        <name>I2C_setExtendedMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__i2c__api_1gabd5e674dc12c10eb264f48c78fac064f" kindref="member">I2C_ExtendedMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the compatibility mode to support I2C Extended Mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the compatibility modes.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the I2C module for either a Forward or Backward compatibilty. The <emphasis>mode</emphasis> parameter configures the compatibility to Forward when its value is <bold>I2C_EADDR_MODE_FWD</bold> and Backward when <bold>I2C_EADDR_MODE_BC</bold>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="1187" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="1187" bodyend="1200"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1gaead628804e759db595f4c9ac655ce80c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_enableExtendedAutomaticClkStretchingMode</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_enableExtendedAutomaticClkStretchingMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enable the Extended automatic clock stretching mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the I2C module to enable extended automatic clock stretching mode.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="1216" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="1216" bodyend="1235"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga6b605a874c2613f1f1881f7c22226f53" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_disableExtendedAutomaticClkStretchingMode</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_disableExtendedAutomaticClkStretchingMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disable the Extended automatic clock stretching mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the I2C module to disable extended automatic clock stretching mode.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="1251" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="1251" bodyend="1271"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga07412fdd036f5044260c4ddcb8e60676" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_enableManualClkStretchingMode</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_enableManualClkStretchingMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enable the manual clock stretching mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the I2C module to enable manual clock stretching mode.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="1287" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="1287" bodyend="1306"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga3c3d95f8444eb352f10741a6420b1cf6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_disableManualClkStretchingMode</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_disableManualClkStretchingMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disable the manual clock stretching mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the I2C module to disable manual clock stretching mode.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="1322" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="1322" bodyend="1342"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga486e742ddda1f5e336af0be60de234fd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_enableNACKCompatibilityMode</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_enableNACKCompatibilityMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enable the NACK compatibility mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the I2C module to enable NACK compatibility mode.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="1357" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="1357" bodyend="1368"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga04b05e31ea9f4aaa10bc2608e6c9c29a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void I2C_disableNACKCompatibilityMode</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_disableNACKCompatibilityMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disable the NACK compatibility mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the I2C module to disable NACK compatibility mode.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="1383" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="1383" bodyend="1395"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1gacb9dc5a590289a658a707ae1df19f2f1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void I2C_initController</definition>
+        <argsstring>(uint32_t base, uint32_t sysclkHz, uint32_t bitRate, I2C_DutyCycle dutyCycle)</argsstring>
+        <name>I2C_initController</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>sysclkHz</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>bitRate</declname>
+        </param>
+        <param>
+          <type><ref refid="group__i2c__api_1ga93eefc059d0a3c81e61d4c3c4816d4e0" kindref="member">I2C_DutyCycle</ref></type>
+          <declname>dutyCycle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the I2C Controller.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sysclkHz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the rate of the clock supplied to the I2C module (SYSCLK) in Hz. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bitRate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the rate of the controller clock signal, SCL. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dutyCycle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is duty cycle of the SCL signal.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function initializes operation of the I2C Controller by configuring the bus speed for the controller. Note that the I2C module <bold>must</bold> be put into reset before calling this function. You can do this with the function <ref refid="group__i2c__api_1ga63c72dcf216280a84725a8c2d538a20a" kindref="member">I2C_disableModule()</ref>.</para>
+<para>A programmable prescaler in the I2C module divides down the input clock (rate specified by <emphasis>sysclkHz</emphasis>) to produce the module clock (calculated to be around 10 MHz in this function). That clock is then divided down further to configure the SCL signal to run at the rate specified by <emphasis>bitRate</emphasis>. The <emphasis>dutyCycle</emphasis> parameter determines the percentage of time high and time low on the clock signal. The valid values are <bold>I2C_DUTYCYCLE_33</bold> for 33% and <bold>I2C_DUTYCYCLE_50</bold> for 50%.</para>
+<para>The peripheral clock is the system clock. This value is returned by <ref refid="group__sysctl__api_1ga707d0a2ecffe9925e20d49362032b60e" kindref="member">SysCtl_getClock()</ref>, or it can be explicitly hard coded if it is constant and known (to save the code/execution overhead of a call to <ref refid="group__sysctl__api_1ga707d0a2ecffe9925e20d49362032b60e" kindref="member">SysCtl_getClock()</ref>).</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="1430" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" declline="1430" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga1ad35e96b493acaeac50fb7a232bbd70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void I2C_initControllerModuleFrequency</definition>
+        <argsstring>(uint32_t base, uint32_t sysclkHz, uint32_t bitRate, I2C_DutyCycle dutyCycle, uint32_t moduleFrequency)</argsstring>
+        <name>I2C_initControllerModuleFrequency</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>sysclkHz</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>bitRate</declname>
+        </param>
+        <param>
+          <type><ref refid="group__i2c__api_1ga93eefc059d0a3c81e61d4c3c4816d4e0" kindref="member">I2C_DutyCycle</ref></type>
+          <declname>dutyCycle</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>moduleFrequency</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the I2C Controller.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sysclkHz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the rate of the clock supplied to the I2C module (SYSCLK) in Hz. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bitRate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the rate of the controller clock signal, SCL. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dutyCycle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is duty cycle of the SCL signal. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleFrequency</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the module clock used by I2C module</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function initializes operation of the I2C Controller by configuring the bus speed for the controller. Note that the I2C module <bold>must</bold> be put into reset before calling this function. You can do this with the function <ref refid="group__i2c__api_1ga63c72dcf216280a84725a8c2d538a20a" kindref="member">I2C_disableModule()</ref>.</para>
+<para>A programmable prescaler in the I2C module divides down the input clock (rate specified by <emphasis>sysclkHz</emphasis>) to produce the module clock (calculated to be around 10 MHz in this function). That clock is then divided down further to configure the SCL signal to run at the rate specified by <emphasis>bitRate</emphasis>. The <emphasis>dutyCycle</emphasis> parameter determines the percentage of time high and time low on the clock signal. The valid values are <bold>I2C_DUTYCYCLE_33</bold> for 33% and <bold>I2C_DUTYCYCLE_50</bold> for 50%.</para>
+<para>The peripheral clock is the system clock. This value is returned by <ref refid="group__sysctl__api_1ga707d0a2ecffe9925e20d49362032b60e" kindref="member">SysCtl_getClock()</ref>, or it can be explicitly hard coded if it is constant and known (to save the code/execution overhead of a call to <ref refid="group__sysctl__api_1ga707d0a2ecffe9925e20d49362032b60e" kindref="member">SysCtl_getClock()</ref>).</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="1466" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" declline="1466" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1gac67a172bbf516ee43eaf963c42bcbebf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void I2C_enableInterrupt</definition>
+        <argsstring>(uint32_t base, uint32_t intFlags)</argsstring>
+        <name>I2C_enableInterrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>intFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables I2C interrupt sources.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the bit mask of the interrupt sources to be enabled.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables the indicated I2C Controller interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt. Disabled sources have no effect on the processor.</para>
+<para>The <emphasis>intFlags</emphasis> parameter is the logical OR of any of the following:</para>
+<para><itemizedlist>
+<listitem><para><bold>I2C_INT_ARB_LOST</bold> - Arbitration-lost interrupt</para>
+</listitem><listitem><para><bold>I2C_INT_NO_ACK</bold> - No-acknowledgment (NACK) interrupt</para>
+</listitem><listitem><para><bold>I2C_INT_REG_ACCESS_RDY</bold> - Register-access-ready interrupt</para>
+</listitem><listitem><para><bold>I2C_INT_RX_DATA_RDY</bold> - Receive-data-ready interrupt</para>
+</listitem><listitem><para><bold>I2C_INT_TX_DATA_RDY</bold> - Transmit-data-ready interrupt</para>
+</listitem><listitem><para><bold>I2C_INT_STOP_CONDITION</bold> - Stop condition detected</para>
+</listitem><listitem><para><bold>I2C_INT_ADDR_TARGET</bold> - Addressed as target interrupt</para>
+</listitem><listitem><para><bold>I2C_INT_RXFF</bold> - RX FIFO level interrupt</para>
+</listitem><listitem><para><bold>I2C_INT_TXFF</bold> - TX FIFO level interrupt</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para><bold>I2C_INT_RXFF</bold> and <bold>I2C_INT_TXFF</bold> are associated with the I2C FIFO interrupt vector. All others are associated with the I2C basic interrupt.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="1499" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" declline="1499" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1gacfcd1315b13f4119593859ac74eee756" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void I2C_disableInterrupt</definition>
+        <argsstring>(uint32_t base, uint32_t intFlags)</argsstring>
+        <name>I2C_disableInterrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>intFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables I2C interrupt sources.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the bit mask of the interrupt sources to be disabled.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables the indicated I2C Target interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt. Disabled sources have no effect on the processor.</para>
+<para>The <emphasis>intFlags</emphasis> parameter has the same definition as the <emphasis>intFlags</emphasis> parameter to <ref refid="group__i2c__api_1gac67a172bbf516ee43eaf963c42bcbebf" kindref="member">I2C_enableInterrupt()</ref>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="1519" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" declline="1519" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1gae2121679de766a4e914b1304f1f4be65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t I2C_getInterruptStatus</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>I2C_getInterruptStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the current I2C interrupt status.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns the interrupt status for the I2C module.</para>
+<para><simplesect kind="return"><para>The current interrupt status, enumerated as a bit field of<itemizedlist>
+<listitem><para><bold>I2C_INT_ARB_LOST</bold> </para>
+</listitem><listitem><para><bold>I2C_INT_NO_ACK</bold> </para>
+</listitem><listitem><para><bold>I2C_INT_REG_ACCESS_RDY</bold> </para>
+</listitem><listitem><para><bold>I2C_INT_RX_DATA_RDY</bold> </para>
+</listitem><listitem><para><bold>I2C_INT_TX_DATA_RDY</bold> </para>
+</listitem><listitem><para><bold>I2C_INT_STOP_CONDITION</bold> </para>
+</listitem><listitem><para><bold>I2C_INT_ADDR_TARGET</bold> </para>
+</listitem><listitem><para><bold>I2C_INT_RXFF</bold> </para>
+</listitem><listitem><para><bold>I2C_INT_TXFF</bold> </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+<simplesect kind="note"><para>This function will only return the status flags associated with interrupts. However, a flag may be set even if its corresponding interrupt is disabled. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="1546" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" declline="1546" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1ga6c9a8f30211288d8251ffa870ba067ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void I2C_clearInterruptStatus</definition>
+        <argsstring>(uint32_t base, uint32_t intFlags)</argsstring>
+        <name>I2C_clearInterruptStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>intFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clears I2C interrupt sources.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a bit mask of the interrupt sources to be cleared.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+The specified I2C interrupt sources are cleared, so that they no longer assert. This function must be called in the interrupt handler to keep the interrupt from being triggered again immediately upon exit.</para>
+<para>The <emphasis>intFlags</emphasis> parameter has the same definition as the <emphasis>intFlags</emphasis> parameter to <ref refid="group__i2c__api_1gac67a172bbf516ee43eaf963c42bcbebf" kindref="member">I2C_enableInterrupt()</ref>.</para>
+<para><simplesect kind="note"><para><bold>I2C_INT_RXFF</bold> and <bold>I2C_INT_TXFF</bold> are associated with the I2C FIFO interrupt vector. All others are associated with the I2C basic interrupt.</para>
+</simplesect>
+<simplesect kind="note"><para>Also note that some of the status flags returned by <ref refid="group__i2c__api_1gae2121679de766a4e914b1304f1f4be65" kindref="member">I2C_getInterruptStatus()</ref> cannot be cleared by this function. Some may only be cleared by hardware or a reset of the I2C module.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="1573" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" declline="1573" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1gab8ff4bb9f1fd81eb5bb66afde942f234" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void I2C_configureModuleFrequency</definition>
+        <argsstring>(uint32_t base, uint32_t sysclkHz)</argsstring>
+        <name>I2C_configureModuleFrequency</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>sysclkHz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Configures I2C Module Clock Frequency</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sysclkHz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the rate of the clock supplied to the I2C module (SYSCLK) in Hz.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures I2C module clock frequency by initializing prescale register based on SYSCLK frequency. Note that the I2C module <bold>must</bold> be put into reset before calling this function. You can do this with the function <ref refid="group__i2c__api_1ga63c72dcf216280a84725a8c2d538a20a" kindref="member">I2C_disableModule()</ref>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="1593" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" declline="1593" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__i2c__api_1gaa702dcb68cb9572b92a2df66415d40df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void I2C_configureModuleClockFrequency</definition>
+        <argsstring>(uint32_t base, uint32_t sysclkHz, uint32_t moduleFrequency)</argsstring>
+        <name>I2C_configureModuleClockFrequency</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>sysclkHz</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>moduleFrequency</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Configures I2C Module Clock Frequency with a given module clock</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the I2C instance used. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sysclkHz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the rate of the clock supplied to the I2C module (SYSCLK) in Hz. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleFrequency</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the rate of the module clock used by I2C module This function configures I2C module clock frequency by initializing prescale register based on SYSCLK frequency. Note that the I2C module <bold>must</bold> be put into reset before calling this function. You can do this with the function <ref refid="group__i2c__api_1ga63c72dcf216280a84725a8c2d538a20a" kindref="member">I2C_disableModule()</ref>.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="1613" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" declline="1613" declcolumn="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__i2c__api_1gad5730e33dbfb817bbb3032027cb70ef9" prot="public" static="no">
+        <name>I2C_CONTROLLER_SEND_MODE</name>
+        <initializer>0x0600U</initializer>
+        <briefdescription>
+<para>Controller-transmitter mode. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="80" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1ga79bf7fe1f915689010d678b9d7e3bdbc" prot="public" static="no">
+        <name>I2C_CONTROLLER_RECEIVE_MODE</name>
+        <initializer>0x0400U</initializer>
+        <briefdescription>
+<para>Controller-receiver mode. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="81" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1gad8a4853d0ec1ebc51335d68dd8256c1c" prot="public" static="no">
+        <name>I2C_TARGET_SEND_MODE</name>
+        <initializer>0x0200U</initializer>
+        <briefdescription>
+<para>Target-transmitter mode. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="82" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1gacfd923a0b2a61f80702f43b8765841d4" prot="public" static="no">
+        <name>I2C_TARGET_RECEIVE_MODE</name>
+        <initializer>0x0000U</initializer>
+        <briefdescription>
+<para>Target-receiver mode. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="83" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1ga7cab1f030b534fc5e02fc1f99ea93ec7" prot="public" static="no">
+        <name>I2C_REPEAT_MODE</name>
+        <initializer>0x0080U</initializer>
+        <briefdescription>
+<para>Only applies to Controller mode. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="85" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1gacebb4eb691d980a44f5c139bde42bbf3" prot="public" static="no">
+        <name>I2C_START_BYTE_MODE</name>
+        <initializer>0x0010U</initializer>
+        <briefdescription>
+<para>Enable start byte mode. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="86" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1ga323e83cd6a7ea27e9bd19d8ae2e91027" prot="public" static="no">
+        <name>I2C_FREE_DATA_FORMAT</name>
+        <initializer>0x0008U</initializer>
+        <briefdescription>
+<para>Enable free data (no addr) format. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="87" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1gad316a1d9ab0507c8d3d1bfff1f30f7bd" prot="public" static="no">
+        <name>I2C_INT_ARB_LOST</name>
+        <initializer>0x00001U</initializer>
+        <briefdescription>
+<para>Arbitration-lost interrupt. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="96" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1ga3d380029b61a2bd7a3c5688f18b9145e" prot="public" static="no">
+        <name>I2C_INT_NO_ACK</name>
+        <initializer>0x00002U</initializer>
+        <briefdescription>
+<para>NACK interrupt. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="97" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1ga7e3dffb53e27dedc62b62a28ed3165d9" prot="public" static="no">
+        <name>I2C_INT_REG_ACCESS_RDY</name>
+        <initializer>0x00004U</initializer>
+        <briefdescription>
+<para>Register-access-ready interrupt. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="98" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1ga621dfbf1c8f69c67e52aeb061f96c3b3" prot="public" static="no">
+        <name>I2C_INT_RX_DATA_RDY</name>
+        <initializer>0x00008U</initializer>
+        <briefdescription>
+<para>Receive-data-ready interrupt. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="99" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1ga11ebc44ec9769890863828b99aab0e93" prot="public" static="no">
+        <name>I2C_INT_TX_DATA_RDY</name>
+        <initializer>0x00010U</initializer>
+        <briefdescription>
+<para>Transmit-data-ready interrupt. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="100" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1ga72c1d12497392f4dd5ec4ce6400c5200" prot="public" static="no">
+        <name>I2C_INT_STOP_CONDITION</name>
+        <initializer>0x00020U</initializer>
+        <briefdescription>
+<para>Stop condition detected. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="101" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1gafa8e3883a44c19c24eb5e5901d1f6e06" prot="public" static="no">
+        <name>I2C_INT_ADDR_TARGET</name>
+        <initializer>0x00200U</initializer>
+        <briefdescription>
+<para>Addressed as target interrupt. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="102" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1ga6ffee3aa530633b42ab95ead199fe01c" prot="public" static="no">
+        <name>I2C_INT_RXFF</name>
+        <initializer>0x10000U</initializer>
+        <briefdescription>
+<para>RX FIFO level interrupt. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="103" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1ga235557bdd3c41df310bb62c82443e3c8" prot="public" static="no">
+        <name>I2C_INT_TXFF</name>
+        <initializer>0x20000U</initializer>
+        <briefdescription>
+<para>TX FIFO level interrupt. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="104" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1gae18a2a4e7c290bb497ffe5b9da3d8e2f" prot="public" static="no">
+        <name>I2C_INT_SCL_ECS</name>
+        <initializer>0x8000U</initializer>
+        <briefdescription>
+<para>SCL Extended Automatic Clock Stretch Interrupt. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="105" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1ga88a5a24584a66f85253ac840134b6bff" prot="public" static="no">
+        <name>I2C_STR_INTMASK</name>
+        <initializer>                             ((uint16_t)<ref refid="group__i2c__api_1gad316a1d9ab0507c8d3d1bfff1f30f7bd" kindref="member">I2C_INT_ARB_LOST</ref> |                      \
+                             (uint16_t)<ref refid="group__i2c__api_1ga3d380029b61a2bd7a3c5688f18b9145e" kindref="member">I2C_INT_NO_ACK</ref> |                        \
+                             (uint16_t)<ref refid="group__i2c__api_1ga7e3dffb53e27dedc62b62a28ed3165d9" kindref="member">I2C_INT_REG_ACCESS_RDY</ref> |                \
+                             (uint16_t)<ref refid="group__i2c__api_1ga621dfbf1c8f69c67e52aeb061f96c3b3" kindref="member">I2C_INT_RX_DATA_RDY</ref> |                   \
+                             (uint16_t)<ref refid="group__i2c__api_1ga11ebc44ec9769890863828b99aab0e93" kindref="member">I2C_INT_TX_DATA_RDY</ref> |                   \
+                             (uint16_t)<ref refid="group__i2c__api_1ga72c1d12497392f4dd5ec4ce6400c5200" kindref="member">I2C_INT_STOP_CONDITION</ref> |                \
+                             (uint16_t)<ref refid="group__i2c__api_1gafa8e3883a44c19c24eb5e5901d1f6e06" kindref="member">I2C_INT_ADDR_TARGET</ref>)	|                  \
+                             (uint16_t)<ref refid="group__i2c__api_1gae18a2a4e7c290bb497ffe5b9da3d8e2f" kindref="member">I2C_INT_SCL_ECS</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="115" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1gaf635c42441ba4463cb01dd386db2d0cd" prot="public" static="no">
+        <name>I2C_STS_ARB_LOST</name>
+        <initializer>0x0001U</initializer>
+        <briefdescription>
+<para>Arbitration-lost. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="130" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1gaa422e52c9c358e76b56e73b7562c5d7d" prot="public" static="no">
+        <name>I2C_STS_NO_ACK</name>
+        <initializer>0x0002U</initializer>
+        <briefdescription>
+<para>No-acknowledgment (NACK) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="131" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1ga3bba24b82830d317354b762fbd0755e0" prot="public" static="no">
+        <name>I2C_STS_REG_ACCESS_RDY</name>
+        <initializer>0x0004U</initializer>
+        <briefdescription>
+<para>Register-access-ready (ARDY) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="132" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1gaadcd3f8c1a68fcf99daefd361b81c615" prot="public" static="no">
+        <name>I2C_STS_RX_DATA_RDY</name>
+        <initializer>0x0008U</initializer>
+        <briefdescription>
+<para>Receive-data-ready. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="133" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1gaaab80b411c917af993f72bf614dd5024" prot="public" static="no">
+        <name>I2C_STS_TX_DATA_RDY</name>
+        <initializer>0x0010U</initializer>
+        <briefdescription>
+<para>Transmit-data-ready. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="134" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1gab686e707d373e804d4d0dbf2b1018361" prot="public" static="no">
+        <name>I2C_STS_STOP_CONDITION</name>
+        <initializer>0x0020U</initializer>
+        <briefdescription>
+<para>Stop condition detected. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="135" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1ga40d0e5d9d741bc5f52d31de22fde450c" prot="public" static="no">
+        <name>I2C_STS_BYTE_SENT</name>
+        <initializer>0x0040U</initializer>
+        <briefdescription>
+<para>Byte transmit complete. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="136" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1ga16542756be9c1ce0bdf06b8fd1d53fcf" prot="public" static="no">
+        <name>I2C_STS_ADDR_ZERO</name>
+        <initializer>0x0100U</initializer>
+        <briefdescription>
+<para>Address of all zeros detected. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="137" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1ga6b1ce046a2d181cf85fbaf2b9019a427" prot="public" static="no">
+        <name>I2C_STS_ADDR_TARGET</name>
+        <initializer>0x0200U</initializer>
+        <briefdescription>
+<para>Addressed as target. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="138" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1ga0f7aaeee2c236581c7f91d4076aa11a7" prot="public" static="no">
+        <name>I2C_STS_TX_EMPTY</name>
+        <initializer>0x0400U</initializer>
+        <briefdescription>
+<para>Transmit shift register empty. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="139" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1gac753d254bb0a54cf37837d3324e688ab" prot="public" static="no">
+        <name>I2C_STS_RX_FULL</name>
+        <initializer>0x0800U</initializer>
+        <briefdescription>
+<para>Receive shift register full. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="140" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1gaf2b15aa7355b8a942cb9a94d585658fc" prot="public" static="no">
+        <name>I2C_STS_BUS_BUSY</name>
+        <initializer>0x1000U</initializer>
+        <briefdescription>
+<para>Bus busy, wait for STOP or reset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="141" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1ga943493cac1c4caba7152b6f5c0fd047f" prot="public" static="no">
+        <name>I2C_STS_NACK_SENT</name>
+        <initializer>0x2000U</initializer>
+        <briefdescription>
+<para>NACK was sent. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="142" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1gaddd0ff4e70f3a5fa83aa5e5e4bb1abe6" prot="public" static="no">
+        <name>I2C_STS_TARGET_DIR</name>
+        <initializer>0x4000U</initializer>
+        <briefdescription>
+<para>Addressed as target transmitter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="143" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1ga46783e1b6034c17e74e24af55291fb06" prot="public" static="no">
+        <name>I2C_STS_SCL_ECS</name>
+        <initializer>0x8000U</initializer>
+        <briefdescription>
+<para>SCL Auto Clock Stretch Status. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="144" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1ga2f7dfe65de4c4a51922b9a9be744a396" prot="public" static="no">
+        <name>I2C_EMDR_SCLKEY_ENABLE</name>
+        <initializer>0xA</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="154" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i2c__api_1ga97501386f0f5d02be99bb2711903ac16" prot="public" static="no">
+        <name>I2C_EMDR_SCLKEY_DISABLE</name>
+        <initializer>0x5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" line="155" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/i2c.h" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

@@ -1,4 +1,9 @@
-
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P65x" --part "F28P65x_256ZEJ" --package "256ZEJ" --board "/boards/TMDSCNCD28P65X" --context "CPU1"
+ * @v2CliArgs --device "TMS320F28P650DK" --package "256ZEJ" --variant "TMS320F28P650DK9" --context "CPU1"
+ */
 /**
  * Import the modules used in this configuration.
  */
@@ -18,36 +23,29 @@ const clb_run_dynamic_template_clb_c   = scripting.addModule("/utilities/clb_too
 const clb_run_dynamic_template_clb_dot = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_dot.js");
 const clb_run_dynamic_template_clb_h   = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_h.js");
 const clb_run_dynamic_template_clb_sim = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_sim.js");
-
 /**
  * Write custom configuration values to the imported modules.
  */
 clb1.$name     = "myTILE1";
 clb1.enableCLB = true;
-
 clbxbar1.$name      = "myCLBXBAR0";
 clbxbar1.muxesUsed  = ["XBAR_MUX01"];
 clbxbar1.mux1Config = "XBAR_CLB_MUX01_INPUTXBAR1_INPUT1";
-
 epwm1.$name                  = "myEPWM1";
 epwm1.useCase                = "CUSTOM";
 epwm1.useInterfacePins       = ["EPWM#_A"];
 epwm1.epwm.$assign           = "EPWM1";
 epwm1.epwm.epwm_aPin.$assign = "GPIO0";
-
 inputxbar1.$name          = "myINPUTXBAR0";
 inputxbar1.inputsUsed     = ["inputxbar1Gpio"];
 inputxbar1.inputxbar1Gpio = "GPIO0";
-
 outputxbar1.$name                            = "myOUTPUTXBAR1";
 outputxbar1.muxesUsed                        = ["XBAR_MUX01"];
 outputxbar1.mux1Config                       = "XBAR_OUT_MUX01_CLB1_OUT4";
 outputxbar1.outputxbar.$assign               = "OUTPUTXBAR1";
 outputxbar1.outputxbar.outputxbarPin.$assign = "GPIO2";
-
 TILE.clock_period = 10000;
 TILE.sim_duration = 100000000;
-
 TILE1.$name                     = "TILE1";
 TILE1.BOUNDARY.$name            = "BOUNDARY0";
 TILE1.BOUNDARY.boundaryInput0              = "squareWave";

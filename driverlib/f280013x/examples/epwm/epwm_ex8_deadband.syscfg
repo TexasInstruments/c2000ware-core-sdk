@@ -1,4 +1,10 @@
 /**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F280013x" --part "F280013x_64PM" --package "64PM" --context "system"
+ * @v2CliArgs --device "TMS320F2800137" --package "64PM" --context "system"
+ */
+/**
  * Import the modules used in this configuration.
  */
 const epwm  = scripting.addModule("/driverlib/epwm.js", {}, false);
@@ -8,7 +14,6 @@ const epwm3 = epwm.addInstance();
 const epwm4 = epwm.addInstance();
 const epwm5 = epwm.addInstance();
 const epwm6 = epwm.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -28,7 +33,6 @@ epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_DOWN_CMPB = "EPWM_AQ_OUTP
 epwm1.epwm.$assign                                               = "EPWM1";
 epwm1.epwm.epwm_aPin.$assign                                      = "GPIO0";
 epwm1.epwm.epwm_bPin.$assign                                      = "GPIO1";
-
 epwm2.epwmDeadband_enableRED                                     = true;
 epwm2.epwmDeadband_enableFED                                     = true;
 epwm2.epwmTimebase_clockDiv                                      = "EPWM_CLOCK_DIVIDER_4";
@@ -51,7 +55,6 @@ epwm2.epwmDeadband_delayFED                                      = 200;
 epwm2.epwm.$assign                                               = "EPWM2";
 epwm2.epwm.epwm_aPin.$assign                                      = "GPIO2";
 epwm2.epwm.epwm_bPin.$assign                                      = "GPIO3";
-
 epwm3.epwmDeadband_polarityRED                                   = "EPWM_DB_POLARITY_ACTIVE_LOW";
 epwm3.epwmDeadband_polarityFED                                   = "EPWM_DB_POLARITY_ACTIVE_LOW";
 epwm3.epwmDeadband_enableRED                                     = true;
@@ -76,7 +79,6 @@ epwm3.epwmDeadband_delayFED                                      = 200;
 epwm3.epwm.$assign                                               = "EPWM3";
 epwm3.epwm.epwm_aPin.$assign                                      = "GPIO4";
 epwm3.epwm.epwm_bPin.$assign                                      = "GPIO5";
-
 epwm4.epwmDeadband_polarityFED                                   = "EPWM_DB_POLARITY_ACTIVE_LOW";
 epwm4.epwmDeadband_enableRED                                     = true;
 epwm4.epwmDeadband_enableFED                                     = true;
@@ -100,7 +102,6 @@ epwm4.epwmDeadband_delayFED                                      = 200;
 epwm4.epwm.$assign                                               = "EPWM4";
 epwm4.epwm.epwm_aPin.$assign                                      = "GPIO6";
 epwm4.epwm.epwm_bPin.$assign                                      = "GPIO7";
-
 epwm5.epwmDeadband_polarityRED                                   = "EPWM_DB_POLARITY_ACTIVE_LOW";
 epwm5.epwmDeadband_enableRED                                     = true;
 epwm5.epwmDeadband_enableFED                                     = true;
@@ -124,7 +125,6 @@ epwm5.epwmDeadband_delayFED                                      = 200;
 epwm5.epwm.$assign                                               = "EPWM5";
 epwm5.epwm.epwm_aPin.$assign                                      = "GPIO8";
 epwm5.epwm.epwm_bPin.$assign                                      = "GPIO9";
-
 epwm6.epwmTimebase_clockDiv                                      = "EPWM_CLOCK_DIVIDER_4";
 epwm6.epwmTimebase_hsClockDiv                                    = "EPWM_HSCLOCK_DIVIDER_4";
 epwm6.epwmTimebase_period                                        = 2000;

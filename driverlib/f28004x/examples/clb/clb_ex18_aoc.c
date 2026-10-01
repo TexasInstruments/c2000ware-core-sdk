@@ -16,7 +16,7 @@
 //!
 //
 //#############################################################################
-// $TI Release: F28004x Support Library v26.01.00.00 $
+// $TI Release: F28004x Support Library v26.02.00.00 $
 // 
 // $Copyright:
 // Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
@@ -50,8 +50,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
 //
 // Included Files
 //
@@ -59,7 +57,6 @@
 #include "device.h"
 #include "board.h"
 #include "clb_config.h"
-
 //
 // Main
 //
@@ -67,12 +64,9 @@ void main(void)
 {
     Device_init();
     Device_initGPIO();
-
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
     Board_init();
-
     //
     // Implement AND Gate between GPIO0 and GPIO1
     // Implement AOC Invert functionality turning the GATE to a NAND
@@ -80,23 +74,18 @@ void main(void)
     // AOC Gate Control will use SW GATE register
     //
     initTILE1(myCLBForTILE1_BASE);
-
     CLB_enableCLB(myCLBForTILE1_BASE);
-
     //
     // Gate the NAND implemented
     // Switch the value of the GATE control to 'false' and the logic will
     // be gated.
     //
     CLB_writeSWGateControl(myCLBForTILE1_BASE, CLB_SW_GATE_CTRL4, true);
-
     while(1)
     {
-
         asm(" NOP");
     }
 }
-
 //
 // End of File
 //

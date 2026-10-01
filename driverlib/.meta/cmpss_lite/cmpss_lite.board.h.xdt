@@ -10,6 +10,20 @@
     % for(var i = 0; i < module.$instances.length; i++) {
         % var instance = module.$instances[i];
 #define `instance.$name`_BASE `instance.cmpssLiteBase`
+% if (instance["cmpssHighName"] != "")
+% {
+#define `instance["cmpssHighName"]`_BASE `instance.cmpssLiteBase`
+% }
+% else {
+#define `instance.$name`_HIGH_COMP_BASE `instance.cmpssLiteBase`
+% }
+% if (instance["cmpssLowName"] != "")
+% {
+#define `instance["cmpssLowName"]`_BASE `instance.cmpssLiteBase`
+% }
+% else {
+#define `instance.$name`_LOW_COMP_BASE `instance.cmpssLiteBase`
+% }
 void `instance.$name`_init();
     % }
 %}

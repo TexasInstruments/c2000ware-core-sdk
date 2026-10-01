@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="group__drv8329__spi__hal__api" kind="group">
+    <compoundname>drv8329_spi_hal_api</compoundname>
+    <title>DRV8329 SPI HAL APIs</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__drv8329__spi__hal__api_1gab5bcab300226f4d53a23ca2e4e4f7d3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>uint16_t DRV8329_SPI_HAL_ReadRegister</definition>
+        <argsstring>(uint16_t regAddr)</argsstring>
+        <name>DRV8329_SPI_HAL_ReadRegister</name>
+        <param>
+          <type>uint16_t</type>
+          <declname>regAddr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Read a DRV8329 register</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>regAddr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the address of the DRV8329 register to be read</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sends the register address over SPI and receives the register data from the DRV8329</para>
+<para><simplesect kind="return"><para>Returns the 8-bit data read from the specified register in position 7:0 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329_spi_hal.h" line="93" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329_spi_hal.h" declline="93" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__drv8329__spi__hal__api_1ga24f17e078d5e2149d9664f65b48ac931" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DRV8329_SPI_HAL_WriteRegister</definition>
+        <argsstring>(uint16_t regAddr, uint16_t data)</argsstring>
+        <name>DRV8329_SPI_HAL_WriteRegister</name>
+        <param>
+          <type>uint16_t</type>
+          <declname>regAddr</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Write to a DRV8329 register</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>regAddr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the address of the DRV8329 register to be written </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the 16-bit data to be written to the register</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function writes the specified data to the DRV8329 register at the given address using SPI transmission</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329_spi_hal.h" line="109" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329_spi_hal.h" declline="109" declcolumn="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__drv8329__spi__hal__api_1ga9610370526258488b92613ad541cee23" prot="public" static="no">
+        <name>DRV8329_SPI_HAL_ADDR_MASK</name>
+        <initializer>0x7E</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329_spi_hal.h" line="67" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329_spi_hal.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__drv8329__spi__hal__api_1ga97e4efed0d128ac7071c4c3036346e4d" prot="public" static="no">
+        <name>DRV8329_SPI_HAL_ADDR_SHIFT</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329_spi_hal.h" line="68" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329_spi_hal.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__drv8329__spi__hal__api_1ga6b21c246157ea72fdbfef179044f9e36" prot="public" static="no">
+        <name>DRV8329_SPI_HAL_ADDR_JUSTIFY_SHIFT</name>
+        <initializer>8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329_spi_hal.h" line="69" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329_spi_hal.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__drv8329__spi__hal__api_1ga9dfc77780ee08e9a7a82bbea07ec6a48" prot="public" static="no">
+        <name>DRV8329_SPI_HAL_ADDR_READ_FLAG</name>
+        <initializer>0x80</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329_spi_hal.h" line="70" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329_spi_hal.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__drv8329__spi__hal__api_1ga493a60aebc78ebff9fa3d6b358503df7" prot="public" static="no">
+        <name>DRV8329_SPI_HAL_DATA_MASK</name>
+        <initializer>0xFF</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329_spi_hal.h" line="72" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/gateDriverLib/DRV8329/include/drv8329_spi_hal.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This module contains APIs to communicate with DRV8329 via SPI. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

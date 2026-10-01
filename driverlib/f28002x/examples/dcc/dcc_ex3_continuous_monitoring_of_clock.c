@@ -74,20 +74,15 @@
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
 #define PASS 0
 #define FAIL 1
-
 //
 // Calculating Counter0 & Valid Seed Value with +/-1% tolerance.
 // INTOSC2 has  frequency variance of +/-3%
 //
-
-
-
 // If Fclk1>Fclk0, Async. Error (In Clock0 cycles) = 2 + 2*(Fsysclk/Fclk0) = 22
 // Digitization error (In Clock0 cycles) = 8
 // DCC Error = Async. Error + Digitization error = 30
@@ -112,14 +107,11 @@
 #define VALID   240
 #define COUNT0  2880
 #define COUNT1  33000 // Set with a variance of 3000 counts over 30000
-
-
 //
 // Globals
 //
 uint32_t result = FAIL, pass_base = 0 , isr_enter = 0;
 uint32_t cnt0 = 0,cnt1 = 0,valid = 0;
-
 //
 // Function Prototypes
 //
@@ -129,52 +121,42 @@ bool DCC_Continuous_StopOnError(uint32_t base,
                                 uint32_t dccCounterSeed0,
                                 uint32_t dccCounterSeed1,
                                 uint32_t dccValidSeed0);
-
 __interrupt void DCC_ISR();
-
 void main(void)
 {
     bool status;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     //Initialize PIE and clear PIE registers. Disables CPU interrupts
     //
     Interrupt_initModule();
-
     //
     //Initialize the PIE vector table with pointers to the shell Interrupt
     //Service Routines (ISR)
     //
     Interrupt_initVectorTable();
-
     //
     // Clear Error & Done Flag
     //
     DCC_clearErrorFlag(DCC0_BASE);
     DCC_clearDoneFlag(DCC0_BASE);
-
     //
     // Interrupts that are used in this example are re-mapped to ISR functions
     // found within this file.
     //
     Interrupt_register(INT_DCC0, &DCC_ISR);
-
     //
     // Enable interrupts required for this example
     //
     Interrupt_enable(INT_DCC0);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Pass calculated counter seed values to monitor the clock
     //
@@ -182,7 +164,6 @@ void main(void)
                                         DCC_COUNT0SRC_INTOSC2,
                                         DCC_COUNT1SRC_PLL,
                                         COUNT0, COUNT1, VALID);
-
     //
     // Status of the PLL clock measurement
     //
@@ -194,10 +175,8 @@ void main(void)
     {
         result = PASS;
     }
-
     ESTOP0;
 }
-
 //
 // Function to continuously monitor a clock
 //
@@ -208,68 +187,55 @@ bool DCC_Continuous_StopOnError(uint32_t base,
                                 uint32_t dccCounterSeed1,
                                 uint32_t dccValidSeed0)
 {
-
     pass_base = base;
-
     //
     // Clear Error & Done Flag
     //
     DCC_clearErrorFlag(base);
     DCC_clearDoneFlag(base);
-
     //
     // Disable DCC
     //
     DCC_disableModule(base);
-
     //
     // Disable Error Signal
     //
     DCC_disableErrorSignal(base);
-
     //
     // Disable Done Signal
     //
     DCC_disableDoneSignal(base);
-
     //
     // Configure Clock Source0 to the reference clock
     // source for PLL
     //
     DCC_setCounter0ClkSource(base, clk0src);
-
     //
     // Configure Clock Source1 to PLL
     //
     DCC_setCounter1ClkSource(base, clk1src);
-
     //
     // Configure COUNTER-0, COUNTER-1 & Valid Window
     //
     DCC_setCounterSeeds(base, dccCounterSeed0, dccValidSeed0,
                         dccCounterSeed1);
-
     //
     // Enable Continuous mode
     //
     DCC_disableSingleShotMode(base);
-
     //
     // Enable Error Signal
     //
     DCC_enableErrorSignal(base);
-
     //
     // Enable DCC to start counting
     //
     DCC_enableModule(base);
-
     //
     // Wait for a window of about 1000uS to detect if an error
     // is generated and ISR is triggered
     //
     DEVICE_DELAY_US(1000);
-
     //
     // Check if ISR was triggered due to error
     //
@@ -277,26 +243,21 @@ bool DCC_Continuous_StopOnError(uint32_t base,
         return false;
     else
         return true;
-
 }
-
 //
 // DCC ISR triggered on an error
 //
 __interrupt void DCC_ISR()
 {
     uint32_t base;
-
     //
     // Pass the DCC base address to the ISR
     //
     base = pass_base;
-
     //
     // Shows that the ISR was called
     //
     isr_enter = 1;
-
     if (DCC_getErrorStatus(base) == 1U)
     {
         //
@@ -305,16 +266,13 @@ __interrupt void DCC_ISR()
         cnt0 = DCC_getCounter0Value(base);
         cnt1 = DCC_getCounter1Value(base);
         valid = DCC_getValidCounter0Value(base);
-
         //
         // Clear the Error flag
         //
         DCC_clearErrorFlag(base);
     }
-
     //
     // Clear the interrupt at PIE level
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
 }
-

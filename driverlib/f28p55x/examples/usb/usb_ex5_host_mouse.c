@@ -22,7 +22,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -55,7 +55,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 //
 // Included Files
 //
@@ -72,42 +71,35 @@
 #include "host/usbhhidmouse.h"
 #include "scistdio.h"
 void INT_myUSB0_ISR(void);
-
 //******************************************************************************
 //
 // The size of the host controller's memory pool in bytes.
 //
 //******************************************************************************
 //#define HCD_MEMORY_SIZE         128
-
 //******************************************************************************
 //
 // The memory pool to provide to the Host controller driver.
 //
 //******************************************************************************
-
-
 //******************************************************************************
 //
 // The size of the mouse device interface's memory pool in bytes.
 //
 //******************************************************************************
 #define MOUSE_MEMORY_SIZE       128
-
 //******************************************************************************
 //
 // The memory pool to provide to the mouse device.
 //
 //******************************************************************************
 uint8_t g_pui8Buffer[MOUSE_MEMORY_SIZE];
-
 //******************************************************************************
 //
 // Declare the USB Events driver interface.
 //
 //******************************************************************************
 DECLARE_EVENT_DRIVER(g_sUSBEventDriver, 0, 0, USBHCDEvents);
-
 //******************************************************************************
 //
 // The global that holds all of the host drivers in use in the application.
@@ -119,7 +111,6 @@ static tUSBHostClassDriver const * const g_ppHostClassDrivers[] =
     &g_sUSBHIDClassDriver,
     &g_sUSBEventDriver
 };
-
 //******************************************************************************
 //
 // This global holds the number of class drivers in the g_ppHostClassDrivers
@@ -128,14 +119,12 @@ static tUSBHostClassDriver const * const g_ppHostClassDrivers[] =
 //******************************************************************************
 static const uint32_t g_ui32NumHostClassDrivers =
     sizeof(g_ppHostClassDrivers) / sizeof(tUSBHostClassDriver *);
-
 //******************************************************************************
 //
 // The global value used to store the mouse instance value.
 //
 //******************************************************************************
 static tUSBHMouse *g_psMouseInstance;
-
 //******************************************************************************
 //
 // The global values used to store the mouse state.
@@ -144,14 +133,12 @@ static tUSBHMouse *g_psMouseInstance;
 static uint32_t g_ui32Buttons;
 static int32_t g_i32CursorX;
 static int32_t g_i32CursorY;
-
 //******************************************************************************
 //
 // The current USB operating mode - Host, Device or unknown.
 //
 //******************************************************************************
 tUSBMode g_eCurrentUSBMode;
-
 //******************************************************************************
 //
 // This enumerated type is used to hold the states of the mouse.
@@ -163,30 +150,25 @@ enum
     // No device is present.
     //
     STATE_NO_DEVICE,
-
     //
     // Mouse has been detected and needs to be initialized in the main
     // loop.
     //
     STATE_MOUSE_INIT,
-
     //
     // Mouse is connected and waiting for events.
     //
     STATE_MOUSE_CONNECTED,
-
     //
     // An unsupported device has been attached.
     //
     STATE_UNKNOWN_DEVICE,
-
     //
     // A power fault has occurred.
     //
     STATE_POWER_FAULT
 }
 g_eUSBState;
-
 //******************************************************************************
 //
 // This is the generic callback from host stack.
@@ -206,12 +188,10 @@ void
 USBHCDEvents(void *pvData)
 {
     tEventInfo *pEventInfo;
-
     //
     // Cast this pointer to its actual type.
     //
     pEventInfo = (tEventInfo *)pvData;
-
     switch(pEventInfo->ui32Event)
     {
         //
@@ -226,7 +206,6 @@ USBHCDEvents(void *pvData)
                (USBHCDDevProtocol(pEventInfo->ui32Instance, 0) ==
                 USB_HID_PROTOCOL_MOUSE))
             {
-
                 //
                 // Proceed to the STATE_MOUSE_INIT state so that the main loop
                 // can finish initialized the mouse since USBHMouseInit()
@@ -234,7 +213,6 @@ USBHCDEvents(void *pvData)
                 //
                 g_eUSBState = STATE_MOUSE_INIT;
             }
-
             break;
         }
         //
@@ -247,7 +225,6 @@ USBHCDEvents(void *pvData)
             //
             g_eUSBState = STATE_UNKNOWN_DEVICE;
             SCIprintf("Unknown Device Connected\n");
-
             break;
         }
         //
@@ -255,19 +232,16 @@ USBHCDEvents(void *pvData)
         //
         case USB_EVENT_DISCONNECTED:
         {
-
             //
             // Change the state so that the main loop knows that the device is
             // no longer present.
             //
             g_eUSBState = STATE_NO_DEVICE;
             SCIprintf("Device Disconnected\n");
-
             //
             // Reset the button state.
             //
             g_ui32Buttons = 0;
-
             break;
         }
         //
@@ -275,23 +249,19 @@ USBHCDEvents(void *pvData)
         //
         case USB_EVENT_POWER_FAULT:
         {
-
             //
             // No power means no device is present.
             //
             g_eUSBState = STATE_POWER_FAULT;
             SCIprintf("Power Fault\n");
-
             break;
         }
-
         default:
         {
             break;
         }
     }
 }
-
 //******************************************************************************
 //
 // USB Mode callback
@@ -314,9 +284,7 @@ ModeCallback(uint32_t ui32Index, tUSBMode eMode)
     // Save the new mode.
     //
     g_eCurrentUSBMode = eMode;
-
 }
-
 //******************************************************************************
 //
 // This is the callback from the USB HID mouse handler.
@@ -340,12 +308,10 @@ MouseCallback(tUSBHMouse *psMsInstance, uint32_t ui32Event,
 {
     int32_t i32DoUpdate;
     volatile char pcBuffer[20];
-
     //
     // Do an update unless there is no reason to.
     //
     i32DoUpdate = 1;
-
     switch(ui32Event)
     {
         //
@@ -357,10 +323,8 @@ MouseCallback(tUSBHMouse *psMsInstance, uint32_t ui32Event,
             // Save the new button that was pressed.
             //
             g_ui32Buttons |= ui32MsgParam;
-
             break;
         }
-
         //
         // Mouse button release detected.
         //
@@ -370,10 +334,8 @@ MouseCallback(tUSBHMouse *psMsInstance, uint32_t ui32Event,
             // Remove the button from the pressed state.
             //
             g_ui32Buttons &= ~ui32MsgParam;
-
             break;
         }
-
         //
         // Mouse X movement detected.
         //
@@ -389,7 +351,6 @@ MouseCallback(tUSBHMouse *psMsInstance, uint32_t ui32Event,
             // Update the cursor X position.
             //
             g_i32CursorX += (int16_t)ui32MsgParam ;
-
             //
             // Cap the value to not cause an overflow.
             //
@@ -397,15 +358,12 @@ MouseCallback(tUSBHMouse *psMsInstance, uint32_t ui32Event,
             {
                 g_i32CursorX = 9999;
             }
-
             if(g_i32CursorX < -9999)
             {
                 g_i32CursorX = -9999;
             }
-
             break;
         }
-
         //
         // Mouse Y movement detected.
         //
@@ -417,12 +375,10 @@ MouseCallback(tUSBHMouse *psMsInstance, uint32_t ui32Event,
             //
             if(ui32MsgParam & 0x80)
                 ui32MsgParam |= 0xFF00;
-
             //
             // Update the cursor Y position.
             //
             g_i32CursorY += (int16_t)ui32MsgParam;
-
             //
             // Cap the value to not cause an overflow.
             //
@@ -430,12 +386,10 @@ MouseCallback(tUSBHMouse *psMsInstance, uint32_t ui32Event,
             {
                 g_i32CursorY = 9999;
             }
-
             if(g_i32CursorY < -9999)
             {
                 g_i32CursorY = -9999;
             }
-
             break;
         }
         default:
@@ -444,11 +398,9 @@ MouseCallback(tUSBHMouse *psMsInstance, uint32_t ui32Event,
             // No reason to update.
             //
             i32DoUpdate = 0;
-
             break;
         }
     }
-
     //
     // Display the current mouse position and button state if there was an
     // update.
@@ -461,11 +413,8 @@ MouseCallback(tUSBHMouse *psMsInstance, uint32_t ui32Event,
         SCIprintf("\rPos: %l, %l  Buttons: %l%l%l    ", g_i32CursorX,
                   g_i32CursorY, g_ui32Buttons & 1, (g_ui32Buttons & 2) >> 1,
                   (g_ui32Buttons & 4) >> 2);
-
-
     }
 }
-
 //******************************************************************************
 //
 // ConfigureSCI - Configure the SCI and its pins. This must be called
@@ -484,7 +433,6 @@ ConfigureSCI(void)
     GPIO_setDirectionMode(28, GPIO_DIR_MODE_IN);
     GPIO_setPadConfig(28, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(28, GPIO_QUAL_ASYNC);
-
     //
     // GPIO29 is the SCI Tx pin.
     //
@@ -493,14 +441,12 @@ ConfigureSCI(void)
     GPIO_setDirectionMode(29, GPIO_DIR_MODE_OUT);
     GPIO_setPadConfig(29, GPIO_PIN_TYPE_STD);
     GPIO_setQualificationMode(29, GPIO_QUAL_ASYNC);
-
     //
     // Initialize the SCI for console I/O.
     //
     SCIStdioConfig(SCIA_BASE, 115200,
                    SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ));
 }
-
 //******************************************************************************
 //
 // This is the main loop that runs the application.
@@ -509,81 +455,65 @@ ConfigureSCI(void)
 int
 main(void)
 {
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize GPIO and configure GPIO pins for USB.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Set the clocking to run from the PLL at 60MHz
     //
     //SysCtl_setAuxClock(DEVICE_AUXSETCLOCK_CFG_USB);
     Board_init();
-
     C2000Ware_libraries_init();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Configure the required pins for USB operation.
     //
     USBGPIOEnable();
-
     //
     // Register the interrupt handler for USB Interrupts.
     //
     //Interrupt_register(INT_USBA, INT_myUSB0_ISR);
-
     //
     // Configure the SCI for debug output.
     //
     ConfigureSCI();
-
     SCIprintf("\033[2JHost Mouse Application\n");
-
     //
     // Initially wait for device connection.
     //
     g_eUSBState = STATE_NO_DEVICE;
-
     //
     // Initialize the USB stack mode and pass in a mode callback.
     //
     //USBStackModeSet(0, eUSBModeForceHost, ModeCallback);
-
     //
     // Register the host class drivers.
     //
     USBHCDRegisterDrivers(0, g_ppHostClassDrivers, g_ui32NumHostClassDrivers);
-
     //
     // Initialized the cursor.
     //
     g_ui32Buttons = 0;
     g_i32CursorX = 0;
     g_i32CursorY = 0;
-
     //
     // Open an instance of the mouse driver.  The mouse does not need
     // to be present at this time, this just saves a place for it and allows
@@ -591,21 +521,17 @@ main(void)
     //
     g_psMouseInstance =
         USBHMouseOpen(MouseCallback, g_pui8Buffer, MOUSE_MEMORY_SIZE);
-
     //
     // Initialize the power configuration. This sets the power enable signal
     // to be active high and does not enable the power fault.
     //
     //USBHCDPowerConfigInit(0, USBHCD_VBUS_AUTO_HIGH | USBHCD_VBUS_FILTER);
-
     //
     // Initialize the USB controller for OTG operation with a 2ms polling
     // rate.
     //
     //USBHCDInit(0, g_pui8HCDPool, HCD_MEMORY_SIZE);
-
     Interrupt_enableGlobal();
-
     //
     // The main loop for the application.
     //
@@ -615,7 +541,6 @@ main(void)
         // Run the main routine of the Host controller driver.
         //
         USBHCDMain();
-
         switch(g_eUSBState)
         {
             //
@@ -627,15 +552,12 @@ main(void)
                 // Initialize the newly connected mouse.
                 //
                 USBHMouseInit(g_psMouseInstance);
-
                 //
                 // Proceed to the mouse connected state.
                 //
                 g_eUSBState = STATE_MOUSE_CONNECTED;
-
                 break;
             }
-
             case STATE_MOUSE_CONNECTED:
             {
                 //
@@ -644,7 +566,6 @@ main(void)
                 //
                 break;
             }
-
             case STATE_NO_DEVICE:
             {
                 //
@@ -652,16 +573,13 @@ main(void)
                 //
                 break;
             }
-
             default:
             {
                 break;
             }
         }
-
     }
 }
-
 //******************************************************************************
 //
 //! Host interrupt service routine wrapper to make ISR compatible with

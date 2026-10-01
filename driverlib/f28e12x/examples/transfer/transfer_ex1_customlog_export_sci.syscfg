@@ -1,9 +1,8 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --device "F28E12x" --package "48PT" --part "F28E12x_48PT" --context "system" --product "C2000WARE@5.04.00.00"
- * @v2CliArgs --device "F28E120SC" --package "48PT" --product "C2000WARE@6.00.00.00"
- * @versions {"tool":"1.21.0+dev"}
+ * @cliArgs --device "F28E12x" --part "F28E12x_48PT" --package "48PT" --context "system"
+ * @v2CliArgs ---device "F28E120SC" --package "48PT" --context "system"
  */
 /**
  * Import the modules used in this configuration.
@@ -14,21 +13,17 @@ const CMD            = scripting.addModule("/utilities/cmd_tool/cmd_syscfg/sourc
 const CMD1           = CMD.addInstance();
 const CMD2           = CMD.addInstance();
 const gui            = scripting.addModule("/utilities/transfer/gui.js");
-
 /**
  * Write custom configuration values to the imported modules.
  */
 const divider2       = system.clockTree["PLL_PDIV"];
 divider2.divideValue = 2;
-
 const multiplier1         = system.clockTree["PLL_QDIV"];
 multiplier1.multiplyValue = 32;
-
 const mux1       = system.clockTree["OSCCLKSRCSEL"];
 mux1.inputSelect = "X1_XTAL";
 CMD1.$name                    = "generic_ram_lnk";
 CMD2.$name                    = "generic_flash_lnk";
-
 CMD1.sectionMemory_text       = ["RAMM1","RAMGS0"];
 CMD1.sectionMemory_bss        = ["RAMGS0","RAMM1"];
 CMD1.sectionMemory_const      = ["RAMM1","RAMGS0","RAMM0"];
@@ -39,7 +34,6 @@ CMD1.sectionMemory_stack      = ["RAMM1"];
 CMD1.sectionMemory_init_array = ["RAMM0"];
 CMD1.sectionMemory_switch     = ["RAMM0"];
 CMD1.sectionMemory_sysmem     = ["RAMGS0"];
-
 CMD2.sectionAlignEnable_ramfunc    = true;
 CMD2.sectionAlignEnable_text       = true;
 CMD2.sectionAlignEnable_binit      = true;
@@ -64,7 +58,6 @@ CMD2.sectionMemory_ovly            = ["FLASH_BANK0_SEC_0_63"];
 CMD2.sectionRunFromDifferentAddr_ramfunc = true;
 CMD2.sectionRun_ramfunc                  = ["RAMGS0"];
 CMD2.sectionBinit_ramfunc                = false;
-
 gui.guiProjectName                             = "transfer_ex1_customlog_export_sci";
 gui.customlogger                               = true;
 gui.exporter.$name                             = "myEXPORT0";

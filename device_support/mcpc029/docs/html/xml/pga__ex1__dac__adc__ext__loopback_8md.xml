@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="pga__ex1__dac__adc__ext__loopback_8md" kind="file" language="Markdown">
+    <compoundname>pga_ex1_dac_adc_ext_loopback.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>PGA<sp/>DAC-ADC<sp/>External<sp/>Loopback<sp/>{#EXAMPLES_DRIVERS_PGA_EX1_DAC_ADC_EXT_LOOPBACK}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x<sp/>||<sp/>MCPC029</highlight></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>generates<sp/>800<sp/>mV<sp/>using<sp/>the<sp/>CMPSSDAC<sp/>output.<sp/>CMPSSLITE<sp/>is<sp/>used<sp/>route<sp/>the<sp/>low<sp/>DAC<sp/>output<sp/>to<sp/>an<sp/>external<sp/>pin<sp/>to<sp/>be<sp/>used<sp/>as<sp/>an<sp/>external<sp/>DAC.<sp/>The<sp/>output<sp/>of<sp/>the<sp/>CMPSSLITE<sp/>DACL<sp/>is<sp/>externally<sp/>connected<sp/>to<sp/>PGA<sp/>for<sp/>2x<sp/>gain<sp/>amplification.<sp/>It<sp/>uses<sp/>two<sp/>ADC<sp/>channels<sp/>to<sp/>sample<sp/>the<sp/>CMPSSDAC<sp/>output<sp/>and<sp/>the<sp/>amplified<sp/>voltage<sp/>output<sp/>from<sp/>PGA.<sp/>The<sp/>ADC<sp/>is<sp/>connected<sp/>internally<sp/>to<sp/>these<sp/>signals.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28P55x<sp/>||<sp/>F28P551x</highlight></codeline>
+<codeline><highlight class="normal">This<sp/>example<sp/>generates<sp/>400<sp/>mV<sp/>using<sp/>the<sp/>DAC<sp/>output<sp/>(it<sp/>uses<sp/>an<sp/>internal<sp/>voltage<sp/>reference).<sp/>The<sp/>output<sp/>of<sp/>the<sp/>DAC<sp/>is<sp/>externally<sp/>connected<sp/>to<sp/>PGA2<sp/>for<sp/>a<sp/>2x<sp/>gain<sp/>amplification.<sp/>It<sp/>uses<sp/>two<sp/>ADC<sp/>channels<sp/>to<sp/>sample<sp/>the<sp/>DAC<sp/>output<sp/>and<sp/>the<sp/>amplified<sp/>voltage<sp/>output<sp/>from<sp/>PGA2.<sp/>The<sp/>ADC<sp/>is<sp/>connected<sp/>to<sp/>these<sp/>signals<sp/>internally.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Watch<sp/><sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>dacResult<sp/>-<sp/>The<sp/>DAC<sp/>output<sp/>voltage.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>pgaResult<sp/>-<sp/>The<sp/>amplified<sp/>DAC<sp/>voltage.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>pgaGain<sp/><sp/><sp/>-<sp/>The<sp/>ratio<sp/>of<sp/>the<sp/>amplified<sp/>DAC<sp/>voltage<sp/>to<sp/>the<sp/>original<sp/>DAC<sp/>output.<sp/>This<sp/>should<sp/>always<sp/>read<sp/>a<sp/>value<sp/>of<sp/>~2.0.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>CMPSSLITE_DACL_OUT<sp/>(Analog<sp/>Pin<sp/>A0)<sp/>to<sp/>PGA1_INP1<sp/>(Analog<sp/>Pin<sp/>A11)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>PGA1_INM1<sp/>(Analog<sp/>Pin<sp/>A4)<sp/>to<sp/>GND</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28P55x<sp/>||<sp/>F28P551x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>DACA_OUT<sp/>(Analog<sp/>Pin<sp/>A0)<sp/>to<sp/>PGA2_INP<sp/>(Analog<sp/>Pin<sp/>A2).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Connect<sp/>PGA1_INM<sp/>(Analog<sp/>Pin<sp/>A3)<sp/>to<sp/>GND</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x<sp/>||<sp/>F28P55x<sp/><sp/>||<sp/>F28P551x<sp/>||<sp/>MCPC029</highlight></codeline>
+<codeline><highlight class="normal">##<sp/>Implementation<sp/>Comparison</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Aspect<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Driverlib<sp/>Implementation<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Bitfield<sp/>Implementation<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|-----------------------|-------------------------------------------|--------------------------------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Source<sp/>File<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>pga_ex1_dac_adc_ext_loopback.c<sp/>(driverlib)|<sp/>pga_ex1_dac_adc_ext_loopback.c<sp/>(examples_bitfield)<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Configuration<sp/>Method<sp/><sp/>|<sp/>Driverlib<sp/>API<sp/>calls<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Direct<sp/>register<sp/>access<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Hardware<sp/>Abstraction<sp/><sp/>|<sp/>Medium<sp/>(driverlib)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>None<sp/>(direct<sp/>hardware)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>Gain<sp/>Control<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>API-based<sp/>configuration<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>Direct<sp/>register<sp/>configuration<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Using<sp/>the<sp/>watch<sp/>variables,<sp/>view<sp/>the<sp/>position<sp/>and<sp/>speed<sp/>calculated<sp/>for<sp/>the<sp/>motor.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_EQEP_PAGE</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/pga_ex1_dac_adc_ext_loopback.md"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="cputimer_8h" kind="file" language="C++">
+    <compoundname>cputimer.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes local="no">stdint.h</includes>
+    <includes local="yes">inc/hw_memmap.h</includes>
+    <includes local="yes">inc/hw_types.h</includes>
+    <includes local="yes">inc/hw_cputimer.h</includes>
+    <includes local="yes">debug.h</includes>
+    <includes refid="sysctl_8h" local="yes">sysctl.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="11">
+        <label>inc/hw_otp.h</label>
+      </node>
+      <node id="14">
+        <label>inc/hw_ints.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+      <node id="6">
+        <label>inc/hw_cputimer.h</label>
+      </node>
+      <node id="12">
+        <label>cpu.h</label>
+      </node>
+      <node id="9">
+        <label>inc/hw_nmi.h</label>
+      </node>
+      <node id="4">
+        <label>inc/hw_memmap.h</label>
+      </node>
+      <node id="13">
+        <label>interrupt.h</label>
+        <link refid="interrupt_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>inc/hw_pie.h</label>
+      </node>
+      <node id="8">
+        <label>sysctl.h</label>
+        <link refid="sysctl_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>cputimer.h</label>
+        <link refid="cputimer_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>inc/hw_sysctl.h</label>
+      </node>
+      <node id="7">
+        <label>debug.h</label>
+      </node>
+      <node id="5">
+        <label>inc/hw_types.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="group__cputimer__api_1ga108fe1191ffed926840ac00928024644" prot="public" static="no" strong="no">
+        <type></type>
+        <name>CPUTimer_EmulationMode</name>
+        <enumvalue id="group__cputimer__api_1gga108fe1191ffed926840ac00928024644a9e8b546a384b59d2095cd666961dedac" prot="public">
+          <name>CPUTIMER_EMULATIONMODE_STOPAFTERNEXTDECREMENT</name>
+          <initializer>= 0x0000</initializer>
+          <briefdescription>
+<para>Denotes that the timer will stop after the next decrement. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__cputimer__api_1gga108fe1191ffed926840ac00928024644a240bcacad635eddb1aaa852c5f7e8397" prot="public">
+          <name>CPUTIMER_EMULATIONMODE_STOPATZERO</name>
+          <initializer>= 0x0400</initializer>
+          <briefdescription>
+<para>Denotes that the timer will stop when it reaches zero. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__cputimer__api_1gga108fe1191ffed926840ac00928024644a7bdf30431f93bfaa5d277aab530c587c" prot="public">
+          <name>CPUTIMER_EMULATIONMODE_RUNFREE</name>
+          <initializer>= 0x0800</initializer>
+          <briefdescription>
+<para>Denotes that the timer will run free. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__cputimer__api_1ga8e9243f5ea3917004c5b3205a2a72894" kindref="member">CPUTimer_setEmulationMode()</ref> as the <emphasis>mode</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" line="83" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" bodystart="84" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__cputimer__api_1ga214aff735b0acf172ffe29ebe591fe61" prot="public" static="no" strong="no">
+        <type></type>
+        <name>CPUTimer_ClockSource</name>
+        <enumvalue id="group__cputimer__api_1gga214aff735b0acf172ffe29ebe591fe61a560d4a2c75937be8db9a1d70b97982d9" prot="public">
+          <name>CPUTIMER_CLOCK_SOURCE_SYS</name>
+          <initializer>= 0x0</initializer>
+          <briefdescription>
+<para>System Clock Source. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__cputimer__api_1gga214aff735b0acf172ffe29ebe591fe61a87b6d6ee9ca23a3b61d16dff784e2abe" prot="public">
+          <name>CPUTIMER_CLOCK_SOURCE_WROSCDIV8</name>
+          <initializer>= 0x1</initializer>
+          <briefdescription>
+<para>WROSC (Wide Range Oscillator) output clock after the fixed BY8 divider. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__cputimer__api_1gga214aff735b0acf172ffe29ebe591fe61ab3a927a8d0d128ea761cbe9d10b4aad7" prot="public">
+          <name>CPUTIMER_CLOCK_SOURCE_SYSOSCDIV4</name>
+          <initializer>= 0x2</initializer>
+          <briefdescription>
+<para>SYSOSC output clock after the fixed BY4 divider. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__cputimer__api_1gga214aff735b0acf172ffe29ebe591fe61a92cf2e75fbd905b71f4df1f809eca0fa" prot="public">
+          <name>CPUTIMER_CLOCK_SOURCE_XTAL</name>
+          <initializer>= 0x3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The following are values that can be passed to <ref refid="group__cputimer__api_1ga956f3be8d7c0e2883cc9912fed947fee" kindref="member">CPUTimer_selectClockSource()</ref> as the <emphasis>source</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" line="99" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" bodystart="100" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__cputimer__api_1gafa70b7d5a2a5b33b6bd56e84ff1cec4d" prot="public" static="no" strong="no">
+        <type></type>
+        <name>CPUTimer_Prescaler</name>
+        <enumvalue id="group__cputimer__api_1ggafa70b7d5a2a5b33b6bd56e84ff1cec4da33340a58dd0e4e4cbde4fba33e0de7b6" prot="public">
+          <name>CPUTIMER_CLOCK_PRESCALER_1</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+<para>Prescaler value of / 1. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__cputimer__api_1ggafa70b7d5a2a5b33b6bd56e84ff1cec4dad5a1ddb1f79aa8d56cec23324333dd49" prot="public">
+          <name>CPUTIMER_CLOCK_PRESCALER_2</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>Prescaler value of / 2. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__cputimer__api_1ggafa70b7d5a2a5b33b6bd56e84ff1cec4da585b094e951b2761735f0e6f20f12de7" prot="public">
+          <name>CPUTIMER_CLOCK_PRESCALER_4</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+<para>Prescaler value of / 4. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__cputimer__api_1ggafa70b7d5a2a5b33b6bd56e84ff1cec4dae82ed2a72019c42716c153e592368021" prot="public">
+          <name>CPUTIMER_CLOCK_PRESCALER_8</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+<para>Prescaler value of / 8. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__cputimer__api_1ggafa70b7d5a2a5b33b6bd56e84ff1cec4da9cf1593619914c85d583a6e58ec58614" prot="public">
+          <name>CPUTIMER_CLOCK_PRESCALER_16</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+<para>Prescaler value of / 16. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The following are values that can be passed to <ref refid="group__cputimer__api_1ga956f3be8d7c0e2883cc9912fed947fee" kindref="member">CPUTimer_selectClockSource()</ref> as the <emphasis>prescaler</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" line="116" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" bodystart="117" bodyend="123"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__cputimer__api_1gae3b2e219398e21ab7dd29787f035ff59" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CPUTimer_clearOverflowFlag</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>CPUTimer_clearOverflowFlag</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clears CPU timer overflow flag.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the timer module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function clears the CPU timer overflow flag.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" line="157" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" bodystart="157" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="group__cputimer__api_1ga58192d248e0d0de4054dd5bde76954b8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CPUTimer_disableInterrupt</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>CPUTimer_disableInterrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables CPU timer interrupt.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the timer module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables the CPU timer interrupt.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" line="178" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" bodystart="178" bodyend="186"/>
+      </memberdef>
+      <memberdef kind="function" id="group__cputimer__api_1ga0a7c39ff546820eb43035b572ecc5a7c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CPUTimer_enableInterrupt</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>CPUTimer_enableInterrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables CPU timer interrupt.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the timer module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables the CPU timer interrupt.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" line="199" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" bodystart="199" bodyend="209"/>
+      </memberdef>
+      <memberdef kind="function" id="group__cputimer__api_1ga06a8d5536106ea72ce195c8fc72c93a4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CPUTimer_reloadTimerCounter</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>CPUTimer_reloadTimerCounter</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reloads CPU timer counter.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the timer module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function reloads the CPU timer counter with the values contained in the CPU timer period register.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" line="223" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" bodystart="223" bodyend="233"/>
+      </memberdef>
+      <memberdef kind="function" id="group__cputimer__api_1gab7d3df1344d594548b0dda9455ba9dae" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CPUTimer_stopTimer</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>CPUTimer_stopTimer</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Stops CPU timer.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the timer module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function stops the CPU timer.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" line="246" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" bodystart="246" bodyend="256"/>
+      </memberdef>
+      <memberdef kind="function" id="group__cputimer__api_1ga62a7963fafabc7fbb0452253617c4016" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CPUTimer_resumeTimer</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>CPUTimer_resumeTimer</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Starts(restarts) CPU timer.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the timer module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function starts (restarts) the CPU timer.</para>
+<para><bold>Note:</bold> This function doesn&apos;t reset the timer counter.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" line="271" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" bodystart="271" bodyend="279"/>
+      </memberdef>
+      <memberdef kind="function" id="group__cputimer__api_1ga7b48c39c1c03126fc5800d11f5c994bd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CPUTimer_startTimer</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>CPUTimer_startTimer</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Starts(restarts) CPU timer.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the timer module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function starts (restarts) the CPU timer.</para>
+<para><bold>Note:</bold> This function reloads the timer counter.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" line="294" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" bodystart="294" bodyend="309"/>
+      </memberdef>
+      <memberdef kind="function" id="group__cputimer__api_1ga246fa1d4f1f3f4de27bf856d0dc95227" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CPUTimer_setPeriod</definition>
+        <argsstring>(uint32_t base, uint32_t periodCount)</argsstring>
+        <name>CPUTimer_setPeriod</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>periodCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets CPU timer period.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the timer module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>periodCount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the CPU timer period count.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the CPU timer period count.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" line="323" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" bodystart="323" bodyend="331"/>
+      </memberdef>
+      <memberdef kind="function" id="group__cputimer__api_1ga5ec7266a6de00db24c8d1d1a18be3dd1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t CPUTimer_getTimerCount</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>CPUTimer_getTimerCount</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the current CPU timer counter value.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the timer module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns the current CPU timer counter value.</para>
+<para><simplesect kind="return"><para>Returns the current CPU timer count value. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" line="344" column="24" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" bodystart="344" bodyend="352"/>
+      </memberdef>
+      <memberdef kind="function" id="group__cputimer__api_1gae2b419bee3c160e639cf41697e88362e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CPUTimer_setPreScaler</definition>
+        <argsstring>(uint32_t base, uint16_t prescaler)</argsstring>
+        <name>CPUTimer_setPreScaler</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>prescaler</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set CPU timer pre-scaler value.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the timer module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prescaler</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the CPU timer pre-scaler value.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the pre-scaler value for the CPU timer. For every value of (prescaler + 1), the CPU timer counter decrements by 1.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" line="367" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" bodystart="367" bodyend="376"/>
+      </memberdef>
+      <memberdef kind="function" id="group__cputimer__api_1gab3614f19c2b8f346b3b75979b3c4433d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool CPUTimer_getTimerOverflowStatus</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>CPUTimer_getTimerOverflowStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Return the CPU timer overflow status.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the timer module.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns the CPU timer overflow status.</para>
+<para><simplesect kind="return"><para>Returns true if the CPU timer has overflowed, false if not. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" line="389" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" bodystart="389" bodyend="398"/>
+      </memberdef>
+      <memberdef kind="function" id="group__cputimer__api_1ga956f3be8d7c0e2883cc9912fed947fee" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CPUTimer_selectClockSource</definition>
+        <argsstring>(uint32_t base, CPUTimer_ClockSource source, CPUTimer_Prescaler prescaler)</argsstring>
+        <name>CPUTimer_selectClockSource</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__cputimer__api_1ga214aff735b0acf172ffe29ebe591fe61" kindref="member">CPUTimer_ClockSource</ref></type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type><ref refid="group__cputimer__api_1gafa70b7d5a2a5b33b6bd56e84ff1cec4d" kindref="member">CPUTimer_Prescaler</ref></type>
+          <declname>prescaler</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Select CPU Timer 2 Clock Source and Prescaler</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the timer module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>source</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the clock source to use for CPU Timer 2 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prescaler</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the value that configures the selected clock source relative to the system clock</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function selects the specified clock source and prescaler value for the CPU timer (CPU timer 2 only).</para>
+<para>The <emphasis>source</emphasis> parameter can be any one of the following:<itemizedlist>
+<listitem><para><bold>CPUTIMER_CLOCK_SOURCE_SYS</bold> - System Clock</para>
+</listitem><listitem><para><bold>CPUTIMER_CLOCK_SOURCE_WROSCDIV8</bold> - WROSC (Wide Range Oscillator) output clock after the fixed BY8 divider</para>
+</listitem><listitem><para><bold>CPUTIMER_CLOCK_SOURCE_SYSOSCDIV4</bold> - SYSOSC output clock after the fixed BY4 divider</para>
+</listitem><listitem><para><bold>CPUTIMER_CLOCK_SOURCE_XTAL</bold> - External Clock</para>
+</listitem></itemizedlist>
+</para>
+<para>The <emphasis>prescaler</emphasis> parameter can be any one of the following:<itemizedlist>
+<listitem><para><bold>CPUTIMER_CLOCK_PRESCALER_1</bold> - Prescaler value of / 1</para>
+</listitem><listitem><para><bold>CPUTIMER_CLOCK_PRESCALER_2</bold> - Prescaler value of / 2</para>
+</listitem><listitem><para><bold>CPUTIMER_CLOCK_PRESCALER_4</bold> - Prescaler value of / 4</para>
+</listitem><listitem><para><bold>CPUTIMER_CLOCK_PRESCALER_8</bold> - Prescaler value of / 8</para>
+</listitem><listitem><para><bold>CPUTIMER_CLOCK_PRESCALER_16</bold> - Prescaler value of / 16</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" line="428" column="20" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" bodystart="428" bodyend="460"/>
+      </memberdef>
+      <memberdef kind="function" id="group__cputimer__api_1ga8e9243f5ea3917004c5b3205a2a72894" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CPUTimer_setEmulationMode</definition>
+        <argsstring>(uint32_t base, CPUTimer_EmulationMode mode)</argsstring>
+        <name>CPUTimer_setEmulationMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__cputimer__api_1ga108fe1191ffed926840ac00928024644" kindref="member">CPUTimer_EmulationMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets Emulation mode for CPU timer.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the timer module. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the emulation mode of the timer.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the behaviour of CPU timer during emulation. Valid values mode are: CPUTIMER_EMULATIONMODE_STOPAFTERNEXTDECREMENT, CPUTIMER_EMULATIONMODE_STOPATZERO and CPUTIMER_EMULATIONMODE_RUNFREE.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" line="482" column="13" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h" declline="482" declcolumn="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//#############################################################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>FILE:<sp/><sp/><sp/>cputimer.h</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>TITLE:<sp/><sp/><sp/>C28x<sp/>CPU<sp/>timer<sp/>Driver</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//#############################################################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>$Copyright:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(C)<sp/>2026<sp/>Texas<sp/>Instruments<sp/>Incorporated<sp/>-<sp/>http://www.ti.com/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Redistribution<sp/>and<sp/>use<sp/>in<sp/>source<sp/>and<sp/>binary<sp/>forms,<sp/>with<sp/>or<sp/>without<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>modification,<sp/>are<sp/>permitted<sp/>provided<sp/>that<sp/>the<sp/>following<sp/>conditions<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>are<sp/>met:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>Redistributions<sp/>of<sp/>source<sp/>code<sp/>must<sp/>retain<sp/>the<sp/>above<sp/>copyright<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>Redistributions<sp/>in<sp/>binary<sp/>form<sp/>must<sp/>reproduce<sp/>the<sp/>above<sp/>copyright</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer<sp/>in<sp/>the<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>documentation<sp/>and/or<sp/>other<sp/>materials<sp/>provided<sp/>with<sp/>the<sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>distribution.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>Neither<sp/>the<sp/>name<sp/>of<sp/>Texas<sp/>Instruments<sp/>Incorporated<sp/>nor<sp/>the<sp/>names<sp/>of</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>its<sp/>contributors<sp/>may<sp/>be<sp/>used<sp/>to<sp/>endorse<sp/>or<sp/>promote<sp/>products<sp/>derived</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>from<sp/>this<sp/>software<sp/>without<sp/>specific<sp/>prior<sp/>written<sp/>permission.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>THIS<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>BY<sp/>THE<sp/>COPYRIGHT<sp/>HOLDERS<sp/>AND<sp/>CONTRIBUTORS<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>ANY<sp/>EXPRESS<sp/>OR<sp/>IMPLIED<sp/>WARRANTIES,<sp/>INCLUDING,<sp/>BUT<sp/>NOT<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>LIMITED<sp/>TO,<sp/>THE<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS<sp/>FOR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>ARE<sp/>DISCLAIMED.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>COPYRIGHT<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>OWNER<sp/>OR<sp/>CONTRIBUTORS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>DIRECT,<sp/>INDIRECT,<sp/>INCIDENTAL,<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPECIAL,<sp/>EXEMPLARY,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>(INCLUDING,<sp/>BUT<sp/>NOT<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>LIMITED<sp/>TO,<sp/>PROCUREMENT<sp/>OF<sp/>SUBSTITUTE<sp/>GOODS<sp/>OR<sp/>SERVICES;<sp/>LOSS<sp/>OF<sp/>USE,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>DATA,<sp/>OR<sp/>PROFITS;<sp/>OR<sp/>BUSINESS<sp/>INTERRUPTION)<sp/>HOWEVER<sp/>CAUSED<sp/>AND<sp/>ON<sp/>ANY</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>THEORY<sp/>OF<sp/>LIABILITY,<sp/>WHETHER<sp/>IN<sp/>CONTRACT,<sp/>STRICT<sp/>LIABILITY,<sp/>OR<sp/>TORT<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/>(INCLUDING<sp/>NEGLIGENCE<sp/>OR<sp/>OTHERWISE)<sp/>ARISING<sp/>IN<sp/>ANY<sp/>WAY<sp/>OUT<sp/>OF<sp/>THE<sp/>USE<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>OF<sp/>THIS<sp/>SOFTWARE,<sp/>EVEN<sp/>IF<sp/>ADVISED<sp/>OF<sp/>THE<sp/>POSSIBILITY<sp/>OF<sp/>SUCH<sp/>DAMAGE.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">//<sp/>$</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//#############################################################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>CPUTIMER_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CPUTIMER_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>If<sp/>building<sp/>with<sp/>a<sp/>C++<sp/>compiler,<sp/>make<sp/>all<sp/>of<sp/>the<sp/>definitions<sp/>in<sp/>this<sp/>header</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>have<sp/>a<sp/>C<sp/>binding.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__TMS320C28XX__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;inc/hw_memmap.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;inc/hw_types.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;inc/hw_cputimer.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;debug.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="sysctl_8h" kindref="compound">sysctl.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Defines<sp/>for<sp/>the<sp/>API.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="comment">//****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="group__cputimer__api_1ga108fe1191ffed926840ac00928024644" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="86" refid="group__cputimer__api_1gga108fe1191ffed926840ac00928024644a9e8b546a384b59d2095cd666961dedac" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="group__cputimer__api_1gga108fe1191ffed926840ac00928024644a9e8b546a384b59d2095cd666961dedac" kindref="member">CPUTIMER_EMULATIONMODE_STOPAFTERNEXTDECREMENT</ref><sp/>=<sp/>0x0000,</highlight></codeline>
+<codeline lineno="88" refid="group__cputimer__api_1gga108fe1191ffed926840ac00928024644a240bcacad635eddb1aaa852c5f7e8397" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="group__cputimer__api_1gga108fe1191ffed926840ac00928024644a240bcacad635eddb1aaa852c5f7e8397" kindref="member">CPUTIMER_EMULATIONMODE_STOPATZERO</ref><sp/>=<sp/>0x0400,</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><ref refid="group__cputimer__api_1gga108fe1191ffed926840ac00928024644a7bdf30431f93bfaa5d277aab530c587c" kindref="member">CPUTIMER_EMULATIONMODE_RUNFREE</ref><sp/>=<sp/>0x0800</highlight></codeline>
+<codeline lineno="91" refid="group__cputimer__api_1gga108fe1191ffed926840ac00928024644a7bdf30431f93bfaa5d277aab530c587c" refkind="member"><highlight class="normal">}<ref refid="group__cputimer__api_1ga108fe1191ffed926840ac00928024644" kindref="member">CPUTimer_EmulationMode</ref>;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="97"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="group__cputimer__api_1ga214aff735b0acf172ffe29ebe591fe61" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="102" refid="group__cputimer__api_1gga214aff735b0acf172ffe29ebe591fe61a560d4a2c75937be8db9a1d70b97982d9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__cputimer__api_1gga214aff735b0acf172ffe29ebe591fe61a560d4a2c75937be8db9a1d70b97982d9" kindref="member">CPUTIMER_CLOCK_SOURCE_SYS</ref><sp/><sp/><sp/><sp/><sp/>=<sp/>0x0,</highlight></codeline>
+<codeline lineno="104" refid="group__cputimer__api_1gga214aff735b0acf172ffe29ebe591fe61a87b6d6ee9ca23a3b61d16dff784e2abe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__cputimer__api_1gga214aff735b0acf172ffe29ebe591fe61a87b6d6ee9ca23a3b61d16dff784e2abe" kindref="member">CPUTIMER_CLOCK_SOURCE_WROSCDIV8</ref><sp/>=<sp/>0x1,</highlight></codeline>
+<codeline lineno="106" refid="group__cputimer__api_1gga214aff735b0acf172ffe29ebe591fe61ab3a927a8d0d128ea761cbe9d10b4aad7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__cputimer__api_1gga214aff735b0acf172ffe29ebe591fe61ab3a927a8d0d128ea761cbe9d10b4aad7" kindref="member">CPUTIMER_CLOCK_SOURCE_SYSOSCDIV4</ref><sp/>=<sp/>0x2,</highlight></codeline>
+<codeline lineno="107" refid="group__cputimer__api_1gga214aff735b0acf172ffe29ebe591fe61a92cf2e75fbd905b71f4df1f809eca0fa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__cputimer__api_1gga214aff735b0acf172ffe29ebe591fe61a92cf2e75fbd905b71f4df1f809eca0fa" kindref="member">CPUTIMER_CLOCK_SOURCE_XTAL</ref><sp/><sp/><sp/><sp/>=<sp/>0x3,</highlight></codeline>
+<codeline lineno="108"><highlight class="normal">}<sp/><ref refid="group__cputimer__api_1ga214aff735b0acf172ffe29ebe591fe61" kindref="member">CPUTimer_ClockSource</ref>;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="114"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116" refid="group__cputimer__api_1gafa70b7d5a2a5b33b6bd56e84ff1cec4d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="118" refid="group__cputimer__api_1ggafa70b7d5a2a5b33b6bd56e84ff1cec4da33340a58dd0e4e4cbde4fba33e0de7b6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__cputimer__api_1ggafa70b7d5a2a5b33b6bd56e84ff1cec4da33340a58dd0e4e4cbde4fba33e0de7b6" kindref="member">CPUTIMER_CLOCK_PRESCALER_1</ref><sp/><sp/>=<sp/>0,<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="119" refid="group__cputimer__api_1ggafa70b7d5a2a5b33b6bd56e84ff1cec4dad5a1ddb1f79aa8d56cec23324333dd49" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__cputimer__api_1ggafa70b7d5a2a5b33b6bd56e84ff1cec4dad5a1ddb1f79aa8d56cec23324333dd49" kindref="member">CPUTIMER_CLOCK_PRESCALER_2</ref><sp/><sp/>=<sp/>1,<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="120" refid="group__cputimer__api_1ggafa70b7d5a2a5b33b6bd56e84ff1cec4da585b094e951b2761735f0e6f20f12de7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__cputimer__api_1ggafa70b7d5a2a5b33b6bd56e84ff1cec4da585b094e951b2761735f0e6f20f12de7" kindref="member">CPUTIMER_CLOCK_PRESCALER_4</ref><sp/><sp/>=<sp/>2,<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="121" refid="group__cputimer__api_1ggafa70b7d5a2a5b33b6bd56e84ff1cec4dae82ed2a72019c42716c153e592368021" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__cputimer__api_1ggafa70b7d5a2a5b33b6bd56e84ff1cec4dae82ed2a72019c42716c153e592368021" kindref="member">CPUTIMER_CLOCK_PRESCALER_8</ref><sp/><sp/>=<sp/>3,<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__cputimer__api_1ggafa70b7d5a2a5b33b6bd56e84ff1cec4da9cf1593619914c85d583a6e58ec58614" kindref="member">CPUTIMER_CLOCK_PRESCALER_16</ref><sp/>=<sp/>4<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="123" refid="group__cputimer__api_1ggafa70b7d5a2a5b33b6bd56e84ff1cec4da9cf1593619914c85d583a6e58ec58614" refkind="member"><highlight class="normal">}<sp/><ref refid="group__cputimer__api_1gafa70b7d5a2a5b33b6bd56e84ff1cec4d" kindref="member">CPUTimer_Prescaler</ref>;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="136"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>CPUTimer_isBaseValid(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="140"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">((base<sp/>==<sp/>CPUTIMER0_BASE)<sp/>||<sp/>(base<sp/>==<sp/>CPUTIMER1_BASE)<sp/>||</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(base<sp/>==<sp/>CPUTIMER2_BASE));</highlight></codeline>
+<codeline lineno="143"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="155"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157" refid="group__cputimer__api_1gae3b2e219398e21ab7dd29787f035ff59" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__cputimer__api_1gae3b2e219398e21ab7dd29787f035ff59" kindref="member">CPUTimer_clearOverflowFlag</ref>(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="158"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(CPUTimer_isBaseValid(base));</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>TIF<sp/>bit<sp/>of<sp/>TCR<sp/>register</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>CPUTIMER_O_TCR)<sp/>|=<sp/>CPUTIMER_TCR_TIF;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="176"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178" refid="group__cputimer__api_1ga58192d248e0d0de4054dd5bde76954b8" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__cputimer__api_1ga58192d248e0d0de4054dd5bde76954b8" kindref="member">CPUTimer_disableInterrupt</ref>(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="179"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(CPUTimer_isBaseValid(base));</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Clear<sp/>TIE<sp/>bit<sp/>of<sp/>TCR<sp/>register</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>CPUTIMER_O_TCR)<sp/>&amp;=<sp/>~CPUTIMER_TCR_TIE;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="197"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199" refid="group__cputimer__api_1ga0a7c39ff546820eb43035b572ecc5a7c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__cputimer__api_1ga0a7c39ff546820eb43035b572ecc5a7c" kindref="member">CPUTimer_enableInterrupt</ref>(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="200"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/>tcrValue<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(CPUTimer_isBaseValid(base));</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>TIE<sp/>bit<sp/>of<sp/>TCR<sp/>register</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/>tcrValue<sp/>=<sp/>HWREGH(base<sp/>+<sp/>CPUTIMER_O_TCR)<sp/>&amp;<sp/>(~CPUTIMER_TCR_TIF);</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>CPUTIMER_O_TCR)<sp/>=<sp/>tcrValue<sp/>|<sp/>CPUTIMER_TCR_TIE;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="221"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="223" refid="group__cputimer__api_1ga06a8d5536106ea72ce195c8fc72c93a4" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__cputimer__api_1ga06a8d5536106ea72ce195c8fc72c93a4" kindref="member">CPUTimer_reloadTimerCounter</ref>(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="224"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/>tcrValue<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(CPUTimer_isBaseValid(base));</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>TRB<sp/>bit<sp/>of<sp/>register<sp/>TCR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/>tcrValue<sp/>=<sp/>HWREGH(base<sp/>+<sp/>CPUTIMER_O_TCR)<sp/>&amp;<sp/>(~CPUTIMER_TCR_TIF);</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>CPUTIMER_O_TCR)<sp/>=<sp/>tcrValue<sp/>|<sp/>CPUTIMER_TCR_TRB;</highlight></codeline>
+<codeline lineno="233"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="244"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="245"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="246" refid="group__cputimer__api_1gab7d3df1344d594548b0dda9455ba9dae" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__cputimer__api_1gab7d3df1344d594548b0dda9455ba9dae" kindref="member">CPUTimer_stopTimer</ref>(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="247"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/>tcrValue<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(CPUTimer_isBaseValid(base));</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"></highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>TSS<sp/>bit<sp/>of<sp/>register<sp/>TCR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/>tcrValue<sp/>=<sp/>HWREGH(base<sp/>+<sp/>CPUTIMER_O_TCR)<sp/>&amp;<sp/>(~CPUTIMER_TCR_TIF);</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>CPUTIMER_O_TCR)<sp/>=<sp/>tcrValue<sp/>|<sp/>CPUTIMER_TCR_TSS;</highlight></codeline>
+<codeline lineno="256"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="259"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="269"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="271" refid="group__cputimer__api_1ga62a7963fafabc7fbb0452253617c4016" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__cputimer__api_1ga62a7963fafabc7fbb0452253617c4016" kindref="member">CPUTimer_resumeTimer</ref>(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="272"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(CPUTimer_isBaseValid(base));</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"></highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Clear<sp/>TSS<sp/>bit<sp/>of<sp/>register<sp/>TCR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>CPUTIMER_O_TCR)<sp/>&amp;=<sp/>~CPUTIMER_TCR_TSS;</highlight></codeline>
+<codeline lineno="279"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="292"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="293"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="294" refid="group__cputimer__api_1ga7b48c39c1c03126fc5800d11f5c994bd" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__cputimer__api_1ga7b48c39c1c03126fc5800d11f5c994bd" kindref="member">CPUTimer_startTimer</ref>(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="295"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/>tcrValue<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(CPUTimer_isBaseValid(base));</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"></highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Reload<sp/>the<sp/>timer<sp/>counter</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/>tcrValue<sp/>=<sp/>HWREGH(base<sp/>+<sp/>CPUTIMER_O_TCR)<sp/>&amp;<sp/>(~CPUTIMER_TCR_TIF);</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>CPUTIMER_O_TCR)<sp/>=<sp/>tcrValue<sp/>|<sp/>CPUTIMER_TCR_TRB;</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"></highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Clear<sp/>TSS<sp/>bit<sp/>of<sp/>register<sp/>TCR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>CPUTIMER_O_TCR)<sp/>&amp;=<sp/>~CPUTIMER_TCR_TSS;</highlight></codeline>
+<codeline lineno="309"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"></highlight></codeline>
+<codeline lineno="311"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="312"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="321"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="322"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="323" refid="group__cputimer__api_1ga246fa1d4f1f3f4de27bf856d0dc95227" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__cputimer__api_1ga246fa1d4f1f3f4de27bf856d0dc95227" kindref="member">CPUTimer_setPeriod</ref>(uint32_t<sp/>base,<sp/>uint32_t<sp/>periodCount)</highlight></codeline>
+<codeline lineno="324"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(CPUTimer_isBaseValid(base));</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"></highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Load<sp/>the<sp/>MSB<sp/>period<sp/>Count</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREG(base<sp/>+<sp/>CPUTIMER_O_PRD)<sp/>=<sp/>periodCount;</highlight></codeline>
+<codeline lineno="331"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"></highlight></codeline>
+<codeline lineno="333"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="334"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="342"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="343"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="344" refid="group__cputimer__api_1ga5ec7266a6de00db24c8d1d1a18be3dd1" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>uint32_t<sp/><ref refid="group__cputimer__api_1ga5ec7266a6de00db24c8d1d1a18be3dd1" kindref="member">CPUTimer_getTimerCount</ref>(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="345"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(CPUTimer_isBaseValid(base));</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"></highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Get<sp/>the<sp/>TIMH:TIM<sp/>registers<sp/>value</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(HWREG(base<sp/>+<sp/>CPUTIMER_O_TIM));</highlight></codeline>
+<codeline lineno="352"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"></highlight></codeline>
+<codeline lineno="354"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="355"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="365"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="366"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="367" refid="group__cputimer__api_1gae2b419bee3c160e639cf41697e88362e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__cputimer__api_1gae2b419bee3c160e639cf41697e88362e" kindref="member">CPUTimer_setPreScaler</ref>(uint32_t<sp/>base,<sp/>uint16_t<sp/>prescaler)</highlight></codeline>
+<codeline lineno="368"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(CPUTimer_isBaseValid(base));</highlight></codeline>
+<codeline lineno="370"><highlight class="normal"></highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Writes<sp/>to<sp/>TPR.TDDR<sp/>and<sp/>TPRH.TDDRH<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="373"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>CPUTIMER_O_TPRH)<sp/>=<sp/>prescaler<sp/>&gt;&gt;<sp/>8U;</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(base<sp/>+<sp/>CPUTIMER_O_TPR)<sp/>=<sp/>(prescaler<sp/>&amp;<sp/>CPUTIMER_TPR_TDDR_M)<sp/>;</highlight></codeline>
+<codeline lineno="376"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="377"><highlight class="normal"></highlight></codeline>
+<codeline lineno="378"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="379"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="387"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="388"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="389" refid="group__cputimer__api_1gab3614f19c2b8f346b3b75979b3c4433d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="group__cputimer__api_1gab3614f19c2b8f346b3b75979b3c4433d" kindref="member">CPUTimer_getTimerOverflowStatus</ref>(uint32_t<sp/>base)</highlight></codeline>
+<codeline lineno="390"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="391"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(CPUTimer_isBaseValid(base));</highlight></codeline>
+<codeline lineno="392"><highlight class="normal"></highlight></codeline>
+<codeline lineno="393"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="394"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>if<sp/>TIF<sp/>bits<sp/>of<sp/>register<sp/>TCR<sp/>are<sp/>set</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="395"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="396"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(((HWREGH(base<sp/>+<sp/>CPUTIMER_O_TCR)<sp/>&amp;<sp/>CPUTIMER_TCR_TIF)<sp/>==</highlight></codeline>
+<codeline lineno="397"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CPUTIMER_TCR_TIF)<sp/>?<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="398"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"></highlight></codeline>
+<codeline lineno="400"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="401"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="426"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="427"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="428" refid="group__cputimer__api_1ga956f3be8d7c0e2883cc9912fed947fee" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__cputimer__api_1ga956f3be8d7c0e2883cc9912fed947fee" kindref="member">CPUTimer_selectClockSource</ref>(uint32_t<sp/>base,</highlight></codeline>
+<codeline lineno="429"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__cputimer__api_1ga214aff735b0acf172ffe29ebe591fe61" kindref="member">CPUTimer_ClockSource</ref><sp/>source,</highlight></codeline>
+<codeline lineno="430"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__cputimer__api_1gafa70b7d5a2a5b33b6bd56e84ff1cec4d" kindref="member">CPUTimer_Prescaler</ref><sp/>prescaler)</highlight></codeline>
+<codeline lineno="431"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="432"><highlight class="normal"><sp/><sp/><sp/><sp/>ASSERT(base<sp/>==<sp/>CPUTIMER2_BASE);</highlight></codeline>
+<codeline lineno="433"><highlight class="normal"></highlight></codeline>
+<codeline lineno="434"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="435"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>source<sp/>and<sp/>prescaler<sp/>for<sp/>CPU<sp/>Timer<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="436"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="437"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(base<sp/>==<sp/>CPUTIMER2_BASE)</highlight></codeline>
+<codeline lineno="438"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="439"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EALLOW;</highlight></codeline>
+<codeline lineno="440"><highlight class="normal"></highlight></codeline>
+<codeline lineno="441"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="442"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>Clock<sp/>Source</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="443"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="444"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>HWREGH(CPUSYS_BASE<sp/>+<sp/>SYSCTL_O_TMR2CLKCTL)<sp/>=</highlight></codeline>
+<codeline lineno="445"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(HWREGH(CPUSYS_BASE<sp/>+<sp/>SYSCTL_O_TMR2CLKCTL)<sp/>&amp;</highlight></codeline>
+<codeline lineno="446"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>~SYSCTL_TMR2CLKCTL_TMR2CLKSRCSEL_M)<sp/>|<sp/>(uint16_t)source;</highlight></codeline>
+<codeline lineno="447"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__sysctl__api_1ga4582b25de3a7c684448faa00da1bbf6c" kindref="member">SYSCTL_REGWRITE_DELAY</ref>;</highlight></codeline>
+<codeline lineno="448"><highlight class="normal"></highlight></codeline>
+<codeline lineno="449"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="450"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>Clock<sp/>Prescaler</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="451"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="452"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>HWREGH(CPUSYS_BASE<sp/>+<sp/>SYSCTL_O_TMR2CLKCTL)<sp/>=</highlight></codeline>
+<codeline lineno="453"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(HWREGH(CPUSYS_BASE<sp/>+<sp/>SYSCTL_O_TMR2CLKCTL)<sp/>&amp;</highlight></codeline>
+<codeline lineno="454"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>~SYSCTL_TMR2CLKCTL_TMR2CLKPRESCALE_M)<sp/>|</highlight></codeline>
+<codeline lineno="455"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint16_t)prescaler<sp/>&lt;&lt;SYSCTL_TMR2CLKCTL_TMR2CLKPRESCALE_S);</highlight></codeline>
+<codeline lineno="456"><highlight class="normal"></highlight></codeline>
+<codeline lineno="457"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EDIS;</highlight></codeline>
+<codeline lineno="458"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="459"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__sysctl__api_1ga4582b25de3a7c684448faa00da1bbf6c" kindref="member">SYSCTL_REGWRITE_DELAY</ref>;</highlight></codeline>
+<codeline lineno="460"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="461"><highlight class="normal"></highlight></codeline>
+<codeline lineno="462"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="463"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="464"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Prototypes<sp/>for<sp/>the<sp/>APIs.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="465"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="466"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="467"><highlight class="normal"></highlight></codeline>
+<codeline lineno="468"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="469"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="480"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="481"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="482" refid="group__cputimer__api_1ga8e9243f5ea3917004c5b3205a2a72894" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__cputimer__api_1ga8e9243f5ea3917004c5b3205a2a72894" kindref="member">CPUTimer_setEmulationMode</ref>(uint32_t<sp/>base,</highlight></codeline>
+<codeline lineno="483"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__cputimer__api_1ga108fe1191ffed926840ac00928024644" kindref="member">CPUTimer_EmulationMode</ref><sp/>mode);</highlight></codeline>
+<codeline lineno="484"><highlight class="normal"></highlight></codeline>
+<codeline lineno="485"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="486"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="487"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Close<sp/>the<sp/>Doxygen<sp/>group.</highlight></codeline>
+<codeline lineno="489"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="490"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="491"><highlight class="normal"></highlight></codeline>
+<codeline lineno="492"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>#ifdef<sp/>__TMS320C28XX__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="493"><highlight class="normal"></highlight></codeline>
+<codeline lineno="494"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="495"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="496"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Mark<sp/>the<sp/>end<sp/>of<sp/>the<sp/>C<sp/>bindings<sp/>section<sp/>for<sp/>C++<sp/>compilers.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="497"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="498"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="499"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="500"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="501"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="502"><highlight class="normal"></highlight></codeline>
+<codeline lineno="503"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>CPUTIMER_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/cputimer.h"/>
+  </compounddef>
+</doxygen>

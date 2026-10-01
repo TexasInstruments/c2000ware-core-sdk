@@ -1,0 +1,1216 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="group__memcfg__api" kind="group">
+    <compoundname>memcfg_api</compoundname>
+    <title>MemCfg</title>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="group__memcfg__api_1ga962a00b98ede70d1e8edf086694cd9bc" prot="public" static="no" strong="no">
+        <type></type>
+        <name>MemCfg_TestMode</name>
+        <enumvalue id="group__memcfg__api_1gga962a00b98ede70d1e8edf086694cd9bca59d9b92bce37a364e0ba336e48ac113a" prot="public">
+          <name>MEMCFG_TEST_FUNCTIONAL</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+<para>Functional mode. Test mode is disabled. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__memcfg__api_1gga962a00b98ede70d1e8edf086694cd9bca703eb59f0c6bc3f6637292969a6ea31c" prot="public">
+          <name>MEMCFG_TEST_WRITE_DATA</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>Writes allowed to data only. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__memcfg__api_1gga962a00b98ede70d1e8edf086694cd9bcab2c446ffdc22ab474cdfc650c47cd050" prot="public">
+          <name>MEMCFG_TEST_WRITE_PARITY</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+<para>Writes allowed to Parity only (for DxRAM/MxRAM/GSxRAM/PIEVECT RAM) </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__memcfg__api_1gga962a00b98ede70d1e8edf086694cd9bca46f7bd0914e9a419542af3c33442d8c9" prot="public">
+          <name>MEMCFG_TEST_FUNC_DIAG</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+<para>Diagnostic mode, similar to functional mode but NMI is not generated. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__memcfg__api_1ga7635d170151ecaa29d551df8b7a57eca" kindref="member">MemCfg_setTestMode()</ref> as the <emphasis>testMode</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="172" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="173" bodyend="182"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__memcfg__api_1ga8496e659e6df1b5d8320b96726251ef0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void MemCfg_setCorrErrorThreshold</definition>
+        <argsstring>(uint32_t threshold)</argsstring>
+        <name>MemCfg_setCorrErrorThreshold</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>threshold</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the correctable error threshold value.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the correctable error threshold.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This value sets the error-count threshold at which a correctable error interrupt is generated. That is when the error count register reaches the value specified by the <emphasis>threshold</emphasis> parameter, an interrupt is generated if it is enabled.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="206" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="206" bodyend="216"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1gada23e496b1bc237b2e6acc24e7874149" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t MemCfg_getCorrErrorCount</definition>
+        <argsstring>(void)</argsstring>
+        <name>MemCfg_getCorrErrorCount</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the correctable error count.</para>
+<para><simplesect kind="return"><para>Returns the number of correctable error have occurred. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="226" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="226" bodyend="232"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1gad3f95d42a0af192c5b5b207788748e75" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void MemCfg_enableCorrErrorInterrupt</definition>
+        <argsstring>(uint32_t intFlags)</argsstring>
+        <name>MemCfg_enableCorrErrorInterrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>intFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables individual RAM correctable error interrupt sources.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>intFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a bit mask of the interrupt sources to be enabled. Can take the value <bold>MEMCFG_CERR_CPUREAD</bold> only. Other values are reserved.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables the indicated RAM correctable error interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt; disabled sources have no effect on the processor.</para>
+<para><simplesect kind="note"><para>Note that only correctable errors may generate interrupts.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="251" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="251" bodyend="261"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga343ccaed79b3c6108111591e2f33a7f3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void MemCfg_disableCorrErrorInterrupt</definition>
+        <argsstring>(uint32_t intFlags)</argsstring>
+        <name>MemCfg_disableCorrErrorInterrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>intFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables individual RAM correctable error interrupt sources.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>intFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a bit mask of the interrupt sources to be disabled. Can take the value <bold>MEMCFG_CERR_CPUREAD</bold> only. Other values are reserved.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables the indicated RAM correctable error interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt; disabled sources have no effect on the processor.</para>
+<para><simplesect kind="note"><para>Note that only correctable errors may generate interrupts.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="280" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="280" bodyend="290"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga8ba986b1428801f4a02dc47c588cf0fb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t MemCfg_getCorrErrorInterruptStatus</definition>
+        <argsstring>(void)</argsstring>
+        <name>MemCfg_getCorrErrorInterruptStatus</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the current RAM correctable error interrupt status.</para>
+<para><simplesect kind="return"><para>Returns the current error interrupt status. Will return a value of <bold>MEMCFG_CERR_CPUREAD</bold> if an interrupt has been generated. If not, the function will return 0. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="302" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="302" bodyend="308"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga441298d10f7dab155471f0433b06fcb4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void MemCfg_forceCorrErrorInterrupt</definition>
+        <argsstring>(uint32_t intFlags)</argsstring>
+        <name>MemCfg_forceCorrErrorInterrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>intFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the RAM correctable error interrupt status.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>intFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a bit mask of the interrupt sources to be set. Can take the value <bold>MEMCFG_CERR_CPUREAD</bold> only. Other values are reserved.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the correctable error interrupt flag.</para>
+<para><simplesect kind="note"><para>Note that only correctable errors may generate interrupts.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="325" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="325" bodyend="335"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1gabd72e2146424e8ef04679855b8bfd0b2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void MemCfg_clearCorrErrorInterruptStatus</definition>
+        <argsstring>(uint32_t intFlags)</argsstring>
+        <name>MemCfg_clearCorrErrorInterruptStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>intFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clears the RAM correctable error interrupt status.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>intFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a bit mask of the interrupt sources to be cleared. Can take the value <bold>MEMCFG_CERR_CPUREAD</bold> only. Other values are reserved.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function clears the correctable error interrupt flag.</para>
+<para><simplesect kind="note"><para>Note that only correctable errors may generate interrupts.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="352" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="352" bodyend="362"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga9f3ea5c48e532a430104d3bdb975caf6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t MemCfg_getCorrErrorStatus</definition>
+        <argsstring>(void)</argsstring>
+        <name>MemCfg_getCorrErrorStatus</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the current correctable RAM error status.</para>
+<para><simplesect kind="return"><para>Returns the current error status, enumerated as a bit field of <bold>MEMCFG_CERR_CPUREAD</bold> or <bold>MEMCFG_CERR_DMAREAD</bold> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="373" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="373" bodyend="379"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga7a9728223107a0fd68e2e8c11f6969be" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t MemCfg_getUncorrErrorStatus</definition>
+        <argsstring>(void)</argsstring>
+        <name>MemCfg_getUncorrErrorStatus</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the current uncorrectable RAM error status.</para>
+<para><simplesect kind="return"><para>Returns the current error status, enumerated as a bit field of <bold>MEMCFG_UCERR_CPUREAD</bold>, <bold>MEMCFG_UCERR_DMAREAD</bold> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="390" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="390" bodyend="396"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1gad1f5e7a8c9fa8045b3f1b70e8890fdcc" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void MemCfg_forceCorrErrorStatus</definition>
+        <argsstring>(uint32_t stsFlags)</argsstring>
+        <name>MemCfg_forceCorrErrorStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>stsFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the specified correctable RAM error status flag.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>stsFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a bit mask of the error sources. This parameter can be any of the following values: <bold>MEMCFG_CERR_CPUREAD</bold>, <bold>MEMCFG_CERR_DMAREAD</bold> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the specified correctable RAM error status flag.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="412" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="412" bodyend="422"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga632cd6426b4c9496a26aec3751c9b80a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void MemCfg_forceUncorrErrorStatus</definition>
+        <argsstring>(uint32_t stsFlags)</argsstring>
+        <name>MemCfg_forceUncorrErrorStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>stsFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the specified uncorrectable RAM error status flag.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>stsFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a bit mask of the error sources. This parameter can be any of the following values: <bold>MEMCFG_UCERR_CPUREAD</bold>, <bold>MEMCFG_UCERR_DMAREAD</bold> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the specified uncorrectable RAM error status flag.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="438" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="438" bodyend="448"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga4d9bb807f3601ca5e9fd57c0ef719cf1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void MemCfg_clearCorrErrorStatus</definition>
+        <argsstring>(uint32_t stsFlags)</argsstring>
+        <name>MemCfg_clearCorrErrorStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>stsFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clears correctable RAM error flags.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>stsFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a bit mask of the status flags to be cleared. This parameter can be any of the following : <bold>MEMCFG_CERR_CPUREAD</bold>, <bold>MEMCFG_CERR_DMAREAD</bold> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function clears the specified correctable RAM error flags.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="464" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="464" bodyend="474"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga8333448d0a35332ecef988849b8b01f7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void MemCfg_clearUncorrErrorStatus</definition>
+        <argsstring>(uint32_t stsFlags)</argsstring>
+        <name>MemCfg_clearUncorrErrorStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>stsFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clears uncorrectable RAM error flags.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>stsFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a bit mask of the status flags to be cleared. This parameter can be any of the following : <bold>MEMCFG_UCERR_CPUREAD</bold>, <bold>MEMCFG_UCERR_DMAREAD</bold> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function clears the specified uncorrectable RAM error flags.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="490" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="490" bodyend="500"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga6140a8a07683dd6b8ecd178fb9bf3a37" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t MemCfg_getDiagErrorStatus</definition>
+        <argsstring>(void)</argsstring>
+        <name>MemCfg_getDiagErrorStatus</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the diagnostics corr/uncorr memory error status in test mode.</para>
+<para><simplesect kind="return"><para>Returns the diagnostics error status in test mode. It can return following values: <bold>MEMCFG_DIAGERR_UNCORR</bold>, and/or <bold>MEMCFG_DIAGERR_CORR</bold>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="511" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="511" bodyend="517"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga430b33da686953bfb97cc7356b92fa3b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void MemCfg_clearDiagErrorStatus</definition>
+        <argsstring>(uint32_t stsFlags)</argsstring>
+        <name>MemCfg_clearDiagErrorStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>stsFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clears the diagnostics corr/uncorr memory error status.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>stsFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a bit mask of the status flags to be cleared.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function clears the specified diagnostics corr/uncorr RAM/ROM memory error flags in test mode. The param <emphasis>stsFlags</emphasis> can be any of the following values: <bold>MEMCFG_DIAGERR_UNCORR</bold>, and/or <bold>MEMCFG_DIAGERR_CORR</bold>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="533" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="533" bodyend="539"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga5930d78abf61a4d6ad3bc756e1f167e5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>static uint32_t MemCfg_getDiagErrorAddress</definition>
+        <argsstring>(void)</argsstring>
+        <name>MemCfg_getDiagErrorAddress</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets address location of diagnostics corr/uncorr memory read/write error.</para>
+<para><simplesect kind="return"><para>Return address location of diagnostics corr/uncorr memory error error in test mode. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="550" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="550" bodyend="556"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga9d89a1f2cc5ae71a69c21eecb54e291e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void MemCfg_enableROMWaitState</definition>
+        <argsstring>(void)</argsstring>
+        <name>MemCfg_enableROMWaitState</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables ROM wait state.</para>
+<para>This function enables the ROM wait state. This mean CPU accesses to ROM are 1-wait.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="568" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="568" bodyend="579"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga45c0cdfa37a61be2dfcd5119a114e80d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void MemCfg_disableROMWaitState</definition>
+        <argsstring>(void)</argsstring>
+        <name>MemCfg_disableROMWaitState</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables ROM wait state.</para>
+<para>This function enables the ROM wait state. This mean CPU accesses to ROM are 0-wait.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="592" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="592" bodyend="603"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga9814daed4697abe866776e4cabb20dfc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MemCfg_lockConfig</definition>
+        <argsstring>(uint32_t memSections)</argsstring>
+        <name>MemCfg_lockConfig</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>memSections</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Locks the writes to the configuration of specified memory sections.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>memSections</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the logical OR of the sections to be configured.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function locks writes to the access protection, initialization control and test mode configuration of a memory section. This means calling APIs like MemCfg_setProtection() or <ref refid="group__memcfg__api_1gaea9bf75bdd02de7783ea1bb22995203a" kindref="member">MemCfg_initSections()</ref> for a locked memory section will have no effect until <ref refid="group__memcfg__api_1gae00348f30b6d43dc012624eaef77e866" kindref="member">MemCfg_unlockConfig()</ref> is called.</para>
+<para>The <emphasis>memSections</emphasis> parameter is an OR of one of the following sets of indicators:<itemizedlist>
+<listitem><para><bold>MEMCFG_SECT_M0</bold> and <bold>MEMCFG_SECT_M1</bold> or <bold>MEMCFG_SECT_DX_ALL</bold> </para>
+</listitem><listitem><para><bold>MEMCFG_SECT_GS0</bold> through <bold>MEMCFG_SECT_GSx</bold> or <bold>MEMCFG_SECT_GSX_ALL</bold> </para>
+</listitem><listitem><para><bold>OR</bold> use <bold>MEMCFG_SECT_ALL</bold> to configure all possible sections.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="626" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" declline="626" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1gae00348f30b6d43dc012624eaef77e866" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MemCfg_unlockConfig</definition>
+        <argsstring>(uint32_t memSections)</argsstring>
+        <name>MemCfg_unlockConfig</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>memSections</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Unlocks the writes to the configuration of a memory section.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>memSections</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the logical OR of the sections to be configured.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function unlocks writes to the access protection and controller select configuration of a memory section that has been locked using <ref refid="group__memcfg__api_1ga9814daed4697abe866776e4cabb20dfc" kindref="member">MemCfg_lockConfig()</ref>.</para>
+<para>The <emphasis>memSections</emphasis> parameter is an OR of one of the following sets of indicators:<itemizedlist>
+<listitem><para><bold>MEMCFG_SECT_M0</bold> and <bold>MEMCFG_SECT_M1</bold> or <bold>MEMCFG_SECT_DX_ALL</bold> </para>
+</listitem><listitem><para><bold>MEMCFG_SECT_GS0</bold> through <bold>MEMCFG_SECT_GSx</bold> or <bold>MEMCFG_SECT_GSX_ALL</bold> </para>
+</listitem><listitem><para><bold>OR</bold> use <bold>MEMCFG_SECT_ALL</bold> to configure all possible sections.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="648" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" declline="648" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga8ce8c0219db8129547acfdc304bac7eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MemCfg_commitConfig</definition>
+        <argsstring>(uint32_t memSections)</argsstring>
+        <name>MemCfg_commitConfig</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>memSections</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Permanently locks writes to the configuration of a memory section.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>memSections</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the logical OR of the sections to be configured.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function permanently locks writes to the access protection and controller select configuration of a memory section. That means calling MemCfg_setProtection() or MemCfg_setLSRAMControllerSel() for a locked memory section will have no effect. To lock the configuration in a nonpermanent way, use <ref refid="group__memcfg__api_1ga9814daed4697abe866776e4cabb20dfc" kindref="member">MemCfg_lockConfig()</ref>.</para>
+<para>The <emphasis>memSections</emphasis> parameter is an OR of one of the following sets of indicators:<itemizedlist>
+<listitem><para><bold>MEMCFG_SECT_M0</bold> and <bold>MEMCFG_SECT_M1</bold> or <bold>MEMCFG_SECT_DX_ALL</bold> </para>
+</listitem><listitem><para><bold>MEMCFG_SECT_GS0</bold> through <bold>MEMCFG_SECT_GSx</bold> or <bold>MEMCFG_SECT_GSX_ALL</bold> </para>
+</listitem><listitem><para><bold>OR</bold> use <bold>MEMCFG_SECT_ALL</bold> to configure all possible sections.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="672" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" declline="672" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga837a62c78f5e3dc7b204d7173e83c7b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MemCfg_lockTestConfig</definition>
+        <argsstring>(uint32_t memSections)</argsstring>
+        <name>MemCfg_lockTestConfig</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>memSections</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Locks the writes to the test mode configuration of specified memory sections.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>memSections</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the logical OR of the sections to be configured.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function locks writes to the test mode configuration of a RAM section. That means calling <ref refid="group__memcfg__api_1ga7635d170151ecaa29d551df8b7a57eca" kindref="member">MemCfg_setTestMode()</ref> for a locked RAM section will have no effect until <ref refid="group__memcfg__api_1ga42c09112740a862e774ec0a227fb6608" kindref="member">MemCfg_unlockTestConfig()</ref> is called.</para>
+<para>The <emphasis>memSections</emphasis> parameter is an OR of one of the following sets of indicators:<itemizedlist>
+<listitem><para><bold>MEMCFG_SECT_M0</bold>, <bold>MEMCFG_SECT_M1</bold>, or use <bold>MEMCFG_SECT_DX_ALL</bold> </para>
+</listitem><listitem><para><bold>MEMCFG_SECT_GS0</bold> through <bold>MEMCFG_SECT_GSx</bold> or use <bold>MEMCFG_SECT_GSX_ALL</bold> to configure all possible GSRAM sections.</para>
+</listitem><listitem><para><bold>MEMCFG_SECT_ROMBOOT_ROMSECURE</bold> <bold>MEMCFG_SECT_ROM_ALL</bold> to configure all possible ROM sections.</para>
+</listitem><listitem><para><bold>OR</bold> use <bold>MEMCFG_SECT_ALL</bold> to configure all possible sections.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="700" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" declline="700" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga42c09112740a862e774ec0a227fb6608" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MemCfg_unlockTestConfig</definition>
+        <argsstring>(uint32_t memSections)</argsstring>
+        <name>MemCfg_unlockTestConfig</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>memSections</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Unlocks the writes to the test mode configuration of specified memory sections.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>memSections</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the logical OR of the sections to be configured.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function unlocks writes to the test mode configuration of a RAM section that has been locked using <ref refid="group__memcfg__api_1ga837a62c78f5e3dc7b204d7173e83c7b3" kindref="member">MemCfg_lockTestConfig()</ref>.</para>
+<para>The <emphasis>memSections</emphasis> parameter is an OR of one of the following sets of indicators:<itemizedlist>
+<listitem><para><bold>MEMCFG_SECT_M0</bold>, <bold>MEMCFG_SECT_M1</bold>, or use <bold>MEMCFG_SECT_DX_ALL</bold> </para>
+</listitem><listitem><para><bold>MEMCFG_SECT_GS0</bold> through <bold>MEMCFG_SECT_GSx</bold> or use <bold>MEMCFG_SECT_GSX_ALL</bold> to configure all possible GSRAM sections.</para>
+</listitem><listitem><para><bold>MEMCFG_SECT_ROMBOOT_ROMSECURE</bold> <bold>MEMCFG_SECT_ROM_ALL</bold> to configure all possible ROM sections.</para>
+</listitem><listitem><para><bold>OR</bold> use <bold>MEMCFG_SECT_ALL</bold> to configure all possible sections.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="725" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" declline="725" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga7635d170151ecaa29d551df8b7a57eca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MemCfg_setTestMode</definition>
+        <argsstring>(uint32_t memSection, MemCfg_TestMode testMode)</argsstring>
+        <name>MemCfg_setTestMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>memSection</declname>
+        </param>
+        <param>
+          <type><ref refid="group__memcfg__api_1ga962a00b98ede70d1e8edf086694cd9bc" kindref="member">MemCfg_TestMode</ref></type>
+          <declname>testMode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the test mode of the specified memory section.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>memSection</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the memory section to be configured. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>testMode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the test mode selected.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the test mode configuration of the RAM section. The <emphasis>testMode</emphasis> parameter can take one of the following values:<itemizedlist>
+<listitem><para><bold>MEMCFG_TEST_FUNCTIONAL</bold> </para>
+</listitem><listitem><para><bold>MEMCFG_TEST_WRITE_DATA</bold> </para>
+</listitem><listitem><para><bold>MEMCFG_TEST_WRITE_PARITY</bold> </para>
+</listitem><listitem><para><bold>MEMCFG_TEST_FUNC_DIAG</bold> </para>
+</listitem></itemizedlist>
+</para>
+<para>The <emphasis>memSection</emphasis> parameter is one of the following indicators:<itemizedlist>
+<listitem><para><bold>MEMCFG_SECT_M0</bold>, <bold>MEMCFG_SECT_M1</bold>, or use <bold>MEMCFG_SECT_DX_ALL</bold> </para>
+</listitem><listitem><para><bold>MEMCFG_SECT_GS0</bold> through <bold>MEMCFG_SECT_GSx</bold> or use <bold>MEMCFG_SECT_GSX_ALL</bold> to configure all possible GSRAM sections.</para>
+</listitem><listitem><para><bold>MEMCFG_SECT_ROMBOOT_ROMSECURE</bold> <bold>MEMCFG_SECT_ROM_ALL</bold> to configure all possible ROM sections.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="752" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" declline="752" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1gaea9bf75bdd02de7783ea1bb22995203a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MemCfg_initSections</definition>
+        <argsstring>(uint32_t ramSections)</argsstring>
+        <name>MemCfg_initSections</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>ramSections</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Starts the initialization the specified RAM sections.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ramSections</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the logical OR of the sections to be initialized.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function starts the initialization of the specified RAM sections. Use <ref refid="group__memcfg__api_1ga15681f6f2648448cdf1d1c3c0669439d" kindref="member">MemCfg_getInitStatus()</ref> to check if the initialization is done.</para>
+<para>The <emphasis>ramSections</emphasis> parameter is an OR of one of the following sets of indicators:<itemizedlist>
+<listitem><para><bold>MEMCFG_SECT_M0</bold>, <bold>MEMCFG_SECT_M1</bold>, or use <bold>MEMCFG_SECT_DX_ALL</bold> </para>
+</listitem><listitem><para><bold>MEMCFG_SECT_GS0</bold> through <bold>MEMCFG_SECT_GSx</bold> or use <bold>MEMCFG_SECT_GSX_ALL</bold> to configure all possible GSRAM sections.</para>
+</listitem><listitem><para><bold>OR</bold> use <bold>MEMCFG_SECT_ALL</bold> to configure all possible sections.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="774" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" declline="774" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga15681f6f2648448cdf1d1c3c0669439d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MemCfg_getInitStatus</definition>
+        <argsstring>(uint32_t ramSections)</argsstring>
+        <name>MemCfg_getInitStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>ramSections</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the status of initialized RAM sections.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ramSections</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the logical OR of the sections to be checked.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function gets the initialization status of the RAM sections specified by the <emphasis>ramSections</emphasis> parameter.</para>
+<para>The <emphasis>ramSections</emphasis> parameter is an OR of one of the following sets of indicators:<itemizedlist>
+<listitem><para><bold>MEMCFG_SECT_M0</bold>, <bold>MEMCFG_SECT_M1</bold>, or use <bold>MEMCFG_SECT_DX_ALL</bold> </para>
+</listitem><listitem><para><bold>MEMCFG_SECT_GS0</bold> through <bold>MEMCFG_SECT_GSx</bold> or use <bold>MEMCFG_SECT_GSX_ALL</bold> to configure all possible GSRAM sections.</para>
+</listitem><listitem><para><bold>OR</bold> use <bold>MEMCFG_SECT_ALL</bold> to get status of all possible sections.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para>Use <ref refid="group__memcfg__api_1gaea9bf75bdd02de7783ea1bb22995203a" kindref="member">MemCfg_initSections()</ref> to start the initialization.</para>
+</simplesect>
+<simplesect kind="return"><para>Returns <bold>true</bold> if all the sections specified by <emphasis>ramSections</emphasis> have been initialized and <bold>false</bold> if not. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="799" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" declline="799" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga1c95e96bfc682c53446ead21b649ef1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t MemCfg_getCorrErrorAddress</definition>
+        <argsstring>(uint32_t stsFlag)</argsstring>
+        <name>MemCfg_getCorrErrorAddress</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>stsFlag</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the correctable error address associated with a stsFlag.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>stsFlag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the type of error to which the returned address will correspond. It can take following values: <bold>MEMCFG_CERR_CPUREAD</bold>, <bold>MEMCFG_CERR_DMAREAD</bold>.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the error address associated with the stsFlag. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="814" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" declline="814" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga59361b035c46cc0c2847ff663806f95b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t MemCfg_getUncorrErrorAddress</definition>
+        <argsstring>(uint32_t stsFlag)</argsstring>
+        <name>MemCfg_getUncorrErrorAddress</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>stsFlag</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the uncorrectable error address associated with a stsFlag.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>stsFlag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the type of error to which the returned address will correspond. It may be passed one of these values: <bold>MEMCFG_UCERR_CPUREAD</bold>, or <bold>MEMCFG_UCERR_DMAREAD</bold> values</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the error address associated with the stsFlag. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="828" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" declline="828" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__memcfg__api_1ga7122fb5acadd685cc275cc40a067b26f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MemCfg_forceMemError</definition>
+        <argsstring>(uint32_t memSections)</argsstring>
+        <name>MemCfg_forceMemError</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>memSections</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Forces parity error in the selected memory.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>memSections</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the logical OR of the sections to be tested.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function forces the parity error in the memories specified by the <emphasis>memSections</emphasis> parameter.</para>
+<para>The <emphasis>memSections</emphasis> parameter is an OR of one of the following sets of indicators:<itemizedlist>
+<listitem><para><bold>MEMCFG_SECT_ROMBOOT_ROMSECURE</bold> <bold>MEMCFG_SECT_ROM_ALL</bold>.</para>
+</listitem><listitem><para><bold>OR</bold> use <bold>MEMCFG_SECT_ALL</bold> to force parity error in all possible memory sections.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="849" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" declline="849" declcolumn="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__memcfg__api_1ga57516d4b825e111820133a57e235a699" prot="public" static="no">
+        <name>MEMCFG_SECT_TYPE_MASK</name>
+        <initializer>0xFF000000U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="79" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__memcfg__api_1ga69faeeb155b957ad139e3f11608bd2f4" prot="public" static="no">
+        <name>MEMCFG_SECT_TYPE_D</name>
+        <initializer>0x00000000U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="80" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__memcfg__api_1ga3572c6832b1ed76d76479a18e652df98" prot="public" static="no">
+        <name>MEMCFG_SECT_TYPE_GS</name>
+        <initializer>0x02000000U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="81" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__memcfg__api_1ga51c05949ea26833e37eee070a4af719c" prot="public" static="no">
+        <name>MEMCFG_SECT_TYPE_ROM</name>
+        <initializer>0x04000000U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="82" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__memcfg__api_1ga5bf0eaad7546a507e379b3f06d3883b7" prot="public" static="no">
+        <name>MEMCFG_SECT_NUM_MASK</name>
+        <initializer>0x00FFFFFFU</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="83" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__memcfg__api_1ga6069681be70b43c9aced0f5c7029d8b5" prot="public" static="no">
+        <name>MEMCFG_XTEST_M</name>
+        <initializer>MEMCFG_DXTEST_TEST_M0_M</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="84" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__memcfg__api_1gaee0065f9fe9758feb32e0e31bfc31f5a" prot="public" static="no">
+        <name>MEMCFG_TESTLOCK_KEY</name>
+        <initializer>0xA5A50000U</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="90" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__memcfg__api_1gaf00796be7d52702a2c66caaa9a5bb478" prot="public" static="no">
+        <name>MEMCFG_SECT_M0</name>
+        <initializer>0x00000001U</initializer>
+        <briefdescription>
+<para>M0 RAM. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="104" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__memcfg__api_1ga6f9c175e77727a6cf2eb7e9cfdc40ec7" prot="public" static="no">
+        <name>MEMCFG_SECT_M1</name>
+        <initializer>0x00000002U</initializer>
+        <briefdescription>
+<para>M1 RAM. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="105" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__memcfg__api_1ga2c476e3d90e342091cedfe5e3f152b50" prot="public" static="no">
+        <name>MEMCFG_SECT_DX_ALL</name>
+        <initializer>0x00000003U</initializer>
+        <briefdescription>
+<para>All M and D RAM. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="106" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__memcfg__api_1ga0ef56c682c4636e6b7413883b48cf231" prot="public" static="no">
+        <name>MEMCFG_SECT_PIEVECT</name>
+        <initializer>0x00000004U</initializer>
+        <briefdescription>
+<para>PIEVECT RAM. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="107" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__memcfg__api_1ga7110897de3bf5f933931cfd17cdfe944" prot="public" static="no">
+        <name>MEMCFG_SECT_GS0</name>
+        <initializer>0x02000001U</initializer>
+        <briefdescription>
+<para>GS0 RAM. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="116" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__memcfg__api_1ga04dfeecebd5f6230c6f910bc50852957" prot="public" static="no">
+        <name>MEMCFG_SECT_GSX_ALL</name>
+        <initializer>0x02000001U</initializer>
+        <briefdescription>
+<para>All GS RAM. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="117" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__memcfg__api_1ga22333bb2a50e67f21f008abd53137f59" prot="public" static="no">
+        <name>MEMCFG_SECT_ROMBOOT_ROMSECURE</name>
+        <initializer>0x04000001U</initializer>
+        <briefdescription>
+<para>BOOT ROM and Secure ROM. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="123" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__memcfg__api_1gae4687fce8a251054bbdd59347f59a2f9" prot="public" static="no">
+        <name>MEMCFG_SECT_ROM_ALL</name>
+        <initializer>0x04000001U</initializer>
+        <briefdescription>
+<para>All ROMs. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="124" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__memcfg__api_1ga7d5705d05c74a6942e33ae3842b85f28" prot="public" static="no">
+        <name>MEMCFG_SECT_ALL</name>
+        <initializer>0xFFFFFFFFU</initializer>
+        <briefdescription>
+<para>All configurable RAM. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="129" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__memcfg__api_1gac89d92f5414c77aeae3dd1a8a8bdb58d" prot="public" static="no">
+        <name>MEMCFG_CERR_CPUREAD</name>
+        <initializer>0x0001U</initializer>
+        <briefdescription>
+<para>Correctable CPU read error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="143" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__memcfg__api_1ga215937a7f7195b799bc8b8d9911b23ad" prot="public" static="no">
+        <name>MEMCFG_CERR_DMAREAD</name>
+        <initializer>0x0002U</initializer>
+        <briefdescription>
+<para>Correctable DMA read error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="144" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__memcfg__api_1ga2db35aad553ee59a5c51fd80b04df0dc" prot="public" static="no">
+        <name>MEMCFG_UCERR_CPUREAD</name>
+        <initializer>0x0001U</initializer>
+        <briefdescription>
+<para>Uncorrectable CPU read error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="152" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__memcfg__api_1ga992dd6471219cdfd4d28f251bb0aaf8b" prot="public" static="no">
+        <name>MEMCFG_UCERR_DMAREAD</name>
+        <initializer>0x0002U</initializer>
+        <briefdescription>
+<para>Uncorrectable DMA read error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="153" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__memcfg__api_1ga1ff86256f0f472441b65b808ca2124f9" prot="public" static="no">
+        <name>MEMCFG_DIAGERR_UNCORR</name>
+        <initializer>0x00000002U</initializer>
+        <briefdescription>
+<para>Uncorr error in diag/test mode. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="160" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__memcfg__api_1ga1416ebab4103eb40512988982242f929" prot="public" static="no">
+        <name>MEMCFG_DIAGERR_CORR</name>
+        <initializer>0x00000001U</initializer>
+        <briefdescription>
+<para>Corr error in diag/test mode. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" line="161" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/memcfg.h" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

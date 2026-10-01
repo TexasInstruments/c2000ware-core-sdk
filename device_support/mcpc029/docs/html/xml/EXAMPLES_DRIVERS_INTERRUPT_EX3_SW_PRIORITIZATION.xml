@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_INTERRUPT_EX3_SW_PRIORITIZATION" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_INTERRUPT_EX3_SW_PRIORITIZATION</compoundname>
+    <title>CPU Timer Interrupt Software Prioritization example</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_INTERRUPT_EX3_SW_PRIORITIZATION_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_interrupt_ex3_sw_prioritization"/></para>
+<sect1 id="EXAMPLES_DRIVERS_INTERRUPT_EX3_SW_PRIORITIZATION_1autotoc_md294">
+<title>Introduction</title>
+<para>This examples demonstrates the software prioritization of interrupts through CPU Timer Interrupts. Software prioritization of interrupts is achieved by enabling interrupt nesting.</para>
+<para>In this device, hardware priorities for CPU Timer 0, 1 and 2 are set as timer 0 being highest priority and timer 2 being lowest priority. This example configures CPU Timer0, 1, and 2 priority in software with timer 2 priority being highest and timer 0 being lowest in software and prints a trace for the order of execution.</para>
+<para>For most applications, the hardware prioritizing of the interrupts is sufficient. For applications that need custom prioritizing, this example illustrates how this can be done through software.User specific priorities can be configured in sw_prioritized_isr_level.h header file.</para>
+<para>To enable interrupt nesting, following sequence needs to followed in ISRs. Step 1: Set the global priority: Modify the IER register to allow CPU interrupts with a higher user priority to be serviced. Note: at this time IER has already been saved on the stack. Step 2: Set the group priority: (optional) Modify the appropriate PIEIERx register to allow group interrupts with a higher user set priority to be serviced. Do NOT clear PIEIER register bits from another group other than that being serviced by this ISR. Doing so can cause erroneous interrupts to occur. Step 3: Enable interrupts: There are three steps to do this: a. Clear the PIEACK bits b. Wait at least one cycle c. Clear the INTM bit. Step 4: Run the main part of the ISR Step 5: Set INTM to disable interrupts. Step 6: Restore PIEIERx (optional depending on step 2) Step 7: Return from ISR</para>
+<para>Refer to below link on more details on Interrupt nesting in C28x devices: <ulink url="https://software-dl.ti.com/C2000/docs/c28x_interrupt_nesting/html/index.html">c28x_interrupt_nesting</ulink></para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_INTERRUPT_EX3_SW_PRIORITIZATION_1autotoc_md295">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>None</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_INTERRUPT_EX3_SW_PRIORITIZATION_1autotoc_md296">
+<title>Watch Variables</title>
+<para><itemizedlist>
+<listitem><para>traceISR - shows the order in which ISRs are executed. </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/interrupt_ex3_sw_prioritization.md"/>
+  </compounddef>
+</doxygen>

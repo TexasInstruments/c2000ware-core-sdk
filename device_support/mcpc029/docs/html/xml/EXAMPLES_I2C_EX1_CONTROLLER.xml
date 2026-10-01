@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_I2C_EX1_CONTROLLER" kind="page">
+    <compoundname>EXAMPLES_I2C_EX1_CONTROLLER</compoundname>
+    <title>I2C Controller Mode</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_I2C_EX1_CONTROLLER_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_i2c_ex1_controller"/></para>
+<sect1 id="EXAMPLES_I2C_EX1_CONTROLLER_1autotoc_md261">
+<title>Introduction</title>
+<para>This program demonstrates how to use the I2CA module in controller configuration on a Texas Instruments C2000 microcontroller. The example uses polling and does not utilize interrupts or FIFO.</para>
+<sect2 id="EXAMPLES_I2C_EX1_CONTROLLER_1autotoc_md262">
+<title>Requirements</title>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para>Requirement   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Two Control Cards</bold>   </para>
+</entry><entry thead="no"><para>One configured as Controller and the other as Target.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Controller Binary</bold>   </para>
+</entry><entry thead="no"><para>Runs the binary generated from <computeroutput>i2c_ex1_controller.projectspec</computeroutput>.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Target Binary</bold>   </para>
+</entry><entry thead="no"><para>Runs the binary generated from <computeroutput>i2c_ex1_target.projectspec</computeroutput>.   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_I2C_EX1_CONTROLLER_1autotoc_md263">
+<title>External connections between Control Cards :</title>
+<para><table rows="4" cols="3"><row>
+<entry thead="yes"><para>Signal   </para>
+</entry><entry thead="yes"><para>I2CA on Board 1   </para>
+</entry><entry thead="yes"><para>I2CA on Board 2    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>SCL   </para>
+</entry><entry thead="no"><para>GPIO_PIN_SCLA   </para>
+</entry><entry thead="no"><para>GPIO_PIN_SCLA    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>SDA   </para>
+</entry><entry thead="no"><para>GPIO_PIN_SDAA   </para>
+</entry><entry thead="no"><para>GPIO_PIN_SDAA    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>GND   </para>
+</entry><entry thead="no"><para>GND   </para>
+</entry><entry thead="no"><para>GND   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_I2C_EX1_CONTROLLER_1autotoc_md264">
+<title>Examples</title>
+<para><table rows="5" cols="2"><row>
+<entry thead="yes"><para>Example No.   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>1   </para>
+</entry><entry thead="no"><para><bold>Controller Transmitter and Target Receiver</bold>: Controller writes two bytes to the target.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>2   </para>
+</entry><entry thead="no"><para><bold>Controller Receiver and Target Transmitter</bold>: Controller reads two bytes from the target.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>3   </para>
+</entry><entry thead="no"><para><bold>Controller Transmitter followed by Controller Receiver</bold>: Controller writes two bytes to the target and then reads two bytes.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>4   </para>
+</entry><entry thead="no"><para><bold>Controller Receiver followed by Controller Transmitter</bold>: Controller reads two bytes from the target and then writes two bytes.   </para>
+</entry></row>
+</table>
+</para>
+<para><simplesect kind="note"><para><itemizedlist>
+<listitem><para>The I2C clock is configured for 400kHz with a 50% duty cycle.</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_I2C_EX1_CONTROLLER_1autotoc_md265">
+<title>Watch Variables</title>
+<para><itemizedlist>
+<listitem><para><computeroutput>I2CA_TXdata</computeroutput>: Transmit buffer for I2C.</para>
+</listitem><listitem><para><computeroutput>I2CA_RXdata</computeroutput>: Receive buffer for I2C.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_I2C_EX1_CONTROLLER_1autotoc_md266">
+<title>Functions</title>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para>Function Signature   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>void I2CController_Init(uint16_t I2CTarget_OwnAddress, uint16_t I2CTarget_Address)</computeroutput>   </para>
+</entry><entry thead="no"><para>Initializes the I2CA module as a controller.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>void I2CWrite(uint16_t targetAddr, uint16_t byteCount, bool sendStopCondition)</computeroutput>   </para>
+</entry><entry thead="no"><para>Sends data over I2C as a controller transmitter.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>uint16_t I2CRead(uint16_t targetAddr, uint16_t byteCount, bool sendStopCondition)</computeroutput>   </para>
+</entry><entry thead="no"><para>Reads data over I2C as a controller receiver.   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_I2C_EX1_CONTROLLER_1autotoc_md267">
+<title>Globals</title>
+<para><table rows="3" cols="2"><row>
+<entry thead="yes"><para>Variable   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>uint16_t I2C_TXdata[MAX_BUFFER_SIZE]</computeroutput>   </para>
+</entry><entry thead="no"><para>Buffer for transmitting data.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>uint16_t I2C_RXdata[MAX_BUFFER_SIZE]</computeroutput>   </para>
+</entry><entry thead="no"><para>Buffer for receiving data.   </para>
+</entry></row>
+</table>
+</para>
+<para><simplesect kind="note"><para></para>
+</simplesect>
+<itemizedlist>
+<listitem><para>The program uses polling to check the status of I2C operations.</para>
+</listitem><listitem><para>The <computeroutput>ESTOP0</computeroutput> instruction is used to halt the program for debugging purposes. </para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_I2C_EX1_CONTROLLER_1autotoc_md268">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para><itemizedlist>
+<listitem><para>When running in flash configuration, it is recommended to reset and restart after loading the example to remove any stale flags or states.</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+<sect3 id="EXAMPLES_I2C_EX1_CONTROLLER_1autotoc_md269">
+<title>See Also</title>
+<para><ref refid="DRIVERS_I2C_PAGE" kindref="compound">I2C</ref> </para>
+</sect3>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/i2c_ex1_controller.md"/>
+  </compounddef>
+</doxygen>

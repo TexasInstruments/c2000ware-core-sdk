@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="DRIVERS_ECAP_PAGE" kind="page">
+    <compoundname>DRIVERS_ECAP_PAGE</compoundname>
+    <title>ECAP</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="DRIVERS_ECAP_PAGE_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_components_drivers_ecap"/></para>
+<para>The ECAP driver provides API to configure the ECAP module. Below are the high level features supported by the ECAP driver.</para>
+<sect1 id="DRIVERS_ECAP_PAGE_1autotoc_md50">
+<title>Features Supported</title>
+<para><itemizedlist>
+<listitem><para>Period and duty cycle measurements of pulse train signals.</para>
+</listitem><listitem><para>Speed measurements of rotating machinery.</para>
+</listitem><listitem><para>4-event time-stamp registers (each 32 bits).</para>
+</listitem><listitem><para>Edge polarity selection for upto four sequenced time-stamp capture events.</para>
+</listitem><listitem><para>Single shot capture of upto four event time-stamps.</para>
+</listitem><listitem><para>Continuous mode capture of time stamps in a four-deep circular buffer.</para>
+</listitem><listitem><para>Absolute time-stamp capture and Delta mode time-stamp capture.</para>
+</listitem><listitem><para>When not used in capture mode, the eCAP module can be configured as a single channel PWM output.</para>
+</listitem><listitem><para>Interrupt on either of the four events.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_ECAP_PAGE_1autotoc_md51">
+<title>SysConfig Features</title>
+<para><simplesect kind="note"><para>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</para>
+</simplesect>
+<itemizedlist>
+<listitem><para>Support for ECAP instance selection.</para>
+</listitem><listitem><para>Specifying the behaviour of Time-Stamp counter during an emulation event.</para>
+</listitem><listitem><para>Support for ECAP modes - APWM or Capture mode.</para>
+</listitem><listitem><para>Support for event polarity in capture mode.</para>
+</listitem><listitem><para>Interrupt source configuration.</para>
+</listitem><listitem><para>Support for APWM polarity, period and compare values in APWM mode.</para>
+</listitem><listitem><para>Seperate DMA trigger.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="DRIVERS_ECAP_PAGE_1autotoc_md52">
+<title>Features NOT Supported</title>
+<para>NA</para>
+</sect1>
+<sect1 id="DRIVERS_ECAP_PAGE_1autotoc_md53">
+<title>Important Usage Guidelines</title>
+<para>NA</para>
+</sect1>
+<sect1 id="DRIVERS_ECAP_PAGE_1autotoc_md54">
+<title>Example Usage</title>
+<para>Include the below file to access the APIs #include &lt;<ref refid="ecap_8h" kindref="compound">ecap.h</ref>&gt;</para>
+</sect1>
+<sect1 id="DRIVERS_ECAP_PAGE_1autotoc_md55">
+<title>API</title>
+<para><ref refid="group__ecap__api" kindref="compound">eCAP</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/ecap.md"/>
+  </compounddef>
+</doxygen>

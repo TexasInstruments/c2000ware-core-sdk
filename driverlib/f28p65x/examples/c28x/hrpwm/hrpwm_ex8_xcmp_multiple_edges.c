@@ -36,7 +36,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -69,66 +69,55 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "board.h"
 #include "sfo_v8.h"
-
 //
 // Defines
 //
 #define EPWM_TIMER_TBPRD            1000UL
 #define MIN_HRPWM_DUTY_PERCENT      25.0
 #define LAST_EPWM_INDEX_FOR_EXAMPLE    2
-
 //
 // Globals
 //
 float32_t dutyFine = MIN_HRPWM_DUTY_PERCENT;
 uint16_t status;
-
 int MEP_ScaleFactor; // Global variable used by the SFO library
                      // Result can be used for all HRPWM channels
                      // This variable is also copied to HRMSTEP
                      // register by SFO() function.
-
 volatile uint32_t ePWM[] =
     {0, myEPWM0_BASE};
 //
 // Function Prototypes
 //
 void error(void);
-
 //
 // Main
 //
 void main(void)
 {
     uint16_t i = 0;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pull ups.
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     // Calling SFO() updates the HRMSTEP register with calibrated MEP_ScaleFactor.
     // HRMSTEP must be populated with a scale factor value prior to enabling
     // high resolution period control.
@@ -141,9 +130,6 @@ void main(void)
             error();   // SFO function returns 2 if an error occurs & # of MEP
         }              // steps/coarse step exceeds maximum of 255.
     }
-
-
-
     //
     // Disable sync(Freeze clock to PWM as well)
     //
@@ -152,20 +138,15 @@ void main(void)
     // Initialize the EPWM GPIO Pins and change the XBAR inputs from using GPIO0
     //
     Board_init();
-
-
     //
     // Enable sync and clock to PWM
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
-
     for(;;)
     {
          //
@@ -191,9 +172,7 @@ void main(void)
                  float32_t count8 = ((dutyFine +25.0) * (float32_t)((1000UL) << 16))/100;
                  uint32_t compCount8 = (count8);
                  HRPWM_setXCMPRegValue(ePWM[i], EPWM_XCMP8_ACTIVE, compCount8);
-
              }
-
              //
              // Call the scale factor optimizer lib function SFO()
              // periodically to track for any change due to temp/voltage.
@@ -205,7 +184,6 @@ void main(void)
              //
              status = SFO(); // in background, MEP calibration module
                              // continuously updates MEP_ScaleFactor
-
              if (status == SFO_ERROR)
              {
                  error();   // SFO function returns 2 if an error occurs & #
@@ -214,8 +192,6 @@ void main(void)
          }
      }
 }
-
- 
 //
 // error - Halt debugger when called
 //

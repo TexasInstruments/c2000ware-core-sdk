@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="adc_8md" kind="file" language="Markdown">
+    <compoundname>adc.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>ADC<sp/>{#DRIVERS_ADC_PAGE}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>ADC<sp/>driver<sp/>provides<sp/>API<sp/>to<sp/>configure<sp/>the<sp/>ADC<sp/>module.</highlight></codeline>
+<codeline><highlight class="normal">Below<sp/>are<sp/>the<sp/>high<sp/>level<sp/>features<sp/>supported<sp/>by<sp/>the<sp/>ADC<sp/>driver.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Features<sp/>Supported</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Each<sp/>ADC<sp/>has<sp/>32<sp/>selectable<sp/>single<sp/>ended<sp/>or<sp/>16<sp/>selectable<sp/>differential<sp/>inputs.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>12-bit<sp/>resolution<sp/>with<sp/>4<sp/>MSPS<sp/>sampling<sp/>rate<sp/>max.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>16<sp/>configurable<sp/>SOCs<sp/>and<sp/>16<sp/>individually<sp/>addressable<sp/>result<sp/>registers<sp/>for<sp/>each<sp/>SOC.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Multiple<sp/>trigger<sp/>sources<sp/>-<sp/>software,<sp/>all<sp/>ePWMs<sp/>ADCSOC<sp/>A<sp/>or<sp/>B,<sp/>ADCINT1/2,<sp/>etc.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Burst<sp/>mode.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Four<sp/>post<sp/>processing<sp/>blocks<sp/>each<sp/>with<sp/>saturating<sp/>offset<sp/>calibration,<sp/>error<sp/>from<sp/>setpoint<sp/>calculation,<sp/>high,<sp/>low<sp/>or<sp/>zero<sp/>crossing<sp/>compare,<sp/>trigger<sp/>to<sp/>sample<sp/>delay<sp/>capture.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>External<sp/>Channel<sp/>Select<sp/>for<sp/>SOCs.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Trigger<sp/>Repeater<sp/>for<sp/>oversampling<sp/>and<sp/>undersampling.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Safety<sp/>tiles<sp/>to<sp/>compare<sp/>the<sp/>ADC<sp/>results<sp/>and<sp/>Safety<sp/>Aggregator<sp/>to<sp/>generate<sp/>Interrupt<sp/>on<sp/>various<sp/>comparison<sp/>results.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28P55x<sp/>||<sp/>F28P551x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Each<sp/>ADC<sp/>has<sp/>32<sp/>selectable<sp/>single<sp/>ended<sp/>inputs.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>12-bit<sp/>resolution<sp/>with<sp/>3.9<sp/>MSPS<sp/>sampling<sp/>rate<sp/>max.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>16<sp/>configurable<sp/>SOCs<sp/>and<sp/>16<sp/>individually<sp/>addressable<sp/>result<sp/>registers<sp/>for<sp/>each<sp/>SOC.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Multiple<sp/>trigger<sp/>sources<sp/>-<sp/>software,<sp/>all<sp/>ePWMs<sp/>ADCSOC<sp/>A<sp/>or<sp/>B,<sp/>ADCINT1/2,<sp/>etc.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Burst<sp/>mode.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Four<sp/>post<sp/>processing<sp/>blocks<sp/>each<sp/>with<sp/>saturating<sp/>offset<sp/>calibration,<sp/>error<sp/>from<sp/>setpoint<sp/>calculation,<sp/>high,<sp/>low<sp/>or<sp/>zero<sp/>crossing<sp/>compare,<sp/>trigger<sp/>to<sp/>sample<sp/>delay<sp/>capture.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>External<sp/>Channel<sp/>Select<sp/>for<sp/>SOCs.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Trigger<sp/>Repeater<sp/>for<sp/>oversampling<sp/>and<sp/>undersampling.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Each<sp/>ADC<sp/>has<sp/>25<sp/>selectable<sp/>single<sp/>ended<sp/>inputs.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>12-bit<sp/>resolution<sp/>with<sp/>8<sp/>MSPS<sp/>sampling<sp/>rate<sp/>max.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>16<sp/>configurable<sp/>SOCs<sp/>and<sp/>16<sp/>individually<sp/>addressable<sp/>result<sp/>registers<sp/>for<sp/>each<sp/>SOC.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Multiple<sp/>trigger<sp/>sources<sp/>-<sp/>software,<sp/>all<sp/>MCPWMs<sp/>ADCSOC<sp/>A<sp/>or<sp/>B,<sp/>ADCINT1/2,<sp/>etc.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Three<sp/>post<sp/>processing<sp/>blocks<sp/>each<sp/>with<sp/>saturating<sp/>offset<sp/>calibration,<sp/>error<sp/>from<sp/>setpoint<sp/>calculation,<sp/>high,<sp/>low<sp/>or<sp/>zero<sp/>crossing<sp/>compare,<sp/>trigger<sp/>to<sp/>sample<sp/>delay<sp/>capture.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>One<sp/>PPB<sp/>Aggregater<sp/>to<sp/>aggregate<sp/>succesive<sp/>samples<sp/>using<sp/>sum,<sp/>calculate<sp/>average<sp/>etc.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Trigger<sp/>Repeater<sp/>for<sp/>oversampling.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Three<sp/>flexible<sp/>PIE<sp/>and<sp/>two<sp/>DMA<sp/>interrupts.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>SysConfig<sp/>Features</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@VAR_SYSCFG_USAGE_NOTE</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Selecting<sp/>ADC<sp/>Clock<sp/>Prescaler.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Specifying<sp/>channels,<sp/>triggers<sp/>and<sp/>sample<sp/>window<sp/>size<sp/>for<sp/>each<sp/>ADC<sp/>SOC.</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Selecting<sp/>ADC<sp/>Signal<sp/>Mode<sp/>-<sp/>Single<sp/>ended<sp/>or<sp/>Differential.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Enabling<sp/>and<sp/>configuring<sp/>ADC<sp/>interrupts.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Configuring<sp/>Post<sp/>Processing<sp/>Blocks.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Specifying<sp/>Burst<sp/>mode<sp/>trigger<sp/>and<sp/>size.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>ADC<sp/>safety<sp/>checker<sp/>configuration.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28P55x<sp/>||<sp/>F28P551x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Selecting<sp/>ADC<sp/>Signal<sp/>Mode<sp/>-<sp/>Single<sp/>ended.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Enabling<sp/>and<sp/>configuring<sp/>ADC<sp/>interrupts.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Configuring<sp/>Post<sp/>Processing<sp/>Blocks.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Specifying<sp/>Burst<sp/>mode<sp/>trigger<sp/>and<sp/>size.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Selecting<sp/>ADC<sp/>Signal<sp/>Mode<sp/>-<sp/>Single<sp/>ended.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Enabling<sp/>and<sp/>configuring<sp/>ADC<sp/>interrupts,<sp/>DMA<sp/>interrupts.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Configuring<sp/>Post<sp/>Processing<sp/>Blocks.</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">##<sp/>Features<sp/>NOT<sp/>Supported</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">NA</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Important<sp/>Usage<sp/>Guidelines</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>ADC<sp/>has<sp/>a<sp/>power<sp/>up<sp/>time<sp/>of<sp/>500us.<sp/>Therefore<sp/>this<sp/>delay<sp/>must<sp/>be<sp/>allowed<sp/>between<sp/>powering<sp/>up<sp/>the<sp/>ADC<sp/>and<sp/>starting<sp/>the<sp/>sampling<sp/>of<sp/>the<sp/>signal.<sp/>Sysconfig<sp/>already<sp/>handles<sp/>this,<sp/>but<sp/>if<sp/>ADC<sp/>is<sp/>powered<sp/>up<sp/>manually<sp/>by<sp/>using<sp/>the<sp/>API,<sp/>then<sp/>this<sp/>power<sp/>up<sp/>delay<sp/>must<sp/>be<sp/>added.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Example<sp/>Usage</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Include<sp/>the<sp/>below<sp/>file<sp/>to<sp/>access<sp/>the<sp/>APIs</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;adc.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>API</highlight></codeline>
+<codeline><highlight class="normal">\ref<sp/>adc_api</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/adc.md"/>
+  </compounddef>
+</doxygen>

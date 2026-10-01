@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="uart__echoback_8md" kind="file" language="Markdown">
+    <compoundname>uart_echoback.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>UART<sp/>Echoback<sp/>{#EXAMPLES_DRIVERS_UART_ECHOBACK}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Short<sp/>Description:<sp/>Serial<sp/>terminal<sp/>echoback&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[//]:<sp/>#<sp/>&quot;Tags:<sp/>UART&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>test<sp/>receives<sp/>and<sp/>echo-backs<sp/>data<sp/>through<sp/>the<sp/>UART<sp/>A<sp/>port.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">A<sp/>terminal<sp/>such<sp/>as<sp/>&apos;Putty&apos;<sp/>can<sp/>be<sp/>used<sp/>to<sp/>view<sp/>the<sp/>data<sp/>from</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>UART<sp/>and<sp/>to<sp/>send<sp/>information<sp/>to<sp/>the<sp/>UART.<sp/>Characters</highlight></codeline>
+<codeline><highlight class="normal">received<sp/>by<sp/>the<sp/>UART<sp/>port<sp/>are<sp/>sent<sp/>back<sp/>to<sp/>the<sp/>host.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\note<sp/>Avoid<sp/>keeping<sp/>the<sp/>memory<sp/>browser<sp/>open<sp/>while<sp/>the<sp/>execution<sp/>is<sp/>in<sp/>progress.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Watch<sp/><sp/>Variables</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>None</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>External<sp/>Connections</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x</highlight></codeline>
+<codeline><highlight class="normal">Connect<sp/>the<sp/>UARTA<sp/>port<sp/>to<sp/>a<sp/>PC<sp/>via<sp/>a<sp/>transceiver<sp/>and<sp/>cable.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>GPIO43<sp/>-<sp/>UARTA<sp/>RX</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>GPIO42<sp/>-<sp/>UARTA<sp/>TX</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F28E12x</highlight></codeline>
+<codeline><highlight class="normal">Connect<sp/>the<sp/>UARTA<sp/>port<sp/>to<sp/>a<sp/>PC<sp/>via<sp/>a<sp/>transceiver<sp/>and<sp/>cable.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>GPIO32<sp/>-<sp/>UARTA<sp/>RX<sp/>(Connect<sp/>to<sp/>Pin3,<sp/>PC-TX,<sp/>of<sp/>serial<sp/>DB9<sp/>cable)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>GPIO43<sp/>-<sp/>UARTA<sp/>TX<sp/>(Connect<sp/>to<sp/>Pin2,<sp/>PC-RX,<sp/>of<sp/>serial<sp/>DB9<sp/>cable)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Steps<sp/>to<sp/>Run<sp/>the<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>CCS<sp/>projects<sp/>to<sp/>build**,<sp/>import<sp/>the<sp/>CCS<sp/>project<sp/>for<sp/>the<sp/>required<sp/>combination</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>and<sp/>build<sp/>it<sp/>using<sp/>the<sp/>CCS<sp/>project<sp/>menu<sp/>(see<sp/>\ref<sp/>CCS_PROJECTS_PAGE).</highlight></codeline>
+<codeline><highlight class="normal">\cond<sp/>F29H85x<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**When<sp/>using<sp/>makefiles<sp/>to<sp/>build**,<sp/>note<sp/>the<sp/>required<sp/>combination<sp/>and<sp/>build<sp/>using</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>make<sp/>command<sp/>(see<sp/>\ref<sp/>MAKEFILE_BUILD_PAGE)</highlight></codeline>
+<codeline><highlight class="normal">\endcond</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Establish<sp/>connections<sp/>as<sp/>mentioned<sp/>in<sp/>External<sp/>Connections<sp/>section.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Launch<sp/>a<sp/>CCS<sp/>debug<sp/>session<sp/>and<sp/>run<sp/>the<sp/>executable,<sp/>see<sp/>\ref<sp/>CCS_LAUNCH_PAGE</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Open<sp/>a<sp/>COM<sp/>port<sp/>with<sp/>the<sp/>following<sp/>settings<sp/>using<sp/>a<sp/>terminal:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Find<sp/>correct<sp/>COM<sp/>port</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Bits<sp/>per<sp/>second<sp/>=<sp/>115200</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Data<sp/>Bits<sp/>=<sp/>8</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Parity<sp/>=<sp/>None</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Stop<sp/>Bits<sp/>=<sp/>1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Hardware<sp/>Control<sp/>=<sp/>None</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>program<sp/>will<sp/>print<sp/>out<sp/>a<sp/>greeting<sp/>and<sp/>then<sp/>ask<sp/>you<sp/>to<sp/>enter<sp/>a<sp/>character<sp/>which<sp/>it<sp/>will</highlight></codeline>
+<codeline><highlight class="normal"><sp/>echo<sp/>back<sp/>to<sp/>the<sp/>terminal.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>See<sp/>Also</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>DRIVERS_UART_PAGE</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/uart_echoback.md"/>
+  </compounddef>
+</doxygen>

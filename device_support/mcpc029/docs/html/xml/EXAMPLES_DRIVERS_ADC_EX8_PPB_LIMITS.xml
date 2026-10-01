@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_ADC_EX8_PPB_LIMITS" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_ADC_EX8_PPB_LIMITS</compoundname>
+    <title>ADC PPB Limits</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_ADC_EX8_PPB_LIMITS_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_adc_ex8_ppb_limits"/></para>
+<sect1 id="EXAMPLES_DRIVERS_ADC_EX8_PPB_LIMITS_1autotoc_md148">
+<title>Introduction</title>
+<para>This example sets up the ePWM (MCPWM in case of F28E12xand MCPC029) to periodically trigger the ADC. If the results are outside of the defined range, the post-processing block will generate an interrupt.</para>
+<para>The default limits are 1000LSBs and 3000LSBs. With VREFHI set to 3.3V, the PPB will generate an interrupt if the input voltage goes above about 2.4V or below about 0.8V.</para>
+<para>Watch Variables<itemizedlist>
+<listitem><para>None.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_ADC_EX8_PPB_LIMITS_1autotoc_md149">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>A0 should be connected to a signal to convert.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_ADC_EX8_PPB_LIMITS_1autotoc_md150">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Using the watch variables, view the ADC conversion results.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_ADC_EX8_PPB_LIMITS_1autotoc_md151">
+<title>See Also</title>
+<para><ref refid="DRIVERS_ADC_PAGE" kindref="compound">ADC</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/adc_ex8_ppb_limits.md"/>
+  </compounddef>
+</doxygen>

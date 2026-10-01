@@ -13,7 +13,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -46,7 +46,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -54,11 +53,9 @@
 #include "f2838x_cla_defines.h"
 #include "f2838x_cla_typedefs.h"
 #include "f2838x_sdfm.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 //
 // Defines
 //
@@ -74,10 +71,8 @@ extern "C" {
 #define DISABLE              0
 #define MAX_SAMPLES          1024
 #define SDFM_INT_MASK        0x8000F000U
-
 #define CONNECT_SD1(x)    EALLOW; DevCfgRegs.CPUSEL4.bit.SD1 = x; EDIS
 #define CONNECT_SD2(x)    EALLOW; DevCfgRegs.CPUSEL4.bit.SD2 = x; EDIS
-
 //
 // Globals
 //
@@ -85,11 +80,9 @@ extern short  Filter1_Result_CPU2[MAX_SAMPLES];
 extern short  Filter2_Result_CPU2[MAX_SAMPLES];
 extern short  Filter3_Result_CPU2[MAX_SAMPLES];
 extern short  Filter4_Result_CPU2[MAX_SAMPLES];
-
 // The following are symbols defined in the CLA code
 // Including them in the shared header file makes them
 // .global and the main CPU can make use of them.
-
 //
 // CLA C Tasks
 //
@@ -101,7 +94,6 @@ __interrupt void Cla1Task5();
 __interrupt void Cla1Task6();
 __interrupt void Cla1Task7();
 __interrupt void Cla1Task8();
-
 __interrupt void cla1Isr1();
 __interrupt void cla1Isr2();
 __interrupt void cla1Isr3();
@@ -110,7 +102,6 @@ __interrupt void cla1Isr5();
 __interrupt void cla1Isr6();
 __interrupt void cla1Isr7();
 __interrupt void cla1Isr8();
-
 //
 // Linker command variables
 //
@@ -122,13 +113,10 @@ extern uint32_t Cla1ConstLoadStart;
 extern uint32_t Cla1ConstLoadEnd;
 extern uint32_t Cla1ConstRunStart;
 extern uint32_t Cla1ConstLoadSize;
-
 #ifdef __cplusplus
 }
 #endif // extern "C"
-
 #endif //end of _CLA_SDFM_FILTER_SYNCH_SHARED_H_ definition
-
 //
 // End of file
 //

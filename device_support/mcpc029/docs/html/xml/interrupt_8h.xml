@@ -1,0 +1,1167 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="interrupt_8h" kind="file" language="C++">
+    <compoundname>interrupt.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes local="no">stdint.h</includes>
+    <includes local="yes">inc/hw_ints.h</includes>
+    <includes local="yes">inc/hw_memmap.h</includes>
+    <includes local="yes">inc/hw_pie.h</includes>
+    <includes local="yes">inc/hw_types.h</includes>
+    <includes local="yes">cpu.h</includes>
+    <includes local="yes">debug.h</includes>
+    <includedby refid="sysctl_8h" local="yes">sysctl.h</includedby>
+    <includedby refid="uart_8h" local="yes">uart.h</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="4">
+        <label>inc/hw_ints.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+      <node id="8">
+        <label>cpu.h</label>
+      </node>
+      <node id="5">
+        <label>inc/hw_memmap.h</label>
+      </node>
+      <node id="1">
+        <label>interrupt.h</label>
+        <link refid="interrupt_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>inc/hw_pie.h</label>
+      </node>
+      <node id="9">
+        <label>debug.h</label>
+      </node>
+      <node id="7">
+        <label>inc/hw_types.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>uart.h</label>
+        <link refid="uart_8h"/>
+      </node>
+      <node id="1">
+        <label>interrupt.h</label>
+        <link refid="interrupt_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sysctl.h</label>
+        <link refid="sysctl_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>cputimer.h</label>
+        <link refid="cputimer_8h"/>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__interrupt__api_1ga2f5d7e0f3bbae25c205dddb635b7229f" prot="public" static="no">
+        <name>INTERRUPT_CPU_INT1</name>
+        <initializer>0x1U</initializer>
+        <briefdescription>
+<para>CPU Interrupt Number 1. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="81" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1ga7c11517c14c60d08b5491df973b192a2" prot="public" static="no">
+        <name>INTERRUPT_CPU_INT2</name>
+        <initializer>0x2U</initializer>
+        <briefdescription>
+<para>CPU Interrupt Number 2. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="82" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1ga1f9dbd6822b5d5858f78e4b17a25be13" prot="public" static="no">
+        <name>INTERRUPT_CPU_INT3</name>
+        <initializer>0x4U</initializer>
+        <briefdescription>
+<para>CPU Interrupt Number 3. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="83" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1ga596dcdbb3f5fd4c23a2d71808ff890df" prot="public" static="no">
+        <name>INTERRUPT_CPU_INT4</name>
+        <initializer>0x8U</initializer>
+        <briefdescription>
+<para>CPU Interrupt Number 4. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="84" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1gab681b3536b981a71e44b327a82936e67" prot="public" static="no">
+        <name>INTERRUPT_CPU_INT5</name>
+        <initializer>0x10U</initializer>
+        <briefdescription>
+<para>CPU Interrupt Number 5. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="85" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1ga431eac16737c6690150572ece3140f2a" prot="public" static="no">
+        <name>INTERRUPT_CPU_INT6</name>
+        <initializer>0x20U</initializer>
+        <briefdescription>
+<para>CPU Interrupt Number 6. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="86" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1ga95e2d15b35f128f68c3aa5cafdaba79a" prot="public" static="no">
+        <name>INTERRUPT_CPU_INT7</name>
+        <initializer>0x40U</initializer>
+        <briefdescription>
+<para>CPU Interrupt Number 7. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="87" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1ga9eba8b624382b0fc68c851ecec63a9e7" prot="public" static="no">
+        <name>INTERRUPT_CPU_INT8</name>
+        <initializer>0x80U</initializer>
+        <briefdescription>
+<para>CPU Interrupt Number 8. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="88" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1ga2736f869049254b837d191297c5657cd" prot="public" static="no">
+        <name>INTERRUPT_CPU_INT9</name>
+        <initializer>0x100U</initializer>
+        <briefdescription>
+<para>CPU Interrupt Number 9. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="89" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1gae8dd4258645a3bac777d22ab995bbb37" prot="public" static="no">
+        <name>INTERRUPT_CPU_INT10</name>
+        <initializer>0x200U</initializer>
+        <briefdescription>
+<para>CPU Interrupt Number 10. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="90" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1ga9e8ace05d287c51b915e79a5f81ecf02" prot="public" static="no">
+        <name>INTERRUPT_CPU_INT11</name>
+        <initializer>0x400U</initializer>
+        <briefdescription>
+<para>CPU Interrupt Number 11. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="91" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1ga143945e992aee6fc6cc0ef9b22dc2e97" prot="public" static="no">
+        <name>INTERRUPT_CPU_INT12</name>
+        <initializer>0x800U</initializer>
+        <briefdescription>
+<para>CPU Interrupt Number 12. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="92" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1gad4a268d4b3b7cd4a90aa508b9be04fe1" prot="public" static="no">
+        <name>INTERRUPT_CPU_INT13</name>
+        <initializer>0x1000U</initializer>
+        <briefdescription>
+<para>CPU Interrupt Number 13. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="93" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1ga1aa0d093b717bcd83f9f0724dbcdaefa" prot="public" static="no">
+        <name>INTERRUPT_CPU_INT14</name>
+        <initializer>0x2000U</initializer>
+        <briefdescription>
+<para>CPU Interrupt Number 14. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="94" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1ga1e1af7febdf51017adaa9ccb8c485614" prot="public" static="no">
+        <name>INTERRUPT_CPU_DLOGINT</name>
+        <initializer>0x4000U</initializer>
+        <briefdescription>
+<para>CPU Data Log Interrupt. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="95" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1ga7eafd53ada889004fd20bd1094a11327" prot="public" static="no">
+        <name>INTERRUPT_CPU_RTOSINT</name>
+        <initializer>0x8000U</initializer>
+        <briefdescription>
+<para>CPU RTOS Interrupt. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="96" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1gac5ad1b400787746162446b606d2f1408" prot="public" static="no">
+        <name>INTERRUPT_ACK_GROUP1</name>
+        <initializer>0x1U</initializer>
+        <briefdescription>
+<para>Acknowledge PIE Interrupt Group 1. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="104" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1gaa0f3f1548cab907a6e07bfd3044b72e8" prot="public" static="no">
+        <name>INTERRUPT_ACK_GROUP2</name>
+        <initializer>0x2U</initializer>
+        <briefdescription>
+<para>Acknowledge PIE Interrupt Group 2. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="105" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1ga25d8adda011ed4249eea06c370337632" prot="public" static="no">
+        <name>INTERRUPT_ACK_GROUP3</name>
+        <initializer>0x4U</initializer>
+        <briefdescription>
+<para>Acknowledge PIE Interrupt Group 3. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="106" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1gaa79b675e01b90f52d872695fdd35226d" prot="public" static="no">
+        <name>INTERRUPT_ACK_GROUP4</name>
+        <initializer>0x8U</initializer>
+        <briefdescription>
+<para>Acknowledge PIE Interrupt Group 4. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="107" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1ga398e78625fb3444a26c4de63d23190dc" prot="public" static="no">
+        <name>INTERRUPT_ACK_GROUP5</name>
+        <initializer>0x10U</initializer>
+        <briefdescription>
+<para>Acknowledge PIE Interrupt Group 5. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="108" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1ga39126afd4d5187c6de1158491d68e2a6" prot="public" static="no">
+        <name>INTERRUPT_ACK_GROUP6</name>
+        <initializer>0x20U</initializer>
+        <briefdescription>
+<para>Acknowledge PIE Interrupt Group 6. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="109" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1ga549723acabddaf74ddae6c6526adf0b9" prot="public" static="no">
+        <name>INTERRUPT_ACK_GROUP7</name>
+        <initializer>0x40U</initializer>
+        <briefdescription>
+<para>Acknowledge PIE Interrupt Group 7. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="110" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1ga6f8c5feba0fffbbd4087cc46b4b17601" prot="public" static="no">
+        <name>INTERRUPT_ACK_GROUP8</name>
+        <initializer>0x80U</initializer>
+        <briefdescription>
+<para>Acknowledge PIE Interrupt Group 8. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="111" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1ga1b4f2ff7331374ca8bf1f6e4c0d32a13" prot="public" static="no">
+        <name>INTERRUPT_ACK_GROUP9</name>
+        <initializer>0x100U</initializer>
+        <briefdescription>
+<para>Acknowledge PIE Interrupt Group 9. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="112" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1gae86790a7a7c921643a62dee4da30589e" prot="public" static="no">
+        <name>INTERRUPT_ACK_GROUP10</name>
+        <initializer>0x200U</initializer>
+        <briefdescription>
+<para>Acknowledge PIE Interrupt Group 10. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="113" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1ga9fd2f7406cc9768f6d1a3242d156e747" prot="public" static="no">
+        <name>INTERRUPT_ACK_GROUP11</name>
+        <initializer>0x400U</initializer>
+        <briefdescription>
+<para>Acknowledge PIE Interrupt Group 11. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="114" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__interrupt__api_1gaed3265ef2901198d25f0f356688a92ba" prot="public" static="no">
+        <name>INTERRUPT_ACK_GROUP12</name>
+        <initializer>0x800U</initializer>
+        <briefdescription>
+<para>Acknowledge PIE Interrupt Group 12. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="115" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__interrupt__api_1gadf3aff8684ae85c08be45499c9414dc5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Interrupt_defaultHandler</definition>
+        <argsstring>(void)</argsstring>
+        <name>Interrupt_defaultHandler</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="140" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" declline="140" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__interrupt__api_1ga48c5ed9e350b06e16c3186df4b0de83d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Interrupt_illegalOperationHandler</definition>
+        <argsstring>(void)</argsstring>
+        <name>Interrupt_illegalOperationHandler</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="159" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" declline="159" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__interrupt__api_1gaadc214138b9d50e3883b8683fc3e0a11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Interrupt_nmiHandler</definition>
+        <argsstring>(void)</argsstring>
+        <name>Interrupt_nmiHandler</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="177" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" declline="177" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__interrupt__api_1ga4f67f455d71a7e2adfdbc2efe1dc044e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Interrupt_enableGlobal</definition>
+        <argsstring>(void)</argsstring>
+        <name>Interrupt_enableGlobal</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Allows the CPU to process interrupts.</para>
+<para>This function clears the global interrupt mask bit (INTM) in the CPU, allowing the processor to respond to interrupts.</para>
+<para><simplesect kind="return"><para>Returns <bold>true</bold> if interrupts were disabled when the function was called or <bold>false</bold> if they were initially enabled. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="191" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="191" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="function" id="group__interrupt__api_1ga92072c2302cf6440e6e24b2188ddaf4c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Interrupt_disableGlobal</definition>
+        <argsstring>(void)</argsstring>
+        <name>Interrupt_disableGlobal</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Stops the CPU from processing interrupts.</para>
+<para>This function sets the global interrupt mask bit (INTM) in the CPU, preventing the processor from receiving maskable interrupts.</para>
+<para><simplesect kind="return"><para>Returns <bold>true</bold> if interrupts were already disabled when the function was called or <bold>false</bold> if they were initially enabled. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="211" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="211" bodyend="217"/>
+      </memberdef>
+      <memberdef kind="function" id="group__interrupt__api_1ga041a6f6f75c6679e0656245cab334eef" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Interrupt_register</definition>
+        <argsstring>(uint32_t interruptNumber, void(*handler)(void))</argsstring>
+        <name>Interrupt_register</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>interruptNumber</declname>
+        </param>
+        <param>
+          <type>void(*)(void)</type>
+          <declname>handler</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Registers a function to be called when an interrupt occurs.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>interruptNumber</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the interrupt in question. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>handler</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a pointer to the function to be called.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function is used to specify the handler function to be called when the given interrupt is asserted to the processor. When the interrupt occurs, if it is enabled (via <ref refid="group__interrupt__api_1ga9d2e78b67270f64253ed520cc74a9064" kindref="member">Interrupt_enable()</ref>), the handler function will be called in interrupt context. Since the handler function can preempt other code, care must be taken to protect memory or peripherals that are accessed by the handler and other non-handler code.</para>
+<para>The available <emphasis>interruptNumber</emphasis> values are supplied in <computeroutput>inc/hw_ints.h</computeroutput>.</para>
+<para><simplesect kind="note"><para>This function assumes that the PIE has been enabled. See <ref refid="group__interrupt__api_1ga5ed592e5db2f93ce1e3f049b92740d82" kindref="member">Interrupt_initModule()</ref>.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="243" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="243" bodyend="259"/>
+      </memberdef>
+      <memberdef kind="function" id="group__interrupt__api_1gac5472e8d75b447a2ceda1c560bd3cbc0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Interrupt_unregister</definition>
+        <argsstring>(uint32_t interruptNumber)</argsstring>
+        <name>Interrupt_unregister</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>interruptNumber</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Unregisters the function to be called when an interrupt occurs.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>interruptNumber</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the interrupt in question.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function is used to indicate that a default handler <ref refid="group__interrupt__api_1gadf3aff8684ae85c08be45499c9414dc5" kindref="member">Interrupt_defaultHandler()</ref> should be called when the given interrupt is asserted to the processor. Call <ref refid="group__interrupt__api_1ga9a3a8f11adc85d5e3669f9332c7fd3f9" kindref="member">Interrupt_disable()</ref> to disable the interrupt before calling this function.</para>
+<para>The available <emphasis>interruptNumber</emphasis> values are supplied in <computeroutput>inc/hw_ints.h</computeroutput>.</para>
+<para><simplesect kind="see"><para><ref refid="group__interrupt__api_1ga041a6f6f75c6679e0656245cab334eef" kindref="member">Interrupt_register()</ref> for important information about registering interrupt handlers.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="282" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="282" bodyend="298"/>
+      </memberdef>
+      <memberdef kind="function" id="group__interrupt__api_1ga4a84b5e72c8f0a7be405592931ebf9f1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Interrupt_enableInCPU</definition>
+        <argsstring>(uint16_t cpuInterrupt)</argsstring>
+        <name>Interrupt_enableInCPU</name>
+        <param>
+          <type>uint16_t</type>
+          <declname>cpuInterrupt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables CPU interrupt channels</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cpuInterrupt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the CPU interrupts to be enabled.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables the specified interrupts in the CPU. The <emphasis>cpuInterrupt</emphasis> parameter is a logical OR of the values <bold>INTERRUPT_CPU_INTx</bold> where x is the interrupt number between 1 and 14, <bold>INTERRUPT_CPU_DLOGINT</bold>, and <bold>INTERRUPT_CPU_RTOSINT</bold>.</para>
+<para><simplesect kind="note"><para>Note that interrupts 1-12 correspond to the PIE groups with those same numbers.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="318" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="318" bodyend="324"/>
+      </memberdef>
+      <memberdef kind="function" id="group__interrupt__api_1ga4729a241eacf0af098294ee31ba50389" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Interrupt_disableInCPU</definition>
+        <argsstring>(uint16_t cpuInterrupt)</argsstring>
+        <name>Interrupt_disableInCPU</name>
+        <param>
+          <type>uint16_t</type>
+          <declname>cpuInterrupt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables CPU interrupt channels</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cpuInterrupt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the CPU interrupts to be disabled.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables the specified interrupts in the CPU. The <emphasis>cpuInterrupt</emphasis> parameter is a logical OR of the values <bold>INTERRUPT_CPU_INTx</bold> where x is the interrupt number between 1 and 14, <bold>INTERRUPT_CPU_DLOGINT</bold>, and <bold>INTERRUPT_CPU_RTOSINT</bold>.</para>
+<para><simplesect kind="note"><para>Note that interrupts 1-12 correspond to the PIE groups with those same numbers.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="344" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="344" bodyend="350"/>
+      </memberdef>
+      <memberdef kind="function" id="group__interrupt__api_1ga3820c5be880c89f133d7be99b14a4856" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Interrupt_clearACKGroup</definition>
+        <argsstring>(uint16_t group)</argsstring>
+        <name>Interrupt_clearACKGroup</name>
+        <param>
+          <type>uint16_t</type>
+          <declname>group</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Acknowledges PIE Interrupt Group</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>group</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the interrupt group to be acknowledged.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+The specified interrupt group is acknowledged and clears any interrupt flag within that respective group.</para>
+<para>The <emphasis>group</emphasis> parameter must be a logical OR of the following: <bold>INTERRUPT_ACK_GROUP1</bold>, <bold>INTERRUPT_ACK_GROUP2</bold>, <bold>INTERRUPT_ACK_GROUP3</bold> <bold>INTERRUPT_ACK_GROUP4</bold>, <bold>INTERRUPT_ACK_GROUP5</bold>, <bold>INTERRUPT_ACK_GROUP6</bold> <bold>INTERRUPT_ACK_GROUP7</bold>, <bold>INTERRUPT_ACK_GROUP8</bold>, <bold>INTERRUPT_ACK_GROUP9</bold> <bold>INTERRUPT_ACK_GROUP10</bold>, <bold>INTERRUPT_ACK_GROUP11</bold>, <bold>INTERRUPT_ACK_GROUP12</bold>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="372" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="372" bodyend="378"/>
+      </memberdef>
+      <memberdef kind="function" id="group__interrupt__api_1gaefe2e9af5e200370e827e6c5b2d2e163" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Interrupt_enablePIE</definition>
+        <argsstring>(void)</argsstring>
+        <name>Interrupt_enablePIE</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables the PIE block.</para>
+<para>This function enables the vector fetching for the peripheral interrupts by enabling the PIE block.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="391" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="391" bodyend="394"/>
+      </memberdef>
+      <memberdef kind="function" id="group__interrupt__api_1ga598eb67dc3e7a4e8690631d1e4d6c05f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Interrupt_disablePIE</definition>
+        <argsstring>(void)</argsstring>
+        <name>Interrupt_disablePIE</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables the PIE block.</para>
+<para>This function disables the vector fetching for the peripheral interrupts by disabling the PIE block. PIEACK, PIEIFR, and PIEIER registers can be accessed even when the PIE block is disabled.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="408" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" bodystart="408" bodyend="411"/>
+      </memberdef>
+      <memberdef kind="function" id="group__interrupt__api_1ga5ed592e5db2f93ce1e3f049b92740d82" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Interrupt_initModule</definition>
+        <argsstring>(void)</argsstring>
+        <name>Interrupt_initModule</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the PIE control registers by setting them to a known state.</para>
+<para>This function initializes the PIE control registers. After globally disabling interrupts and enabling the PIE, it clears all of the PIE interrupt enable bits and interrupt flags.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="425" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" declline="425" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__interrupt__api_1gab36687326952b2131939a7ccae276cda" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Interrupt_initVectorTable</definition>
+        <argsstring>(void)</argsstring>
+        <name>Interrupt_initVectorTable</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the PIE vector table by setting all vectors to a default handler function.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="436" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" declline="436" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__interrupt__api_1ga9d2e78b67270f64253ed520cc74a9064" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Interrupt_enable</definition>
+        <argsstring>(uint32_t interruptNumber)</argsstring>
+        <name>Interrupt_enable</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>interruptNumber</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables an interrupt.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>interruptNumber</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the interrupt to be enabled.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+The specified interrupt is enabled in the interrupt controller. Other enables for the interrupt (such as at the peripheral level) are unaffected by this function.</para>
+<para>The available <emphasis>interruptNumber</emphasis> values are supplied in <computeroutput>inc/hw_ints.h</computeroutput>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="455" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" declline="455" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__interrupt__api_1ga9a3a8f11adc85d5e3669f9332c7fd3f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Interrupt_disable</definition>
+        <argsstring>(uint32_t interruptNumber)</argsstring>
+        <name>Interrupt_disable</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>interruptNumber</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables an interrupt.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>interruptNumber</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the interrupt to be disabled.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+The specified interrupt is disabled in the interrupt controller. Other enables for the interrupt (such as at the peripheral level) are unaffected by this function.</para>
+<para>The available <emphasis>interruptNumber</emphasis> values are supplied in <computeroutput>inc/hw_ints.h</computeroutput>.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" line="474" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h" declline="474" declcolumn="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//###########################################################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>FILE:<sp/><sp/><sp/>interrupt.h</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>TITLE:<sp/><sp/>C28x<sp/>Interrupt<sp/>(PIE)<sp/>driver.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//###########################################################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>$Copyright:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(C)<sp/>2026<sp/>Texas<sp/>Instruments<sp/>Incorporated<sp/>-<sp/>http://www.ti.com/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Redistribution<sp/>and<sp/>use<sp/>in<sp/>source<sp/>and<sp/>binary<sp/>forms,<sp/>with<sp/>or<sp/>without<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>modification,<sp/>are<sp/>permitted<sp/>provided<sp/>that<sp/>the<sp/>following<sp/>conditions<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>are<sp/>met:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>Redistributions<sp/>of<sp/>source<sp/>code<sp/>must<sp/>retain<sp/>the<sp/>above<sp/>copyright<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>Redistributions<sp/>in<sp/>binary<sp/>form<sp/>must<sp/>reproduce<sp/>the<sp/>above<sp/>copyright</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer<sp/>in<sp/>the<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>documentation<sp/>and/or<sp/>other<sp/>materials<sp/>provided<sp/>with<sp/>the<sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>distribution.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>Neither<sp/>the<sp/>name<sp/>of<sp/>Texas<sp/>Instruments<sp/>Incorporated<sp/>nor<sp/>the<sp/>names<sp/>of</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>its<sp/>contributors<sp/>may<sp/>be<sp/>used<sp/>to<sp/>endorse<sp/>or<sp/>promote<sp/>products<sp/>derived</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>from<sp/>this<sp/>software<sp/>without<sp/>specific<sp/>prior<sp/>written<sp/>permission.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>THIS<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>BY<sp/>THE<sp/>COPYRIGHT<sp/>HOLDERS<sp/>AND<sp/>CONTRIBUTORS<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>ANY<sp/>EXPRESS<sp/>OR<sp/>IMPLIED<sp/>WARRANTIES,<sp/>INCLUDING,<sp/>BUT<sp/>NOT<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>LIMITED<sp/>TO,<sp/>THE<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS<sp/>FOR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>ARE<sp/>DISCLAIMED.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>COPYRIGHT<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>OWNER<sp/>OR<sp/>CONTRIBUTORS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>DIRECT,<sp/>INDIRECT,<sp/>INCIDENTAL,<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPECIAL,<sp/>EXEMPLARY,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>(INCLUDING,<sp/>BUT<sp/>NOT<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>LIMITED<sp/>TO,<sp/>PROCUREMENT<sp/>OF<sp/>SUBSTITUTE<sp/>GOODS<sp/>OR<sp/>SERVICES;<sp/>LOSS<sp/>OF<sp/>USE,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>DATA,<sp/>OR<sp/>PROFITS;<sp/>OR<sp/>BUSINESS<sp/>INTERRUPTION)<sp/>HOWEVER<sp/>CAUSED<sp/>AND<sp/>ON<sp/>ANY</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>THEORY<sp/>OF<sp/>LIABILITY,<sp/>WHETHER<sp/>IN<sp/>CONTRACT,<sp/>STRICT<sp/>LIABILITY,<sp/>OR<sp/>TORT<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/>(INCLUDING<sp/>NEGLIGENCE<sp/>OR<sp/>OTHERWISE)<sp/>ARISING<sp/>IN<sp/>ANY<sp/>WAY<sp/>OUT<sp/>OF<sp/>THE<sp/>USE<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>OF<sp/>THIS<sp/>SOFTWARE,<sp/>EVEN<sp/>IF<sp/>ADVISED<sp/>OF<sp/>THE<sp/>POSSIBILITY<sp/>OF<sp/>SUCH<sp/>DAMAGE.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">//<sp/>$</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//###########################################################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>INTERRUPT_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>If<sp/>building<sp/>with<sp/>a<sp/>C++<sp/>compiler,<sp/>make<sp/>all<sp/>of<sp/>the<sp/>definitions<sp/>in<sp/>this<sp/>header</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>have<sp/>a<sp/>C<sp/>binding.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__TMS320C28XX__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;inc/hw_ints.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;inc/hw_memmap.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;inc/hw_pie.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;inc/hw_types.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cpu.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;debug.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>DOXYGEN_PDF_IGNORE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="comment">//<sp/>The<sp/>following<sp/>are<sp/>values<sp/>that<sp/>can<sp/>be<sp/>passed<sp/>to<sp/>the<sp/>Interrupt_enableInCPU()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">//<sp/>and<sp/>Interrupt_disableInCPU()<sp/>functions<sp/>as<sp/>the<sp/>cpuInterrupt<sp/>parameter.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="group__interrupt__api_1ga2f5d7e0f3bbae25c205dddb635b7229f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_CPU_INT1<sp/><sp/><sp/><sp/>0x1U<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="group__interrupt__api_1ga7c11517c14c60d08b5491df973b192a2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_CPU_INT2<sp/><sp/><sp/><sp/>0x2U<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="group__interrupt__api_1ga1f9dbd6822b5d5858f78e4b17a25be13" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_CPU_INT3<sp/><sp/><sp/><sp/>0x4U<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="group__interrupt__api_1ga596dcdbb3f5fd4c23a2d71808ff890df" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_CPU_INT4<sp/><sp/><sp/><sp/>0x8U<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="group__interrupt__api_1gab681b3536b981a71e44b327a82936e67" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_CPU_INT5<sp/><sp/><sp/><sp/>0x10U<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="group__interrupt__api_1ga431eac16737c6690150572ece3140f2a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_CPU_INT6<sp/><sp/><sp/><sp/>0x20U<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="group__interrupt__api_1ga95e2d15b35f128f68c3aa5cafdaba79a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_CPU_INT7<sp/><sp/><sp/><sp/>0x40U<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88" refid="group__interrupt__api_1ga9eba8b624382b0fc68c851ecec63a9e7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_CPU_INT8<sp/><sp/><sp/><sp/>0x80U<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="group__interrupt__api_1ga2736f869049254b837d191297c5657cd" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_CPU_INT9<sp/><sp/><sp/><sp/>0x100U<sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="group__interrupt__api_1gae8dd4258645a3bac777d22ab995bbb37" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_CPU_INT10<sp/><sp/><sp/>0x200U<sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="group__interrupt__api_1ga9e8ace05d287c51b915e79a5f81ecf02" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_CPU_INT11<sp/><sp/><sp/>0x400U<sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="group__interrupt__api_1ga143945e992aee6fc6cc0ef9b22dc2e97" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_CPU_INT12<sp/><sp/><sp/>0x800U<sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="group__interrupt__api_1gad4a268d4b3b7cd4a90aa508b9be04fe1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_CPU_INT13<sp/><sp/><sp/>0x1000U<sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="group__interrupt__api_1ga1aa0d093b717bcd83f9f0724dbcdaefa" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_CPU_INT14<sp/><sp/><sp/>0x2000U<sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95" refid="group__interrupt__api_1ga1e1af7febdf51017adaa9ccb8c485614" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_CPU_DLOGINT<sp/>0x4000U<sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="group__interrupt__api_1ga7eafd53ada889004fd20bd1094a11327" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_CPU_RTOSINT<sp/>0x8000U<sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="comment">//<sp/>The<sp/>following<sp/>are<sp/>values<sp/>that<sp/>can<sp/>be<sp/>passed<sp/>to<sp/>the<sp/>Interrupt_clearACKGroup()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="comment">//<sp/>function<sp/>as<sp/>the<sp/>group<sp/>parameter.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="group__interrupt__api_1gac5ad1b400787746162446b606d2f1408" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_ACK_GROUP1<sp/><sp/><sp/><sp/>0x1U<sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="group__interrupt__api_1gaa0f3f1548cab907a6e07bfd3044b72e8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_ACK_GROUP2<sp/><sp/><sp/><sp/>0x2U<sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106" refid="group__interrupt__api_1ga25d8adda011ed4249eea06c370337632" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_ACK_GROUP3<sp/><sp/><sp/><sp/>0x4U<sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107" refid="group__interrupt__api_1gaa79b675e01b90f52d872695fdd35226d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_ACK_GROUP4<sp/><sp/><sp/><sp/>0x8U<sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108" refid="group__interrupt__api_1ga398e78625fb3444a26c4de63d23190dc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_ACK_GROUP5<sp/><sp/><sp/><sp/>0x10U<sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109" refid="group__interrupt__api_1ga39126afd4d5187c6de1158491d68e2a6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_ACK_GROUP6<sp/><sp/><sp/><sp/>0x20U<sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110" refid="group__interrupt__api_1ga549723acabddaf74ddae6c6526adf0b9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_ACK_GROUP7<sp/><sp/><sp/><sp/>0x40U<sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111" refid="group__interrupt__api_1ga6f8c5feba0fffbbd4087cc46b4b17601" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_ACK_GROUP8<sp/><sp/><sp/><sp/>0x80U<sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112" refid="group__interrupt__api_1ga1b4f2ff7331374ca8bf1f6e4c0d32a13" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_ACK_GROUP9<sp/><sp/><sp/><sp/>0x100U<sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113" refid="group__interrupt__api_1gae86790a7a7c921643a62dee4da30589e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_ACK_GROUP10<sp/><sp/><sp/>0x200U<sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114" refid="group__interrupt__api_1ga9fd2f7406cc9768f6d1a3242d156e747" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_ACK_GROUP11<sp/><sp/><sp/>0x400U<sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115" refid="group__interrupt__api_1gaed3265ef2901198d25f0f356688a92ba" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_ACK_GROUP12<sp/><sp/><sp/>0x800U<sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Prototypes<sp/>for<sp/>the<sp/>APIs.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="137"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="140" refid="group__interrupt__api_1gadf3aff8684ae85c08be45499c9414dc5" refkind="member"><highlight class="normal"><ref refid="group__interrupt__api_1gadf3aff8684ae85c08be45499c9414dc5" kindref="member">Interrupt_defaultHandler</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="156"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="159" refid="group__interrupt__api_1ga48c5ed9e350b06e16c3186df4b0de83d" refkind="member"><highlight class="normal"><ref refid="group__interrupt__api_1ga48c5ed9e350b06e16c3186df4b0de83d" kindref="member">Interrupt_illegalOperationHandler</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="174"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="177" refid="group__interrupt__api_1gaadc214138b9d50e3883b8683fc3e0a11" refkind="member"><highlight class="normal"><ref refid="group__interrupt__api_1gaadc214138b9d50e3883b8683fc3e0a11" kindref="member">Interrupt_nmiHandler</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="188"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="191" refid="group__interrupt__api_1ga4f67f455d71a7e2adfdbc2efe1dc044e" refkind="member"><highlight class="normal"><ref refid="group__interrupt__api_1ga4f67f455d71a7e2adfdbc2efe1dc044e" kindref="member">Interrupt_enableGlobal</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="192"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Enable<sp/>processor<sp/>interrupts.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(((__enable_interrupts()<sp/>&amp;<sp/>0x1U)<sp/>!=<sp/>0U)<sp/>?<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="208"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="211" refid="group__interrupt__api_1ga92072c2302cf6440e6e24b2188ddaf4c" refkind="member"><highlight class="normal"><ref refid="group__interrupt__api_1ga92072c2302cf6440e6e24b2188ddaf4c" kindref="member">Interrupt_disableGlobal</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="212"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Disable<sp/>processor<sp/>interrupts.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(((__disable_interrupts()<sp/>&amp;<sp/>0x1U)<sp/>!=<sp/>0U)<sp/>?<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="217"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="240"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="243" refid="group__interrupt__api_1ga041a6f6f75c6679e0656245cab334eef" refkind="member"><highlight class="normal"><ref refid="group__interrupt__api_1ga041a6f6f75c6679e0656245cab334eef" kindref="member">Interrupt_register</ref>(uint32_t<sp/>interruptNumber,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>(*handler)(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">))</highlight></codeline>
+<codeline lineno="244"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>address;</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"></highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>appropriate<sp/>address<sp/>for<sp/>the<sp/>interrupt<sp/>number</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/>address<sp/>=<sp/>(uint32_t)PIEVECTTABLE_BASE<sp/>+</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(((interruptNumber<sp/>&amp;<sp/>0xFFFF0000U)<sp/>&gt;&gt;<sp/>16U)<sp/>*<sp/>2U);</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Copy<sp/>ISR<sp/>address<sp/>into<sp/>PIE<sp/>table</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>EALLOW;</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREG(address)<sp/>=<sp/>(uint32_t)handler;</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/>EDIS;</highlight></codeline>
+<codeline lineno="259"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"></highlight></codeline>
+<codeline lineno="261"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="262"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="279"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="282" refid="group__interrupt__api_1gac5472e8d75b447a2ceda1c560bd3cbc0" refkind="member"><highlight class="normal"><ref refid="group__interrupt__api_1gac5472e8d75b447a2ceda1c560bd3cbc0" kindref="member">Interrupt_unregister</ref>(uint32_t<sp/>interruptNumber)</highlight></codeline>
+<codeline lineno="283"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>address;</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"></highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>appropriate<sp/>address<sp/>for<sp/>the<sp/>interrupt<sp/>number</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/>address<sp/>=<sp/>(uint32_t)PIEVECTTABLE_BASE<sp/>+</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(((interruptNumber<sp/>&amp;<sp/>0xFFFF0000U)<sp/>&gt;&gt;<sp/>16U)<sp/>*<sp/>2U);</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"></highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Copy<sp/>default<sp/>ISR<sp/>address<sp/>into<sp/>PIE<sp/>table</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/>EALLOW;</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREG(address)<sp/>=<sp/>(uint32_t)<ref refid="group__interrupt__api_1gadf3aff8684ae85c08be45499c9414dc5" kindref="member">Interrupt_defaultHandler</ref>;</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/>EDIS;</highlight></codeline>
+<codeline lineno="298"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"></highlight></codeline>
+<codeline lineno="300"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="301"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="315"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="316"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="317"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="318" refid="group__interrupt__api_1ga4a84b5e72c8f0a7be405592931ebf9f1" refkind="member"><highlight class="normal"><ref refid="group__interrupt__api_1ga4a84b5e72c8f0a7be405592931ebf9f1" kindref="member">Interrupt_enableInCPU</ref>(uint16_t<sp/>cpuInterrupt)</highlight></codeline>
+<codeline lineno="319"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>the<sp/>interrupt<sp/>bits<sp/>in<sp/>the<sp/>CPU.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/>IER<sp/>|=<sp/>cpuInterrupt;</highlight></codeline>
+<codeline lineno="324"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"></highlight></codeline>
+<codeline lineno="326"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="327"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="341"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="342"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="343"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="344" refid="group__interrupt__api_1ga4729a241eacf0af098294ee31ba50389" refkind="member"><highlight class="normal"><ref refid="group__interrupt__api_1ga4729a241eacf0af098294ee31ba50389" kindref="member">Interrupt_disableInCPU</ref>(uint16_t<sp/>cpuInterrupt)</highlight></codeline>
+<codeline lineno="345"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Clear<sp/>the<sp/>interrupt<sp/>bits<sp/>in<sp/>the<sp/>CPU.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/>IER<sp/>&amp;=<sp/>~cpuInterrupt;</highlight></codeline>
+<codeline lineno="350"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"></highlight></codeline>
+<codeline lineno="352"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="353"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="369"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="370"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="371"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="372" refid="group__interrupt__api_1ga3820c5be880c89f133d7be99b14a4856" refkind="member"><highlight class="normal"><ref refid="group__interrupt__api_1ga3820c5be880c89f133d7be99b14a4856" kindref="member">Interrupt_clearACKGroup</ref>(uint16_t<sp/>group)</highlight></codeline>
+<codeline lineno="373"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>interrupt<sp/>group<sp/>acknowledge<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(PIECTRL_BASE<sp/>+<sp/>PIE_O_ACK)<sp/>=<sp/>group;</highlight></codeline>
+<codeline lineno="378"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="379"><highlight class="normal"></highlight></codeline>
+<codeline lineno="380"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="381"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="388"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="389"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="390"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="391" refid="group__interrupt__api_1gaefe2e9af5e200370e827e6c5b2d2e163" refkind="member"><highlight class="normal"><ref refid="group__interrupt__api_1gaefe2e9af5e200370e827e6c5b2d2e163" kindref="member">Interrupt_enablePIE</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="392"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="393"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(PIECTRL_BASE<sp/>+<sp/>PIE_O_CTRL)<sp/>|=<sp/>PIE_CTRL_ENPIE;</highlight></codeline>
+<codeline lineno="394"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="395"><highlight class="normal"></highlight></codeline>
+<codeline lineno="396"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="397"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="405"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="406"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="407"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="408" refid="group__interrupt__api_1ga598eb67dc3e7a4e8690631d1e4d6c05f" refkind="member"><highlight class="normal"><ref refid="group__interrupt__api_1ga598eb67dc3e7a4e8690631d1e4d6c05f" kindref="member">Interrupt_disablePIE</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="409"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="410"><highlight class="normal"><sp/><sp/><sp/><sp/>HWREGH(PIECTRL_BASE<sp/>+<sp/>PIE_O_CTRL)<sp/>&amp;=<sp/>~PIE_CTRL_ENPIE;</highlight></codeline>
+<codeline lineno="411"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="412"><highlight class="normal"></highlight></codeline>
+<codeline lineno="413"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="414"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="422"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="423"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="424"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="425" refid="group__interrupt__api_1ga5ed592e5db2f93ce1e3f049b92740d82" refkind="member"><highlight class="normal"><ref refid="group__interrupt__api_1ga5ed592e5db2f93ce1e3f049b92740d82" kindref="member">Interrupt_initModule</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="426"><highlight class="normal"></highlight></codeline>
+<codeline lineno="427"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="428"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="433"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="434"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="435"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="436" refid="group__interrupt__api_1gab36687326952b2131939a7ccae276cda" refkind="member"><highlight class="normal"><ref refid="group__interrupt__api_1gab36687326952b2131939a7ccae276cda" kindref="member">Interrupt_initVectorTable</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="437"><highlight class="normal"></highlight></codeline>
+<codeline lineno="438"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="439"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="452"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="453"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="454"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="455" refid="group__interrupt__api_1ga9d2e78b67270f64253ed520cc74a9064" refkind="member"><highlight class="normal"><ref refid="group__interrupt__api_1ga9d2e78b67270f64253ed520cc74a9064" kindref="member">Interrupt_enable</ref>(uint32_t<sp/>interruptNumber);</highlight></codeline>
+<codeline lineno="456"><highlight class="normal"></highlight></codeline>
+<codeline lineno="457"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="458"><highlight class="normal"></highlight><highlight class="comment">//</highlight></codeline>
+<codeline lineno="471"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="472"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="473"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="474" refid="group__interrupt__api_1ga9a3a8f11adc85d5e3669f9332c7fd3f9" refkind="member"><highlight class="normal"><ref refid="group__interrupt__api_1ga9a3a8f11adc85d5e3669f9332c7fd3f9" kindref="member">Interrupt_disable</ref>(uint32_t<sp/>interruptNumber);</highlight></codeline>
+<codeline lineno="475"><highlight class="normal"></highlight></codeline>
+<codeline lineno="476"><highlight class="normal"></highlight></codeline>
+<codeline lineno="477"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="478"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="479"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Close<sp/>the<sp/>Doxygen<sp/>group.</highlight></codeline>
+<codeline lineno="481"><highlight class="comment"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="482"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="483"><highlight class="normal"></highlight></codeline>
+<codeline lineno="484"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>#ifdef<sp/>__TMS320C28XX__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="485"><highlight class="normal"></highlight></codeline>
+<codeline lineno="486"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="487"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="488"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Mark<sp/>the<sp/>end<sp/>of<sp/>the<sp/>C<sp/>bindings<sp/>section<sp/>for<sp/>C++<sp/>compilers.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="489"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="490"><highlight class="normal"></highlight><highlight class="comment">//*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="491"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="492"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="493"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="494"><highlight class="normal"></highlight></codeline>
+<codeline lineno="495"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>INTERRUPT_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/interrupt.h"/>
+  </compounddef>
+</doxygen>

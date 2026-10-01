@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -90,7 +90,7 @@ UART_setConfig(uint32_t base, uint32_t uartClk,
         //
         // Enable high speed mode.
         //
-        HWREG(base + UART_O_CTL) |= UART_CTL_HSE;
+        HWREG(base + UART_O_CTL) |= (uint32_t)UART_CTL_HSE;
 
         //
         // Half the supplied baud rate to compensate for enabling high speed
@@ -103,7 +103,7 @@ UART_setConfig(uint32_t base, uint32_t uartClk,
         //
         // Disable high speed mode.
         //
-        HWREG(base + UART_O_CTL) &= ~(UART_CTL_HSE);
+        HWREG(base + UART_O_CTL) &= ~((uint32_t)UART_CTL_HSE);
     }
 
     //
@@ -329,3 +329,73 @@ UART_configure9BitDataMode(uint32_t base)
     return(lcrh);
 }
 
+//*****************************************************************************
+//
+// UART_writeCharArray()
+//
+//*****************************************************************************
+
+void
+UART_writeCharArray(uint32_t base, const uint8_t * const array,
+                    uint16_t length)
+{
+    uint16_t i;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(UART_isBaseValid(base));
+
+    //
+    // For loop to write (Blocking) 'length' number of characters
+    //
+    for(i = 0U; i < length; i++)
+    {
+        //
+        // Wait until space is available in transmit FIFO
+        //
+        while((HWREG(base + UART_O_FR) & UART_FR_TXFF) == UART_FR_TXFF)
+        {
+        }
+
+        //
+        // Send a char
+        //
+        HWREG(base + UART_O_DR) = array[i];
+    }
+}
+
+//*****************************************************************************
+//
+// UART_readCharArray()
+//
+//*****************************************************************************
+
+void
+UART_readCharArray(uint32_t base, int32_t * const array, uint16_t length)
+{
+    uint16_t i;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(UART_isBaseValid(base));
+
+    //
+    // Loop to read (Blocking) 'length' number of characters
+    //
+    for(i = 0U; i < length; i++)
+    {
+        //
+        // Wait until a character is available in receive FIFO
+        //
+        while((HWREG(base + UART_O_FR) & UART_FR_RXFE) == UART_FR_RXFE)
+        {
+        }
+
+        //
+        // Read the char
+        //
+        array[i] = (int32_t)HWREG(base + UART_O_DR);
+    }
+}

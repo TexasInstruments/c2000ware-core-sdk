@@ -11,7 +11,7 @@
 //! the frequency of the PLLRAW clock.
 //!
 //! The Dual-Clock Comparator Module 0 is used for the clock verification.
-//! The clocksource0 is the reference clock (Fclk0 = 20Mhz) and the
+//! The clocksource0 is the reference clock (Fclk0 = 25Mhz) and the
 //! clocksource1 is the clock that needs to be verified (Fclk1 = 200Mhz).
 //! Seed is the value that gets loaded into the Counter.
 //!
@@ -28,7 +28,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -66,51 +66,43 @@
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
 #define PASS 0
 #define FAIL 1
-
 //
 // Globals
 //
 uint32_t result = FAIL;
-
 //
 // Main
 //
 void main(void)
 {
     bool status=0;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Verify the frequency of PLL clock using the XTAL as reference clock
     // FClk1 = PLL frequency = 200MHz
-    // FClk0 = XTAL frequency = 20MHz
+    // FClk0 = XTAL frequency = 25MHz
     // Tolerance = 1%
     // Allowable Frequency Tolerance = 0% (update as per the error in the XTAL frequency)
     // SysClk Freq = 200MHz
@@ -120,9 +112,8 @@ void main(void)
     //
     status = DCC_verifyClockFrequency(DCC0_BASE,
                                       DCC_COUNT1SRC_PLL, 200.0F,
-                                      DCC_COUNT0SRC_XTAL, 20.0F,
+                                      DCC_COUNT0SRC_XTAL, 25.0F,
                                       1.0F, 0.0F, 200.0F);
-
     //
     // Status of the PLLRAW clock verification
     //
@@ -134,7 +125,5 @@ void main(void)
     {
         result = PASS;
     }
-
     ESTOP0;
 }
-

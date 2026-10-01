@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="pga_8md" kind="file" language="Markdown">
+    <compoundname>pga.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>PGA<sp/>{#DRIVERS_PGA_PAGE}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[TOC]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>PGA<sp/>driver<sp/>provides<sp/>API<sp/>to<sp/>configure<sp/>the<sp/>PGA<sp/>module.</highlight></codeline>
+<codeline><highlight class="normal">Below<sp/>are<sp/>the<sp/>high<sp/>level<sp/>features<sp/>supported<sp/>by<sp/>the<sp/>PGA<sp/>driver.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Features<sp/>Supported</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Rail<sp/>to<sp/>rail<sp/>input<sp/>and<sp/>output<sp/>voltage<sp/>within<sp/>VDDA<sp/>and<sp/>VSSA<sp/>range.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Programmable<sp/>gain<sp/>modes<sp/>including<sp/>unity<sp/>gain<sp/>and<sp/>other<sp/>values<sp/>from<sp/>2˟<sp/>to<sp/>64˟.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Post-gain<sp/>filtering<sp/>using<sp/>on-chip<sp/>resistors<sp/>(RFILT<sp/>or<sp/>Rib)<sp/>and<sp/>external<sp/>capacitor.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Differential<sp/>input<sp/>support.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Hardware<sp/>assisted<sp/>chopping<sp/>for<sp/>offset<sp/>reduction.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Support<sp/>for<sp/>Kelvin<sp/>ground<sp/>connections<sp/>using<sp/>PGA_INM<sp/>pins.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>SysConfig<sp/>Features</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@VAR_SYSCFG_USAGE_NOTE</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Support<sp/>different<sp/>gain<sp/>modes<sp/>(buffer<sp/>mode,<sp/>Standalone<sp/>mode,<sp/>Non-inverting<sp/>mode,<sp/>Subtractor<sp/>mode)<sp/>using<sp/>PMUXSEL,<sp/>NMUXSEL<sp/>and<sp/>MMUXSEL<sp/>configuration.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Support<sp/>additional<sp/>muxing<sp/>configuration<sp/>on<sp/>the<sp/>inputs.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Support<sp/>programmable<sp/>gain<sp/>values<sp/>for<sp/>subtractor<sp/>and<sp/>non-inverting<sp/>modes.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Support<sp/>PGA<sp/>feedback<sp/>to<sp/>negative<sp/>input<sp/>configuration.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Support<sp/>post-gain<sp/>filtering<sp/>using<sp/>on-chip<sp/>resistors<sp/>and<sp/>capacitor.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Support<sp/>to<sp/>enable/disable<sp/>internal<sp/>gain<sp/>output<sp/>on<sp/>an<sp/>external<sp/>pin.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Support<sp/>chopping<sp/>feature<sp/>for<sp/>offset<sp/>reduction.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Features<sp/>NOT<sp/>Supported</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">NA</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Important<sp/>Usage<sp/>Guidelines</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Changing<sp/>the<sp/>gain<sp/>mode<sp/>during<sp/>normal<sp/>operation<sp/>is<sp/>allowed,<sp/>but<sp/>a<sp/>minimum<sp/>configuration<sp/>settling<sp/>time<sp/>can<sp/>be<sp/>observed<sp/>when<sp/>doing<sp/>so.<sp/>See<sp/>the<sp/>device<sp/>data<sp/>sheet<sp/>for<sp/>the<sp/>gain<sp/>switch<sp/>settling<sp/>time.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Example<sp/>Usage</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Include<sp/>the<sp/>below<sp/>file<sp/>to<sp/>access<sp/>the<sp/>APIs</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;pga.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>API</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ref<sp/>pga_api</highlight></codeline>
+    </programlisting>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/components/drivers/pga.md"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD</compoundname>
+    <title>MCPWM Global Load Use Case Example</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_mcpwm_ex6_global_load_use_case"/></para>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD_1autotoc_md390">
+<title>Introduction</title>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD_1autotoc_md391">
+<title>Global Load Feature</title>
+<para>Global load is an advanced MCPWM feature that enables synchronized updates of multiple PWM parameters across different channels. This ensures smooth transitions and maintains phase relationships when modifying PWM settings during operation.</para>
+<para>The feature operates by controlling transfers from shadow to active registers (GLDCTL[GLD]), synchronizing updates based on configured events (GLDCTL[GLDMODE]). When enabled, it overrides individual shadow register load settings for coordinated updates.</para>
+<sect3 id="EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD_1autotoc_md392">
+<title>Key aspects include:</title>
+<para><bold>One-Shot Load Operations</bold><itemizedlist>
+<listitem><para>Global Load Enable/Disable Control:<itemizedlist>
+<listitem><para><ref refid="group__mcpwm__api_1ga9639cbfe441bc402639e0d6f1191e547" kindref="member">MCPWM_enableGlobalLoad()</ref></para>
+</listitem><listitem><para><ref refid="group__mcpwm__api_1gacd783d079fccce2070b0f8c64906a826" kindref="member">MCPWM_disableGlobalLoad()</ref></para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Global Load Trigger Configuration:<itemizedlist>
+<listitem><para><ref refid="group__mcpwm__api_1ga00890af8b530814127fc3e48f772aca8" kindref="member">MCPWM_setGlobalLoadTrigger()</ref></para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>One-Shot Mode Control:<itemizedlist>
+<listitem><para><ref refid="group__mcpwm__api_1ga11166de298f9667711901b7a28c6cda1" kindref="member">MCPWM_enableGlobalLoadOneShotMode()</ref></para>
+</listitem><listitem><para><ref refid="group__mcpwm__api_1ga8967719932fcdc0ad5330f8ed8dbe4ea" kindref="member">MCPWM_disableGlobalLoadOneShotMode()</ref></para>
+</listitem><listitem><para><ref refid="group__mcpwm__api_1ga880adfd2d6d1e6b86fb033915cbb1bcc" kindref="member">MCPWM_setGlobalLoadOneShotLatch()</ref></para>
+</listitem><listitem><para><ref refid="group__mcpwm__api_1gac1b22ec0a0a3000d4ea3a6b784a0f828" kindref="member">MCPWM_clearGlobalLoadOneShotLatch()</ref></para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>One-Shot Status and Force Control:<itemizedlist>
+<listitem><para><ref refid="group__mcpwm__api_1gaa32111efa136e528e435fdf58f9e6ffd" kindref="member">MCPWM_getGlobalLoadOneShotLatchStatus()</ref></para>
+</listitem><listitem><para><ref refid="group__mcpwm__api_1ga971fb93cc81624394628e404d6a27b27" kindref="member">MCPWM_forceGlobalLoadOneShotEvent()</ref></para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para>When global load is enabled, these shadow load mode settings are overridden by the global load trigger events.</para>
+</simplesect>
+</para>
+</sect3>
+<sect3 id="EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD_1autotoc_md393">
+<title>Global Load Features</title>
+<para><itemizedlist>
+<listitem><para><bold>Synchronized Updates</bold><itemizedlist>
+<listitem><para>Compare values</para>
+</listitem><listitem><para>Action qualifier settings</para>
+</listitem><listitem><para>Deadband parameters</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para><bold>Multiple Update Modes</bold><itemizedlist>
+<listitem><para>One-shot updates</para>
+</listitem><listitem><para>Forced Updates</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD_1autotoc_md394">
+<title>Example Overview</title>
+<para>This example demonstrates synchronized parameter updates across myMCPWM0 and myMCPWM1 modules using the global load feature.</para>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD_1autotoc_md395">
+<title>Module Configurations</title>
+<sect3 id="EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD_1autotoc_md396">
+<title>myMCPWM0</title>
+<para><orderedlist>
+<listitem><para>Time Base Settings:<itemizedlist>
+<listitem><para>Up Count Mode</para>
+</listitem><listitem><para>40 kHz Frequency (3999 period @ 160MHz TBCLK)</para>
+</listitem><listitem><para>Free Run emulation mode</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Initial Compare Values:<itemizedlist>
+<listitem><para>PWM1A/B: 1800 (45% duty cycle)</para>
+</listitem><listitem><para>PWM2A/B: 3133 (78% duty cycle)</para>
+</listitem><listitem><para>PWM3A/B: 467 (12% duty cycle)</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Action Qualifier:<itemizedlist>
+<listitem><para>All pairs set HIGH on Counter matches CMPA/CMPB counting up</para>
+</listitem><listitem><para>All pairs set LOW on Counter Period</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Initial Deadband:<itemizedlist>
+<listitem><para>32 counts (200ns @ 160MHz)</para>
+</listitem><listitem><para>Both Rising and Falling edge delay enabled</para>
+</listitem></itemizedlist>
+</para>
+</listitem></orderedlist>
+</para>
+</sect3>
+<sect3 id="EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD_1autotoc_md397">
+<title>myMCPWM1</title>
+<para><orderedlist>
+<listitem><para>Time Base Settings:<itemizedlist>
+<listitem><para>Up Count Mode synchronized to myMCPWM0</para>
+</listitem><listitem><para>40 kHz Frequency (3999 period)</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Initial Compare Values:<itemizedlist>
+<listitem><para>PWM1A/B: 1000 (25% duty cycle)</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Action Qualifier:<itemizedlist>
+<listitem><para>PWM1A/B set HIGH on Counter matches CMPA/CMPB counting up</para>
+</listitem><listitem><para>PWM1A/B set LOW on Counter Period</para>
+</listitem></itemizedlist>
+</para>
+</listitem></orderedlist>
+</para>
+</sect3>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD_1autotoc_md398">
+<title>Global Load Implementation</title>
+<para>When perform_one_shot_load flag is set, the following synchronized updates occur:</para>
+<sect3 id="EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD_1autotoc_md399">
+<title>Parameter Updates</title>
+<para><orderedlist>
+<listitem><para>Compare Values:<itemizedlist>
+<listitem><para>myMCPWM0:<itemizedlist>
+<listitem><para>PWM1A: 2000 (50% duty)</para>
+</listitem><listitem><para>PWM2A: 3333 (83% duty)</para>
+</listitem><listitem><para>PWM3A: 667 (17% duty)</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>myMCPWM1:<itemizedlist>
+<listitem><para>PWM1A: 2000 (50% duty)</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Deadband Parameters:<itemizedlist>
+<listitem><para>Both modules updated to 48 counts (300ns @ 160MHz)</para>
+</listitem><listitem><para>Applied to both rising and falling edges</para>
+</listitem></itemizedlist>
+</para>
+</listitem></orderedlist>
+</para>
+</sect3>
+<sect3 id="EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD_1autotoc_md400">
+<title>Update Process</title>
+<para><orderedlist>
+<listitem><para>New values written to shadow registers</para>
+</listitem><listitem><para>Global load trigger synchronizes all updates</para>
+</listitem><listitem><para>Changes take effect simultaneously on next global load event</para>
+</listitem></orderedlist>
+</para>
+</sect3>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD_1autotoc_md401">
+<title>External Connections</title>
+<para>Monitor these PWM outputs on the LaunchPad:<itemizedlist>
+<listitem><para>J4 40 - GPIO0 - myMCPWM0 Output A1</para>
+</listitem><listitem><para>J4 39 - GPIO1 - myMCPWM0 Output B1</para>
+</listitem><listitem><para>J4 38 - GPIO2 - myMCPWM0 Output A2</para>
+</listitem><listitem><para>J4 37 - GPIO3 - myMCPWM0 Output B2</para>
+</listitem><listitem><para>J4 36 - GPIO4 - myMCPWM0 Output A3</para>
+</listitem><listitem><para>J4 35 - GPIO5 - myMCPWM0 Output B3</para>
+</listitem><listitem><para>J1 7 - GPIO12 - myMCPWM1 Output A1</para>
+</listitem><listitem><para>J2 19 - GPIO29 - myMCPWM1 Output B1</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD_1autotoc_md402">
+<title>Important Notes</title>
+<para><itemizedlist>
+<listitem><para>Use an oscilloscope to observe synchronized updates</para>
+</listitem><listitem><para>Watch deadband transitions on complementary pairs</para>
+</listitem><listitem><para>All updates occur on the next global load event</para>
+</listitem><listitem><para>Period remains constant during updates</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD_1autotoc_md403">
+<title>Steps to Run the Example</title>
+<para><orderedlist>
+<listitem><para>Import and build the CCS project</para>
+</listitem><listitem><para>Connect an oscilloscope to observe the specified GPIO pins</para>
+</listitem><listitem><para>Launch a CCS debug session</para>
+</listitem><listitem><para>Run the executable</para>
+</listitem><listitem><para>Observe the synchronized parameter updates across all channels</para>
+</listitem></orderedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD_1autotoc_md404">
+<title>Sample Output</title>
+<para><htmlonly> &lt;style&gt;div.image img[src=&quot;mcpwm_ex6_global_load_use_case.png&quot;]{width:50%}&lt;/style&gt;</htmlonly> <image type="html" name="mcpwm_ex6_global_load_use_case.png">Sample Output</image>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD_1autotoc_md405">
+<title>See Also</title>
+<para><itemizedlist>
+<listitem><para><ref refid="DRIVERS_MCPWM_PAGE" kindref="compound">MCPWM</ref></para>
+</listitem><listitem><para><ref refid="EXAMPLES_DRIVERS_MCPWM_EX1_BASIC_PWM" kindref="compound">MCPWM Basic PWM Generation Examples</ref></para>
+</listitem><listitem><para><ref refid="EXAMPLES_DRIVERS_MCPWM_EX2_SYNCHRONIZATION" kindref="compound">MCPWM Synchronization Example</ref></para>
+</listitem><listitem><para><ref refid="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND" kindref="compound">MCPWM Deadband Example</ref></para>
+</listitem><listitem><para><ref refid="EXAMPLES_DRIVERS_MCPWM_EX5_TRIPZONE" kindref="compound">MCPWM Tripzone Example</ref> </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/mcpwm_ex6_global_load_use_case.md"/>
+  </compounddef>
+</doxygen>

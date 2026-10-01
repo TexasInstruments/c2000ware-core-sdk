@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_MCPWM_EX5_TRIPZONE" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_MCPWM_EX5_TRIPZONE</compoundname>
+    <title>MCPWM Tripzone Example</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_MCPWM_EX5_TRIPZONE_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_mcpwm_ex5_tripzone"/></para>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX5_TRIPZONE_1autotoc_md377">
+<title>Introduction</title>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX5_TRIPZONE_1autotoc_md378">
+<title>Tripzone Feature</title>
+<para>Tripzone is a safety feature that allows PWM outputs to be quickly forced to defined states in response to fault conditions. It provides hardware-level protection for power electronic circuits.</para>
+<sect3 id="EXAMPLES_DRIVERS_MCPWM_EX5_TRIPZONE_1autotoc_md379">
+<title>Tripzone Features</title>
+<para><itemizedlist>
+<listitem><para><bold>Multiple Trip Sources</bold><itemizedlist>
+<listitem><para>Cycle-by-cycle (CBC)</para>
+</listitem><listitem><para>One-shot (OSHT)</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para><bold>Configurable Actions</bold><itemizedlist>
+<listitem><para>Force outputs high/low</para>
+</listitem><listitem><para>Independent control of A/B outputs</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para><bold>Interrupt Generation</bold><itemizedlist>
+<listitem><para>Trip event detection</para>
+</listitem><listitem><para>Status monitoring</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX5_TRIPZONE_1autotoc_md380">
+<title>Example Overview</title>
+<para>This example demonstrates tripzone functionality using myMCPWM0 and myMCPWM1 modules with different trip configurations.</para>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX5_TRIPZONE_1autotoc_md381">
+<title>Module Configurations</title>
+<sect3 id="EXAMPLES_DRIVERS_MCPWM_EX5_TRIPZONE_1autotoc_md382">
+<title>myMCPWM0</title>
+<para><orderedlist>
+<listitem><para>Time Base Settings:<itemizedlist>
+<listitem><para>Up Count Mode</para>
+</listitem><listitem><para>10 kHz Frequency (15999 period @ 160MHz TBCLK)</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Action Qualifier:<itemizedlist>
+<listitem><para>Output A1/B1: Set High on Counter Zero, Low on CMPA/CMPB up</para>
+</listitem><listitem><para>Output A2/B2: Set Low on Counter Period, High on CMPA/CMPB up</para>
+</listitem><listitem><para>Output A3: Set High on CMPA, Low on CMPB up</para>
+</listitem><listitem><para>Output B3: Set Low on CMPA, High on CMPB up</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Trip Zone Configuration:<itemizedlist>
+<listitem><para>CBC1 as trip source</para>
+</listitem><listitem><para>CBC Clear on &quot;counter = zero&quot; event</para>
+</listitem><listitem><para>TZA configured to force Low</para>
+</listitem><listitem><para>TZB configured to force High</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Interrupt: Enabled for CBC trip</para>
+</listitem></orderedlist>
+</para>
+</sect3>
+<sect3 id="EXAMPLES_DRIVERS_MCPWM_EX5_TRIPZONE_1autotoc_md383">
+<title>myMCPWM1</title>
+<para><orderedlist>
+<listitem><para>Time Base Settings:<itemizedlist>
+<listitem><para>Up-Down Count Mode</para>
+</listitem><listitem><para>10 kHz Frequency (8000 period @ 160MHz TBCLK)</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Action Qualifier:<itemizedlist>
+<listitem><para>Output A1: Set High on CMPA up, Low on CMPA down</para>
+</listitem><listitem><para>Output B1: Set High on CMPB up, Low on CMPB down</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Trip Zone Configuration:<itemizedlist>
+<listitem><para>OSHT1 as one-shot trip source</para>
+</listitem><listitem><para>TZA configured to force Low</para>
+</listitem><listitem><para>TZB configured to force High</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Interrupt: Enabled for OST trip</para>
+</listitem></orderedlist>
+</para>
+</sect3>
+</sect2>
+<sect2 id="EXAMPLES_DRIVERS_MCPWM_EX5_TRIPZONE_1autotoc_md384">
+<title>Trip Signal Routing</title>
+<para>+-----<mdash/>+ +--------------<mdash/>+ +----<mdash/>+ +------------<mdash/>+ | | | | | | --&gt;| CBC1 (MCPWM0) | | GPIO6 |<mdash/>&gt;| INPUTXBAR_IN13 |<mdash/>&gt;|PWMXBAR|<mdash/>| +------------<mdash/>+ | | | | | | --&gt;| OSHT1(MCPWM1) | +-----<mdash/>+ +--------------<mdash/>+ +----<mdash/>+ +------------<mdash/>+</para>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX5_TRIPZONE_1autotoc_md385">
+<title>External Connections</title>
+<para>Monitor these pins on the LaunchPad:<itemizedlist>
+<listitem><para>J4 32 - GPIO6 - Trip Input</para>
+</listitem><listitem><para>J4 40 - GPIO0 - myMCPWM0 Output A1</para>
+</listitem><listitem><para>J4 39 - GPIO1 - myMCPWM0 Output B1</para>
+</listitem><listitem><para>J4 38 - GPIO2 - myMCPWM0 Output A2</para>
+</listitem><listitem><para>J4 37 - GPIO3 - myMCPWM0 Output B2</para>
+</listitem><listitem><para>J4 36 - GPIO4 - myMCPWM0 Output A3</para>
+</listitem><listitem><para>J4 35 - GPIO5 - myMCPWM0 Output B3</para>
+</listitem><listitem><para>J1 7 - GPIO12 - myMCPWM1 Output A1</para>
+</listitem><listitem><para>J2 19 - GPIO29 - myMCPWM1 Output B1</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX5_TRIPZONE_1autotoc_md386">
+<title>Important Notes</title>
+<para><itemizedlist>
+<listitem><para>For external trip usage, configure GPIO6 as input</para>
+</listitem><listitem><para>CBC trip clears automatically on counter zero</para>
+</listitem><listitem><para>One-shot trip requires explicit clearing</para>
+</listitem><listitem><para>ISR counts trips up to MAX_TRIP_ISR_COUNT before clearing one-shot condition</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX5_TRIPZONE_1autotoc_md387">
+<title>Steps to Run the Example</title>
+<para><orderedlist>
+<listitem><para>Import and build the CCS project</para>
+</listitem><listitem><para>Connect an oscilloscope to observe the specified GPIO pins</para>
+</listitem><listitem><para>Launch a CCS debug session</para>
+</listitem><listitem><para>Run the executable</para>
+</listitem><listitem><para>Observe trip behavior when GPIO6 is toggled:<itemizedlist>
+<listitem><para>MCPWM0 outputs recover on next cycle (CBC)</para>
+</listitem><listitem><para>MCPWM1 outputs remain tripped until cleared (OSHT)</para>
+</listitem></itemizedlist>
+</para>
+</listitem></orderedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX5_TRIPZONE_1autotoc_md388">
+<title>Sample Output</title>
+<para><htmlonly> &lt;style&gt;div.image img[src=&quot;mcpwm_ex5_tripzone.png&quot;]{width:50%}&lt;/style&gt;</htmlonly> <image type="html" name="mcpwm_ex5_tripzone.png">Sample Output</image>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_MCPWM_EX5_TRIPZONE_1autotoc_md389">
+<title>See Also</title>
+<para><itemizedlist>
+<listitem><para><ref refid="DRIVERS_MCPWM_PAGE" kindref="compound">MCPWM</ref></para>
+</listitem><listitem><para><ref refid="EXAMPLES_DRIVERS_MCPWM_EX1_BASIC_PWM" kindref="compound">MCPWM Basic PWM Generation Examples</ref></para>
+</listitem><listitem><para><ref refid="EXAMPLES_DRIVERS_MCPWM_EX3_DEADBAND" kindref="compound">MCPWM Deadband Example</ref></para>
+</listitem><listitem><para><ref refid="EXAMPLES_DRIVERS_MCPWM_EX6_GLOBAL_LOAD" kindref="compound">MCPWM Global Load Use Case Example</ref> </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/mcpwm_ex5_tripzone.md"/>
+  </compounddef>
+</doxygen>

@@ -1,11 +1,15 @@
 /**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P65x" --part "F28P65x_256ZEJ" --package "256ZEJ" --board "/boards/TMDSCNCD28P65X" --context "CPU1"
+ * @v2CliArgs --device "TMS320F28P650DK" --package "256ZEJ" --variant "TMS320F28P650DK9" --context "CPU1"
+ */
+/**
  * Import the modules used in this configuration.
  */
 const epwm             = scripting.addModule("/driverlib/epwm.js", {}, false);
 const epwm1            = epwm.addInstance();
 const epwm2            = epwm.addInstance();
-
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -23,7 +27,6 @@ epwm1.epwmTimebase_period                                        = 100;
 epwm1.epwm.$assign                                               = "EPWM1";
 epwm1.epwm.epwm_aPin.$assign                                      = "GPIO0";
 epwm1.epwm.epwm_bPin.$assign                                      = "GPIO1";
-
 epwm2.$name                                                      = "myEPWM2";
 epwm2.epwmTimebase_emulationMode                                 = "EPWM_EMULATION_FREE_RUN";
 epwm2.epwmTimebase_period                                        = 100;

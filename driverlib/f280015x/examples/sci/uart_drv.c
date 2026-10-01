@@ -4,7 +4,6 @@
 #include <file.h>
 #include "uart_drv.h"
 //#include "uart.h"
-
 /*****************************************************************************/
 //! //! <h1> Example user-defined device. </h1>
 /* This is a sample implementation of a user-defined device.  The device     */
@@ -23,7 +22,6 @@
 /* device, the file descriptor doesn't matter much, so just pass a       */
 /* non-negative integer such as zero.                        */
 /*****************************************************************************/
-
 /*****************************************************************************/
 /*                                                                           */
 /* UART_open()                                                   */
@@ -35,17 +33,14 @@ int UART_open(const char *path, unsigned flags, int llv_fd)
     /* Only one UART device exists (_SSA).  For an _SSA device, file names   */
     /* are not meaningful, so ignore the file name.                          */
     /*-----------------------------------------------------------------------*/
-
     /*-----------------------------------------------------------------------*/
     /* Don't allow attempts to open the UART device that aren't O_WRONLY.    */
     /*-----------------------------------------------------------------------*/
     if (!(flags & O_WRONLY)) return -1;
-
     /*-----------------------------------------------------------------------*/
     /* Set up the UART                                                       */
     /*-----------------------------------------------------------------------*/
     UartSetup();
-
     /*-----------------------------------------------------------------------*/
     /* Arbitrarily give it file descriptor 1.  File descriptors are          */
     /* device-specific; this file descriptor 1 is not the same as HOST file  */
@@ -53,7 +48,6 @@ int UART_open(const char *path, unsigned flags, int llv_fd)
     /*-----------------------------------------------------------------------*/
     return 1;
 }
-
 /*****************************************************************************/
 /*                                                                           */
 /* UART_close()                                                  */
@@ -66,7 +60,6 @@ int UART_close(int dev_fd)
     /*-----------------------------------------------------------------------*/
     return 0;
 }
-
 /*****************************************************************************/
 /*                                                                           */
 /* UART_read() reads *at most* count bytes.                                  */
@@ -79,7 +72,6 @@ int UART_read(int dev_fd, char *buf, unsigned count)
     /*-----------------------------------------------------------------------*/
     return -1;
 }
-
 /*****************************************************************************/
 /*                                                                           */
 /* UART_write()                                                              */
@@ -88,16 +80,13 @@ int UART_read(int dev_fd, char *buf, unsigned count)
 int UART_write(int dev_fd, const char *buf, unsigned count)
 {
     unsigned i;
-
     /*-----------------------------------------------------------------------*/
     /* Output character-by-character                                         */
     /*-----------------------------------------------------------------------*/
     for (i=0; i < count; i++)
         UartPutChar(buf[i]);
-
     return count;
 }
-
 /*****************************************************************************/
 /*                                                                           */
 /* UART_lseek()                                                              */
@@ -110,7 +99,6 @@ off_t UART_lseek(int dev_fd, off_t offset, int origin)
     /*-----------------------------------------------------------------------*/
     return -1;
 }
-
 /*****************************************************************************/
 /*                                                                           */
 /* UART_unlink()                                                             */
@@ -123,7 +111,6 @@ int UART_unlink(const char *path)
     /*-----------------------------------------------------------------------*/
     return -1;
 }
-
 /*****************************************************************************/
 /*                                                                           */
 /* UART_rename()                                                             */

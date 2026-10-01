@@ -48,21 +48,17 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Function Prototypes
 //
 void setup1GPIO(void);
-
 //
 // Main
 //
-
 void main(void)
 {
     //
@@ -71,53 +67,43 @@ void main(void)
     //This example function is found in the f28p55x_sysctrl.c file.
     //
     InitSysCtrl();
-
     //
     //Step 2. Initialize GPIO
     //
     InitGpio();
-
     //
     //Step 3. Clear all __interrupts and initialize PIE vector table:
     //Disable CPU __interrupts
     //
     DINT;
-
     //
     //Initialize the PIE control registers to their default state.
     //The default state is all PIE interrupts disabled and flags
     //are cleared.
     //
     InitPieCtrl();
-
     //
     //Disable CPU interrupts and clear all CPU interrupt flags:
     //
     IER = 0x0000;
     IFR = 0x0000;
-
     //
     //Initialize the PIE vector table with pointers to the shell Interrupt
     //Service Routines (ISR).
     //
     InitPieVectTable();
-
     //
     //Step 4. User specific code:
     //
-
-
     //
     //This example is a basic pinout
     //
     setup1GPIO();
-
     while(1)
     {
         ESTOP0;
     }
 }
-
 //
 // setup1GPIO - Is an example that demonstrates the basic pinout
 //
@@ -131,7 +117,6 @@ void setup1GPIO(void)
     // These can be combined into single statements for improved
     // code efficiency.
     //
-
     //
     // Enable PWM1-3 on GPIO0-GPIO5
     //
@@ -148,7 +133,6 @@ void setup1GPIO(void)
     GpioCtrlRegs.GPAMUX1.bit.GPIO3 = 1;  // GPIO3 = PWM2B
     GpioCtrlRegs.GPAMUX1.bit.GPIO4 = 1;  // GPIO4 = PWM3A
     GpioCtrlRegs.GPAMUX1.bit.GPIO5 = 1;  // GPIO5 = PWM3B
-
     //
     // Enable EQEP1 on GPIO's 6,7,12,13
     //
@@ -164,7 +148,6 @@ void setup1GPIO(void)
     GpioCtrlRegs.GPAMUX1.bit.GPIO7 = 1;  // GPIO7 = EQEP1B
     GpioCtrlRegs.GPAMUX1.bit.GPIO12 = 1;  // GPIO12 = EQEP1S
     GpioCtrlRegs.GPAMUX1.bit.GPIO13 = 2;  // GPIO13 = EQEP1I
-
     //
     // Enable eCAP1 on GPIO7
     //
@@ -172,7 +155,6 @@ void setup1GPIO(void)
     GpioCtrlRegs.GPAQSEL1.bit.GPIO7 = 0;  // Synch to SYSCLKOUT
     InputXbarRegs.INPUT7SELECT.bit.SELECT = 7;       // INPUT7 = GPIO7
     ECap1Regs.ECCTL0.bit.INPUTSEL = 7;    // Select eCAP1 TO INPUTXBAR8
-
     //
     // Enable Trip Zone inputs on GPIO12 - GPIO13
     //
@@ -182,7 +164,6 @@ void setup1GPIO(void)
     GpioCtrlRegs.GPAQSEL1.bit.GPIO13 = 3; // asynch input
     InputXbarRegs.INPUT1SELECT.bit.SELECT = 12;      // GPIO12 = TZ1
     InputXbarRegs.INPUT2SELECT.bit.SELECT = 13;      // GPIO13 = TZ2
-
     //
     // Enable SPI-A
     //
@@ -198,13 +179,11 @@ void setup1GPIO(void)
     GpioCtrlRegs.GPAMUX1.bit.GPIO13 = 1;  // GPIO13 = SPIPOCIA
     GpioCtrlRegs.GPAMUX1.bit.GPIO12 = 1;  // GPIO12 = SPICLKA
     GpioCtrlRegs.GPAMUX2.bit.GPIO29 = 1;  // GPIO29 = SPIPTEA
-
     //
     // Set input qualification period for GPIO28
     //
     GpioCtrlRegs.GPACTRL.bit.QUALPRD3=1;  // Qual period = SYSCLKOUT/2
     GpioCtrlRegs.GPAQSEL2.bit.GPIO28=2;   // 6 samples
-
     //
     // Make GPIO29 wakeup from STANDBY Low Power Modes
     //
@@ -214,7 +193,6 @@ void setup1GPIO(void)
     CpuSysRegs.LPMCR.bit.QUALSTDBY = 2;  // Qualify GPIO29 by 2 OSCCLK
                                          // cycles before waking the device
                                          // from STANDBY
-
     //
     // Enable SCI-A on GPIO35 - GPIO37
     //
@@ -223,8 +201,6 @@ void setup1GPIO(void)
     GpioCtrlRegs.GPBMUX1.bit.GPIO35 = 1;  // GPIO35 = SCIRXDA
     GpioCtrlRegs.GPBPUD.bit.GPIO37 = 0;   // Enable pullup on GPIO37
     GpioCtrlRegs.GPBMUX1.bit.GPIO37 = 1;  // GPIO37 = SCITXDA
-
-
     //
     // Enable I2C-A on GPIO32 - GPIO33
     //
@@ -234,10 +210,8 @@ void setup1GPIO(void)
     GpioCtrlRegs.GPAPUD.bit.GPIO18 = 0;   // Enable pullup on GPIO18
     GpioCtrlRegs.GPAQSEL2.bit.GPIO18 = 3; // Asynch input
     GpioCtrlRegs.GPAMUX2.bit.GPIO18 = 1;  // GPIO18 = SCLA
-
     EDIS;
 }
-
 //
 // End of File
 //

@@ -6,7 +6,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -39,20 +39,15 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
-
 #ifndef CLA_IIR2P2Z_SHARED_H
 #define CLA_IIR2P2Z_SHARED_H
-
 //
 // Included Files
 //
 #include <stdint.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 //
 // Defines
 //
@@ -62,11 +57,9 @@ extern "C" {
 #define PIBYTWO           1.570796327
 #define PI                3.141592653589
 #define INV2PI            0.159154943
-
 //
 // Globals
 //
-
 //
 //Task 1 (C) Variables
 //
@@ -82,39 +75,30 @@ extern float yn; //Sample output
 extern float fAdcInput[];
 extern float fBiquadOutput[];
 extern float fAdcInput[];
-
 //
 //Task 2 (C) Variables
 //
-
 //
 //Task 3 (C) Variables
 //
-
 //
 //Task 4 (C) Variables
 //
-
 //
 //Task 5 (C) Variables
 //
-
 //
 //Task 6 (C) Variables
 //
-
 //
 //Task 7 (C) Variables
 //
-
 //
 //Task 8 (C) Variables
 //
-
 //
 //Common (C) Variables
 //
-
 //
 // Function Prototypes
 //
@@ -122,7 +106,6 @@ extern float fAdcInput[];
 // Including them in the shared header file makes them
 // .global and the main CPU can make use of them.
 //
-
 //
 //CLA C Tasks
 //
@@ -134,13 +117,10 @@ __interrupt void Cla1Task5();
 __interrupt void Cla1Task6();
 __interrupt void Cla1Task7();
 __interrupt void Cla1Task8();
-
 #ifdef __cplusplus
 }
 #endif // extern "C"
-
 #endif //  CLA_EX2_IIR2P2Z_SHARED_H_
-
 //
 // End of file
 //

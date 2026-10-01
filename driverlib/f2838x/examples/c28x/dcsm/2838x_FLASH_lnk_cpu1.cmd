@@ -1,4 +1,3 @@
-
 MEMORY
 {
    /* BEGIN is used for the "boot to Flash" bootloader mode   */
@@ -34,7 +33,6 @@ MEMORY
    RAMGS14          : origin = 0x01B000, length = 0x001000
    RAMGS15          : origin = 0x01C000, length = 0x000FF8
 //   RAMGS15_RSVD     : origin = 0x01CFF8, length = 0x000008     /* Reserve and do not use for code as per the errata advisory "Memory: Prefetching Beyond Valid Memory" */
-
    /* Flash sectors */
    FLASH0           : origin = 0x080002, length = 0x001FFE  /* on-chip Flash */
    FLASH1           : origin = 0x082000, length = 0x002000  /* on-chip Flash */
@@ -51,18 +49,14 @@ MEMORY
    FLASH12          : origin = 0x0BC000, length = 0x002000  /* on-chip Flash */
    FLASH13          : origin = 0x0BE000, length = 0x001FF0  /* on-chip Flash */
 //   FLASH13_RSVD     : origin = 0x0BFFF0, length = 0x000010  /* Reserve and do not use for code as per the errata advisory "Memory: Prefetching Beyond Valid Memory" */
-
    CPU1TOCPU2RAM   : origin = 0x03A000, length = 0x000800
    CPU2TOCPU1RAM   : origin = 0x03B000, length = 0x000800
    CPUTOCMRAM      : origin = 0x039000, length = 0x000800
    CMTOCPURAM      : origin = 0x038000, length = 0x000800
-
    CANA_MSG_RAM     : origin = 0x049000, length = 0x000800
    CANB_MSG_RAM     : origin = 0x04B000, length = 0x000800
-
    RESET            : origin = 0x3FFFC0, length = 0x000002
 }
-
 SECTIONS
 {
    codestart           : > BEGIN, ALIGN(8)
@@ -71,7 +65,6 @@ SECTIONS
    .switch             : > FLASH1, ALIGN(8)
    .reset              : > RESET, TYPE = DSECT /* not used, */
    .stack              : > RAMM1
-
 #if defined(__TI_EABI__)
    .init_array      : > FLASH1, ALIGN(8)
    .bss             : > RAMLS5
@@ -89,15 +82,12 @@ SECTIONS
    /* Initalized sections go in Flash */
    .econst          : >> FLASH4 | FLASH5, ALIGN(8)
 #endif
-
    ramgs0 : > RAMGS0, type=NOINIT
    ramgs1 : > RAMGS1, type=NOINIT
-   
    MSGRAM_CPU1_TO_CPU2 : > CPU1TOCPU2RAM, type=NOINIT
    MSGRAM_CPU2_TO_CPU1 : > CPU2TOCPU1RAM, type=NOINIT
    MSGRAM_CPU_TO_CM    : > CPUTOCMRAM, type=NOINIT
    MSGRAM_CM_TO_CPU    : > CMTOCPURAM, type=NOINIT
-
    /* The following section definition are for SDFM examples */
    Filter_RegsFile  : > RAMGS0
    Filter1_RegsFile : > RAMGS1, fill=0x1111
@@ -105,7 +95,6 @@ SECTIONS
    Filter3_RegsFile : > RAMGS3, fill=0x3333
    Filter4_RegsFile : > RAMGS4, fill=0x4444
    Difference_RegsFile : >RAMGS5, fill=0x3333
-
    #if defined(__TI_EABI__)
        .TI.ramfunc : {} LOAD = FLASH3,
                         RUN = RAMLS0 | RAMLS1 | RAMLS2 |RAMLS3,
@@ -127,15 +116,12 @@ SECTIONS
                         RUN_END(_RamfuncsRunEnd),
                         ALIGN(8)
    #endif
-   
    .TI.ramfunc:Flash_disableCache : LOAD = FLASH3,
                                     RUN  = RAMLS0,
                                     TABLE(BINIT),
                                     ALIGN(8)
    .binit : > FLASH1, ALIGN(8)
-
 }
-
 /*
 //===========================================================================
 // End of file.

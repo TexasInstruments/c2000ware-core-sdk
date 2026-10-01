@@ -77,47 +77,39 @@
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
 #define PASS 0
 #define FAIL 1
-
 //
 // Globals
 //
 uint32_t result = FAIL;
-
 //
 // Main
 //
 void main(void)
 {
     bool status=0;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Check if XTAL is enabled
     //
@@ -128,7 +120,6 @@ void main(void)
         //
         ESTOP0;
     }
-
     //
     // Verify the frequency of PLL clock using the XTAL as reference clock
     // FClk1 = PLL frequency = 120MHz
@@ -144,7 +135,6 @@ void main(void)
                                       DCC_COUNT1SRC_PLL, 120.0F,
                                       DCC_COUNT0SRC_XTAL, 20.0F,
                                       1.0F, 0.0F, 120.0F);
-
     //
     // Status of the PLLRAW clock verification
     //
@@ -156,7 +146,5 @@ void main(void)
     {
         result = PASS;
     }
-
     ESTOP0;
 }
-

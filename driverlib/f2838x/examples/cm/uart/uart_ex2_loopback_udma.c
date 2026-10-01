@@ -35,7 +35,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -68,68 +68,55 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 #include <stdint.h>
 #include <stdbool.h>
 #include <string.h>
-
 #include "cm.h"
 #include "driverlib_cm.h"
-
 #pragma DATA_ALIGN(ucControlTable, 1024)
 UDMA_ControlTable ucControlTable[64];
-
 //
 // Initialize the data arrays
 //
 uint8_t TxData[] = {0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0xA, 0xB, 0xC, 0xD, 0xE, 0xF};
 uint8_t RxData[] = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0};	
-
 void ConfigureUART(void)
 {
-
     //
     // Configure UART with baud rate = 115200, dataWidth = 8
     //
     UART_setConfig(UART0_BASE,UART_CLK_FREQ , 115200,
                   (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
                    UART_CONFIG_PAR_NONE));
-
     //
     // Enable the UART0 module.
     //
     UART_enableModule(UART0_BASE);
-
     //
     // Enable loopback mode
     //
     UART_enableLoopback(UART0_BASE);
 }
-
 void ConfigureDMA(uint8_t* TxDma, uint8_t* RxDma, uint8_t size)
 {
 //
     // Enable DMA for Tx snd Rx events
     //
     UART_enableDMA(UART0_BASE,UART_DMA_TX |UART_DMA_RX);
-
     //
     // Enable UDMA
     //
     UDMA_enable(UDMA_BASE);
-
     //
     // Point at the control table to use for channel control structures.
     //
     UDMA_setControlBase(UDMA_BASE, ucControlTable);
-
     //
     // Put the attributes in a known state for the uDMA software channel.
     // These should already be disabled by default.
     //
     UDMA_disableChannelAttribute(UDMA_BASE, UDMA_CHANNEL_UART0_TX, UDMA_CH_ATTR_ALL);
     UDMA_disableChannelAttribute(UDMA_BASE, UDMA_CHANNEL_UART0_RX, UDMA_CH_ATTR_ALL);
-
     //
     // Configure the control parameters for the UART TX channels
     // Tx channel will be used to transfer data from the buffer to the UART Data
@@ -144,11 +131,9 @@ void ConfigureDMA(uint8_t* TxDma, uint8_t* RxDma, uint8_t size)
     UDMA_setChannelControlParams(UDMA_BASE, (UDMA_CHANNEL_UART0_TX | UDMA_PRI_SELECT),
                                 (UDMA_SIZE_8 | UDMA_SRC_INC_8 | UDMA_DST_INC_NONE
                                  | UDMA_ARB_1));
-
     UDMA_setChannelTransferParams(UDMA_BASE, (UDMA_CHANNEL_UART0_TX | UDMA_PRI_SELECT),
                                   TxDma, (void *)(UART0_BASE + UART_O_DR), UDMA_MODE_BASIC,
                                   size);
-
     //
     // Configure the control parameters for the UART RX channel.
     // Rx channel will be used to transfer data from the UART Data register to
@@ -164,12 +149,10 @@ void ConfigureDMA(uint8_t* TxDma, uint8_t* RxDma, uint8_t size)
     UDMA_setChannelControlParams(UDMA_BASE, (UDMA_CHANNEL_UART0_RX | UDMA_PRI_SELECT),
                                 (UDMA_SIZE_8 | UDMA_SRC_INC_NONE | UDMA_DST_INC_8
                                   | UDMA_ARB_1));
-
     UDMA_setChannelTransferParams(UDMA_BASE, (UDMA_CHANNEL_UART0_RX | UDMA_PRI_SELECT),
                                  (void *)(UART0_BASE + UART_O_DR), RxDma, UDMA_MODE_BASIC,
                                   size);
 }
-
 //
 // Main
 //
@@ -177,34 +160,28 @@ void main(void)
 {
     uint8_t i;
     uint8_t  errCount = 0;
-
     //
     // Disable WD, enable peripheral clocks.
     //
     CM_init();
-
 	//
 	// Configure the UART 
 	//
     ConfigureUART();
-	
 	//
 	// Configure the UDMA to read/write to the TX/RX buffers 
 	//
     ConfigureDMA(TxData, RxData, 16);
-
     //
     // Enable the UDMA channels
     //
     UDMA_enableChannel(UDMA_BASE, UDMA_CHANNEL_UART0_RX);
     UDMA_enableChannel(UDMA_BASE, UDMA_CHANNEL_UART0_TX);
-
     //
     // Wait until the complete transfer is done
     //
     while(UDMA_isChannelEnabled(UDMA_BASE, UDMA_CHANNEL_UART0_TX));
     while(UDMA_isChannelEnabled(UDMA_BASE, UDMA_CHANNEL_UART0_RX));
-
     //
     // Check the received data
     //
@@ -215,7 +192,6 @@ void main(void)
             errCount++;
         }
     }
-
     //
     // Loop forever. Optional
     //

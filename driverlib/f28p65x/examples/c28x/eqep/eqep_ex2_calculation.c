@@ -99,7 +99,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -132,12 +132,10 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "eqep_ex2_calculation.h"
-
 //
 // Function to calculate the frequency of the input signal using both the unit
 // timer and the quadrature capture units.
@@ -150,24 +148,20 @@ void PosSpeed_calculate(PosSpeed_Object *p, uint32_t *c)
     int32_t temp;
     uint16_t pos16bVal, temp1;
     _iq temp2, newPosCnt, oldPosCnt;
-
     //
     // **** Position calculation - mechanical and electrical motor angle ****
     //
     // Get the motor direction: -1 = CCW/reverse, 1 = CW/forward
     //
     p->directionQEP = EQEP_getDirection(EQEP1_BASE);
-
     //
     // Capture position once per QA/QB period
     //
     pos16bVal = (uint16_t)EQEP_getPosition(EQEP1_BASE);
-
     //
     // Raw theta = current pos. + ang. offset from QA
     //
     p->thetaRaw = pos16bVal + p->calAngle;
-
     //
     // The following lines calculate
     //
@@ -177,16 +171,13 @@ void PosSpeed_calculate(PosSpeed_Object *p, uint32_t *c)
     //
     temp = (int32_t)p->thetaRaw * (int32_t)p->mechScaler;   // Q0 * Q26 = Q26
     temp &= 0x03FFF000;
-
     p->thetaMech = (int16_t)(temp >> 11);                    // Q26 -> Q15
     p->thetaMech &= 0x7FFF;
-
     //
     // The following lines calculate p->elec_mech
     //
     p->thetaElec = p->polePairs * p->thetaMech;               // Q0 * Q15 = Q15
     p->thetaElec &= 0x7FFF;
-
     //
     // Check for an index occurrence
     //
@@ -194,7 +185,6 @@ void PosSpeed_calculate(PosSpeed_Object *p, uint32_t *c)
     {
         EQEP_clearInterruptStatus(EQEP1_BASE, EQEP_INT_INDEX_EVNT_LATCH);
     }
-
     //
     // **** High Speed Calculation using QEP Position counter ****
     //
@@ -206,18 +196,14 @@ void PosSpeed_calculate(PosSpeed_Object *p, uint32_t *c)
         // The following lines calculate position:
         // (x2 - x1) / 4000 (position in 1 revolution)
         //
-
         (*c)++; // Incrementing the count value
         pos16bVal = (uint16_t)EQEP_getPositionLatch(EQEP1_BASE);
         temp = (int32_t)pos16bVal * (int32_t)p->mechScaler; // Q0 * Q26 = Q26
         temp &= 0x03FFF000;
-
         temp = (int16_t)(temp >> 11);                        // Q26 -> Q15
         temp &= 0x7FFF;
-
         newPosCnt = _IQ15toIQ(temp);
         oldPosCnt = p->oldPos;
-
         //
         // POSCNT is counting down
         //
@@ -252,7 +238,6 @@ void PosSpeed_calculate(PosSpeed_Object *p, uint32_t *c)
                 temp2 = newPosCnt - oldPosCnt;
             }
         }
-
         if(temp2 > _IQ(1))
         {
             p->speedFR = _IQ(1);
@@ -265,24 +250,20 @@ void PosSpeed_calculate(PosSpeed_Object *p, uint32_t *c)
         {
             p->speedFR = temp2;
         }
-
         //
         // Update the electrical angle
         //
         p->oldPos = newPosCnt;
-
         //
         // Change motor speed from pu value to rpm value (Q15 -> Q0)
         // Q0 = Q0*GLOBAL_Q => _IQXmpy(), X = GLOBAL_Q
         //
         p->speedRPMFR = _IQmpy(p->baseRPM, p->speedFR);
-
         //
         // Clear unit time out flag
         //
         EQEP_clearInterruptStatus(EQEP1_BASE, EQEP_INT_UNIT_TIME_OUT);
     }
-
     //
     // **** Low-speed computation using QEP capture counter ****
     //
@@ -304,13 +285,11 @@ void PosSpeed_calculate(PosSpeed_Object *p, uint32_t *c)
             //
             temp1 = 0xFFFF;
         }
-
         //
         // p->speedPR = p->speedScaler / temp1
         //
         p->speedPR = _IQdiv(p->speedScaler, temp1);
         temp2 = p->speedPR;
-
         if(temp2 > _IQ(1))
         {
            p->speedPR = _IQ(1);
@@ -319,7 +298,6 @@ void PosSpeed_calculate(PosSpeed_Object *p, uint32_t *c)
         {
            p->speedPR = temp2;
         }
-
         //
         // Convert p->speedPR to RPM
         //
@@ -342,7 +320,6 @@ void PosSpeed_calculate(PosSpeed_Object *p, uint32_t *c)
             //
             p->speedRPMPR = _IQmpy(p->baseRPM, p->speedPR);
         }
-
         //
         // Clear unit position event flag and overflow error flag
         //

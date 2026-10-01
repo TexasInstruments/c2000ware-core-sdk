@@ -61,7 +61,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -94,23 +94,19 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
 #include "sfo_v8.h"
-
 //
 // Defines
 //
 #define PWM_CH            9       // # of PWM channels + 1
 #define STATUS_SUCCESS    1
 #define STATUS_FAIL       0
-
 #define AUTOCONVERT       0       // 1 = Turn auto-conversion ON
                                   // 0 = Turn auto-conversion OFF
-
 //
 // Globals
 //
@@ -121,12 +117,10 @@ Uint16 CMPA_reg_val;
 Uint16 CMPAHR_reg_val;
 Uint16 CMPB_reg_val;
 Uint16 CMPBHR_reg_val;
-
 int MEP_ScaleFactor; // Global variable used by the SFO library
                      // Result can be used for all HRPWM channels
                      // This variable is also copied to HRMSTEP
                      // register by SFO() function.
-
 //
 // Array of pointers to EPwm register structures:
 // *ePWM[0] is defined as dummy value not used in the example
@@ -134,13 +128,11 @@ int MEP_ScaleFactor; // Global variable used by the SFO library
 volatile struct EPWM_REGS *ePWM[PWM_CH] = {0, &EPwm1Regs, &EPwm2Regs,
                                            &EPwm3Regs, &EPwm4Regs, &EPwm5Regs,
                                            &EPwm6Regs, &EPwm7Regs, &EPwm8Regs};
-
 //
 // Function Prototypes
 //
 void HRPWM_Config(int);
 void error(void);
-
 //
 // Main
 //
@@ -148,7 +140,6 @@ void main(void)
 {
     int i;
     Uint32 temp, temp1;
-
     //
     // Initialize System Control for Control and Analog Subsystems
     // Enable Peripheral Clocks
@@ -157,7 +148,6 @@ void main(void)
     EALLOW;
     InitSysCtrl();
     EDIS;
-
     //
     // Initialize GPIO:
     // This example function is found in the f2838x_gpio.c file and
@@ -171,9 +161,7 @@ void main(void)
     InitEPwm6Gpio();
     InitEPwm7Gpio();
     InitEPwm8Gpio();
-
     DINT; // Disable CPU interrupts
-
     //
     // Initialize PIE control registers to their default state.
     // The default state is all PIE interrupts disabled and flags
@@ -181,14 +169,12 @@ void main(void)
     // This function is found in the f2838x_piectrl.c file.
     //
     InitPieCtrl();
-
     //
     // Disable CPU interrupts and clear all CPU interrupt flags:
     //
     EALLOW;
     IER = 0x0000;
     IFR = 0x0000;
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
@@ -198,7 +184,6 @@ void main(void)
     // This function is found in f2838x_pievect.c.
     //
     InitPieVectTable();
-
     //
     // For this example, only initialize the ePWM
     // User specific code, enable interrupts:
@@ -206,13 +191,11 @@ void main(void)
     UpdateFine = 1;
     DutyFine = 0;
     status = SFO_INCOMPLETE;
-
     //
     // Enable global Interrupts and higher priority real-time debug events:
     //
     EINT;   // Enable Global interrupt INTM
     ERTM;   // Enable Global realtime interrupt DBGM
-
     //
     // Calling SFO() updates the HRMSTEP register with calibrated
     // MEP_ScaleFactor. HRMSTEP must be populated with a scale factor
@@ -226,13 +209,11 @@ void main(void)
             error();   // SFO function returns 2 if an error occurs & # of MEP
         }              // steps/coarse step exceeds maximum of 255.
     }
-
     //
     // ePWM and HRPWM register initialization
     //
     HRPWM_Config(10);   // ePWMx target
     EALLOW;
-
     for(;;)
     {
         //
@@ -242,22 +223,18 @@ void main(void)
         {
             if(UpdateFine)
             {
-
                 /* All below calculations apply for CMPB as well.
                 // CMPA_reg_val , CMPAHR_reg_val is calculated as a Q0.
                 // Since DutyFine is a Q15 number, and the period is Q0
                 // the product is Q15. So to store as a Q0, we shift right
                 // 15 bits.
-
                 CMPA_reg_val = ((long)DutyFine * (EPwm1Regs.TBPRD + 1)) >> 15;
-
                 // This next step is to obtain the remainder which was
                 // truncated during our 15 bit shift above.
                 // compute the whole value, and then subtract CMPA_reg_val
                 // shifted LEFT 15 bits:
                 temp = ((long)DutyFine * (EPwm1Regs.TBPRD + 1)) ;
                 temp = temp - ((long)CMPA_reg_val << 15);
-
                 ** If auto-conversion is disabled, the following step can be
                 // skipped. If autoconversion is enabled, the SFO function will
                 // write the MEP_ScaleFactor to the HRMSTEP register and the
@@ -267,7 +244,6 @@ void main(void)
                 // format, it must be shifted left by 1 to convert to Q16 format
                 // for the hardware to properly convert.
                 CMPAHR_reg_val = temp << 1;
-
                 ** If auto-conversion is enabled, the following step is
                    performed automatically in hardware and can be skipped
                 // This obtains the MEP count in digits, from
@@ -280,20 +256,17 @@ void main(void)
                 // Once again since this is Q15 convert to Q0 by shifting:
                 //
                 CMPAHR_reg_val = (temp * MEP_ScaleFactor + (0x0080 << 7)) >> 15;
-
                 ** If auto-conversion is enabled, the following step is
                    performed automatically in hardware and can be skipped
                 // Now the lower 8 bits contain the MEP count.
                 // Since the MEP count needs to be in the upper 8 bits of
                 // the 16 bit CMPAHR register, shift left by 8.
                 CMPAHR_reg_val = CMPAHR_reg_val << 8;
-
                 // Write the values to the registers as one 32-bit or two
                 // 16-bits
                 EPwm1Regs.CMPA.bit.CMPA = CMPA_reg_val;
                 EPwm1Regs.CMPA.bit.CMPAHR = CMPAHR_reg_val;
                 */
-
                 //
                 // All the above operations may be condensed into the following
                 // form:
@@ -306,7 +279,6 @@ void main(void)
                     temp1 = ((long)DutyFine * ((*ePWM[i]).TBPRD + 1)) ;
                     temp = temp - ((long)CMPA_reg_val << 15);
                     temp1 = temp1 - ((long)CMPB_reg_val << 15);
-
                    #if(AUTOCONVERT)
                     CMPAHR_reg_val = temp << 1; // convert to Q16
                     CMPBHR_reg_val = temp << 1; // convert to Q16
@@ -318,7 +290,6 @@ void main(void)
                                       (0x0080 << 7)) >> 15;
                     CMPBHR_reg_val = CMPBHR_reg_val << 8;
                    #endif
-
                    //
                    // Example for a 32 bit write to CMPA:CMPAHR
                    //
@@ -347,7 +318,6 @@ void main(void)
                                                 ((*ePWM[i]).TBPRD + 1)) >> 15);
                 }
             }
-
             //
             // Call the scale factor optimizer lib function SFO()
             // periodically to track for any change due to temp/voltage.
@@ -359,7 +329,6 @@ void main(void)
             //
             status = SFO(); // in background, MEP calibration module
                             // continuously updates MEP_ScaleFactor
-
             if(status == SFO_ERROR)
             {
                 error();   // SFO function returns 2 if an error occurs & #
@@ -368,7 +337,6 @@ void main(void)
         } // end DutyFine for loop
     } // end infinite for loop
 }
-
 //
 // HRPWM_Config - Configures all ePWM channels and sets up HRPWM
 //                on ePWMxA / ePWMxB  channels
@@ -376,7 +344,6 @@ void main(void)
 void HRPWM_Config(period)
 {
     Uint16 j;
-
     //
     // ePWM channel register configuration with HRPWM
     // ePWMxA / ePWMxB toggle low/high with MEP control on Rising edge
@@ -391,7 +358,6 @@ void HRPWM_Config(period)
         (*ePWM[j]).CMPB.all |= (1 << 8);         // initialize HRPWM extension
         (*ePWM[j]).TBPHS.all = 0;
         (*ePWM[j]).TBCTR = 0;
-
         (*ePWM[j]).TBCTL.bit.CTRMODE = TB_COUNT_UP;
         (*ePWM[j]).TBCTL.bit.PHSEN = TB_DISABLE;
         (*ePWM[j]).EPWMSYNCINSEL.all = SYNC_IN_SRC_DISABLE_ALL;
@@ -399,18 +365,14 @@ void HRPWM_Config(period)
         (*ePWM[j]).TBCTL.bit.HSPCLKDIV = TB_DIV1;
         (*ePWM[j]).TBCTL.bit.CLKDIV = TB_DIV1;
         (*ePWM[j]).TBCTL.bit.FREE_SOFT = 11;
-
         (*ePWM[j]).CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;
         (*ePWM[j]).CMPCTL.bit.LOADBMODE = CC_CTR_ZERO;
         (*ePWM[j]).CMPCTL.bit.SHDWAMODE = CC_SHADOW;
         (*ePWM[j]).CMPCTL.bit.SHDWBMODE = CC_SHADOW;
-
-
         (*ePWM[j]).AQCTLA.bit.ZRO = AQ_SET;      // PWM toggle high/low
         (*ePWM[j]).AQCTLA.bit.CAU = AQ_CLEAR;
         (*ePWM[j]).AQCTLB.bit.ZRO = AQ_SET;
         (*ePWM[j]).AQCTLB.bit.CBU = AQ_CLEAR;
-
         EALLOW;
         (*ePWM[j]).HRCNFG.all = 0x0;
         (*ePWM[j]).HRCNFG.bit.EDGMODE = HR_FEP;  // MEP control on falling edge
@@ -428,7 +390,6 @@ void HRPWM_Config(period)
         EDIS;
     }
 }
-
 //
 // error - Halt debugger when called
 //
@@ -436,7 +397,6 @@ void error (void)
 {
     ESTOP0;         // Stop here and handle error
 }
-
 //
 // End of file
 //

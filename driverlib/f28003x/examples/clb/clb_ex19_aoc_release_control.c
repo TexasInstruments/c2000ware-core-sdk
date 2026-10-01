@@ -16,7 +16,7 @@
 //!
 //
 //#############################################################################
-// $TI Release: F28003x Support Library v26.01.00.00 $
+// $TI Release: F28003x Support Library v26.02.00.00 $
 // 
 // $Copyright:
 // Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
@@ -50,8 +50,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
 //
 // Included Files
 //
@@ -59,7 +57,6 @@
 #include "device.h"
 #include "board.h"
 #include "clb_config.h"
-
 //
 // Main
 //
@@ -67,12 +64,9 @@ void main(void)
 {
     Device_init();
     Device_initGPIO();
-
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
     Board_init();
-
     //
     // Implement Pass through GPIO0
     // Implement AOC does not invert
@@ -80,29 +74,21 @@ void main(void)
     // AOC Release Control will be in CLEAR mode with SW RLS control
     //
     initTILE1(myCLBForTILE1_BASE);
-
     CLB_enableCLB(myCLBForTILE1_BASE);
-
-
     while(1)
     {
         DEVICE_DELAY_US(5000000);
-
         //
         // After this function executes, the state of the FLOP in the AOC
         // is set to HIGH.
         //
         CLB_writeSWReleaseControl(myCLBForTILE1_BASE, CLB_SW_RLS_CTRL4, true);
-
         //
         // Now that the output is set to HIGH, a rising edge in the CLB_OUT4
         // signal will cause a CLEAR of the output.
         //
-
         GPIO_writePin(myGPIO1Output, 1);
-
         DEVICE_DELAY_US(5000000);
-
         //
         // Clear the release signal, making it ready for the next write to SW
         // RLS register to cause a RISING EDGE.
@@ -111,7 +97,6 @@ void main(void)
         GPIO_writePin(myGPIO1Output, 0);
     }
 }
-
 //
 // End of File
 //

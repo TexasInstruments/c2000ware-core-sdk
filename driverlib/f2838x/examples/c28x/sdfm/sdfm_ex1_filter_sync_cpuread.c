@@ -52,7 +52,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -85,14 +85,12 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "driverlib.h"
 #include "device.h"
 #include <stdio.h>
-
 //
 // Defines
 //
@@ -100,7 +98,6 @@
 #define SDFM_PIN_MUX_OPTION1      1
 #define SDFM_PIN_MUX_OPTION2      2
 #define SDFM_PIN_MUX_OPTION3      3
-
 //
 // Globals
 //
@@ -113,12 +110,10 @@ int16_t  filter4Result[MAX_SAMPLES];
 #pragma DATA_SECTION(filter2Result, "Filter2_RegsFile");
 #pragma DATA_SECTION(filter3Result, "Filter3_RegsFile");
 #pragma DATA_SECTION(filter4Result, "Filter4_RegsFile");
-
 //
 // Defines
 //
 #define SDFM_FILTER_ENABLE 0x2U
-
 //
 // Function Prototypes
 //
@@ -129,7 +124,6 @@ __interrupt void sdfm2ISR(void);
 void setPinConfig1(void);
 void setPinConfig2(void);
 void setPinConfig3(void);
-
 //
 // Main
 //
@@ -137,28 +131,23 @@ void main(void)
 {
     uint16_t  pinMuxOption;
     uint16_t  hlt, llt;
-
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Setup GPIO by disabling pin locks and enabling pullups
     //
     Device_initGPIO();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Interrupts that are used in this example are re-mapped to
     // ISR functions found within this file.
@@ -166,27 +155,22 @@ void main(void)
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP5);
     Interrupt_register(INT_SDFM1, sdfm1ISR);
     Interrupt_register(INT_SDFM2, sdfm2ISR);
-
     //
     // Enable SDFM1 amd SDFM2 interrupts
     //
     Interrupt_enable(INT_SDFM1);
     Interrupt_enable(INT_SDFM2);
-
     //
     // Configure SDFM type to 0 and see if data ack generated SDINT.
     //
     SysCtl_configureType(SYSCTL_SDFMTYPE, 0, 1);
-
 #ifdef CPU1
     pinMuxOption = SDFM_PIN_MUX_OPTION1;
-
     //
     // Configure GPIO pins as SDFM pins
     //
     configureSDFMPins(pinMuxOption);
 #endif
-
     //
     // Input Control Unit
     //
@@ -194,22 +178,17 @@ void main(void)
     //
     SDFM_setupModulatorClock(SDFM1_BASE, SDFM_FILTER_1,
                              SDFM_MODULATOR_CLK_EQUAL_DATA_RATE);
-
     SDFM_setupModulatorClock(SDFM1_BASE, SDFM_FILTER_2,
                              SDFM_MODULATOR_CLK_EQUAL_DATA_RATE);
-
     SDFM_setupModulatorClock(SDFM1_BASE, SDFM_FILTER_3,
                              SDFM_MODULATOR_CLK_EQUAL_DATA_RATE);
-
     SDFM_setupModulatorClock(SDFM1_BASE, SDFM_FILTER_4,
                              SDFM_MODULATOR_CLK_EQUAL_DATA_RATE);
-
     //
     // Comparator Unit - over and under value threshold settings
     //
     hlt = 0x7FFF;
     llt = 0x0000;
-
     //
     // Configure Comparator Unit's comparator filter type and comparator's
     // OSR value, higher threshold, lower threshold
@@ -226,7 +205,6 @@ void main(void)
     SDFM_configComparator(SDFM1_BASE,
         (SDFM_FILTER_4 | SDFM_FILTER_SINC_3 | SDFM_SET_OSR(32)),
         (SDFM_THRESHOLD(hlt, llt)), 0);
-
     //
     // Data Filter Unit
     //
@@ -236,26 +214,21 @@ void main(void)
     SDFM_configDataFilter(SDFM1_BASE, (SDFM_FILTER_1 | SDFM_FILTER_SINC_3 |
            SDFM_SET_OSR(128)), (SDFM_DATA_FORMAT_16_BIT | SDFM_FILTER_ENABLE |
            SDFM_SHIFT_VALUE(0x0007)));
-
     SDFM_configDataFilter(SDFM1_BASE, (SDFM_FILTER_2 | SDFM_FILTER_SINC_3 |
            SDFM_SET_OSR(128)), (SDFM_DATA_FORMAT_16_BIT | SDFM_FILTER_ENABLE |
            SDFM_SHIFT_VALUE(0x0007)));
-
     SDFM_configDataFilter(SDFM1_BASE, (SDFM_FILTER_3 | SDFM_FILTER_SINC_3 |
            SDFM_SET_OSR(128)), (SDFM_DATA_FORMAT_16_BIT | SDFM_FILTER_ENABLE |
            SDFM_SHIFT_VALUE(0x0007)));
-
     SDFM_configDataFilter(SDFM1_BASE, (SDFM_FILTER_4 | SDFM_FILTER_SINC_3 |
            SDFM_SET_OSR(128)), (SDFM_DATA_FORMAT_16_BIT | SDFM_FILTER_ENABLE |
            SDFM_SHIFT_VALUE(0x0007)));
-
     //
     // Enable Master filter bit: Unless this bit is set none of the filter modules
     // can be enabled. All the filter modules are synchronized when master filter
     // bit is enabled after individual filter modules are enabled.
     //
     SDFM_enableMainFilter(SDFM1_BASE);
-
     //
     // PWM11.CMPC, PWM11.CMPD, PWM12.CMPC and PWM12.CMPD signals cannot synchronize
     // the filters. This option is not being used in this example.
@@ -264,7 +237,6 @@ void main(void)
     SDFM_disableExternalReset(SDFM1_BASE, SDFM_FILTER_2);
     SDFM_disableExternalReset(SDFM1_BASE, SDFM_FILTER_3);
     SDFM_disableExternalReset(SDFM1_BASE, SDFM_FILTER_4);
-
     //
     // Enable interrupts
     //
@@ -277,53 +249,42 @@ void main(void)
     SDFM_enableInterrupt(SDFM1_BASE, SDFM_FILTER_1,
             (SDFM_MODULATOR_FAILURE_INTERRUPT |
              SDFM_DATA_FILTER_ACKNOWLEDGE_INTERRUPT));
-
     SDFM_enableInterrupt(SDFM1_BASE, SDFM_FILTER_2,
             (SDFM_MODULATOR_FAILURE_INTERRUPT |
              SDFM_DATA_FILTER_ACKNOWLEDGE_INTERRUPT));
-
     SDFM_enableInterrupt(SDFM1_BASE, SDFM_FILTER_3,
             (SDFM_MODULATOR_FAILURE_INTERRUPT |
              SDFM_DATA_FILTER_ACKNOWLEDGE_INTERRUPT));
-
     SDFM_enableInterrupt(SDFM1_BASE, SDFM_FILTER_4,
             (SDFM_MODULATOR_FAILURE_INTERRUPT |
              SDFM_DATA_FILTER_ACKNOWLEDGE_INTERRUPT));
-
     SDFM_disableInterrupt(SDFM1_BASE, SDFM_FILTER_1,
             (SDFM_HIGH_LEVEL_THRESHOLD_INTERRUPT |
              SDFM_LOW_LEVEL_THRESHOLD_INTERRUPT));
-
     SDFM_disableInterrupt(SDFM1_BASE, SDFM_FILTER_2,
             (SDFM_HIGH_LEVEL_THRESHOLD_INTERRUPT |
              SDFM_LOW_LEVEL_THRESHOLD_INTERRUPT));
-
     SDFM_disableInterrupt(SDFM1_BASE, SDFM_FILTER_3,
             (SDFM_HIGH_LEVEL_THRESHOLD_INTERRUPT |
              SDFM_LOW_LEVEL_THRESHOLD_INTERRUPT));
-
     SDFM_disableInterrupt(SDFM1_BASE, SDFM_FILTER_4,
             (SDFM_HIGH_LEVEL_THRESHOLD_INTERRUPT |
              SDFM_LOW_LEVEL_THRESHOLD_INTERRUPT));
-
     //
     // Enable master interrupt so that any of the filter interrupts can trigger
     // by SDFM interrupt to CPU
     //
     SDFM_enableMainInterrupt(SDFM1_BASE);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Wait for an interrupt
     //
     while(1);
 }
-
 //
 // sdfm1ISR - SDFM 1 ISR
 //
@@ -331,24 +292,18 @@ __interrupt void sdfm1ISR(void)
 {
     volatile uint32_t sdfmReadFlagRegister = 0;
     static uint16_t loopCounter1 = 0;
-
     SDFM_setOutputDataFormat(SDFM1_BASE, SDFM_FILTER_1,
                              SDFM_DATA_FORMAT_16_BIT);
-
     SDFM_setOutputDataFormat(SDFM1_BASE, SDFM_FILTER_2,
                              SDFM_DATA_FORMAT_16_BIT);
-
     SDFM_setOutputDataFormat(SDFM1_BASE, SDFM_FILTER_3,
                              SDFM_DATA_FORMAT_16_BIT);
-
     SDFM_setOutputDataFormat(SDFM1_BASE, SDFM_FILTER_4,
                              SDFM_DATA_FORMAT_16_BIT);
-
     //
     // Read SDFM flag register (SDIFLG)
     //
     sdfmReadFlagRegister = HWREG(SDFM1_BASE + SDFM_O_SDIFLG);
-
     if(loopCounter1 < MAX_SAMPLES)
     {
         //
@@ -357,22 +312,17 @@ __interrupt void sdfm1ISR(void)
         //
         filter1Result[loopCounter1] =
               (int16_t)(SDFM_getFilterData(SDFM1_BASE, SDFM_FILTER_1) >> 16U);
-
         filter2Result[loopCounter1] =
               (int16_t)(SDFM_getFilterData(SDFM1_BASE, SDFM_FILTER_2) >> 16U);
-
         filter3Result[loopCounter1] =
               (int16_t)(SDFM_getFilterData(SDFM1_BASE, SDFM_FILTER_3) >> 16U);
-
         filter4Result[loopCounter1++] =
               (int16_t)(SDFM_getFilterData(SDFM1_BASE, SDFM_FILTER_4) >> 16U);
-
         //
         // Clear SDFM flag register (SDIFLG)
         //
         SDFM_clearInterruptFlag(SDFM1_BASE, SDFM_MAIN_INTERRUPT_FLAG |
                                             0xFFFF);
-
         //
         // Read SDFM flag register (SDIFLG)
         //
@@ -383,13 +333,11 @@ __interrupt void sdfm1ISR(void)
         ESTOP0;
         done();
     }
-
     //
     // Acknowledge this __interrupt to receive more __interrupts from group 5
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP5);
 }
-
 //
 // sdfm2ISR - SDFM 2 ISR
 //
@@ -397,24 +345,18 @@ __interrupt void sdfm2ISR(void)
 {
     uint32_t sdfmReadFlagRegister = 0;
     static uint16_t loopCounter1 = 0;
-
     SDFM_setOutputDataFormat(SDFM2_BASE, SDFM_FILTER_1,
                              SDFM_DATA_FORMAT_16_BIT);
-
     SDFM_setOutputDataFormat(SDFM2_BASE, SDFM_FILTER_2,
                              SDFM_DATA_FORMAT_16_BIT);
-
     SDFM_setOutputDataFormat(SDFM2_BASE, SDFM_FILTER_3,
                              SDFM_DATA_FORMAT_16_BIT);
-
     SDFM_setOutputDataFormat(SDFM2_BASE, SDFM_FILTER_4,
                              SDFM_DATA_FORMAT_16_BIT);
-
     //
     // Read SDFM flag register (SDIFLG)
     //
     sdfmReadFlagRegister = HWREG(SDFM2_BASE + SDFM_O_SDIFLG);
-
     if(loopCounter1 < MAX_SAMPLES)
     {
         //
@@ -423,24 +365,18 @@ __interrupt void sdfm2ISR(void)
         //
         filter1Result[loopCounter1] =
                 (int16_t)SDFM_getFilterData(SDFM2_BASE, SDFM_FILTER_1);
-
         filter2Result[loopCounter1] =
                 (int16_t)SDFM_getFilterData(SDFM2_BASE, SDFM_FILTER_2);
-
         filter3Result[loopCounter1] =
                 (int16_t)SDFM_getFilterData(SDFM2_BASE, SDFM_FILTER_3);
-
         filter4Result[loopCounter1++] =
                 (int16_t)SDFM_getFilterData(SDFM2_BASE, SDFM_FILTER_4);
-
         //
         // Clear SDFM flag register
         //
         SDFM_clearInterruptFlag(SDFM2_BASE,
                                 (SDFM_MAIN_INTERRUPT_FLAG | 0xFFFF));
-
         sdfmReadFlagRegister = HWREG(SDFM2_BASE + SDFM_O_SDIFLG);
-
         if(sdfmReadFlagRegister != 0x0)
         {
             ESTOP0;
@@ -451,20 +387,17 @@ __interrupt void sdfm2ISR(void)
         ESTOP0;
         done();
     }
-
     //
     // Acknowledge this __interrupt to receive more __interrupts from group 5
     //
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP5);
 }
-
 //
 // configureSDFMPins - Configure SDFM GPIOs
 //
 void configureSDFMPins(uint16_t sdfmPinOption)
 {
     uint16_t pin;
-
     switch (sdfmPinOption)
     {
         case SDFM_PIN_MUX_OPTION1:
@@ -477,7 +410,6 @@ void configureSDFMPins(uint16_t sdfmPinOption)
             }
             setPinConfig1();
             break;
-
         case SDFM_PIN_MUX_OPTION2:
             for(pin = 48; pin <= 63; pin++)
             {
@@ -488,7 +420,6 @@ void configureSDFMPins(uint16_t sdfmPinOption)
             }
             setPinConfig2();
             break;
-
         case SDFM_PIN_MUX_OPTION3:
             for(pin = 122; pin <= 137; pin++)
             {
@@ -501,7 +432,6 @@ void configureSDFMPins(uint16_t sdfmPinOption)
             break;
     }
 }
-
 //
 // done - Function to halt debugger and stop application
 //
@@ -510,7 +440,6 @@ void done(void)
     asm(" ESTOP0");
     for(;;);
 }
-
 //
 // setPinConfig1 - sets the pin configuration for pins 16-21
 //
@@ -533,7 +462,6 @@ void setPinConfig1()
     GPIO_setPinConfig(GPIO_30_SD2_D4);
     GPIO_setPinConfig(GPIO_31_SD2_C4);
 }
-
 //
 // setPinConfig2 - sets the pin configuration for
 // pins 48-63
@@ -557,7 +485,6 @@ void setPinConfig2()
     GPIO_setPinConfig(GPIO_62_SD2_D4);
     GPIO_setPinConfig(GPIO_63_SD2_C4);
 }
-
 //
 // setPinConfig3 - sets the pin configuration for pins 122-137
 //
@@ -580,7 +507,6 @@ void setPinConfig3()
     GPIO_setPinConfig(GPIO_136_SD2_D4);
     GPIO_setPinConfig(GPIO_137_SD2_C4);
 }
-
 //
 // End of file
 //

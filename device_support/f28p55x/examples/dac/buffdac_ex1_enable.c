@@ -10,7 +10,6 @@
 //! This example generates a voltage on the buffered DAC output,
 //! DACOUTA/ADCINA0 (HSEC Pin 9) and uses the default DAC reference setting
 //! of VREF.
-
 //!
 //!
 //
@@ -18,7 +17,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -51,31 +50,24 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Globals
 //
 volatile struct DAC_REGS* DAC_PTR[4] = {0x0,&DacaRegs};
-
 Uint16 dacval = 2048;
-
 //
 // Defines
 //
 #define REFERENCE            REFERENCE_VREF
-
 #define DAC_NUM                DACA
-
 //
 // Function Prototypes
 //
 void configureDAC(Uint16 dac_num);
-
 void main(void)
 {
 //
@@ -84,19 +76,16 @@ void main(void)
 // This example function is found in the f28p65x_sysctrl.c file.
 //
     InitSysCtrl();
-
 //
 // Disable CPU interrupts
 //
     DINT;
-
 //
 // Initialize the PIE control registers to their default state.
 // The default state is all PIE interrupts disabled and flags are cleared.
 // This function is found in the f28p65x_pievect.c file.
 //
     InitPieCtrl();
-
 //
 // Clear all interrupts and initialize PIE vector table:
 //
@@ -104,19 +93,16 @@ void main(void)
     IFR = 0x0000;
     InitPieVectTable();
     SetVREF(ADC_ADCA, ADC_INTERNAL, ADC_VREF3P3);
-
 //
 // Configure DAC
 //
     configureDAC(DAC_NUM);
-
     while(1)
     {
         DAC_PTR[DAC_NUM]->DACVALS.all = dacval;
         DELAY_US(2);
     }
 }
-
 //
 // configureDAC - Configure specified DAC output
 //
@@ -130,7 +116,6 @@ void configureDAC(Uint16 dac_num)
     DELAY_US(10); // Delay for buffered DAC to power up
     EDIS;
 }
-
 //
 // End of file
 //

@@ -3,6 +3,7 @@
 %let device_driverlib_peripheral = 
 %    system.getScript("/driverlib/device_driverlib_peripherals/" + 
 %        Common.getDeviceName().toLowerCase() + "_spi.js");
+% let dmaCounter = 0;										// Used only for soprano
 //*****************************************************************************
 //
 // SPI Configurations
@@ -13,7 +14,14 @@ void `module.peripheralName`_init(){
 %   {
 %      var instance = module.$instances[i];
 	`instance.$name`_init();
+% 		if ((instance.useDMARX) || (instance.useDMATX))
+%			dmaCounter++;
 %   }
+%		if((["F2837xS","F2837xD"].includes(Common.getDeviceName())) && (dmaCounter > 0)){
+	
+	// Allow DMA to access SPI registers
+	SysCtl_selectSecController(SYSCTL_SEC_CONTROLLER_CLA, SYSCTL_SEC_CONTROLLER_DMA);
+%		}
 }
 
 %if (module != null)

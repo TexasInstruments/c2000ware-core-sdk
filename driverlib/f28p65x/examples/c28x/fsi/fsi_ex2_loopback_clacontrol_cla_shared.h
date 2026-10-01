@@ -11,7 +11,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -44,58 +44,41 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 #ifndef _FSI_EX2_LOOPBACK_CLACONTROL_CLA_SHARED_H_
 #define _FSI_EX2_LOOPBACK_CLACONTROL_CLA_SHARED_H_
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 //
 // Included Files
 //
-
 //
 // Defines
 //
-
 //
 // Globals, User can modify these parameters as per usecase
 //
-
 //
 // Globals, these are not config parameters, user are not required to edit them
 //
-
 extern volatile uint32_t fsiTxInt1Received;
 extern volatile uint32_t fsiRxInt1Received;
 extern uint32_t txTimeOutCntr, rxTimeOutCntr;
-
 //
 // Function Prototypes
 //
-
 //
 // Globals
 //
 //Task 1 (C) Variables
-
 //Task 2 (C) Variables
-
 //Task 3 (C) Variables
-
 //Task 4 (C) Variables
-
 //Task 5 (C) Variables
-
 //Task 6 (C) Variables
-
 //Task 7 (C) Variables
-
 //Task 8 (C) Variables
-
 //Common (C) Variables
-
 //
 // Function Prototypes
 //
@@ -113,12 +96,10 @@ __attribute__((interrupt))  void Cla1Task8();
 #else
 __attribute__((interrupt("background")))  void Cla1Task8();
 #endif
-
 #ifdef __cplusplus
 }
 #endif // extern "C"
 #endif //_FSI_EX2_LOOPBACK_CLACONTROL_CLA_SHARED_H_
-
 //
 // End of File
 //

@@ -17,7 +17,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -50,12 +50,10 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
 #include "f28x_project.h"
-
 //
 // Defines
 // Select the example to compile in.  Only one example should be set as 1
@@ -63,17 +61,14 @@
 //
 #define EXAMPLE1 1  // Basic pinout configuration example
 #define EXAMPLE2 0  // Communication pinout example
-
 //
 // Function Prototypes
 //
 void setup1GPIO(void);
 void setup2GPIO(void);
-
 //
 // Main
 //
-
 void main(void)
 {
     //
@@ -82,64 +77,51 @@ void main(void)
     //This example function is found in the f28p65x_sysctrl.c file.
     //
     InitSysCtrl();
-
     //
     //Step 2. Initialize GPIO
     //
     InitGpio();
-
     //
     //Step 3. Clear all __interrupts and initialize PIE vector table:
     //Disable CPU __interrupts
     //
     DINT;
-
     //
     //Initialize the PIE control registers to their default state.
     //The default state is all PIE interrupts disabled and flags
     //are cleared.
     //
     InitPieCtrl();
-
     //
     //Disable CPU interrupts and clear all CPU interrupt flags:
     //
     IER = 0x0000;
     IFR = 0x0000;
-
     //
     //Initialize the PIE vector table with pointers to the shell Interrupt
     //Service Routines (ISR).
     //
     InitPieVectTable();
-
     //
     //Step 4. User specific code:
     //
 #if EXAMPLE1
-
     //
     //This example is a basic pinout
     //
     setup1GPIO();
-
 #endif
-
 #if EXAMPLE2
-
     //
     // This example is a communications pinout
     //
     setup2GPIO();
-
 #endif
-
     while(1)
     {
         ESTOP0;
     }
 }
-
 //
 // setup1GPIO - Is an example that demonstrates the basic pinout
 //
@@ -153,7 +135,6 @@ void setup1GPIO(void)
     // These can be combined into single statements for improved
     // code efficiency.
     //
-
     //
     // Enable PWM1-3 on GPIO0-GPIO5
     //
@@ -170,7 +151,6 @@ void setup1GPIO(void)
     GpioCtrlRegs.GPAMUX1.bit.GPIO3 = 1;  // GPIO3 = PWM2B
     GpioCtrlRegs.GPAMUX1.bit.GPIO4 = 1;  // GPIO4 = PWM3A
     GpioCtrlRegs.GPAMUX1.bit.GPIO5 = 1;  // GPIO5 = PWM3B
-
     //
     // Enable an GPIO output on GPIO6, set it high
     //
@@ -178,7 +158,6 @@ void setup1GPIO(void)
     GpioDataRegs.GPASET.bit.GPIO6 = 1;   // Load output latch
     GpioCtrlRegs.GPAMUX1.bit.GPIO6 = 0;  // GPIO6 = GPIO6
     GpioCtrlRegs.GPADIR.bit.GPIO6 = 1;   // GPIO6 = output
-
     //
     // Enable eCAP1 on GPIO7
     //
@@ -186,7 +165,6 @@ void setup1GPIO(void)
     GpioCtrlRegs.GPAQSEL1.bit.GPIO7 = 0;  // Synch to SYSCLKOUT
     InputXbarRegs.INPUT7SELECT = 7;       // INPUT7 = GPIO7
     ECap1Regs.ECCTL0.bit.INPUTSEL = 7;    // Select eCAP1 TO INPUTXBAR8
-
     //
     // Enable GPIO outputs on GPIO8 - GPIO11, set it high
     //
@@ -194,22 +172,18 @@ void setup1GPIO(void)
     GpioDataRegs.GPASET.bit.GPIO8 = 1;   // Load output latch
     GpioCtrlRegs.GPAMUX1.bit.GPIO8 = 0;  // GPIO8 = GPIO8
     GpioCtrlRegs.GPADIR.bit.GPIO8 = 1;   // GPIO8 = output
-
     GpioCtrlRegs.GPAPUD.bit.GPIO9 = 0;   // Enable pullup on GPIO9
     GpioDataRegs.GPASET.bit.GPIO9 = 1;   // Load output latch
     GpioCtrlRegs.GPAMUX1.bit.GPIO9 = 0;  // GPIO9 = GPIO9
     GpioCtrlRegs.GPADIR.bit.GPIO9 = 1;   // GPIO9 = output
-
     GpioCtrlRegs.GPAPUD.bit.GPIO10 = 0;  // Enable pullup on GPIO10
     GpioDataRegs.GPASET.bit.GPIO10 = 1;  // Load output latch
     GpioCtrlRegs.GPAMUX1.bit.GPIO10 = 0; // GPIO10 = GPIO10
     GpioCtrlRegs.GPADIR.bit.GPIO10 = 1;   // GPIO10 = output
-
     GpioCtrlRegs.GPAPUD.bit.GPIO11 = 0;  // Enable pullup on GPIO11
     GpioDataRegs.GPASET.bit.GPIO11 = 1;  // Load output latch
     GpioCtrlRegs.GPAMUX1.bit.GPIO11 = 0; // GPIO11 = GPIO11
     GpioCtrlRegs.GPADIR.bit.GPIO11 = 1;  // GPIO11 = output
-
     //
     // Enable Trip Zone inputs on GPIO12 - GPIO14
     //
@@ -222,7 +196,6 @@ void setup1GPIO(void)
     InputXbarRegs.INPUT1SELECT = 12;      // GPIO12 = TZ1
     InputXbarRegs.INPUT2SELECT = 13;      // GPIO13 = TZ2
     InputXbarRegs.INPUT3SELECT = 14;      // GPIO14 = TZ3
-
     //
     // Enable SPI-A on GPIO16 - GPIO19
     //
@@ -238,7 +211,6 @@ void setup1GPIO(void)
     GpioCtrlRegs.GPAMUX2.bit.GPIO17 = 1;  // GPIO17 = SPIPOCIA
     GpioCtrlRegs.GPAMUX2.bit.GPIO18 = 1;  // GPIO18 = SPICLKA
     GpioCtrlRegs.GPAMUX2.bit.GPIO19 = 1;  // GPIO19 = SPIPTEA
-
     //
     // Enable EQEP1 on GPIO's 20,21,22,23
     //
@@ -254,7 +226,6 @@ void setup1GPIO(void)
     GpioCtrlRegs.GPAMUX2.bit.GPIO21 = 1;  // GPIO21 = EQEP1B
     GpioCtrlRegs.GPAMUX2.bit.GPIO22 = 1;  // GPIO22 = EQEP1S
     GpioCtrlRegs.GPAMUX2.bit.GPIO23 = 2;  // GPIO23 = EQEP1I
-
     //
     // Enable eCAP1 on GPIO24
     //
@@ -262,28 +233,24 @@ void setup1GPIO(void)
     GpioCtrlRegs.GPAQSEL2.bit.GPIO24 = 0; // Synch to SYSCLKOUT
     InputXbarRegs.INPUT8SELECT = 24;      // INPUT8 = GPIO24
     ECap1Regs.ECCTL0.bit.INPUTSEL=8;      // Select eCAP1 TO INPUTXBAR9
-
     //
     // Set input qualification period for GPIO25 & GPIO26
     //
     GpioCtrlRegs.GPACTRL.bit.QUALPRD3=1;  // Qual period = SYSCLKOUT/2
     GpioCtrlRegs.GPAQSEL2.bit.GPIO25=2;   // 6 samples
     GpioCtrlRegs.GPAQSEL2.bit.GPIO26=2;   // 6 samples
-
     //
     // Make GPIO25 the input source for XINT1
     //
     GpioCtrlRegs.GPAMUX2.bit.GPIO25 = 0;  // GPIO25 = GPIO25
     GpioCtrlRegs.GPADIR.bit.GPIO25 = 0;   // GPIO25 = input
     GPIO_SetupXINT1Gpio(25);              // XINT1 connected to GPIO25
-
     //
     // Make GPIO26 the input source for XINT2
     //
     GpioCtrlRegs.GPAMUX2.bit.GPIO26 = 0;  // GPIO26 = GPIO26
     GpioCtrlRegs.GPADIR.bit.GPIO26 = 0;   // GPIO26 = input
     GPIO_SetupXINT2Gpio(26);              // XINT2 connected to GPIO26
-
     //
     // Make GPIO27 wakeup from STANDBY Low Power Modes
     //
@@ -293,7 +260,6 @@ void setup1GPIO(void)
     CpuSysRegs.LPMCR.bit.QUALSTDBY = 2;  // Qualify GPIO27 by 2 OSCCLK
                                          // cycles before waking the device
                                          // from STANDBY
-
     //
     // Enable SCI-A on GPIO28 - GPIO29
     //
@@ -302,7 +268,6 @@ void setup1GPIO(void)
     GpioCtrlRegs.GPAMUX2.bit.GPIO28 = 1;  // GPIO28 = SCIRXDA
     GpioCtrlRegs.GPAPUD.bit.GPIO29 = 0;   // Enable pullup on GPIO29
     GpioCtrlRegs.GPAMUX2.bit.GPIO29 = 1;  // GPIO29 = SCITXDA
-
     //
     // Enable CAN-A on GPIO30 - GPIO31
     //
@@ -311,7 +276,6 @@ void setup1GPIO(void)
     GpioCtrlRegs.GPAPUD.bit.GPIO31 = 0;   // Enable pullup on GPIO31
     GpioCtrlRegs.GPAQSEL2.bit.GPIO31 = 3; // Asynch input
     GpioCtrlRegs.GPAMUX2.bit.GPIO31 = 1;  // GPIO31 = CANTXA
-
     //
     // Enable I2C-A on GPIO32 - GPIO33
     //
@@ -321,17 +285,14 @@ void setup1GPIO(void)
     GpioCtrlRegs.GPBPUD.bit.GPIO33 = 0;   // Enable pullup on GPIO33
     GpioCtrlRegs.GPBQSEL1.bit.GPIO33 = 3; // Asynch input
     GpioCtrlRegs.GPBMUX1.bit.GPIO33 = 1;  // GPIO33 = SCLA
-
     //
     // Make GPIO34 an input
     //
     GpioCtrlRegs.GPBPUD.bit.GPIO34 = 0;  // Enable pullup on GPIO34
     GpioCtrlRegs.GPBMUX1.bit.GPIO34 = 0; // GPIO34 = GPIO34
     GpioCtrlRegs.GPBDIR.bit.GPIO34 = 0;  // GPIO34 = input
-
     EDIS;
 }
-
 //
 // setup2GPIO - Is an example that demonstrates the communications pinout
 //
@@ -344,7 +305,6 @@ void setup2GPIO(void)
     // PWM1-3, CAP2, SPI-B, CAN-A, SCI-A and I2C
     // and a number of I/O pins
     //
-
     //
     // Enable PWM1-3 on GPIO0-GPIO5
     //
@@ -361,7 +321,6 @@ void setup2GPIO(void)
     GpioCtrlRegs.GPAMUX1.bit.GPIO3 = 1;  // GPIO3 = PWM2B
     GpioCtrlRegs.GPAMUX1.bit.GPIO4 = 1;  // GPIO4 = PWM3A
     GpioCtrlRegs.GPAMUX1.bit.GPIO5 = 1;  // GPIO5 = PWM3B
-
     //
     // Enable an GPIO output on GPIO6
     //
@@ -369,7 +328,6 @@ void setup2GPIO(void)
     GpioDataRegs.GPASET.bit.GPIO6 = 1;   // Load output latch
     GpioCtrlRegs.GPAMUX1.bit.GPIO6 = 0;  // GPIO6 = GPIO6
     GpioCtrlRegs.GPADIR.bit.GPIO6 = 1;   // GPIO6 = output
-
     //
     // Enable eCAP1 on GPIO7
     //
@@ -377,7 +335,6 @@ void setup2GPIO(void)
     GpioCtrlRegs.GPAQSEL1.bit.GPIO7 = 0;  // Synch to SYSCLKOUT
     InputXbarRegs.INPUT7SELECT = 7;       // INPUT7 = GPIO7
     ECap1Regs.ECCTL0.bit.INPUTSEL=7;      // Select eCAP1 TO INPUTXBAR8
-
     //
     // Enable GPIO outputs on GPIO8 - GPIO11, set it high
     //
@@ -385,22 +342,18 @@ void setup2GPIO(void)
     GpioDataRegs.GPASET.bit.GPIO8 = 1;   // Load output latch
     GpioCtrlRegs.GPAMUX1.bit.GPIO8 = 0;  // GPIO8 = GPIO8
     GpioCtrlRegs.GPADIR.bit.GPIO8 = 1;   // GPIO8 = output
-
     GpioCtrlRegs.GPAPUD.bit.GPIO9 = 0;   // Enable pullup on GPIO9
     GpioDataRegs.GPASET.bit.GPIO9 = 1;   // Load output latch
     GpioCtrlRegs.GPAMUX1.bit.GPIO9 = 0;  // GPIO9 = GPIO9
     GpioCtrlRegs.GPADIR.bit.GPIO9 = 1;   // GPIO9 = output
-
     GpioCtrlRegs.GPAPUD.bit.GPIO10 = 0;  // Enable pullup on GPIO10
     GpioDataRegs.GPASET.bit.GPIO10 = 1;  // Load output latch
     GpioCtrlRegs.GPAMUX1.bit.GPIO10 = 0; // GPIO10 = GPIO10
     GpioCtrlRegs.GPADIR.bit.GPIO10 = 1;   // GPIO10 = output
-
     GpioCtrlRegs.GPAPUD.bit.GPIO11 = 0;  // Enable pullup on GPIO11
     GpioDataRegs.GPASET.bit.GPIO11 = 1;  // Load output latch
     GpioCtrlRegs.GPAMUX1.bit.GPIO11 = 0; // GPIO11 = GPIO11
     GpioCtrlRegs.GPADIR.bit.GPIO11 = 1;  // GPIO11 = output
-
     //
     // Enable SPI-B on GPIO22 - GPIO25
     //
@@ -416,7 +369,6 @@ void setup2GPIO(void)
     GpioCtrlRegs.GPAMUX2.bit.GPIO23 = 1;  // GPIO23 = SPIPTEB
     GpioCtrlRegs.GPAMUX2.bit.GPIO24 = 1;  // GPIO24 = SPIPICOB
     GpioCtrlRegs.GPAMUX2.bit.GPIO25 = 1;  // GPIO25 = SPIPOCIB
-
     //
     // Enable SPI-A on GPIO16 - GPIO19
     //
@@ -432,7 +384,6 @@ void setup2GPIO(void)
     GpioCtrlRegs.GPAMUX2.bit.GPIO17 = 1;  // GPIO17 = SPIPOCIA
     GpioCtrlRegs.GPAMUX2.bit.GPIO18 = 1;  // GPIO18 = SPICLKA
     GpioCtrlRegs.GPAMUX2.bit.GPIO19 = 1;  // GPIO19 = SPIPTEA
-
     //
     // Enable eCAP2 on GPIO24
     //
@@ -440,28 +391,24 @@ void setup2GPIO(void)
     GpioCtrlRegs.GPAQSEL2.bit.GPIO24 = 0; // Synch to SYSCLKOUT
     InputXbarRegs.INPUT8SELECT = 24;      // INPUT8 = GPIO24
     ECap2Regs.ECCTL0.bit.INPUTSEL=8;      // Select eCAP2 TO INPUTXBAR9
-
     //
     // Set input qualifcation period for GPIO25 & GPIO26
     //
     GpioCtrlRegs.GPACTRL.bit.QUALPRD3=1;  // Qual period = SYSCLKOUT/2
     GpioCtrlRegs.GPAQSEL2.bit.GPIO25=2;   // 6 samples
     GpioCtrlRegs.GPAQSEL2.bit.GPIO26=2;   // 6 samples
-
     //
     // Make GPIO25 the input source for XINT1
     //
     GpioCtrlRegs.GPAMUX2.bit.GPIO25 = 0;  // GPIO25 = GPIO25
     GpioCtrlRegs.GPADIR.bit.GPIO25 = 0;   // GPIO25 = input
     GPIO_SetupXINT1Gpio(25);              // XINT1 connected to GPIO25
-
     //
     // Make GPIO26 the input source for XINT2
     //
     GpioCtrlRegs.GPAMUX2.bit.GPIO26 = 0;  // GPIO26 = GPIO26
     GpioCtrlRegs.GPADIR.bit.GPIO26 = 0;   // GPIO26 = input
     GPIO_SetupXINT2Gpio(26);              // XINT2 connected to GPIO26
-
     //
     // Make GPIO27 wakeup from HALT/STANDBY Low Power Modes
     //
@@ -471,7 +418,6 @@ void setup2GPIO(void)
     CpuSysRegs.LPMCR.bit.QUALSTDBY = 2;  // Qualify GPIO27 by 2 OSCCLK
                                          // cycles before waking the device
                                          // from STANDBY
-
     //
     // Enable SCI-A on GPIO28 - GPIO29
     //
@@ -480,7 +426,6 @@ void setup2GPIO(void)
     GpioCtrlRegs.GPAMUX2.bit.GPIO28 = 1;  // GPIO28 = SCIRXDA
     GpioCtrlRegs.GPAPUD.bit.GPIO29 = 0;   // Enable pullup on GPIO29
     GpioCtrlRegs.GPAMUX2.bit.GPIO29 = 1;  // GPIO29 = SCITXDA
-
     //
     // Enable CAN-A on GPIO30 - GPIO31
     //
@@ -489,7 +434,6 @@ void setup2GPIO(void)
     GpioCtrlRegs.GPAPUD.bit.GPIO31 = 0;   // Enable pullup on GPIO31
     GpioCtrlRegs.GPAQSEL2.bit.GPIO31 = 3; // Asynch input
     GpioCtrlRegs.GPAMUX2.bit.GPIO31 = 1;  // GPIO31 = CANRXA
-
     //
     // Enable I2C-A on GPIO32 - GPIO33
     //
@@ -499,17 +443,14 @@ void setup2GPIO(void)
     GpioCtrlRegs.GPBPUD.bit.GPIO33 = 0;   // Enable pullup on GPIO33
     GpioCtrlRegs.GPBQSEL1.bit.GPIO33 = 3; // Asynch input
     GpioCtrlRegs.GPBMUX1.bit.GPIO33 = 1;  // GPIO33 = SCLA
-
     //
     // Make GPIO34 an input
     //
     GpioCtrlRegs.GPBPUD.bit.GPIO34 = 0;  // Enable pullup on GPIO34
     GpioCtrlRegs.GPBMUX1.bit.GPIO34 = 0; // GPIO34 = GPIO34
     GpioCtrlRegs.GPBDIR.bit.GPIO34 = 0;  // GPIO34 = input
-
     EDIS;
 }
-
 //
 // End of File
 //

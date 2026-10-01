@@ -38,7 +38,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -71,7 +71,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -79,14 +78,11 @@
 #include "device.h"
 #include "inc/hw_ipc.h"
 #include "board.h"
-
 //
 // Defines
 //
 // Define AUTOBAUD to use the autobaud lock feature
 //#define AUTOBAUD
-
-
 //
 // Main
 //
@@ -96,18 +92,15 @@ void main(void)
     // Configure PLL, disable WD, enable peripheral clocks.
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // Hand-over the SCIA module access to CPU2
     //
     //SysCtl_selectCPUForPeripheral(SYSCTL_CPUSEL5_SCI, 1, SYSCTL_CPUSEL_CPU2);
     Board_init();
-
     //
     // Configuration for STANDALONE and FLASH mode
     //
@@ -117,31 +110,24 @@ void main(void)
     //
     Device_bootCPU2(BOOT_MODE_CPU2);
 #endif // _STANDALONE
-
     //
     // Configuration for the SCI Rx pin.
     //
     GPIO_setPinConfig(DEVICE_GPIO_CFG_SCIRXDA);
-
     //
     // Configuration for the SCI Tx pin.
     //
     GPIO_setPinConfig(DEVICE_GPIO_CFG_SCITXDA);
-
     //
     // Sync CPU1 and CPU2. Send IPC flag 17 to CPU2.
     //
     IPC_sync(IPC_CPU1_L_CPU2_R, SYNC_FLAG);
-
     //
     // Initialize interrupt controller and vector table.
     //
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
 }
-
 //
 // End of File
 //
-

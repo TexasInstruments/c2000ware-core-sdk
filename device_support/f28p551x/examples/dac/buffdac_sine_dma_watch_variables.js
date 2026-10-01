@@ -4,4 +4,3 @@ expAdd ("waveformGain")
 expAdd ("waveformOffset")
 expAdd ("samplingFreq_hz")
 expAdd ("tableStep")
-

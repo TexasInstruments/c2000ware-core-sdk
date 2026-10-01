@@ -71,7 +71,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -104,7 +104,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
 //
 // Included Files
 //
@@ -112,7 +111,6 @@
 #include "device.h"
 #include "cla_ex5_adc_just_in_time_shared.h"
 #include "board.h"
-
 //
 // Function Prototypes
 //
@@ -122,7 +120,6 @@ void initADC(void);
 void initADCSOC(void);
 void setupProfileGpio(void);
 __attribute__((interrupt))  void cla1Isr1(void);
-
 //
 // Main
 //
@@ -132,74 +129,59 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Disable pin locks and enable internal pullups.
     //
     Device_initGPIO();
-
     //
     // GPIO0 is set to EPWM1A
     //
     GPIO_setControllerCore(0, GPIO_CORE_CPU1);
     GPIO_setPadConfig(0,GPIO_PIN_TYPE_STD);
     GPIO_setPinConfig(GPIO_0_EPWM1A);
-
-
     //
     // GPIO2 is configured as output and CLA is assigned its controller
     //
     setupProfileGpio();
-
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
-
     //
     // Initialize the PIE vector table with pointers to the shell Interrupt
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
-
     //
     // Initialize resources
     //
     Board_init();
     initCLA();
-
     //
     // Disable sync(Freeze clock to PWM as well)
     //
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     //
     // Initialize EPWM1 module
     //
     initEPWM();
-
     //
     // Initialize ADC
     //
     initADC();
     initADCSOC();
-
     //
     // Enable global interrupts.
     //
     EINT;
-
     //
     // Enable sync and clock to PWM
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
     for(;;)
     {
-
     }
 }
-
 // ADC Initialization
 //
 // Function to configure and power up ADC A
@@ -210,26 +192,21 @@ void initADC(void)
     // Set ADCCLK divider to /4
     //
     ADC_setPrescaler(ADCA_BASE, ADC_CLK_DIV_4_0);
-
     //
     // Set pulse positions to late
     //
     ADC_setInterruptPulseMode(ADCA_BASE, ADC_PULSE_END_OF_ACQ_WIN);
-
     //
     // Set interrupt offset delay as 20 cycles based on the calculation
     // shown in example header
     //
     ADC_setInterruptCycleOffset(ADCA_BASE, 20);
-
     //
     // Power up the ADCs and then delay for 1 ms
     //
     ADC_enableConverter(ADCA_BASE);
-
     DEVICE_DELAY_US(1000);
 }
-
 //
 // ADC SOC Initialization
 //
@@ -250,7 +227,6 @@ void initADCSOC(void)
     ADC_setupSOC(ADCA_BASE, ADC_SOC_NUMBER0, ADC_TRIGGER_EPWM1_SOCA,
                  ADC_CH_ADCIN0, 10);
     ADC_enableContinuousMode(ADCA_BASE, ADC_INT_NUMBER1);
-
     //
     // Set SOC0 to set the interrupt 1 flag. Enable the interrupt and make
     // sure its flag is cleared.
@@ -259,7 +235,6 @@ void initADCSOC(void)
     ADC_enableInterrupt(ADCA_BASE, ADC_INT_NUMBER1);
     ADC_clearInterruptStatus(ADCA_BASE, ADC_INT_NUMBER1);
 }
-
 //
 // EPWM Initialization
 //
@@ -282,7 +257,6 @@ void initEPWM(void)
     EPWM_setCounterCompareValue(EPWM1_BASE, EPWM_COUNTER_COMPARE_A, (0.1f * EPWM1_PERIOD));
     EPWM_setTimeBaseCounterMode(EPWM1_BASE, EPWM_COUNTER_MODE_UP);
     EPWM_setTimeBaseCounter(EPWM1_BASE, 0U);
-
     //
     // Configuring action-qualifiers for EPWM1
     //
@@ -290,13 +264,11 @@ void initEPWM(void)
                          EPWM_AQ_OUTPUT_LOW, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);
     EPWM_setActionQualifierAction(EPWM1_BASE, EPWM_AQ_OUTPUT_A,
                              EPWM_AQ_OUTPUT_HIGH, EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);
-
     //
     // Enabling Shadow mode
     //
     EPWM_setCounterCompareShadowLoadMode(EPWM1_BASE, EPWM_COUNTER_COMPARE_A,
                                          EPWM_COMP_LOAD_ON_SYNC_CNTR_ZERO);
-
     //
     // Enable SOC-A and set it to assert when the counter hits
     // zero. It asserts on every event
@@ -304,14 +276,11 @@ void initEPWM(void)
     EPWM_enableADCTrigger(EPWM1_BASE, EPWM_SOC_A);
     EPWM_setADCTriggerSource(EPWM1_BASE, EPWM_SOC_A, EPWM_SOC_TBCTR_ZERO);
     EPWM_setADCTriggerEventPrescale(EPWM1_BASE, EPWM_SOC_A, 1U);
-
     //
     // EPWM 1 should run freely in emulation mode
     //
     EPWM_setEmulationMode(EPWM1_BASE, EPWM_EMULATION_FREE_RUN);
-
 }
-
 //
 // CLA Initialization
 //
@@ -324,7 +293,6 @@ void initCLA(void)
     //
     CLA_forceTasks(CLA1_BASE, CLA_TASKFLAG_8);
 }
-
 //
 // Setting up GPIO2 for profiling and set CLA as its controller
 //

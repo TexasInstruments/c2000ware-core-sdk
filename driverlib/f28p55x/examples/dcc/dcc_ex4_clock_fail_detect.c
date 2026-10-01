@@ -40,7 +40,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -78,65 +78,54 @@
 //
 #include "driverlib.h"
 #include "device.h"
-
 //
 // Defines
 //
 #define PASS 0
 #define FAIL 1
-
 //
 // Globals
 //
 uint32_t result = FAIL, isr_enter = 0;
 uint16_t pass= 0;
-
 //
 // Function Prototypes
 //
 __interrupt void DCC_ISR();
-
 void main(void)
 {
     //
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     //Initialize PIE and clear PIE registers. Disables CPU interrupts
     //
     Interrupt_initModule();
-
     //
     //Initialize the PIE vector table with pointers to the shell Interrupt
     //Service Routines (ISR)
     //
     Interrupt_initVectorTable();
-
     //
     // Clear Error & Done Flag
     //
     DCC_clearErrorFlag(DCC0_BASE);
     DCC_clearDoneFlag(DCC0_BASE);
-
     //
     // Interrupts that are used in this example are re-mapped to ISR functions
     // found within this file.
     //
     Interrupt_register(INT_DCC0, &DCC_ISR);
-
     //
     // Enable interrupts required for this example
     //
     Interrupt_enable(INT_DCC0);
-
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
     ERTM;
-
     //
     // Continuous monitor of PLL clock using XTAL as reference clock
     // CLk1 = PLL (Frequency = 150MHz)
@@ -152,35 +141,29 @@ void main(void)
                           DCC_COUNT1SRC_PLL, 150.0F,
                           DCC_COUNT0SRC_XTAL, 20.0F,
                           1.0F, 0.0F, 150.0F);
-
     //
     // Disable MCD to prevent NMI generation due to missing clock
     // MCD to be handled by the DCC
     //
     SysCtl_disableMCD();
-
     //
     // Turn off XTAL to simulate a missing clock
     //
     EALLOW;
     HWREGH(CLKCFG_BASE + SYSCTL_O_XTALCR) |= SYSCTL_XTALCR_OSCOFF;
     EDIS;
-
     //
     // Wait till the ISR is hit on clock failure
     //
     while(isr_enter != 0x1U);
-
     //
     // Configure oscillator source to INTOSC1
     //
     SysCtl_selectOscSource(SYSCTL_OSCSRC_OSC1);
-
     //
     // Delay of at least 60 OSCCLK cycles
     //
     SysCtl_delay(11U);
-
     //
     // Turn off PLL
     //
@@ -188,13 +171,11 @@ void main(void)
     HWREGH(CLKCFG_BASE + SYSCTL_O_SYSPLLCTL1) &=
         ~SYSCTL_SYSPLLCTL1_PLLEN;
     EDIS;
-
     //
     // Delay of at least 66 OSCCLK cycles required post
     // powerdown of PLL
     //
     SysCtl_delay(12U);
-
     //
     // Status of the clock failure detection
     //
@@ -206,10 +187,8 @@ void main(void)
     {
         result = PASS;
     }
-
     ESTOP0;
 }
-
 //
 // DCC ISR triggered on an error
 //
@@ -219,12 +198,10 @@ __interrupt void DCC_ISR()
     // Shows that the ISR was called
     //
     isr_enter = 1;
-
     //
     // A clock failure was detected
     //
     pass++;
-
     if (DCC_getErrorStatus(DCC0_BASE) == 1U)
     {
         //
@@ -232,7 +209,5 @@ __interrupt void DCC_ISR()
         //
         DCC_clearErrorFlag(DCC0_BASE);
     }
-
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP6);
 }
-

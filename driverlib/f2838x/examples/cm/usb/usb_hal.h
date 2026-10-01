@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -41,10 +41,8 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 #ifndef USB_HAL_H
 #define USB_HAL_H
-
 //******************************************************************************
 // If building with a C++ compiler, make all of the definitions in this header
 // have a C binding.
@@ -53,7 +51,6 @@
 extern "C"
 {
 #endif
-
 //
 // Included Files
 //
@@ -64,12 +61,10 @@ extern "C"
 #include "host/usbhost.h"
 #include "host/usbhostpriv.h"
 #include "usblibpriv.h"
-
 //
 // CM Clock given to UART Module to enable USB to UART communication.
 //
 #define UART_CLK_FREQ_USB 120000000
-
 //******************************************************************************
 //
 // USB HAL API Prototypes
@@ -78,17 +73,14 @@ extern "C"
 extern void USBDelay(uint32_t ui32Delay);
 extern void CM_USB0DeviceIntHandler(void);
 extern void CM_USB0HostIntHandler(void);
-
 //******************************************************************************
 // Mark the end of the C bindings section for C++ compilers.
 //******************************************************************************
 #ifdef __cplusplus
 }
 #endif
-
 //******************************************************************************
 // Close the Doxygen group.
 //! @}
 //******************************************************************************
-
 #endif //  USB_HAL_H

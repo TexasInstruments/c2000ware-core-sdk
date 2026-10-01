@@ -1,0 +1,36 @@
+%%{
+/////////////////////////////////////////////////////////////////////////////////////////
+let clocktree_common = system.getScript("../clocktree_common.js");
+
+const device           = clocktree_common.device;
+const WD_SECCLK_devices = clocktree_common.WD_SECCLK_devices;
+
+//
+// Determine SECCLK source from the SECCLKSRCSEL mux node.
+// Default to WROSCDIV8 if the node is not available.
+//
+var secClkSrc = "SYSCTL_SECCLKSRC_WROSCDIV8";
+
+try {
+    var SECCLKSRCSEL = system.clockTree.SECCLKSRCSEL;
+    if (SECCLKSRCSEL.inputSelect == "WROSCDIV8") {
+        secClkSrc = "SYSCTL_SECCLKSRC_WROSCDIV8";
+    } else {
+        secClkSrc = "SYSCTL_SECCLKSRC_SYSOSCDIV4";
+    }
+} catch(e) {
+    // SECCLKSRCSEL node not present in this clock tree version; use default
+}
+/////////////////////////////////////////////////////////////////////////////////////////
+%%}
+
+//*****************************************************************************
+//
+// Watchdog clock source (SECCLK) — `device`
+//
+// DEVICE_WATCHDOG_CLK_SRC reflects the SECCLKSRCSEL setting in CLKSRCCTL1.
+//   SYSCTL_SECCLKSRC_WROSCDIV8   (~5.625 MHz, hardware default on reset)
+//   SYSCTL_SECCLKSRC_SYSOSCDIV4  (8 MHz, recommended)
+//
+//*****************************************************************************
+#define DEVICE_WATCHDOG_CLK_SRC    `secClkSrc`

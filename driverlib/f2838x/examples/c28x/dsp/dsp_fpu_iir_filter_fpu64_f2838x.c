@@ -13,7 +13,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -46,8 +46,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
 //
 // Included Files
 //
@@ -57,7 +55,6 @@
 #include "fpu.h"
 #include "dsp.h"
 #include "c2000ware_libraries.h"
-
 const float64_t test_input[533] = {
      8.506175670838L, 11.478202551275L,  7.262634956366L,  2.067279320260L,
      1.643755060659L,  3.197307665970L,  1.498297487314L, -2.800755352218L,
@@ -193,7 +190,6 @@ const float64_t test_input[533] = {
      1.000000000000L,  1.000000000000L,  0.000000000000L,  1.000000000000L,
      0.829537745791L,  0.000000000000L,  0.156921156840L,  0.070037080256L,
      0.144885155960L, };
-
 const float64_t test_golden[512] = {
      0.013544649591L,  0.053789346410L,  0.124276243883L,  0.237723689586L,
      0.412260934597L,  0.659519790596L,  0.977048032943L,  1.352794975672L,
@@ -324,11 +320,9 @@ const float64_t test_golden[512] = {
     -1.580216998218L, -1.902507590710L, -2.041888602839L, -1.999586250505L,
     -1.787759227374L, -1.430469670330L, -0.964634203683L, -0.434997720370L,
 };
-
 #define TEST_SIZE       (512U)
 #define NUM_SOS         (3U)    // Number of Second Order Stages (biquad)
 #define FILTER_ORDER    (NUM_SOS<<1)
-
 float64u_t gold, errld;
 float64_t in, out;
 uint16_t pass = 0U, fail = 0U;
@@ -338,14 +332,12 @@ float64_t coeffs_A[NUM_SOS*3U];
 float64_t scaleFactors[NUM_SOS];
 float64_t delayLine[NUM_SOS*4U];
 float64_t test_output[TEST_SIZE];
-
 float64_t *denCoeffs = coeffs_A;
 float64_t *numCoeffs = coeffs_B;
 float64_t *delayBuff = delayLine;
 float64_t *inBuff = &in;
 float64_t *outBuff = &out;
 float64_t *scalePtr = scaleFactors;
-
 //
 // Main
 //
@@ -357,13 +349,10 @@ void main(void)
     Interrupt_initVectorTable();
     Board_init();
     C2000Ware_libraries_init();
-
     uint16_t i;
     float64_t *p_cb, *p_ca;
-
     p_cb = &test_input[TEST_SIZE];
     p_ca = p_cb + 3UL;
-
     for(i = 0U; i < NUM_SOS; i++)
     {
         memcpy(&coeffs_B[3U*i], p_cb, 3U*sizeof(float64_t));
@@ -373,9 +362,7 @@ void main(void)
     }
     memcpy(scaleFactors, &test_input[TEST_SIZE+(6U*NUM_SOS)],
             NUM_SOS*sizeof(float64_t));
-
     //myIIR0_handle->init(myIIR0_handle);
-
     for(i = 0U; i < TEST_SIZE; i++)
     {
         out  = 0;
@@ -384,7 +371,6 @@ void main(void)
         test_output[i] = out;
         gold.f64 = test_golden[i];
         errld.f64 = fabsf(out - gold.f64);
-
         if(errld.f64 < tolerance)
         {
             pass++;
@@ -394,10 +380,8 @@ void main(void)
             fail++;
         }
     }
-
     while(1);
 }
-
 //
 // End of File
 //

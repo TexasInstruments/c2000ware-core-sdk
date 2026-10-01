@@ -47,31 +47,20 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-
-
 #include "driverlib.h"
 #include "device.h"
 #include "clb_config.h"
 #include "clb.h"
-
-
-
 void main(void)
 {
     Device_init();
     Device_initGPIO();
-
     Interrupt_initModule();
     Interrupt_initVectorTable();
-
-
     initTILE1(CLB1_BASE);
     CLB_enableCLB(CLB1_BASE);
-
     while(1)
     {
-
         asm(" NOP");
     }
 }
-

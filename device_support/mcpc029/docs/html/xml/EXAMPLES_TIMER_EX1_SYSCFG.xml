@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_TIMER_EX1_SYSCFG" kind="page">
+    <compoundname>EXAMPLES_TIMER_EX1_SYSCFG</compoundname>
+    <title>Timer Sysconfig Counter Example</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_TIMER_EX1_SYSCFG_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_timer_ex1_syscfg"/> This file demonstrates the configuration and usage of CPU Timer0, Timer1, and Timer2 on a C2000 device using SysConfig. The example increments a counter each time a timer asserts an interrupt.</para>
+<sect1 id="EXAMPLES_TIMER_EX1_SYSCFG_1autotoc_md474">
+<title>Overview</title>
+<para>The example initializes the device, configures the CPU timers, and sets up interrupt service routines (ISRs) to handle timer interrupts. The counters <computeroutput>cpuTimer0IntCount</computeroutput>, <computeroutput>cpuTimer1IntCount</computeroutput>, and <computeroutput>cpuTimer2IntCount</computeroutput> are incremented in their respective ISRs.</para>
+<sect2 id="EXAMPLES_TIMER_EX1_SYSCFG_1autotoc_md475">
+<title>Key Features:</title>
+<para><itemizedlist>
+<listitem><para>Configures and handles CPU Timer0, Timer1, and Timer2.</para>
+</listitem><listitem><para>Demonstrates interrupt handling for CPU timers.</para>
+</listitem><listitem><para>Provides support for migration across C2000 device families.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para><itemizedlist>
+<listitem><para>If building this project for a specific board (e.g., launchpad or controlCARD), specify the board in the <computeroutput>.syscfg</computeroutput> file.</para>
+</listitem><listitem><para>The example supports device migration by selecting another device in the SysConfig tool.</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_TIMER_EX1_SYSCFG_1autotoc_md476">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para><bold>None</bold></para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_TIMER_EX1_SYSCFG_1autotoc_md477">
+<title>Watch Variables</title>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para>Variable Name   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>cpuTimer0IntCount</computeroutput>   </para>
+</entry><entry thead="no"><para>Counter for Timer0 interrupts.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>cpuTimer1IntCount</computeroutput>   </para>
+</entry><entry thead="no"><para>Counter for Timer1 interrupts.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>cpuTimer2IntCount</computeroutput>   </para>
+</entry><entry thead="no"><para>Counter for Timer2 interrupts.   </para>
+</entry></row>
+</table>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_TIMER_EX1_SYSCFG_1autotoc_md478">
+<title>File Structure</title>
+<sect2 id="EXAMPLES_TIMER_EX1_SYSCFG_1autotoc_md479">
+<title>Included Files</title>
+<para><table rows="5" cols="2"><row>
+<entry thead="yes"><para>File Name   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>driverlib.h</computeroutput>   </para>
+</entry><entry thead="no"><para>Driver library for device peripherals.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>device.h</computeroutput>   </para>
+</entry><entry thead="no"><para>Device-specific definitions.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>board.h</computeroutput>   </para>
+</entry><entry thead="no"><para>Board initialization functions.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>c2000ware_libraries.h</computeroutput>   </para>
+</entry><entry thead="no"><para>C2000Ware library initialization.   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_TIMER_EX1_SYSCFG_1autotoc_md480">
+<title>Global Variables</title>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para>Variable Name   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>cpuTimer0IntCount</computeroutput>   </para>
+</entry><entry thead="no"><para>Counter for Timer0 interrupts.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>cpuTimer1IntCount</computeroutput>   </para>
+</entry><entry thead="no"><para>Counter for Timer1 interrupts.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>cpuTimer2IntCount</computeroutput>   </para>
+</entry><entry thead="no"><para>Counter for Timer2 interrupts.   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_TIMER_EX1_SYSCFG_1autotoc_md481">
+<title>Interrupt Service Routines (ISRs)</title>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para>ISR Name   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>cpuTimer0ISR</computeroutput>   </para>
+</entry><entry thead="no"><para>Handles Timer0 interrupts and increments <computeroutput>cpuTimer0IntCount</computeroutput>.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>cpuTimer1ISR</computeroutput>   </para>
+</entry><entry thead="no"><para>Handles Timer1 interrupts and increments <computeroutput>cpuTimer1IntCount</computeroutput>.    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>cpuTimer2ISR</computeroutput>   </para>
+</entry><entry thead="no"><para>Handles Timer2 interrupts and increments <computeroutput>cpuTimer2IntCount</computeroutput>.   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="EXAMPLES_TIMER_EX1_SYSCFG_1autotoc_md482">
+<title>Main Function Flowchart</title>
+<para><programlisting filename=".mermaid"><codeline><highlight class="normal">flowchart<sp/>TD</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>A[Start]<sp/>--&gt;<sp/>B[Initialize<sp/>device,<sp/>peripherals,<sp/>and<sp/>interrupt<sp/>modules]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>B<sp/>--&gt;<sp/>C[Configure<sp/>PIE<sp/>vector<sp/>table]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>C<sp/>--&gt;<sp/>D[Initialize<sp/>board-specific<sp/>settings<sp/>and<sp/>C2000Ware<sp/>libraries]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>D<sp/>--&gt;<sp/>E[Enable<sp/>global<sp/>interrupts]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>E<sp/>--&gt;<sp/>F[Reset<sp/>interrupt<sp/>counters]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>F<sp/>--&gt;<sp/>G[Enter<sp/>idle<sp/>loop]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>G<sp/>--&gt;<sp/>H[End]</highlight></codeline>
+</programlisting></para>
+</sect2>
+</sect1>
+<sect1 id="EXAMPLES_TIMER_EX1_SYSCFG_1autotoc_md483">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Run the program and observe the interrupt counters (cpuTimer0IntCount, cpuTimer1IntCount, cpuTimer2IntCount) incrementing in the debugger</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para><itemizedlist>
+<listitem><para>When running in flash configuration, it is recommended to reset and restart after loading the example to remove any stale flags or states.</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+<sect3 id="EXAMPLES_TIMER_EX1_SYSCFG_1autotoc_md484">
+<title>See Also</title>
+<para><ref refid="DRIVERS_TIMER_PAGE" kindref="compound">CPU Timer</ref> </para>
+</sect3>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/timer_ex1_syscfg.md"/>
+  </compounddef>
+</doxygen>

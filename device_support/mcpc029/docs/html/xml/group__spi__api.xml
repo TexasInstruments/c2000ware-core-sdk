@@ -1,0 +1,3024 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="group__spi__api" kind="group">
+    <compoundname>spi_api</compoundname>
+    <title>SPI</title>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="group__spi__api_1ga799f6216550a736a4cf0fb4ed75cbe78" prot="public" static="no" strong="no">
+        <type></type>
+        <name>SPI_TransferProtocol</name>
+        <enumvalue id="group__spi__api_1gga799f6216550a736a4cf0fb4ed75cbe78abd3bebdf8b1e5fbe5d66b112cd8f9441" prot="public">
+          <name>SPI_PROT_POL0PHA0</name>
+          <initializer>= 0x0000U</initializer>
+          <briefdescription>
+<para>Mode 0. Polarity 0, phase 0. Rising edge without delay. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga799f6216550a736a4cf0fb4ed75cbe78a0535adeeeb6e82551b81f79fc66b7c77" prot="public">
+          <name>SPI_PROT_POL0PHA1</name>
+          <initializer>= 0x0002U</initializer>
+          <briefdescription>
+<para>Mode 1. Polarity 0, phase 1. Rising edge with delay. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga799f6216550a736a4cf0fb4ed75cbe78af2baaf3792318e8a983d2a58f83def74" prot="public">
+          <name>SPI_PROT_POL1PHA0</name>
+          <initializer>= 0x0001U</initializer>
+          <briefdescription>
+<para>Mode 2. Polarity 1, phase 0. Falling edge without delay. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga799f6216550a736a4cf0fb4ed75cbe78a130c98b2d6f1cd791f242bf9f4868338" prot="public">
+          <name>SPI_PROT_POL1PHA1</name>
+          <initializer>= 0x0003U</initializer>
+          <briefdescription>
+<para>Mode 3. Polarity 1, phase 1. Falling edge with delay. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Values that can be passed to <ref refid="group__spi__api_1ga985446cc44839750f1b8a073a8e949c4" kindref="member">SPI_setConfig()</ref> as the <emphasis>protocol</emphasis> parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="284" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="285" bodyend="294"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__spi__api_1ga60a7e3d74577b38aa79ea6983362f942" prot="public" static="no" strong="no">
+        <type></type>
+        <name>SPI_Mode</name>
+        <enumvalue id="group__spi__api_1gga60a7e3d74577b38aa79ea6983362f942abaf16f0880e7ba152b403257e056dd2f" prot="public">
+          <name>SPI_MODE_PERIPHERAL</name>
+          <initializer>= 0x0002U</initializer>
+          <briefdescription>
+<para>SPI peripheral. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga60a7e3d74577b38aa79ea6983362f942a38fdef4f22f6e917842f3532a1899526" prot="public">
+          <name>SPI_MODE_CONTROLLER</name>
+          <initializer>= 0x0006U</initializer>
+          <briefdescription>
+<para>SPI controller. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga60a7e3d74577b38aa79ea6983362f942ae13eb76ff10d9e5f14674e58f46c2bb5" prot="public">
+          <name>SPI_MODE_PERIPHERAL_OD</name>
+          <initializer>= 0x0000U</initializer>
+          <briefdescription>
+<para>SPI peripheral w/ output disabled. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga60a7e3d74577b38aa79ea6983362f942aeacdf8d3ce803c08f753ce341ec8d1e5" prot="public">
+          <name>SPI_MODE_CONTROLLER_OD</name>
+          <initializer>= 0x0004U</initializer>
+          <briefdescription>
+<para>SPI controller w/ output disabled. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Values that can be passed to <ref refid="group__spi__api_1ga985446cc44839750f1b8a073a8e949c4" kindref="member">SPI_setConfig()</ref> as the <emphasis>mode</emphasis> parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="301" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="302" bodyend="307"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__spi__api_1ga36e17a38150b8f065d2770c68497ba77" prot="public" static="no" strong="no">
+        <type></type>
+        <name>SPI_TxFIFOLevel</name>
+        <enumvalue id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a2dab05215eb8a86ff8a0690e980619c6" prot="public">
+          <name>SPI_FIFO_TXEMPTY</name>
+          <initializer>= 0x0000U</initializer>
+          <briefdescription>
+<para>Transmit FIFO empty. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a39eff8cb76f31452f019a6e0f8954840" prot="public">
+          <name>SPI_FIFO_TX0</name>
+          <initializer>= 0x0000U</initializer>
+          <briefdescription>
+<para>Transmit FIFO empty. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77aa6e6bfa3c55c435a76bbda054871608f" prot="public">
+          <name>SPI_FIFO_TX1</name>
+          <initializer>= 0x0001U</initializer>
+          <briefdescription>
+<para>Transmit FIFO 1/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a0d81c6441105f7c2255449a827a99836" prot="public">
+          <name>SPI_FIFO_TX2</name>
+          <initializer>= 0x0002U</initializer>
+          <briefdescription>
+<para>Transmit FIFO 2/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77ab25fa295f17ae9ba13f833d4abd349a3" prot="public">
+          <name>SPI_FIFO_TX3</name>
+          <initializer>= 0x0003U</initializer>
+          <briefdescription>
+<para>Transmit FIFO 3/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a887c490b26a85348d9a6ec886c755a60" prot="public">
+          <name>SPI_FIFO_TX4</name>
+          <initializer>= 0x0004U</initializer>
+          <briefdescription>
+<para>Transmit FIFO 4/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77aac7644afc9aa28b7c444fd05b66f6d3d" prot="public">
+          <name>SPI_FIFO_TX5</name>
+          <initializer>= 0x0005U</initializer>
+          <briefdescription>
+<para>Transmit FIFO 5/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a47949bb99031320a72b2c39d906b6303" prot="public">
+          <name>SPI_FIFO_TX6</name>
+          <initializer>= 0x0006U</initializer>
+          <briefdescription>
+<para>Transmit FIFO 6/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77ac1f603a830d6a5b25f1bd3950b7dab5b" prot="public">
+          <name>SPI_FIFO_TX7</name>
+          <initializer>= 0x0007U</initializer>
+          <briefdescription>
+<para>Transmit FIFO 7/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a885016b19ddd80c6256036f20a28fe30" prot="public">
+          <name>SPI_FIFO_TX8</name>
+          <initializer>= 0x0008U</initializer>
+          <briefdescription>
+<para>Transmit FIFO 8/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a66e59ac869dafb13625bbe21ed4131ec" prot="public">
+          <name>SPI_FIFO_TX9</name>
+          <initializer>= 0x0009U</initializer>
+          <briefdescription>
+<para>Transmit FIFO 9/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a77ce9519f70bb71074e274a1b10ef4e9" prot="public">
+          <name>SPI_FIFO_TX10</name>
+          <initializer>= 0x000AU</initializer>
+          <briefdescription>
+<para>Transmit FIFO 10/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a60da0dbb50f66bab0d54de7aa13b26cc" prot="public">
+          <name>SPI_FIFO_TX11</name>
+          <initializer>= 0x000BU</initializer>
+          <briefdescription>
+<para>Transmit FIFO 11/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77abfc98f7c9c9c98324ace5ec3eebefd21" prot="public">
+          <name>SPI_FIFO_TX12</name>
+          <initializer>= 0x000CU</initializer>
+          <briefdescription>
+<para>Transmit FIFO 12/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77aa5e90654d6728d7b1c1ac18ea8830bfb" prot="public">
+          <name>SPI_FIFO_TX13</name>
+          <initializer>= 0x000DU</initializer>
+          <briefdescription>
+<para>Transmit FIFO 13/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a7bf50fb7e4a03d8883bf8eaf2a4e6239" prot="public">
+          <name>SPI_FIFO_TX14</name>
+          <initializer>= 0x000EU</initializer>
+          <briefdescription>
+<para>Transmit FIFO 14/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a5d56150c162e2bf4d74b30ef3bd38501" prot="public">
+          <name>SPI_FIFO_TX15</name>
+          <initializer>= 0x000FU</initializer>
+          <briefdescription>
+<para>Transmit FIFO 15/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a3eb338b69b7ee05099ad18fbcfba14e6" prot="public">
+          <name>SPI_FIFO_TX16</name>
+          <initializer>= 0x0010U</initializer>
+          <briefdescription>
+<para>Transmit FIFO full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77aa6dfa21657f0d968a4a17928cba606f3" prot="public">
+          <name>SPI_FIFO_TXFULL</name>
+          <initializer>= 0x0010U</initializer>
+          <briefdescription>
+<para>Transmit FIFO full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__spi__api_1ga4e1fde09eb8da4a77d161d7ce1e62ba4" kindref="member">SPI_setFIFOInterruptLevel()</ref> as the <emphasis>txLevel</emphasis> parameter, returned by <ref refid="group__spi__api_1gaaeed550c837f349fd66266224e26f501" kindref="member">SPI_getFIFOInterruptLevel()</ref> in the <emphasis>txLevel</emphasis> parameter, and returned by <ref refid="group__spi__api_1gafa7ea494f00eb7dda320503e05495ffb" kindref="member">SPI_getTxFIFOStatus()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="316" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="317" bodyend="337"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__spi__api_1ga335ad38fd0e0483abed9adc7dcf7bf8e" prot="public" static="no" strong="no">
+        <type></type>
+        <name>SPI_RxFIFOLevel</name>
+        <enumvalue id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea1550ff47b4be9b3ba3ac50a649a740dd" prot="public">
+          <name>SPI_FIFO_RXEMPTY</name>
+          <initializer>= 0x0000U</initializer>
+          <briefdescription>
+<para>Receive FIFO empty. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea9131dc3a39f8663fa25ab796464c10b1" prot="public">
+          <name>SPI_FIFO_RX0</name>
+          <initializer>= 0x0000U</initializer>
+          <briefdescription>
+<para>Receive FIFO empty. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea664d9ab330a72fc7d7d971aa0c8bb466" prot="public">
+          <name>SPI_FIFO_RX1</name>
+          <initializer>= 0x0001U</initializer>
+          <briefdescription>
+<para>Receive FIFO 1/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea31d78a14aed8e08c981fd2b9cb47bc2d" prot="public">
+          <name>SPI_FIFO_RX2</name>
+          <initializer>= 0x0002U</initializer>
+          <briefdescription>
+<para>Receive FIFO 2/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea500ea32ba7c00d1c8ed389862e126dc5" prot="public">
+          <name>SPI_FIFO_RX3</name>
+          <initializer>= 0x0003U</initializer>
+          <briefdescription>
+<para>Receive FIFO 3/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea92d7a39ffe3bd4b793cf85f8b52671b1" prot="public">
+          <name>SPI_FIFO_RX4</name>
+          <initializer>= 0x0004U</initializer>
+          <briefdescription>
+<para>Receive FIFO 4/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8eac1d5bef5da27dcdaf507ce2fd14abe10" prot="public">
+          <name>SPI_FIFO_RX5</name>
+          <initializer>= 0x0005U</initializer>
+          <briefdescription>
+<para>Receive FIFO 5/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8eac7958e746cfabe03ebe3791bb716ad5c" prot="public">
+          <name>SPI_FIFO_RX6</name>
+          <initializer>= 0x0006U</initializer>
+          <briefdescription>
+<para>Receive FIFO 6/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8eafe723a9d81e94912c642428ddcf5c3a9" prot="public">
+          <name>SPI_FIFO_RX7</name>
+          <initializer>= 0x0007U</initializer>
+          <briefdescription>
+<para>Receive FIFO 7/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea999da6c162406684dbbb69fc76717dea" prot="public">
+          <name>SPI_FIFO_RX8</name>
+          <initializer>= 0x0008U</initializer>
+          <briefdescription>
+<para>Receive FIFO 8/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea507fca8f36563017c5b900d0df4f94f9" prot="public">
+          <name>SPI_FIFO_RX9</name>
+          <initializer>= 0x0009U</initializer>
+          <briefdescription>
+<para>Receive FIFO 9/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea7e0dce0405c8231c0c54ea609a56b95f" prot="public">
+          <name>SPI_FIFO_RX10</name>
+          <initializer>= 0x000AU</initializer>
+          <briefdescription>
+<para>Receive FIFO 10/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea7b73222b4330255f5243cd9696ccb03d" prot="public">
+          <name>SPI_FIFO_RX11</name>
+          <initializer>= 0x000BU</initializer>
+          <briefdescription>
+<para>Receive FIFO 11/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8eaeebb97895b47923511989168d6661893" prot="public">
+          <name>SPI_FIFO_RX12</name>
+          <initializer>= 0x000CU</initializer>
+          <briefdescription>
+<para>Receive FIFO 12/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea80b794a376d71f94bd53b10572afc71e" prot="public">
+          <name>SPI_FIFO_RX13</name>
+          <initializer>= 0x000DU</initializer>
+          <briefdescription>
+<para>Receive FIFO 13/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea4b3a34d3e42fa3aa9350b096153e1e95" prot="public">
+          <name>SPI_FIFO_RX14</name>
+          <initializer>= 0x000EU</initializer>
+          <briefdescription>
+<para>Receive FIFO 14/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea9a5bf425c75dcd388a8a7a32570b333d" prot="public">
+          <name>SPI_FIFO_RX15</name>
+          <initializer>= 0x000FU</initializer>
+          <briefdescription>
+<para>Receive FIFO 15/16 full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea360a29a651be258712a098be23d2d187" prot="public">
+          <name>SPI_FIFO_RX16</name>
+          <initializer>= 0x0010U</initializer>
+          <briefdescription>
+<para>Receive FIFO full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8eae000b191ee66f729985b045540d83aff" prot="public">
+          <name>SPI_FIFO_RXFULL</name>
+          <initializer>= 0x0010U</initializer>
+          <briefdescription>
+<para>Receive FIFO full. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8eacb4586d4412b16461ba0b867c7f7b56a" prot="public">
+          <name>SPI_FIFO_RXDEFAULT</name>
+          <initializer>= 0x001FU</initializer>
+          <briefdescription>
+<para>To prevent interrupt at reset. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__spi__api_1ga4e1fde09eb8da4a77d161d7ce1e62ba4" kindref="member">SPI_setFIFOInterruptLevel()</ref> as the <emphasis>rxLevel</emphasis> parameter, returned by <ref refid="group__spi__api_1gaaeed550c837f349fd66266224e26f501" kindref="member">SPI_getFIFOInterruptLevel()</ref> in the <emphasis>rxLevel</emphasis> parameter, and returned by <ref refid="group__spi__api_1gaf360ed7e2d70ba0061aed40ff2b03da0" kindref="member">SPI_getRxFIFOStatus()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="346" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="347" bodyend="368"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__spi__api_1gae30dfc51d749eae0dc63914e092f134e" prot="public" static="no" strong="no">
+        <type></type>
+        <name>SPI_EmulationMode</name>
+        <enumvalue id="group__spi__api_1ggae30dfc51d749eae0dc63914e092f134eaaa3a1dbbc1505d8703ee763355b89955" prot="public">
+          <name>SPI_EMULATION_STOP_MIDWAY</name>
+          <initializer>= 0x0000U</initializer>
+          <briefdescription>
+<para>Transmission stops after midway in the bit stream. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1ggae30dfc51d749eae0dc63914e092f134ea6b638fc86f1bc40788a73c87822e0f9f" prot="public">
+          <name>SPI_EMULATION_FREE_RUN</name>
+          <initializer>= 0x0010U</initializer>
+          <briefdescription>
+<para>Continue SPI operation regardless. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1ggae30dfc51d749eae0dc63914e092f134ea2ef6c15c8d6efc9bd85165b0a636d541" prot="public">
+          <name>SPI_EMULATION_STOP_AFTER_TRANSMIT</name>
+          <initializer>= 0x0020U</initializer>
+          <briefdescription>
+<para>Transmission will stop after a started transmission completes. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__spi__api_1gaddbfb995f8dfc9ded4074b5884fcb328" kindref="member">SPI_setEmulationMode()</ref> as the <emphasis>mode</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="376" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="377" bodyend="384"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__spi__api_1ga29a3646b19e9eec25ffcfdcab74f45ee" prot="public" static="no" strong="no">
+        <type></type>
+        <name>SPI_PTEPolarity</name>
+        <enumvalue id="group__spi__api_1gga29a3646b19e9eec25ffcfdcab74f45eeaf0432f6c50ae25e7267f0061901706db" prot="public">
+          <name>SPI_PTE_ACTIVE_LOW</name>
+          <initializer>= 0x0000U</initializer>
+          <briefdescription>
+<para>SPIPTE is active low (normal) </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1gga29a3646b19e9eec25ffcfdcab74f45eeae33a420496bd1d5af017dc5c1cfe8a25" prot="public">
+          <name>SPI_PTE_ACTIVE_HIGH</name>
+          <initializer>= SPI_PRI_PTEINV</initializer>
+          <briefdescription>
+<para>SPIPTE is active high (inverted) </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__spi__api_1ga946a1a915173562b36dd5047d1ec43e2" kindref="member">SPI_setPTESignalPolarity()</ref> as the <emphasis>polarity</emphasis> parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="392" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="393" bodyend="396"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__spi__api_1gac3e39d2245fa82e5aee50c8ce7af5f62" prot="public" static="no" strong="no">
+        <type></type>
+        <name>SPI_endianess</name>
+        <enumvalue id="group__spi__api_1ggac3e39d2245fa82e5aee50c8ce7af5f62afc536e1d444d1bebf1e87ea3e8095542" prot="public">
+          <name>SPI_DATA_LITTLE_ENDIAN</name>
+          <initializer>= 0U</initializer>
+          <briefdescription>
+<para>LITTLE ENDIAN. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__spi__api_1ggac3e39d2245fa82e5aee50c8ce7af5f62a56154e2e0519083d58585d88e5a4e1ba" prot="public">
+          <name>SPI_DATA_BIG_ENDIAN</name>
+          <initializer>= 1U</initializer>
+          <briefdescription>
+<para>BIG ENDIAN. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Values that can be passed to <ref refid="group__spi__api_1ga33536bd1a5789526594a99837703d5c0" kindref="member">SPI_receive16Bits()</ref>, <ref refid="group__spi__api_1gada6fa624c167254f8aa108d0da2974ad" kindref="member">SPI_receive24Bits()</ref>, <ref refid="group__spi__api_1ga3f59b257fbbe444f9c276ac08e88ea56" kindref="member">SPI_receive32Bits()</ref> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="404" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="405" bodyend="408"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__spi__api_1gabaf56e9f70511b62bfbdc80f7a953597" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_enableModule</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_enableModule</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables the serial peripheral interface.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables operation of the serial peripheral interface. The serial peripheral interface must be configured before it is enabled.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="451" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="451" bodyend="459"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1gaceb3f98ed4417a5a25f58e84ec2d21bb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_disableModule</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_disableModule</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables the serial peripheral interface.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables operation of the serial peripheral interface. Call this function before doing any configuration.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="474" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="474" bodyend="482"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1gac02e87766225bb036e3e74808f103007" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_setcharLength</definition>
+        <argsstring>(uint32_t base, uint16_t charLength)</argsstring>
+        <name>SPI_setcharLength</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>charLength</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the character length of SPI transaction</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>charLength</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the character length of SPI transaction</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the character length of SPI transaction. SPI character length can be from anywhere between 1-bit word to 16 bit word of character length</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="499" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="499" bodyend="518"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1gadc0d662cf9f039959baf9d24827c1356" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_enableFIFO</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_enableFIFO</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables the transmit and receive FIFOs.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This functions enables the transmit and receive FIFOs in the SPI.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="533" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="533" bodyend="545"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1gaa831b8ef7f9767282871d292975a36a7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_disableFIFO</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_disableFIFO</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables the transmit and receive FIFOs.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This functions disables the transmit and receive FIFOs in the SPI.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="559" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="559" bodyend="571"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga08e77fb24cae5c8a7f28beae9a9b664a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_resetTxFIFO</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_resetTxFIFO</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Resets the transmit FIFO.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function resets the transmit FIFO, setting the FIFO pointer back to zero.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="586" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="586" bodyend="598"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga372711acfdc1ba004bb146bee2ea9063" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_resetRxFIFO</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_resetRxFIFO</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Resets the receive FIFO.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function resets the receive FIFO, setting the FIFO pointer back to zero.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="613" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="613" bodyend="625"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga4e1fde09eb8da4a77d161d7ce1e62ba4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_setFIFOInterruptLevel</definition>
+        <argsstring>(uint32_t base, SPI_TxFIFOLevel txLevel, SPI_RxFIFOLevel rxLevel)</argsstring>
+        <name>SPI_setFIFOInterruptLevel</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__spi__api_1ga36e17a38150b8f065d2770c68497ba77" kindref="member">SPI_TxFIFOLevel</ref></type>
+          <declname>txLevel</declname>
+        </param>
+        <param>
+          <type><ref refid="group__spi__api_1ga335ad38fd0e0483abed9adc7dcf7bf8e" kindref="member">SPI_RxFIFOLevel</ref></type>
+          <declname>rxLevel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the FIFO level at which interrupts are generated.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txLevel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the transmit FIFO interrupt level, specified as <bold>SPI_FIFO_TX0</bold>, <bold>SPI_FIFO_TX1</bold>, <bold>SPI_FIFO_TX2</bold>, . . . or <bold>SPI_FIFO_TX16</bold>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rxLevel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the receive FIFO interrupt level, specified as <bold>SPI_FIFO_RX0</bold>, <bold>SPI_FIFO_RX1</bold>, <bold>SPI_FIFO_RX2</bold>, . . . or <bold>SPI_FIFO_RX16</bold>.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the FIFO level at which transmit and receive interrupts are generated.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="646" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="646" bodyend="661"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1gaaeed550c837f349fd66266224e26f501" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_getFIFOInterruptLevel</definition>
+        <argsstring>(uint32_t base, SPI_TxFIFOLevel *txLevel, SPI_RxFIFOLevel *rxLevel)</argsstring>
+        <name>SPI_getFIFOInterruptLevel</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__spi__api_1ga36e17a38150b8f065d2770c68497ba77" kindref="member">SPI_TxFIFOLevel</ref> *</type>
+          <declname>txLevel</declname>
+        </param>
+        <param>
+          <type><ref refid="group__spi__api_1ga335ad38fd0e0483abed9adc7dcf7bf8e" kindref="member">SPI_RxFIFOLevel</ref> *</type>
+          <declname>rxLevel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the FIFO level at which interrupts are generated.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txLevel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a pointer to storage for the transmit FIFO level, returned as one of <bold>SPI_FIFO_TX0</bold>, <bold>SPI_FIFO_TX1</bold>, <bold>SPI_FIFO_TX2</bold>, . . . or <bold>SPI_FIFO_TX16</bold>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rxLevel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a pointer to storage for the receive FIFO level, returned as one of <bold>SPI_FIFO_RX0</bold>, <bold>SPI_FIFO_RX1</bold>, <bold>SPI_FIFO_RX2</bold>, . . . or <bold>SPI_FIFO_RX16</bold>.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function gets the FIFO level at which transmit and receive interrupts are generated.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="682" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="682" bodyend="697"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1gafa7ea494f00eb7dda320503e05495ffb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="group__spi__api_1ga36e17a38150b8f065d2770c68497ba77" kindref="member">SPI_TxFIFOLevel</ref></type>
+        <definition>static SPI_TxFIFOLevel SPI_getTxFIFOStatus</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_getTxFIFOStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the transmit FIFO status</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function gets the current number of words in the transmit FIFO.</para>
+<para><simplesect kind="return"><para>Returns the current number of words in the transmit FIFO specified as one of the following: <bold>SPI_FIFO_TX0</bold>, <bold>SPI_FIFO_TX1</bold>, <bold>SPI_FIFO_TX2</bold>, <bold>SPI_FIFO_TX3</bold>, ..., or <bold>SPI_FIFO_TX16</bold> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="714" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="714" bodyend="726"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1gaf360ed7e2d70ba0061aed40ff2b03da0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="group__spi__api_1ga335ad38fd0e0483abed9adc7dcf7bf8e" kindref="member">SPI_RxFIFOLevel</ref></type>
+        <definition>static SPI_RxFIFOLevel SPI_getRxFIFOStatus</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_getRxFIFOStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the receive FIFO status</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function gets the current number of words in the receive FIFO.</para>
+<para><simplesect kind="return"><para>Returns the current number of words in the receive FIFO specified as one of the following: <bold>SPI_FIFO_RX0</bold>, <bold>SPI_FIFO_RX1</bold>, <bold>SPI_FIFO_RX2</bold>, <bold>SPI_FIFO_RX3</bold>, ..., or <bold>SPI_FIFO_RX16</bold> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="743" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="743" bodyend="755"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga2e6fc28f6e555930de491f2b7fc5bf7d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool SPI_isBusy</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_isBusy</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Determines whether the SPI transmitter is busy or not.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function allows the caller to determine whether all transmitted bytes have cleared the transmitter hardware. If <bold>false</bold> is returned, then the transmit FIFO is empty and all bits of the last transmitted word have left the hardware shift register. This function is only valid when operating in FIFO mode.</para>
+<para><simplesect kind="return"><para>Returns <bold>true</bold> if the SPI is transmitting or <bold>false</bold> if all transmissions are complete. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="774" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="774" bodyend="785"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga05ba29699e4fa08adcbcf1ff49212316" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_writeDataNonBlocking</definition>
+        <argsstring>(uint32_t base, uint16_t data)</argsstring>
+        <name>SPI_writeDataNonBlocking</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Puts a data element into the SPI transmit buffer.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the left-justified data to be transmitted over SPI.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function places the supplied data into the transmit buffer of the specified SPI module.</para>
+<para><simplesect kind="note"><para>The data being sent must be left-justified in <emphasis>data</emphasis>. The lower 16 - N bits will be discarded where N is the data width selected in <ref refid="group__spi__api_1ga985446cc44839750f1b8a073a8e949c4" kindref="member">SPI_setConfig()</ref>. For example, if configured for a 6-bit data width, the lower 10 bits of data will be discarded.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="806" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="806" bodyend="817"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga7a57915903b18dba052696278ec2c0e1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>static uint16_t SPI_readDataNonBlocking</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_readDataNonBlocking</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets a data element from the SPI receive buffer.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function gets received data from the receive buffer of the specified SPI module and returns it.</para>
+<para><simplesect kind="note"><para>Only the lower N bits of the value written to <emphasis>data</emphasis> contain valid data, where N is the data width as configured by <ref refid="group__spi__api_1ga985446cc44839750f1b8a073a8e949c4" kindref="member">SPI_setConfig()</ref>. For example, if the interface is configured for 8-bit data width, only the lower 8 bits of the value written to <emphasis>data</emphasis> contain valid data.</para>
+</simplesect>
+<simplesect kind="return"><para>Returns the word of data read from the SPI receive buffer. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="837" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="837" bodyend="848"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga34c43777654aa2fcaee92dd4716b435d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_writeDataBlockingFIFO</definition>
+        <argsstring>(uint32_t base, uint16_t data)</argsstring>
+        <name>SPI_writeDataBlockingFIFO</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Waits for space in the FIFO and then puts data into the transmit buffer.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the left-justified data to be transmitted over SPI.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function places the supplied data into the transmit buffer of the specified SPI module once space is available in the transmit FIFO. This function should only be used when the FIFO is enabled.</para>
+<para><simplesect kind="note"><para>The data being sent must be left-justified in <emphasis>data</emphasis>. The lower 16 - N bits will be discarded where N is the data width selected in <ref refid="group__spi__api_1ga985446cc44839750f1b8a073a8e949c4" kindref="member">SPI_setConfig()</ref>. For example, if configured for a 6-bit data width, the lower 10 bits of data will be discarded.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="870" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="870" bodyend="888"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga418133cac5bc8ad7a859ea520a23c626" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>static uint16_t SPI_readDataBlockingFIFO</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_readDataBlockingFIFO</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Waits for data in the FIFO and then reads it from the receive buffer.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function waits until there is data in the receive FIFO and then reads received data from the receive buffer. This function should only be used when FIFO mode is enabled.</para>
+<para><simplesect kind="note"><para>Only the lower N bits of the value written to <emphasis>data</emphasis> contain valid data, where N is the data width as configured by <ref refid="group__spi__api_1ga985446cc44839750f1b8a073a8e949c4" kindref="member">SPI_setConfig()</ref>. For example, if the interface is configured for 8-bit data width, only the lower 8 bits of the value written to <emphasis>data</emphasis> contain valid data.</para>
+</simplesect>
+<simplesect kind="return"><para>Returns the word of data read from the SPI receive buffer. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="909" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="909" bodyend="927"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga9293a42b5f06e76c482b083dbffc5591" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_writeDataBlockingNonFIFO</definition>
+        <argsstring>(uint32_t base, uint16_t data)</argsstring>
+        <name>SPI_writeDataBlockingNonFIFO</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Waits for the transmit buffer to empty and then writes data to it.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the left-justified data to be transmitted over SPI.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function places the supplied data into the transmit buffer of the specified SPI module once it is empty. This function should not be used when FIFO mode is enabled.</para>
+<para><simplesect kind="note"><para>The data being sent must be left-justified in <emphasis>data</emphasis>. The lower 16 - N bits will be discarded where N is the data width selected in <ref refid="group__spi__api_1ga985446cc44839750f1b8a073a8e949c4" kindref="member">SPI_setConfig()</ref>. For example, if configured for a 6-bit data width, the lower 10 bits of data will be discarded.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="949" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="949" bodyend="967"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1gae18e22991663c27c9ce75444b8da4938" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>static uint16_t SPI_readDataBlockingNonFIFO</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_readDataBlockingNonFIFO</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Waits for data to be received and then reads it from the buffer.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function waits for data to be received and then reads it from the receive buffer of the specified SPI module. This function should not be used when FIFO mode is enabled.</para>
+<para><simplesect kind="note"><para>Only the lower N bits of the value written to <emphasis>data</emphasis> contain valid data, where N is the data width as configured by <ref refid="group__spi__api_1ga985446cc44839750f1b8a073a8e949c4" kindref="member">SPI_setConfig()</ref>. For example, if the interface is configured for 8-bit data width, only the lower 8 bits of the value written to <emphasis>data</emphasis> contain valid data.</para>
+</simplesect>
+<simplesect kind="return"><para>Returns the word of data read from the SPI receive buffer. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="988" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="988" bodyend="1006"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga6931b9c117738c731c7319c882bdbd54" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_enableTriWire</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_enableTriWire</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables SPI 3-wire mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables 3-wire mode. When in controller mode, this allows SPIPICO to become SPICOCI and SPIPOCI to become free for non-SPI use. When in peripheral mode, SPIPOCI because the SPIPIPO pin and SPIPICO is free for non-SPI use.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1023" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="1023" bodyend="1034"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga0d4faf9ca5cffda1a569eb7d14b6511b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_disableTriWire</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_disableTriWire</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables SPI 3-wire mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables 3-wire mode. SPI will operate in normal 4-wire mode.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1048" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="1048" bodyend="1059"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga109f54faebee50016173c009e4a85a48" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_enableLoopback</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_enableLoopback</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables SPI loopback mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables loopback mode. This mode is only valid during controller mode and is helpful during device testing as it internally connects PICO and POCI.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1075" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="1075" bodyend="1086"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga5989fc1b9e4182e8b07fcb1f5e6ea566" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_disableLoopback</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_disableLoopback</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables SPI loopback mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables loopback mode. Loopback mode is disabled by default after reset.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1101" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="1101" bodyend="1112"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga946a1a915173562b36dd5047d1ec43e2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_setPTESignalPolarity</definition>
+        <argsstring>(uint32_t base, SPI_PTEPolarity polarity)</argsstring>
+        <name>SPI_setPTESignalPolarity</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__spi__api_1ga29a3646b19e9eec25ffcfdcab74f45ee" kindref="member">SPI_PTEPolarity</ref></type>
+          <declname>polarity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the peripheral select (SPIPTE) signal polarity.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>polarity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the SPIPTE signal polarity.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the polarity of the peripheral select (SPIPTE) signal. The two modes to choose from for the <emphasis>polarity</emphasis> parameter are <bold>SPI_PTE_ACTIVE_LOW</bold> for active-low polarity (typical) and <bold>SPI_PTE_ACTIVE_HIGH</bold> for active-high polarity (considered inverted).</para>
+<para><simplesect kind="note"><para>This has no effect on the PTE signal when in controller mode. It is only applicable to peripheral mode.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1133" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="1133" bodyend="1145"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga6f676970c11f148a957a1fbe226e3e5b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_enableHighSpeedMode</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_enableHighSpeedMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables SPI high speed mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables high speed mode.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1159" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="1159" bodyend="1170"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga33dd696528b49788d173c26dd371994a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_disableHighSpeedMode</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_disableHighSpeedMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables SPI high speed mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables high speed mode. High speed mode is disabled by default after reset.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1185" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="1185" bodyend="1196"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1gaddbfb995f8dfc9ded4074b5884fcb328" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_setEmulationMode</definition>
+        <argsstring>(uint32_t base, SPI_EmulationMode mode)</argsstring>
+        <name>SPI_setEmulationMode</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__spi__api_1gae30dfc51d749eae0dc63914e092f134e" kindref="member">SPI_EmulationMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets SPI emulation mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the emulation mode.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the behavior of the SPI operation when an emulation suspend occurs. The <emphasis>mode</emphasis> parameter can be one of the following:</para>
+<para><itemizedlist>
+<listitem><para><bold>SPI_EMULATION_STOP_MIDWAY</bold> - Transmission stops midway through the bit stream. The rest of the bits will be transmitting after the suspend is deasserted.</para>
+</listitem><listitem><para><bold>SPI_EMULATION_STOP_AFTER_TRANSMIT</bold> - If the suspend occurs before the first SPICLK pulse, the transmission will not start. If it occurs later, the transmission will be completed.</para>
+</listitem><listitem><para><bold>SPI_EMULATION_FREE_RUN</bold> - SPI operation continues regardless of a the suspend.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1221" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="1221" bodyend="1234"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga592b9e1266470a1b50ef7c38f817ec78" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_setTxFifoTransmitDelay</definition>
+        <argsstring>(uint32_t base, uint16_t delay)</argsstring>
+        <name>SPI_setTxFifoTransmitDelay</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>delay</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Configures the FIFO Transmit Delay</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>delay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Tx FIFO delay to be configured in cycles (0..0xFF)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the delay between every transfer from FIFO transmit buffer to transmit shift register. The delay is defined in number SPI serial clock cycles.</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1251" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="1251" bodyend="1263"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga25f756f5f99b40a034731566ede73952" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>static uint16_t SPI_readRxEmulationBuffer</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_readRxEmulationBuffer</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the Emulation Buffer Received Data</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns the Emulation Buffer Received Data</para>
+<para><simplesect kind="return"><para>Rx emulation buffer data </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1277" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="1277" bodyend="1288"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga1243947c1a217892f360f1769a6cb653" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_enableTalk</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_enableTalk</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enable Trasnmit</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function sets the TALK bit enabling the data trasnmission. This bit is enabled by SPI_setConfig if the parameter \r mode is selected as SPI_MODE_PERIPHERAL or SPI_MODE_CONTROLLER.</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1304" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="1304" bodyend="1315"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1gac298eca1cbf12d3ecbb01bb2103fde59" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_disableTalk</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_disableTalk</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disable Trasnmit</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function clears the TALK bit disabling the data trasnmission. The output pin will be put in high-impedance state. This bit is enabled by SPI_setConfig if the parameter \r mode is selected as SPI_MODE_PERIPHERAL or SPI_MODE_CONTROLLER.</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1332" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="1332" bodyend="1343"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1gab67276c8c5b9ff473366326a2af321b9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SPI_reset</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_reset</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reset SPI transmit and receive channels</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the base address of the SPI port.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function resets the SPI transmit and receive channels.</para>
+<para><simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1357" column="1" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="1357" bodyend="1369"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga985446cc44839750f1b8a073a8e949c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SPI_setConfig</definition>
+        <argsstring>(uint32_t base, uint32_t lspclkHz, SPI_TransferProtocol protocol, SPI_Mode mode, uint32_t bitRate, uint16_t dataWidth)</argsstring>
+        <name>SPI_setConfig</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>lspclkHz</declname>
+        </param>
+        <param>
+          <type><ref refid="group__spi__api_1ga799f6216550a736a4cf0fb4ed75cbe78" kindref="member">SPI_TransferProtocol</ref></type>
+          <declname>protocol</declname>
+        </param>
+        <param>
+          <type><ref refid="group__spi__api_1ga60a7e3d74577b38aa79ea6983362f942" kindref="member">SPI_Mode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>bitRate</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>dataWidth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Configures the serial peripheral interface.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lspclkHz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the rate of the clock supplied to the SPI module (LSPCLK) in Hz. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>protocol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the data transfer protocol. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the mode of operation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bitRate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the clock rate in Hz. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dataWidth</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies number of bits transferred per frame.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the serial peripheral interface. It sets the SPI protocol, mode of operation, bit rate, and data width.</para>
+<para>The <emphasis>protocol</emphasis> parameter defines the data frame format. The <emphasis>protocol</emphasis> parameter can be one of the following values: <bold>SPI_PROT_POL0PHA0</bold>, <bold>SPI_PROT_POL0PHA1</bold>, <bold>SPI_PROT_POL1PHA0</bold>, or <bold>SPI_PROT_POL1PHA1</bold>. These frame formats encode the following polarity and phase configurations:</para>
+<para><preformatted>
+Polarity Phase       Mode
+  0       0   SPI_PROT_POL0PHA0
+  0       1   SPI_PROT_POL0PHA1
+  1       0   SPI_PROT_POL1PHA0
+  1       1   SPI_PROT_POL1PHA1
+</preformatted></para>
+<para>The <emphasis>mode</emphasis> parameter defines the operating mode of the SPI module. The SPI module can operate as a controller or peripheral; the SPI can also be be configured to disable output on its serial output line. The <emphasis>mode</emphasis> parameter can be one of the following values: <bold>SPI_MODE_CONTROLLER</bold>, <bold>SPI_MODE_PERIPHERAL</bold>, <bold>SPI_MODE_CONTROLLER_OD</bold> or <bold>SPI_MODE_PERIPHERAL_OD</bold> (&quot;OD&quot; indicates &quot;output disabled&quot;).</para>
+<para>The <emphasis>bitRate</emphasis> parameter defines the bit rate for the SPI. This bit rate must satisfy the following clock ratio criteria:</para>
+<para><itemizedlist>
+<listitem><para><emphasis>bitRate</emphasis> can be no greater than lspclkHz divided by 4.</para>
+</listitem><listitem><para><emphasis>lspclkHz</emphasis> / <emphasis>bitRate</emphasis> cannot be greater than 128.</para>
+</listitem></itemizedlist>
+</para>
+<para>The <emphasis>dataWidth</emphasis> parameter defines the width of the data transfers and can be a value between 1 and 16, inclusive.</para>
+<para>The peripheral clock is the low speed peripheral clock. This value is returned by <ref refid="group__sysctl__api_1ga70606ae075b1e015e3a63f8e83320321" kindref="member">SysCtl_getLowSpeedClock()</ref>, or it can be explicitly hard coded if it is constant and known (to save the code/execution overhead of a call to <ref refid="group__sysctl__api_1ga70606ae075b1e015e3a63f8e83320321" kindref="member">SysCtl_getLowSpeedClock()</ref>).</para>
+<para><simplesect kind="note"><para>SPI operation should be disabled via <ref refid="group__spi__api_1gaceb3f98ed4417a5a25f58e84ec2d21bb" kindref="member">SPI_disableModule()</ref> before any changes to its configuration.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1428" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" declline="1428" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga866e6000de4d1d303fd4dcb5f83434be" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SPI_setBaudRate</definition>
+        <argsstring>(uint32_t base, uint32_t lspclkHz, uint32_t bitRate)</argsstring>
+        <name>SPI_setBaudRate</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>lspclkHz</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>bitRate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Configures the baud rate of the serial peripheral interface.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lspclkHz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the rate of the clock supplied to the SPI module (LSPCLK) in Hz. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bitRate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the clock rate in Hz.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function configures the SPI baud rate. The <emphasis>bitRate</emphasis> parameter defines the bit rate for the SPI. This bit rate must satisfy the following clock ratio criteria:</para>
+<para><itemizedlist>
+<listitem><para><emphasis>bitRate</emphasis> can be no greater than <emphasis>lspclkHz</emphasis> divided by 4.</para>
+</listitem><listitem><para><emphasis>lspclkHz</emphasis> / <emphasis>bitRate</emphasis> cannot be greater than 128.</para>
+</listitem></itemizedlist>
+</para>
+<para>The peripheral clock is the low speed peripheral clock. This value is returned by <ref refid="group__sysctl__api_1ga70606ae075b1e015e3a63f8e83320321" kindref="member">SysCtl_getLowSpeedClock()</ref>, or it can be explicitly hard coded if it is constant and known (to save the code/execution overhead of a call to <ref refid="group__sysctl__api_1ga70606ae075b1e015e3a63f8e83320321" kindref="member">SysCtl_getLowSpeedClock()</ref>).</para>
+<para><simplesect kind="note"><para><ref refid="group__spi__api_1ga985446cc44839750f1b8a073a8e949c4" kindref="member">SPI_setConfig()</ref> also sets the baud rate. Use <ref refid="group__spi__api_1ga866e6000de4d1d303fd4dcb5f83434be" kindref="member">SPI_setBaudRate()</ref> if you wish to configure it separately from protocol and mode.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1459" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" declline="1459" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1gaab48db2de2544c5abfe4503d2c92e1c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SPI_enableInterrupt</definition>
+        <argsstring>(uint32_t base, uint32_t intFlags)</argsstring>
+        <name>SPI_enableInterrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>intFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enables individual SPI interrupt sources.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a bit mask of the interrupt sources to be enabled.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function enables the indicated SPI interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt; disabled sources have no effect on the processor. The <emphasis>intFlags</emphasis> parameter can be any of the following values:<itemizedlist>
+<listitem><para><bold>SPI_INT_RX_OVERRUN</bold> - Receive overrun interrupt</para>
+</listitem><listitem><para><bold>SPI_INT_RX_DATA_TX_EMPTY</bold> - Data received, transmit empty</para>
+</listitem><listitem><para><bold>SPI_INT_RXFF</bold> (also enables <bold>SPI_INT_RXFF_OVERFLOW</bold>) - RX FIFO level interrupt (and RX FIFO overflow)</para>
+</listitem><listitem><para><bold>SPI_INT_TXFF</bold> - TX FIFO level interrupt</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para><bold>SPI_INT_RX_OVERRUN</bold>, <bold>SPI_INT_RX_DATA_TX_EMPTY</bold>, <bold>SPI_INT_RXFF_OVERFLOW</bold>, and <bold>SPI_INT_RXFF</bold> are associated with <bold>SPIRXINT</bold>; <bold>SPI_INT_TXFF</bold> is associated with <bold>SPITXINT</bold>.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1486" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" declline="1486" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1gaaa8e5ef5f2bb567c1215b6000a5bb933" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SPI_disableInterrupt</definition>
+        <argsstring>(uint32_t base, uint32_t intFlags)</argsstring>
+        <name>SPI_disableInterrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>intFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Disables individual SPI interrupt sources.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a bit mask of the interrupt sources to be disabled.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function disables the indicated SPI interrupt sources. The <emphasis>intFlags</emphasis> parameter can be any of the following values:<itemizedlist>
+<listitem><para><bold>SPI_INT_RX_OVERRUN</bold> </para>
+</listitem><listitem><para><bold>SPI_INT_RX_DATA_TX_EMPTY</bold> </para>
+</listitem><listitem><para><bold>SPI_INT_RXFF</bold> (also disables <bold>SPI_INT_RXFF_OVERFLOW</bold>)</para>
+</listitem><listitem><para><bold>SPI_INT_TXFF</bold> </para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para><bold>SPI_INT_RX_OVERRUN</bold>, <bold>SPI_INT_RX_DATA_TX_EMPTY</bold>, <bold>SPI_INT_RXFF_OVERFLOW</bold>, and <bold>SPI_INT_RXFF</bold> are associated with <bold>SPIRXINT</bold>; <bold>SPI_INT_TXFF</bold> is associated with <bold>SPITXINT</bold>.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1510" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" declline="1510" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1gadd7e6fe10fa730622f533ead94e8e8f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t SPI_getInterruptStatus</definition>
+        <argsstring>(uint32_t base)</argsstring>
+        <name>SPI_getInterruptStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the current interrupt status.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function returns the interrupt status for the SPI module.</para>
+<para><simplesect kind="return"><para>The current interrupt status, enumerated as a bit field of the following values:<itemizedlist>
+<listitem><para><bold>SPI_INT_RX_OVERRUN</bold> - Receive overrun interrupt</para>
+</listitem><listitem><para><bold>SPI_INT_RX_DATA_TX_EMPTY</bold> - Data received, transmit empty</para>
+</listitem><listitem><para><bold>SPI_INT_RXFF</bold> - RX FIFO level interrupt</para>
+</listitem><listitem><para><bold>SPI_INT_RXFF_OVERFLOW</bold> - RX FIFO overflow</para>
+</listitem><listitem><para><bold>SPI_INT_TXFF</bold> - TX FIFO level interrupt </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1530" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" declline="1530" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga4ec4660abc56014aa5fd333a9203789b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SPI_clearInterruptStatus</definition>
+        <argsstring>(uint32_t base, uint32_t intFlags)</argsstring>
+        <name>SPI_clearInterruptStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>intFlags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clears SPI interrupt sources.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a bit mask of the interrupt sources to be cleared.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function clears the specified SPI interrupt sources so that they no longer assert. This function must be called in the interrupt handler to keep the interrupts from being triggered again immediately upon exit. The <emphasis>intFlags</emphasis> parameter can consist of a bit field of the following values:<itemizedlist>
+<listitem><para><bold>SPI_INT_RX_OVERRUN</bold> </para>
+</listitem><listitem><para><bold>SPI_INT_RX_DATA_TX_EMPTY</bold> </para>
+</listitem><listitem><para><bold>SPI_INT_RXFF</bold> </para>
+</listitem><listitem><para><bold>SPI_INT_RXFF_OVERFLOW</bold> </para>
+</listitem><listitem><para><bold>SPI_INT_TXFF</bold> </para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para><bold>SPI_INT_RX_DATA_TX_EMPTY</bold> is cleared by a read of the receive receive buffer, so it usually doesn&apos;t need to be cleared using this function.</para>
+</simplesect>
+<simplesect kind="note"><para>Also note that <bold>SPI_INT_RX_OVERRUN</bold>, <bold>SPI_INT_RX_DATA_TX_EMPTY</bold>, <bold>SPI_INT_RXFF_OVERFLOW</bold>, and <bold>SPI_INT_RXFF</bold> are associated with <bold>SPIRXINT</bold>; <bold>SPI_INT_TXFF</bold> is associated with <bold>SPITXINT</bold>.</para>
+</simplesect>
+<simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1561" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" declline="1561" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1gac7bae53ae5e6790160827b25f568c7ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SPI_transmit24Bits</definition>
+        <argsstring>(uint32_t base, uint32_t data, uint16_t txDelay)</argsstring>
+        <name>SPI_transmit24Bits</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>txDelay</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This function can be used to transmit a 24-bit word of data</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the data to be transmitted over SPI </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txDelay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the number of serial clock cycles delay time after completion of perious word</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function can be used to transmit a 24-bit word of data. 24-bit word data is divided into three bytes of data.</para>
+<para>This function uses SPI_pollingFIFOTransaction function. SPI character length must be configured to 8 bits BEFORE calling the function</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1584" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" declline="1584" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1gab928644ccad772ac7ae24fb6ccb772b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SPI_transmit32Bits</definition>
+        <argsstring>(uint32_t base, uint32_t data, uint16_t txDelay)</argsstring>
+        <name>SPI_transmit32Bits</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>txDelay</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This function can be used to transmit a 32-bit word of data</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the data to be transmitted over SPI </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txDelay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the number of serial clock cycles delay time after completion of perious word</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function can be used to transmit a 32-bit word of data. 32-bit word data is divided into four bytes of data.</para>
+<para>This function uses SPI_pollingFIFOTransaction function. SPI character length must be configured to 16 bits BEFORE calling the function</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1606" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" declline="1606" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga33536bd1a5789526594a99837703d5c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>uint16_t SPI_receive16Bits</definition>
+        <argsstring>(uint32_t base, SPI_endianess endianness, uint16_t dummyData, uint16_t txDelay)</argsstring>
+        <name>SPI_receive16Bits</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__spi__api_1gac3e39d2245fa82e5aee50c8ce7af5f62" kindref="member">SPI_endianess</ref></type>
+          <declname>endianness</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>dummyData</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>txDelay</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is used to receive a 16-bit word of data</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>endianness</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the endianess of received data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dummyData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the data which is transmitted to initiate SPI transaction to receive SPI data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txDelay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the number of serial clock cycles delay time after completion of perious word</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function is used to receive a 16-bit word of data. This function uses SPI_pollingFIFOTransaction function. SPI character length must be configured to 8 bits BEFORE calling the function</para>
+<para><simplesect kind="return"><para>the received 16-bit word. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1630" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" declline="1630" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1gada6fa624c167254f8aa108d0da2974ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t SPI_receive24Bits</definition>
+        <argsstring>(uint32_t base, SPI_endianess endianness, uint16_t dummyData, uint16_t txDelay)</argsstring>
+        <name>SPI_receive24Bits</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__spi__api_1gac3e39d2245fa82e5aee50c8ce7af5f62" kindref="member">SPI_endianess</ref></type>
+          <declname>endianness</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>dummyData</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>txDelay</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is used to receive a 24-bit word of data</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>endianness</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the endianess of received data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dummyData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the data which is transmitted to initiate SPI transaction to receive SPI data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txDelay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the number of serial clock cycles delay time after completion of perious word</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function is used to receive a 24-bit word of data. This function uses SPI_pollingFIFOTransaction function. SPI character length must be configured to 8 bits BEFORE calling the function</para>
+<para><simplesect kind="return"><para>the received 24-bit word. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1653" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" declline="1653" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga3f59b257fbbe444f9c276ac08e88ea56" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t SPI_receive32Bits</definition>
+        <argsstring>(uint32_t base, SPI_endianess endianness, uint16_t dummyData, uint16_t txDelay)</argsstring>
+        <name>SPI_receive32Bits</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type><ref refid="group__spi__api_1gac3e39d2245fa82e5aee50c8ce7af5f62" kindref="member">SPI_endianess</ref></type>
+          <declname>endianness</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>dummyData</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>txDelay</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is used to receive a 32-bit word of data</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>endianness</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the endianess of received data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dummyData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the data which is transmitted to initiate SPI transaction to receive SPI data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txDelay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the number of serial clock cycles delay time after completion of perious word</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function is used to receive a 32-bit word of data. This function uses SPI_pollingFIFOTransaction function. SPI character length must be configured to 8 bits BEFORE calling the function</para>
+<para><simplesect kind="return"><para>the received 32-bit word. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1676" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" declline="1676" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga4895a230620eee7ed4cd542adb75e40c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>uint16_t SPI_pollingNonFIFOTransaction</definition>
+        <argsstring>(uint32_t base, uint16_t charLength, uint16_t data)</argsstring>
+        <name>SPI_pollingNonFIFOTransaction</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>charLength</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is used to initiate SPI transaction of specified character length</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>charLength</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI character length of SPI transaction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specified the data to be transmitted</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+The SPI must be configured to the provided charLength BEFORE the function is called. This function does not set/change the SPI char length.</para>
+<para><simplesect kind="return"><para>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1697" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" declline="1697" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__spi__api_1ga1b1aec6f36f2b7606cc71f0909fda5b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SPI_pollingFIFOTransaction</definition>
+        <argsstring>(uint32_t base, uint16_t charLength, uint16_t *pTxBuffer, uint16_t *pRxBuffer, uint16_t numOfWords, uint16_t txDelay)</argsstring>
+        <name>SPI_pollingFIFOTransaction</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>charLength</declname>
+        </param>
+        <param>
+          <type>uint16_t *</type>
+          <declname>pTxBuffer</declname>
+        </param>
+        <param>
+          <type>uint16_t *</type>
+          <declname>pRxBuffer</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>numOfWords</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>txDelay</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is used to initiate SPI transaction of specified character length and &apos;N&apos; words of transaction</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>charLength</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI character length of SPI transaction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pTxBuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the pointer to transmit buffer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pRxBuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the pointer to receive buffer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>numOfWords</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specified the number of data to be transmitted / received</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+The SPI must be configured to the provided charLength BEFORE the function is called. This function does not set/change the SPI char length.</para>
+<para><simplesect kind="return"><para>none </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="1718" column="1" declfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" declline="1718" declcolumn="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__spi__api_1gaf4692979b38b20e3c0e9ee3d90fd4267" prot="public" static="no">
+        <name>SPI_INT_RX_OVERRUN</name>
+        <initializer>0x0001U</initializer>
+        <briefdescription>
+<para>Receive overrun interrupt. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="78" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__spi__api_1gaccf4ba71a326c2fc84ad2a4fcd867bba" prot="public" static="no">
+        <name>SPI_INT_RX_DATA_TX_EMPTY</name>
+        <initializer>0x0002U</initializer>
+        <briefdescription>
+<para>Data received, transmit empty. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="79" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__spi__api_1ga8d7e1f5fabb3ba8a82743ce0cb8fea0a" prot="public" static="no">
+        <name>SPI_INT_RXFF</name>
+        <initializer>0x0004U</initializer>
+        <briefdescription>
+<para>RX FIFO level interrupt. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="80" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__spi__api_1gab0e46560a0931e57bead8009ecbcf9a6" prot="public" static="no">
+        <name>SPI_INT_TXFF</name>
+        <initializer>0x0008U</initializer>
+        <briefdescription>
+<para>TX FIFO level interrupt. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="81" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__spi__api_1ga7eb46fff567509fff4fe673cc637229d" prot="public" static="no">
+        <name>SPI_INT_RXFF_OVERFLOW</name>
+        <initializer>0x0010U</initializer>
+        <briefdescription>
+<para>RX FIFO overflow. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="82" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__spi__api_1gac2a607ec0caa4932aa104ba2d6d86ddd" prot="public" static="no">
+        <name>SPI_transmitByte</name>
+        <param><defname>base</defname></param>
+        <param><defname>txData</defname></param>
+        <initializer>                                <ref refid="group__spi__api_1ga4895a230620eee7ed4cd542adb75e40c" kindref="member">SPI_pollingNonFIFOTransaction</ref>(base, 8U,  txData)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This macro definition is used to transmit a byte of data</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the data to be transmitted over SPI</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This macro definition is to transmit a byte of data. This macro uses SPI_pollingNonFIFOTransaction function SPI character length must be configured to 8 bits BEFORE calling the function</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="101" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__spi__api_1ga3409d09dc697cddbcd367486512dc333" prot="public" static="no">
+        <name>SPI_transmit16Bits</name>
+        <param><defname>base</defname></param>
+        <param><defname>txData</defname></param>
+        <initializer>                                <ref refid="group__spi__api_1ga4895a230620eee7ed4cd542adb75e40c" kindref="member">SPI_pollingNonFIFOTransaction</ref>(base, 16U, txData)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This macro definition is used to transmit a 16-bit word of data</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the data to be transmitted over SPI</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This macro definition is to transmit a 16-bit word of data. This macro uses SPI_pollingNonFIFOTransaction function SPI character length must be configured to 16 bits BEFORE calling the function</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="119" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__spi__api_1ga5324ba994390800daa7d5fca0f304aaa" prot="public" static="no">
+        <name>SPI_transmitNBytes</name>
+        <param><defname>base</defname></param>
+        <param><defname>txBuffer</defname></param>
+        <param><defname>numOfWords</defname></param>
+        <param><defname>txDelay</defname></param>
+        <initializer>      <ref refid="group__spi__api_1ga1b1aec6f36f2b7606cc71f0909fda5b7" kindref="member">SPI_pollingFIFOTransaction</ref>(base, 8U,  txBuffer, NULL, numOfWords, txDelay)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This macro definition can be used to transmit &apos;N&apos; bytes of data</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txBuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the transmit buffer to be transmitted over SPI </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>numOfWords</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the number of bytes to be transmitted </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txDelay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the number of serial clock cycles delay time after completion of perious word</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This macro definition can be used to transmit &apos;N&apos; bytes of data. This macro definition uses SPI_pollingFIFOTransaction function.</para>
+<para>SPI character length must be configured to 8 bits BEFORE calling the function</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="141" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__spi__api_1ga4ec0b76f75154db24a1f9da6dad1104a" prot="public" static="no">
+        <name>SPI_transmitN16BitWord</name>
+        <param><defname>base</defname></param>
+        <param><defname>txBuffer</defname></param>
+        <param><defname>numOfWords</defname></param>
+        <param><defname>txDelay</defname></param>
+        <initializer>      <ref refid="group__spi__api_1ga1b1aec6f36f2b7606cc71f0909fda5b7" kindref="member">SPI_pollingFIFOTransaction</ref>(base, 16U, txBuffer, NULL, numOfWords, txDelay)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This macro definition can be used to transmit &apos;N&apos; 16-bit words of data</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txBuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the transmit buffer to be transmitted over SPI </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>numOfWords</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the number of 16-bit word to be transmitted </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txDelay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the number of serial clock cycles delay time after completion of perious word</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function can be used to transmit &apos;N&apos; 16-bit words of data. This function uses SPI_pollingFIFOTransaction function. SPI character length must be configured to 16 bits BEFORE calling the function</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="162" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__spi__api_1ga7c6f68b0edf68f8e3d2c8f5072368d43" prot="public" static="no">
+        <name>SPI_transmitNWordsWithCharLength</name>
+        <param><defname>base</defname></param>
+        <param><defname>charLength</defname></param>
+        <param><defname>txBuffer</defname></param>
+        <param><defname>numOfWords</defname></param>
+        <param><defname>txDelay</defname></param>
+        <initializer>              <ref refid="group__spi__api_1ga1b1aec6f36f2b7606cc71f0909fda5b7" kindref="member">SPI_pollingFIFOTransaction</ref>(base, charLength, txBuffer, NULL,     \
+                                         numOfWords, txDelay)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This macro definition can be used to transmit &apos;N&apos; with previously configured SPI character length</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>charLength</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI character length </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txBuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the transmit buffer to be transmitted over SPI </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>numOfWords</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the number of 16-bit word to be transmitted </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txDelay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the number of serial clock cycles delay time after completion of perious word</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This macro definition can be used to transmit &apos;N&apos; with configurable SPI character length.</para>
+<para>This macro uses SPI_pollingFIFOTransaction function. SPI character length must be configured to required value BEFORE calling the function, and passed as the charLength parameter.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="188" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="187" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__spi__api_1gae3bf1cc0af38af4e055d5e2d91f5e3c0" prot="public" static="no">
+        <name>SPI_receiveByte</name>
+        <param><defname>base</defname></param>
+        <param><defname>dummyData</defname></param>
+        <initializer>                            <ref refid="group__spi__api_1ga4895a230620eee7ed4cd542adb75e40c" kindref="member">SPI_pollingNonFIFOTransaction</ref>(base, 8U, dummyData)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This macro definition is used to receive a byte of data</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dummyData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the data which is transmitted to initiate SPI transaction to receive SPI data</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This macro definition is to receive a byte of data. This macro uses SPI_pollingNonFIFOTransaction function SPI character length must be configured to 8 bits BEFORE calling the function</para>
+<para><simplesect kind="return"><para>the received byte. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="208" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="208" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__spi__api_1gad2234544c52a09fa686ff55fb7cc3a6e" prot="public" static="no">
+        <name>SPI_receiveNBytes</name>
+        <param><defname>base</defname></param>
+        <param><defname>rxBuffer</defname></param>
+        <param><defname>numOfWords</defname></param>
+        <param><defname>txDelay</defname></param>
+        <initializer>      <ref refid="group__spi__api_1ga1b1aec6f36f2b7606cc71f0909fda5b7" kindref="member">SPI_pollingFIFOTransaction</ref>(base, 8U,  NULL, rxBuffer, numOfWords, txDelay)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This macro is used to receive &apos;N&apos; bytes of data</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rxBuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies receive buffer which will store the received bytes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>numOfWords</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the number of bytes to be received </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txDelay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the number of serial clock cycles delay time after completion of perious word</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function is used to receive &apos;N&apos; bytes of data This function uses SPI_pollingFIFOTransaction function. SPI character length must be configured to 8 bits BEFORE calling the function</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="229" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="229" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__spi__api_1gab82f821e6416d2301199fab02562b0a5" prot="public" static="no">
+        <name>SPI_receiveN16BitWord</name>
+        <param><defname>base</defname></param>
+        <param><defname>rxBuffer</defname></param>
+        <param><defname>numOfWords</defname></param>
+        <param><defname>txDelay</defname></param>
+        <initializer>      <ref refid="group__spi__api_1ga1b1aec6f36f2b7606cc71f0909fda5b7" kindref="member">SPI_pollingFIFOTransaction</ref>(base, 16U, NULL, rxBuffer, numOfWords, txDelay)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This macro is used to receive &apos;N&apos; 16-bits words of data</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rxBuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies receive buffer which will store the received bytes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>numOfWords</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the number of 16-bit words to be received </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txDelay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the number of serial clock cycles delay time after completion of perious word</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function is used to receive &apos;N&apos; 16-bit words of data This function uses SPI_pollingFIFOTransaction function. SPI character length must be configured to 16 bits BEFORE calling the function</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="250" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="250" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__spi__api_1ga759d67c315bb1e4570ead8467871bf0b" prot="public" static="no">
+        <name>SPI_receiveNWordsWithcharLength</name>
+        <param><defname>base</defname></param>
+        <param><defname>charLength</defname></param>
+        <param><defname>rxBuffer</defname></param>
+        <param><defname>numOfWords</defname></param>
+        <param><defname>txDelay</defname></param>
+        <initializer>            <ref refid="group__spi__api_1ga1b1aec6f36f2b7606cc71f0909fda5b7" kindref="member">SPI_pollingFIFOTransaction</ref>(base, charLength, NULL, rxBuffer,       \
+                                       numOfWords, txDelay)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This macro is used to receive &apos;N&apos; words with previously configured character length</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>base</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI module base address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>charLength</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the SPI character length of SPI transaction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rxBuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies receive buffer which will store the received bytes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>numOfWords</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the number of words with specified character length </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>txDelay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the number of serial clock cycles delay time after completion of perious word</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This function is used to receive &apos;N&apos; words with specified character length This function uses SPI_pollingFIFOTransaction function. SPI character length must be configured to required value BEFORE calling the function, and passed as the charLength parameter.</para>
+<para><simplesect kind="return"><para>None. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" line="275" column="9" bodyfile="/home/siddharth/ti/repos/release/driverlib/mcpc029/driverlib/spi.h" bodystart="274" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This module is used for SPI configurations. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

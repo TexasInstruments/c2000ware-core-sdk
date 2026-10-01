@@ -1,10 +1,9 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --device "F28P65x" --package "256ZEJ" --part "F28P65x_256ZEJ" --context "CPU1" --product "C2000WARE"
- * 
+ * @cliArgs --device "F28P65x" --part "F28P65x_256ZEJ" --package "256ZEJ" --board "/boards/TMDSCNCD28P65X" --context "CPU1"
+ * @v2CliArgs --device "TMS320F28P650DK" --package "256ZEJ" --variant "TMS320F28P650DK9" --context "CPU1"
  */
-
 /**
  * Import the modules used in this configuration.
  */
@@ -22,12 +21,10 @@ const outputxbar1 = outputxbar.addInstance();
 const outputxbar2 = outputxbar.addInstance();
 const outputxbar3 = outputxbar.addInstance();
 const outputxbar4 = outputxbar.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
 asysctl.analogReference = "INTERNAL";
-
 cmpss1.enableModule        = true;
 cmpss1.$name               = "myCMPSS1";
 cmpss1.cmpssHighName       = "myCMPSS1High";
@@ -36,18 +33,15 @@ cmpss1.cmpssLowName        = "myCMPSS1Low";
 cmpss1.asysCMPHPMXSELValue = "1";
 cmpss1.dacValLow           = 4095;
 cmpss1.dacValHigh          = 1024;
-
 dac1.$name            = "myDAC1";
 dac1.enableOutput     = true;
 dac1.referenceVoltage = "DAC_REF_ADC_VREFHI";
 scripting.suppress("The pin A0/DACA_OUT is also selected by the CMPSS module\\. The DAC output will be driving the CMPSS pin input\\. This is an acceptable use-case\\.", dac1, "dacDevicePinName");
-
 const analog  = scripting.addModule("/driverlib/analog.js", {}, false);
 const analog1 = analog.addInstance({}, false);
 analog1.$name = "myANALOGPinMux0";
 cmpss1.analog = analog1;
 dac1.analog   = analog1;
-
 epwm1.epwmTimebase_period                                      = 1999;
 epwm1.epwmTimebase_counterMode                                 = "EPWM_COUNTER_MODE_UP";
 epwm1.epwmTimebase_syncOutPulseMode                            = ["EPWM_SYNC_OUT_PULSE_ON_ALL"];
@@ -65,7 +59,6 @@ epwm1.epwmDiodeEmulation_EPWM_DE_CHANNEL_B_configOutput        = "EPWM_DE_LOW";
 epwm1.epwm.$assign                                             = "EPWM1";
 epwm1.epwm.epwm_aPin.$assign                                   = "GPIO0";
 epwm1.epwm.epwm_bPin.$assign                                   = "GPIO1";
-
 epwm2.epwmTimebase_period                                      = 1999;
 epwm2.epwmTimebase_counterMode                                 = "EPWM_COUNTER_MODE_UP";
 epwm2.epwmTimebase_syncOutPulseMode                            = ["EPWM_SYNC_OUT_PULSE_ON_ALL"];
@@ -84,7 +77,6 @@ epwm2.epwmDiodeEmulation_Reentrycnt                            = 250;
 epwm2.epwm.$assign                                             = "EPWM2";
 epwm2.epwm.epwm_aPin.$assign                                   = "GPIO2";
 epwm2.epwm.epwm_bPin.$assign                                   = "GPIO3";
-
 epwm3.epwmTimebase_period                                      = 1999;
 epwm3.epwmTimebase_counterMode                                 = "EPWM_COUNTER_MODE_UP";
 epwm3.epwmTimebase_syncOutPulseMode                            = ["EPWM_SYNC_OUT_PULSE_ON_ALL"];
@@ -109,29 +101,24 @@ epwm3.$name                                                    = "myEPWM4";
 epwm3.epwm.$assign                                             = "EPWM4";
 epwm3.epwm.epwm_aPin.$assign                                   = "GPIO6";
 epwm3.epwm.epwm_bPin.$assign                                   = "GPIO7";
-
 outputxbar1.mux32Config                      = "XBAR_OUT_MUX32_EPWM1_DE_ACTIVE";
 outputxbar1.$name                            = "EPWM1_DEACTIVE";
 outputxbar1.muxesUsed                        = ["XBAR_MUX32"];
 outputxbar1.outputxbar.$assign               = "OUTPUTXBAR1";
 outputxbar1.outputxbar.outputxbarPin.$assign = "GPIO24";
-
 outputxbar2.muxesUsed                        = ["XBAR_MUX00"];
 outputxbar2.$name                            = "CMPSS_TRIPH";
 outputxbar2.outputxbar.$assign               = "OUTPUTXBAR2";
 outputxbar2.outputxbar.outputxbarPin.$assign = "GPIO25";
-
 outputxbar3.muxesUsed                        = ["XBAR_MUX01"];
 outputxbar3.$name                            = "CMPSS_TRIPL";
 outputxbar3.outputxbar.$assign               = "OUTPUTXBAR3";
 outputxbar3.outputxbar.outputxbarPin.$assign = "GPIO26";
-
 outputxbar4.$name                            = "EPWM4_DEMONTRIP";
 outputxbar4.mux35Config                      = "XBAR_OUT_MUX35_EPWM4_DE_DEMONTRIP";
 outputxbar4.muxesUsed                        = ["XBAR_MUX35"];
 outputxbar4.outputxbar.$assign               = "OUTPUTXBAR4";
 outputxbar4.outputxbar.outputxbarPin.$assign = "GPIO15";
-
 /**
  * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
  * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to

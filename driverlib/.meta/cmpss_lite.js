@@ -58,6 +58,10 @@ function calculateDevicePinNameHigh(inst,ui){
     if(["F28E12x", "MCPC029"].includes(Common.getDeviceName()) && (inst.asysCMPHPMXSELValue == 6) && (inst.cmpssLiteBase == "CMPSSLITE2_BASE") && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND)){
             return ComparatorInputs.CMPSSLITE_comparatorInputSignals[Common.getDeviceName()][inst.cmpssLiteBase][inst.asysCMPHPMXSELValue].displayName
         }
+    else if(["MCPC029"].includes(Common.getDeviceName()) && (inst.asysCMPHPMXSELValue == 4 || inst.asysCMPHPMXSELValue == 2) && (inst.cmpssLiteBase == "CMPSSLITE2_BASE") && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND))
+    {
+        return ComparatorInputs.CMPSSLITE_comparatorInputSignals[Common.getDeviceName()][inst.cmpssLiteBase][inst.asysCMPHPMXSELValue].displayName
+    }
     else{
         return tempPinInfoDesc
     }
@@ -137,6 +141,13 @@ for(var i=0;i<numberOfNegInputSignals;i++){
 
 var highConfig =[
     // configHighComparator: Sets the configuration for the high comparator.
+    {
+        name: "cmpssHighName",
+        displayName : "Name",
+        description : 'Select the CMPSS name for High Comparator',
+        hidden      : false,
+        default     : ""
+    },
     {
         name        : "highCompNegative",
         displayName : "Negative input source",
@@ -320,6 +331,13 @@ if (["F280013x","F280015x","F28E12x", "MCPC029"].includes(Common.getDeviceName()
 }
 var lowConfig =[
     // configLowComparator: Sets the configuration for the low comparator.
+    {
+        name: "cmpssLowName",
+        displayName : "Name",
+        description : 'Select the CMPSS name for Low Comparator',
+        hidden      : false,
+        default     : ""
+    },
     {
         name        : "lowCompNegative",
         displayName : "Negative input source",

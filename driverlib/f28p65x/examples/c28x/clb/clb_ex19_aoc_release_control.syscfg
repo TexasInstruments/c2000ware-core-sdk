@@ -1,4 +1,9 @@
-
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P65x" --part "F28P65x_256ZEJ" --package "256ZEJ" --board "/boards/TMDSCNCD28P65X" --context "CPU1"
+ * @v2CliArgs --device "TMS320F28P650DK" --package "256ZEJ" --variant "TMS320F28P650DK9" --context "CPU1"
+ */
 /**
  * Import the modules used in this configuration.
  */
@@ -15,7 +20,6 @@ const outputxbar  = scripting.addModule("/driverlib/outputxbar.js", {}, false);
 const outputxbar1 = outputxbar.addInstance();
 const TILE        = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/TILE");
 const TILE1       = TILE.addInstance();
-
 /**
  * Write custom configuration values to the imported modules.
  */
@@ -27,32 +31,25 @@ clb1.globalConfigCLB_IN1 = "CLB_GLOBAL_IN_MUX_CLB_AUXSIG1";
 clb1.synchronizeCLB_IN1  = true;
 clb1.$name               = "myCLBForTILE1";
 clb1.inputsUsed          = ["CLB_IN0"];
-
 clbxbar1.$name      = "myCLBXBAR0";
 clbxbar1.muxesUsed  = ["XBAR_MUX01"];
 clbxbar1.mux1Config = "XBAR_CLB_MUX01_INPUTXBAR1_INPUT1";
-
 gpio1.$name           = "myGPIO0Input";
 gpio1.padConfig       = "PULLUP";
 gpio1.gpioPin.$assign = "GPIO0";
-
 gpio2.direction       = "GPIO_DIR_MODE_OUT";
 gpio2.$name           = "myGPIO1Output";
 gpio2.gpioPin.$assign = "GPIO1";
-
 inputxbar1.$name          = "myINPUTXBAR0";
 inputxbar1.inputxbar1Gpio = "GPIO0";
 inputxbar1.inputxbar2Gpio = "GPIO1";
 inputxbar1.inputsUsed     = ["inputxbar1Gpio"];
-
 outputxbar1.$name                            = "myOUTPUTXBAR0";
 outputxbar1.muxesUsed                        = ["XBAR_MUX01"];
 outputxbar1.mux1Config                       = "XBAR_OUT_MUX01_CLB1_OUT4";
 outputxbar1.outputxbar.$name                 = "MyOUTPUTXBAR1";
-
 TILE.clock_period = 10000;
 TILE.sim_duration = 100000000;
-
 TILE1.$name                     = "TILE1";
 TILE1.BOUNDARY.$name            = "BOUNDARY0";
 TILE1.BOUNDARY.in_duty1         = 50;

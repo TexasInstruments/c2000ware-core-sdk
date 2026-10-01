@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="EXAMPLES_DRIVERS_SCI_INTERNAL_LOOPBACK" kind="page">
+    <compoundname>EXAMPLES_DRIVERS_SCI_INTERNAL_LOOPBACK</compoundname>
+    <title>SCI Internal Loopback</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="EXAMPLES_DRIVERS_SCI_INTERNAL_LOOPBACK_1md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_sci_loopback"/></para>
+<sect1 id="EXAMPLES_DRIVERS_SCI_INTERNAL_LOOPBACK_1autotoc_md303">
+<title>Introduction</title>
+<para>This example uses the internal loopback test mode of the SPI module. This is a very basic loopback that does not use the FIFOs or interrupts. A stream of data is sent and then compared to the received stream. The pinmux and SPI modules are configured through the sysconfig file.</para>
+<para>The sent data looks like this:</para>
+<para><programlisting><codeline><highlight class="normal">0000<sp/>0001<sp/>0002<sp/>0003<sp/>0004<sp/>0005<sp/>0006<sp/>0007<sp/>....<sp/>FFFE<sp/>FFFF<sp/>0000</highlight></codeline>
+</programlisting></para>
+<para>This pattern is repeated forever.</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_SCI_INTERNAL_LOOPBACK_1autotoc_md304">
+<title>Watch  Variables</title>
+<para><itemizedlist>
+<listitem><para>sData : Data to send</para>
+</listitem><listitem><para>rData : Received data</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_SCI_INTERNAL_LOOPBACK_1autotoc_md305">
+<title>External Connections</title>
+<para><itemizedlist>
+<listitem><para>None</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_SCI_INTERNAL_LOOPBACK_1autotoc_md306">
+<title>Steps to Run the Example</title>
+<para><itemizedlist>
+<listitem><para><bold>When using CCS projects to build</bold>, import the CCS project for the required combination and build it using the CCS project menu (see <ref refid="CCS_PROJECTS_PAGE" kindref="compound">CCS Build Project</ref>).</para>
+</listitem><listitem><para>Establish connections as mentioned in External Connections section.</para>
+</listitem><listitem><para>Launch a CCS debug session and run the executable, see <ref refid="CCS_LAUNCH_PAGE" kindref="compound">Build, Load and Run</ref></para>
+</listitem><listitem><para>Using the watch variables, monitor data transmission</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="EXAMPLES_DRIVERS_SCI_INTERNAL_LOOPBACK_1autotoc_md307">
+<title>See Also</title>
+<para><ref refid="DRIVERS_SCI_PAGE" kindref="compound">SCI</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="/home/siddharth/ti/repos/c29_sdk_docs/docs_src/docs/api_guide/examples/drivers/sci_loopback.md"/>
+  </compounddef>
+</doxygen>

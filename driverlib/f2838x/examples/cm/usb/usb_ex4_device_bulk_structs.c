@@ -9,7 +9,7 @@
 //
 //
 // 
-// C2000Ware v26.01.00.00
+// C2000Ware v26.02.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -42,9 +42,7 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //##############################################################################
-
 #include "usb_ex4_device_bulk_structs.h"
-
 //******************************************************************************
 //
 // The languages supported by this device.
@@ -56,7 +54,6 @@ const uint8_t g_pLangDescriptor[] =
     USB_DTYPE_STRING,
     USBShort(USB_LANG_EN_US)
 };
-
 //******************************************************************************
 //
 // The manufacturer string.
@@ -69,7 +66,6 @@ const uint8_t g_pManufacturerString[] =
     'T', 0, 'e', 0, 'x', 0, 'a', 0, 's', 0, ' ', 0, 'I', 0, 'n', 0, 's', 0,
     't', 0, 'r', 0, 'u', 0, 'm', 0, 'e', 0, 'n', 0, 't', 0, 's', 0,
 };
-
 //******************************************************************************
 //
 // The product string.
@@ -83,7 +79,6 @@ const uint8_t g_pProductString[] =
     'u', 0, 'l', 0, 'k', 0, ' ', 0, 'D', 0, 'e', 0, 'v', 0, 'i', 0, 'c', 0,
     'e', 0
 };
-
 //******************************************************************************
 //
 // The serial number string.
@@ -95,7 +90,6 @@ const uint8_t g_pSerialNumberString[] =
     USB_DTYPE_STRING,
     '1', 0, '2', 0, '3', 0, '4', 0, '5', 0, '6', 0, '7', 0, '8', 0
 };
-
 //******************************************************************************
 //
 // The data interface description string.
@@ -109,7 +103,6 @@ const uint8_t g_pDataInterfaceString[] =
     'a', 0, ' ', 0, 'I', 0, 'n', 0, 't', 0, 'e', 0, 'r', 0, 'f', 0,
     'a', 0, 'c', 0, 'e', 0
 };
-
 //******************************************************************************
 //
 // The configuration description string.
@@ -123,7 +116,6 @@ const uint8_t g_pConfigString[] =
     'a', 0, ' ', 0, 'C', 0, 'o', 0, 'n', 0, 'f', 0, 'i', 0, 'g', 0,
     'u', 0, 'r', 0, 'a', 0, 't', 0, 'i', 0, 'o', 0, 'n', 0
 };
-
 //******************************************************************************
 //
 // The descriptor string table.
@@ -138,10 +130,8 @@ const uint8_t * const g_pStringDescriptors[] =
     g_pDataInterfaceString,
     g_pConfigString
 };
-
 #define NUM_STRING_DESCRIPTORS (sizeof(g_pStringDescriptors)                  /\
                                 sizeof(uint8_t *))
-
 //******************************************************************************
 //
 // The bulk device initialization and customization structures. In this case,
@@ -155,10 +145,8 @@ const uint8_t * const g_pStringDescriptors[] =
 //
 //******************************************************************************
 tBulkInstance g_sBulkInstance;
-
 extern tUSBBuffer g_sTxBuffer;
 extern tUSBBuffer g_sRxBuffer;
-
 tUSBDBulkDevice g_sBulkDevice =
 {
     USB_VID_TI_1CBE,
@@ -172,7 +160,6 @@ tUSBDBulkDevice g_sBulkDevice =
     g_pStringDescriptors,
     NUM_STRING_DESCRIPTORS,
 };
-
 //******************************************************************************
 //
 // Receive buffer (from the USB perspective).
@@ -180,7 +167,6 @@ tUSBDBulkDevice g_sBulkDevice =
 //******************************************************************************
 uint8_t g_pui8USBRxBuffer[BULK_BUFFER_SIZE];
 uint8_t g_pui8RxBufferWorkspace[USB_BUFFER_WORKSPACE_SIZE];
-
 tUSBBuffer g_sRxBuffer =
 {
     false,                           // This is a receive buffer.
@@ -192,7 +178,6 @@ tUSBBuffer g_sRxBuffer =
     g_pui8USBRxBuffer,               // pcBuffer
     BULK_BUFFER_SIZE,                // ulBufferSize
 };
-
 //******************************************************************************
 //
 // Transmit buffer (from the USB perspective).
@@ -200,7 +185,6 @@ tUSBBuffer g_sRxBuffer =
 //******************************************************************************
 uint8_t g_pui8USBTxBuffer[BULK_BUFFER_SIZE];
 uint8_t g_pui8TxBufferWorkspace[USB_BUFFER_WORKSPACE_SIZE];
-
 tUSBBuffer g_sTxBuffer =
 {
     true,                            // This is a transmit buffer.
